@@ -1,0 +1,23 @@
+{
+  "name": "@forteplatforms/sdk",
+  "version": "1.0.8",
+  "description": "Official TypeScript SDK for Forte Platforms",
+  "author": "Forte Platforms <support@forteplatforms.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FortePlatforms/SDK.git"
+  },
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0 || ^5.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
