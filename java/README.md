@@ -9,7 +9,7 @@ Official Java SDK for interacting with the Forte Platforms API.
 ```xml
 <dependency>
     <groupId>com.forteplatforms</groupId>
-    <artifactId>forte-sdk</artifactId>
+    <artifactId>sdk</artifactId>
     <version>1.0.8</version>
 </dependency>
 ```
@@ -17,7 +17,7 @@ Official Java SDK for interacting with the Forte Platforms API.
 ### Gradle
 
 ```groovy
-implementation 'com.forteplatforms:forte-sdk:1.0.0'
+implementation 'com.forteplatforms:sdk:1.0.8'
 ```
 
 ## Authentication

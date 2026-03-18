@@ -42,7 +42,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   HealthCheckDetectionError.JSON_PROPERTY_SEARCHED_PATHS,
   HealthCheckDetectionError.JSON_PROPERTY_SUGGESTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T15:47:48.396366-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T16:54:52.699083100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class HealthCheckDetectionError {
   /**
    * Type of error that occurred
