@@ -3,7 +3,7 @@ name: Publish Java SDK
 on:
   push:
     paths:
-      - "sdk/java/**"
+      - "java/**"
     branches:
       - main
   workflow_dispatch:

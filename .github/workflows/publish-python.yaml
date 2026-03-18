@@ -3,7 +3,7 @@ name: Publish Python SDK
 on:
   push:
     paths:
-      - "sdk/python/**"
+      - "python/**"
     branches:
       - main
   workflow_dispatch:

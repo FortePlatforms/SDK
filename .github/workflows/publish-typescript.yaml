@@ -3,7 +3,7 @@ name: Publish TypeScript SDK
 on:
   push:
     paths:
-      - "sdk/typescript/**"
+      - "typescript/**"
     branches:
       - main
   workflow_dispatch:
