@@ -5,7 +5,7 @@
     <artifactId>sdk</artifactId>
     <packaging>jar</packaging>
     <name>sdk</name>
-    <version>1.0.9</version>
+    <version>1.0.13</version>
     <url>https://forteplatforms.com</url>
     <description>Official Java SDK for Forte Platforms</description>
     <scm>
@@ -166,6 +166,16 @@
                   <importOrder/>
                 </java>
               </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.7.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
             </plugin>
         </plugins>
     </build>

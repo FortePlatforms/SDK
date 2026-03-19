@@ -38,7 +38,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   LatencyStats.JSON_PROPERTY_MIN,
   LatencyStats.JSON_PROPERTY_MAX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T16:54:52.699083100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:09:27.966863500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class LatencyStats {
   public static final String JSON_PROPERTY_P50 = "p50";
   @javax.annotation.Nonnull

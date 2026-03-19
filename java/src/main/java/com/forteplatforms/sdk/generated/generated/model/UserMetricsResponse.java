@@ -44,7 +44,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserMetricsResponse.JSON_PROPERTY_SIGN_UPS,
   UserMetricsResponse.JSON_PROPERTY_TOTAL_USERS_OVER_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T16:54:52.699083100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:09:27.966863500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserMetricsResponse {
   public static final String JSON_PROPERTY_TOTAL_USERS = "totalUsers";
   @javax.annotation.Nullable
