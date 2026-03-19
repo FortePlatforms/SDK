@@ -27,7 +27,8 @@ class UpdateProjectRequest(BaseModel):
     UpdateProjectRequest
     """ # noqa: E501
     google_o_auth_client_id: Optional[StrictStr] = Field(default=None, alias="googleOAuthClientId")
-    __properties: ClassVar[List[str]] = ["googleOAuthClientId"]
+    recaptcha_secret_key: Optional[StrictStr] = Field(default=None, alias="recaptchaSecretKey")
+    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +81,8 @@ class UpdateProjectRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "googleOAuthClientId": obj.get("googleOAuthClientId")
+            "googleOAuthClientId": obj.get("googleOAuthClientId"),
+            "recaptchaSecretKey": obj.get("recaptchaSecretKey")
         })
         return _obj
 

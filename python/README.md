@@ -10,16 +10,22 @@ pip install forte-sdk
 
 ## Authentication
 
-Set your API token as an environment variable:
+When your code runs inside a Forte-hosted service, `FORTE_API_TOKEN` is set automatically and scoped to the service's project — no configuration needed:
 
-```bash
-export FORTE_API_TOKEN=your_api_token_here
+```python
+client = ForteClient()
 ```
 
-Or pass it directly when creating the client:
+Outside of Forte (local development, external hosting), pass the token explicitly:
 
 ```python
 client = ForteClient(api_token="your_api_token_here")
+```
+
+Or set it as an environment variable:
+
+```bash
+export FORTE_API_TOKEN=your_api_token_here
 ```
 
 You can generate an API token from the Forte Platforms dashboard.
@@ -36,12 +42,6 @@ projects = client.projects.list_projects()
 
 # Get a specific project
 project = client.projects.get_project(project_id="your-project-id")
-```
-
-## Custom Base URL
-
-```python
-client = ForteClient(base_url="https://custom-endpoint.example.com")
 ```
 
 ## Error Handling

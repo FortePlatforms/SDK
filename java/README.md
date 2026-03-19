@@ -10,28 +10,34 @@ Official Java SDK for interacting with the Forte Platforms API.
 <dependency>
     <groupId>com.forteplatforms</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.0.13</version>
+    <version>1.0.17</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'com.forteplatforms:sdk:1.0.13'
+implementation 'com.forteplatforms:sdk:1.0.17'
 ```
 
 ## Authentication
 
-Set your API token as an environment variable:
+When your code runs inside a Forte-hosted service, `FORTE_API_TOKEN` is set automatically and scoped to the service's project — no configuration needed:
 
-```bash
-export FORTE_API_TOKEN=your_api_token_here
+```java
+ForteClient client = new ForteClient();
 ```
 
-Or pass it directly when creating the client:
+Outside of Forte (local development, external hosting), pass the token explicitly:
 
 ```java
 ForteClient client = new ForteClient("your_api_token_here");
+```
+
+Or set it as an environment variable:
+
+```bash
+export FORTE_API_TOKEN=your_api_token_here
 ```
 
 You can generate an API token from the Forte Platforms dashboard.
@@ -48,12 +54,6 @@ var projects = client.projects().listProjects();
 
 // Get a specific project
 var project = client.projects().getProject("your-project-id");
-```
-
-## Custom Base URL
-
-```java
-ForteClient client = new ForteClient("your_api_token", "https://custom-endpoint.example.com");
 ```
 
 ## Error Handling

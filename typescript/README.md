@@ -10,19 +10,27 @@ npm install @forteplatforms/sdk
 
 ## Authentication
 
-Set your API token as an environment variable:
+When your code runs inside a Forte-hosted service, `FORTE_API_TOKEN` is set automatically and scoped to the service's project — no configuration needed:
 
-```bash
-export FORTE_API_TOKEN=your_api_token_here
+```typescript
+const client = new ForteClient();
 ```
 
-Or pass it directly when creating the client:
+Outside of Forte (local development, external hosting), pass the token explicitly:
 
 ```typescript
 const client = new ForteClient({ apiToken: 'your_api_token_here' });
 ```
 
+Or set it as an environment variable (Node.js only):
+
+```bash
+export FORTE_API_TOKEN=your_api_token_here
+```
+
 You can generate an API token from the Forte Platforms dashboard.
+
+> **Note:** The TypeScript SDK works in both Node.js and browser/React environments. In browsers, you must pass `apiToken` directly since environment variables are not available.
 
 ## Quick Start
 
@@ -36,14 +44,6 @@ const projects = await client.projects.listProjects();
 
 // Get a specific project
 const project = await client.projects.getProject({ projectId: 'your-project-id' });
-```
-
-## Custom Base URL
-
-```typescript
-const client = new ForteClient({
-  baseUrl: 'https://custom-endpoint.example.com',
-});
 ```
 
 ## Error Handling

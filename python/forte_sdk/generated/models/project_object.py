@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.service_object import ServiceObject
 from typing import Optional, Set
@@ -38,7 +38,8 @@ class ProjectObject(BaseModel):
     ecr_repository_uri: Optional[StrictStr] = Field(default=None, alias="ecrRepositoryUri")
     cached_user_count: Optional[StrictInt] = Field(default=None, alias="cachedUserCount")
     google_o_auth_client_id: Optional[StrictStr] = Field(default=None, alias="googleOAuthClientId")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId"]
+    has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "hasRecaptchaSecretKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -107,7 +108,8 @@ class ProjectObject(BaseModel):
             "roleArn": obj.get("roleArn"),
             "ecrRepositoryUri": obj.get("ecrRepositoryUri"),
             "cachedUserCount": obj.get("cachedUserCount"),
-            "googleOAuthClientId": obj.get("googleOAuthClientId")
+            "googleOAuthClientId": obj.get("googleOAuthClientId"),
+            "hasRecaptchaSecretKey": obj.get("hasRecaptchaSecretKey")
         })
         return _obj
 

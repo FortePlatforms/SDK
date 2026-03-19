@@ -43,6 +43,12 @@ export interface RegisterUserRequest {
      * @memberof RegisterUserRequest
      */
     customMetadataAttributes?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterUserRequest
+     */
+    recaptchaToken?: string;
 }
 
 /**
@@ -66,6 +72,7 @@ export function RegisterUserRequestFromJSONTyped(json: any, ignoreDiscriminator:
         'email': json['email'] == null ? undefined : json['email'],
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'customMetadataAttributes': json['customMetadataAttributes'] == null ? undefined : json['customMetadataAttributes'],
+        'recaptchaToken': json['recaptchaToken'] == null ? undefined : json['recaptchaToken'],
     };
 }
 
@@ -84,6 +91,7 @@ export function RegisterUserRequestToJSONTyped(value?: RegisterUserRequest | nul
         'email': value['email'],
         'phoneNumber': value['phoneNumber'],
         'customMetadataAttributes': value['customMetadataAttributes'],
+        'recaptchaToken': value['recaptchaToken'],
     };
 }
 

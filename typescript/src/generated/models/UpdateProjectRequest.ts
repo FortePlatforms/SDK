@@ -25,6 +25,12 @@ export interface UpdateProjectRequest {
      * @memberof UpdateProjectRequest
      */
     googleOAuthClientId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProjectRequest
+     */
+    recaptchaSecretKey?: string;
 }
 
 /**
@@ -45,6 +51,7 @@ export function UpdateProjectRequestFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'googleOAuthClientId': json['googleOAuthClientId'] == null ? undefined : json['googleOAuthClientId'],
+        'recaptchaSecretKey': json['recaptchaSecretKey'] == null ? undefined : json['recaptchaSecretKey'],
     };
 }
 
@@ -60,6 +67,7 @@ export function UpdateProjectRequestToJSONTyped(value?: UpdateProjectRequest | n
     return {
         
         'googleOAuthClientId': value['googleOAuthClientId'],
+        'recaptchaSecretKey': value['recaptchaSecretKey'],
     };
 }
 

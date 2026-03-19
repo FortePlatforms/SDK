@@ -2,6 +2,8 @@ import { Configuration } from './generated/runtime';
 import { ProjectsServerApi } from './generated/apis/ProjectsServerApi';
 import { UsersServerApi } from './generated/apis/UsersServerApi';
 
+declare var process: { env: Record<string, string | undefined> } | undefined;
+
 export * from './generated/models';
 
 export interface ForteClientOptions {
@@ -14,10 +16,12 @@ export class ForteClient {
   public readonly users: UsersServerApi;
 
   constructor(options: ForteClientOptions = {}) {
-    const token = options.apiToken ?? process.env.FORTE_API_TOKEN;
+    // Falls back to FORTE_API_TOKEN env var in Node.js; safe in browsers where process is undefined
+    const token = options.apiToken
+      ?? (typeof process !== 'undefined' ? process.env?.FORTE_API_TOKEN : undefined);
     if (!token) {
       throw new Error(
-        'FORTE_API_TOKEN is required. Set it as an environment variable or pass apiToken option.',
+        'API token is required. Pass apiToken in the constructor options, or set the FORTE_API_TOKEN environment variable (Node.js only).',
       );
     }
 

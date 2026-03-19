@@ -30,7 +30,8 @@ class RegisterUserRequest(BaseModel):
     email: Optional[StrictStr] = None
     phone_number: Optional[StrictStr] = Field(default=None, alias="phoneNumber")
     custom_metadata_attributes: Optional[Dict[str, Any]] = Field(default=None, alias="customMetadataAttributes")
-    __properties: ClassVar[List[str]] = ["fullName", "email", "phoneNumber", "customMetadataAttributes"]
+    recaptcha_token: Optional[StrictStr] = Field(default=None, alias="recaptchaToken")
+    __properties: ClassVar[List[str]] = ["fullName", "email", "phoneNumber", "customMetadataAttributes", "recaptchaToken"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +87,8 @@ class RegisterUserRequest(BaseModel):
             "fullName": obj.get("fullName"),
             "email": obj.get("email"),
             "phoneNumber": obj.get("phoneNumber"),
-            "customMetadataAttributes": obj.get("customMetadataAttributes")
+            "customMetadataAttributes": obj.get("customMetadataAttributes"),
+            "recaptchaToken": obj.get("recaptchaToken")
         })
         return _obj
 

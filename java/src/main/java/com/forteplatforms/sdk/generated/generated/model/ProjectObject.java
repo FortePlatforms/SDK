@@ -46,9 +46,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_ROLE_ARN,
   ProjectObject.JSON_PROPERTY_ECR_REPOSITORY_URI,
   ProjectObject.JSON_PROPERTY_CACHED_USER_COUNT,
-  ProjectObject.JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID
+  ProjectObject.JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID,
+  ProjectObject.JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:09:27.966863500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:33:20.786886200-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectObject {
   public static final String JSON_PROPERTY_PROJECT_ID = "projectId";
   @javax.annotation.Nullable
@@ -89,6 +90,10 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID = "googleOAuthClientId";
   @javax.annotation.Nullable
   private String googleOAuthClientId;
+
+  public static final String JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY = "hasRecaptchaSecretKey";
+  @javax.annotation.Nullable
+  private Boolean hasRecaptchaSecretKey;
 
   public ProjectObject() { 
   }
@@ -341,6 +346,30 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject hasRecaptchaSecretKey(@javax.annotation.Nullable Boolean hasRecaptchaSecretKey) {
+    this.hasRecaptchaSecretKey = hasRecaptchaSecretKey;
+    return this;
+  }
+
+  /**
+   * Get hasRecaptchaSecretKey
+   * @return hasRecaptchaSecretKey
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasRecaptchaSecretKey() {
+    return hasRecaptchaSecretKey;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasRecaptchaSecretKey(@javax.annotation.Nullable Boolean hasRecaptchaSecretKey) {
+    this.hasRecaptchaSecretKey = hasRecaptchaSecretKey;
+  }
+
+
   /**
    * Return true if this ProjectObject object is equal to o.
    */
@@ -362,12 +391,13 @@ public class ProjectObject {
         Objects.equals(this.roleArn, projectObject.roleArn) &&
         Objects.equals(this.ecrRepositoryUri, projectObject.ecrRepositoryUri) &&
         Objects.equals(this.cachedUserCount, projectObject.cachedUserCount) &&
-        Objects.equals(this.googleOAuthClientId, projectObject.googleOAuthClientId);
+        Objects.equals(this.googleOAuthClientId, projectObject.googleOAuthClientId) &&
+        Objects.equals(this.hasRecaptchaSecretKey, projectObject.hasRecaptchaSecretKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -384,6 +414,7 @@ public class ProjectObject {
     sb.append("    ecrRepositoryUri: ").append(toIndentedString(ecrRepositoryUri)).append("\n");
     sb.append("    cachedUserCount: ").append(toIndentedString(cachedUserCount)).append("\n");
     sb.append("    googleOAuthClientId: ").append(toIndentedString(googleOAuthClientId)).append("\n");
+    sb.append("    hasRecaptchaSecretKey: ").append(toIndentedString(hasRecaptchaSecretKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -484,6 +515,11 @@ public class ProjectObject {
     // add `googleOAuthClientId` to the URL query string
     if (getGoogleOAuthClientId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgoogleOAuthClientId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoogleOAuthClientId()))));
+    }
+
+    // add `hasRecaptchaSecretKey` to the URL query string
+    if (getHasRecaptchaSecretKey() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasRecaptchaSecretKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasRecaptchaSecretKey()))));
     }
 
     return joiner.toString();

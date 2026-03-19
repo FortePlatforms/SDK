@@ -38,9 +38,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RegisterUserRequest.JSON_PROPERTY_FULL_NAME,
   RegisterUserRequest.JSON_PROPERTY_EMAIL,
   RegisterUserRequest.JSON_PROPERTY_PHONE_NUMBER,
-  RegisterUserRequest.JSON_PROPERTY_CUSTOM_METADATA_ATTRIBUTES
+  RegisterUserRequest.JSON_PROPERTY_CUSTOM_METADATA_ATTRIBUTES,
+  RegisterUserRequest.JSON_PROPERTY_RECAPTCHA_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:09:27.966863500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:33:20.786886200-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class RegisterUserRequest {
   public static final String JSON_PROPERTY_FULL_NAME = "fullName";
   @javax.annotation.Nullable
@@ -57,6 +58,10 @@ public class RegisterUserRequest {
   public static final String JSON_PROPERTY_CUSTOM_METADATA_ATTRIBUTES = "customMetadataAttributes";
   @javax.annotation.Nullable
   private Map<String, Object> customMetadataAttributes = new HashMap<>();
+
+  public static final String JSON_PROPERTY_RECAPTCHA_TOKEN = "recaptchaToken";
+  @javax.annotation.Nullable
+  private String recaptchaToken;
 
   public RegisterUserRequest() { 
   }
@@ -165,6 +170,30 @@ public class RegisterUserRequest {
   }
 
 
+  public RegisterUserRequest recaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
+    this.recaptchaToken = recaptchaToken;
+    return this;
+  }
+
+  /**
+   * Get recaptchaToken
+   * @return recaptchaToken
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRecaptchaToken() {
+    return recaptchaToken;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRecaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
+    this.recaptchaToken = recaptchaToken;
+  }
+
+
   /**
    * Return true if this RegisterUserRequest object is equal to o.
    */
@@ -180,12 +209,13 @@ public class RegisterUserRequest {
     return Objects.equals(this.fullName, registerUserRequest.fullName) &&
         Objects.equals(this.email, registerUserRequest.email) &&
         Objects.equals(this.phoneNumber, registerUserRequest.phoneNumber) &&
-        Objects.equals(this.customMetadataAttributes, registerUserRequest.customMetadataAttributes);
+        Objects.equals(this.customMetadataAttributes, registerUserRequest.customMetadataAttributes) &&
+        Objects.equals(this.recaptchaToken, registerUserRequest.recaptchaToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fullName, email, phoneNumber, customMetadataAttributes);
+    return Objects.hash(fullName, email, phoneNumber, customMetadataAttributes, recaptchaToken);
   }
 
   @Override
@@ -196,6 +226,7 @@ public class RegisterUserRequest {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    customMetadataAttributes: ").append(toIndentedString(customMetadataAttributes)).append("\n");
+    sb.append("    recaptchaToken: ").append(toIndentedString(recaptchaToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -265,6 +296,11 @@ public class RegisterUserRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getCustomMetadataAttributes().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCustomMetadataAttributes().get(_key)))));
       }
+    }
+
+    // add `recaptchaToken` to the URL query string
+    if (getRecaptchaToken() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srecaptchaToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRecaptchaToken()))));
     }
 
     return joiner.toString();
