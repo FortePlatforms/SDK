@@ -858,6 +858,7 @@ class UsersServerApi:
         g_csrf_token: StrictStr,
         g_csrf_token2: StrictStr,
         credential: StrictStr,
+        recaptcha_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -882,6 +883,8 @@ class UsersServerApi:
         :type g_csrf_token2: str
         :param credential: (required)
         :type credential: str
+        :param recaptcha_token:
+        :type recaptcha_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -909,6 +912,7 @@ class UsersServerApi:
             g_csrf_token=g_csrf_token,
             g_csrf_token2=g_csrf_token2,
             credential=credential,
+            recaptcha_token=recaptcha_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -936,6 +940,7 @@ class UsersServerApi:
         g_csrf_token: StrictStr,
         g_csrf_token2: StrictStr,
         credential: StrictStr,
+        recaptcha_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -960,6 +965,8 @@ class UsersServerApi:
         :type g_csrf_token2: str
         :param credential: (required)
         :type credential: str
+        :param recaptcha_token:
+        :type recaptcha_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -987,6 +994,7 @@ class UsersServerApi:
             g_csrf_token=g_csrf_token,
             g_csrf_token2=g_csrf_token2,
             credential=credential,
+            recaptcha_token=recaptcha_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1014,6 +1022,7 @@ class UsersServerApi:
         g_csrf_token: StrictStr,
         g_csrf_token2: StrictStr,
         credential: StrictStr,
+        recaptcha_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1038,6 +1047,8 @@ class UsersServerApi:
         :type g_csrf_token2: str
         :param credential: (required)
         :type credential: str
+        :param recaptcha_token:
+        :type recaptcha_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1065,6 +1076,7 @@ class UsersServerApi:
             g_csrf_token=g_csrf_token,
             g_csrf_token2=g_csrf_token2,
             credential=credential,
+            recaptcha_token=recaptcha_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1087,6 +1099,7 @@ class UsersServerApi:
         g_csrf_token,
         g_csrf_token2,
         credential,
+        recaptcha_token,
         _request_auth,
         _content_type,
         _headers,
@@ -1117,6 +1130,8 @@ class UsersServerApi:
             _form_params.append(('g_csrf_token', g_csrf_token2))
         if credential is not None:
             _form_params.append(('credential', credential))
+        if recaptcha_token is not None:
+            _form_params.append(('recaptcha_token', recaptcha_token))
         # process the body parameter
 
 

@@ -56,6 +56,7 @@ export interface GoogleAuthLoginCallbackRequest {
     gCsrfToken: string;
     gCsrfToken2: string;
     credential: string;
+    recaptchaToken?: string;
 }
 
 export interface LogoutRequest {
@@ -269,6 +270,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         if (requestParameters['credential'] != null) {
             formParams.append('credential', requestParameters['credential'] as any);
+        }
+
+        if (requestParameters['recaptchaToken'] != null) {
+            formParams.append('recaptcha_token', requestParameters['recaptchaToken'] as any);
         }
 
 
