@@ -15,7 +15,10 @@
 
 import * as runtime from '../runtime';
 import type {
+  ApiKeySummary,
   CreateForteServiceRequest,
+  CreateProjectApiKeyRequest,
+  CreateProjectApiKeyResponse,
   CreateServiceRequestProxyRequest,
   CreateServiceRequestProxyResponse,
   PaginatedResponseLogLineObject,
@@ -35,8 +38,14 @@ import type {
   UserObject,
 } from '../models/index';
 import {
+    ApiKeySummaryFromJSON,
+    ApiKeySummaryToJSON,
     CreateForteServiceRequestFromJSON,
     CreateForteServiceRequestToJSON,
+    CreateProjectApiKeyRequestFromJSON,
+    CreateProjectApiKeyRequestToJSON,
+    CreateProjectApiKeyResponseFromJSON,
+    CreateProjectApiKeyResponseToJSON,
     CreateServiceRequestProxyRequestFromJSON,
     CreateServiceRequestProxyRequestToJSON,
     CreateServiceRequestProxyResponseFromJSON,
@@ -77,6 +86,11 @@ export interface CreateProjectRequest {
     projectName: string;
 }
 
+export interface CreateProjectApiKeyOperationRequest {
+    projectId: string;
+    createProjectApiKeyRequest: CreateProjectApiKeyRequest;
+}
+
 export interface CreateServiceRequest {
     projectId: string;
     createForteServiceRequest: CreateForteServiceRequest;
@@ -96,6 +110,11 @@ export interface CreateServiceRequestProxyOperationRequest {
 
 export interface DeleteProjectRequest {
     projectId: string;
+}
+
+export interface DeleteProjectApiKeyRequest {
+    projectId: string;
+    apiKeyId: string;
 }
 
 export interface DeleteServiceRequest {
@@ -152,6 +171,10 @@ export interface ListLogLinesRequest {
     requestId?: string;
     buildId?: string;
     nextToken?: string;
+}
+
+export interface ListProjectApiKeysRequest {
+    projectId: string;
 }
 
 export interface ListRequestInvocationLogsRequest {
@@ -259,6 +282,51 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async createProject(requestParameters: CreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectObject> {
         const response = await this.createProjectRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createProjectApiKeyRaw(requestParameters: CreateProjectApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateProjectApiKeyResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createProjectApiKey().'
+            );
+        }
+
+        if (requestParameters['createProjectApiKeyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createProjectApiKeyRequest',
+                'Required parameter "createProjectApiKeyRequest" was null or undefined when calling createProjectApiKey().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/api-keys`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateProjectApiKeyRequestToJSON(requestParameters['createProjectApiKeyRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateProjectApiKeyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createProjectApiKey(requestParameters: CreateProjectApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateProjectApiKeyResponse> {
+        const response = await this.createProjectApiKeyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -439,6 +507,48 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteProject(requestParameters: DeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProjectRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     */
+    async deleteProjectApiKeyRaw(requestParameters: DeleteProjectApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteProjectApiKey().'
+            );
+        }
+
+        if (requestParameters['apiKeyId'] == null) {
+            throw new runtime.RequiredError(
+                'apiKeyId',
+                'Required parameter "apiKeyId" was null or undefined when calling deleteProjectApiKey().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/api-keys/{apiKeyId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"apiKeyId"}}`, encodeURIComponent(String(requestParameters['apiKeyId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteProjectApiKey(requestParameters: DeleteProjectApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteProjectApiKeyRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -868,6 +978,41 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listLogLines(requestParameters: ListLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
         const response = await this.listLogLinesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async listProjectApiKeysRaw(requestParameters: ListProjectApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApiKeySummary>>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listProjectApiKeys().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/api-keys`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ApiKeySummaryFromJSON));
+    }
+
+    /**
+     */
+    async listProjectApiKeys(requestParameters: ListProjectApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ApiKeySummary>> {
+        const response = await this.listProjectApiKeysRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

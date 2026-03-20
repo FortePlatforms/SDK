@@ -14,9 +14,12 @@
 
 # import models into model package
 from forte_sdk.generated.models.add_contact_method_request import AddContactMethodRequest
+from forte_sdk.generated.models.api_key_summary import ApiKeySummary
 from forte_sdk.generated.models.build_step_log import BuildStepLog
 from forte_sdk.generated.models.contact_method import ContactMethod
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest
+from forte_sdk.generated.models.create_project_api_key_request import CreateProjectApiKeyRequest
+from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse
 from forte_sdk.generated.models.dockerfile_detection_output import DockerfileDetectionOutput

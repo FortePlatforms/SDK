@@ -11,7 +11,7 @@
  */
 
 
-package com.forteplatforms.sdk.model;
+package com.forteplatforms.sdk.generated.model;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -24,81 +24,82 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.ApiKeySummary;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
-import com.forteplatforms.sdk.invoker.ApiClient;
+import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * AddContactMethodRequest
+ * CreateProjectApiKeyResponse
  */
 @JsonPropertyOrder({
-  AddContactMethodRequest.JSON_PROPERTY_EMAIL,
-  AddContactMethodRequest.JSON_PROPERTY_PHONE_NUMBER
+  CreateProjectApiKeyResponse.JSON_PROPERTY_ACCESS_TOKEN,
+  CreateProjectApiKeyResponse.JSON_PROPERTY_API_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T15:44:04.305503900-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
-public class AddContactMethodRequest {
-  public static final String JSON_PROPERTY_EMAIL = "email";
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+public class CreateProjectApiKeyResponse {
+  public static final String JSON_PROPERTY_ACCESS_TOKEN = "accessToken";
   @javax.annotation.Nullable
-  private String email;
+  private String accessToken;
 
-  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
+  public static final String JSON_PROPERTY_API_KEY = "apiKey";
   @javax.annotation.Nullable
-  private String phoneNumber;
+  private ApiKeySummary apiKey;
 
-  public AddContactMethodRequest() { 
+  public CreateProjectApiKeyResponse() { 
   }
 
-  public AddContactMethodRequest email(@javax.annotation.Nullable String email) {
-    this.email = email;
+  public CreateProjectApiKeyResponse accessToken(@javax.annotation.Nullable String accessToken) {
+    this.accessToken = accessToken;
     return this;
   }
 
   /**
-   * Get email
-   * @return email
+   * Get accessToken
+   * @return accessToken
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
+  @JsonProperty(value = JSON_PROPERTY_ACCESS_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getEmail() {
-    return email;
+  public String getAccessToken() {
+    return accessToken;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
+  @JsonProperty(value = JSON_PROPERTY_ACCESS_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmail(@javax.annotation.Nullable String email) {
-    this.email = email;
+  public void setAccessToken(@javax.annotation.Nullable String accessToken) {
+    this.accessToken = accessToken;
   }
 
 
-  public AddContactMethodRequest phoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public CreateProjectApiKeyResponse apiKey(@javax.annotation.Nullable ApiKeySummary apiKey) {
+    this.apiKey = apiKey;
     return this;
   }
 
   /**
-   * Get phoneNumber
-   * @return phoneNumber
+   * Get apiKey
+   * @return apiKey
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonProperty(value = JSON_PROPERTY_API_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPhoneNumber() {
-    return phoneNumber;
+  public ApiKeySummary getApiKey() {
+    return apiKey;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonProperty(value = JSON_PROPERTY_API_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public void setApiKey(@javax.annotation.Nullable ApiKeySummary apiKey) {
+    this.apiKey = apiKey;
   }
 
 
   /**
-   * Return true if this AddContactMethodRequest object is equal to o.
+   * Return true if this CreateProjectApiKeyResponse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -108,22 +109,22 @@ public class AddContactMethodRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddContactMethodRequest addContactMethodRequest = (AddContactMethodRequest) o;
-    return Objects.equals(this.email, addContactMethodRequest.email) &&
-        Objects.equals(this.phoneNumber, addContactMethodRequest.phoneNumber);
+    CreateProjectApiKeyResponse createProjectApiKeyResponse = (CreateProjectApiKeyResponse) o;
+    return Objects.equals(this.accessToken, createProjectApiKeyResponse.accessToken) &&
+        Objects.equals(this.apiKey, createProjectApiKeyResponse.apiKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, phoneNumber);
+    return Objects.hash(accessToken, apiKey);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddContactMethodRequest {\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("class CreateProjectApiKeyResponse {\n");
+    sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
+    sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,14 +172,14 @@ public class AddContactMethodRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `email` to the URL query string
-    if (getEmail() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%semail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmail()))));
+    // add `accessToken` to the URL query string
+    if (getAccessToken() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccessToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccessToken()))));
     }
 
-    // add `phoneNumber` to the URL query string
-    if (getPhoneNumber() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
+    // add `apiKey` to the URL query string
+    if (getApiKey() != null) {
+      joiner.add(getApiKey().toUrlQueryString(prefix + "apiKey" + suffix));
     }
 
     return joiner.toString();

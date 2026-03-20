@@ -54,7 +54,6 @@ export interface GetAccountRequest {
 export interface GoogleAuthLoginCallbackRequest {
     projectId: string;
     gCsrfToken: string;
-    gCsrfToken2: string;
     credential: string;
     recaptchaToken?: string;
 }
@@ -232,13 +231,6 @@ export class UsersServerApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['gCsrfToken2'] == null) {
-            throw new runtime.RequiredError(
-                'gCsrfToken2',
-                'Required parameter "gCsrfToken2" was null or undefined when calling googleAuthLoginCallback().'
-            );
-        }
-
         if (requestParameters['credential'] == null) {
             throw new runtime.RequiredError(
                 'credential',
@@ -264,8 +256,8 @@ export class UsersServerApi extends runtime.BaseAPI {
             formParams = new URLSearchParams();
         }
 
-        if (requestParameters['gCsrfToken2'] != null) {
-            formParams.append('g_csrf_token', requestParameters['gCsrfToken2'] as any);
+        if (requestParameters['gCsrfToken'] != null) {
+            formParams.append('g_csrf_token', requestParameters['gCsrfToken'] as any);
         }
 
         if (requestParameters['credential'] != null) {

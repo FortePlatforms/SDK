@@ -43,7 +43,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateForteServiceRequest.JSON_PROPERTY_BASE_INSTANCES,
   CreateForteServiceRequest.JSON_PROPERTY_CONTAINER_CPU
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:49:57.557533900-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class CreateForteServiceRequest {
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
   @javax.annotation.Nonnull

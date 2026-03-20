@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.20"
+__version__ = "1.0.24"
 
 # Define package exports
 __all__ = [
@@ -30,9 +30,12 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "AddContactMethodRequest",
+    "ApiKeySummary",
     "BuildStepLog",
     "ContactMethod",
     "CreateForteServiceRequest",
+    "CreateProjectApiKeyRequest",
+    "CreateProjectApiKeyResponse",
     "CreateServiceRequestProxyRequest",
     "CreateServiceRequestProxyResponse",
     "DockerfileDetectionOutput",
@@ -87,9 +90,12 @@ from forte_sdk.generated.exceptions import ApiException as ApiException
 
 # import models into sdk package
 from forte_sdk.generated.models.add_contact_method_request import AddContactMethodRequest as AddContactMethodRequest
+from forte_sdk.generated.models.api_key_summary import ApiKeySummary as ApiKeySummary
 from forte_sdk.generated.models.build_step_log import BuildStepLog as BuildStepLog
 from forte_sdk.generated.models.contact_method import ContactMethod as ContactMethod
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest as CreateForteServiceRequest
+from forte_sdk.generated.models.create_project_api_key_request import CreateProjectApiKeyRequest as CreateProjectApiKeyRequest
+from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse as CreateProjectApiKeyResponse
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
 from forte_sdk.generated.models.dockerfile_detection_output import DockerfileDetectionOutput as DockerfileDetectionOutput

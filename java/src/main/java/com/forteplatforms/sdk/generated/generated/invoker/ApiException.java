@@ -15,7 +15,7 @@ package com.forteplatforms.sdk.generated.invoker;
 
 import java.net.http.HttpHeaders;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:49:57.557533900-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ApiException extends Exception {
     private static final long serialVersionUID = 1L;
 

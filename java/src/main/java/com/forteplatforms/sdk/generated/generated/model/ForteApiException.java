@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:49:57.557533900-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -109,7 +109,11 @@ public class ForteApiException {
     
     GOOGLE_OAUTH_NOT_CONFIGURED(String.valueOf("GOOGLE_OAUTH_NOT_CONFIGURED")),
     
-    TERMS_OF_SERVICE_CANNOT_BE_UNACCEPTED(String.valueOf("TERMS_OF_SERVICE_CANNOT_BE_UNACCEPTED"));
+    TERMS_OF_SERVICE_CANNOT_BE_UNACCEPTED(String.valueOf("TERMS_OF_SERVICE_CANNOT_BE_UNACCEPTED")),
+    
+    API_KEY_NOT_FOUND(String.valueOf("API_KEY_NOT_FOUND")),
+    
+    CANNOT_DELETE_SYSTEM_API_KEY(String.valueOf("CANNOT_DELETE_SYSTEM_API_KEY"));
 
     private String value;
 

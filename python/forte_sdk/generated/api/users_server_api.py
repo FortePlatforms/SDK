@@ -856,7 +856,6 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         g_csrf_token: StrictStr,
-        g_csrf_token2: StrictStr,
         credential: StrictStr,
         recaptcha_token: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -879,8 +878,6 @@ class UsersServerApi:
         :type project_id: str
         :param g_csrf_token: (required)
         :type g_csrf_token: str
-        :param g_csrf_token2: (required)
-        :type g_csrf_token2: str
         :param credential: (required)
         :type credential: str
         :param recaptcha_token:
@@ -910,7 +907,6 @@ class UsersServerApi:
         _param = self._google_auth_login_callback_serialize(
             project_id=project_id,
             g_csrf_token=g_csrf_token,
-            g_csrf_token2=g_csrf_token2,
             credential=credential,
             recaptcha_token=recaptcha_token,
             _request_auth=_request_auth,
@@ -938,7 +934,6 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         g_csrf_token: StrictStr,
-        g_csrf_token2: StrictStr,
         credential: StrictStr,
         recaptcha_token: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -961,8 +956,6 @@ class UsersServerApi:
         :type project_id: str
         :param g_csrf_token: (required)
         :type g_csrf_token: str
-        :param g_csrf_token2: (required)
-        :type g_csrf_token2: str
         :param credential: (required)
         :type credential: str
         :param recaptcha_token:
@@ -992,7 +985,6 @@ class UsersServerApi:
         _param = self._google_auth_login_callback_serialize(
             project_id=project_id,
             g_csrf_token=g_csrf_token,
-            g_csrf_token2=g_csrf_token2,
             credential=credential,
             recaptcha_token=recaptcha_token,
             _request_auth=_request_auth,
@@ -1020,7 +1012,6 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         g_csrf_token: StrictStr,
-        g_csrf_token2: StrictStr,
         credential: StrictStr,
         recaptcha_token: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1043,8 +1034,6 @@ class UsersServerApi:
         :type project_id: str
         :param g_csrf_token: (required)
         :type g_csrf_token: str
-        :param g_csrf_token2: (required)
-        :type g_csrf_token2: str
         :param credential: (required)
         :type credential: str
         :param recaptcha_token:
@@ -1074,7 +1063,6 @@ class UsersServerApi:
         _param = self._google_auth_login_callback_serialize(
             project_id=project_id,
             g_csrf_token=g_csrf_token,
-            g_csrf_token2=g_csrf_token2,
             credential=credential,
             recaptcha_token=recaptcha_token,
             _request_auth=_request_auth,
@@ -1097,7 +1085,6 @@ class UsersServerApi:
         self,
         project_id,
         g_csrf_token,
-        g_csrf_token2,
         credential,
         recaptcha_token,
         _request_auth,
@@ -1126,8 +1113,8 @@ class UsersServerApi:
         # process the query parameters
         # process the header parameters
         # process the form parameters
-        if g_csrf_token2 is not None:
-            _form_params.append(('g_csrf_token', g_csrf_token2))
+        if g_csrf_token is not None:
+            _form_params.append(('g_csrf_token', g_csrf_token))
         if credential is not None:
             _form_params.append(('credential', credential))
         if recaptcha_token is not None:

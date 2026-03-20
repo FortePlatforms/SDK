@@ -56,7 +56,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:49:57.557533900-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UsersServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -541,14 +541,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param gCsrfToken  (required)
-   * @param gCsrfToken2  (required)
    * @param credential  (required)
    * @param recaptchaToken  (optional)
    * @return LoginUserResponse
    * @throws ApiException if fails to make API call
    */
-  public LoginUserResponse googleAuthLoginCallback(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String gCsrfToken2, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken) throws ApiException {
-    return googleAuthLoginCallback(projectId, gCsrfToken, gCsrfToken2, credential, recaptchaToken, null);
+  public LoginUserResponse googleAuthLoginCallback(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken) throws ApiException {
+    return googleAuthLoginCallback(projectId, gCsrfToken, credential, recaptchaToken, null);
   }
 
   /**
@@ -556,15 +555,14 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param gCsrfToken  (required)
-   * @param gCsrfToken2  (required)
    * @param credential  (required)
    * @param recaptchaToken  (optional)
    * @param headers Optional headers to include in the request
    * @return LoginUserResponse
    * @throws ApiException if fails to make API call
    */
-  public LoginUserResponse googleAuthLoginCallback(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String gCsrfToken2, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<LoginUserResponse> localVarResponse = googleAuthLoginCallbackWithHttpInfo(projectId, gCsrfToken, gCsrfToken2, credential, recaptchaToken, headers);
+  public LoginUserResponse googleAuthLoginCallback(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<LoginUserResponse> localVarResponse = googleAuthLoginCallbackWithHttpInfo(projectId, gCsrfToken, credential, recaptchaToken, headers);
     return localVarResponse.getData();
   }
 
@@ -573,14 +571,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param gCsrfToken  (required)
-   * @param gCsrfToken2  (required)
    * @param credential  (required)
    * @param recaptchaToken  (optional)
    * @return ApiResponse&lt;LoginUserResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LoginUserResponse> googleAuthLoginCallbackWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String gCsrfToken2, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken) throws ApiException {
-    return googleAuthLoginCallbackWithHttpInfo(projectId, gCsrfToken, gCsrfToken2, credential, recaptchaToken, null);
+  public ApiResponse<LoginUserResponse> googleAuthLoginCallbackWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken) throws ApiException {
+    return googleAuthLoginCallbackWithHttpInfo(projectId, gCsrfToken, credential, recaptchaToken, null);
   }
 
   /**
@@ -588,15 +585,14 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param gCsrfToken  (required)
-   * @param gCsrfToken2  (required)
    * @param credential  (required)
    * @param recaptchaToken  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;LoginUserResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LoginUserResponse> googleAuthLoginCallbackWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String gCsrfToken2, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = googleAuthLoginCallbackRequestBuilder(projectId, gCsrfToken, gCsrfToken2, credential, recaptchaToken, headers);
+  public ApiResponse<LoginUserResponse> googleAuthLoginCallbackWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = googleAuthLoginCallbackRequestBuilder(projectId, gCsrfToken, credential, recaptchaToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -643,7 +639,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder googleAuthLoginCallbackRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String gCsrfToken2, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder googleAuthLoginCallbackRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String gCsrfToken, @javax.annotation.Nonnull String credential, @javax.annotation.Nullable String recaptchaToken, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling googleAuthLoginCallback");
@@ -651,10 +647,6 @@ public class UsersServerApi {
     // verify the required parameter 'gCsrfToken' is set
     if (gCsrfToken == null) {
       throw new ApiException(400, "Missing the required parameter 'gCsrfToken' when calling googleAuthLoginCallback");
-    }
-    // verify the required parameter 'gCsrfToken2' is set
-    if (gCsrfToken2 == null) {
-      throw new ApiException(400, "Missing the required parameter 'gCsrfToken2' when calling googleAuthLoginCallback");
     }
     // verify the required parameter 'credential' is set
     if (credential == null) {
@@ -671,8 +663,8 @@ public class UsersServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     List<NameValuePair> formValues = new ArrayList<>();
-    if (gCsrfToken2 != null) {
-        formValues.add(new BasicNameValuePair("g_csrf_token", gCsrfToken2.toString()));
+    if (gCsrfToken != null) {
+        formValues.add(new BasicNameValuePair("g_csrf_token", gCsrfToken.toString()));
     }
     if (credential != null) {
         formValues.add(new BasicNameValuePair("credential", credential.toString()));

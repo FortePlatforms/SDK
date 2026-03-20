@@ -18,7 +18,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiResponse;
 import com.forteplatforms.sdk.generated.invoker.Configuration;
 import com.forteplatforms.sdk.generated.invoker.Pair;
 
+import com.forteplatforms.sdk.generated.model.ApiKeySummary;
 import com.forteplatforms.sdk.generated.model.CreateForteServiceRequest;
+import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyRequest;
+import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyResponse;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyRequest;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyResponse;
 import java.time.OffsetDateTime;
@@ -63,7 +66,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T17:49:57.557533900-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -301,6 +304,138 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createProjectApiKeyRequest  (required)
+   * @return CreateProjectApiKeyResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateProjectApiKeyResponse createProjectApiKey(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateProjectApiKeyRequest createProjectApiKeyRequest) throws ApiException {
+    return createProjectApiKey(projectId, createProjectApiKeyRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createProjectApiKeyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateProjectApiKeyResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateProjectApiKeyResponse createProjectApiKey(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateProjectApiKeyRequest createProjectApiKeyRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateProjectApiKeyResponse> localVarResponse = createProjectApiKeyWithHttpInfo(projectId, createProjectApiKeyRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createProjectApiKeyRequest  (required)
+   * @return ApiResponse&lt;CreateProjectApiKeyResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateProjectApiKeyResponse> createProjectApiKeyWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateProjectApiKeyRequest createProjectApiKeyRequest) throws ApiException {
+    return createProjectApiKeyWithHttpInfo(projectId, createProjectApiKeyRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createProjectApiKeyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateProjectApiKeyResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateProjectApiKeyResponse> createProjectApiKeyWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateProjectApiKeyRequest createProjectApiKeyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createProjectApiKeyRequestBuilder(projectId, createProjectApiKeyRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createProjectApiKey", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateProjectApiKeyResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateProjectApiKeyResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateProjectApiKeyResponse>() {});
+        
+
+        return new ApiResponse<CreateProjectApiKeyResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createProjectApiKeyRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateProjectApiKeyRequest createProjectApiKeyRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createProjectApiKey");
+    }
+    // verify the required parameter 'createProjectApiKeyRequest' is set
+    if (createProjectApiKeyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createProjectApiKeyRequest' when calling createProjectApiKey");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/api-keys"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createProjectApiKeyRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -818,6 +953,119 @@ public class ProjectsServerApi {
 
     String localVarPath = "/api/v1/projects/{projectId}"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param apiKeyId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteProjectApiKey(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String apiKeyId) throws ApiException {
+    deleteProjectApiKey(projectId, apiKeyId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param apiKeyId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteProjectApiKey(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String apiKeyId, Map<String, String> headers) throws ApiException {
+    deleteProjectApiKeyWithHttpInfo(projectId, apiKeyId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param apiKeyId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteProjectApiKeyWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String apiKeyId) throws ApiException {
+    return deleteProjectApiKeyWithHttpInfo(projectId, apiKeyId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param apiKeyId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteProjectApiKeyWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String apiKeyId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteProjectApiKeyRequestBuilder(projectId, apiKeyId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteProjectApiKey", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteProjectApiKeyRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String apiKeyId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteProjectApiKey");
+    }
+    // verify the required parameter 'apiKeyId' is set
+    if (apiKeyId == null) {
+      throw new ApiException(400, "Missing the required parameter 'apiKeyId' when calling deleteProjectApiKey");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/api-keys/{apiKeyId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{apiKeyId}", ApiClient.urlEncode(apiKeyId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -2054,6 +2302,124 @@ public class ProjectsServerApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return List&lt;ApiKeySummary&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<ApiKeySummary> listProjectApiKeys(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listProjectApiKeys(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return List&lt;ApiKeySummary&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<ApiKeySummary> listProjectApiKeys(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<List<ApiKeySummary>> localVarResponse = listProjectApiKeysWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;List&lt;ApiKeySummary&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<ApiKeySummary>> listProjectApiKeysWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listProjectApiKeysWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;List&lt;ApiKeySummary&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<ApiKeySummary>> listProjectApiKeysWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listProjectApiKeysRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listProjectApiKeys", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<List<ApiKeySummary>>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        List<ApiKeySummary> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<ApiKeySummary>>() {});
+        
+
+        return new ApiResponse<List<ApiKeySummary>>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listProjectApiKeysRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listProjectApiKeys");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/api-keys"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
 

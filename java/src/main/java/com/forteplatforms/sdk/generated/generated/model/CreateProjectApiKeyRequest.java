@@ -11,7 +11,7 @@
  */
 
 
-package com.forteplatforms.sdk.model;
+package com.forteplatforms.sdk.generated.model;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -29,52 +29,52 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
-import com.forteplatforms.sdk.invoker.ApiClient;
+import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * RenewSessionTokenResponse
+ * CreateProjectApiKeyRequest
  */
 @JsonPropertyOrder({
-  RenewSessionTokenResponse.JSON_PROPERTY_SESSION_TOKEN,
-  RenewSessionTokenResponse.JSON_PROPERTY_EXPIRATION_TIME
+  CreateProjectApiKeyRequest.JSON_PROPERTY_KEY_NAME,
+  CreateProjectApiKeyRequest.JSON_PROPERTY_EXPIRATION_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-18T15:44:04.305503900-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
-public class RenewSessionTokenResponse {
-  public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+public class CreateProjectApiKeyRequest {
+  public static final String JSON_PROPERTY_KEY_NAME = "keyName";
   @javax.annotation.Nonnull
-  private String sessionToken;
+  private String keyName;
 
   public static final String JSON_PROPERTY_EXPIRATION_TIME = "expirationTime";
   @javax.annotation.Nullable
   private OffsetDateTime expirationTime;
 
-  public RenewSessionTokenResponse() { 
+  public CreateProjectApiKeyRequest() { 
   }
 
-  public RenewSessionTokenResponse sessionToken(@javax.annotation.Nonnull String sessionToken) {
-    this.sessionToken = sessionToken;
+  public CreateProjectApiKeyRequest keyName(@javax.annotation.Nonnull String keyName) {
+    this.keyName = keyName;
     return this;
   }
 
   /**
-   * Get sessionToken
-   * @return sessionToken
+   * Get keyName
+   * @return keyName
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
+  @JsonProperty(value = JSON_PROPERTY_KEY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getSessionToken() {
-    return sessionToken;
+  public String getKeyName() {
+    return keyName;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
+  @JsonProperty(value = JSON_PROPERTY_KEY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSessionToken(@javax.annotation.Nonnull String sessionToken) {
-    this.sessionToken = sessionToken;
+  public void setKeyName(@javax.annotation.Nonnull String keyName) {
+    this.keyName = keyName;
   }
 
 
-  public RenewSessionTokenResponse expirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
+  public CreateProjectApiKeyRequest expirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
     this.expirationTime = expirationTime;
     return this;
   }
@@ -99,7 +99,7 @@ public class RenewSessionTokenResponse {
 
 
   /**
-   * Return true if this RenewSessionTokenResponse object is equal to o.
+   * Return true if this CreateProjectApiKeyRequest object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -109,21 +109,21 @@ public class RenewSessionTokenResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RenewSessionTokenResponse renewSessionTokenResponse = (RenewSessionTokenResponse) o;
-    return Objects.equals(this.sessionToken, renewSessionTokenResponse.sessionToken) &&
-        Objects.equals(this.expirationTime, renewSessionTokenResponse.expirationTime);
+    CreateProjectApiKeyRequest createProjectApiKeyRequest = (CreateProjectApiKeyRequest) o;
+    return Objects.equals(this.keyName, createProjectApiKeyRequest.keyName) &&
+        Objects.equals(this.expirationTime, createProjectApiKeyRequest.expirationTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sessionToken, expirationTime);
+    return Objects.hash(keyName, expirationTime);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RenewSessionTokenResponse {\n");
-    sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
+    sb.append("class CreateProjectApiKeyRequest {\n");
+    sb.append("    keyName: ").append(toIndentedString(keyName)).append("\n");
     sb.append("    expirationTime: ").append(toIndentedString(expirationTime)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -172,9 +172,9 @@ public class RenewSessionTokenResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `sessionToken` to the URL query string
-    if (getSessionToken() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%ssessionToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSessionToken()))));
+    // add `keyName` to the URL query string
+    if (getKeyName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%skeyName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getKeyName()))));
     }
 
     // add `expirationTime` to the URL query string
