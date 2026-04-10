@@ -31,6 +31,8 @@ import type {
   ServiceBuildRequestObject,
   ServiceMetricsResponse,
   ServiceObject,
+  TestInvocationRequest,
+  TestInvocationResponse,
   UpdateForteServiceRequest,
   UpdateForteServiceResponse,
   UpdateProjectRequest,
@@ -70,6 +72,10 @@ import {
     ServiceMetricsResponseToJSON,
     ServiceObjectFromJSON,
     ServiceObjectToJSON,
+    TestInvocationRequestFromJSON,
+    TestInvocationRequestToJSON,
+    TestInvocationResponseFromJSON,
+    TestInvocationResponseToJSON,
     UpdateForteServiceRequestFromJSON,
     UpdateForteServiceRequestToJSON,
     UpdateForteServiceResponseFromJSON,
@@ -170,6 +176,7 @@ export interface ListLogLinesRequest {
     maxTime?: Date;
     requestId?: string;
     buildId?: string;
+    level?: string;
     nextToken?: string;
 }
 
@@ -223,12 +230,19 @@ export interface SearchLogLinesRequest {
     minTime?: Date;
     maxTime?: Date;
     requestId?: string;
+    level?: string;
     nextToken?: string;
 }
 
 export interface SuspendUserRequest {
     userId: string;
     projectId: string;
+}
+
+export interface TestInvocationOperationRequest {
+    projectId: string;
+    serviceId: string;
+    testInvocationRequest: TestInvocationRequest;
 }
 
 export interface UpdateProjectOperationRequest {
@@ -953,6 +967,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['buildId'] = requestParameters['buildId'];
         }
 
+        if (requestParameters['level'] != null) {
+            queryParameters['level'] = requestParameters['level'];
+        }
+
         if (requestParameters['nextToken'] != null) {
             queryParameters['nextToken'] = requestParameters['nextToken'];
         }
@@ -1358,6 +1376,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['requestId'] = requestParameters['requestId'];
         }
 
+        if (requestParameters['level'] != null) {
+            queryParameters['level'] = requestParameters['level'];
+        }
+
         if (requestParameters['nextToken'] != null) {
             queryParameters['nextToken'] = requestParameters['nextToken'];
         }
@@ -1426,6 +1448,59 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async suspendUser(requestParameters: SuspendUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserObject> {
         const response = await this.suspendUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async testInvocationRaw(requestParameters: TestInvocationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TestInvocationResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling testInvocation().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling testInvocation().'
+            );
+        }
+
+        if (requestParameters['testInvocationRequest'] == null) {
+            throw new runtime.RequiredError(
+                'testInvocationRequest',
+                'Required parameter "testInvocationRequest" was null or undefined when calling testInvocation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/test-invocation`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TestInvocationRequestToJSON(requestParameters['testInvocationRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TestInvocationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async testInvocation(requestParameters: TestInvocationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TestInvocationResponse> {
+        const response = await this.testInvocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

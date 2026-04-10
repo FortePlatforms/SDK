@@ -49,10 +49,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceBuildRequestObject.JSON_PROPERTY_BUILD_STEP_LOGS,
   ServiceBuildRequestObject.JSON_PROPERTY_STATUS,
   ServiceBuildRequestObject.JSON_PROPERTY_ORIGIN,
+  ServiceBuildRequestObject.JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED,
   ServiceBuildRequestObject.JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR,
   ServiceBuildRequestObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T14:36:54.952137300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
@@ -92,9 +93,15 @@ public class ServiceBuildRequestObject {
   public enum StatusEnum {
     PENDING(String.valueOf("PENDING")),
     
+    CLONING_REPOSITORY(String.valueOf("CLONING_REPOSITORY")),
+    
     GENERATING_DOCKERFILE(String.valueOf("GENERATING_DOCKERFILE")),
     
     DOCKERFILE_GENERATION_FAILURE(String.valueOf("DOCKERFILE_GENERATION_FAILURE")),
+    
+    VALIDATING_GENERATED_DOCKERFILE(String.valueOf("VALIDATING_GENERATED_DOCKERFILE")),
+    
+    VALIDATED_GENERATED_DOCKERFILE(String.valueOf("VALIDATED_GENERATED_DOCKERFILE")),
     
     BUILDING_DOCKER_IMAGE(String.valueOf("BUILDING_DOCKER_IMAGE")),
     
@@ -163,7 +170,9 @@ public class ServiceBuildRequestObject {
     
     MANUAL_TRIGGER_FROM_DASHBOARD(String.valueOf("MANUAL_TRIGGER_FROM_DASHBOARD")),
     
-    CONFIG_CHANGE(String.valueOf("CONFIG_CHANGE"));
+    CONFIG_CHANGE(String.valueOf("CONFIG_CHANGE")),
+    
+    SHADOW_VALIDATION_BUILD(String.valueOf("SHADOW_VALIDATION_BUILD"));
 
     private String value;
 
@@ -195,6 +204,10 @@ public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_ORIGIN = "origin";
   @javax.annotation.Nullable
   private OriginEnum origin;
+
+  public static final String JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED = "allBuildLogsReceived";
+  @javax.annotation.Nullable
+  private Boolean allBuildLogsReceived;
 
   public static final String JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR = "dockerfileGenerationError";
   @javax.annotation.Nullable
@@ -455,6 +468,30 @@ public class ServiceBuildRequestObject {
   }
 
 
+  public ServiceBuildRequestObject allBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
+    this.allBuildLogsReceived = allBuildLogsReceived;
+    return this;
+  }
+
+  /**
+   * Get allBuildLogsReceived
+   * @return allBuildLogsReceived
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAllBuildLogsReceived() {
+    return allBuildLogsReceived;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAllBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
+    this.allBuildLogsReceived = allBuildLogsReceived;
+  }
+
+
   public ServiceBuildRequestObject dockerfileGenerationError(@javax.annotation.Nullable DockerfileGenerationError dockerfileGenerationError) {
     this.dockerfileGenerationError = dockerfileGenerationError;
     return this;
@@ -525,13 +562,14 @@ public class ServiceBuildRequestObject {
         Objects.equals(this.buildStepLogs, serviceBuildRequestObject.buildStepLogs) &&
         Objects.equals(this.status, serviceBuildRequestObject.status) &&
         Objects.equals(this.origin, serviceBuildRequestObject.origin) &&
+        Objects.equals(this.allBuildLogsReceived, serviceBuildRequestObject.allBuildLogsReceived) &&
         Objects.equals(this.dockerfileGenerationError, serviceBuildRequestObject.dockerfileGenerationError) &&
         Objects.equals(this.healthCheckDetectionError, serviceBuildRequestObject.healthCheckDetectionError);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, buildStepLogs, status, origin, dockerfileGenerationError, healthCheckDetectionError);
+    return Objects.hash(buildId, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, buildStepLogs, status, origin, allBuildLogsReceived, dockerfileGenerationError, healthCheckDetectionError);
   }
 
   @Override
@@ -548,6 +586,7 @@ public class ServiceBuildRequestObject {
     sb.append("    buildStepLogs: ").append(toIndentedString(buildStepLogs)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
+    sb.append("    allBuildLogsReceived: ").append(toIndentedString(allBuildLogsReceived)).append("\n");
     sb.append("    dockerfileGenerationError: ").append(toIndentedString(dockerfileGenerationError)).append("\n");
     sb.append("    healthCheckDetectionError: ").append(toIndentedString(healthCheckDetectionError)).append("\n");
     sb.append("}");
@@ -650,6 +689,11 @@ public class ServiceBuildRequestObject {
     // add `origin` to the URL query string
     if (getOrigin() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sorigin%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOrigin()))));
+    }
+
+    // add `allBuildLogsReceived` to the URL query string
+    if (getAllBuildLogsReceived() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallBuildLogsReceived%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllBuildLogsReceived()))));
     }
 
     // add `dockerfileGenerationError` to the URL query string

@@ -27,6 +27,12 @@ export interface LogLineObject {
     timestamp: Date;
     /**
      * 
+     * @type {number}
+     * @memberof LogLineObject
+     */
+    ingestionDelayMillis?: number;
+    /**
+     * 
      * @type {string}
      * @memberof LogLineObject
      */
@@ -84,6 +90,7 @@ export function LogLineObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'timestamp': (new Date(json['timestamp'])),
+        'ingestionDelayMillis': json['ingestionDelayMillis'] == null ? undefined : json['ingestionDelayMillis'],
         'level': json['level'] == null ? undefined : json['level'],
         'message': json['message'],
         'serviceId': json['serviceId'],
@@ -105,6 +112,7 @@ export function LogLineObjectToJSONTyped(value?: LogLineObject | null, ignoreDis
     return {
         
         'timestamp': value['timestamp'].toISOString(),
+        'ingestionDelayMillis': value['ingestionDelayMillis'],
         'level': value['level'],
         'message': value['message'],
         'serviceId': value['serviceId'],

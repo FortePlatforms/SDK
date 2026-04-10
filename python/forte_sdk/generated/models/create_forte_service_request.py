@@ -34,7 +34,9 @@ class CreateForteServiceRequest(BaseModel):
     secrets: Optional[Dict[str, StrictStr]] = None
     base_instances: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=None, alias="baseInstances")
     container_cpu: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="containerCpu")
-    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "containerCpu"]
+    health_check_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(default=None, alias="healthCheckPort")
+    health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
+    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath"]
 
     @field_validator('github_branch')
     def github_branch_validate_regular_expression(cls, value):
@@ -58,6 +60,16 @@ class CreateForteServiceRequest(BaseModel):
 
         if not re.match(r"^(0\.25|0\.5|1|2)$", value):
             raise ValueError(r"must validate the regular expression /^(0\.25|0\.5|1|2)$/")
+        return value
+
+    @field_validator('health_check_path')
+    def health_check_path_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^\/.*", value):
+            raise ValueError(r"must validate the regular expression /^\/.*/")
         return value
 
     model_config = ConfigDict(
@@ -117,7 +129,9 @@ class CreateForteServiceRequest(BaseModel):
             "environmentVariables": obj.get("environmentVariables"),
             "secrets": obj.get("secrets"),
             "baseInstances": obj.get("baseInstances"),
-            "containerCpu": obj.get("containerCpu")
+            "containerCpu": obj.get("containerCpu"),
+            "healthCheckPort": obj.get("healthCheckPort"),
+            "healthCheckPath": obj.get("healthCheckPath")
         })
         return _obj
 

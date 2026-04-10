@@ -73,6 +73,18 @@ export interface UpdateForteServiceRequest {
      * @memberof UpdateForteServiceRequest
      */
     containerCpu?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateForteServiceRequest
+     */
+    healthCheckPort?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateForteServiceRequest
+     */
+    healthCheckPath?: string;
 }
 
 /**
@@ -101,6 +113,8 @@ export function UpdateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
         'baseInstances': json['baseInstances'] == null ? undefined : json['baseInstances'],
         'containerCpu': json['containerCpu'] == null ? undefined : json['containerCpu'],
+        'healthCheckPort': json['healthCheckPort'] == null ? undefined : json['healthCheckPort'],
+        'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
     };
 }
 
@@ -124,6 +138,8 @@ export function UpdateForteServiceRequestToJSONTyped(value?: UpdateForteServiceR
         'authPathExclusions': value['authPathExclusions'],
         'baseInstances': value['baseInstances'],
         'containerCpu': value['containerCpu'],
+        'healthCheckPort': value['healthCheckPort'],
+        'healthCheckPath': value['healthCheckPath'],
     };
 }
 

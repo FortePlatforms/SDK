@@ -35,6 +35,8 @@ export * from './RequestLogObjectMeta';
 export * from './ServiceBuildRequestObject';
 export * from './ServiceMetricsResponse';
 export * from './ServiceObject';
+export * from './TestInvocationRequest';
+export * from './TestInvocationResponse';
 export * from './TimeSeriesDataPoint';
 export * from './UpdateForteServiceRequest';
 export * from './UpdateForteServiceResponse';

@@ -17,25 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class LogLineObject(BaseModel):
+class TestInvocationResponse(BaseModel):
     """
-    LogLineObject
+    TestInvocationResponse
     """ # noqa: E501
-    timestamp: datetime
-    ingestion_delay_millis: Optional[StrictInt] = Field(default=None, alias="ingestionDelayMillis")
-    level: Optional[StrictStr] = None
-    message: StrictStr
-    service_id: StrictStr = Field(alias="serviceId")
-    request_id: Optional[StrictStr] = Field(default=None, alias="requestId")
-    build_id: Optional[StrictStr] = Field(default=None, alias="buildId")
-    instance_id: Optional[StrictStr] = Field(default=None, alias="instanceId")
-    __properties: ClassVar[List[str]] = ["timestamp", "ingestionDelayMillis", "level", "message", "serviceId", "requestId", "buildId", "instanceId"]
+    status_code: Optional[StrictInt] = Field(default=None, alias="statusCode")
+    response_headers: Optional[Dict[str, StrictStr]] = Field(default=None, alias="responseHeaders")
+    response_body: Optional[StrictStr] = Field(default=None, alias="responseBody")
+    latency_milliseconds: Optional[StrictInt] = Field(default=None, alias="latencyMilliseconds")
+    __properties: ClassVar[List[str]] = ["statusCode", "responseHeaders", "responseBody", "latencyMilliseconds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +50,7 @@ class LogLineObject(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LogLineObject from a JSON string"""
+        """Create an instance of TestInvocationResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +75,7 @@ class LogLineObject(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LogLineObject from a dict"""
+        """Create an instance of TestInvocationResponse from a dict"""
         if obj is None:
             return None
 
@@ -88,14 +83,10 @@ class LogLineObject(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "timestamp": obj.get("timestamp"),
-            "ingestionDelayMillis": obj.get("ingestionDelayMillis"),
-            "level": obj.get("level"),
-            "message": obj.get("message"),
-            "serviceId": obj.get("serviceId"),
-            "requestId": obj.get("requestId"),
-            "buildId": obj.get("buildId"),
-            "instanceId": obj.get("instanceId")
+            "statusCode": obj.get("statusCode"),
+            "responseHeaders": obj.get("responseHeaders"),
+            "responseBody": obj.get("responseBody"),
+            "latencyMilliseconds": obj.get("latencyMilliseconds")
         })
         return _obj
 

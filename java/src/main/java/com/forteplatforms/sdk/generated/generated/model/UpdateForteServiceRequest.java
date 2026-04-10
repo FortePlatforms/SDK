@@ -48,9 +48,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateForteServiceRequest.JSON_PROPERTY_SECRET_KEYS_TO_DELETE,
   UpdateForteServiceRequest.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
   UpdateForteServiceRequest.JSON_PROPERTY_BASE_INSTANCES,
-  UpdateForteServiceRequest.JSON_PROPERTY_CONTAINER_CPU
+  UpdateForteServiceRequest.JSON_PROPERTY_CONTAINER_CPU,
+  UpdateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PORT,
+  UpdateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T14:36:54.952137300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UpdateForteServiceRequest {
   public static final String JSON_PROPERTY_RESET_DOCKERFILE = "resetDockerfile";
   @javax.annotation.Nullable
@@ -87,6 +89,14 @@ public class UpdateForteServiceRequest {
   public static final String JSON_PROPERTY_CONTAINER_CPU = "containerCpu";
   @javax.annotation.Nullable
   private String containerCpu;
+
+  public static final String JSON_PROPERTY_HEALTH_CHECK_PORT = "healthCheckPort";
+  @javax.annotation.Nullable
+  private Integer healthCheckPort;
+
+  public static final String JSON_PROPERTY_HEALTH_CHECK_PATH = "healthCheckPath";
+  @javax.annotation.Nullable
+  private String healthCheckPath;
 
   public UpdateForteServiceRequest() { 
   }
@@ -342,6 +352,56 @@ public class UpdateForteServiceRequest {
   }
 
 
+  public UpdateForteServiceRequest healthCheckPort(@javax.annotation.Nullable Integer healthCheckPort) {
+    this.healthCheckPort = healthCheckPort;
+    return this;
+  }
+
+  /**
+   * Get healthCheckPort
+   * minimum: 1
+   * maximum: 65535
+   * @return healthCheckPort
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PORT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getHealthCheckPort() {
+    return healthCheckPort;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PORT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHealthCheckPort(@javax.annotation.Nullable Integer healthCheckPort) {
+    this.healthCheckPort = healthCheckPort;
+  }
+
+
+  public UpdateForteServiceRequest healthCheckPath(@javax.annotation.Nullable String healthCheckPath) {
+    this.healthCheckPath = healthCheckPath;
+    return this;
+  }
+
+  /**
+   * Get healthCheckPath
+   * @return healthCheckPath
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getHealthCheckPath() {
+    return healthCheckPath;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHealthCheckPath(@javax.annotation.Nullable String healthCheckPath) {
+    this.healthCheckPath = healthCheckPath;
+  }
+
+
   /**
    * Return true if this UpdateForteServiceRequest object is equal to o.
    */
@@ -362,12 +422,14 @@ public class UpdateForteServiceRequest {
         Objects.equals(this.secretKeysToDelete, updateForteServiceRequest.secretKeysToDelete) &&
         Objects.equals(this.authPathExclusions, updateForteServiceRequest.authPathExclusions) &&
         Objects.equals(this.baseInstances, updateForteServiceRequest.baseInstances) &&
-        Objects.equals(this.containerCpu, updateForteServiceRequest.containerCpu);
+        Objects.equals(this.containerCpu, updateForteServiceRequest.containerCpu) &&
+        Objects.equals(this.healthCheckPort, updateForteServiceRequest.healthCheckPort) &&
+        Objects.equals(this.healthCheckPath, updateForteServiceRequest.healthCheckPath);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resetDockerfile, resetHealthCheckConfig, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, baseInstances, containerCpu);
+    return Objects.hash(resetDockerfile, resetHealthCheckConfig, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, baseInstances, containerCpu, healthCheckPort, healthCheckPath);
   }
 
   @Override
@@ -383,6 +445,8 @@ public class UpdateForteServiceRequest {
     sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
     sb.append("    baseInstances: ").append(toIndentedString(baseInstances)).append("\n");
     sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
+    sb.append("    healthCheckPort: ").append(toIndentedString(healthCheckPort)).append("\n");
+    sb.append("    healthCheckPath: ").append(toIndentedString(healthCheckPath)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -491,6 +555,16 @@ public class UpdateForteServiceRequest {
     // add `containerCpu` to the URL query string
     if (getContainerCpu() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontainerCpu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerCpu()))));
+    }
+
+    // add `healthCheckPort` to the URL query string
+    if (getHealthCheckPort() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shealthCheckPort%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHealthCheckPort()))));
+    }
+
+    // add `healthCheckPath` to the URL query string
+    if (getHealthCheckPath() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shealthCheckPath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHealthCheckPath()))));
     }
 
     return joiner.toString();

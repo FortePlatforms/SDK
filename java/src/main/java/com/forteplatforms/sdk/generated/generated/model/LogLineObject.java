@@ -35,6 +35,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   LogLineObject.JSON_PROPERTY_TIMESTAMP,
+  LogLineObject.JSON_PROPERTY_INGESTION_DELAY_MILLIS,
   LogLineObject.JSON_PROPERTY_LEVEL,
   LogLineObject.JSON_PROPERTY_MESSAGE,
   LogLineObject.JSON_PROPERTY_SERVICE_ID,
@@ -42,11 +43,15 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   LogLineObject.JSON_PROPERTY_BUILD_ID,
   LogLineObject.JSON_PROPERTY_INSTANCE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T14:36:54.952137300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class LogLineObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
   private OffsetDateTime timestamp;
+
+  public static final String JSON_PROPERTY_INGESTION_DELAY_MILLIS = "ingestionDelayMillis";
+  @javax.annotation.Nullable
+  private Long ingestionDelayMillis;
 
   public static final String JSON_PROPERTY_LEVEL = "level";
   @javax.annotation.Nullable
@@ -96,6 +101,30 @@ public class LogLineObject {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTimestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
+  }
+
+
+  public LogLineObject ingestionDelayMillis(@javax.annotation.Nullable Long ingestionDelayMillis) {
+    this.ingestionDelayMillis = ingestionDelayMillis;
+    return this;
+  }
+
+  /**
+   * Get ingestionDelayMillis
+   * @return ingestionDelayMillis
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INGESTION_DELAY_MILLIS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getIngestionDelayMillis() {
+    return ingestionDelayMillis;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INGESTION_DELAY_MILLIS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIngestionDelayMillis(@javax.annotation.Nullable Long ingestionDelayMillis) {
+    this.ingestionDelayMillis = ingestionDelayMillis;
   }
 
 
@@ -256,6 +285,7 @@ public class LogLineObject {
     }
     LogLineObject logLineObject = (LogLineObject) o;
     return Objects.equals(this.timestamp, logLineObject.timestamp) &&
+        Objects.equals(this.ingestionDelayMillis, logLineObject.ingestionDelayMillis) &&
         Objects.equals(this.level, logLineObject.level) &&
         Objects.equals(this.message, logLineObject.message) &&
         Objects.equals(this.serviceId, logLineObject.serviceId) &&
@@ -266,7 +296,7 @@ public class LogLineObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, level, message, serviceId, requestId, buildId, instanceId);
+    return Objects.hash(timestamp, ingestionDelayMillis, level, message, serviceId, requestId, buildId, instanceId);
   }
 
   @Override
@@ -274,6 +304,7 @@ public class LogLineObject {
     StringBuilder sb = new StringBuilder();
     sb.append("class LogLineObject {\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
+    sb.append("    ingestionDelayMillis: ").append(toIndentedString(ingestionDelayMillis)).append("\n");
     sb.append("    level: ").append(toIndentedString(level)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    serviceId: ").append(toIndentedString(serviceId)).append("\n");
@@ -330,6 +361,11 @@ public class LogLineObject {
     // add `timestamp` to the URL query string
     if (getTimestamp() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
+    }
+
+    // add `ingestionDelayMillis` to the URL query string
+    if (getIngestionDelayMillis() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%singestionDelayMillis%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIngestionDelayMillis()))));
     }
 
     // add `level` to the URL query string

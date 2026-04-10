@@ -48,6 +48,8 @@ from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectM
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject
+from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest
+from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse

@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   BuildStepLog.JSON_PROPERTY_PREVIOUS_STATUS,
   BuildStepLog.JSON_PROPERTY_NEW_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-19T19:06:36.115295500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T14:36:54.952137300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class BuildStepLog {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -55,9 +55,15 @@ public class BuildStepLog {
   public enum PreviousStatusEnum {
     PENDING(String.valueOf("PENDING")),
     
+    CLONING_REPOSITORY(String.valueOf("CLONING_REPOSITORY")),
+    
     GENERATING_DOCKERFILE(String.valueOf("GENERATING_DOCKERFILE")),
     
     DOCKERFILE_GENERATION_FAILURE(String.valueOf("DOCKERFILE_GENERATION_FAILURE")),
+    
+    VALIDATING_GENERATED_DOCKERFILE(String.valueOf("VALIDATING_GENERATED_DOCKERFILE")),
+    
+    VALIDATED_GENERATED_DOCKERFILE(String.valueOf("VALIDATED_GENERATED_DOCKERFILE")),
     
     BUILDING_DOCKER_IMAGE(String.valueOf("BUILDING_DOCKER_IMAGE")),
     
@@ -122,9 +128,15 @@ public class BuildStepLog {
   public enum NewStatusEnum {
     PENDING(String.valueOf("PENDING")),
     
+    CLONING_REPOSITORY(String.valueOf("CLONING_REPOSITORY")),
+    
     GENERATING_DOCKERFILE(String.valueOf("GENERATING_DOCKERFILE")),
     
     DOCKERFILE_GENERATION_FAILURE(String.valueOf("DOCKERFILE_GENERATION_FAILURE")),
+    
+    VALIDATING_GENERATED_DOCKERFILE(String.valueOf("VALIDATING_GENERATED_DOCKERFILE")),
+    
+    VALIDATED_GENERATED_DOCKERFILE(String.valueOf("VALIDATED_GENERATED_DOCKERFILE")),
     
     BUILDING_DOCKER_IMAGE(String.valueOf("BUILDING_DOCKER_IMAGE")),
     

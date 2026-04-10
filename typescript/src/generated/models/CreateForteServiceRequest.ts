@@ -61,6 +61,18 @@ export interface CreateForteServiceRequest {
      * @memberof CreateForteServiceRequest
      */
     containerCpu?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateForteServiceRequest
+     */
+    healthCheckPort?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateForteServiceRequest
+     */
+    healthCheckPath?: string;
 }
 
 /**
@@ -90,6 +102,8 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'secrets': json['secrets'] == null ? undefined : json['secrets'],
         'baseInstances': json['baseInstances'] == null ? undefined : json['baseInstances'],
         'containerCpu': json['containerCpu'] == null ? undefined : json['containerCpu'],
+        'healthCheckPort': json['healthCheckPort'] == null ? undefined : json['healthCheckPort'],
+        'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
     };
 }
 
@@ -111,6 +125,8 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
         'secrets': value['secrets'],
         'baseInstances': value['baseInstances'],
         'containerCpu': value['containerCpu'],
+        'healthCheckPort': value['healthCheckPort'],
+        'healthCheckPath': value['healthCheckPath'],
     };
 }
 

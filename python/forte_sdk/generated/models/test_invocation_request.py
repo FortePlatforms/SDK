@@ -17,25 +17,29 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class LogLineObject(BaseModel):
+class TestInvocationRequest(BaseModel):
     """
-    LogLineObject
+    TestInvocationRequest
     """ # noqa: E501
-    timestamp: datetime
-    ingestion_delay_millis: Optional[StrictInt] = Field(default=None, alias="ingestionDelayMillis")
-    level: Optional[StrictStr] = None
-    message: StrictStr
-    service_id: StrictStr = Field(alias="serviceId")
-    request_id: Optional[StrictStr] = Field(default=None, alias="requestId")
-    build_id: Optional[StrictStr] = Field(default=None, alias="buildId")
-    instance_id: Optional[StrictStr] = Field(default=None, alias="instanceId")
-    __properties: ClassVar[List[str]] = ["timestamp", "ingestionDelayMillis", "level", "message", "serviceId", "requestId", "buildId", "instanceId"]
+    path: StrictStr
+    http_method: StrictStr = Field(alias="httpMethod")
+    headers: Optional[Dict[str, StrictStr]] = None
+    body: Optional[StrictStr] = None
+    auth_mode: StrictStr = Field(alias="authMode")
+    session_token: Optional[StrictStr] = Field(default=None, alias="sessionToken")
+    __properties: ClassVar[List[str]] = ["path", "httpMethod", "headers", "body", "authMode", "sessionToken"]
+
+    @field_validator('auth_mode')
+    def auth_mode_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['ANONYMOUS', 'AS_USER']):
+            raise ValueError("must be one of enum values ('ANONYMOUS', 'AS_USER')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +59,7 @@ class LogLineObject(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LogLineObject from a JSON string"""
+        """Create an instance of TestInvocationRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +84,7 @@ class LogLineObject(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LogLineObject from a dict"""
+        """Create an instance of TestInvocationRequest from a dict"""
         if obj is None:
             return None
 
@@ -88,14 +92,12 @@ class LogLineObject(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "timestamp": obj.get("timestamp"),
-            "ingestionDelayMillis": obj.get("ingestionDelayMillis"),
-            "level": obj.get("level"),
-            "message": obj.get("message"),
-            "serviceId": obj.get("serviceId"),
-            "requestId": obj.get("requestId"),
-            "buildId": obj.get("buildId"),
-            "instanceId": obj.get("instanceId")
+            "path": obj.get("path"),
+            "httpMethod": obj.get("httpMethod"),
+            "headers": obj.get("headers"),
+            "body": obj.get("body"),
+            "authMode": obj.get("authMode"),
+            "sessionToken": obj.get("sessionToken")
         })
         return _obj
 

@@ -35,6 +35,8 @@ from forte_sdk.generated.models.request_log_object import RequestLogObject
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject
+from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest
+from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest
@@ -4308,6 +4310,7 @@ class ProjectsServerApi:
         max_time: Optional[datetime] = None,
         request_id: Optional[StrictStr] = None,
         build_id: Optional[StrictStr] = None,
+        level: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -4337,6 +4340,8 @@ class ProjectsServerApi:
         :type request_id: str
         :param build_id:
         :type build_id: str
+        :param level:
+        :type level: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4368,6 +4373,7 @@ class ProjectsServerApi:
             max_time=max_time,
             request_id=request_id,
             build_id=build_id,
+            level=level,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4398,6 +4404,7 @@ class ProjectsServerApi:
         max_time: Optional[datetime] = None,
         request_id: Optional[StrictStr] = None,
         build_id: Optional[StrictStr] = None,
+        level: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -4427,6 +4434,8 @@ class ProjectsServerApi:
         :type request_id: str
         :param build_id:
         :type build_id: str
+        :param level:
+        :type level: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4458,6 +4467,7 @@ class ProjectsServerApi:
             max_time=max_time,
             request_id=request_id,
             build_id=build_id,
+            level=level,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4488,6 +4498,7 @@ class ProjectsServerApi:
         max_time: Optional[datetime] = None,
         request_id: Optional[StrictStr] = None,
         build_id: Optional[StrictStr] = None,
+        level: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -4517,6 +4528,8 @@ class ProjectsServerApi:
         :type request_id: str
         :param build_id:
         :type build_id: str
+        :param level:
+        :type level: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4548,6 +4561,7 @@ class ProjectsServerApi:
             max_time=max_time,
             request_id=request_id,
             build_id=build_id,
+            level=level,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -4573,6 +4587,7 @@ class ProjectsServerApi:
         max_time,
         request_id,
         build_id,
+        level,
         next_token,
         _request_auth,
         _content_type,
@@ -4633,6 +4648,10 @@ class ProjectsServerApi:
         if build_id is not None:
             
             _query_params.append(('buildId', build_id))
+            
+        if level is not None:
+            
+            _query_params.append(('level', level))
             
         if next_token is not None:
             
@@ -6865,6 +6884,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         request_id: Optional[StrictStr] = None,
+        level: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -6894,6 +6914,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param request_id:
         :type request_id: str
+        :param level:
+        :type level: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6925,6 +6947,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             request_id=request_id,
+            level=level,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -6955,6 +6978,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         request_id: Optional[StrictStr] = None,
+        level: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -6984,6 +7008,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param request_id:
         :type request_id: str
+        :param level:
+        :type level: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -7015,6 +7041,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             request_id=request_id,
+            level=level,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -7045,6 +7072,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         request_id: Optional[StrictStr] = None,
+        level: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -7074,6 +7102,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param request_id:
         :type request_id: str
+        :param level:
+        :type level: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -7105,6 +7135,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             request_id=request_id,
+            level=level,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -7130,6 +7161,7 @@ class ProjectsServerApi:
         min_time,
         max_time,
         request_id,
+        level,
         next_token,
         _request_auth,
         _content_type,
@@ -7190,6 +7222,10 @@ class ProjectsServerApi:
         if request_id is not None:
             
             _query_params.append(('requestId', request_id))
+            
+        if level is not None:
+            
+            _query_params.append(('level', level))
             
         if next_token is not None:
             
@@ -7488,6 +7524,306 @@ class ProjectsServerApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/api/v1/projects/{projectId}/users/{userId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def test_invocation(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        test_invocation_request: TestInvocationRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TestInvocationResponse:
+        """test_invocation
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param test_invocation_request: (required)
+        :type test_invocation_request: TestInvocationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._test_invocation_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            test_invocation_request=test_invocation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TestInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def test_invocation_with_http_info(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        test_invocation_request: TestInvocationRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TestInvocationResponse]:
+        """test_invocation
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param test_invocation_request: (required)
+        :type test_invocation_request: TestInvocationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._test_invocation_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            test_invocation_request=test_invocation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TestInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def test_invocation_without_preload_content(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        test_invocation_request: TestInvocationRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """test_invocation
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param test_invocation_request: (required)
+        :type test_invocation_request: TestInvocationRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._test_invocation_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            test_invocation_request=test_invocation_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TestInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _test_invocation_serialize(
+        self,
+        project_id,
+        service_id,
+        test_invocation_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if service_id is not None:
+            _path_params['serviceId'] = service_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if test_invocation_request is not None:
+            _body_params = test_invocation_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/v1/projects/{projectId}/services/{serviceId}/test-invocation',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.build_step_log import BuildStepLog
 from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGenerationError
@@ -40,15 +40,16 @@ class ServiceBuildRequestObject(BaseModel):
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
+    all_build_logs_received: Optional[StrictBool] = Field(default=None, alias="allBuildLogsReceived")
     dockerfile_generation_error: Optional[DockerfileGenerationError] = Field(default=None, alias="dockerfileGenerationError")
     health_check_detection_error: Optional[HealthCheckDetectionError] = Field(default=None, alias="healthCheckDetectionError")
-    __properties: ClassVar[List[str]] = ["buildId", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "buildStepLogs", "status", "origin", "dockerfileGenerationError", "healthCheckDetectionError"]
+    __properties: ClassVar[List[str]] = ["buildId", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "buildStepLogs", "status", "origin", "allBuildLogsReceived", "dockerfileGenerationError", "healthCheckDetectionError"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['PENDING', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED']):
-            raise ValueError("must be one of enum values ('PENDING', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED')")
+        if value not in set(['PENDING', 'CLONING_REPOSITORY', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED']):
+            raise ValueError("must be one of enum values ('PENDING', 'CLONING_REPOSITORY', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED')")
         return value
 
     @field_validator('origin')
@@ -57,8 +58,8 @@ class ServiceBuildRequestObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE']):
-            raise ValueError("must be one of enum values ('INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE')")
+        if value not in set(['INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD']):
+            raise ValueError("must be one of enum values ('INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD')")
         return value
 
     model_config = ConfigDict(
@@ -135,6 +136,7 @@ class ServiceBuildRequestObject(BaseModel):
             "buildStepLogs": [BuildStepLog.from_dict(_item) for _item in obj["buildStepLogs"]] if obj.get("buildStepLogs") is not None else None,
             "status": obj.get("status"),
             "origin": obj.get("origin"),
+            "allBuildLogsReceived": obj.get("allBuildLogsReceived"),
             "dockerfileGenerationError": DockerfileGenerationError.from_dict(obj["dockerfileGenerationError"]) if obj.get("dockerfileGenerationError") is not None else None,
             "healthCheckDetectionError": HealthCheckDetectionError.from_dict(obj["healthCheckDetectionError"]) if obj.get("healthCheckDetectionError") is not None else None
         })

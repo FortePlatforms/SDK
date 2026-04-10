@@ -103,6 +103,12 @@ export interface ServiceBuildRequestObject {
     origin?: ServiceBuildRequestObjectOriginType;
     /**
      * 
+     * @type {boolean}
+     * @memberof ServiceBuildRequestObject
+     */
+    allBuildLogsReceived?: boolean;
+    /**
+     * 
      * @type {DockerfileGenerationError}
      * @memberof ServiceBuildRequestObject
      */
@@ -121,8 +127,11 @@ export interface ServiceBuildRequestObject {
  */
 export const ServiceBuildRequestObjectStatusType = {
     PENDING: 'PENDING',
+    CLONING_REPOSITORY: 'CLONING_REPOSITORY',
     GENERATING_DOCKERFILE: 'GENERATING_DOCKERFILE',
     DOCKERFILE_GENERATION_FAILURE: 'DOCKERFILE_GENERATION_FAILURE',
+    VALIDATING_GENERATED_DOCKERFILE: 'VALIDATING_GENERATED_DOCKERFILE',
+    VALIDATED_GENERATED_DOCKERFILE: 'VALIDATED_GENERATED_DOCKERFILE',
     BUILDING_DOCKER_IMAGE: 'BUILDING_DOCKER_IMAGE',
     DOCKER_IMAGE_BUILD_FAILURE: 'DOCKER_IMAGE_BUILD_FAILURE',
     DETECTING_HEALTH_CHECK_CONFIG: 'DETECTING_HEALTH_CHECK_CONFIG',
@@ -146,7 +155,8 @@ export const ServiceBuildRequestObjectOriginType = {
     INITIAL_BUILD: 'INITIAL_BUILD',
     TRIGGERED_BY_PUSH: 'TRIGGERED_BY_PUSH',
     MANUAL_TRIGGER_FROM_DASHBOARD: 'MANUAL_TRIGGER_FROM_DASHBOARD',
-    CONFIG_CHANGE: 'CONFIG_CHANGE'
+    CONFIG_CHANGE: 'CONFIG_CHANGE',
+    SHADOW_VALIDATION_BUILD: 'SHADOW_VALIDATION_BUILD'
 } as const;
 export type ServiceBuildRequestObjectOriginType = typeof ServiceBuildRequestObjectOriginType[keyof typeof ServiceBuildRequestObjectOriginType];
 
@@ -181,6 +191,7 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
+        'allBuildLogsReceived': json['allBuildLogsReceived'] == null ? undefined : json['allBuildLogsReceived'],
         'dockerfileGenerationError': json['dockerfileGenerationError'] == null ? undefined : DockerfileGenerationErrorFromJSON(json['dockerfileGenerationError']),
         'healthCheckDetectionError': json['healthCheckDetectionError'] == null ? undefined : HealthCheckDetectionErrorFromJSON(json['healthCheckDetectionError']),
     };
@@ -207,6 +218,7 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],
+        'allBuildLogsReceived': value['allBuildLogsReceived'],
         'dockerfileGenerationError': DockerfileGenerationErrorToJSON(value['dockerfileGenerationError']),
         'healthCheckDetectionError': HealthCheckDetectionErrorToJSON(value['healthCheckDetectionError']),
     };
