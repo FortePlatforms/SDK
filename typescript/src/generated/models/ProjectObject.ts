@@ -92,6 +92,18 @@ export interface ProjectObject {
      * @type {boolean}
      * @memberof ProjectObject
      */
+    phoneLoginEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProjectObject
+     */
+    emailLoginEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProjectObject
+     */
     hasRecaptchaSecretKey?: boolean;
 }
 
@@ -127,6 +139,8 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'ecrRepositoryUri': json['ecrRepositoryUri'] == null ? undefined : json['ecrRepositoryUri'],
         'cachedUserCount': json['cachedUserCount'] == null ? undefined : json['cachedUserCount'],
         'googleOAuthClientId': json['googleOAuthClientId'] == null ? undefined : json['googleOAuthClientId'],
+        'phoneLoginEnabled': json['phoneLoginEnabled'] == null ? undefined : json['phoneLoginEnabled'],
+        'emailLoginEnabled': json['emailLoginEnabled'] == null ? undefined : json['emailLoginEnabled'],
         'hasRecaptchaSecretKey': json['hasRecaptchaSecretKey'] == null ? undefined : json['hasRecaptchaSecretKey'],
     };
 }
@@ -152,6 +166,8 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'ecrRepositoryUri': value['ecrRepositoryUri'],
         'cachedUserCount': value['cachedUserCount'],
         'googleOAuthClientId': value['googleOAuthClientId'],
+        'phoneLoginEnabled': value['phoneLoginEnabled'],
+        'emailLoginEnabled': value['emailLoginEnabled'],
         'hasRecaptchaSecretKey': value['hasRecaptchaSecretKey'],
     };
 }

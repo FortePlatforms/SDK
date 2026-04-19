@@ -38,8 +38,10 @@ class ProjectObject(BaseModel):
     ecr_repository_uri: Optional[StrictStr] = Field(default=None, alias="ecrRepositoryUri")
     cached_user_count: Optional[StrictInt] = Field(default=None, alias="cachedUserCount")
     google_o_auth_client_id: Optional[StrictStr] = Field(default=None, alias="googleOAuthClientId")
+    phone_login_enabled: Optional[StrictBool] = Field(default=None, alias="phoneLoginEnabled")
+    email_login_enabled: Optional[StrictBool] = Field(default=None, alias="emailLoginEnabled")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "hasRecaptchaSecretKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,6 +111,8 @@ class ProjectObject(BaseModel):
             "ecrRepositoryUri": obj.get("ecrRepositoryUri"),
             "cachedUserCount": obj.get("cachedUserCount"),
             "googleOAuthClientId": obj.get("googleOAuthClientId"),
+            "phoneLoginEnabled": obj.get("phoneLoginEnabled"),
+            "emailLoginEnabled": obj.get("emailLoginEnabled"),
             "hasRecaptchaSecretKey": obj.get("hasRecaptchaSecretKey")
         })
         return _obj

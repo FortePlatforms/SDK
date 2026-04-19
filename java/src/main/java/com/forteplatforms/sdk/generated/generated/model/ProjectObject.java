@@ -47,9 +47,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_ECR_REPOSITORY_URI,
   ProjectObject.JSON_PROPERTY_CACHED_USER_COUNT,
   ProjectObject.JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID,
+  ProjectObject.JSON_PROPERTY_PHONE_LOGIN_ENABLED,
+  ProjectObject.JSON_PROPERTY_EMAIL_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T14:36:54.952137300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-18T22:45:22.545542600-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectObject {
   public static final String JSON_PROPERTY_PROJECT_ID = "projectId";
   @javax.annotation.Nullable
@@ -90,6 +92,14 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID = "googleOAuthClientId";
   @javax.annotation.Nullable
   private String googleOAuthClientId;
+
+  public static final String JSON_PROPERTY_PHONE_LOGIN_ENABLED = "phoneLoginEnabled";
+  @javax.annotation.Nullable
+  private Boolean phoneLoginEnabled;
+
+  public static final String JSON_PROPERTY_EMAIL_LOGIN_ENABLED = "emailLoginEnabled";
+  @javax.annotation.Nullable
+  private Boolean emailLoginEnabled;
 
   public static final String JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY = "hasRecaptchaSecretKey";
   @javax.annotation.Nullable
@@ -346,6 +356,54 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject phoneLoginEnabled(@javax.annotation.Nullable Boolean phoneLoginEnabled) {
+    this.phoneLoginEnabled = phoneLoginEnabled;
+    return this;
+  }
+
+  /**
+   * Get phoneLoginEnabled
+   * @return phoneLoginEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHONE_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPhoneLoginEnabled() {
+    return phoneLoginEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhoneLoginEnabled(@javax.annotation.Nullable Boolean phoneLoginEnabled) {
+    this.phoneLoginEnabled = phoneLoginEnabled;
+  }
+
+
+  public ProjectObject emailLoginEnabled(@javax.annotation.Nullable Boolean emailLoginEnabled) {
+    this.emailLoginEnabled = emailLoginEnabled;
+    return this;
+  }
+
+  /**
+   * Get emailLoginEnabled
+   * @return emailLoginEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getEmailLoginEnabled() {
+    return emailLoginEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEmailLoginEnabled(@javax.annotation.Nullable Boolean emailLoginEnabled) {
+    this.emailLoginEnabled = emailLoginEnabled;
+  }
+
+
   public ProjectObject hasRecaptchaSecretKey(@javax.annotation.Nullable Boolean hasRecaptchaSecretKey) {
     this.hasRecaptchaSecretKey = hasRecaptchaSecretKey;
     return this;
@@ -392,12 +450,14 @@ public class ProjectObject {
         Objects.equals(this.ecrRepositoryUri, projectObject.ecrRepositoryUri) &&
         Objects.equals(this.cachedUserCount, projectObject.cachedUserCount) &&
         Objects.equals(this.googleOAuthClientId, projectObject.googleOAuthClientId) &&
+        Objects.equals(this.phoneLoginEnabled, projectObject.phoneLoginEnabled) &&
+        Objects.equals(this.emailLoginEnabled, projectObject.emailLoginEnabled) &&
         Objects.equals(this.hasRecaptchaSecretKey, projectObject.hasRecaptchaSecretKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -414,6 +474,8 @@ public class ProjectObject {
     sb.append("    ecrRepositoryUri: ").append(toIndentedString(ecrRepositoryUri)).append("\n");
     sb.append("    cachedUserCount: ").append(toIndentedString(cachedUserCount)).append("\n");
     sb.append("    googleOAuthClientId: ").append(toIndentedString(googleOAuthClientId)).append("\n");
+    sb.append("    phoneLoginEnabled: ").append(toIndentedString(phoneLoginEnabled)).append("\n");
+    sb.append("    emailLoginEnabled: ").append(toIndentedString(emailLoginEnabled)).append("\n");
     sb.append("    hasRecaptchaSecretKey: ").append(toIndentedString(hasRecaptchaSecretKey)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -515,6 +577,16 @@ public class ProjectObject {
     // add `googleOAuthClientId` to the URL query string
     if (getGoogleOAuthClientId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgoogleOAuthClientId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoogleOAuthClientId()))));
+    }
+
+    // add `phoneLoginEnabled` to the URL query string
+    if (getPhoneLoginEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneLoginEnabled()))));
+    }
+
+    // add `emailLoginEnabled` to the URL query string
+    if (getEmailLoginEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%semailLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailLoginEnabled()))));
     }
 
     // add `hasRecaptchaSecretKey` to the URL query string

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,9 @@ class UpdateProjectRequest(BaseModel):
     """ # noqa: E501
     google_o_auth_client_id: Optional[StrictStr] = Field(default=None, alias="googleOAuthClientId")
     recaptcha_secret_key: Optional[StrictStr] = Field(default=None, alias="recaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey"]
+    phone_login_enabled: Optional[StrictBool] = Field(default=None, alias="phoneLoginEnabled")
+    email_login_enabled: Optional[StrictBool] = Field(default=None, alias="emailLoginEnabled")
+    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,7 +84,9 @@ class UpdateProjectRequest(BaseModel):
 
         _obj = cls.model_validate({
             "googleOAuthClientId": obj.get("googleOAuthClientId"),
-            "recaptchaSecretKey": obj.get("recaptchaSecretKey")
+            "recaptchaSecretKey": obj.get("recaptchaSecretKey"),
+            "phoneLoginEnabled": obj.get("phoneLoginEnabled"),
+            "emailLoginEnabled": obj.get("emailLoginEnabled")
         })
         return _obj
 

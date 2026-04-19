@@ -34,9 +34,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateProjectRequest.JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID,
-  UpdateProjectRequest.JSON_PROPERTY_RECAPTCHA_SECRET_KEY
+  UpdateProjectRequest.JSON_PROPERTY_RECAPTCHA_SECRET_KEY,
+  UpdateProjectRequest.JSON_PROPERTY_PHONE_LOGIN_ENABLED,
+  UpdateProjectRequest.JSON_PROPERTY_EMAIL_LOGIN_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T14:36:54.952137300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-18T22:45:22.545542600-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID = "googleOAuthClientId";
   @javax.annotation.Nullable
@@ -45,6 +47,14 @@ public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_RECAPTCHA_SECRET_KEY = "recaptchaSecretKey";
   @javax.annotation.Nullable
   private String recaptchaSecretKey;
+
+  public static final String JSON_PROPERTY_PHONE_LOGIN_ENABLED = "phoneLoginEnabled";
+  @javax.annotation.Nullable
+  private Boolean phoneLoginEnabled;
+
+  public static final String JSON_PROPERTY_EMAIL_LOGIN_ENABLED = "emailLoginEnabled";
+  @javax.annotation.Nullable
+  private Boolean emailLoginEnabled;
 
   public UpdateProjectRequest() { 
   }
@@ -97,6 +107,54 @@ public class UpdateProjectRequest {
   }
 
 
+  public UpdateProjectRequest phoneLoginEnabled(@javax.annotation.Nullable Boolean phoneLoginEnabled) {
+    this.phoneLoginEnabled = phoneLoginEnabled;
+    return this;
+  }
+
+  /**
+   * Get phoneLoginEnabled
+   * @return phoneLoginEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHONE_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPhoneLoginEnabled() {
+    return phoneLoginEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhoneLoginEnabled(@javax.annotation.Nullable Boolean phoneLoginEnabled) {
+    this.phoneLoginEnabled = phoneLoginEnabled;
+  }
+
+
+  public UpdateProjectRequest emailLoginEnabled(@javax.annotation.Nullable Boolean emailLoginEnabled) {
+    this.emailLoginEnabled = emailLoginEnabled;
+    return this;
+  }
+
+  /**
+   * Get emailLoginEnabled
+   * @return emailLoginEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getEmailLoginEnabled() {
+    return emailLoginEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEmailLoginEnabled(@javax.annotation.Nullable Boolean emailLoginEnabled) {
+    this.emailLoginEnabled = emailLoginEnabled;
+  }
+
+
   /**
    * Return true if this UpdateProjectRequest object is equal to o.
    */
@@ -110,12 +168,14 @@ public class UpdateProjectRequest {
     }
     UpdateProjectRequest updateProjectRequest = (UpdateProjectRequest) o;
     return Objects.equals(this.googleOAuthClientId, updateProjectRequest.googleOAuthClientId) &&
-        Objects.equals(this.recaptchaSecretKey, updateProjectRequest.recaptchaSecretKey);
+        Objects.equals(this.recaptchaSecretKey, updateProjectRequest.recaptchaSecretKey) &&
+        Objects.equals(this.phoneLoginEnabled, updateProjectRequest.phoneLoginEnabled) &&
+        Objects.equals(this.emailLoginEnabled, updateProjectRequest.emailLoginEnabled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(googleOAuthClientId, recaptchaSecretKey);
+    return Objects.hash(googleOAuthClientId, recaptchaSecretKey, phoneLoginEnabled, emailLoginEnabled);
   }
 
   @Override
@@ -124,6 +184,8 @@ public class UpdateProjectRequest {
     sb.append("class UpdateProjectRequest {\n");
     sb.append("    googleOAuthClientId: ").append(toIndentedString(googleOAuthClientId)).append("\n");
     sb.append("    recaptchaSecretKey: ").append(toIndentedString(recaptchaSecretKey)).append("\n");
+    sb.append("    phoneLoginEnabled: ").append(toIndentedString(phoneLoginEnabled)).append("\n");
+    sb.append("    emailLoginEnabled: ").append(toIndentedString(emailLoginEnabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +241,16 @@ public class UpdateProjectRequest {
     // add `recaptchaSecretKey` to the URL query string
     if (getRecaptchaSecretKey() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srecaptchaSecretKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRecaptchaSecretKey()))));
+    }
+
+    // add `phoneLoginEnabled` to the URL query string
+    if (getPhoneLoginEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneLoginEnabled()))));
+    }
+
+    // add `emailLoginEnabled` to the URL query string
+    if (getEmailLoginEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%semailLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailLoginEnabled()))));
     }
 
     return joiner.toString();

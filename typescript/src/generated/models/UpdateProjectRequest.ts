@@ -31,6 +31,18 @@ export interface UpdateProjectRequest {
      * @memberof UpdateProjectRequest
      */
     recaptchaSecretKey?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateProjectRequest
+     */
+    phoneLoginEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateProjectRequest
+     */
+    emailLoginEnabled?: boolean;
 }
 
 /**
@@ -52,6 +64,8 @@ export function UpdateProjectRequestFromJSONTyped(json: any, ignoreDiscriminator
         
         'googleOAuthClientId': json['googleOAuthClientId'] == null ? undefined : json['googleOAuthClientId'],
         'recaptchaSecretKey': json['recaptchaSecretKey'] == null ? undefined : json['recaptchaSecretKey'],
+        'phoneLoginEnabled': json['phoneLoginEnabled'] == null ? undefined : json['phoneLoginEnabled'],
+        'emailLoginEnabled': json['emailLoginEnabled'] == null ? undefined : json['emailLoginEnabled'],
     };
 }
 
@@ -68,6 +82,8 @@ export function UpdateProjectRequestToJSONTyped(value?: UpdateProjectRequest | n
         
         'googleOAuthClientId': value['googleOAuthClientId'],
         'recaptchaSecretKey': value['recaptchaSecretKey'],
+        'phoneLoginEnabled': value['phoneLoginEnabled'],
+        'emailLoginEnabled': value['emailLoginEnabled'],
     };
 }
 

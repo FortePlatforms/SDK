@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RenewSessionTokenResponse.JSON_PROPERTY_SESSION_TOKEN,
   RenewSessionTokenResponse.JSON_PROPERTY_EXPIRATION_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T14:36:54.952137300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-18T22:45:22.545542600-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class RenewSessionTokenResponse {
   public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
   @javax.annotation.Nonnull

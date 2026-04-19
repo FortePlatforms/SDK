@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T14:36:54.952137300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-18T22:45:22.545542600-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -113,7 +113,31 @@ public class ForteApiException {
     
     API_KEY_NOT_FOUND(String.valueOf("API_KEY_NOT_FOUND")),
     
-    CANNOT_DELETE_SYSTEM_API_KEY(String.valueOf("CANNOT_DELETE_SYSTEM_API_KEY"));
+    CANNOT_DELETE_SYSTEM_API_KEY(String.valueOf("CANNOT_DELETE_SYSTEM_API_KEY")),
+    
+    SUPPORT_CASE_CLOSED(String.valueOf("SUPPORT_CASE_CLOSED")),
+    
+    COMPLIANCE_REGISTRATION_ALREADY_EXISTS(String.valueOf("COMPLIANCE_REGISTRATION_ALREADY_EXISTS")),
+    
+    COMPLIANCE_REGISTRATION_NOT_FOUND(String.valueOf("COMPLIANCE_REGISTRATION_NOT_FOUND")),
+    
+    COMPLIANCE_REGISTRATION_NOT_EDITABLE(String.valueOf("COMPLIANCE_REGISTRATION_NOT_EDITABLE")),
+    
+    COMPLIANCE_REGISTRATION_NOT_DELETABLE(String.valueOf("COMPLIANCE_REGISTRATION_NOT_DELETABLE")),
+    
+    COMPLIANCE_REGISTRATION_MISSING_REQUIRED_FIELDS(String.valueOf("COMPLIANCE_REGISTRATION_MISSING_REQUIRED_FIELDS")),
+    
+    COMPLIANCE_REGISTRATION_INVALID_STATUS_TRANSITION(String.valueOf("COMPLIANCE_REGISTRATION_INVALID_STATUS_TRANSITION")),
+    
+    COMPLIANCE_DOCUMENT_NOT_FOUND(String.valueOf("COMPLIANCE_DOCUMENT_NOT_FOUND")),
+    
+    COMPLIANCE_DOCUMENT_ALREADY_HAS_CONTENTS(String.valueOf("COMPLIANCE_DOCUMENT_ALREADY_HAS_CONTENTS")),
+    
+    COMPLIANCE_DOCUMENT_MISSING_CONTENTS(String.valueOf("COMPLIANCE_DOCUMENT_MISSING_CONTENTS")),
+    
+    COMPLIANCE_DOCUMENT_INVALID_OWNER(String.valueOf("COMPLIANCE_DOCUMENT_INVALID_OWNER")),
+    
+    COMPLIANCE_REGISTRATION_NOT_APPROVED(String.valueOf("COMPLIANCE_REGISTRATION_NOT_APPROVED"));
 
     private String value;
 
