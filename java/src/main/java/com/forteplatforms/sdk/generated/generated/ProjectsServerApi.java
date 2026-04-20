@@ -18,7 +18,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiResponse;
 import com.forteplatforms.sdk.generated.invoker.Configuration;
 import com.forteplatforms.sdk.generated.invoker.Pair;
 
+import com.forteplatforms.sdk.generated.model.AddContactMethodRequest;
 import com.forteplatforms.sdk.generated.model.ApiKeySummary;
+import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.CreateForteServiceRequest;
 import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyRequest;
 import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyResponse;
@@ -68,7 +70,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-18T22:45:22.545542600-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -183,6 +185,564 @@ public class ProjectsServerApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param addContactMethodRequest  (required)
+   * @return ContactMethod
+   * @throws ApiException if fails to make API call
+   */
+  public ContactMethod adminAddUserContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest) throws ApiException {
+    return adminAddUserContactMethod(projectId, userId, addContactMethodRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param addContactMethodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ContactMethod
+   * @throws ApiException if fails to make API call
+   */
+  public ContactMethod adminAddUserContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContactMethod> localVarResponse = adminAddUserContactMethodWithHttpInfo(projectId, userId, addContactMethodRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param addContactMethodRequest  (required)
+   * @return ApiResponse&lt;ContactMethod&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContactMethod> adminAddUserContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest) throws ApiException {
+    return adminAddUserContactMethodWithHttpInfo(projectId, userId, addContactMethodRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param addContactMethodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ContactMethod&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContactMethod> adminAddUserContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = adminAddUserContactMethodRequestBuilder(projectId, userId, addContactMethodRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("adminAddUserContactMethod", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ContactMethod>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ContactMethod responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContactMethod>() {});
+        
+
+        return new ApiResponse<ContactMethod>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder adminAddUserContactMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling adminAddUserContactMethod");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling adminAddUserContactMethod");
+    }
+    // verify the required parameter 'addContactMethodRequest' is set
+    if (addContactMethodRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'addContactMethodRequest' when calling adminAddUserContactMethod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/contact-methods"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addContactMethodRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void adminRemoveUserContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId) throws ApiException {
+    adminRemoveUserContactMethod(projectId, userId, contactMethodId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void adminRemoveUserContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, Map<String, String> headers) throws ApiException {
+    adminRemoveUserContactMethodWithHttpInfo(projectId, userId, contactMethodId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> adminRemoveUserContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId) throws ApiException {
+    return adminRemoveUserContactMethodWithHttpInfo(projectId, userId, contactMethodId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> adminRemoveUserContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = adminRemoveUserContactMethodRequestBuilder(projectId, userId, contactMethodId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("adminRemoveUserContactMethod", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder adminRemoveUserContactMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling adminRemoveUserContactMethod");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling adminRemoveUserContactMethod");
+    }
+    // verify the required parameter 'contactMethodId' is set
+    if (contactMethodId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contactMethodId' when calling adminRemoveUserContactMethod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/contact-methods/{contactMethodId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{contactMethodId}", ApiClient.urlEncode(contactMethodId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @return ContactMethod
+   * @throws ApiException if fails to make API call
+   */
+  public ContactMethod adminSendUserContactMethodVerificationCode(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId) throws ApiException {
+    return adminSendUserContactMethodVerificationCode(projectId, userId, contactMethodId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ContactMethod
+   * @throws ApiException if fails to make API call
+   */
+  public ContactMethod adminSendUserContactMethodVerificationCode(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContactMethod> localVarResponse = adminSendUserContactMethodVerificationCodeWithHttpInfo(projectId, userId, contactMethodId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @return ApiResponse&lt;ContactMethod&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContactMethod> adminSendUserContactMethodVerificationCodeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId) throws ApiException {
+    return adminSendUserContactMethodVerificationCodeWithHttpInfo(projectId, userId, contactMethodId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ContactMethod&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContactMethod> adminSendUserContactMethodVerificationCodeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = adminSendUserContactMethodVerificationCodeRequestBuilder(projectId, userId, contactMethodId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("adminSendUserContactMethodVerificationCode", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ContactMethod>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ContactMethod responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContactMethod>() {});
+        
+
+        return new ApiResponse<ContactMethod>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder adminSendUserContactMethodVerificationCodeRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling adminSendUserContactMethodVerificationCode");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling adminSendUserContactMethodVerificationCode");
+    }
+    // verify the required parameter 'contactMethodId' is set
+    if (contactMethodId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contactMethodId' when calling adminSendUserContactMethodVerificationCode");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/contact-methods/{contactMethodId}/send-verification-code"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{contactMethodId}", ApiClient.urlEncode(contactMethodId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @param verificationCode  (required)
+   * @return ContactMethod
+   * @throws ApiException if fails to make API call
+   */
+  public ContactMethod adminVerifyUserContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, @javax.annotation.Nonnull String verificationCode) throws ApiException {
+    return adminVerifyUserContactMethod(projectId, userId, contactMethodId, verificationCode, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @param verificationCode  (required)
+   * @param headers Optional headers to include in the request
+   * @return ContactMethod
+   * @throws ApiException if fails to make API call
+   */
+  public ContactMethod adminVerifyUserContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, @javax.annotation.Nonnull String verificationCode, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContactMethod> localVarResponse = adminVerifyUserContactMethodWithHttpInfo(projectId, userId, contactMethodId, verificationCode, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @param verificationCode  (required)
+   * @return ApiResponse&lt;ContactMethod&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContactMethod> adminVerifyUserContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, @javax.annotation.Nonnull String verificationCode) throws ApiException {
+    return adminVerifyUserContactMethodWithHttpInfo(projectId, userId, contactMethodId, verificationCode, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contactMethodId  (required)
+   * @param verificationCode  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ContactMethod&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContactMethod> adminVerifyUserContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, @javax.annotation.Nonnull String verificationCode, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = adminVerifyUserContactMethodRequestBuilder(projectId, userId, contactMethodId, verificationCode, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("adminVerifyUserContactMethod", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ContactMethod>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ContactMethod responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContactMethod>() {});
+        
+
+        return new ApiResponse<ContactMethod>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder adminVerifyUserContactMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contactMethodId, @javax.annotation.Nonnull String verificationCode, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling adminVerifyUserContactMethod");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling adminVerifyUserContactMethod");
+    }
+    // verify the required parameter 'contactMethodId' is set
+    if (contactMethodId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contactMethodId' when calling adminVerifyUserContactMethod");
+    }
+    // verify the required parameter 'verificationCode' is set
+    if (verificationCode == null) {
+      throw new ApiException(400, "Missing the required parameter 'verificationCode' when calling adminVerifyUserContactMethod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/contact-methods/{contactMethodId}/verify"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{contactMethodId}", ApiClient.urlEncode(contactMethodId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "verificationCode";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("verificationCode", verificationCode));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**

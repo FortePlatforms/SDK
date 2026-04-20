@@ -37,9 +37,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_TIMESTAMP,
   UserActionLogObject.JSON_PROPERTY_USER_ID,
   UserActionLogObject.JSON_PROPERTY_ACTION_TYPE,
-  UserActionLogObject.JSON_PROPERTY_CONTACT_METHOD_ID
+  UserActionLogObject.JSON_PROPERTY_CONTACT_METHOD_ID,
+  UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-18T22:45:22.545542600-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -107,6 +108,10 @@ public class UserActionLogObject {
   public static final String JSON_PROPERTY_CONTACT_METHOD_ID = "contactMethodId";
   @javax.annotation.Nullable
   private String contactMethodId;
+
+  public static final String JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID = "performedByAccountId";
+  @javax.annotation.Nullable
+  private String performedByAccountId;
 
   public UserActionLogObject() { 
   }
@@ -207,6 +212,30 @@ public class UserActionLogObject {
   }
 
 
+  public UserActionLogObject performedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
+    this.performedByAccountId = performedByAccountId;
+    return this;
+  }
+
+  /**
+   * Get performedByAccountId
+   * @return performedByAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPerformedByAccountId() {
+    return performedByAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPerformedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
+    this.performedByAccountId = performedByAccountId;
+  }
+
+
   /**
    * Return true if this UserActionLogObject object is equal to o.
    */
@@ -222,12 +251,13 @@ public class UserActionLogObject {
     return Objects.equals(this.timestamp, userActionLogObject.timestamp) &&
         Objects.equals(this.userId, userActionLogObject.userId) &&
         Objects.equals(this.actionType, userActionLogObject.actionType) &&
-        Objects.equals(this.contactMethodId, userActionLogObject.contactMethodId);
+        Objects.equals(this.contactMethodId, userActionLogObject.contactMethodId) &&
+        Objects.equals(this.performedByAccountId, userActionLogObject.performedByAccountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, userId, actionType, contactMethodId);
+    return Objects.hash(timestamp, userId, actionType, contactMethodId, performedByAccountId);
   }
 
   @Override
@@ -238,6 +268,7 @@ public class UserActionLogObject {
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    actionType: ").append(toIndentedString(actionType)).append("\n");
     sb.append("    contactMethodId: ").append(toIndentedString(contactMethodId)).append("\n");
+    sb.append("    performedByAccountId: ").append(toIndentedString(performedByAccountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -303,6 +334,11 @@ public class UserActionLogObject {
     // add `contactMethodId` to the URL query string
     if (getContactMethodId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontactMethodId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContactMethodId()))));
+    }
+
+    // add `performedByAccountId` to the URL query string
+    if (getPerformedByAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sperformedByAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPerformedByAccountId()))));
     }
 
     return joiner.toString();

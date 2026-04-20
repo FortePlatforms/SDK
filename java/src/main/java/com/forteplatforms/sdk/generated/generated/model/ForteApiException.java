@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-18T22:45:22.545542600-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -137,7 +137,11 @@ public class ForteApiException {
     
     COMPLIANCE_DOCUMENT_INVALID_OWNER(String.valueOf("COMPLIANCE_DOCUMENT_INVALID_OWNER")),
     
-    COMPLIANCE_REGISTRATION_NOT_APPROVED(String.valueOf("COMPLIANCE_REGISTRATION_NOT_APPROVED"));
+    COMPLIANCE_REGISTRATION_NOT_APPROVED(String.valueOf("COMPLIANCE_REGISTRATION_NOT_APPROVED")),
+    
+    EMAIL_LOGIN_NOT_ENABLED(String.valueOf("EMAIL_LOGIN_NOT_ENABLED")),
+    
+    PHONE_LOGIN_NOT_ENABLED(String.valueOf("PHONE_LOGIN_NOT_ENABLED"));
 
     private String value;
 

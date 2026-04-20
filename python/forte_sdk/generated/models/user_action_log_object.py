@@ -31,7 +31,8 @@ class UserActionLogObject(BaseModel):
     user_id: StrictStr = Field(alias="userId")
     action_type: StrictStr = Field(alias="actionType")
     contact_method_id: Optional[StrictStr] = Field(default=None, alias="contactMethodId")
-    __properties: ClassVar[List[str]] = ["timestamp", "userId", "actionType", "contactMethodId"]
+    performed_by_account_id: Optional[StrictStr] = Field(default=None, alias="performedByAccountId")
+    __properties: ClassVar[List[str]] = ["timestamp", "userId", "actionType", "contactMethodId", "performedByAccountId"]
 
     @field_validator('action_type')
     def action_type_validate_enum(cls, value):
@@ -94,7 +95,8 @@ class UserActionLogObject(BaseModel):
             "timestamp": obj.get("timestamp"),
             "userId": obj.get("userId"),
             "actionType": obj.get("actionType"),
-            "contactMethodId": obj.get("contactMethodId")
+            "contactMethodId": obj.get("contactMethodId"),
+            "performedByAccountId": obj.get("performedByAccountId")
         })
         return _obj
 

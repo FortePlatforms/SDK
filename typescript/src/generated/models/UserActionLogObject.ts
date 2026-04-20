@@ -43,6 +43,12 @@ export interface UserActionLogObject {
      * @memberof UserActionLogObject
      */
     contactMethodId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserActionLogObject
+     */
+    performedByAccountId?: string;
 }
 
 
@@ -88,6 +94,7 @@ export function UserActionLogObjectFromJSONTyped(json: any, ignoreDiscriminator:
         'userId': json['userId'],
         'actionType': json['actionType'],
         'contactMethodId': json['contactMethodId'] == null ? undefined : json['contactMethodId'],
+        'performedByAccountId': json['performedByAccountId'] == null ? undefined : json['performedByAccountId'],
     };
 }
 
@@ -106,6 +113,7 @@ export function UserActionLogObjectToJSONTyped(value?: UserActionLogObject | nul
         'userId': value['userId'],
         'actionType': value['actionType'],
         'contactMethodId': value['contactMethodId'],
+        'performedByAccountId': value['performedByAccountId'],
     };
 }
 
