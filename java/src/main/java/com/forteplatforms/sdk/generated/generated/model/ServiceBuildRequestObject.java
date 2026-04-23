@@ -46,6 +46,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceBuildRequestObject.JSON_PROPERTY_COMMIT_HASH,
   ServiceBuildRequestObject.JSON_PROPERTY_COMMIT_MESSAGE,
   ServiceBuildRequestObject.JSON_PROPERTY_COMMIT_AUTHOR_NAME,
+  ServiceBuildRequestObject.JSON_PROPERTY_GIT_REF,
+  ServiceBuildRequestObject.JSON_PROPERTY_RELEASE_TAG_NAME,
   ServiceBuildRequestObject.JSON_PROPERTY_BUILD_STEP_LOGS,
   ServiceBuildRequestObject.JSON_PROPERTY_STATUS,
   ServiceBuildRequestObject.JSON_PROPERTY_ORIGIN,
@@ -53,7 +55,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceBuildRequestObject.JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR,
   ServiceBuildRequestObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
@@ -82,6 +84,14 @@ public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_COMMIT_AUTHOR_NAME = "commitAuthorName";
   @javax.annotation.Nullable
   private String commitAuthorName;
+
+  public static final String JSON_PROPERTY_GIT_REF = "gitRef";
+  @javax.annotation.Nullable
+  private String gitRef;
+
+  public static final String JSON_PROPERTY_RELEASE_TAG_NAME = "releaseTagName";
+  @javax.annotation.Nullable
+  private String releaseTagName;
 
   public static final String JSON_PROPERTY_BUILD_STEP_LOGS = "buildStepLogs";
   @javax.annotation.Nullable
@@ -167,6 +177,8 @@ public class ServiceBuildRequestObject {
     INITIAL_BUILD(String.valueOf("INITIAL_BUILD")),
     
     TRIGGERED_BY_PUSH(String.valueOf("TRIGGERED_BY_PUSH")),
+    
+    TRIGGERED_BY_RELEASE(String.valueOf("TRIGGERED_BY_RELEASE")),
     
     MANUAL_TRIGGER_FROM_DASHBOARD(String.valueOf("MANUAL_TRIGGER_FROM_DASHBOARD")),
     
@@ -388,6 +400,54 @@ public class ServiceBuildRequestObject {
   }
 
 
+  public ServiceBuildRequestObject gitRef(@javax.annotation.Nullable String gitRef) {
+    this.gitRef = gitRef;
+    return this;
+  }
+
+  /**
+   * Get gitRef
+   * @return gitRef
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GIT_REF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getGitRef() {
+    return gitRef;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GIT_REF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGitRef(@javax.annotation.Nullable String gitRef) {
+    this.gitRef = gitRef;
+  }
+
+
+  public ServiceBuildRequestObject releaseTagName(@javax.annotation.Nullable String releaseTagName) {
+    this.releaseTagName = releaseTagName;
+    return this;
+  }
+
+  /**
+   * Get releaseTagName
+   * @return releaseTagName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RELEASE_TAG_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getReleaseTagName() {
+    return releaseTagName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RELEASE_TAG_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReleaseTagName(@javax.annotation.Nullable String releaseTagName) {
+    this.releaseTagName = releaseTagName;
+  }
+
+
   public ServiceBuildRequestObject buildStepLogs(@javax.annotation.Nullable List<BuildStepLog> buildStepLogs) {
     this.buildStepLogs = buildStepLogs;
     return this;
@@ -559,6 +619,8 @@ public class ServiceBuildRequestObject {
         Objects.equals(this.commitHash, serviceBuildRequestObject.commitHash) &&
         Objects.equals(this.commitMessage, serviceBuildRequestObject.commitMessage) &&
         Objects.equals(this.commitAuthorName, serviceBuildRequestObject.commitAuthorName) &&
+        Objects.equals(this.gitRef, serviceBuildRequestObject.gitRef) &&
+        Objects.equals(this.releaseTagName, serviceBuildRequestObject.releaseTagName) &&
         Objects.equals(this.buildStepLogs, serviceBuildRequestObject.buildStepLogs) &&
         Objects.equals(this.status, serviceBuildRequestObject.status) &&
         Objects.equals(this.origin, serviceBuildRequestObject.origin) &&
@@ -569,7 +631,7 @@ public class ServiceBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, buildStepLogs, status, origin, allBuildLogsReceived, dockerfileGenerationError, healthCheckDetectionError);
+    return Objects.hash(buildId, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, allBuildLogsReceived, dockerfileGenerationError, healthCheckDetectionError);
   }
 
   @Override
@@ -583,6 +645,8 @@ public class ServiceBuildRequestObject {
     sb.append("    commitHash: ").append(toIndentedString(commitHash)).append("\n");
     sb.append("    commitMessage: ").append(toIndentedString(commitMessage)).append("\n");
     sb.append("    commitAuthorName: ").append(toIndentedString(commitAuthorName)).append("\n");
+    sb.append("    gitRef: ").append(toIndentedString(gitRef)).append("\n");
+    sb.append("    releaseTagName: ").append(toIndentedString(releaseTagName)).append("\n");
     sb.append("    buildStepLogs: ").append(toIndentedString(buildStepLogs)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
@@ -669,6 +733,16 @@ public class ServiceBuildRequestObject {
     // add `commitAuthorName` to the URL query string
     if (getCommitAuthorName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scommitAuthorName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommitAuthorName()))));
+    }
+
+    // add `gitRef` to the URL query string
+    if (getGitRef() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgitRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGitRef()))));
+    }
+
+    // add `releaseTagName` to the URL query string
+    if (getReleaseTagName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreleaseTagName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReleaseTagName()))));
     }
 
     // add `buildStepLogs` to the URL query string

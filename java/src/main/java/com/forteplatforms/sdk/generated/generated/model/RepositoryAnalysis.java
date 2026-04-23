@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   RepositoryAnalysis.JSON_PROPERTY_DETECTED_FRAMEWORKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class RepositoryAnalysis {
   public static final String JSON_PROPERTY_DETECTED_FRAMEWORKS = "detectedFrameworks";
   @javax.annotation.Nullable

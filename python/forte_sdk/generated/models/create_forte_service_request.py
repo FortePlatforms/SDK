@@ -28,7 +28,8 @@ class CreateForteServiceRequest(BaseModel):
     CreateForteServiceRequest
     """ # noqa: E501
     github_repository_url: StrictStr = Field(alias="githubRepositoryUrl")
-    github_branch: Annotated[str, Field(strict=True)] = Field(alias="githubBranch")
+    build_trigger: StrictStr = Field(alias="buildTrigger")
+    github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="githubBranch")
     service_name: Annotated[str, Field(strict=True)] = Field(alias="serviceName")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     secrets: Optional[Dict[str, StrictStr]] = None
@@ -36,11 +37,21 @@ class CreateForteServiceRequest(BaseModel):
     container_cpu: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="containerCpu")
     health_check_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(default=None, alias="healthCheckPort")
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
-    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath"]
+    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath"]
+
+    @field_validator('build_trigger')
+    def build_trigger_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['PUSH', 'RELEASE_PUBLISHED']):
+            raise ValueError("must be one of enum values ('PUSH', 'RELEASE_PUBLISHED')")
+        return value
 
     @field_validator('github_branch')
     def github_branch_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if value is None:
+            return value
+
         if not re.match(r"^[a-zA-Z0-9-_.\/]{1,100}$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_.\/]{1,100}$/")
         return value
@@ -124,6 +135,7 @@ class CreateForteServiceRequest(BaseModel):
 
         _obj = cls.model_validate({
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),
+            "buildTrigger": obj.get("buildTrigger"),
             "githubBranch": obj.get("githubBranch"),
             "serviceName": obj.get("serviceName"),
             "environmentVariables": obj.get("environmentVariables"),

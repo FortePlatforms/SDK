@@ -19,6 +19,7 @@ import type {
   ContactMethod,
   LoginUserResponse,
   RegisterUserRequest,
+  RegisterUserResponse,
   RenewSessionTokenResponse,
   UserObject,
 } from '../models/index';
@@ -31,6 +32,8 @@ import {
     LoginUserResponseToJSON,
     RegisterUserRequestFromJSON,
     RegisterUserRequestToJSON,
+    RegisterUserResponseFromJSON,
+    RegisterUserResponseToJSON,
     RenewSessionTokenResponseFromJSON,
     RenewSessionTokenResponseToJSON,
     UserObjectFromJSON,
@@ -330,7 +333,7 @@ export class UsersServerApi extends runtime.BaseAPI {
 
     /**
      */
-    async registerUserRaw(requestParameters: RegisterUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+    async registerUserRaw(requestParameters: RegisterUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RegisterUserResponse>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -363,12 +366,12 @@ export class UsersServerApi extends runtime.BaseAPI {
             body: RegisterUserRequestToJSON(requestParameters['registerUserRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserObjectFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => RegisterUserResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async registerUser(requestParameters: RegisterUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserObject> {
+    async registerUser(requestParameters: RegisterUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RegisterUserResponse> {
         const response = await this.registerUserRaw(requestParameters, initOverrides);
         return await response.value();
     }

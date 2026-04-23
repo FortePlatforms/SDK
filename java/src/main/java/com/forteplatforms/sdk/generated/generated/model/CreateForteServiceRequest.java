@@ -36,6 +36,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   CreateForteServiceRequest.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
+  CreateForteServiceRequest.JSON_PROPERTY_BUILD_TRIGGER,
   CreateForteServiceRequest.JSON_PROPERTY_GITHUB_BRANCH,
   CreateForteServiceRequest.JSON_PROPERTY_SERVICE_NAME,
   CreateForteServiceRequest.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
@@ -45,14 +46,53 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PORT,
   CreateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class CreateForteServiceRequest {
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
   @javax.annotation.Nonnull
   private String githubRepositoryUrl;
 
-  public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
+  /**
+   * Gets or Sets buildTrigger
+   */
+  public enum BuildTriggerEnum {
+    PUSH(String.valueOf("PUSH")),
+    
+    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED"));
+
+    private String value;
+
+    BuildTriggerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BuildTriggerEnum fromValue(String value) {
+      for (BuildTriggerEnum b : BuildTriggerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BUILD_TRIGGER = "buildTrigger";
   @javax.annotation.Nonnull
+  private BuildTriggerEnum buildTrigger;
+
+  public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
+  @javax.annotation.Nullable
   private String githubBranch;
 
   public static final String JSON_PROPERTY_SERVICE_NAME = "serviceName";
@@ -110,7 +150,31 @@ public class CreateForteServiceRequest {
   }
 
 
-  public CreateForteServiceRequest githubBranch(@javax.annotation.Nonnull String githubBranch) {
+  public CreateForteServiceRequest buildTrigger(@javax.annotation.Nonnull BuildTriggerEnum buildTrigger) {
+    this.buildTrigger = buildTrigger;
+    return this;
+  }
+
+  /**
+   * Get buildTrigger
+   * @return buildTrigger
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_BUILD_TRIGGER, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public BuildTriggerEnum getBuildTrigger() {
+    return buildTrigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUILD_TRIGGER, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setBuildTrigger(@javax.annotation.Nonnull BuildTriggerEnum buildTrigger) {
+    this.buildTrigger = buildTrigger;
+  }
+
+
+  public CreateForteServiceRequest githubBranch(@javax.annotation.Nullable String githubBranch) {
     this.githubBranch = githubBranch;
     return this;
   }
@@ -119,17 +183,17 @@ public class CreateForteServiceRequest {
    * Get githubBranch
    * @return githubBranch
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGithubBranch() {
     return githubBranch;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGithubBranch(@javax.annotation.Nonnull String githubBranch) {
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
     this.githubBranch = githubBranch;
   }
 
@@ -335,6 +399,7 @@ public class CreateForteServiceRequest {
     }
     CreateForteServiceRequest createForteServiceRequest = (CreateForteServiceRequest) o;
     return Objects.equals(this.githubRepositoryUrl, createForteServiceRequest.githubRepositoryUrl) &&
+        Objects.equals(this.buildTrigger, createForteServiceRequest.buildTrigger) &&
         Objects.equals(this.githubBranch, createForteServiceRequest.githubBranch) &&
         Objects.equals(this.serviceName, createForteServiceRequest.serviceName) &&
         Objects.equals(this.environmentVariables, createForteServiceRequest.environmentVariables) &&
@@ -347,7 +412,7 @@ public class CreateForteServiceRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(githubRepositoryUrl, githubBranch, serviceName, environmentVariables, secrets, baseInstances, containerCpu, healthCheckPort, healthCheckPath);
+    return Objects.hash(githubRepositoryUrl, buildTrigger, githubBranch, serviceName, environmentVariables, secrets, baseInstances, containerCpu, healthCheckPort, healthCheckPath);
   }
 
   @Override
@@ -355,6 +420,7 @@ public class CreateForteServiceRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateForteServiceRequest {\n");
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
+    sb.append("    buildTrigger: ").append(toIndentedString(buildTrigger)).append("\n");
     sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
     sb.append("    serviceName: ").append(toIndentedString(serviceName)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
@@ -413,6 +479,11 @@ public class CreateForteServiceRequest {
     // add `githubRepositoryUrl` to the URL query string
     if (getGithubRepositoryUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgithubRepositoryUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubRepositoryUrl()))));
+    }
+
+    // add `buildTrigger` to the URL query string
+    if (getBuildTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbuildTrigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuildTrigger()))));
     }
 
     // add `githubBranch` to the URL query string

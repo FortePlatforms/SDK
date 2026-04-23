@@ -94,7 +94,13 @@ export interface ServiceObject {
      * @type {string}
      * @memberof ServiceObject
      */
-    githubBranch: string;
+    githubBuildTrigger: ServiceObjectGithubBuildTriggerType;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceObject
+     */
+    githubBranch?: string;
     /**
      * 
      * @type {string}
@@ -157,6 +163,17 @@ export interface ServiceObject {
     secretKeys?: Set<string>;
 }
 
+
+/**
+ * @export
+ */
+export const ServiceObjectGithubBuildTriggerType = {
+    PUSH: 'PUSH',
+    RELEASE_PUBLISHED: 'RELEASE_PUBLISHED'
+} as const;
+export type ServiceObjectGithubBuildTriggerType = typeof ServiceObjectGithubBuildTriggerType[keyof typeof ServiceObjectGithubBuildTriggerType];
+
+
 /**
  * Check if a given object implements the ServiceObject interface.
  */
@@ -164,7 +181,7 @@ export function instanceOfServiceObject(value: object): value is ServiceObject {
     if (!('serviceName' in value) || value['serviceName'] === undefined) return false;
     if (!('requestResponseBodyLoggingEnabled' in value) || value['requestResponseBodyLoggingEnabled'] === undefined) return false;
     if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
-    if (!('githubBranch' in value) || value['githubBranch'] === undefined) return false;
+    if (!('githubBuildTrigger' in value) || value['githubBuildTrigger'] === undefined) return false;
     if (!('baseInstances' in value) || value['baseInstances'] === undefined) return false;
     if (!('containerCpu' in value) || value['containerCpu'] === undefined) return false;
     return true;
@@ -188,7 +205,8 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
         'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
         'githubRepositoryUrl': json['githubRepositoryUrl'],
-        'githubBranch': json['githubBranch'],
+        'githubBuildTrigger': json['githubBuildTrigger'],
+        'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
         'currentBuildId': json['currentBuildId'] == null ? undefined : json['currentBuildId'],
         'enqueuedBuildIds': json['enqueuedBuildIds'] == null ? undefined : json['enqueuedBuildIds'],
         'healthCheckConfiguration': json['healthCheckConfiguration'] == null ? undefined : HealthCheckDetectionOutputFromJSON(json['healthCheckConfiguration']),
@@ -221,6 +239,7 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
         'dockerfilePath': value['dockerfilePath'],
         'githubRepositoryUrl': value['githubRepositoryUrl'],
+        'githubBuildTrigger': value['githubBuildTrigger'],
         'githubBranch': value['githubBranch'],
         'currentBuildId': value['currentBuildId'],
         'enqueuedBuildIds': value['enqueuedBuildIds'],

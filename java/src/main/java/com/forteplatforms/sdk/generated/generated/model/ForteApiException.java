@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -117,6 +117,18 @@ public class ForteApiException {
     
     SUPPORT_CASE_CLOSED(String.valueOf("SUPPORT_CASE_CLOSED")),
     
+    SUPPORT_ATTACHMENT_NOT_FOUND(String.valueOf("SUPPORT_ATTACHMENT_NOT_FOUND")),
+    
+    SUPPORT_ATTACHMENT_ALREADY_HAS_CONTENTS(String.valueOf("SUPPORT_ATTACHMENT_ALREADY_HAS_CONTENTS")),
+    
+    SUPPORT_ATTACHMENT_MISSING_CONTENTS(String.valueOf("SUPPORT_ATTACHMENT_MISSING_CONTENTS")),
+    
+    SUPPORT_ATTACHMENT_INVALID_OWNER(String.valueOf("SUPPORT_ATTACHMENT_INVALID_OWNER")),
+    
+    SUPPORT_ATTACHMENT_ALREADY_CLAIMED(String.valueOf("SUPPORT_ATTACHMENT_ALREADY_CLAIMED")),
+    
+    SUPPORT_ATTACHMENT_TOO_LARGE(String.valueOf("SUPPORT_ATTACHMENT_TOO_LARGE")),
+    
     COMPLIANCE_REGISTRATION_ALREADY_EXISTS(String.valueOf("COMPLIANCE_REGISTRATION_ALREADY_EXISTS")),
     
     COMPLIANCE_REGISTRATION_NOT_FOUND(String.valueOf("COMPLIANCE_REGISTRATION_NOT_FOUND")),
@@ -141,7 +153,9 @@ public class ForteApiException {
     
     EMAIL_LOGIN_NOT_ENABLED(String.valueOf("EMAIL_LOGIN_NOT_ENABLED")),
     
-    PHONE_LOGIN_NOT_ENABLED(String.valueOf("PHONE_LOGIN_NOT_ENABLED"));
+    PHONE_LOGIN_NOT_ENABLED(String.valueOf("PHONE_LOGIN_NOT_ENABLED")),
+    
+    MISSING_GITHUB_BRANCH(String.valueOf("MISSING_GITHUB_BRANCH"));
 
     private String value;
 

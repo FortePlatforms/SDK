@@ -24,81 +24,83 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
+import com.forteplatforms.sdk.generated.model.UserObject;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * Output containing detected or generated Dockerfile path and contents
+ * RegisterUserResponse
  */
 @JsonPropertyOrder({
-  DockerfileDetectionOutput.JSON_PROPERTY_DOCKERFILE_PATH,
-  DockerfileDetectionOutput.JSON_PROPERTY_DOCKERFILE_CONTENTS
+  RegisterUserResponse.JSON_PROPERTY_USER_OBJECT,
+  RegisterUserResponse.JSON_PROPERTY_SESSION_TOKEN
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
-public class DockerfileDetectionOutput {
-  public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
+public class RegisterUserResponse {
+  public static final String JSON_PROPERTY_USER_OBJECT = "userObject";
   @javax.annotation.Nonnull
-  private String dockerfilePath;
+  private UserObject userObject;
 
-  public static final String JSON_PROPERTY_DOCKERFILE_CONTENTS = "dockerfileContents";
+  public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
   @javax.annotation.Nonnull
-  private String dockerfileContents;
+  private RenewSessionTokenResponse sessionToken;
 
-  public DockerfileDetectionOutput() { 
+  public RegisterUserResponse() { 
   }
 
-  public DockerfileDetectionOutput dockerfilePath(@javax.annotation.Nonnull String dockerfilePath) {
-    this.dockerfilePath = dockerfilePath;
+  public RegisterUserResponse userObject(@javax.annotation.Nonnull UserObject userObject) {
+    this.userObject = userObject;
     return this;
   }
 
   /**
-   * Relative path to the Dockerfile (e.g., &#39;./Dockerfile&#39;, &#39;./docker/Dockerfile&#39;)
-   * @return dockerfilePath
+   * Get userObject
+   * @return userObject
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = true)
+  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getDockerfilePath() {
-    return dockerfilePath;
+  public UserObject getUserObject() {
+    return userObject;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = true)
+  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDockerfilePath(@javax.annotation.Nonnull String dockerfilePath) {
-    this.dockerfilePath = dockerfilePath;
+  public void setUserObject(@javax.annotation.Nonnull UserObject userObject) {
+    this.userObject = userObject;
   }
 
 
-  public DockerfileDetectionOutput dockerfileContents(@javax.annotation.Nonnull String dockerfileContents) {
-    this.dockerfileContents = dockerfileContents;
+  public RegisterUserResponse sessionToken(@javax.annotation.Nonnull RenewSessionTokenResponse sessionToken) {
+    this.sessionToken = sessionToken;
     return this;
   }
 
   /**
-   * Complete contents of the Dockerfile
-   * @return dockerfileContents
+   * Get sessionToken
+   * @return sessionToken
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_CONTENTS, required = true)
+  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getDockerfileContents() {
-    return dockerfileContents;
+  public RenewSessionTokenResponse getSessionToken() {
+    return sessionToken;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_CONTENTS, required = true)
+  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDockerfileContents(@javax.annotation.Nonnull String dockerfileContents) {
-    this.dockerfileContents = dockerfileContents;
+  public void setSessionToken(@javax.annotation.Nonnull RenewSessionTokenResponse sessionToken) {
+    this.sessionToken = sessionToken;
   }
 
 
   /**
-   * Return true if this DockerfileDetectionOutput object is equal to o.
+   * Return true if this RegisterUserResponse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -108,22 +110,22 @@ public class DockerfileDetectionOutput {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DockerfileDetectionOutput dockerfileDetectionOutput = (DockerfileDetectionOutput) o;
-    return Objects.equals(this.dockerfilePath, dockerfileDetectionOutput.dockerfilePath) &&
-        Objects.equals(this.dockerfileContents, dockerfileDetectionOutput.dockerfileContents);
+    RegisterUserResponse registerUserResponse = (RegisterUserResponse) o;
+    return Objects.equals(this.userObject, registerUserResponse.userObject) &&
+        Objects.equals(this.sessionToken, registerUserResponse.sessionToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dockerfilePath, dockerfileContents);
+    return Objects.hash(userObject, sessionToken);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DockerfileDetectionOutput {\n");
-    sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
-    sb.append("    dockerfileContents: ").append(toIndentedString(dockerfileContents)).append("\n");
+    sb.append("class RegisterUserResponse {\n");
+    sb.append("    userObject: ").append(toIndentedString(userObject)).append("\n");
+    sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,14 +173,14 @@ public class DockerfileDetectionOutput {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `dockerfilePath` to the URL query string
-    if (getDockerfilePath() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfilePath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfilePath()))));
+    // add `userObject` to the URL query string
+    if (getUserObject() != null) {
+      joiner.add(getUserObject().toUrlQueryString(prefix + "userObject" + suffix));
     }
 
-    // add `dockerfileContents` to the URL query string
-    if (getDockerfileContents() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfileContents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfileContents()))));
+    // add `sessionToken` to the URL query string
+    if (getSessionToken() != null) {
+      joiner.add(getSessionToken().toUrlQueryString(prefix + "sessionToken" + suffix));
     }
 
     return joiner.toString();

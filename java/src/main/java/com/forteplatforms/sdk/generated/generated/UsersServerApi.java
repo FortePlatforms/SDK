@@ -22,6 +22,7 @@ import com.forteplatforms.sdk.generated.model.AddContactMethodRequest;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.LoginUserResponse;
 import com.forteplatforms.sdk.generated.model.RegisterUserRequest;
+import com.forteplatforms.sdk.generated.model.RegisterUserResponse;
 import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
 import com.forteplatforms.sdk.generated.model.UserObject;
 
@@ -56,7 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UsersServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -815,10 +816,10 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param registerUserRequest  (required)
-   * @return UserObject
+   * @return RegisterUserResponse
    * @throws ApiException if fails to make API call
    */
-  public UserObject registerUser(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RegisterUserRequest registerUserRequest) throws ApiException {
+  public RegisterUserResponse registerUser(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RegisterUserRequest registerUserRequest) throws ApiException {
     return registerUser(projectId, registerUserRequest, null);
   }
 
@@ -828,11 +829,11 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param registerUserRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return UserObject
+   * @return RegisterUserResponse
    * @throws ApiException if fails to make API call
    */
-  public UserObject registerUser(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RegisterUserRequest registerUserRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UserObject> localVarResponse = registerUserWithHttpInfo(projectId, registerUserRequest, headers);
+  public RegisterUserResponse registerUser(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RegisterUserRequest registerUserRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RegisterUserResponse> localVarResponse = registerUserWithHttpInfo(projectId, registerUserRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -841,10 +842,10 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param registerUserRequest  (required)
-   * @return ApiResponse&lt;UserObject&gt;
+   * @return ApiResponse&lt;RegisterUserResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UserObject> registerUserWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RegisterUserRequest registerUserRequest) throws ApiException {
+  public ApiResponse<RegisterUserResponse> registerUserWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RegisterUserRequest registerUserRequest) throws ApiException {
     return registerUserWithHttpInfo(projectId, registerUserRequest, null);
   }
 
@@ -854,10 +855,10 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param registerUserRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UserObject&gt;
+   * @return ApiResponse&lt;RegisterUserResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UserObject> registerUserWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RegisterUserRequest registerUserRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<RegisterUserResponse> registerUserWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RegisterUserRequest registerUserRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = registerUserRequestBuilder(projectId, registerUserRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -873,7 +874,7 @@ public class UsersServerApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UserObject>(
+          return new ApiResponse<RegisterUserResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -883,10 +884,10 @@ public class UsersServerApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UserObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UserObject>() {});
+        RegisterUserResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RegisterUserResponse>() {});
         
 
-        return new ApiResponse<UserObject>(
+        return new ApiResponse<RegisterUserResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

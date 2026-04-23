@@ -41,6 +41,7 @@ from forte_sdk.generated.models.paginated_response_user_action_log_object import
 from forte_sdk.generated.models.paginated_response_user_object import PaginatedResponseUserObject
 from forte_sdk.generated.models.project_object import ProjectObject
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest
+from forte_sdk.generated.models.register_user_response import RegisterUserResponse
 from forte_sdk.generated.models.renew_session_token_response import RenewSessionTokenResponse
 from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis
 from forte_sdk.generated.models.request_log_object import RequestLogObject

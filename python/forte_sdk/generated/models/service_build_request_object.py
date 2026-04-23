@@ -37,13 +37,15 @@ class ServiceBuildRequestObject(BaseModel):
     commit_hash: Optional[StrictStr] = Field(default=None, alias="commitHash")
     commit_message: Optional[StrictStr] = Field(default=None, alias="commitMessage")
     commit_author_name: Optional[StrictStr] = Field(default=None, alias="commitAuthorName")
+    git_ref: Optional[StrictStr] = Field(default=None, alias="gitRef")
+    release_tag_name: Optional[StrictStr] = Field(default=None, alias="releaseTagName")
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
     all_build_logs_received: Optional[StrictBool] = Field(default=None, alias="allBuildLogsReceived")
     dockerfile_generation_error: Optional[DockerfileGenerationError] = Field(default=None, alias="dockerfileGenerationError")
     health_check_detection_error: Optional[HealthCheckDetectionError] = Field(default=None, alias="healthCheckDetectionError")
-    __properties: ClassVar[List[str]] = ["buildId", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "buildStepLogs", "status", "origin", "allBuildLogsReceived", "dockerfileGenerationError", "healthCheckDetectionError"]
+    __properties: ClassVar[List[str]] = ["buildId", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "allBuildLogsReceived", "dockerfileGenerationError", "healthCheckDetectionError"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -58,8 +60,8 @@ class ServiceBuildRequestObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD']):
-            raise ValueError("must be one of enum values ('INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD')")
+        if value not in set(['INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'TRIGGERED_BY_RELEASE', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD']):
+            raise ValueError("must be one of enum values ('INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'TRIGGERED_BY_RELEASE', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD')")
         return value
 
     model_config = ConfigDict(
@@ -133,6 +135,8 @@ class ServiceBuildRequestObject(BaseModel):
             "commitHash": obj.get("commitHash"),
             "commitMessage": obj.get("commitMessage"),
             "commitAuthorName": obj.get("commitAuthorName"),
+            "gitRef": obj.get("gitRef"),
+            "releaseTagName": obj.get("releaseTagName"),
             "buildStepLogs": [BuildStepLog.from_dict(_item) for _item in obj["buildStepLogs"]] if obj.get("buildStepLogs") is not None else None,
             "status": obj.get("status"),
             "origin": obj.get("origin"),

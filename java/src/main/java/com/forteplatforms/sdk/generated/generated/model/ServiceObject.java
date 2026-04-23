@@ -52,6 +52,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
   ServiceObject.JSON_PROPERTY_DOCKERFILE_PATH,
   ServiceObject.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
+  ServiceObject.JSON_PROPERTY_GITHUB_BUILD_TRIGGER,
   ServiceObject.JSON_PROPERTY_GITHUB_BRANCH,
   ServiceObject.JSON_PROPERTY_CURRENT_BUILD_ID,
   ServiceObject.JSON_PROPERTY_ENQUEUED_BUILD_IDS,
@@ -64,7 +65,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_CONTAINER_CPU,
   ServiceObject.JSON_PROPERTY_SECRET_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ServiceObject {
   public static final String JSON_PROPERTY_SERVICE_ID = "serviceId";
   @javax.annotation.Nullable
@@ -98,8 +99,47 @@ public class ServiceObject {
   @javax.annotation.Nonnull
   private String githubRepositoryUrl;
 
-  public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
+  /**
+   * Gets or Sets githubBuildTrigger
+   */
+  public enum GithubBuildTriggerEnum {
+    PUSH(String.valueOf("PUSH")),
+    
+    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED"));
+
+    private String value;
+
+    GithubBuildTriggerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static GithubBuildTriggerEnum fromValue(String value) {
+      for (GithubBuildTriggerEnum b : GithubBuildTriggerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_GITHUB_BUILD_TRIGGER = "githubBuildTrigger";
   @javax.annotation.Nonnull
+  private GithubBuildTriggerEnum githubBuildTrigger;
+
+  public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
+  @javax.annotation.Nullable
   private String githubBranch;
 
   public static final String JSON_PROPERTY_CURRENT_BUILD_ID = "currentBuildId";
@@ -337,7 +377,31 @@ public class ServiceObject {
   }
 
 
-  public ServiceObject githubBranch(@javax.annotation.Nonnull String githubBranch) {
+  public ServiceObject githubBuildTrigger(@javax.annotation.Nonnull GithubBuildTriggerEnum githubBuildTrigger) {
+    this.githubBuildTrigger = githubBuildTrigger;
+    return this;
+  }
+
+  /**
+   * Get githubBuildTrigger
+   * @return githubBuildTrigger
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public GithubBuildTriggerEnum getGithubBuildTrigger() {
+    return githubBuildTrigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setGithubBuildTrigger(@javax.annotation.Nonnull GithubBuildTriggerEnum githubBuildTrigger) {
+    this.githubBuildTrigger = githubBuildTrigger;
+  }
+
+
+  public ServiceObject githubBranch(@javax.annotation.Nullable String githubBranch) {
     this.githubBranch = githubBranch;
     return this;
   }
@@ -346,17 +410,17 @@ public class ServiceObject {
    * Get githubBranch
    * @return githubBranch
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGithubBranch() {
     return githubBranch;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGithubBranch(@javax.annotation.Nonnull String githubBranch) {
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
     this.githubBranch = githubBranch;
   }
 
@@ -654,6 +718,7 @@ public class ServiceObject {
         Objects.equals(this.lastModifiedTimestamp, serviceObject.lastModifiedTimestamp) &&
         Objects.equals(this.dockerfilePath, serviceObject.dockerfilePath) &&
         Objects.equals(this.githubRepositoryUrl, serviceObject.githubRepositoryUrl) &&
+        Objects.equals(this.githubBuildTrigger, serviceObject.githubBuildTrigger) &&
         Objects.equals(this.githubBranch, serviceObject.githubBranch) &&
         Objects.equals(this.currentBuildId, serviceObject.currentBuildId) &&
         Objects.equals(this.enqueuedBuildIds, serviceObject.enqueuedBuildIds) &&
@@ -669,7 +734,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, requestResponseBodyLoggingEnabled, createdTimestamp, lastModifiedTimestamp, dockerfilePath, githubRepositoryUrl, githubBranch, currentBuildId, enqueuedBuildIds, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, environmentVariables, authPathExclusions, baseInstances, containerCpu, secretKeys);
+    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, requestResponseBodyLoggingEnabled, createdTimestamp, lastModifiedTimestamp, dockerfilePath, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, environmentVariables, authPathExclusions, baseInstances, containerCpu, secretKeys);
   }
 
   @Override
@@ -684,6 +749,7 @@ public class ServiceObject {
     sb.append("    lastModifiedTimestamp: ").append(toIndentedString(lastModifiedTimestamp)).append("\n");
     sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
+    sb.append("    githubBuildTrigger: ").append(toIndentedString(githubBuildTrigger)).append("\n");
     sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
     sb.append("    currentBuildId: ").append(toIndentedString(currentBuildId)).append("\n");
     sb.append("    enqueuedBuildIds: ").append(toIndentedString(enqueuedBuildIds)).append("\n");
@@ -780,6 +846,11 @@ public class ServiceObject {
     // add `githubRepositoryUrl` to the URL query string
     if (getGithubRepositoryUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgithubRepositoryUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubRepositoryUrl()))));
+    }
+
+    // add `githubBuildTrigger` to the URL query string
+    if (getGithubBuildTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgithubBuildTrigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubBuildTrigger()))));
     }
 
     // add `githubBranch` to the URL query string

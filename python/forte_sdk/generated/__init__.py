@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.48"
+__version__ = "1.0.53"
 
 # Define package exports
 __all__ = [
@@ -57,6 +57,7 @@ __all__ = [
     "PaginatedResponseUserObject",
     "ProjectObject",
     "RegisterUserRequest",
+    "RegisterUserResponse",
     "RenewSessionTokenResponse",
     "RepositoryAnalysis",
     "RequestLogObject",
@@ -119,6 +120,7 @@ from forte_sdk.generated.models.paginated_response_user_action_log_object import
 from forte_sdk.generated.models.paginated_response_user_object import PaginatedResponseUserObject as PaginatedResponseUserObject
 from forte_sdk.generated.models.project_object import ProjectObject as ProjectObject
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest as RegisterUserRequest
+from forte_sdk.generated.models.register_user_response import RegisterUserResponse as RegisterUserResponse
 from forte_sdk.generated.models.renew_session_token_response import RenewSessionTokenResponse as RenewSessionTokenResponse
 from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis as RepositoryAnalysis
 from forte_sdk.generated.models.request_log_object import RequestLogObject as RequestLogObject

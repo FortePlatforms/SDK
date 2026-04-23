@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput
@@ -38,7 +38,8 @@ class ServiceObject(BaseModel):
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
     dockerfile_path: Optional[StrictStr] = Field(default=None, alias="dockerfilePath")
     github_repository_url: StrictStr = Field(alias="githubRepositoryUrl")
-    github_branch: StrictStr = Field(alias="githubBranch")
+    github_build_trigger: StrictStr = Field(alias="githubBuildTrigger")
+    github_branch: Optional[StrictStr] = Field(default=None, alias="githubBranch")
     current_build_id: Optional[StrictStr] = Field(default=None, alias="currentBuildId")
     enqueued_build_ids: Optional[List[StrictStr]] = Field(default=None, alias="enqueuedBuildIds")
     health_check_configuration: Optional[HealthCheckDetectionOutput] = Field(default=None, alias="healthCheckConfiguration")
@@ -49,7 +50,14 @@ class ServiceObject(BaseModel):
     base_instances: StrictInt = Field(alias="baseInstances")
     container_cpu: StrictStr = Field(alias="containerCpu")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "requestResponseBodyLoggingEnabled", "createdTimestamp", "lastModifiedTimestamp", "dockerfilePath", "githubRepositoryUrl", "githubBranch", "currentBuildId", "enqueuedBuildIds", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "environmentVariables", "authPathExclusions", "baseInstances", "containerCpu", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "requestResponseBodyLoggingEnabled", "createdTimestamp", "lastModifiedTimestamp", "dockerfilePath", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "environmentVariables", "authPathExclusions", "baseInstances", "containerCpu", "secretKeys"]
+
+    @field_validator('github_build_trigger')
+    def github_build_trigger_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['PUSH', 'RELEASE_PUBLISHED']):
+            raise ValueError("must be one of enum values ('PUSH', 'RELEASE_PUBLISHED')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,6 +127,7 @@ class ServiceObject(BaseModel):
             "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
             "dockerfilePath": obj.get("dockerfilePath"),
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),
+            "githubBuildTrigger": obj.get("githubBuildTrigger"),
             "githubBranch": obj.get("githubBranch"),
             "currentBuildId": obj.get("currentBuildId"),
             "enqueuedBuildIds": obj.get("enqueuedBuildIds"),

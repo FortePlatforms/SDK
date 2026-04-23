@@ -23,6 +23,7 @@ from forte_sdk.generated.models.add_contact_method_request import AddContactMeth
 from forte_sdk.generated.models.contact_method import ContactMethod
 from forte_sdk.generated.models.login_user_response import LoginUserResponse
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest
+from forte_sdk.generated.models.register_user_response import RegisterUserResponse
 from forte_sdk.generated.models.renew_session_token_response import RenewSessionTokenResponse
 from forte_sdk.generated.models.user_object import UserObject
 
@@ -1461,7 +1462,7 @@ class UsersServerApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UserObject:
+    ) -> RegisterUserResponse:
         """register_user
 
 
@@ -1501,7 +1502,7 @@ class UsersServerApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UserObject",
+            '200': "RegisterUserResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1531,7 +1532,7 @@ class UsersServerApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UserObject]:
+    ) -> ApiResponse[RegisterUserResponse]:
         """register_user
 
 
@@ -1571,7 +1572,7 @@ class UsersServerApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UserObject",
+            '200': "RegisterUserResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1641,7 +1642,7 @@ class UsersServerApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UserObject",
+            '200': "RegisterUserResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

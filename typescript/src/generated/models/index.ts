@@ -28,6 +28,7 @@ export * from './PaginatedResponseUserActionLogObject';
 export * from './PaginatedResponseUserObject';
 export * from './ProjectObject';
 export * from './RegisterUserRequest';
+export * from './RegisterUserResponse';
 export * from './RenewSessionTokenResponse';
 export * from './RepositoryAnalysis';
 export * from './RequestLogObject';

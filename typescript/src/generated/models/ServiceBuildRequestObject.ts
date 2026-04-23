@@ -85,6 +85,18 @@ export interface ServiceBuildRequestObject {
     commitAuthorName?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ServiceBuildRequestObject
+     */
+    gitRef?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceBuildRequestObject
+     */
+    releaseTagName?: string;
+    /**
+     * 
      * @type {Array<BuildStepLog>}
      * @memberof ServiceBuildRequestObject
      */
@@ -154,6 +166,7 @@ export type ServiceBuildRequestObjectStatusType = typeof ServiceBuildRequestObje
 export const ServiceBuildRequestObjectOriginType = {
     INITIAL_BUILD: 'INITIAL_BUILD',
     TRIGGERED_BY_PUSH: 'TRIGGERED_BY_PUSH',
+    TRIGGERED_BY_RELEASE: 'TRIGGERED_BY_RELEASE',
     MANUAL_TRIGGER_FROM_DASHBOARD: 'MANUAL_TRIGGER_FROM_DASHBOARD',
     CONFIG_CHANGE: 'CONFIG_CHANGE',
     SHADOW_VALIDATION_BUILD: 'SHADOW_VALIDATION_BUILD'
@@ -188,6 +201,8 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
         'commitHash': json['commitHash'] == null ? undefined : json['commitHash'],
         'commitMessage': json['commitMessage'] == null ? undefined : json['commitMessage'],
         'commitAuthorName': json['commitAuthorName'] == null ? undefined : json['commitAuthorName'],
+        'gitRef': json['gitRef'] == null ? undefined : json['gitRef'],
+        'releaseTagName': json['releaseTagName'] == null ? undefined : json['releaseTagName'],
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
@@ -215,6 +230,8 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
         'commitHash': value['commitHash'],
         'commitMessage': value['commitMessage'],
         'commitAuthorName': value['commitAuthorName'],
+        'gitRef': value['gitRef'],
+        'releaseTagName': value['releaseTagName'],
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],

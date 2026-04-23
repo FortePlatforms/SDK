@@ -30,7 +30,13 @@ export interface CreateForteServiceRequest {
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
-    githubBranch: string;
+    buildTrigger: CreateForteServiceRequestBuildTriggerType;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateForteServiceRequest
+     */
+    githubBranch?: string;
     /**
      * 
      * @type {string}
@@ -75,12 +81,23 @@ export interface CreateForteServiceRequest {
     healthCheckPath?: string;
 }
 
+
+/**
+ * @export
+ */
+export const CreateForteServiceRequestBuildTriggerType = {
+    PUSH: 'PUSH',
+    RELEASE_PUBLISHED: 'RELEASE_PUBLISHED'
+} as const;
+export type CreateForteServiceRequestBuildTriggerType = typeof CreateForteServiceRequestBuildTriggerType[keyof typeof CreateForteServiceRequestBuildTriggerType];
+
+
 /**
  * Check if a given object implements the CreateForteServiceRequest interface.
  */
 export function instanceOfCreateForteServiceRequest(value: object): value is CreateForteServiceRequest {
     if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
-    if (!('githubBranch' in value) || value['githubBranch'] === undefined) return false;
+    if (!('buildTrigger' in value) || value['buildTrigger'] === undefined) return false;
     if (!('serviceName' in value) || value['serviceName'] === undefined) return false;
     return true;
 }
@@ -96,7 +113,8 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'githubRepositoryUrl': json['githubRepositoryUrl'],
-        'githubBranch': json['githubBranch'],
+        'buildTrigger': json['buildTrigger'],
+        'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
         'serviceName': json['serviceName'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
         'secrets': json['secrets'] == null ? undefined : json['secrets'],
@@ -119,6 +137,7 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
     return {
         
         'githubRepositoryUrl': value['githubRepositoryUrl'],
+        'buildTrigger': value['buildTrigger'],
         'githubBranch': value['githubBranch'],
         'serviceName': value['serviceName'],
         'environmentVariables': value['environmentVariables'],

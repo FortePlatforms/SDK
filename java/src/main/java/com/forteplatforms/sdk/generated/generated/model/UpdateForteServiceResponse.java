@@ -38,7 +38,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateForteServiceResponse.JSON_PROPERTY_UPDATED_SERVICE,
   UpdateForteServiceResponse.JSON_PROPERTY_BUILD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-19T14:52:57.330540100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UpdateForteServiceResponse {
   public static final String JSON_PROPERTY_UPDATED_SERVICE = "updatedService";
   @javax.annotation.Nonnull
