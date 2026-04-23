@@ -53,7 +53,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_CONTACT_METHODS,
   UserObject.JSON_PROPERTY_STATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T21:06:58.208477400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T23:07:43.612846400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserObject {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nullable
