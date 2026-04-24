@@ -20,6 +20,13 @@ import {
     ServiceObjectToJSON,
     ServiceObjectToJSONTyped,
 } from './ServiceObject';
+import type { StaticWebAppObject } from './StaticWebAppObject';
+import {
+    StaticWebAppObjectFromJSON,
+    StaticWebAppObjectFromJSONTyped,
+    StaticWebAppObjectToJSON,
+    StaticWebAppObjectToJSONTyped,
+} from './StaticWebAppObject';
 
 /**
  * 
@@ -51,6 +58,12 @@ export interface ProjectObject {
      * @memberof ProjectObject
      */
     services: Array<ServiceObject>;
+    /**
+     * 
+     * @type {Array<StaticWebAppObject>}
+     * @memberof ProjectObject
+     */
+    staticWebApps: Array<StaticWebAppObject>;
     /**
      * 
      * @type {Date}
@@ -114,6 +127,7 @@ export function instanceOfProjectObject(value: object): value is ProjectObject {
     if (!('ownerAccountId' in value) || value['ownerAccountId'] === undefined) return false;
     if (!('projectName' in value) || value['projectName'] === undefined) return false;
     if (!('services' in value) || value['services'] === undefined) return false;
+    if (!('staticWebApps' in value) || value['staticWebApps'] === undefined) return false;
     if (!('createdTimestamp' in value) || value['createdTimestamp'] === undefined) return false;
     if (!('roleArn' in value) || value['roleArn'] === undefined) return false;
     return true;
@@ -133,6 +147,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'ownerAccountId': json['ownerAccountId'],
         'projectName': json['projectName'],
         'services': ((json['services'] as Array<any>).map(ServiceObjectFromJSON)),
+        'staticWebApps': ((json['staticWebApps'] as Array<any>).map(StaticWebAppObjectFromJSON)),
         'createdTimestamp': (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
         'roleArn': json['roleArn'],
@@ -160,6 +175,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'ownerAccountId': value['ownerAccountId'],
         'projectName': value['projectName'],
         'services': ((value['services'] as Array<any>).map(ServiceObjectToJSON)),
+        'staticWebApps': ((value['staticWebApps'] as Array<any>).map(StaticWebAppObjectToJSON)),
         'createdTimestamp': value['createdTimestamp'].toISOString(),
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
         'roleArn': value['roleArn'],

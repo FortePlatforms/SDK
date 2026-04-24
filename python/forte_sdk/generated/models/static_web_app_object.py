@@ -18,30 +18,22 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse
-from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput
-from forte_sdk.generated.models.health_check_detection_response import HealthCheckDetectionResponse
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ServiceObject(BaseModel):
+class StaticWebAppObject(BaseModel):
     """
-    ServiceObject
+    StaticWebAppObject
     """ # noqa: E501
-    service_id: Optional[StrictStr] = Field(default=None, alias="serviceId")
-    service_name: StrictStr = Field(alias="serviceName")
-    public_dns_endpoint: Optional[StrictStr] = Field(default=None, alias="publicDnsEndpoint")
-    request_response_body_logging_enabled: StrictBool = Field(alias="requestResponseBodyLoggingEnabled")
-    dockerfile_path: Optional[StrictStr] = Field(default=None, alias="dockerfilePath")
-    health_check_configuration: Optional[HealthCheckDetectionOutput] = Field(default=None, alias="healthCheckConfiguration")
-    dockerfile_detection_response: Optional[DockerfileGenerationResponse] = Field(default=None, alias="dockerfileDetectionResponse")
-    health_check_detection_response: Optional[HealthCheckDetectionResponse] = Field(default=None, alias="healthCheckDetectionResponse")
-    auth_path_exclusions: Optional[List[StrictStr]] = Field(default=None, alias="authPathExclusions")
-    base_instances: StrictInt = Field(alias="baseInstances")
-    container_cpu: StrictStr = Field(alias="containerCpu")
+    static_web_app_id: Optional[StrictStr] = Field(default=None, alias="staticWebAppId")
+    web_app_name: StrictStr = Field(alias="webAppName")
+    forte_dns_endpoint: Optional[StrictStr] = Field(default=None, alias="forteDnsEndpoint")
+    forte_dns_endpoint_enabled: StrictBool = Field(alias="forteDnsEndpointEnabled")
+    custom_dns_endpoints: Optional[List[StrictStr]] = Field(default=None, alias="customDnsEndpoints")
+    build_path: Optional[StrictStr] = Field(default=None, alias="buildPath")
     created_timestamp: Optional[datetime] = Field(default=None, alias="createdTimestamp")
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
     github_repository_url: StrictStr = Field(alias="githubRepositoryUrl")
@@ -52,7 +44,7 @@ class ServiceObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "baseInstances", "containerCpu", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["staticWebAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDnsEndpoints", "buildPath", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('github_build_trigger')
     def github_build_trigger_validate_enum(cls, value):
@@ -79,7 +71,7 @@ class ServiceObject(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ServiceObject from a JSON string"""
+        """Create an instance of StaticWebAppObject from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -100,20 +92,11 @@ class ServiceObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of health_check_configuration
-        if self.health_check_configuration:
-            _dict['healthCheckConfiguration'] = self.health_check_configuration.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of dockerfile_detection_response
-        if self.dockerfile_detection_response:
-            _dict['dockerfileDetectionResponse'] = self.dockerfile_detection_response.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of health_check_detection_response
-        if self.health_check_detection_response:
-            _dict['healthCheckDetectionResponse'] = self.health_check_detection_response.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ServiceObject from a dict"""
+        """Create an instance of StaticWebAppObject from a dict"""
         if obj is None:
             return None
 
@@ -121,17 +104,12 @@ class ServiceObject(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "serviceId": obj.get("serviceId"),
-            "serviceName": obj.get("serviceName"),
-            "publicDnsEndpoint": obj.get("publicDnsEndpoint"),
-            "requestResponseBodyLoggingEnabled": obj.get("requestResponseBodyLoggingEnabled"),
-            "dockerfilePath": obj.get("dockerfilePath"),
-            "healthCheckConfiguration": HealthCheckDetectionOutput.from_dict(obj["healthCheckConfiguration"]) if obj.get("healthCheckConfiguration") is not None else None,
-            "dockerfileDetectionResponse": DockerfileGenerationResponse.from_dict(obj["dockerfileDetectionResponse"]) if obj.get("dockerfileDetectionResponse") is not None else None,
-            "healthCheckDetectionResponse": HealthCheckDetectionResponse.from_dict(obj["healthCheckDetectionResponse"]) if obj.get("healthCheckDetectionResponse") is not None else None,
-            "authPathExclusions": obj.get("authPathExclusions"),
-            "baseInstances": obj.get("baseInstances"),
-            "containerCpu": obj.get("containerCpu"),
+            "staticWebAppId": obj.get("staticWebAppId"),
+            "webAppName": obj.get("webAppName"),
+            "forteDnsEndpoint": obj.get("forteDnsEndpoint"),
+            "forteDnsEndpointEnabled": obj.get("forteDnsEndpointEnabled"),
+            "customDnsEndpoints": obj.get("customDnsEndpoints"),
+            "buildPath": obj.get("buildPath"),
             "createdTimestamp": obj.get("createdTimestamp"),
             "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),

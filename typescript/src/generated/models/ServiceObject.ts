@@ -67,6 +67,48 @@ export interface ServiceObject {
     requestResponseBodyLoggingEnabled: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof ServiceObject
+     */
+    dockerfilePath?: string;
+    /**
+     * 
+     * @type {HealthCheckDetectionOutput}
+     * @memberof ServiceObject
+     */
+    healthCheckConfiguration?: HealthCheckDetectionOutput;
+    /**
+     * 
+     * @type {DockerfileGenerationResponse}
+     * @memberof ServiceObject
+     */
+    dockerfileDetectionResponse?: DockerfileGenerationResponse;
+    /**
+     * 
+     * @type {HealthCheckDetectionResponse}
+     * @memberof ServiceObject
+     */
+    healthCheckDetectionResponse?: HealthCheckDetectionResponse;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ServiceObject
+     */
+    authPathExclusions?: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ServiceObject
+     */
+    baseInstances: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceObject
+     */
+    containerCpu: string;
+    /**
+     * 
      * @type {Date}
      * @memberof ServiceObject
      */
@@ -77,12 +119,6 @@ export interface ServiceObject {
      * @memberof ServiceObject
      */
     lastModifiedTimestamp?: Date;
-    /**
-     * 
-     * @type {string}
-     * @memberof ServiceObject
-     */
-    dockerfilePath?: string;
     /**
      * 
      * @type {string}
@@ -115,46 +151,16 @@ export interface ServiceObject {
     enqueuedBuildIds?: Array<string>;
     /**
      * 
-     * @type {HealthCheckDetectionOutput}
-     * @memberof ServiceObject
-     */
-    healthCheckConfiguration?: HealthCheckDetectionOutput;
-    /**
-     * 
-     * @type {DockerfileGenerationResponse}
-     * @memberof ServiceObject
-     */
-    dockerfileDetectionResponse?: DockerfileGenerationResponse;
-    /**
-     * 
-     * @type {HealthCheckDetectionResponse}
-     * @memberof ServiceObject
-     */
-    healthCheckDetectionResponse?: HealthCheckDetectionResponse;
-    /**
-     * 
      * @type {{ [key: string]: string; }}
      * @memberof ServiceObject
      */
     environmentVariables?: { [key: string]: string; };
     /**
      * 
-     * @type {Array<string>}
-     * @memberof ServiceObject
-     */
-    authPathExclusions?: Array<string>;
-    /**
-     * 
-     * @type {number}
-     * @memberof ServiceObject
-     */
-    baseInstances: number;
-    /**
-     * 
      * @type {string}
      * @memberof ServiceObject
      */
-    containerCpu: string;
+    baseDirectory?: string;
     /**
      * 
      * @type {Set<string>}
@@ -180,10 +186,10 @@ export type ServiceObjectGithubBuildTriggerType = typeof ServiceObjectGithubBuil
 export function instanceOfServiceObject(value: object): value is ServiceObject {
     if (!('serviceName' in value) || value['serviceName'] === undefined) return false;
     if (!('requestResponseBodyLoggingEnabled' in value) || value['requestResponseBodyLoggingEnabled'] === undefined) return false;
-    if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
-    if (!('githubBuildTrigger' in value) || value['githubBuildTrigger'] === undefined) return false;
     if (!('baseInstances' in value) || value['baseInstances'] === undefined) return false;
     if (!('containerCpu' in value) || value['containerCpu'] === undefined) return false;
+    if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
+    if (!('githubBuildTrigger' in value) || value['githubBuildTrigger'] === undefined) return false;
     return true;
 }
 
@@ -201,21 +207,22 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'serviceName': json['serviceName'],
         'publicDnsEndpoint': json['publicDnsEndpoint'] == null ? undefined : json['publicDnsEndpoint'],
         'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'],
+        'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
+        'healthCheckConfiguration': json['healthCheckConfiguration'] == null ? undefined : HealthCheckDetectionOutputFromJSON(json['healthCheckConfiguration']),
+        'dockerfileDetectionResponse': json['dockerfileDetectionResponse'] == null ? undefined : DockerfileGenerationResponseFromJSON(json['dockerfileDetectionResponse']),
+        'healthCheckDetectionResponse': json['healthCheckDetectionResponse'] == null ? undefined : HealthCheckDetectionResponseFromJSON(json['healthCheckDetectionResponse']),
+        'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
+        'baseInstances': json['baseInstances'],
+        'containerCpu': json['containerCpu'],
         'createdTimestamp': json['createdTimestamp'] == null ? undefined : (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
-        'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
         'githubRepositoryUrl': json['githubRepositoryUrl'],
         'githubBuildTrigger': json['githubBuildTrigger'],
         'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
         'currentBuildId': json['currentBuildId'] == null ? undefined : json['currentBuildId'],
         'enqueuedBuildIds': json['enqueuedBuildIds'] == null ? undefined : json['enqueuedBuildIds'],
-        'healthCheckConfiguration': json['healthCheckConfiguration'] == null ? undefined : HealthCheckDetectionOutputFromJSON(json['healthCheckConfiguration']),
-        'dockerfileDetectionResponse': json['dockerfileDetectionResponse'] == null ? undefined : DockerfileGenerationResponseFromJSON(json['dockerfileDetectionResponse']),
-        'healthCheckDetectionResponse': json['healthCheckDetectionResponse'] == null ? undefined : HealthCheckDetectionResponseFromJSON(json['healthCheckDetectionResponse']),
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
-        'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
-        'baseInstances': json['baseInstances'],
-        'containerCpu': json['containerCpu'],
+        'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
         'secretKeys': json['secretKeys'] == null ? undefined : new Set(json['secretKeys']),
     };
 }
@@ -235,21 +242,22 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'serviceName': value['serviceName'],
         'publicDnsEndpoint': value['publicDnsEndpoint'],
         'requestResponseBodyLoggingEnabled': value['requestResponseBodyLoggingEnabled'],
+        'dockerfilePath': value['dockerfilePath'],
+        'healthCheckConfiguration': HealthCheckDetectionOutputToJSON(value['healthCheckConfiguration']),
+        'dockerfileDetectionResponse': DockerfileGenerationResponseToJSON(value['dockerfileDetectionResponse']),
+        'healthCheckDetectionResponse': HealthCheckDetectionResponseToJSON(value['healthCheckDetectionResponse']),
+        'authPathExclusions': value['authPathExclusions'],
+        'baseInstances': value['baseInstances'],
+        'containerCpu': value['containerCpu'],
         'createdTimestamp': value['createdTimestamp'] == null ? value['createdTimestamp'] : value['createdTimestamp'].toISOString(),
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
-        'dockerfilePath': value['dockerfilePath'],
         'githubRepositoryUrl': value['githubRepositoryUrl'],
         'githubBuildTrigger': value['githubBuildTrigger'],
         'githubBranch': value['githubBranch'],
         'currentBuildId': value['currentBuildId'],
         'enqueuedBuildIds': value['enqueuedBuildIds'],
-        'healthCheckConfiguration': HealthCheckDetectionOutputToJSON(value['healthCheckConfiguration']),
-        'dockerfileDetectionResponse': DockerfileGenerationResponseToJSON(value['dockerfileDetectionResponse']),
-        'healthCheckDetectionResponse': HealthCheckDetectionResponseToJSON(value['healthCheckDetectionResponse']),
         'environmentVariables': value['environmentVariables'],
-        'authPathExclusions': value['authPathExclusions'],
-        'baseInstances': value['baseInstances'],
-        'containerCpu': value['containerCpu'],
+        'baseDirectory': value['baseDirectory'],
         'secretKeys': value['secretKeys'] == null ? undefined : Array.from(value['secretKeys'] as Set<any>),
     };
 }

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.55"
+__version__ = "1.0.57"
 
 # Define package exports
 __all__ = [
@@ -65,6 +65,7 @@ __all__ = [
     "ServiceBuildRequestObject",
     "ServiceMetricsResponse",
     "ServiceObject",
+    "StaticWebAppObject",
     "TestInvocationRequest",
     "TestInvocationResponse",
     "TimeSeriesDataPoint",
@@ -128,6 +129,7 @@ from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectM
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject as ServiceBuildRequestObject
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse as ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject as ServiceObject
+from forte_sdk.generated.models.static_web_app_object import StaticWebAppObject as StaticWebAppObject
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint as TimeSeriesDataPoint

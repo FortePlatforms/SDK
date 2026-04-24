@@ -31,6 +31,9 @@ class ServiceBuildRequestObject(BaseModel):
     ServiceBuildRequestObject
     """ # noqa: E501
     build_id: Optional[StrictStr] = Field(default=None, alias="buildId")
+    dockerfile_generation_error: Optional[DockerfileGenerationError] = Field(default=None, alias="dockerfileGenerationError")
+    health_check_detection_error: Optional[HealthCheckDetectionError] = Field(default=None, alias="healthCheckDetectionError")
+    all_build_logs_received: Optional[StrictBool] = Field(default=None, alias="allBuildLogsReceived")
     start_time: datetime = Field(alias="startTime")
     last_updated_time: Optional[datetime] = Field(default=None, alias="lastUpdatedTime")
     service_id: StrictStr = Field(alias="serviceId")
@@ -42,10 +45,7 @@ class ServiceBuildRequestObject(BaseModel):
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
-    all_build_logs_received: Optional[StrictBool] = Field(default=None, alias="allBuildLogsReceived")
-    dockerfile_generation_error: Optional[DockerfileGenerationError] = Field(default=None, alias="dockerfileGenerationError")
-    health_check_detection_error: Optional[HealthCheckDetectionError] = Field(default=None, alias="healthCheckDetectionError")
-    __properties: ClassVar[List[str]] = ["buildId", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "allBuildLogsReceived", "dockerfileGenerationError", "healthCheckDetectionError"]
+    __properties: ClassVar[List[str]] = ["buildId", "dockerfileGenerationError", "healthCheckDetectionError", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -103,6 +103,12 @@ class ServiceBuildRequestObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of dockerfile_generation_error
+        if self.dockerfile_generation_error:
+            _dict['dockerfileGenerationError'] = self.dockerfile_generation_error.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of health_check_detection_error
+        if self.health_check_detection_error:
+            _dict['healthCheckDetectionError'] = self.health_check_detection_error.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in build_step_logs (list)
         _items = []
         if self.build_step_logs:
@@ -110,12 +116,6 @@ class ServiceBuildRequestObject(BaseModel):
                 if _item_build_step_logs:
                     _items.append(_item_build_step_logs.to_dict())
             _dict['buildStepLogs'] = _items
-        # override the default output from pydantic by calling `to_dict()` of dockerfile_generation_error
-        if self.dockerfile_generation_error:
-            _dict['dockerfileGenerationError'] = self.dockerfile_generation_error.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of health_check_detection_error
-        if self.health_check_detection_error:
-            _dict['healthCheckDetectionError'] = self.health_check_detection_error.to_dict()
         return _dict
 
     @classmethod
@@ -129,6 +129,9 @@ class ServiceBuildRequestObject(BaseModel):
 
         _obj = cls.model_validate({
             "buildId": obj.get("buildId"),
+            "dockerfileGenerationError": DockerfileGenerationError.from_dict(obj["dockerfileGenerationError"]) if obj.get("dockerfileGenerationError") is not None else None,
+            "healthCheckDetectionError": HealthCheckDetectionError.from_dict(obj["healthCheckDetectionError"]) if obj.get("healthCheckDetectionError") is not None else None,
+            "allBuildLogsReceived": obj.get("allBuildLogsReceived"),
             "startTime": obj.get("startTime"),
             "lastUpdatedTime": obj.get("lastUpdatedTime"),
             "serviceId": obj.get("serviceId"),
@@ -139,10 +142,7 @@ class ServiceBuildRequestObject(BaseModel):
             "releaseTagName": obj.get("releaseTagName"),
             "buildStepLogs": [BuildStepLog.from_dict(_item) for _item in obj["buildStepLogs"]] if obj.get("buildStepLogs") is not None else None,
             "status": obj.get("status"),
-            "origin": obj.get("origin"),
-            "allBuildLogsReceived": obj.get("allBuildLogsReceived"),
-            "dockerfileGenerationError": DockerfileGenerationError.from_dict(obj["dockerfileGenerationError"]) if obj.get("dockerfileGenerationError") is not None else None,
-            "healthCheckDetectionError": HealthCheckDetectionError.from_dict(obj["healthCheckDetectionError"]) if obj.get("healthCheckDetectionError") is not None else None
+            "origin": obj.get("origin")
         })
         return _obj
 

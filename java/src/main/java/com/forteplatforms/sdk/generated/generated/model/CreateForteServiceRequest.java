@@ -44,9 +44,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateForteServiceRequest.JSON_PROPERTY_BASE_INSTANCES,
   CreateForteServiceRequest.JSON_PROPERTY_CONTAINER_CPU,
   CreateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PORT,
-  CreateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH
+  CreateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH,
+  CreateForteServiceRequest.JSON_PROPERTY_BASE_DIRECTORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T23:07:43.612846400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T23:42:10.706736500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class CreateForteServiceRequest {
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
   @javax.annotation.Nonnull
@@ -122,6 +123,10 @@ public class CreateForteServiceRequest {
   public static final String JSON_PROPERTY_HEALTH_CHECK_PATH = "healthCheckPath";
   @javax.annotation.Nullable
   private String healthCheckPath;
+
+  public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
+  @javax.annotation.Nullable
+  private String baseDirectory;
 
   public CreateForteServiceRequest() { 
   }
@@ -386,6 +391,30 @@ public class CreateForteServiceRequest {
   }
 
 
+  public CreateForteServiceRequest baseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = baseDirectory;
+    return this;
+  }
+
+  /**
+   * Get baseDirectory
+   * @return baseDirectory
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBaseDirectory() {
+    return baseDirectory;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = baseDirectory;
+  }
+
+
   /**
    * Return true if this CreateForteServiceRequest object is equal to o.
    */
@@ -407,12 +436,13 @@ public class CreateForteServiceRequest {
         Objects.equals(this.baseInstances, createForteServiceRequest.baseInstances) &&
         Objects.equals(this.containerCpu, createForteServiceRequest.containerCpu) &&
         Objects.equals(this.healthCheckPort, createForteServiceRequest.healthCheckPort) &&
-        Objects.equals(this.healthCheckPath, createForteServiceRequest.healthCheckPath);
+        Objects.equals(this.healthCheckPath, createForteServiceRequest.healthCheckPath) &&
+        Objects.equals(this.baseDirectory, createForteServiceRequest.baseDirectory);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(githubRepositoryUrl, buildTrigger, githubBranch, serviceName, environmentVariables, secrets, baseInstances, containerCpu, healthCheckPort, healthCheckPath);
+    return Objects.hash(githubRepositoryUrl, buildTrigger, githubBranch, serviceName, environmentVariables, secrets, baseInstances, containerCpu, healthCheckPort, healthCheckPath, baseDirectory);
   }
 
   @Override
@@ -429,6 +459,7 @@ public class CreateForteServiceRequest {
     sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
     sb.append("    healthCheckPort: ").append(toIndentedString(healthCheckPort)).append("\n");
     sb.append("    healthCheckPath: ").append(toIndentedString(healthCheckPath)).append("\n");
+    sb.append("    baseDirectory: ").append(toIndentedString(baseDirectory)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -532,6 +563,11 @@ public class CreateForteServiceRequest {
     // add `healthCheckPath` to the URL query string
     if (getHealthCheckPath() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shealthCheckPath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHealthCheckPath()))));
+    }
+
+    // add `baseDirectory` to the URL query string
+    if (getBaseDirectory() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbaseDirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseDirectory()))));
     }
 
     return joiner.toString();

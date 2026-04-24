@@ -36,6 +36,7 @@ export * from './RequestLogObjectMeta';
 export * from './ServiceBuildRequestObject';
 export * from './ServiceMetricsResponse';
 export * from './ServiceObject';
+export * from './StaticWebAppObject';
 export * from './TestInvocationRequest';
 export * from './TestInvocationResponse';
 export * from './TimeSeriesDataPoint';

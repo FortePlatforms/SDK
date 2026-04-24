@@ -37,7 +37,8 @@ class CreateForteServiceRequest(BaseModel):
     container_cpu: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="containerCpu")
     health_check_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(default=None, alias="healthCheckPort")
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
-    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath"]
+    base_directory: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="baseDirectory")
+    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory"]
 
     @field_validator('build_trigger')
     def build_trigger_validate_enum(cls, value):
@@ -81,6 +82,16 @@ class CreateForteServiceRequest(BaseModel):
 
         if not re.match(r"^\/.*", value):
             raise ValueError(r"must validate the regular expression /^\/.*/")
+        return value
+
+    @field_validator('base_directory')
+    def base_directory_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^(?!\/)(?!.*\.\.(\/|$))[a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$", value):
+            raise ValueError(r"must validate the regular expression /^(?!\/)(?!.*\.\.(\/|$))[a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$/")
         return value
 
     model_config = ConfigDict(
@@ -143,7 +154,8 @@ class CreateForteServiceRequest(BaseModel):
             "baseInstances": obj.get("baseInstances"),
             "containerCpu": obj.get("containerCpu"),
             "healthCheckPort": obj.get("healthCheckPort"),
-            "healthCheckPath": obj.get("healthCheckPath")
+            "healthCheckPath": obj.get("healthCheckPath"),
+            "baseDirectory": obj.get("baseDirectory")
         })
         return _obj
 

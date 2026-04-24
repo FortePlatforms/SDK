@@ -79,6 +79,12 @@ export interface CreateForteServiceRequest {
      * @memberof CreateForteServiceRequest
      */
     healthCheckPath?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateForteServiceRequest
+     */
+    baseDirectory?: string;
 }
 
 
@@ -122,6 +128,7 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'containerCpu': json['containerCpu'] == null ? undefined : json['containerCpu'],
         'healthCheckPort': json['healthCheckPort'] == null ? undefined : json['healthCheckPort'],
         'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
+        'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
     };
 }
 
@@ -146,6 +153,7 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
         'containerCpu': value['containerCpu'],
         'healthCheckPort': value['healthCheckPort'],
         'healthCheckPath': value['healthCheckPath'],
+        'baseDirectory': value['baseDirectory'],
     };
 }
 

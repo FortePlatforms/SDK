@@ -48,24 +48,25 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_SERVICE_NAME,
   ServiceObject.JSON_PROPERTY_PUBLIC_DNS_ENDPOINT,
   ServiceObject.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED,
+  ServiceObject.JSON_PROPERTY_DOCKERFILE_PATH,
+  ServiceObject.JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION,
+  ServiceObject.JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE,
+  ServiceObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE,
+  ServiceObject.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
+  ServiceObject.JSON_PROPERTY_BASE_INSTANCES,
+  ServiceObject.JSON_PROPERTY_CONTAINER_CPU,
   ServiceObject.JSON_PROPERTY_CREATED_TIMESTAMP,
   ServiceObject.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
-  ServiceObject.JSON_PROPERTY_DOCKERFILE_PATH,
   ServiceObject.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
   ServiceObject.JSON_PROPERTY_GITHUB_BUILD_TRIGGER,
   ServiceObject.JSON_PROPERTY_GITHUB_BRANCH,
   ServiceObject.JSON_PROPERTY_CURRENT_BUILD_ID,
   ServiceObject.JSON_PROPERTY_ENQUEUED_BUILD_IDS,
-  ServiceObject.JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION,
-  ServiceObject.JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE,
-  ServiceObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE,
   ServiceObject.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
-  ServiceObject.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
-  ServiceObject.JSON_PROPERTY_BASE_INSTANCES,
-  ServiceObject.JSON_PROPERTY_CONTAINER_CPU,
+  ServiceObject.JSON_PROPERTY_BASE_DIRECTORY,
   ServiceObject.JSON_PROPERTY_SECRET_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T23:07:43.612846400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T23:42:10.706736500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ServiceObject {
   public static final String JSON_PROPERTY_SERVICE_ID = "serviceId";
   @javax.annotation.Nullable
@@ -83,6 +84,34 @@ public class ServiceObject {
   @javax.annotation.Nonnull
   private Boolean requestResponseBodyLoggingEnabled;
 
+  public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
+  @javax.annotation.Nullable
+  private String dockerfilePath;
+
+  public static final String JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION = "healthCheckConfiguration";
+  @javax.annotation.Nullable
+  private HealthCheckDetectionOutput healthCheckConfiguration;
+
+  public static final String JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE = "dockerfileDetectionResponse";
+  @javax.annotation.Nullable
+  private DockerfileGenerationResponse dockerfileDetectionResponse;
+
+  public static final String JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE = "healthCheckDetectionResponse";
+  @javax.annotation.Nullable
+  private HealthCheckDetectionResponse healthCheckDetectionResponse;
+
+  public static final String JSON_PROPERTY_AUTH_PATH_EXCLUSIONS = "authPathExclusions";
+  @javax.annotation.Nullable
+  private List<String> authPathExclusions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
+  @javax.annotation.Nonnull
+  private Integer baseInstances;
+
+  public static final String JSON_PROPERTY_CONTAINER_CPU = "containerCpu";
+  @javax.annotation.Nonnull
+  private String containerCpu;
+
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nullable
   private OffsetDateTime createdTimestamp;
@@ -90,10 +119,6 @@ public class ServiceObject {
   public static final String JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP = "lastModifiedTimestamp";
   @javax.annotation.Nullable
   private OffsetDateTime lastModifiedTimestamp;
-
-  public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
-  @javax.annotation.Nullable
-  private String dockerfilePath;
 
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
   @javax.annotation.Nonnull
@@ -150,33 +175,13 @@ public class ServiceObject {
   @javax.annotation.Nullable
   private List<String> enqueuedBuildIds = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION = "healthCheckConfiguration";
-  @javax.annotation.Nullable
-  private HealthCheckDetectionOutput healthCheckConfiguration;
-
-  public static final String JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE = "dockerfileDetectionResponse";
-  @javax.annotation.Nullable
-  private DockerfileGenerationResponse dockerfileDetectionResponse;
-
-  public static final String JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE = "healthCheckDetectionResponse";
-  @javax.annotation.Nullable
-  private HealthCheckDetectionResponse healthCheckDetectionResponse;
-
   public static final String JSON_PROPERTY_ENVIRONMENT_VARIABLES = "environmentVariables";
   @javax.annotation.Nullable
   private Map<String, String> environmentVariables = new HashMap<>();
 
-  public static final String JSON_PROPERTY_AUTH_PATH_EXCLUSIONS = "authPathExclusions";
+  public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
   @javax.annotation.Nullable
-  private List<String> authPathExclusions = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
-  @javax.annotation.Nonnull
-  private Integer baseInstances;
-
-  public static final String JSON_PROPERTY_CONTAINER_CPU = "containerCpu";
-  @javax.annotation.Nonnull
-  private String containerCpu;
+  private String baseDirectory;
 
   public static final String JSON_PROPERTY_SECRET_KEYS = "secretKeys";
   @javax.annotation.Nullable
@@ -281,6 +286,182 @@ public class ServiceObject {
   }
 
 
+  public ServiceObject dockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+    this.dockerfilePath = dockerfilePath;
+    return this;
+  }
+
+  /**
+   * Get dockerfilePath
+   * @return dockerfilePath
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDockerfilePath() {
+    return dockerfilePath;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+    this.dockerfilePath = dockerfilePath;
+  }
+
+
+  public ServiceObject healthCheckConfiguration(@javax.annotation.Nullable HealthCheckDetectionOutput healthCheckConfiguration) {
+    this.healthCheckConfiguration = healthCheckConfiguration;
+    return this;
+  }
+
+  /**
+   * Get healthCheckConfiguration
+   * @return healthCheckConfiguration
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public HealthCheckDetectionOutput getHealthCheckConfiguration() {
+    return healthCheckConfiguration;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHealthCheckConfiguration(@javax.annotation.Nullable HealthCheckDetectionOutput healthCheckConfiguration) {
+    this.healthCheckConfiguration = healthCheckConfiguration;
+  }
+
+
+  public ServiceObject dockerfileDetectionResponse(@javax.annotation.Nullable DockerfileGenerationResponse dockerfileDetectionResponse) {
+    this.dockerfileDetectionResponse = dockerfileDetectionResponse;
+    return this;
+  }
+
+  /**
+   * Get dockerfileDetectionResponse
+   * @return dockerfileDetectionResponse
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public DockerfileGenerationResponse getDockerfileDetectionResponse() {
+    return dockerfileDetectionResponse;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDockerfileDetectionResponse(@javax.annotation.Nullable DockerfileGenerationResponse dockerfileDetectionResponse) {
+    this.dockerfileDetectionResponse = dockerfileDetectionResponse;
+  }
+
+
+  public ServiceObject healthCheckDetectionResponse(@javax.annotation.Nullable HealthCheckDetectionResponse healthCheckDetectionResponse) {
+    this.healthCheckDetectionResponse = healthCheckDetectionResponse;
+    return this;
+  }
+
+  /**
+   * Get healthCheckDetectionResponse
+   * @return healthCheckDetectionResponse
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public HealthCheckDetectionResponse getHealthCheckDetectionResponse() {
+    return healthCheckDetectionResponse;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHealthCheckDetectionResponse(@javax.annotation.Nullable HealthCheckDetectionResponse healthCheckDetectionResponse) {
+    this.healthCheckDetectionResponse = healthCheckDetectionResponse;
+  }
+
+
+  public ServiceObject authPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
+    this.authPathExclusions = authPathExclusions;
+    return this;
+  }
+
+  public ServiceObject addAuthPathExclusionsItem(String authPathExclusionsItem) {
+    if (this.authPathExclusions == null) {
+      this.authPathExclusions = new ArrayList<>();
+    }
+    this.authPathExclusions.add(authPathExclusionsItem);
+    return this;
+  }
+
+  /**
+   * Get authPathExclusions
+   * @return authPathExclusions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getAuthPathExclusions() {
+    return authPathExclusions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAuthPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
+    this.authPathExclusions = authPathExclusions;
+  }
+
+
+  public ServiceObject baseInstances(@javax.annotation.Nonnull Integer baseInstances) {
+    this.baseInstances = baseInstances;
+    return this;
+  }
+
+  /**
+   * Get baseInstances
+   * @return baseInstances
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_BASE_INSTANCES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public Integer getBaseInstances() {
+    return baseInstances;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BASE_INSTANCES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setBaseInstances(@javax.annotation.Nonnull Integer baseInstances) {
+    this.baseInstances = baseInstances;
+  }
+
+
+  public ServiceObject containerCpu(@javax.annotation.Nonnull String containerCpu) {
+    this.containerCpu = containerCpu;
+    return this;
+  }
+
+  /**
+   * Get containerCpu
+   * @return containerCpu
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CONTAINER_CPU, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getContainerCpu() {
+    return containerCpu;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTAINER_CPU, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setContainerCpu(@javax.annotation.Nonnull String containerCpu) {
+    this.containerCpu = containerCpu;
+  }
+
+
   public ServiceObject createdTimestamp(@javax.annotation.Nullable OffsetDateTime createdTimestamp) {
     this.createdTimestamp = createdTimestamp;
     return this;
@@ -326,30 +507,6 @@ public class ServiceObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
     this.lastModifiedTimestamp = lastModifiedTimestamp;
-  }
-
-
-  public ServiceObject dockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
-    this.dockerfilePath = dockerfilePath;
-    return this;
-  }
-
-  /**
-   * Get dockerfilePath
-   * @return dockerfilePath
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDockerfilePath() {
-    return dockerfilePath;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
-    this.dockerfilePath = dockerfilePath;
   }
 
 
@@ -481,78 +638,6 @@ public class ServiceObject {
   }
 
 
-  public ServiceObject healthCheckConfiguration(@javax.annotation.Nullable HealthCheckDetectionOutput healthCheckConfiguration) {
-    this.healthCheckConfiguration = healthCheckConfiguration;
-    return this;
-  }
-
-  /**
-   * Get healthCheckConfiguration
-   * @return healthCheckConfiguration
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public HealthCheckDetectionOutput getHealthCheckConfiguration() {
-    return healthCheckConfiguration;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthCheckConfiguration(@javax.annotation.Nullable HealthCheckDetectionOutput healthCheckConfiguration) {
-    this.healthCheckConfiguration = healthCheckConfiguration;
-  }
-
-
-  public ServiceObject dockerfileDetectionResponse(@javax.annotation.Nullable DockerfileGenerationResponse dockerfileDetectionResponse) {
-    this.dockerfileDetectionResponse = dockerfileDetectionResponse;
-    return this;
-  }
-
-  /**
-   * Get dockerfileDetectionResponse
-   * @return dockerfileDetectionResponse
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public DockerfileGenerationResponse getDockerfileDetectionResponse() {
-    return dockerfileDetectionResponse;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDockerfileDetectionResponse(@javax.annotation.Nullable DockerfileGenerationResponse dockerfileDetectionResponse) {
-    this.dockerfileDetectionResponse = dockerfileDetectionResponse;
-  }
-
-
-  public ServiceObject healthCheckDetectionResponse(@javax.annotation.Nullable HealthCheckDetectionResponse healthCheckDetectionResponse) {
-    this.healthCheckDetectionResponse = healthCheckDetectionResponse;
-    return this;
-  }
-
-  /**
-   * Get healthCheckDetectionResponse
-   * @return healthCheckDetectionResponse
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public HealthCheckDetectionResponse getHealthCheckDetectionResponse() {
-    return healthCheckDetectionResponse;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthCheckDetectionResponse(@javax.annotation.Nullable HealthCheckDetectionResponse healthCheckDetectionResponse) {
-    this.healthCheckDetectionResponse = healthCheckDetectionResponse;
-  }
-
-
   public ServiceObject environmentVariables(@javax.annotation.Nullable Map<String, String> environmentVariables) {
     this.environmentVariables = environmentVariables;
     return this;
@@ -585,83 +670,27 @@ public class ServiceObject {
   }
 
 
-  public ServiceObject authPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
-    this.authPathExclusions = authPathExclusions;
-    return this;
-  }
-
-  public ServiceObject addAuthPathExclusionsItem(String authPathExclusionsItem) {
-    if (this.authPathExclusions == null) {
-      this.authPathExclusions = new ArrayList<>();
-    }
-    this.authPathExclusions.add(authPathExclusionsItem);
+  public ServiceObject baseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = baseDirectory;
     return this;
   }
 
   /**
-   * Get authPathExclusions
-   * @return authPathExclusions
+   * Get baseDirectory
+   * @return baseDirectory
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getAuthPathExclusions() {
-    return authPathExclusions;
+  public String getBaseDirectory() {
+    return baseDirectory;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
-    this.authPathExclusions = authPathExclusions;
-  }
-
-
-  public ServiceObject baseInstances(@javax.annotation.Nonnull Integer baseInstances) {
-    this.baseInstances = baseInstances;
-    return this;
-  }
-
-  /**
-   * Get baseInstances
-   * @return baseInstances
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BASE_INSTANCES, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Integer getBaseInstances() {
-    return baseInstances;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_BASE_INSTANCES, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBaseInstances(@javax.annotation.Nonnull Integer baseInstances) {
-    this.baseInstances = baseInstances;
-  }
-
-
-  public ServiceObject containerCpu(@javax.annotation.Nonnull String containerCpu) {
-    this.containerCpu = containerCpu;
-    return this;
-  }
-
-  /**
-   * Get containerCpu
-   * @return containerCpu
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CONTAINER_CPU, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getContainerCpu() {
-    return containerCpu;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CONTAINER_CPU, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setContainerCpu(@javax.annotation.Nonnull String containerCpu) {
-    this.containerCpu = containerCpu;
+  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = baseDirectory;
   }
 
 
@@ -714,27 +743,28 @@ public class ServiceObject {
         Objects.equals(this.serviceName, serviceObject.serviceName) &&
         Objects.equals(this.publicDnsEndpoint, serviceObject.publicDnsEndpoint) &&
         Objects.equals(this.requestResponseBodyLoggingEnabled, serviceObject.requestResponseBodyLoggingEnabled) &&
+        Objects.equals(this.dockerfilePath, serviceObject.dockerfilePath) &&
+        Objects.equals(this.healthCheckConfiguration, serviceObject.healthCheckConfiguration) &&
+        Objects.equals(this.dockerfileDetectionResponse, serviceObject.dockerfileDetectionResponse) &&
+        Objects.equals(this.healthCheckDetectionResponse, serviceObject.healthCheckDetectionResponse) &&
+        Objects.equals(this.authPathExclusions, serviceObject.authPathExclusions) &&
+        Objects.equals(this.baseInstances, serviceObject.baseInstances) &&
+        Objects.equals(this.containerCpu, serviceObject.containerCpu) &&
         Objects.equals(this.createdTimestamp, serviceObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, serviceObject.lastModifiedTimestamp) &&
-        Objects.equals(this.dockerfilePath, serviceObject.dockerfilePath) &&
         Objects.equals(this.githubRepositoryUrl, serviceObject.githubRepositoryUrl) &&
         Objects.equals(this.githubBuildTrigger, serviceObject.githubBuildTrigger) &&
         Objects.equals(this.githubBranch, serviceObject.githubBranch) &&
         Objects.equals(this.currentBuildId, serviceObject.currentBuildId) &&
         Objects.equals(this.enqueuedBuildIds, serviceObject.enqueuedBuildIds) &&
-        Objects.equals(this.healthCheckConfiguration, serviceObject.healthCheckConfiguration) &&
-        Objects.equals(this.dockerfileDetectionResponse, serviceObject.dockerfileDetectionResponse) &&
-        Objects.equals(this.healthCheckDetectionResponse, serviceObject.healthCheckDetectionResponse) &&
         Objects.equals(this.environmentVariables, serviceObject.environmentVariables) &&
-        Objects.equals(this.authPathExclusions, serviceObject.authPathExclusions) &&
-        Objects.equals(this.baseInstances, serviceObject.baseInstances) &&
-        Objects.equals(this.containerCpu, serviceObject.containerCpu) &&
+        Objects.equals(this.baseDirectory, serviceObject.baseDirectory) &&
         Objects.equals(this.secretKeys, serviceObject.secretKeys);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, requestResponseBodyLoggingEnabled, createdTimestamp, lastModifiedTimestamp, dockerfilePath, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, environmentVariables, authPathExclusions, baseInstances, containerCpu, secretKeys);
+    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, containerCpu, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -745,21 +775,22 @@ public class ServiceObject {
     sb.append("    serviceName: ").append(toIndentedString(serviceName)).append("\n");
     sb.append("    publicDnsEndpoint: ").append(toIndentedString(publicDnsEndpoint)).append("\n");
     sb.append("    requestResponseBodyLoggingEnabled: ").append(toIndentedString(requestResponseBodyLoggingEnabled)).append("\n");
+    sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
+    sb.append("    healthCheckConfiguration: ").append(toIndentedString(healthCheckConfiguration)).append("\n");
+    sb.append("    dockerfileDetectionResponse: ").append(toIndentedString(dockerfileDetectionResponse)).append("\n");
+    sb.append("    healthCheckDetectionResponse: ").append(toIndentedString(healthCheckDetectionResponse)).append("\n");
+    sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
+    sb.append("    baseInstances: ").append(toIndentedString(baseInstances)).append("\n");
+    sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
     sb.append("    lastModifiedTimestamp: ").append(toIndentedString(lastModifiedTimestamp)).append("\n");
-    sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
     sb.append("    githubBuildTrigger: ").append(toIndentedString(githubBuildTrigger)).append("\n");
     sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
     sb.append("    currentBuildId: ").append(toIndentedString(currentBuildId)).append("\n");
     sb.append("    enqueuedBuildIds: ").append(toIndentedString(enqueuedBuildIds)).append("\n");
-    sb.append("    healthCheckConfiguration: ").append(toIndentedString(healthCheckConfiguration)).append("\n");
-    sb.append("    dockerfileDetectionResponse: ").append(toIndentedString(dockerfileDetectionResponse)).append("\n");
-    sb.append("    healthCheckDetectionResponse: ").append(toIndentedString(healthCheckDetectionResponse)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
-    sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
-    sb.append("    baseInstances: ").append(toIndentedString(baseInstances)).append("\n");
-    sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
+    sb.append("    baseDirectory: ").append(toIndentedString(baseDirectory)).append("\n");
     sb.append("    secretKeys: ").append(toIndentedString(secretKeys)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -828,6 +859,45 @@ public class ServiceObject {
       joiner.add(String.format(java.util.Locale.ROOT, "%srequestResponseBodyLoggingEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequestResponseBodyLoggingEnabled()))));
     }
 
+    // add `dockerfilePath` to the URL query string
+    if (getDockerfilePath() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfilePath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfilePath()))));
+    }
+
+    // add `healthCheckConfiguration` to the URL query string
+    if (getHealthCheckConfiguration() != null) {
+      joiner.add(getHealthCheckConfiguration().toUrlQueryString(prefix + "healthCheckConfiguration" + suffix));
+    }
+
+    // add `dockerfileDetectionResponse` to the URL query string
+    if (getDockerfileDetectionResponse() != null) {
+      joiner.add(getDockerfileDetectionResponse().toUrlQueryString(prefix + "dockerfileDetectionResponse" + suffix));
+    }
+
+    // add `healthCheckDetectionResponse` to the URL query string
+    if (getHealthCheckDetectionResponse() != null) {
+      joiner.add(getHealthCheckDetectionResponse().toUrlQueryString(prefix + "healthCheckDetectionResponse" + suffix));
+    }
+
+    // add `authPathExclusions` to the URL query string
+    if (getAuthPathExclusions() != null) {
+      for (int i = 0; i < getAuthPathExclusions().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sauthPathExclusions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getAuthPathExclusions().get(i)))));
+      }
+    }
+
+    // add `baseInstances` to the URL query string
+    if (getBaseInstances() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbaseInstances%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseInstances()))));
+    }
+
+    // add `containerCpu` to the URL query string
+    if (getContainerCpu() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontainerCpu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerCpu()))));
+    }
+
     // add `createdTimestamp` to the URL query string
     if (getCreatedTimestamp() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%screatedTimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedTimestamp()))));
@@ -836,11 +906,6 @@ public class ServiceObject {
     // add `lastModifiedTimestamp` to the URL query string
     if (getLastModifiedTimestamp() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slastModifiedTimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastModifiedTimestamp()))));
-    }
-
-    // add `dockerfilePath` to the URL query string
-    if (getDockerfilePath() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfilePath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfilePath()))));
     }
 
     // add `githubRepositoryUrl` to the URL query string
@@ -872,21 +937,6 @@ public class ServiceObject {
       }
     }
 
-    // add `healthCheckConfiguration` to the URL query string
-    if (getHealthCheckConfiguration() != null) {
-      joiner.add(getHealthCheckConfiguration().toUrlQueryString(prefix + "healthCheckConfiguration" + suffix));
-    }
-
-    // add `dockerfileDetectionResponse` to the URL query string
-    if (getDockerfileDetectionResponse() != null) {
-      joiner.add(getDockerfileDetectionResponse().toUrlQueryString(prefix + "dockerfileDetectionResponse" + suffix));
-    }
-
-    // add `healthCheckDetectionResponse` to the URL query string
-    if (getHealthCheckDetectionResponse() != null) {
-      joiner.add(getHealthCheckDetectionResponse().toUrlQueryString(prefix + "healthCheckDetectionResponse" + suffix));
-    }
-
     // add `environmentVariables` to the URL query string
     if (getEnvironmentVariables() != null) {
       for (String _key : getEnvironmentVariables().keySet()) {
@@ -896,23 +946,9 @@ public class ServiceObject {
       }
     }
 
-    // add `authPathExclusions` to the URL query string
-    if (getAuthPathExclusions() != null) {
-      for (int i = 0; i < getAuthPathExclusions().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sauthPathExclusions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getAuthPathExclusions().get(i)))));
-      }
-    }
-
-    // add `baseInstances` to the URL query string
-    if (getBaseInstances() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sbaseInstances%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseInstances()))));
-    }
-
-    // add `containerCpu` to the URL query string
-    if (getContainerCpu() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scontainerCpu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerCpu()))));
+    // add `baseDirectory` to the URL query string
+    if (getBaseDirectory() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbaseDirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseDirectory()))));
     }
 
     // add `secretKeys` to the URL query string

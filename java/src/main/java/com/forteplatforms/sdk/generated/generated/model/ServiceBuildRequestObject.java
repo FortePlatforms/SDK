@@ -40,6 +40,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   ServiceBuildRequestObject.JSON_PROPERTY_BUILD_ID,
+  ServiceBuildRequestObject.JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR,
+  ServiceBuildRequestObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR,
+  ServiceBuildRequestObject.JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED,
   ServiceBuildRequestObject.JSON_PROPERTY_START_TIME,
   ServiceBuildRequestObject.JSON_PROPERTY_LAST_UPDATED_TIME,
   ServiceBuildRequestObject.JSON_PROPERTY_SERVICE_ID,
@@ -50,16 +53,25 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceBuildRequestObject.JSON_PROPERTY_RELEASE_TAG_NAME,
   ServiceBuildRequestObject.JSON_PROPERTY_BUILD_STEP_LOGS,
   ServiceBuildRequestObject.JSON_PROPERTY_STATUS,
-  ServiceBuildRequestObject.JSON_PROPERTY_ORIGIN,
-  ServiceBuildRequestObject.JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED,
-  ServiceBuildRequestObject.JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR,
-  ServiceBuildRequestObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR
+  ServiceBuildRequestObject.JSON_PROPERTY_ORIGIN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T23:07:43.612846400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T23:42:10.706736500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
   private String buildId;
+
+  public static final String JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR = "dockerfileGenerationError";
+  @javax.annotation.Nullable
+  private DockerfileGenerationError dockerfileGenerationError;
+
+  public static final String JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR = "healthCheckDetectionError";
+  @javax.annotation.Nullable
+  private HealthCheckDetectionError healthCheckDetectionError;
+
+  public static final String JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED = "allBuildLogsReceived";
+  @javax.annotation.Nullable
+  private Boolean allBuildLogsReceived;
 
   public static final String JSON_PROPERTY_START_TIME = "startTime";
   @javax.annotation.Nonnull
@@ -217,18 +229,6 @@ public class ServiceBuildRequestObject {
   @javax.annotation.Nullable
   private OriginEnum origin;
 
-  public static final String JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED = "allBuildLogsReceived";
-  @javax.annotation.Nullable
-  private Boolean allBuildLogsReceived;
-
-  public static final String JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR = "dockerfileGenerationError";
-  @javax.annotation.Nullable
-  private DockerfileGenerationError dockerfileGenerationError;
-
-  public static final String JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR = "healthCheckDetectionError";
-  @javax.annotation.Nullable
-  private HealthCheckDetectionError healthCheckDetectionError;
-
   public ServiceBuildRequestObject() { 
   }
 
@@ -253,6 +253,78 @@ public class ServiceBuildRequestObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBuildId(@javax.annotation.Nullable String buildId) {
     this.buildId = buildId;
+  }
+
+
+  public ServiceBuildRequestObject dockerfileGenerationError(@javax.annotation.Nullable DockerfileGenerationError dockerfileGenerationError) {
+    this.dockerfileGenerationError = dockerfileGenerationError;
+    return this;
+  }
+
+  /**
+   * Get dockerfileGenerationError
+   * @return dockerfileGenerationError
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public DockerfileGenerationError getDockerfileGenerationError() {
+    return dockerfileGenerationError;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDockerfileGenerationError(@javax.annotation.Nullable DockerfileGenerationError dockerfileGenerationError) {
+    this.dockerfileGenerationError = dockerfileGenerationError;
+  }
+
+
+  public ServiceBuildRequestObject healthCheckDetectionError(@javax.annotation.Nullable HealthCheckDetectionError healthCheckDetectionError) {
+    this.healthCheckDetectionError = healthCheckDetectionError;
+    return this;
+  }
+
+  /**
+   * Get healthCheckDetectionError
+   * @return healthCheckDetectionError
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public HealthCheckDetectionError getHealthCheckDetectionError() {
+    return healthCheckDetectionError;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHealthCheckDetectionError(@javax.annotation.Nullable HealthCheckDetectionError healthCheckDetectionError) {
+    this.healthCheckDetectionError = healthCheckDetectionError;
+  }
+
+
+  public ServiceBuildRequestObject allBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
+    this.allBuildLogsReceived = allBuildLogsReceived;
+    return this;
+  }
+
+  /**
+   * Get allBuildLogsReceived
+   * @return allBuildLogsReceived
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAllBuildLogsReceived() {
+    return allBuildLogsReceived;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAllBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
+    this.allBuildLogsReceived = allBuildLogsReceived;
   }
 
 
@@ -528,78 +600,6 @@ public class ServiceBuildRequestObject {
   }
 
 
-  public ServiceBuildRequestObject allBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
-    this.allBuildLogsReceived = allBuildLogsReceived;
-    return this;
-  }
-
-  /**
-   * Get allBuildLogsReceived
-   * @return allBuildLogsReceived
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAllBuildLogsReceived() {
-    return allBuildLogsReceived;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAllBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
-    this.allBuildLogsReceived = allBuildLogsReceived;
-  }
-
-
-  public ServiceBuildRequestObject dockerfileGenerationError(@javax.annotation.Nullable DockerfileGenerationError dockerfileGenerationError) {
-    this.dockerfileGenerationError = dockerfileGenerationError;
-    return this;
-  }
-
-  /**
-   * Get dockerfileGenerationError
-   * @return dockerfileGenerationError
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public DockerfileGenerationError getDockerfileGenerationError() {
-    return dockerfileGenerationError;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDockerfileGenerationError(@javax.annotation.Nullable DockerfileGenerationError dockerfileGenerationError) {
-    this.dockerfileGenerationError = dockerfileGenerationError;
-  }
-
-
-  public ServiceBuildRequestObject healthCheckDetectionError(@javax.annotation.Nullable HealthCheckDetectionError healthCheckDetectionError) {
-    this.healthCheckDetectionError = healthCheckDetectionError;
-    return this;
-  }
-
-  /**
-   * Get healthCheckDetectionError
-   * @return healthCheckDetectionError
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public HealthCheckDetectionError getHealthCheckDetectionError() {
-    return healthCheckDetectionError;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthCheckDetectionError(@javax.annotation.Nullable HealthCheckDetectionError healthCheckDetectionError) {
-    this.healthCheckDetectionError = healthCheckDetectionError;
-  }
-
-
   /**
    * Return true if this ServiceBuildRequestObject object is equal to o.
    */
@@ -613,6 +613,9 @@ public class ServiceBuildRequestObject {
     }
     ServiceBuildRequestObject serviceBuildRequestObject = (ServiceBuildRequestObject) o;
     return Objects.equals(this.buildId, serviceBuildRequestObject.buildId) &&
+        Objects.equals(this.dockerfileGenerationError, serviceBuildRequestObject.dockerfileGenerationError) &&
+        Objects.equals(this.healthCheckDetectionError, serviceBuildRequestObject.healthCheckDetectionError) &&
+        Objects.equals(this.allBuildLogsReceived, serviceBuildRequestObject.allBuildLogsReceived) &&
         Objects.equals(this.startTime, serviceBuildRequestObject.startTime) &&
         Objects.equals(this.lastUpdatedTime, serviceBuildRequestObject.lastUpdatedTime) &&
         Objects.equals(this.serviceId, serviceBuildRequestObject.serviceId) &&
@@ -623,15 +626,12 @@ public class ServiceBuildRequestObject {
         Objects.equals(this.releaseTagName, serviceBuildRequestObject.releaseTagName) &&
         Objects.equals(this.buildStepLogs, serviceBuildRequestObject.buildStepLogs) &&
         Objects.equals(this.status, serviceBuildRequestObject.status) &&
-        Objects.equals(this.origin, serviceBuildRequestObject.origin) &&
-        Objects.equals(this.allBuildLogsReceived, serviceBuildRequestObject.allBuildLogsReceived) &&
-        Objects.equals(this.dockerfileGenerationError, serviceBuildRequestObject.dockerfileGenerationError) &&
-        Objects.equals(this.healthCheckDetectionError, serviceBuildRequestObject.healthCheckDetectionError);
+        Objects.equals(this.origin, serviceBuildRequestObject.origin);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, allBuildLogsReceived, dockerfileGenerationError, healthCheckDetectionError);
+    return Objects.hash(buildId, dockerfileGenerationError, healthCheckDetectionError, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin);
   }
 
   @Override
@@ -639,6 +639,9 @@ public class ServiceBuildRequestObject {
     StringBuilder sb = new StringBuilder();
     sb.append("class ServiceBuildRequestObject {\n");
     sb.append("    buildId: ").append(toIndentedString(buildId)).append("\n");
+    sb.append("    dockerfileGenerationError: ").append(toIndentedString(dockerfileGenerationError)).append("\n");
+    sb.append("    healthCheckDetectionError: ").append(toIndentedString(healthCheckDetectionError)).append("\n");
+    sb.append("    allBuildLogsReceived: ").append(toIndentedString(allBuildLogsReceived)).append("\n");
     sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
     sb.append("    lastUpdatedTime: ").append(toIndentedString(lastUpdatedTime)).append("\n");
     sb.append("    serviceId: ").append(toIndentedString(serviceId)).append("\n");
@@ -650,9 +653,6 @@ public class ServiceBuildRequestObject {
     sb.append("    buildStepLogs: ").append(toIndentedString(buildStepLogs)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
-    sb.append("    allBuildLogsReceived: ").append(toIndentedString(allBuildLogsReceived)).append("\n");
-    sb.append("    dockerfileGenerationError: ").append(toIndentedString(dockerfileGenerationError)).append("\n");
-    sb.append("    healthCheckDetectionError: ").append(toIndentedString(healthCheckDetectionError)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -703,6 +703,21 @@ public class ServiceBuildRequestObject {
     // add `buildId` to the URL query string
     if (getBuildId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbuildId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuildId()))));
+    }
+
+    // add `dockerfileGenerationError` to the URL query string
+    if (getDockerfileGenerationError() != null) {
+      joiner.add(getDockerfileGenerationError().toUrlQueryString(prefix + "dockerfileGenerationError" + suffix));
+    }
+
+    // add `healthCheckDetectionError` to the URL query string
+    if (getHealthCheckDetectionError() != null) {
+      joiner.add(getHealthCheckDetectionError().toUrlQueryString(prefix + "healthCheckDetectionError" + suffix));
+    }
+
+    // add `allBuildLogsReceived` to the URL query string
+    if (getAllBuildLogsReceived() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallBuildLogsReceived%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllBuildLogsReceived()))));
     }
 
     // add `startTime` to the URL query string
@@ -763,21 +778,6 @@ public class ServiceBuildRequestObject {
     // add `origin` to the URL query string
     if (getOrigin() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sorigin%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOrigin()))));
-    }
-
-    // add `allBuildLogsReceived` to the URL query string
-    if (getAllBuildLogsReceived() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sallBuildLogsReceived%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllBuildLogsReceived()))));
-    }
-
-    // add `dockerfileGenerationError` to the URL query string
-    if (getDockerfileGenerationError() != null) {
-      joiner.add(getDockerfileGenerationError().toUrlQueryString(prefix + "dockerfileGenerationError" + suffix));
-    }
-
-    // add `healthCheckDetectionError` to the URL query string
-    if (getHealthCheckDetectionError() != null) {
-      joiner.add(getHealthCheckDetectionError().toUrlQueryString(prefix + "healthCheckDetectionError" + suffix));
     }
 
     return joiner.toString();

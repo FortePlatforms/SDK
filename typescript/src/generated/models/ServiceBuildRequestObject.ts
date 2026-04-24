@@ -49,6 +49,24 @@ export interface ServiceBuildRequestObject {
     buildId?: string;
     /**
      * 
+     * @type {DockerfileGenerationError}
+     * @memberof ServiceBuildRequestObject
+     */
+    dockerfileGenerationError?: DockerfileGenerationError;
+    /**
+     * 
+     * @type {HealthCheckDetectionError}
+     * @memberof ServiceBuildRequestObject
+     */
+    healthCheckDetectionError?: HealthCheckDetectionError;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ServiceBuildRequestObject
+     */
+    allBuildLogsReceived?: boolean;
+    /**
+     * 
      * @type {Date}
      * @memberof ServiceBuildRequestObject
      */
@@ -113,24 +131,6 @@ export interface ServiceBuildRequestObject {
      * @memberof ServiceBuildRequestObject
      */
     origin?: ServiceBuildRequestObjectOriginType;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ServiceBuildRequestObject
-     */
-    allBuildLogsReceived?: boolean;
-    /**
-     * 
-     * @type {DockerfileGenerationError}
-     * @memberof ServiceBuildRequestObject
-     */
-    dockerfileGenerationError?: DockerfileGenerationError;
-    /**
-     * 
-     * @type {HealthCheckDetectionError}
-     * @memberof ServiceBuildRequestObject
-     */
-    healthCheckDetectionError?: HealthCheckDetectionError;
 }
 
 
@@ -195,6 +195,9 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'buildId': json['buildId'] == null ? undefined : json['buildId'],
+        'dockerfileGenerationError': json['dockerfileGenerationError'] == null ? undefined : DockerfileGenerationErrorFromJSON(json['dockerfileGenerationError']),
+        'healthCheckDetectionError': json['healthCheckDetectionError'] == null ? undefined : HealthCheckDetectionErrorFromJSON(json['healthCheckDetectionError']),
+        'allBuildLogsReceived': json['allBuildLogsReceived'] == null ? undefined : json['allBuildLogsReceived'],
         'startTime': (new Date(json['startTime'])),
         'lastUpdatedTime': json['lastUpdatedTime'] == null ? undefined : (new Date(json['lastUpdatedTime'])),
         'serviceId': json['serviceId'],
@@ -206,9 +209,6 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
-        'allBuildLogsReceived': json['allBuildLogsReceived'] == null ? undefined : json['allBuildLogsReceived'],
-        'dockerfileGenerationError': json['dockerfileGenerationError'] == null ? undefined : DockerfileGenerationErrorFromJSON(json['dockerfileGenerationError']),
-        'healthCheckDetectionError': json['healthCheckDetectionError'] == null ? undefined : HealthCheckDetectionErrorFromJSON(json['healthCheckDetectionError']),
     };
 }
 
@@ -224,6 +224,9 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
     return {
         
         'buildId': value['buildId'],
+        'dockerfileGenerationError': DockerfileGenerationErrorToJSON(value['dockerfileGenerationError']),
+        'healthCheckDetectionError': HealthCheckDetectionErrorToJSON(value['healthCheckDetectionError']),
+        'allBuildLogsReceived': value['allBuildLogsReceived'],
         'startTime': value['startTime'].toISOString(),
         'lastUpdatedTime': value['lastUpdatedTime'] == null ? value['lastUpdatedTime'] : value['lastUpdatedTime'].toISOString(),
         'serviceId': value['serviceId'],
@@ -235,9 +238,6 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],
-        'allBuildLogsReceived': value['allBuildLogsReceived'],
-        'dockerfileGenerationError': DockerfileGenerationErrorToJSON(value['dockerfileGenerationError']),
-        'healthCheckDetectionError': HealthCheckDetectionErrorToJSON(value['healthCheckDetectionError']),
     };
 }
 
