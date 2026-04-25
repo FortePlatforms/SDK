@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateServiceRequestProxyResponse.JSON_PROPERTY_EXCEPTION,
   CreateServiceRequestProxyResponse.JSON_PROPERTY_AUGMENTED_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T17:26:18.290909800-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T17:40:20.891478800-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class CreateServiceRequestProxyResponse {
   public static final String JSON_PROPERTY_EXCEPTION = "exception";
   @javax.annotation.Nullable
