@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T17:40:20.891478800-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -52,6 +52,12 @@ public class ForteApiException {
     RECAPTCHA_VALIDATION_FAILED(String.valueOf("RECAPTCHA_VALIDATION_FAILED")),
     
     SERVICE_NAME_TAKEN_IN_PROJECT(String.valueOf("SERVICE_NAME_TAKEN_IN_PROJECT")),
+    
+    WEB_APP_NAME_TAKEN_IN_PROJECT(String.valueOf("WEB_APP_NAME_TAKEN_IN_PROJECT")),
+    
+    WEB_APP_QUOTA_EXCEEDED(String.valueOf("WEB_APP_QUOTA_EXCEEDED")),
+    
+    WEB_APP_NOT_FOUND(String.valueOf("WEB_APP_NOT_FOUND")),
     
     SESSION_TOKEN_PROJECT_MISMATCH(String.valueOf("SESSION_TOKEN_PROJECT_MISMATCH")),
     

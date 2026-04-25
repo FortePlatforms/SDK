@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class HealthCheckDetectionResponse(BaseModel):
     """
-    Response from Claude Code health check detection (either success with config or error)
+    Response from health check detection (either success with config or error)
     """ # noqa: E501
     success: StrictBool = Field(description="Whether health check detection succeeded")
     config: Optional[HealthCheckDetectionOutput] = Field(default=None, description="Health check configuration (present when success=true)")

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.61"
+__version__ = "1.0.68"
 
 # Define package exports
 __all__ = [
@@ -38,6 +38,7 @@ __all__ = [
     "CreateProjectApiKeyResponse",
     "CreateServiceRequestProxyRequest",
     "CreateServiceRequestProxyResponse",
+    "CreateWebAppRequest",
     "DockerfileDetectionOutput",
     "DockerfileGenerationError",
     "DockerfileGenerationResponse",
@@ -55,6 +56,7 @@ __all__ = [
     "PaginatedResponseServiceBuildRequestObject",
     "PaginatedResponseUserActionLogObject",
     "PaginatedResponseUserObject",
+    "PaginatedResponseWebAppBuildRequestObject",
     "ProjectObject",
     "RegisterUserRequest",
     "RegisterUserResponse",
@@ -72,9 +74,15 @@ __all__ = [
     "UpdateForteServiceRequest",
     "UpdateForteServiceResponse",
     "UpdateProjectRequest",
+    "UpdateWebAppRequest",
+    "UpdateWebAppResponse",
     "UserActionLogObject",
     "UserMetricsResponse",
     "UserObject",
+    "WebAppBuildRequestObject",
+    "WebAppDetectionError",
+    "WebAppDetectionResponse",
+    "WebAppObject",
 ]
 
 # import apis into sdk package
@@ -102,6 +110,7 @@ from forte_sdk.generated.models.create_project_api_key_request import CreateProj
 from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse as CreateProjectApiKeyResponse
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
+from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest as CreateWebAppRequest
 from forte_sdk.generated.models.dockerfile_detection_output import DockerfileDetectionOutput as DockerfileDetectionOutput
 from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGenerationError as DockerfileGenerationError
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse as DockerfileGenerationResponse
@@ -119,6 +128,7 @@ from forte_sdk.generated.models.paginated_response_request_log_object import Pag
 from forte_sdk.generated.models.paginated_response_service_build_request_object import PaginatedResponseServiceBuildRequestObject as PaginatedResponseServiceBuildRequestObject
 from forte_sdk.generated.models.paginated_response_user_action_log_object import PaginatedResponseUserActionLogObject as PaginatedResponseUserActionLogObject
 from forte_sdk.generated.models.paginated_response_user_object import PaginatedResponseUserObject as PaginatedResponseUserObject
+from forte_sdk.generated.models.paginated_response_web_app_build_request_object import PaginatedResponseWebAppBuildRequestObject as PaginatedResponseWebAppBuildRequestObject
 from forte_sdk.generated.models.project_object import ProjectObject as ProjectObject
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest as RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse as RegisterUserResponse
@@ -136,7 +146,13 @@ from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoin
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest as UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse as UpdateForteServiceResponse
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest as UpdateProjectRequest
+from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest as UpdateWebAppRequest
+from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse as UpdateWebAppResponse
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject as UserActionLogObject
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse as UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject as UserObject
+from forte_sdk.generated.models.web_app_build_request_object import WebAppBuildRequestObject as WebAppBuildRequestObject
+from forte_sdk.generated.models.web_app_detection_error import WebAppDetectionError as WebAppDetectionError
+from forte_sdk.generated.models.web_app_detection_response import WebAppDetectionResponse as WebAppDetectionResponse
+from forte_sdk.generated.models.web_app_object import WebAppObject as WebAppObject
 

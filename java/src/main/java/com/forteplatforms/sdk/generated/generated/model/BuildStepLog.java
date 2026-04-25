@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   BuildStepLog.JSON_PROPERTY_PREVIOUS_STATUS,
   BuildStepLog.JSON_PROPERTY_NEW_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T17:40:20.891478800-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class BuildStepLog {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -84,6 +84,26 @@ public class BuildStepLog {
     DEPLOYMENT_FAILURE(String.valueOf("DEPLOYMENT_FAILURE")),
     
     VALIDATION_HEALTH_CHECK_FAILURE(String.valueOf("VALIDATION_HEALTH_CHECK_FAILURE")),
+    
+    DETECTING_WEB_APP_CONFIG(String.valueOf("DETECTING_WEB_APP_CONFIG")),
+    
+    WEB_APP_CONFIG_DETECTION_FAILURE(String.valueOf("WEB_APP_CONFIG_DETECTION_FAILURE")),
+    
+    BUILDING_WEB_APP(String.valueOf("BUILDING_WEB_APP")),
+    
+    WEB_APP_BUILD_FAILURE(String.valueOf("WEB_APP_BUILD_FAILURE")),
+    
+    DEPLOYING_STATIC_SITE(String.valueOf("DEPLOYING_STATIC_SITE")),
+    
+    STATIC_SITE_DEPLOYMENT_FAILURE(String.valueOf("STATIC_SITE_DEPLOYMENT_FAILURE")),
+    
+    DEPLOYING_SERVER_SIDE_SITE(String.valueOf("DEPLOYING_SERVER_SIDE_SITE")),
+    
+    SERVER_SIDE_SITE_DEPLOYMENT_FAILURE(String.valueOf("SERVER_SIDE_SITE_DEPLOYMENT_FAILURE")),
+    
+    CONFIGURING_CUSTOM_DOMAIN(String.valueOf("CONFIGURING_CUSTOM_DOMAIN")),
+    
+    CUSTOM_DOMAIN_CONFIGURATION_FAILURE(String.valueOf("CUSTOM_DOMAIN_CONFIGURATION_FAILURE")),
     
     CANCELLED(String.valueOf("CANCELLED")),
     
@@ -157,6 +177,26 @@ public class BuildStepLog {
     DEPLOYMENT_FAILURE(String.valueOf("DEPLOYMENT_FAILURE")),
     
     VALIDATION_HEALTH_CHECK_FAILURE(String.valueOf("VALIDATION_HEALTH_CHECK_FAILURE")),
+    
+    DETECTING_WEB_APP_CONFIG(String.valueOf("DETECTING_WEB_APP_CONFIG")),
+    
+    WEB_APP_CONFIG_DETECTION_FAILURE(String.valueOf("WEB_APP_CONFIG_DETECTION_FAILURE")),
+    
+    BUILDING_WEB_APP(String.valueOf("BUILDING_WEB_APP")),
+    
+    WEB_APP_BUILD_FAILURE(String.valueOf("WEB_APP_BUILD_FAILURE")),
+    
+    DEPLOYING_STATIC_SITE(String.valueOf("DEPLOYING_STATIC_SITE")),
+    
+    STATIC_SITE_DEPLOYMENT_FAILURE(String.valueOf("STATIC_SITE_DEPLOYMENT_FAILURE")),
+    
+    DEPLOYING_SERVER_SIDE_SITE(String.valueOf("DEPLOYING_SERVER_SIDE_SITE")),
+    
+    SERVER_SIDE_SITE_DEPLOYMENT_FAILURE(String.valueOf("SERVER_SIDE_SITE_DEPLOYMENT_FAILURE")),
+    
+    CONFIGURING_CUSTOM_DOMAIN(String.valueOf("CONFIGURING_CUSTOM_DOMAIN")),
+    
+    CUSTOM_DOMAIN_CONFIGURATION_FAILURE(String.valueOf("CUSTOM_DOMAIN_CONFIGURATION_FAILURE")),
     
     CANCELLED(String.valueOf("CANCELLED")),
     

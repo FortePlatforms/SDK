@@ -29,7 +29,7 @@ import {
 } from './HealthCheckDetectionOutput';
 
 /**
- * Response from Claude Code health check detection (either success with config or error)
+ * Response from health check detection (either success with config or error)
  * @export
  * @interface HealthCheckDetectionResponse
  */

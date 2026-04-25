@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { WebAppObject } from './WebAppObject';
+import {
+    WebAppObjectFromJSON,
+    WebAppObjectFromJSONTyped,
+    WebAppObjectToJSON,
+    WebAppObjectToJSONTyped,
+} from './WebAppObject';
 import type { ServiceObject } from './ServiceObject';
 import {
     ServiceObjectFromJSON,
@@ -64,6 +71,12 @@ export interface ProjectObject {
      * @memberof ProjectObject
      */
     staticWebApps: Array<StaticWebAppObject>;
+    /**
+     * 
+     * @type {Array<WebAppObject>}
+     * @memberof ProjectObject
+     */
+    webApps: Array<WebAppObject>;
     /**
      * 
      * @type {Date}
@@ -128,6 +141,7 @@ export function instanceOfProjectObject(value: object): value is ProjectObject {
     if (!('projectName' in value) || value['projectName'] === undefined) return false;
     if (!('services' in value) || value['services'] === undefined) return false;
     if (!('staticWebApps' in value) || value['staticWebApps'] === undefined) return false;
+    if (!('webApps' in value) || value['webApps'] === undefined) return false;
     if (!('createdTimestamp' in value) || value['createdTimestamp'] === undefined) return false;
     if (!('roleArn' in value) || value['roleArn'] === undefined) return false;
     return true;
@@ -148,6 +162,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'projectName': json['projectName'],
         'services': ((json['services'] as Array<any>).map(ServiceObjectFromJSON)),
         'staticWebApps': ((json['staticWebApps'] as Array<any>).map(StaticWebAppObjectFromJSON)),
+        'webApps': ((json['webApps'] as Array<any>).map(WebAppObjectFromJSON)),
         'createdTimestamp': (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
         'roleArn': json['roleArn'],
@@ -176,6 +191,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'projectName': value['projectName'],
         'services': ((value['services'] as Array<any>).map(ServiceObjectToJSON)),
         'staticWebApps': ((value['staticWebApps'] as Array<any>).map(StaticWebAppObjectToJSON)),
+        'webApps': ((value['webApps'] as Array<any>).map(WebAppObjectToJSON)),
         'createdTimestamp': value['createdTimestamp'].toISOString(),
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
         'roleArn': value['roleArn'],

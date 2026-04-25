@@ -27,7 +27,7 @@ from typing_extensions import Self
 
 class DockerfileGenerationResponse(BaseModel):
     """
-    Response from Claude Code Dockerfile generation (either success with output or error)
+    Response from Dockerfile generation analysis (either success with output or error)
     """ # noqa: E501
     success: StrictBool = Field(description="Whether Dockerfile generation succeeded")
     output: Optional[DockerfileDetectionOutput] = Field(default=None, description="Dockerfile output (present when success=true)")

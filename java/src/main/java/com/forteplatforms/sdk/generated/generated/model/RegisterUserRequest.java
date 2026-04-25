@@ -41,7 +41,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RegisterUserRequest.JSON_PROPERTY_CUSTOM_METADATA_ATTRIBUTES,
   RegisterUserRequest.JSON_PROPERTY_RECAPTCHA_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T17:40:20.891478800-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class RegisterUserRequest {
   public static final String JSON_PROPERTY_FULL_NAME = "fullName";
   @javax.annotation.Nullable

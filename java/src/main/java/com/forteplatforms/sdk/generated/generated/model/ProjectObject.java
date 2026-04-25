@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.ServiceObject;
 import com.forteplatforms.sdk.generated.model.StaticWebAppObject;
+import com.forteplatforms.sdk.generated.model.WebAppObject;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +44,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_PROJECT_NAME,
   ProjectObject.JSON_PROPERTY_SERVICES,
   ProjectObject.JSON_PROPERTY_STATIC_WEB_APPS,
+  ProjectObject.JSON_PROPERTY_WEB_APPS,
   ProjectObject.JSON_PROPERTY_CREATED_TIMESTAMP,
   ProjectObject.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
   ProjectObject.JSON_PROPERTY_ROLE_ARN,
@@ -53,7 +55,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_EMAIL_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T17:40:20.891478800-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectObject {
   public static final String JSON_PROPERTY_PROJECT_ID = "projectId";
   @javax.annotation.Nullable
@@ -74,6 +76,10 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_STATIC_WEB_APPS = "staticWebApps";
   @javax.annotation.Nonnull
   private List<StaticWebAppObject> staticWebApps = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WEB_APPS = "webApps";
+  @javax.annotation.Nonnull
+  private List<WebAppObject> webApps = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nonnull
@@ -247,6 +253,38 @@ public class ProjectObject {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStaticWebApps(@javax.annotation.Nonnull List<StaticWebAppObject> staticWebApps) {
     this.staticWebApps = staticWebApps;
+  }
+
+
+  public ProjectObject webApps(@javax.annotation.Nonnull List<WebAppObject> webApps) {
+    this.webApps = webApps;
+    return this;
+  }
+
+  public ProjectObject addWebAppsItem(WebAppObject webAppsItem) {
+    if (this.webApps == null) {
+      this.webApps = new ArrayList<>();
+    }
+    this.webApps.add(webAppsItem);
+    return this;
+  }
+
+  /**
+   * Get webApps
+   * @return webApps
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_WEB_APPS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<WebAppObject> getWebApps() {
+    return webApps;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WEB_APPS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setWebApps(@javax.annotation.Nonnull List<WebAppObject> webApps) {
+    this.webApps = webApps;
   }
 
 
@@ -483,6 +521,7 @@ public class ProjectObject {
         Objects.equals(this.projectName, projectObject.projectName) &&
         Objects.equals(this.services, projectObject.services) &&
         Objects.equals(this.staticWebApps, projectObject.staticWebApps) &&
+        Objects.equals(this.webApps, projectObject.webApps) &&
         Objects.equals(this.createdTimestamp, projectObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, projectObject.lastModifiedTimestamp) &&
         Objects.equals(this.roleArn, projectObject.roleArn) &&
@@ -496,7 +535,7 @@ public class ProjectObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, staticWebApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, staticWebApps, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -508,6 +547,7 @@ public class ProjectObject {
     sb.append("    projectName: ").append(toIndentedString(projectName)).append("\n");
     sb.append("    services: ").append(toIndentedString(services)).append("\n");
     sb.append("    staticWebApps: ").append(toIndentedString(staticWebApps)).append("\n");
+    sb.append("    webApps: ").append(toIndentedString(webApps)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
     sb.append("    lastModifiedTimestamp: ").append(toIndentedString(lastModifiedTimestamp)).append("\n");
     sb.append("    roleArn: ").append(toIndentedString(roleArn)).append("\n");
@@ -594,6 +634,16 @@ public class ProjectObject {
       for (int i = 0; i < getStaticWebApps().size(); i++) {
         if (getStaticWebApps().get(i) != null) {
           joiner.add(getStaticWebApps().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sstaticWebApps%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `webApps` to the URL query string
+    if (getWebApps() != null) {
+      for (int i = 0; i < getWebApps().size(); i++) {
+        if (getWebApps().get(i) != null) {
+          joiner.add(getWebApps().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%swebApps%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

@@ -26,12 +26,14 @@ import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyRequest;
 import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyResponse;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyRequest;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyResponse;
+import com.forteplatforms.sdk.generated.model.CreateWebAppRequest;
 import java.time.OffsetDateTime;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseLogLineObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseRequestLogObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseServiceBuildRequestObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseUserActionLogObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseUserObject;
+import com.forteplatforms.sdk.generated.model.PaginatedResponseWebAppBuildRequestObject;
 import com.forteplatforms.sdk.generated.model.ProjectObject;
 import com.forteplatforms.sdk.generated.model.RequestLogObject;
 import com.forteplatforms.sdk.generated.model.ServiceBuildRequestObject;
@@ -42,8 +44,12 @@ import com.forteplatforms.sdk.generated.model.TestInvocationResponse;
 import com.forteplatforms.sdk.generated.model.UpdateForteServiceRequest;
 import com.forteplatforms.sdk.generated.model.UpdateForteServiceResponse;
 import com.forteplatforms.sdk.generated.model.UpdateProjectRequest;
+import com.forteplatforms.sdk.generated.model.UpdateWebAppRequest;
+import com.forteplatforms.sdk.generated.model.UpdateWebAppResponse;
 import com.forteplatforms.sdk.generated.model.UserMetricsResponse;
 import com.forteplatforms.sdk.generated.model.UserObject;
+import com.forteplatforms.sdk.generated.model.WebAppBuildRequestObject;
+import com.forteplatforms.sdk.generated.model.WebAppObject;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -70,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T17:40:20.891478800-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1432,6 +1438,284 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param createWebAppRequest  (required)
+   * @return WebAppObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppObject createWebApp(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateWebAppRequest createWebAppRequest) throws ApiException {
+    return createWebApp(projectId, createWebAppRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createWebAppRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return WebAppObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppObject createWebApp(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateWebAppRequest createWebAppRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<WebAppObject> localVarResponse = createWebAppWithHttpInfo(projectId, createWebAppRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createWebAppRequest  (required)
+   * @return ApiResponse&lt;WebAppObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppObject> createWebAppWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateWebAppRequest createWebAppRequest) throws ApiException {
+    return createWebAppWithHttpInfo(projectId, createWebAppRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createWebAppRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;WebAppObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppObject> createWebAppWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateWebAppRequest createWebAppRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createWebAppRequestBuilder(projectId, createWebAppRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createWebApp", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<WebAppObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        WebAppObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<WebAppObject>() {});
+        
+
+        return new ApiResponse<WebAppObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createWebAppRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateWebAppRequest createWebAppRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createWebApp");
+    }
+    // verify the required parameter 'createWebAppRequest' is set
+    if (createWebAppRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createWebAppRequest' when calling createWebApp");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createWebAppRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param commitSha  (optional)
+   * @return WebAppBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha) throws ApiException {
+    return createWebAppDeployment(projectId, webAppId, commitSha, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param commitSha  (optional)
+   * @param headers Optional headers to include in the request
+   * @return WebAppBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
+    ApiResponse<WebAppBuildRequestObject> localVarResponse = createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param commitSha  (optional)
+   * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha) throws ApiException {
+    return createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param commitSha  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createWebAppDeploymentRequestBuilder(projectId, webAppId, commitSha, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createWebAppDeployment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<WebAppBuildRequestObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        WebAppBuildRequestObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<WebAppBuildRequestObject>() {});
+        
+
+        return new ApiResponse<WebAppBuildRequestObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createWebAppDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createWebAppDeployment");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling createWebAppDeployment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "commitSha";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("commitSha", commitSha));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @throws ApiException if fails to make API call
    */
   public void deleteProject(@javax.annotation.Nonnull String projectId) throws ApiException {
@@ -1741,6 +2025,119 @@ public class ProjectsServerApi {
     String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteWebApp(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId) throws ApiException {
+    deleteWebApp(projectId, webAppId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteWebApp(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, Map<String, String> headers) throws ApiException {
+    deleteWebAppWithHttpInfo(projectId, webAppId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteWebAppWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId) throws ApiException {
+    return deleteWebAppWithHttpInfo(projectId, webAppId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteWebAppWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteWebAppRequestBuilder(projectId, webAppId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteWebApp", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteWebAppRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteWebApp");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling deleteWebApp");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -2694,6 +3091,269 @@ public class ProjectsServerApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @return WebAppObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppObject getWebApp(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId) throws ApiException {
+    return getWebApp(projectId, webAppId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param headers Optional headers to include in the request
+   * @return WebAppObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppObject getWebApp(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, Map<String, String> headers) throws ApiException {
+    ApiResponse<WebAppObject> localVarResponse = getWebAppWithHttpInfo(projectId, webAppId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @return ApiResponse&lt;WebAppObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppObject> getWebAppWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId) throws ApiException {
+    return getWebAppWithHttpInfo(projectId, webAppId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;WebAppObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppObject> getWebAppWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWebAppRequestBuilder(projectId, webAppId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWebApp", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<WebAppObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        WebAppObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<WebAppObject>() {});
+        
+
+        return new ApiResponse<WebAppObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWebAppRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getWebApp");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling getWebApp");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param buildId  (required)
+   * @return WebAppBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppBuildRequestObject getWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId) throws ApiException {
+    return getWebAppDeployment(projectId, webAppId, buildId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param buildId  (required)
+   * @param headers Optional headers to include in the request
+   * @return WebAppBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppBuildRequestObject getWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId, Map<String, String> headers) throws ApiException {
+    ApiResponse<WebAppBuildRequestObject> localVarResponse = getWebAppDeploymentWithHttpInfo(projectId, webAppId, buildId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param buildId  (required)
+   * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppBuildRequestObject> getWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId) throws ApiException {
+    return getWebAppDeploymentWithHttpInfo(projectId, webAppId, buildId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param buildId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppBuildRequestObject> getWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWebAppDeploymentRequestBuilder(projectId, webAppId, buildId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWebAppDeployment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<WebAppBuildRequestObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        WebAppBuildRequestObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<WebAppBuildRequestObject>() {});
+        
+
+        return new ApiResponse<WebAppBuildRequestObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWebAppDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getWebAppDeployment");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling getWebAppDeployment");
+    }
+    // verify the required parameter 'buildId' is set
+    if (buildId == null) {
+      throw new ApiException(400, "Missing the required parameter 'buildId' when calling getWebAppDeployment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments/{buildId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()))
+        .replace("{buildId}", ApiClient.urlEncode(buildId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -3750,6 +4410,282 @@ public class ProjectsServerApi {
   /**
    * 
    * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return PaginatedResponseWebAppBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseWebAppBuildRequestObject listWebAppDeployments(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listWebAppDeployments(projectId, webAppId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponseWebAppBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseWebAppBuildRequestObject listWebAppDeployments(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseWebAppBuildRequestObject> localVarResponse = listWebAppDeploymentsWithHttpInfo(projectId, webAppId, minTime, maxTime, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponseWebAppBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseWebAppBuildRequestObject> listWebAppDeploymentsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listWebAppDeploymentsWithHttpInfo(projectId, webAppId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponseWebAppBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseWebAppBuildRequestObject> listWebAppDeploymentsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWebAppDeploymentsRequestBuilder(projectId, webAppId, minTime, maxTime, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWebAppDeployments", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponseWebAppBuildRequestObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponseWebAppBuildRequestObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseWebAppBuildRequestObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponseWebAppBuildRequestObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWebAppDeploymentsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listWebAppDeployments");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling listWebAppDeployments");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return List&lt;WebAppObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<WebAppObject> listWebApps(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listWebApps(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return List&lt;WebAppObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<WebAppObject> listWebApps(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<List<WebAppObject>> localVarResponse = listWebAppsWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;List&lt;WebAppObject&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<WebAppObject>> listWebAppsWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listWebAppsWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;List&lt;WebAppObject&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<WebAppObject>> listWebAppsWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWebAppsRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWebApps", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<List<WebAppObject>>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        List<WebAppObject> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<WebAppObject>>() {});
+        
+
+        return new ApiResponse<List<WebAppObject>>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWebAppsRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listWebApps");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
    * @param userId  (required)
    * @param projectId  (required)
    * @param requestBody  (required)
@@ -4594,6 +5530,147 @@ public class ProjectsServerApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateForteServiceRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param updateWebAppRequest  (required)
+   * @return UpdateWebAppResponse
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateWebAppResponse updateWebApp(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull UpdateWebAppRequest updateWebAppRequest) throws ApiException {
+    return updateWebApp(projectId, webAppId, updateWebAppRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param updateWebAppRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateWebAppResponse
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateWebAppResponse updateWebApp(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull UpdateWebAppRequest updateWebAppRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateWebAppResponse> localVarResponse = updateWebAppWithHttpInfo(projectId, webAppId, updateWebAppRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param updateWebAppRequest  (required)
+   * @return ApiResponse&lt;UpdateWebAppResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateWebAppResponse> updateWebAppWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull UpdateWebAppRequest updateWebAppRequest) throws ApiException {
+    return updateWebAppWithHttpInfo(projectId, webAppId, updateWebAppRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param updateWebAppRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateWebAppResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateWebAppResponse> updateWebAppWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull UpdateWebAppRequest updateWebAppRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateWebAppRequestBuilder(projectId, webAppId, updateWebAppRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateWebApp", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateWebAppResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateWebAppResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateWebAppResponse>() {});
+        
+
+        return new ApiResponse<UpdateWebAppResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateWebAppRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull UpdateWebAppRequest updateWebAppRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling updateWebApp");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling updateWebApp");
+    }
+    // verify the required parameter 'updateWebAppRequest' is set
+    if (updateWebAppRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateWebAppRequest' when calling updateWebApp");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWebAppRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

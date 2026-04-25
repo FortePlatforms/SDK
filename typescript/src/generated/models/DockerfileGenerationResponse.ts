@@ -36,7 +36,7 @@ import {
 } from './DockerfileGenerationError';
 
 /**
- * Response from Claude Code Dockerfile generation (either success with output or error)
+ * Response from Dockerfile generation analysis (either success with output or error)
  * @export
  * @interface DockerfileGenerationResponse
  */

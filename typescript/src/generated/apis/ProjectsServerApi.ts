@@ -23,11 +23,13 @@ import type {
   CreateProjectApiKeyResponse,
   CreateServiceRequestProxyRequest,
   CreateServiceRequestProxyResponse,
+  CreateWebAppRequest,
   PaginatedResponseLogLineObject,
   PaginatedResponseRequestLogObject,
   PaginatedResponseServiceBuildRequestObject,
   PaginatedResponseUserActionLogObject,
   PaginatedResponseUserObject,
+  PaginatedResponseWebAppBuildRequestObject,
   ProjectObject,
   RequestLogObject,
   ServiceBuildRequestObject,
@@ -38,8 +40,12 @@ import type {
   UpdateForteServiceRequest,
   UpdateForteServiceResponse,
   UpdateProjectRequest,
+  UpdateWebAppRequest,
+  UpdateWebAppResponse,
   UserMetricsResponse,
   UserObject,
+  WebAppBuildRequestObject,
+  WebAppObject,
 } from '../models/index';
 import {
     AddContactMethodRequestFromJSON,
@@ -58,6 +64,8 @@ import {
     CreateServiceRequestProxyRequestToJSON,
     CreateServiceRequestProxyResponseFromJSON,
     CreateServiceRequestProxyResponseToJSON,
+    CreateWebAppRequestFromJSON,
+    CreateWebAppRequestToJSON,
     PaginatedResponseLogLineObjectFromJSON,
     PaginatedResponseLogLineObjectToJSON,
     PaginatedResponseRequestLogObjectFromJSON,
@@ -68,6 +76,8 @@ import {
     PaginatedResponseUserActionLogObjectToJSON,
     PaginatedResponseUserObjectFromJSON,
     PaginatedResponseUserObjectToJSON,
+    PaginatedResponseWebAppBuildRequestObjectFromJSON,
+    PaginatedResponseWebAppBuildRequestObjectToJSON,
     ProjectObjectFromJSON,
     ProjectObjectToJSON,
     RequestLogObjectFromJSON,
@@ -88,10 +98,18 @@ import {
     UpdateForteServiceResponseToJSON,
     UpdateProjectRequestFromJSON,
     UpdateProjectRequestToJSON,
+    UpdateWebAppRequestFromJSON,
+    UpdateWebAppRequestToJSON,
+    UpdateWebAppResponseFromJSON,
+    UpdateWebAppResponseToJSON,
     UserMetricsResponseFromJSON,
     UserMetricsResponseToJSON,
     UserObjectFromJSON,
     UserObjectToJSON,
+    WebAppBuildRequestObjectFromJSON,
+    WebAppBuildRequestObjectToJSON,
+    WebAppObjectFromJSON,
+    WebAppObjectToJSON,
 } from '../models/index';
 
 export interface AdminAddUserContactMethodRequest {
@@ -145,6 +163,17 @@ export interface CreateServiceRequestProxyOperationRequest {
     createServiceRequestProxyRequest: CreateServiceRequestProxyRequest;
 }
 
+export interface CreateWebAppOperationRequest {
+    projectId: string;
+    createWebAppRequest: CreateWebAppRequest;
+}
+
+export interface CreateWebAppDeploymentRequest {
+    projectId: string;
+    webAppId: string;
+    commitSha?: string;
+}
+
 export interface DeleteProjectRequest {
     projectId: string;
 }
@@ -157,6 +186,11 @@ export interface DeleteProjectApiKeyRequest {
 export interface DeleteServiceRequest {
     projectId: string;
     serviceId: string;
+}
+
+export interface DeleteWebAppRequest {
+    projectId: string;
+    webAppId: string;
 }
 
 export interface GetProjectRequest {
@@ -198,6 +232,17 @@ export interface GetUserMetricsRequest {
     minTime?: Date;
     maxTime?: Date;
     granularity?: GetUserMetricsGranularityType;
+}
+
+export interface GetWebAppRequest {
+    projectId: string;
+    webAppId: string;
+}
+
+export interface GetWebAppDeploymentRequest {
+    projectId: string;
+    webAppId: string;
+    buildId: string;
 }
 
 export interface ListLogLinesRequest {
@@ -248,6 +293,18 @@ export interface ListUsersRequest {
     nextToken?: string;
 }
 
+export interface ListWebAppDeploymentsRequest {
+    projectId: string;
+    webAppId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    nextToken?: string;
+}
+
+export interface ListWebAppsRequest {
+    projectId: string;
+}
+
 export interface PutUserCustomAttributesRequest {
     userId: string;
     projectId: string;
@@ -285,6 +342,12 @@ export interface UpdateServiceRequest {
     projectId: string;
     serviceId: string;
     updateForteServiceRequest: UpdateForteServiceRequest;
+}
+
+export interface UpdateWebAppOperationRequest {
+    projectId: string;
+    webAppId: string;
+    updateWebAppRequest: UpdateWebAppRequest;
 }
 
 /**
@@ -738,6 +801,98 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async createWebAppRaw(requestParameters: CreateWebAppOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppObject>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createWebApp().'
+            );
+        }
+
+        if (requestParameters['createWebAppRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createWebAppRequest',
+                'Required parameter "createWebAppRequest" was null or undefined when calling createWebApp().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateWebAppRequestToJSON(requestParameters['createWebAppRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WebAppObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createWebApp(requestParameters: CreateWebAppOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppObject> {
+        const response = await this.createWebAppRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createWebAppDeploymentRaw(requestParameters: CreateWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppBuildRequestObject>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createWebAppDeployment().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling createWebAppDeployment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['commitSha'] != null) {
+            queryParameters['commitSha'] = requestParameters['commitSha'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WebAppBuildRequestObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createWebAppDeployment(requestParameters: CreateWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppBuildRequestObject> {
+        const response = await this.createWebAppDeploymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async deleteProjectRaw(requestParameters: DeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
@@ -852,6 +1007,48 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteService(requestParameters: DeleteServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteServiceRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     */
+    async deleteWebAppRaw(requestParameters: DeleteWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteWebApp().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling deleteWebApp().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteWebApp(requestParameters: DeleteWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteWebAppRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -1176,6 +1373,100 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getUserMetrics(requestParameters: GetUserMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserMetricsResponse> {
         const response = await this.getUserMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getWebAppRaw(requestParameters: GetWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppObject>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getWebApp().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling getWebApp().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WebAppObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getWebApp(requestParameters: GetWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppObject> {
+        const response = await this.getWebAppRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async getWebAppDeploymentRaw(requestParameters: GetWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppBuildRequestObject>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getWebAppDeployment().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling getWebAppDeployment().'
+            );
+        }
+
+        if (requestParameters['buildId'] == null) {
+            throw new runtime.RequiredError(
+                'buildId',
+                'Required parameter "buildId" was null or undefined when calling getWebAppDeployment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments/{buildId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace(`{${"buildId"}}`, encodeURIComponent(String(requestParameters['buildId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WebAppBuildRequestObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getWebAppDeployment(requestParameters: GetWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppBuildRequestObject> {
+        const response = await this.getWebAppDeploymentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1530,6 +1821,96 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async listWebAppDeploymentsRaw(requestParameters: ListWebAppDeploymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseWebAppBuildRequestObject>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listWebAppDeployments().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling listWebAppDeployments().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseWebAppBuildRequestObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listWebAppDeployments(requestParameters: ListWebAppDeploymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseWebAppBuildRequestObject> {
+        const response = await this.listWebAppDeploymentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async listWebAppsRaw(requestParameters: ListWebAppsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WebAppObject>>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listWebApps().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WebAppObjectFromJSON));
+    }
+
+    /**
+     */
+    async listWebApps(requestParameters: ListWebAppsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WebAppObject>> {
+        const response = await this.listWebAppsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async putUserCustomAttributesRaw(requestParameters: PutUserCustomAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
@@ -1846,6 +2227,59 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async updateService(requestParameters: UpdateServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateForteServiceResponse> {
         const response = await this.updateServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async updateWebAppRaw(requestParameters: UpdateWebAppOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateWebAppResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateWebApp().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling updateWebApp().'
+            );
+        }
+
+        if (requestParameters['updateWebAppRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateWebAppRequest',
+                'Required parameter "updateWebAppRequest" was null or undefined when calling updateWebApp().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateWebAppRequestToJSON(requestParameters['updateWebAppRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateWebAppResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateWebApp(requestParameters: UpdateWebAppOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateWebAppResponse> {
+        const response = await this.updateWebAppRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

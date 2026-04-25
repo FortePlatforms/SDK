@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.service_object import ServiceObject
 from forte_sdk.generated.models.static_web_app_object import StaticWebAppObject
+from forte_sdk.generated.models.web_app_object import WebAppObject
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,6 +35,7 @@ class ProjectObject(BaseModel):
     project_name: StrictStr = Field(alias="projectName")
     services: List[ServiceObject]
     static_web_apps: List[StaticWebAppObject] = Field(alias="staticWebApps")
+    web_apps: List[WebAppObject] = Field(alias="webApps")
     created_timestamp: datetime = Field(alias="createdTimestamp")
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
     role_arn: StrictStr = Field(alias="roleArn")
@@ -43,7 +45,7 @@ class ProjectObject(BaseModel):
     phone_login_enabled: Optional[StrictBool] = Field(default=None, alias="phoneLoginEnabled")
     email_login_enabled: Optional[StrictBool] = Field(default=None, alias="emailLoginEnabled")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "staticWebApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "staticWebApps", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "hasRecaptchaSecretKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,6 +100,13 @@ class ProjectObject(BaseModel):
                 if _item_static_web_apps:
                     _items.append(_item_static_web_apps.to_dict())
             _dict['staticWebApps'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in web_apps (list)
+        _items = []
+        if self.web_apps:
+            for _item_web_apps in self.web_apps:
+                if _item_web_apps:
+                    _items.append(_item_web_apps.to_dict())
+            _dict['webApps'] = _items
         return _dict
 
     @classmethod
@@ -115,6 +124,7 @@ class ProjectObject(BaseModel):
             "projectName": obj.get("projectName"),
             "services": [ServiceObject.from_dict(_item) for _item in obj["services"]] if obj.get("services") is not None else None,
             "staticWebApps": [StaticWebAppObject.from_dict(_item) for _item in obj["staticWebApps"]] if obj.get("staticWebApps") is not None else None,
+            "webApps": [WebAppObject.from_dict(_item) for _item in obj["webApps"]] if obj.get("webApps") is not None else None,
             "createdTimestamp": obj.get("createdTimestamp"),
             "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
             "roleArn": obj.get("roleArn"),
