@@ -36,7 +36,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   AddContactMethodRequest.JSON_PROPERTY_EMAIL,
   AddContactMethodRequest.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T23:42:10.706736500-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T17:26:18.290909800-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class AddContactMethodRequest {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable
