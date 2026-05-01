@@ -81,6 +81,18 @@ export interface WebAppBuildRequestObject {
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
+    installCommand?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppBuildRequestObject
+     */
+    subdirectory?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppBuildRequestObject
+     */
     outputZipS3Key?: string;
     /**
      * 
@@ -246,6 +258,8 @@ export function WebAppBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimin
         'buildCommand': json['buildCommand'] == null ? undefined : json['buildCommand'],
         'buildPath': json['buildPath'] == null ? undefined : json['buildPath'],
         'detectedFramework': json['detectedFramework'] == null ? undefined : json['detectedFramework'],
+        'installCommand': json['installCommand'] == null ? undefined : json['installCommand'],
+        'subdirectory': json['subdirectory'] == null ? undefined : json['subdirectory'],
         'outputZipS3Key': json['outputZipS3Key'] == null ? undefined : json['outputZipS3Key'],
         'hostingDeploymentId': json['hostingDeploymentId'] == null ? undefined : json['hostingDeploymentId'],
         'hostingDeploymentStatus': json['hostingDeploymentStatus'] == null ? undefined : json['hostingDeploymentStatus'],
@@ -282,6 +296,8 @@ export function WebAppBuildRequestObjectToJSONTyped(value?: WebAppBuildRequestOb
         'buildCommand': value['buildCommand'],
         'buildPath': value['buildPath'],
         'detectedFramework': value['detectedFramework'],
+        'installCommand': value['installCommand'],
+        'subdirectory': value['subdirectory'],
         'outputZipS3Key': value['outputZipS3Key'],
         'hostingDeploymentId': value['hostingDeploymentId'],
         'hostingDeploymentStatus': value['hostingDeploymentStatus'],

@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   TimeSeriesDataPoint.JSON_PROPERTY_TIMESTAMP,
   TimeSeriesDataPoint.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T00:19:06.057570300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class TimeSeriesDataPoint {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull

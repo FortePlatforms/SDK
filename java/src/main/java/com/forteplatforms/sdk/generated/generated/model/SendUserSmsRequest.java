@@ -24,83 +24,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
-import com.forteplatforms.sdk.generated.model.UserObject;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * LoginUserResponse
+ * SendUserSmsRequest
  */
 @JsonPropertyOrder({
-  LoginUserResponse.JSON_PROPERTY_USER_OBJECT,
-  LoginUserResponse.JSON_PROPERTY_SESSION_TOKEN
+  SendUserSmsRequest.JSON_PROPERTY_CONTENT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T00:19:06.057570300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
-public class LoginUserResponse {
-  public static final String JSON_PROPERTY_USER_OBJECT = "userObject";
+public class SendUserSmsRequest {
+  public static final String JSON_PROPERTY_CONTENT = "content";
   @javax.annotation.Nonnull
-  private UserObject userObject;
+  private String content;
 
-  public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
-  @javax.annotation.Nonnull
-  private RenewSessionTokenResponse sessionToken;
-
-  public LoginUserResponse() { 
+  public SendUserSmsRequest() { 
   }
 
-  public LoginUserResponse userObject(@javax.annotation.Nonnull UserObject userObject) {
-    this.userObject = userObject;
+  public SendUserSmsRequest content(@javax.annotation.Nonnull String content) {
+    this.content = content;
     return this;
   }
 
   /**
-   * Get userObject
-   * @return userObject
+   * Get content
+   * @return content
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
+  @JsonProperty(value = JSON_PROPERTY_CONTENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public UserObject getUserObject() {
-    return userObject;
+  public String getContent() {
+    return content;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
+  @JsonProperty(value = JSON_PROPERTY_CONTENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUserObject(@javax.annotation.Nonnull UserObject userObject) {
-    this.userObject = userObject;
-  }
-
-
-  public LoginUserResponse sessionToken(@javax.annotation.Nonnull RenewSessionTokenResponse sessionToken) {
-    this.sessionToken = sessionToken;
-    return this;
-  }
-
-  /**
-   * Get sessionToken
-   * @return sessionToken
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public RenewSessionTokenResponse getSessionToken() {
-    return sessionToken;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSessionToken(@javax.annotation.Nonnull RenewSessionTokenResponse sessionToken) {
-    this.sessionToken = sessionToken;
+  public void setContent(@javax.annotation.Nonnull String content) {
+    this.content = content;
   }
 
 
   /**
-   * Return true if this LoginUserResponse object is equal to o.
+   * Return true if this SendUserSmsRequest object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -110,22 +79,20 @@ public class LoginUserResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LoginUserResponse loginUserResponse = (LoginUserResponse) o;
-    return Objects.equals(this.userObject, loginUserResponse.userObject) &&
-        Objects.equals(this.sessionToken, loginUserResponse.sessionToken);
+    SendUserSmsRequest sendUserSmsRequest = (SendUserSmsRequest) o;
+    return Objects.equals(this.content, sendUserSmsRequest.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userObject, sessionToken);
+    return Objects.hash(content);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LoginUserResponse {\n");
-    sb.append("    userObject: ").append(toIndentedString(userObject)).append("\n");
-    sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
+    sb.append("class SendUserSmsRequest {\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -173,14 +140,9 @@ public class LoginUserResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `userObject` to the URL query string
-    if (getUserObject() != null) {
-      joiner.add(getUserObject().toUrlQueryString(prefix + "userObject" + suffix));
-    }
-
-    // add `sessionToken` to the URL query string
-    if (getSessionToken() != null) {
-      joiner.add(getSessionToken().toUrlQueryString(prefix + "sessionToken" + suffix));
+    // add `content` to the URL query string
+    if (getContent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContent()))));
     }
 
     return joiner.toString();

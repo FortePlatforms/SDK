@@ -25,12 +25,6 @@ export interface DockerfileDetectionOutput {
      * @memberof DockerfileDetectionOutput
      */
     dockerfilePath: string;
-    /**
-     * Complete contents of the Dockerfile
-     * @type {string}
-     * @memberof DockerfileDetectionOutput
-     */
-    dockerfileContents: string;
 }
 
 /**
@@ -38,7 +32,6 @@ export interface DockerfileDetectionOutput {
  */
 export function instanceOfDockerfileDetectionOutput(value: object): value is DockerfileDetectionOutput {
     if (!('dockerfilePath' in value) || value['dockerfilePath'] === undefined) return false;
-    if (!('dockerfileContents' in value) || value['dockerfileContents'] === undefined) return false;
     return true;
 }
 
@@ -53,7 +46,6 @@ export function DockerfileDetectionOutputFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'dockerfilePath': json['dockerfilePath'],
-        'dockerfileContents': json['dockerfileContents'],
     };
 }
 
@@ -69,7 +61,6 @@ export function DockerfileDetectionOutputToJSONTyped(value?: DockerfileDetection
     return {
         
         'dockerfilePath': value['dockerfilePath'],
-        'dockerfileContents': value['dockerfileContents'],
     };
 }
 

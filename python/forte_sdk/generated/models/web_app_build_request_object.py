@@ -36,6 +36,8 @@ class WebAppBuildRequestObject(BaseModel):
     build_command: Optional[StrictStr] = Field(default=None, alias="buildCommand")
     build_path: Optional[StrictStr] = Field(default=None, alias="buildPath")
     detected_framework: Optional[StrictStr] = Field(default=None, alias="detectedFramework")
+    install_command: Optional[StrictStr] = Field(default=None, alias="installCommand")
+    subdirectory: Optional[StrictStr] = None
     output_zip_s3_key: Optional[StrictStr] = Field(default=None, alias="outputZipS3Key")
     hosting_deployment_id: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentId")
     hosting_deployment_status: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentStatus")
@@ -51,7 +53,7 @@ class WebAppBuildRequestObject(BaseModel):
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin"]
+    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -138,6 +140,8 @@ class WebAppBuildRequestObject(BaseModel):
             "buildCommand": obj.get("buildCommand"),
             "buildPath": obj.get("buildPath"),
             "detectedFramework": obj.get("detectedFramework"),
+            "installCommand": obj.get("installCommand"),
+            "subdirectory": obj.get("subdirectory"),
             "outputZipS3Key": obj.get("outputZipS3Key"),
             "hostingDeploymentId": obj.get("hostingDeploymentId"),
             "hostingDeploymentStatus": obj.get("hostingDeploymentStatus"),

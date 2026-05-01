@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.68"
+__version__ = "1.0.85"
 
 # Define package exports
 __all__ = [
@@ -64,10 +64,11 @@ __all__ = [
     "RepositoryAnalysis",
     "RequestLogObject",
     "RequestLogObjectMeta",
+    "SendUserEmailRequest",
+    "SendUserSmsRequest",
     "ServiceBuildRequestObject",
     "ServiceMetricsResponse",
     "ServiceObject",
-    "StaticWebAppObject",
     "TestInvocationRequest",
     "TestInvocationResponse",
     "TimeSeriesDataPoint",
@@ -136,10 +137,11 @@ from forte_sdk.generated.models.renew_session_token_response import RenewSession
 from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis as RepositoryAnalysis
 from forte_sdk.generated.models.request_log_object import RequestLogObject as RequestLogObject
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta as RequestLogObjectMeta
+from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest as SendUserEmailRequest
+from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest as SendUserSmsRequest
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject as ServiceBuildRequestObject
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse as ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject as ServiceObject
-from forte_sdk.generated.models.static_web_app_object import StaticWebAppObject as StaticWebAppObject
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint as TimeSeriesDataPoint

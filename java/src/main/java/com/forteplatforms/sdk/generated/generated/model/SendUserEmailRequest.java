@@ -24,83 +24,81 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
-import com.forteplatforms.sdk.generated.model.UserObject;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * LoginUserResponse
+ * SendUserEmailRequest
  */
 @JsonPropertyOrder({
-  LoginUserResponse.JSON_PROPERTY_USER_OBJECT,
-  LoginUserResponse.JSON_PROPERTY_SESSION_TOKEN
+  SendUserEmailRequest.JSON_PROPERTY_SUBJECT,
+  SendUserEmailRequest.JSON_PROPERTY_BODY
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T00:19:06.057570300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
-public class LoginUserResponse {
-  public static final String JSON_PROPERTY_USER_OBJECT = "userObject";
+public class SendUserEmailRequest {
+  public static final String JSON_PROPERTY_SUBJECT = "subject";
   @javax.annotation.Nonnull
-  private UserObject userObject;
+  private String subject;
 
-  public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
+  public static final String JSON_PROPERTY_BODY = "body";
   @javax.annotation.Nonnull
-  private RenewSessionTokenResponse sessionToken;
+  private String body;
 
-  public LoginUserResponse() { 
+  public SendUserEmailRequest() { 
   }
 
-  public LoginUserResponse userObject(@javax.annotation.Nonnull UserObject userObject) {
-    this.userObject = userObject;
+  public SendUserEmailRequest subject(@javax.annotation.Nonnull String subject) {
+    this.subject = subject;
     return this;
   }
 
   /**
-   * Get userObject
-   * @return userObject
+   * Get subject
+   * @return subject
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
+  @JsonProperty(value = JSON_PROPERTY_SUBJECT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public UserObject getUserObject() {
-    return userObject;
+  public String getSubject() {
+    return subject;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
+  @JsonProperty(value = JSON_PROPERTY_SUBJECT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUserObject(@javax.annotation.Nonnull UserObject userObject) {
-    this.userObject = userObject;
+  public void setSubject(@javax.annotation.Nonnull String subject) {
+    this.subject = subject;
   }
 
 
-  public LoginUserResponse sessionToken(@javax.annotation.Nonnull RenewSessionTokenResponse sessionToken) {
-    this.sessionToken = sessionToken;
+  public SendUserEmailRequest body(@javax.annotation.Nonnull String body) {
+    this.body = body;
     return this;
   }
 
   /**
-   * Get sessionToken
-   * @return sessionToken
+   * Get body
+   * @return body
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public RenewSessionTokenResponse getSessionToken() {
-    return sessionToken;
+  public String getBody() {
+    return body;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSessionToken(@javax.annotation.Nonnull RenewSessionTokenResponse sessionToken) {
-    this.sessionToken = sessionToken;
+  public void setBody(@javax.annotation.Nonnull String body) {
+    this.body = body;
   }
 
 
   /**
-   * Return true if this LoginUserResponse object is equal to o.
+   * Return true if this SendUserEmailRequest object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -110,22 +108,22 @@ public class LoginUserResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LoginUserResponse loginUserResponse = (LoginUserResponse) o;
-    return Objects.equals(this.userObject, loginUserResponse.userObject) &&
-        Objects.equals(this.sessionToken, loginUserResponse.sessionToken);
+    SendUserEmailRequest sendUserEmailRequest = (SendUserEmailRequest) o;
+    return Objects.equals(this.subject, sendUserEmailRequest.subject) &&
+        Objects.equals(this.body, sendUserEmailRequest.body);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userObject, sessionToken);
+    return Objects.hash(subject, body);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LoginUserResponse {\n");
-    sb.append("    userObject: ").append(toIndentedString(userObject)).append("\n");
-    sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
+    sb.append("class SendUserEmailRequest {\n");
+    sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
+    sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -173,14 +171,14 @@ public class LoginUserResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `userObject` to the URL query string
-    if (getUserObject() != null) {
-      joiner.add(getUserObject().toUrlQueryString(prefix + "userObject" + suffix));
+    // add `subject` to the URL query string
+    if (getSubject() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubject()))));
     }
 
-    // add `sessionToken` to the URL query string
-    if (getSessionToken() != null) {
-      joiner.add(getSessionToken().toUrlQueryString(prefix + "sessionToken" + suffix));
+    // add `body` to the URL query string
+    if (getBody() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBody()))));
     }
 
     return joiner.toString();

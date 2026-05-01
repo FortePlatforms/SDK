@@ -45,6 +45,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_BUILD_COMMAND,
   WebAppBuildRequestObject.JSON_PROPERTY_BUILD_PATH,
   WebAppBuildRequestObject.JSON_PROPERTY_DETECTED_FRAMEWORK,
+  WebAppBuildRequestObject.JSON_PROPERTY_INSTALL_COMMAND,
+  WebAppBuildRequestObject.JSON_PROPERTY_SUBDIRECTORY,
   WebAppBuildRequestObject.JSON_PROPERTY_OUTPUT_ZIP_S3_KEY,
   WebAppBuildRequestObject.JSON_PROPERTY_HOSTING_DEPLOYMENT_ID,
   WebAppBuildRequestObject.JSON_PROPERTY_HOSTING_DEPLOYMENT_STATUS,
@@ -61,7 +63,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_STATUS,
   WebAppBuildRequestObject.JSON_PROPERTY_ORIGIN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T00:19:06.057570300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
@@ -90,6 +92,14 @@ public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_DETECTED_FRAMEWORK = "detectedFramework";
   @javax.annotation.Nullable
   private String detectedFramework;
+
+  public static final String JSON_PROPERTY_INSTALL_COMMAND = "installCommand";
+  @javax.annotation.Nullable
+  private String installCommand;
+
+  public static final String JSON_PROPERTY_SUBDIRECTORY = "subdirectory";
+  @javax.annotation.Nullable
+  private String subdirectory;
 
   public static final String JSON_PROPERTY_OUTPUT_ZIP_S3_KEY = "outputZipS3Key";
   @javax.annotation.Nullable
@@ -451,6 +461,54 @@ public class WebAppBuildRequestObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetectedFramework(@javax.annotation.Nullable String detectedFramework) {
     this.detectedFramework = detectedFramework;
+  }
+
+
+  public WebAppBuildRequestObject installCommand(@javax.annotation.Nullable String installCommand) {
+    this.installCommand = installCommand;
+    return this;
+  }
+
+  /**
+   * Get installCommand
+   * @return installCommand
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInstallCommand() {
+    return installCommand;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+    this.installCommand = installCommand;
+  }
+
+
+  public WebAppBuildRequestObject subdirectory(@javax.annotation.Nullable String subdirectory) {
+    this.subdirectory = subdirectory;
+    return this;
+  }
+
+  /**
+   * Get subdirectory
+   * @return subdirectory
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSubdirectory() {
+    return subdirectory;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+    this.subdirectory = subdirectory;
   }
 
 
@@ -841,6 +899,8 @@ public class WebAppBuildRequestObject {
         Objects.equals(this.buildCommand, webAppBuildRequestObject.buildCommand) &&
         Objects.equals(this.buildPath, webAppBuildRequestObject.buildPath) &&
         Objects.equals(this.detectedFramework, webAppBuildRequestObject.detectedFramework) &&
+        Objects.equals(this.installCommand, webAppBuildRequestObject.installCommand) &&
+        Objects.equals(this.subdirectory, webAppBuildRequestObject.subdirectory) &&
         Objects.equals(this.outputZipS3Key, webAppBuildRequestObject.outputZipS3Key) &&
         Objects.equals(this.hostingDeploymentId, webAppBuildRequestObject.hostingDeploymentId) &&
         Objects.equals(this.hostingDeploymentStatus, webAppBuildRequestObject.hostingDeploymentStatus) &&
@@ -860,7 +920,7 @@ public class WebAppBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin);
+    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin);
   }
 
   @Override
@@ -874,6 +934,8 @@ public class WebAppBuildRequestObject {
     sb.append("    buildCommand: ").append(toIndentedString(buildCommand)).append("\n");
     sb.append("    buildPath: ").append(toIndentedString(buildPath)).append("\n");
     sb.append("    detectedFramework: ").append(toIndentedString(detectedFramework)).append("\n");
+    sb.append("    installCommand: ").append(toIndentedString(installCommand)).append("\n");
+    sb.append("    subdirectory: ").append(toIndentedString(subdirectory)).append("\n");
     sb.append("    outputZipS3Key: ").append(toIndentedString(outputZipS3Key)).append("\n");
     sb.append("    hostingDeploymentId: ").append(toIndentedString(hostingDeploymentId)).append("\n");
     sb.append("    hostingDeploymentStatus: ").append(toIndentedString(hostingDeploymentStatus)).append("\n");
@@ -969,6 +1031,16 @@ public class WebAppBuildRequestObject {
     // add `detectedFramework` to the URL query string
     if (getDetectedFramework() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdetectedFramework%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDetectedFramework()))));
+    }
+
+    // add `installCommand` to the URL query string
+    if (getInstallCommand() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstallCommand%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstallCommand()))));
+    }
+
+    // add `subdirectory` to the URL query string
+    if (getSubdirectory() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubdirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubdirectory()))));
     }
 
     // add `outputZipS3Key` to the URL query string

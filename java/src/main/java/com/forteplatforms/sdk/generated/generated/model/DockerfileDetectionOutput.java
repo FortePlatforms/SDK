@@ -33,18 +33,13 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * Output containing detected or generated Dockerfile path and contents
  */
 @JsonPropertyOrder({
-  DockerfileDetectionOutput.JSON_PROPERTY_DOCKERFILE_PATH,
-  DockerfileDetectionOutput.JSON_PROPERTY_DOCKERFILE_CONTENTS
+  DockerfileDetectionOutput.JSON_PROPERTY_DOCKERFILE_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T00:19:06.057570300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class DockerfileDetectionOutput {
   public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
   @javax.annotation.Nonnull
   private String dockerfilePath;
-
-  public static final String JSON_PROPERTY_DOCKERFILE_CONTENTS = "dockerfileContents";
-  @javax.annotation.Nonnull
-  private String dockerfileContents;
 
   public DockerfileDetectionOutput() { 
   }
@@ -73,30 +68,6 @@ public class DockerfileDetectionOutput {
   }
 
 
-  public DockerfileDetectionOutput dockerfileContents(@javax.annotation.Nonnull String dockerfileContents) {
-    this.dockerfileContents = dockerfileContents;
-    return this;
-  }
-
-  /**
-   * Complete contents of the Dockerfile
-   * @return dockerfileContents
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_CONTENTS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getDockerfileContents() {
-    return dockerfileContents;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_CONTENTS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDockerfileContents(@javax.annotation.Nonnull String dockerfileContents) {
-    this.dockerfileContents = dockerfileContents;
-  }
-
-
   /**
    * Return true if this DockerfileDetectionOutput object is equal to o.
    */
@@ -109,13 +80,12 @@ public class DockerfileDetectionOutput {
       return false;
     }
     DockerfileDetectionOutput dockerfileDetectionOutput = (DockerfileDetectionOutput) o;
-    return Objects.equals(this.dockerfilePath, dockerfileDetectionOutput.dockerfilePath) &&
-        Objects.equals(this.dockerfileContents, dockerfileDetectionOutput.dockerfileContents);
+    return Objects.equals(this.dockerfilePath, dockerfileDetectionOutput.dockerfilePath);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dockerfilePath, dockerfileContents);
+    return Objects.hash(dockerfilePath);
   }
 
   @Override
@@ -123,7 +93,6 @@ public class DockerfileDetectionOutput {
     StringBuilder sb = new StringBuilder();
     sb.append("class DockerfileDetectionOutput {\n");
     sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
-    sb.append("    dockerfileContents: ").append(toIndentedString(dockerfileContents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -174,11 +143,6 @@ public class DockerfileDetectionOutput {
     // add `dockerfilePath` to the URL query string
     if (getDockerfilePath() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfilePath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfilePath()))));
-    }
-
-    // add `dockerfileContents` to the URL query string
-    if (getDockerfileContents() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfileContents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfileContents()))));
     }
 
     return joiner.toString();

@@ -81,8 +81,8 @@ class CreateWebAppRequest(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^(?!\/)(?!.*\.\.(\/|$))[a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$", value):
-            raise ValueError(r"must validate the regular expression /^(?!\/)(?!.*\.\.(\/|$))[a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$/")
+        if not re.match(r"^(?!.*\.\.(\/|$))[.\/a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$", value):
+            raise ValueError(r"must validate the regular expression /^(?!.*\.\.(\/|$))[.\/a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$/")
         return value
 
     model_config = ConfigDict(

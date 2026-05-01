@@ -36,6 +36,8 @@ import com.forteplatforms.sdk.generated.model.PaginatedResponseUserObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseWebAppBuildRequestObject;
 import com.forteplatforms.sdk.generated.model.ProjectObject;
 import com.forteplatforms.sdk.generated.model.RequestLogObject;
+import com.forteplatforms.sdk.generated.model.SendUserEmailRequest;
+import com.forteplatforms.sdk.generated.model.SendUserSmsRequest;
 import com.forteplatforms.sdk.generated.model.ServiceBuildRequestObject;
 import com.forteplatforms.sdk.generated.model.ServiceMetricsResponse;
 import com.forteplatforms.sdk.generated.model.ServiceObject;
@@ -76,7 +78,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T00:19:06.057570300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -5009,6 +5011,288 @@ public class ProjectsServerApi {
    * 
    * @param userId  (required)
    * @param projectId  (required)
+   * @param sendUserEmailRequest  (required)
+   * @return Object
+   * @throws ApiException if fails to make API call
+   */
+  public Object sendUserEmail(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailRequest sendUserEmailRequest) throws ApiException {
+    return sendUserEmail(userId, projectId, sendUserEmailRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserEmailRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return Object
+   * @throws ApiException if fails to make API call
+   */
+  public Object sendUserEmail(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailRequest sendUserEmailRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<Object> localVarResponse = sendUserEmailWithHttpInfo(userId, projectId, sendUserEmailRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserEmailRequest  (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> sendUserEmailWithHttpInfo(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailRequest sendUserEmailRequest) throws ApiException {
+    return sendUserEmailWithHttpInfo(userId, projectId, sendUserEmailRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserEmailRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> sendUserEmailWithHttpInfo(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailRequest sendUserEmailRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = sendUserEmailRequestBuilder(userId, projectId, sendUserEmailRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("sendUserEmail", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<Object>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        Object responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {});
+        
+
+        return new ApiResponse<Object>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder sendUserEmailRequestBuilder(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailRequest sendUserEmailRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling sendUserEmail");
+    }
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling sendUserEmail");
+    }
+    // verify the required parameter 'sendUserEmailRequest' is set
+    if (sendUserEmailRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'sendUserEmailRequest' when calling sendUserEmail");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/email"
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendUserEmailRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserSmsRequest  (required)
+   * @return Object
+   * @throws ApiException if fails to make API call
+   */
+  public Object sendUserSms(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserSmsRequest sendUserSmsRequest) throws ApiException {
+    return sendUserSms(userId, projectId, sendUserSmsRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserSmsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return Object
+   * @throws ApiException if fails to make API call
+   */
+  public Object sendUserSms(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserSmsRequest sendUserSmsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<Object> localVarResponse = sendUserSmsWithHttpInfo(userId, projectId, sendUserSmsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserSmsRequest  (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> sendUserSmsWithHttpInfo(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserSmsRequest sendUserSmsRequest) throws ApiException {
+    return sendUserSmsWithHttpInfo(userId, projectId, sendUserSmsRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserSmsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> sendUserSmsWithHttpInfo(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserSmsRequest sendUserSmsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = sendUserSmsRequestBuilder(userId, projectId, sendUserSmsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("sendUserSms", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<Object>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        Object responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {});
+        
+
+        return new ApiResponse<Object>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder sendUserSmsRequestBuilder(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserSmsRequest sendUserSmsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling sendUserSms");
+    }
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling sendUserSms");
+    }
+    // verify the required parameter 'sendUserSmsRequest' is set
+    if (sendUserSmsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'sendUserSmsRequest' when calling sendUserSms");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/sms"
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendUserSmsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
    * @return UserObject
    * @throws ApiException if fails to make API call
    */
@@ -5111,7 +5395,7 @@ public class ProjectsServerApi {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}"
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/suspend"
         .replace("{userId}", ApiClient.urlEncode(userId.toString()))
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
 

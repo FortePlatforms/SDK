@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-25T13:29:49.334466100-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T00:19:06.057570300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -135,6 +135,8 @@ public class ForteApiException {
     
     SUPPORT_ATTACHMENT_TOO_LARGE(String.valueOf("SUPPORT_ATTACHMENT_TOO_LARGE")),
     
+    ACCOUNT_NOT_FOUND(String.valueOf("ACCOUNT_NOT_FOUND")),
+    
     COMPLIANCE_REGISTRATION_ALREADY_EXISTS(String.valueOf("COMPLIANCE_REGISTRATION_ALREADY_EXISTS")),
     
     COMPLIANCE_REGISTRATION_NOT_FOUND(String.valueOf("COMPLIANCE_REGISTRATION_NOT_FOUND")),
@@ -161,7 +163,9 @@ public class ForteApiException {
     
     PHONE_LOGIN_NOT_ENABLED(String.valueOf("PHONE_LOGIN_NOT_ENABLED")),
     
-    MISSING_GITHUB_BRANCH(String.valueOf("MISSING_GITHUB_BRANCH"));
+    MISSING_GITHUB_BRANCH(String.valueOf("MISSING_GITHUB_BRANCH")),
+    
+    EXTERNAL_API_ERROR(String.valueOf("EXTERNAL_API_ERROR"));
 
     private String value;
 

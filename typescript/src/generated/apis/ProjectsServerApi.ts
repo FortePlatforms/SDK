@@ -32,6 +32,8 @@ import type {
   PaginatedResponseWebAppBuildRequestObject,
   ProjectObject,
   RequestLogObject,
+  SendUserEmailRequest,
+  SendUserSmsRequest,
   ServiceBuildRequestObject,
   ServiceMetricsResponse,
   ServiceObject,
@@ -82,6 +84,10 @@ import {
     ProjectObjectToJSON,
     RequestLogObjectFromJSON,
     RequestLogObjectToJSON,
+    SendUserEmailRequestFromJSON,
+    SendUserEmailRequestToJSON,
+    SendUserSmsRequestFromJSON,
+    SendUserSmsRequestToJSON,
     ServiceBuildRequestObjectFromJSON,
     ServiceBuildRequestObjectToJSON,
     ServiceMetricsResponseFromJSON,
@@ -320,6 +326,18 @@ export interface SearchLogLinesRequest {
     requestId?: string;
     level?: string;
     nextToken?: string;
+}
+
+export interface SendUserEmailOperationRequest {
+    userId: string;
+    projectId: string;
+    sendUserEmailRequest: SendUserEmailRequest;
+}
+
+export interface SendUserSmsOperationRequest {
+    userId: string;
+    projectId: string;
+    sendUserSmsRequest: SendUserSmsRequest;
 }
 
 export interface SuspendUserRequest {
@@ -2038,6 +2056,120 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async sendUserEmailRaw(requestParameters: SendUserEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling sendUserEmail().'
+            );
+        }
+
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling sendUserEmail().'
+            );
+        }
+
+        if (requestParameters['sendUserEmailRequest'] == null) {
+            throw new runtime.RequiredError(
+                'sendUserEmailRequest',
+                'Required parameter "sendUserEmailRequest" was null or undefined when calling sendUserEmail().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/email`;
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SendUserEmailRequestToJSON(requestParameters['sendUserEmailRequest']),
+        }, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     */
+    async sendUserEmail(requestParameters: SendUserEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.sendUserEmailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async sendUserSmsRaw(requestParameters: SendUserSmsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling sendUserSms().'
+            );
+        }
+
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling sendUserSms().'
+            );
+        }
+
+        if (requestParameters['sendUserSmsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'sendUserSmsRequest',
+                'Required parameter "sendUserSmsRequest" was null or undefined when calling sendUserSms().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/sms`;
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SendUserSmsRequestToJSON(requestParameters['sendUserSmsRequest']),
+        }, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     */
+    async sendUserSms(requestParameters: SendUserSmsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.sendUserSmsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async suspendUserRaw(requestParameters: SuspendUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
@@ -2058,7 +2190,7 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
 
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}`;
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/suspend`;
         urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
         urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
 
@@ -2318,6 +2450,13 @@ export const ListUserActionLogsActionTypeType = {
     CONTACT_METHOD_VERIFICATION_CODE_RE_SENT: 'CONTACT_METHOD_VERIFICATION_CODE_RE_SENT',
     CONTACT_METHOD_VERIFIED: 'CONTACT_METHOD_VERIFIED',
     USER_LOGIN: 'USER_LOGIN',
-    USER_LOGOUT: 'USER_LOGOUT'
+    USER_LOGOUT: 'USER_LOGOUT',
+    PAYMENT_CONNECT_SUBMITTED: 'PAYMENT_CONNECT_SUBMITTED',
+    PAYMENT_CONNECT_UPDATED: 'PAYMENT_CONNECT_UPDATED',
+    PAYMENT_CONNECT_RESUME_LINK_SENT: 'PAYMENT_CONNECT_RESUME_LINK_SENT',
+    PAYMENT_CONNECT_SYNCED: 'PAYMENT_CONNECT_SYNCED',
+    PAYMENT_CONNECT_VERIFIED: 'PAYMENT_CONNECT_VERIFIED',
+    PAYMENT_CONNECT_REJECTED: 'PAYMENT_CONNECT_REJECTED',
+    PAYMENT_CONNECT_DEAUTHORIZED: 'PAYMENT_CONNECT_DEAUTHORIZED'
 } as const;
 export type ListUserActionLogsActionTypeType = typeof ListUserActionLogsActionTypeType[keyof typeof ListUserActionLogsActionTypeType];
