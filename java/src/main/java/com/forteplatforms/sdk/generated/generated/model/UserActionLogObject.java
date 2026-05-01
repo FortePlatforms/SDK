@@ -40,7 +40,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_CONTACT_METHOD_ID,
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T00:19:06.057570300-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T15:48:16.020017200-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -86,7 +86,9 @@ public class UserActionLogObject {
     
     PAYMENT_CONNECT_REJECTED(String.valueOf("PAYMENT_CONNECT_REJECTED")),
     
-    PAYMENT_CONNECT_DEAUTHORIZED(String.valueOf("PAYMENT_CONNECT_DEAUTHORIZED"));
+    PAYMENT_CONNECT_DEAUTHORIZED(String.valueOf("PAYMENT_CONNECT_DEAUTHORIZED")),
+    
+    COMPLIANCE_REGISTRATION_STATUS_CHANGED(String.valueOf("COMPLIANCE_REGISTRATION_STATUS_CHANGED"));
 
     private String value;
 
