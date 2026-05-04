@@ -1,6 +1,6 @@
 [project]
 name = "forte-sdk"
-version = "1.0.107"
+version = "1.0.111"
 description = "Official Python SDK for Forte Platforms"
 license = "MIT"
 authors = [
