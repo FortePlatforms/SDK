@@ -27,7 +27,8 @@ class DockerfileDetectionOutput(BaseModel):
     Output containing detected or generated Dockerfile path and contents
     """ # noqa: E501
     dockerfile_path: StrictStr = Field(description="Relative path to the Dockerfile (e.g., './Dockerfile', './docker/Dockerfile')", alias="dockerfilePath")
-    __properties: ClassVar[List[str]] = ["dockerfilePath"]
+    dockerfile_contents: StrictStr = Field(description="Complete contents of the Dockerfile", alias="dockerfileContents")
+    __properties: ClassVar[List[str]] = ["dockerfilePath", "dockerfileContents"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,7 +81,8 @@ class DockerfileDetectionOutput(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "dockerfilePath": obj.get("dockerfilePath")
+            "dockerfilePath": obj.get("dockerfilePath"),
+            "dockerfileContents": obj.get("dockerfileContents")
         })
         return _obj
 

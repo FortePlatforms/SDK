@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T15:48:16.020017200-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-03T17:37:51.311012700-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -137,6 +137,8 @@ public class ForteApiException {
     
     ACCOUNT_NOT_FOUND(String.valueOf("ACCOUNT_NOT_FOUND")),
     
+    ACCOUNT_ALREADY_EXISTS(String.valueOf("ACCOUNT_ALREADY_EXISTS")),
+    
     COMPLIANCE_REGISTRATION_ALREADY_EXISTS(String.valueOf("COMPLIANCE_REGISTRATION_ALREADY_EXISTS")),
     
     COMPLIANCE_REGISTRATION_NOT_FOUND(String.valueOf("COMPLIANCE_REGISTRATION_NOT_FOUND")),
@@ -149,6 +151,8 @@ public class ForteApiException {
     
     COMPLIANCE_REGISTRATION_INVALID_STATUS_TRANSITION(String.valueOf("COMPLIANCE_REGISTRATION_INVALID_STATUS_TRANSITION")),
     
+    COMPLIANCE_REGISTRATION_PAYMENTS_NOT_CONFIGURED(String.valueOf("COMPLIANCE_REGISTRATION_PAYMENTS_NOT_CONFIGURED")),
+    
     COMPLIANCE_DOCUMENT_NOT_FOUND(String.valueOf("COMPLIANCE_DOCUMENT_NOT_FOUND")),
     
     COMPLIANCE_DOCUMENT_ALREADY_HAS_CONTENTS(String.valueOf("COMPLIANCE_DOCUMENT_ALREADY_HAS_CONTENTS")),
@@ -156,6 +160,10 @@ public class ForteApiException {
     COMPLIANCE_DOCUMENT_MISSING_CONTENTS(String.valueOf("COMPLIANCE_DOCUMENT_MISSING_CONTENTS")),
     
     COMPLIANCE_DOCUMENT_INVALID_OWNER(String.valueOf("COMPLIANCE_DOCUMENT_INVALID_OWNER")),
+    
+    COMPLIANCE_DOCUMENT_UNSUPPORTED_TYPE(String.valueOf("COMPLIANCE_DOCUMENT_UNSUPPORTED_TYPE")),
+    
+    COMPLIANCE_DOCUMENT_NOT_DELETABLE(String.valueOf("COMPLIANCE_DOCUMENT_NOT_DELETABLE")),
     
     COMPLIANCE_REGISTRATION_NOT_APPROVED(String.valueOf("COMPLIANCE_REGISTRATION_NOT_APPROVED")),
     
@@ -165,7 +173,9 @@ public class ForteApiException {
     
     MISSING_GITHUB_BRANCH(String.valueOf("MISSING_GITHUB_BRANCH")),
     
-    EXTERNAL_API_ERROR(String.valueOf("EXTERNAL_API_ERROR"));
+    EXTERNAL_API_ERROR(String.valueOf("EXTERNAL_API_ERROR")),
+    
+    PAYMENTS_PROVIDER_REJECTED(String.valueOf("PAYMENTS_PROVIDER_REJECTED"));
 
     private String value;
 
