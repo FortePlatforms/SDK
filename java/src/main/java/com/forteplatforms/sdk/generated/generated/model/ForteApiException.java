@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T00:10:19.347736900-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T16:13:10.033842400-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -175,7 +175,11 @@ public class ForteApiException {
     
     EXTERNAL_API_ERROR(String.valueOf("EXTERNAL_API_ERROR")),
     
-    PAYMENTS_PROVIDER_REJECTED(String.valueOf("PAYMENTS_PROVIDER_REJECTED"));
+    PAYMENTS_PROVIDER_REJECTED(String.valueOf("PAYMENTS_PROVIDER_REJECTED")),
+    
+    EMAIL_CONFIGURATION_INVALID(String.valueOf("EMAIL_CONFIGURATION_INVALID")),
+    
+    SES_TENANT_NOT_PROVISIONED(String.valueOf("SES_TENANT_NOT_PROVISIONED"));
 
     private String value;
 
