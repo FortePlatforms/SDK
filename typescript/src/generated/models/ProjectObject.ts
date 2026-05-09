@@ -117,6 +117,12 @@ export interface ProjectObject {
      * @type {boolean}
      * @memberof ProjectObject
      */
+    sandboxMode?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProjectObject
+     */
     hasRecaptchaSecretKey?: boolean;
 }
 
@@ -156,6 +162,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'googleOAuthClientId': json['googleOAuthClientId'] == null ? undefined : json['googleOAuthClientId'],
         'phoneLoginEnabled': json['phoneLoginEnabled'] == null ? undefined : json['phoneLoginEnabled'],
         'emailLoginEnabled': json['emailLoginEnabled'] == null ? undefined : json['emailLoginEnabled'],
+        'sandboxMode': json['sandboxMode'] == null ? undefined : json['sandboxMode'],
         'hasRecaptchaSecretKey': json['hasRecaptchaSecretKey'] == null ? undefined : json['hasRecaptchaSecretKey'],
     };
 }
@@ -184,6 +191,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'googleOAuthClientId': value['googleOAuthClientId'],
         'phoneLoginEnabled': value['phoneLoginEnabled'],
         'emailLoginEnabled': value['emailLoginEnabled'],
+        'sandboxMode': value['sandboxMode'],
         'hasRecaptchaSecretKey': value['hasRecaptchaSecretKey'],
     };
 }

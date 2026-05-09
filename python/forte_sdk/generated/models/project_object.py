@@ -42,8 +42,9 @@ class ProjectObject(BaseModel):
     google_o_auth_client_id: Optional[StrictStr] = Field(default=None, alias="googleOAuthClientId")
     phone_login_enabled: Optional[StrictBool] = Field(default=None, alias="phoneLoginEnabled")
     email_login_enabled: Optional[StrictBool] = Field(default=None, alias="emailLoginEnabled")
+    sandbox_mode: Optional[StrictBool] = Field(default=None, alias="sandboxMode")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "sandboxMode", "hasRecaptchaSecretKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -123,6 +124,7 @@ class ProjectObject(BaseModel):
             "googleOAuthClientId": obj.get("googleOAuthClientId"),
             "phoneLoginEnabled": obj.get("phoneLoginEnabled"),
             "emailLoginEnabled": obj.get("emailLoginEnabled"),
+            "sandboxMode": obj.get("sandboxMode"),
             "hasRecaptchaSecretKey": obj.get("hasRecaptchaSecretKey")
         })
         return _obj

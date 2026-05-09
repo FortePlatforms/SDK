@@ -85,6 +85,12 @@ export interface UpdateForteServiceRequest {
      * @memberof UpdateForteServiceRequest
      */
     healthCheckPath?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateForteServiceRequest
+     */
+    requestResponseBodyLoggingEnabled?: boolean;
 }
 
 /**
@@ -115,6 +121,7 @@ export function UpdateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'containerCpu': json['containerCpu'] == null ? undefined : json['containerCpu'],
         'healthCheckPort': json['healthCheckPort'] == null ? undefined : json['healthCheckPort'],
         'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
+        'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'] == null ? undefined : json['requestResponseBodyLoggingEnabled'],
     };
 }
 
@@ -140,6 +147,7 @@ export function UpdateForteServiceRequestToJSONTyped(value?: UpdateForteServiceR
         'containerCpu': value['containerCpu'],
         'healthCheckPort': value['healthCheckPort'],
         'healthCheckPath': value['healthCheckPath'],
+        'requestResponseBodyLoggingEnabled': value['requestResponseBodyLoggingEnabled'],
     };
 }
 

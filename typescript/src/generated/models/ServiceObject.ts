@@ -64,7 +64,7 @@ export interface ServiceObject {
      * @type {boolean}
      * @memberof ServiceObject
      */
-    requestResponseBodyLoggingEnabled: boolean;
+    requestResponseBodyLoggingEnabled?: boolean;
     /**
      * 
      * @type {string}
@@ -185,7 +185,6 @@ export type ServiceObjectGithubBuildTriggerType = typeof ServiceObjectGithubBuil
  */
 export function instanceOfServiceObject(value: object): value is ServiceObject {
     if (!('serviceName' in value) || value['serviceName'] === undefined) return false;
-    if (!('requestResponseBodyLoggingEnabled' in value) || value['requestResponseBodyLoggingEnabled'] === undefined) return false;
     if (!('baseInstances' in value) || value['baseInstances'] === undefined) return false;
     if (!('containerCpu' in value) || value['containerCpu'] === undefined) return false;
     if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
@@ -206,7 +205,7 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'serviceId': json['serviceId'] == null ? undefined : json['serviceId'],
         'serviceName': json['serviceName'],
         'publicDnsEndpoint': json['publicDnsEndpoint'] == null ? undefined : json['publicDnsEndpoint'],
-        'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'],
+        'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'] == null ? undefined : json['requestResponseBodyLoggingEnabled'],
         'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
         'healthCheckConfiguration': json['healthCheckConfiguration'] == null ? undefined : HealthCheckDetectionOutputFromJSON(json['healthCheckConfiguration']),
         'dockerfileDetectionResponse': json['dockerfileDetectionResponse'] == null ? undefined : DockerfileGenerationResponseFromJSON(json['dockerfileDetectionResponse']),

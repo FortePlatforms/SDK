@@ -16,6 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   AddContactMethodRequest,
+  AdminOverrideContactMethodRequest,
   ApiKeySummary,
   ContactMethod,
   CreateForteServiceRequest,
@@ -52,6 +53,8 @@ import type {
 import {
     AddContactMethodRequestFromJSON,
     AddContactMethodRequestToJSON,
+    AdminOverrideContactMethodRequestFromJSON,
+    AdminOverrideContactMethodRequestToJSON,
     ApiKeySummaryFromJSON,
     ApiKeySummaryToJSON,
     ContactMethodFromJSON,
@@ -124,6 +127,13 @@ export interface AdminAddUserContactMethodRequest {
     addContactMethodRequest: AddContactMethodRequest;
 }
 
+export interface AdminOverrideUserContactMethodRequest {
+    projectId: string;
+    userId: string;
+    contactMethodId: string;
+    adminOverrideContactMethodRequest: AdminOverrideContactMethodRequest;
+}
+
 export interface AdminRemoveUserContactMethodRequest {
     projectId: string;
     userId: string;
@@ -145,6 +155,7 @@ export interface AdminVerifyUserContactMethodRequest {
 
 export interface CreateProjectRequest {
     projectName: string;
+    sandboxMode?: boolean;
 }
 
 export interface CreateProjectApiKeyOperationRequest {
@@ -192,6 +203,11 @@ export interface DeleteProjectApiKeyRequest {
 export interface DeleteServiceRequest {
     projectId: string;
     serviceId: string;
+}
+
+export interface DeleteUserRequest {
+    userId: string;
+    projectId: string;
 }
 
 export interface DeleteWebAppRequest {
@@ -428,6 +444,67 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async adminOverrideUserContactMethodRaw(requestParameters: AdminOverrideUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling adminOverrideUserContactMethod().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling adminOverrideUserContactMethod().'
+            );
+        }
+
+        if (requestParameters['contactMethodId'] == null) {
+            throw new runtime.RequiredError(
+                'contactMethodId',
+                'Required parameter "contactMethodId" was null or undefined when calling adminOverrideUserContactMethod().'
+            );
+        }
+
+        if (requestParameters['adminOverrideContactMethodRequest'] == null) {
+            throw new runtime.RequiredError(
+                'adminOverrideContactMethodRequest',
+                'Required parameter "adminOverrideContactMethodRequest" was null or undefined when calling adminOverrideUserContactMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/contact-methods/{contactMethodId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace(`{${"contactMethodId"}}`, encodeURIComponent(String(requestParameters['contactMethodId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AdminOverrideContactMethodRequestToJSON(requestParameters['adminOverrideContactMethodRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ContactMethodFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async adminOverrideUserContactMethod(requestParameters: AdminOverrideUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContactMethod> {
+        const response = await this.adminOverrideUserContactMethodRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async adminRemoveUserContactMethodRaw(requestParameters: AdminRemoveUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
@@ -603,6 +680,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['projectName'] != null) {
             queryParameters['projectName'] = requestParameters['projectName'];
+        }
+
+        if (requestParameters['sandboxMode'] != null) {
+            queryParameters['sandboxMode'] = requestParameters['sandboxMode'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1025,6 +1106,48 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteService(requestParameters: DeleteServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteServiceRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     */
+    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling deleteUser().'
+            );
+        }
+
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}`;
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteUserRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -2444,11 +2567,13 @@ export const ListUserActionLogsActionTypeType = {
     USER_CREATED: 'USER_CREATED',
     USER_SUSPENDED: 'USER_SUSPENDED',
     USER_DELETED: 'USER_DELETED',
+    USER_HARD_DELETED: 'USER_HARD_DELETED',
     CONTACT_METHOD_ADDED: 'CONTACT_METHOD_ADDED',
     CONTACT_METHOD_REMOVED: 'CONTACT_METHOD_REMOVED',
     CONTACT_METHOD_VERIFICATION_CODE_SENT: 'CONTACT_METHOD_VERIFICATION_CODE_SENT',
     CONTACT_METHOD_VERIFICATION_CODE_RE_SENT: 'CONTACT_METHOD_VERIFICATION_CODE_RE_SENT',
     CONTACT_METHOD_VERIFIED: 'CONTACT_METHOD_VERIFIED',
+    CONTACT_METHOD_ADMIN_OVERRIDE: 'CONTACT_METHOD_ADMIN_OVERRIDE',
     USER_LOGIN: 'USER_LOGIN',
     USER_LOGOUT: 'USER_LOGOUT'
 } as const;

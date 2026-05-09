@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './AddContactMethodRequest';
+export * from './AdminOverrideContactMethodRequest';
 export * from './ApiKeySummary';
 export * from './BuildStepLog';
 export * from './ContactMethod';

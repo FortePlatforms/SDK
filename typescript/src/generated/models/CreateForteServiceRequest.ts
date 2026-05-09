@@ -85,6 +85,12 @@ export interface CreateForteServiceRequest {
      * @memberof CreateForteServiceRequest
      */
     baseDirectory?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateForteServiceRequest
+     */
+    requestResponseBodyLoggingEnabled?: boolean;
 }
 
 
@@ -129,6 +135,7 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'healthCheckPort': json['healthCheckPort'] == null ? undefined : json['healthCheckPort'],
         'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
         'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
+        'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'] == null ? undefined : json['requestResponseBodyLoggingEnabled'],
     };
 }
 
@@ -154,6 +161,7 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
         'healthCheckPort': value['healthCheckPort'],
         'healthCheckPath': value['healthCheckPath'],
         'baseDirectory': value['baseDirectory'],
+        'requestResponseBodyLoggingEnabled': value['requestResponseBodyLoggingEnabled'],
     };
 }
 

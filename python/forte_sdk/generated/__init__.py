@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.116"
+__version__ = "1.0.125"
 
 # Define package exports
 __all__ = [
@@ -30,6 +30,7 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "AddContactMethodRequest",
+    "AdminOverrideContactMethodRequest",
     "ApiKeySummary",
     "BuildStepLog",
     "ContactMethod",
@@ -103,6 +104,7 @@ from forte_sdk.generated.exceptions import ApiException as ApiException
 
 # import models into sdk package
 from forte_sdk.generated.models.add_contact_method_request import AddContactMethodRequest as AddContactMethodRequest
+from forte_sdk.generated.models.admin_override_contact_method_request import AdminOverrideContactMethodRequest as AdminOverrideContactMethodRequest
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary as ApiKeySummary
 from forte_sdk.generated.models.build_step_log import BuildStepLog as BuildStepLog
 from forte_sdk.generated.models.contact_method import ContactMethod as ContactMethod

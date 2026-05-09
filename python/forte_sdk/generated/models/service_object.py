@@ -34,7 +34,7 @@ class ServiceObject(BaseModel):
     service_id: Optional[StrictStr] = Field(default=None, alias="serviceId")
     service_name: StrictStr = Field(alias="serviceName")
     public_dns_endpoint: Optional[StrictStr] = Field(default=None, alias="publicDnsEndpoint")
-    request_response_body_logging_enabled: StrictBool = Field(alias="requestResponseBodyLoggingEnabled")
+    request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
     dockerfile_path: Optional[StrictStr] = Field(default=None, alias="dockerfilePath")
     health_check_configuration: Optional[HealthCheckDetectionOutput] = Field(default=None, alias="healthCheckConfiguration")
     dockerfile_detection_response: Optional[DockerfileGenerationResponse] = Field(default=None, alias="dockerfileDetectionResponse")

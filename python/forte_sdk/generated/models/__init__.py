@@ -14,6 +14,7 @@
 
 # import models into model package
 from forte_sdk.generated.models.add_contact_method_request import AddContactMethodRequest
+from forte_sdk.generated.models.admin_override_contact_method_request import AdminOverrideContactMethodRequest
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary
 from forte_sdk.generated.models.build_step_log import BuildStepLog
 from forte_sdk.generated.models.contact_method import ContactMethod

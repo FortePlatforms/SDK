@@ -38,7 +38,8 @@ class UpdateForteServiceRequest(BaseModel):
     container_cpu: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="containerCpu")
     health_check_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(default=None, alias="healthCheckPort")
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
-    __properties: ClassVar[List[str]] = ["resetDockerfile", "resetHealthCheckConfig", "serviceName", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "authPathExclusions", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath"]
+    request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
+    __properties: ClassVar[List[str]] = ["resetDockerfile", "resetHealthCheckConfig", "serviceName", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "authPathExclusions", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath", "requestResponseBodyLoggingEnabled"]
 
     @field_validator('container_cpu')
     def container_cpu_validate_regular_expression(cls, value):
@@ -121,7 +122,8 @@ class UpdateForteServiceRequest(BaseModel):
             "baseInstances": obj.get("baseInstances"),
             "containerCpu": obj.get("containerCpu"),
             "healthCheckPort": obj.get("healthCheckPort"),
-            "healthCheckPath": obj.get("healthCheckPath")
+            "healthCheckPath": obj.get("healthCheckPath"),
+            "requestResponseBodyLoggingEnabled": obj.get("requestResponseBodyLoggingEnabled")
         })
         return _obj
 
