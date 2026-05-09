@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from forte_sdk.generated.models.contact_method import ContactMethod
@@ -37,9 +37,11 @@ class UserObject(BaseModel):
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
     last_activity_at: Optional[datetime] = Field(default=None, alias="lastActivityAt")
     custom_metadata_attributes: Dict[str, Any] = Field(alias="customMetadataAttributes")
+    stripe_customer_id: Optional[StrictStr] = Field(default=None, alias="stripeCustomerId")
     contact_methods: Annotated[List[ContactMethod], Field(min_length=1)] = Field(alias="contactMethods")
+    welcome_message_sent: Optional[StrictBool] = Field(default=None, alias="welcomeMessageSent")
     state: StrictStr
-    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "contactMethods", "state"]
+    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "state"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -114,7 +116,9 @@ class UserObject(BaseModel):
             "updatedAt": obj.get("updatedAt"),
             "lastActivityAt": obj.get("lastActivityAt"),
             "customMetadataAttributes": obj.get("customMetadataAttributes"),
+            "stripeCustomerId": obj.get("stripeCustomerId"),
             "contactMethods": [ContactMethod.from_dict(_item) for _item in obj["contactMethods"]] if obj.get("contactMethods") is not None else None,
+            "welcomeMessageSent": obj.get("welcomeMessageSent"),
             "state": obj.get("state")
         })
         return _obj

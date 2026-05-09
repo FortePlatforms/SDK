@@ -40,7 +40,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_CONTACT_METHOD_ID,
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T17:04:00.780268-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -76,7 +76,11 @@ public class UserActionLogObject {
     
     USER_LOGIN(String.valueOf("USER_LOGIN")),
     
-    USER_LOGOUT(String.valueOf("USER_LOGOUT"));
+    USER_LOGOUT(String.valueOf("USER_LOGOUT")),
+    
+    PAYMENT_CREATED(String.valueOf("PAYMENT_CREATED")),
+    
+    WELCOME_MESSAGE_SENT(String.valueOf("WELCOME_MESSAGE_SENT"));
 
     private String value;
 

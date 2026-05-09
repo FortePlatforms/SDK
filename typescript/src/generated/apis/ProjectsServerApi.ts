@@ -20,11 +20,16 @@ import type {
   ApiKeySummary,
   ContactMethod,
   CreateForteServiceRequest,
+  CreatePaymentPreviewRequest,
+  CreatePaymentPreviewResponse,
+  CreatePaymentRequest,
+  CreatePaymentResponse,
   CreateProjectApiKeyRequest,
   CreateProjectApiKeyResponse,
   CreateServiceRequestProxyRequest,
   CreateServiceRequestProxyResponse,
   CreateWebAppRequest,
+  NotificationTemplatesResponse,
   PaginatedResponseLogLineObject,
   PaginatedResponseRequestLogObject,
   PaginatedResponseServiceBuildRequestObject,
@@ -42,6 +47,7 @@ import type {
   TestInvocationResponse,
   UpdateForteServiceRequest,
   UpdateForteServiceResponse,
+  UpdateNotificationTemplatesRequest,
   UpdateProjectRequest,
   UpdateWebAppRequest,
   UpdateWebAppResponse,
@@ -61,6 +67,14 @@ import {
     ContactMethodToJSON,
     CreateForteServiceRequestFromJSON,
     CreateForteServiceRequestToJSON,
+    CreatePaymentPreviewRequestFromJSON,
+    CreatePaymentPreviewRequestToJSON,
+    CreatePaymentPreviewResponseFromJSON,
+    CreatePaymentPreviewResponseToJSON,
+    CreatePaymentRequestFromJSON,
+    CreatePaymentRequestToJSON,
+    CreatePaymentResponseFromJSON,
+    CreatePaymentResponseToJSON,
     CreateProjectApiKeyRequestFromJSON,
     CreateProjectApiKeyRequestToJSON,
     CreateProjectApiKeyResponseFromJSON,
@@ -71,6 +85,8 @@ import {
     CreateServiceRequestProxyResponseToJSON,
     CreateWebAppRequestFromJSON,
     CreateWebAppRequestToJSON,
+    NotificationTemplatesResponseFromJSON,
+    NotificationTemplatesResponseToJSON,
     PaginatedResponseLogLineObjectFromJSON,
     PaginatedResponseLogLineObjectToJSON,
     PaginatedResponseRequestLogObjectFromJSON,
@@ -105,6 +121,8 @@ import {
     UpdateForteServiceRequestToJSON,
     UpdateForteServiceResponseFromJSON,
     UpdateForteServiceResponseToJSON,
+    UpdateNotificationTemplatesRequestFromJSON,
+    UpdateNotificationTemplatesRequestToJSON,
     UpdateProjectRequestFromJSON,
     UpdateProjectRequestToJSON,
     UpdateWebAppRequestFromJSON,
@@ -151,6 +169,18 @@ export interface AdminVerifyUserContactMethodRequest {
     userId: string;
     contactMethodId: string;
     verificationCode: string;
+}
+
+export interface CreatePaymentOperationRequest {
+    projectId: string;
+    userId: string;
+    createPaymentRequest: CreatePaymentRequest;
+}
+
+export interface CreatePaymentPreviewOperationRequest {
+    projectId: string;
+    userId: string;
+    createPaymentPreviewRequest: CreatePaymentPreviewRequest;
 }
 
 export interface CreateProjectRequest {
@@ -213,6 +243,10 @@ export interface DeleteUserRequest {
 export interface DeleteWebAppRequest {
     projectId: string;
     webAppId: string;
+}
+
+export interface GetNotificationTemplatesRequest {
+    projectId: string;
 }
 
 export interface GetProjectRequest {
@@ -365,6 +399,11 @@ export interface TestInvocationOperationRequest {
     projectId: string;
     serviceId: string;
     testInvocationRequest: TestInvocationRequest;
+}
+
+export interface UpdateNotificationTemplatesOperationRequest {
+    projectId: string;
+    updateNotificationTemplatesRequest: UpdateNotificationTemplatesRequest;
 }
 
 export interface UpdateProjectOperationRequest {
@@ -663,6 +702,112 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async adminVerifyUserContactMethod(requestParameters: AdminVerifyUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContactMethod> {
         const response = await this.adminVerifyUserContactMethodRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createPaymentRaw(requestParameters: CreatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createPayment().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling createPayment().'
+            );
+        }
+
+        if (requestParameters['createPaymentRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createPaymentRequest',
+                'Required parameter "createPaymentRequest" was null or undefined when calling createPayment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreatePaymentRequestToJSON(requestParameters['createPaymentRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createPayment(requestParameters: CreatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentResponse> {
+        const response = await this.createPaymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createPaymentPreviewRaw(requestParameters: CreatePaymentPreviewOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentPreviewResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createPaymentPreview().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling createPaymentPreview().'
+            );
+        }
+
+        if (requestParameters['createPaymentPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createPaymentPreviewRequest',
+                'Required parameter "createPaymentPreviewRequest" was null or undefined when calling createPaymentPreview().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments/preview`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreatePaymentPreviewRequestToJSON(requestParameters['createPaymentPreviewRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createPaymentPreview(requestParameters: CreatePaymentPreviewOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentPreviewResponse> {
+        const response = await this.createPaymentPreviewRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1190,6 +1335,41 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteWebApp(requestParameters: DeleteWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteWebAppRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     */
+    async getNotificationTemplatesRaw(requestParameters: GetNotificationTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotificationTemplatesResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getNotificationTemplates().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/notification-templates`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NotificationTemplatesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getNotificationTemplates(requestParameters: GetNotificationTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotificationTemplatesResponse> {
+        const response = await this.getNotificationTemplatesRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -2389,6 +2569,51 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async updateNotificationTemplatesRaw(requestParameters: UpdateNotificationTemplatesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotificationTemplatesResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateNotificationTemplates().'
+            );
+        }
+
+        if (requestParameters['updateNotificationTemplatesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateNotificationTemplatesRequest',
+                'Required parameter "updateNotificationTemplatesRequest" was null or undefined when calling updateNotificationTemplates().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/notification-templates`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateNotificationTemplatesRequestToJSON(requestParameters['updateNotificationTemplatesRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NotificationTemplatesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateNotificationTemplates(requestParameters: UpdateNotificationTemplatesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotificationTemplatesResponse> {
+        const response = await this.updateNotificationTemplatesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async updateProjectRaw(requestParameters: UpdateProjectOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
@@ -2575,6 +2800,8 @@ export const ListUserActionLogsActionTypeType = {
     CONTACT_METHOD_VERIFIED: 'CONTACT_METHOD_VERIFIED',
     CONTACT_METHOD_ADMIN_OVERRIDE: 'CONTACT_METHOD_ADMIN_OVERRIDE',
     USER_LOGIN: 'USER_LOGIN',
-    USER_LOGOUT: 'USER_LOGOUT'
+    USER_LOGOUT: 'USER_LOGOUT',
+    PAYMENT_CREATED: 'PAYMENT_CREATED',
+    WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT'
 } as const;
 export type ListUserActionLogsActionTypeType = typeof ListUserActionLogsActionTypeType[keyof typeof ListUserActionLogsActionTypeType];

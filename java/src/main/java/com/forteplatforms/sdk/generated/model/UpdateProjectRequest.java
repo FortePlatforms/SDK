@@ -36,9 +36,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateProjectRequest.JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID,
   UpdateProjectRequest.JSON_PROPERTY_RECAPTCHA_SECRET_KEY,
   UpdateProjectRequest.JSON_PROPERTY_PHONE_LOGIN_ENABLED,
-  UpdateProjectRequest.JSON_PROPERTY_EMAIL_LOGIN_ENABLED
+  UpdateProjectRequest.JSON_PROPERTY_EMAIL_LOGIN_ENABLED,
+  UpdateProjectRequest.JSON_PROPERTY_GOOGLE_LOGIN_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T17:04:00.780268-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID = "googleOAuthClientId";
   @javax.annotation.Nullable
@@ -55,6 +56,10 @@ public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_EMAIL_LOGIN_ENABLED = "emailLoginEnabled";
   @javax.annotation.Nullable
   private Boolean emailLoginEnabled;
+
+  public static final String JSON_PROPERTY_GOOGLE_LOGIN_ENABLED = "googleLoginEnabled";
+  @javax.annotation.Nullable
+  private Boolean googleLoginEnabled;
 
   public UpdateProjectRequest() { 
   }
@@ -155,6 +160,30 @@ public class UpdateProjectRequest {
   }
 
 
+  public UpdateProjectRequest googleLoginEnabled(@javax.annotation.Nullable Boolean googleLoginEnabled) {
+    this.googleLoginEnabled = googleLoginEnabled;
+    return this;
+  }
+
+  /**
+   * Get googleLoginEnabled
+   * @return googleLoginEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GOOGLE_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getGoogleLoginEnabled() {
+    return googleLoginEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GOOGLE_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGoogleLoginEnabled(@javax.annotation.Nullable Boolean googleLoginEnabled) {
+    this.googleLoginEnabled = googleLoginEnabled;
+  }
+
+
   /**
    * Return true if this UpdateProjectRequest object is equal to o.
    */
@@ -170,12 +199,13 @@ public class UpdateProjectRequest {
     return Objects.equals(this.googleOAuthClientId, updateProjectRequest.googleOAuthClientId) &&
         Objects.equals(this.recaptchaSecretKey, updateProjectRequest.recaptchaSecretKey) &&
         Objects.equals(this.phoneLoginEnabled, updateProjectRequest.phoneLoginEnabled) &&
-        Objects.equals(this.emailLoginEnabled, updateProjectRequest.emailLoginEnabled);
+        Objects.equals(this.emailLoginEnabled, updateProjectRequest.emailLoginEnabled) &&
+        Objects.equals(this.googleLoginEnabled, updateProjectRequest.googleLoginEnabled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(googleOAuthClientId, recaptchaSecretKey, phoneLoginEnabled, emailLoginEnabled);
+    return Objects.hash(googleOAuthClientId, recaptchaSecretKey, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled);
   }
 
   @Override
@@ -186,6 +216,7 @@ public class UpdateProjectRequest {
     sb.append("    recaptchaSecretKey: ").append(toIndentedString(recaptchaSecretKey)).append("\n");
     sb.append("    phoneLoginEnabled: ").append(toIndentedString(phoneLoginEnabled)).append("\n");
     sb.append("    emailLoginEnabled: ").append(toIndentedString(emailLoginEnabled)).append("\n");
+    sb.append("    googleLoginEnabled: ").append(toIndentedString(googleLoginEnabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,6 +282,11 @@ public class UpdateProjectRequest {
     // add `emailLoginEnabled` to the URL query string
     if (getEmailLoginEnabled() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%semailLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailLoginEnabled()))));
+    }
+
+    // add `googleLoginEnabled` to the URL query string
+    if (getGoogleLoginEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgoogleLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoogleLoginEnabled()))));
     }
 
     return joiner.toString();

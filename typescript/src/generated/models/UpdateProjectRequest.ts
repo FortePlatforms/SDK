@@ -43,6 +43,12 @@ export interface UpdateProjectRequest {
      * @memberof UpdateProjectRequest
      */
     emailLoginEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateProjectRequest
+     */
+    googleLoginEnabled?: boolean;
 }
 
 /**
@@ -66,6 +72,7 @@ export function UpdateProjectRequestFromJSONTyped(json: any, ignoreDiscriminator
         'recaptchaSecretKey': json['recaptchaSecretKey'] == null ? undefined : json['recaptchaSecretKey'],
         'phoneLoginEnabled': json['phoneLoginEnabled'] == null ? undefined : json['phoneLoginEnabled'],
         'emailLoginEnabled': json['emailLoginEnabled'] == null ? undefined : json['emailLoginEnabled'],
+        'googleLoginEnabled': json['googleLoginEnabled'] == null ? undefined : json['googleLoginEnabled'],
     };
 }
 
@@ -84,6 +91,7 @@ export function UpdateProjectRequestToJSONTyped(value?: UpdateProjectRequest | n
         'recaptchaSecretKey': value['recaptchaSecretKey'],
         'phoneLoginEnabled': value['phoneLoginEnabled'],
         'emailLoginEnabled': value['emailLoginEnabled'],
+        'googleLoginEnabled': value['googleLoginEnabled'],
     };
 }
 

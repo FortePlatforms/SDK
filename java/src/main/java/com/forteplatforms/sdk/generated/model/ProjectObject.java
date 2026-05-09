@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.NotificationTemplatesConfig;
 import com.forteplatforms.sdk.generated.model.ServiceObject;
 import com.forteplatforms.sdk.generated.model.WebAppObject;
 import java.time.OffsetDateTime;
@@ -51,10 +52,12 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID,
   ProjectObject.JSON_PROPERTY_PHONE_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_EMAIL_LOGIN_ENABLED,
+  ProjectObject.JSON_PROPERTY_GOOGLE_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_SANDBOX_MODE,
+  ProjectObject.JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG,
   ProjectObject.JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T17:04:00.780268-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectObject {
   public static final String JSON_PROPERTY_PROJECT_ID = "projectId";
   @javax.annotation.Nullable
@@ -108,9 +111,17 @@ public class ProjectObject {
   @javax.annotation.Nullable
   private Boolean emailLoginEnabled;
 
+  public static final String JSON_PROPERTY_GOOGLE_LOGIN_ENABLED = "googleLoginEnabled";
+  @javax.annotation.Nullable
+  private Boolean googleLoginEnabled;
+
   public static final String JSON_PROPERTY_SANDBOX_MODE = "sandboxMode";
   @javax.annotation.Nullable
   private Boolean sandboxMode;
+
+  public static final String JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG = "notificationTemplatesConfig";
+  @javax.annotation.Nullable
+  private NotificationTemplatesConfig notificationTemplatesConfig;
 
   public static final String JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY = "hasRecaptchaSecretKey";
   @javax.annotation.Nullable
@@ -447,6 +458,30 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject googleLoginEnabled(@javax.annotation.Nullable Boolean googleLoginEnabled) {
+    this.googleLoginEnabled = googleLoginEnabled;
+    return this;
+  }
+
+  /**
+   * Get googleLoginEnabled
+   * @return googleLoginEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GOOGLE_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getGoogleLoginEnabled() {
+    return googleLoginEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GOOGLE_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGoogleLoginEnabled(@javax.annotation.Nullable Boolean googleLoginEnabled) {
+    this.googleLoginEnabled = googleLoginEnabled;
+  }
+
+
   public ProjectObject sandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
     this.sandboxMode = sandboxMode;
     return this;
@@ -468,6 +503,30 @@ public class ProjectObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
     this.sandboxMode = sandboxMode;
+  }
+
+
+  public ProjectObject notificationTemplatesConfig(@javax.annotation.Nullable NotificationTemplatesConfig notificationTemplatesConfig) {
+    this.notificationTemplatesConfig = notificationTemplatesConfig;
+    return this;
+  }
+
+  /**
+   * Get notificationTemplatesConfig
+   * @return notificationTemplatesConfig
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public NotificationTemplatesConfig getNotificationTemplatesConfig() {
+    return notificationTemplatesConfig;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNotificationTemplatesConfig(@javax.annotation.Nullable NotificationTemplatesConfig notificationTemplatesConfig) {
+    this.notificationTemplatesConfig = notificationTemplatesConfig;
   }
 
 
@@ -520,13 +579,15 @@ public class ProjectObject {
         Objects.equals(this.googleOAuthClientId, projectObject.googleOAuthClientId) &&
         Objects.equals(this.phoneLoginEnabled, projectObject.phoneLoginEnabled) &&
         Objects.equals(this.emailLoginEnabled, projectObject.emailLoginEnabled) &&
+        Objects.equals(this.googleLoginEnabled, projectObject.googleLoginEnabled) &&
         Objects.equals(this.sandboxMode, projectObject.sandboxMode) &&
+        Objects.equals(this.notificationTemplatesConfig, projectObject.notificationTemplatesConfig) &&
         Objects.equals(this.hasRecaptchaSecretKey, projectObject.hasRecaptchaSecretKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, sandboxMode, hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, sandboxMode, notificationTemplatesConfig, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -546,7 +607,9 @@ public class ProjectObject {
     sb.append("    googleOAuthClientId: ").append(toIndentedString(googleOAuthClientId)).append("\n");
     sb.append("    phoneLoginEnabled: ").append(toIndentedString(phoneLoginEnabled)).append("\n");
     sb.append("    emailLoginEnabled: ").append(toIndentedString(emailLoginEnabled)).append("\n");
+    sb.append("    googleLoginEnabled: ").append(toIndentedString(googleLoginEnabled)).append("\n");
     sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
+    sb.append("    notificationTemplatesConfig: ").append(toIndentedString(notificationTemplatesConfig)).append("\n");
     sb.append("    hasRecaptchaSecretKey: ").append(toIndentedString(hasRecaptchaSecretKey)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -670,9 +733,19 @@ public class ProjectObject {
       joiner.add(String.format(java.util.Locale.ROOT, "%semailLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailLoginEnabled()))));
     }
 
+    // add `googleLoginEnabled` to the URL query string
+    if (getGoogleLoginEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgoogleLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoogleLoginEnabled()))));
+    }
+
     // add `sandboxMode` to the URL query string
     if (getSandboxMode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssandboxMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSandboxMode()))));
+    }
+
+    // add `notificationTemplatesConfig` to the URL query string
+    if (getNotificationTemplatesConfig() != null) {
+      joiner.add(getNotificationTemplatesConfig().toUrlQueryString(prefix + "notificationTemplatesConfig" + suffix));
     }
 
     // add `hasRecaptchaSecretKey` to the URL query string

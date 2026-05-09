@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig
 from forte_sdk.generated.models.service_object import ServiceObject
 from forte_sdk.generated.models.web_app_object import WebAppObject
 from typing import Optional, Set
@@ -42,9 +43,11 @@ class ProjectObject(BaseModel):
     google_o_auth_client_id: Optional[StrictStr] = Field(default=None, alias="googleOAuthClientId")
     phone_login_enabled: Optional[StrictBool] = Field(default=None, alias="phoneLoginEnabled")
     email_login_enabled: Optional[StrictBool] = Field(default=None, alias="emailLoginEnabled")
+    google_login_enabled: Optional[StrictBool] = Field(default=None, alias="googleLoginEnabled")
     sandbox_mode: Optional[StrictBool] = Field(default=None, alias="sandboxMode")
+    notification_templates_config: Optional[NotificationTemplatesConfig] = Field(default=None, alias="notificationTemplatesConfig")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "sandboxMode", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "sandboxMode", "notificationTemplatesConfig", "hasRecaptchaSecretKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +102,9 @@ class ProjectObject(BaseModel):
                 if _item_web_apps:
                     _items.append(_item_web_apps.to_dict())
             _dict['webApps'] = _items
+        # override the default output from pydantic by calling `to_dict()` of notification_templates_config
+        if self.notification_templates_config:
+            _dict['notificationTemplatesConfig'] = self.notification_templates_config.to_dict()
         return _dict
 
     @classmethod
@@ -124,7 +130,9 @@ class ProjectObject(BaseModel):
             "googleOAuthClientId": obj.get("googleOAuthClientId"),
             "phoneLoginEnabled": obj.get("phoneLoginEnabled"),
             "emailLoginEnabled": obj.get("emailLoginEnabled"),
+            "googleLoginEnabled": obj.get("googleLoginEnabled"),
             "sandboxMode": obj.get("sandboxMode"),
+            "notificationTemplatesConfig": NotificationTemplatesConfig.from_dict(obj["notificationTemplatesConfig"]) if obj.get("notificationTemplatesConfig") is not None else None,
             "hasRecaptchaSecretKey": obj.get("hasRecaptchaSecretKey")
         })
         return _obj

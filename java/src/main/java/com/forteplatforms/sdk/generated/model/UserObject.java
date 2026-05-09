@@ -50,10 +50,12 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_UPDATED_AT,
   UserObject.JSON_PROPERTY_LAST_ACTIVITY_AT,
   UserObject.JSON_PROPERTY_CUSTOM_METADATA_ATTRIBUTES,
+  UserObject.JSON_PROPERTY_STRIPE_CUSTOMER_ID,
   UserObject.JSON_PROPERTY_CONTACT_METHODS,
+  UserObject.JSON_PROPERTY_WELCOME_MESSAGE_SENT,
   UserObject.JSON_PROPERTY_STATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T17:04:00.780268-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserObject {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nullable
@@ -87,9 +89,17 @@ public class UserObject {
   @javax.annotation.Nonnull
   private Map<String, Object> customMetadataAttributes = new HashMap<>();
 
+  public static final String JSON_PROPERTY_STRIPE_CUSTOMER_ID = "stripeCustomerId";
+  @javax.annotation.Nullable
+  private String stripeCustomerId;
+
   public static final String JSON_PROPERTY_CONTACT_METHODS = "contactMethods";
   @javax.annotation.Nonnull
   private List<ContactMethod> contactMethods = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WELCOME_MESSAGE_SENT = "welcomeMessageSent";
+  @javax.annotation.Nullable
+  private Boolean welcomeMessageSent;
 
   /**
    * Gets or Sets state
@@ -344,6 +354,30 @@ public class UserObject {
   }
 
 
+  public UserObject stripeCustomerId(@javax.annotation.Nullable String stripeCustomerId) {
+    this.stripeCustomerId = stripeCustomerId;
+    return this;
+  }
+
+  /**
+   * Get stripeCustomerId
+   * @return stripeCustomerId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STRIPE_CUSTOMER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getStripeCustomerId() {
+    return stripeCustomerId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STRIPE_CUSTOMER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStripeCustomerId(@javax.annotation.Nullable String stripeCustomerId) {
+    this.stripeCustomerId = stripeCustomerId;
+  }
+
+
   public UserObject contactMethods(@javax.annotation.Nonnull List<ContactMethod> contactMethods) {
     this.contactMethods = contactMethods;
     return this;
@@ -373,6 +407,30 @@ public class UserObject {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setContactMethods(@javax.annotation.Nonnull List<ContactMethod> contactMethods) {
     this.contactMethods = contactMethods;
+  }
+
+
+  public UserObject welcomeMessageSent(@javax.annotation.Nullable Boolean welcomeMessageSent) {
+    this.welcomeMessageSent = welcomeMessageSent;
+    return this;
+  }
+
+  /**
+   * Get welcomeMessageSent
+   * @return welcomeMessageSent
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WELCOME_MESSAGE_SENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getWelcomeMessageSent() {
+    return welcomeMessageSent;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WELCOME_MESSAGE_SENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWelcomeMessageSent(@javax.annotation.Nullable Boolean welcomeMessageSent) {
+    this.welcomeMessageSent = welcomeMessageSent;
   }
 
 
@@ -420,13 +478,15 @@ public class UserObject {
         Objects.equals(this.updatedAt, userObject.updatedAt) &&
         Objects.equals(this.lastActivityAt, userObject.lastActivityAt) &&
         Objects.equals(this.customMetadataAttributes, userObject.customMetadataAttributes) &&
+        Objects.equals(this.stripeCustomerId, userObject.stripeCustomerId) &&
         Objects.equals(this.contactMethods, userObject.contactMethods) &&
+        Objects.equals(this.welcomeMessageSent, userObject.welcomeMessageSent) &&
         Objects.equals(this.state, userObject.state);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, contactMethods, state);
+    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, state);
   }
 
   @Override
@@ -441,7 +501,9 @@ public class UserObject {
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    lastActivityAt: ").append(toIndentedString(lastActivityAt)).append("\n");
     sb.append("    customMetadataAttributes: ").append(toIndentedString(customMetadataAttributes)).append("\n");
+    sb.append("    stripeCustomerId: ").append(toIndentedString(stripeCustomerId)).append("\n");
     sb.append("    contactMethods: ").append(toIndentedString(contactMethods)).append("\n");
+    sb.append("    welcomeMessageSent: ").append(toIndentedString(welcomeMessageSent)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -540,6 +602,11 @@ public class UserObject {
       }
     }
 
+    // add `stripeCustomerId` to the URL query string
+    if (getStripeCustomerId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstripeCustomerId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStripeCustomerId()))));
+    }
+
     // add `contactMethods` to the URL query string
     if (getContactMethods() != null) {
       for (int i = 0; i < getContactMethods().size(); i++) {
@@ -548,6 +615,11 @@ public class UserObject {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `welcomeMessageSent` to the URL query string
+    if (getWelcomeMessageSent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swelcomeMessageSent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWelcomeMessageSent()))));
     }
 
     // add `state` to the URL query string

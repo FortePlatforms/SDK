@@ -67,7 +67,9 @@ export const UserActionLogObjectActionTypeType = {
     CONTACT_METHOD_VERIFIED: 'CONTACT_METHOD_VERIFIED',
     CONTACT_METHOD_ADMIN_OVERRIDE: 'CONTACT_METHOD_ADMIN_OVERRIDE',
     USER_LOGIN: 'USER_LOGIN',
-    USER_LOGOUT: 'USER_LOGOUT'
+    USER_LOGOUT: 'USER_LOGOUT',
+    PAYMENT_CREATED: 'PAYMENT_CREATED',
+    WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT'
 } as const;
 export type UserActionLogObjectActionTypeType = typeof UserActionLogObjectActionTypeType[keyof typeof UserActionLogObjectActionTypeType];
 

@@ -77,10 +77,22 @@ export interface UserObject {
     customMetadataAttributes: { [key: string]: any; };
     /**
      * 
+     * @type {string}
+     * @memberof UserObject
+     */
+    stripeCustomerId?: string;
+    /**
+     * 
      * @type {Array<ContactMethod>}
      * @memberof UserObject
      */
     contactMethods: Array<ContactMethod>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserObject
+     */
+    welcomeMessageSent?: boolean;
     /**
      * 
      * @type {string}
@@ -132,7 +144,9 @@ export function UserObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
         'lastActivityAt': json['lastActivityAt'] == null ? undefined : (new Date(json['lastActivityAt'])),
         'customMetadataAttributes': json['customMetadataAttributes'],
+        'stripeCustomerId': json['stripeCustomerId'] == null ? undefined : json['stripeCustomerId'],
         'contactMethods': ((json['contactMethods'] as Array<any>).map(ContactMethodFromJSON)),
+        'welcomeMessageSent': json['welcomeMessageSent'] == null ? undefined : json['welcomeMessageSent'],
         'state': json['state'],
     };
 }
@@ -156,7 +170,9 @@ export function UserObjectToJSONTyped(value?: UserObject | null, ignoreDiscrimin
         'updatedAt': value['updatedAt'] == null ? value['updatedAt'] : value['updatedAt'].toISOString(),
         'lastActivityAt': value['lastActivityAt'] == null ? value['lastActivityAt'] : value['lastActivityAt'].toISOString(),
         'customMetadataAttributes': value['customMetadataAttributes'],
+        'stripeCustomerId': value['stripeCustomerId'],
         'contactMethods': ((value['contactMethods'] as Array<any>).map(ContactMethodToJSON)),
+        'welcomeMessageSent': value['welcomeMessageSent'],
         'state': value['state'],
     };
 }

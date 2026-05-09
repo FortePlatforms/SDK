@@ -44,7 +44,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ContactMethod.JSON_PROPERTY_PENDING_VERIFICATION_CODE_EXPIRATION_TIME,
   ContactMethod.JSON_PROPERTY_VERIFICATION_CODE_LAST_SENT_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T17:04:00.780268-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ContactMethod {
   public static final String JSON_PROPERTY_CONTACT_METHOD_ID = "contactMethodId";
   @javax.annotation.Nonnull

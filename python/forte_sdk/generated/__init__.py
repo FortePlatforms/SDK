@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.125"
+__version__ = "1.0.131"
 
 # Define package exports
 __all__ = [
@@ -35,6 +35,10 @@ __all__ = [
     "BuildStepLog",
     "ContactMethod",
     "CreateForteServiceRequest",
+    "CreatePaymentPreviewRequest",
+    "CreatePaymentPreviewResponse",
+    "CreatePaymentRequest",
+    "CreatePaymentResponse",
     "CreateProjectApiKeyRequest",
     "CreateProjectApiKeyResponse",
     "CreateServiceRequestProxyRequest",
@@ -52,12 +56,17 @@ __all__ = [
     "LatencyStats",
     "LogLineObject",
     "LoginUserResponse",
+    "NotificationTemplatesConfig",
+    "NotificationTemplatesResponse",
     "PaginatedResponseLogLineObject",
     "PaginatedResponseRequestLogObject",
     "PaginatedResponseServiceBuildRequestObject",
     "PaginatedResponseUserActionLogObject",
     "PaginatedResponseUserObject",
     "PaginatedResponseWebAppBuildRequestObject",
+    "PaymentAddress",
+    "PaymentLineItem",
+    "PaymentObject",
     "ProjectObject",
     "RegisterUserRequest",
     "RegisterUserResponse",
@@ -70,11 +79,13 @@ __all__ = [
     "ServiceBuildRequestObject",
     "ServiceMetricsResponse",
     "ServiceObject",
+    "StateHistory",
     "TestInvocationRequest",
     "TestInvocationResponse",
     "TimeSeriesDataPoint",
     "UpdateForteServiceRequest",
     "UpdateForteServiceResponse",
+    "UpdateNotificationTemplatesRequest",
     "UpdateProjectRequest",
     "UpdateWebAppRequest",
     "UpdateWebAppResponse",
@@ -109,6 +120,10 @@ from forte_sdk.generated.models.api_key_summary import ApiKeySummary as ApiKeySu
 from forte_sdk.generated.models.build_step_log import BuildStepLog as BuildStepLog
 from forte_sdk.generated.models.contact_method import ContactMethod as ContactMethod
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest as CreateForteServiceRequest
+from forte_sdk.generated.models.create_payment_preview_request import CreatePaymentPreviewRequest as CreatePaymentPreviewRequest
+from forte_sdk.generated.models.create_payment_preview_response import CreatePaymentPreviewResponse as CreatePaymentPreviewResponse
+from forte_sdk.generated.models.create_payment_request import CreatePaymentRequest as CreatePaymentRequest
+from forte_sdk.generated.models.create_payment_response import CreatePaymentResponse as CreatePaymentResponse
 from forte_sdk.generated.models.create_project_api_key_request import CreateProjectApiKeyRequest as CreateProjectApiKeyRequest
 from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse as CreateProjectApiKeyResponse
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
@@ -126,12 +141,17 @@ from forte_sdk.generated.models.latency_metrics import LatencyMetrics as Latency
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats
 from forte_sdk.generated.models.log_line_object import LogLineObject as LogLineObject
 from forte_sdk.generated.models.login_user_response import LoginUserResponse as LoginUserResponse
+from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig as NotificationTemplatesConfig
+from forte_sdk.generated.models.notification_templates_response import NotificationTemplatesResponse as NotificationTemplatesResponse
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject as PaginatedResponseLogLineObject
 from forte_sdk.generated.models.paginated_response_request_log_object import PaginatedResponseRequestLogObject as PaginatedResponseRequestLogObject
 from forte_sdk.generated.models.paginated_response_service_build_request_object import PaginatedResponseServiceBuildRequestObject as PaginatedResponseServiceBuildRequestObject
 from forte_sdk.generated.models.paginated_response_user_action_log_object import PaginatedResponseUserActionLogObject as PaginatedResponseUserActionLogObject
 from forte_sdk.generated.models.paginated_response_user_object import PaginatedResponseUserObject as PaginatedResponseUserObject
 from forte_sdk.generated.models.paginated_response_web_app_build_request_object import PaginatedResponseWebAppBuildRequestObject as PaginatedResponseWebAppBuildRequestObject
+from forte_sdk.generated.models.payment_address import PaymentAddress as PaymentAddress
+from forte_sdk.generated.models.payment_line_item import PaymentLineItem as PaymentLineItem
+from forte_sdk.generated.models.payment_object import PaymentObject as PaymentObject
 from forte_sdk.generated.models.project_object import ProjectObject as ProjectObject
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest as RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse as RegisterUserResponse
@@ -144,11 +164,13 @@ from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest 
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject as ServiceBuildRequestObject
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse as ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject as ServiceObject
+from forte_sdk.generated.models.state_history import StateHistory as StateHistory
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint as TimeSeriesDataPoint
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest as UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse as UpdateForteServiceResponse
+from forte_sdk.generated.models.update_notification_templates_request import UpdateNotificationTemplatesRequest as UpdateNotificationTemplatesRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest as UpdateProjectRequest
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest as UpdateWebAppRequest
 from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse as UpdateWebAppResponse

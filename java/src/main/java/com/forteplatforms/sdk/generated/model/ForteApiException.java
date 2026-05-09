@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE,
   ForteApiException.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T17:04:00.780268-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -179,11 +179,31 @@ public class ForteApiException {
     
     PHONE_LOGIN_NOT_ENABLED(String.valueOf("PHONE_LOGIN_NOT_ENABLED")),
     
+    GOOGLE_OAUTH_CLIENT_ID_REQUIRED(String.valueOf("GOOGLE_OAUTH_CLIENT_ID_REQUIRED")),
+    
+    SMS_REGISTRATION_NOT_APPROVED(String.valueOf("SMS_REGISTRATION_NOT_APPROVED")),
+    
+    SES_TENANT_NOT_VERIFIED(String.valueOf("SES_TENANT_NOT_VERIFIED")),
+    
     MISSING_GITHUB_BRANCH(String.valueOf("MISSING_GITHUB_BRANCH")),
     
     EXTERNAL_API_ERROR(String.valueOf("EXTERNAL_API_ERROR")),
     
     PAYMENTS_PROVIDER_REJECTED(String.valueOf("PAYMENTS_PROVIDER_REJECTED")),
+    
+    PAYMENTS_NOT_CONFIGURED_ON_PROJECT_OWNER(String.valueOf("PAYMENTS_NOT_CONFIGURED_ON_PROJECT_OWNER")),
+    
+    PAYMENTS_REQUIRE_APPROVED_COMPLIANCE(String.valueOf("PAYMENTS_REQUIRE_APPROVED_COMPLIANCE")),
+    
+    PAYMENT_LINE_ITEMS_REQUIRED(String.valueOf("PAYMENT_LINE_ITEMS_REQUIRED")),
+    
+    PAYMENT_AMOUNT_INVALID(String.valueOf("PAYMENT_AMOUNT_INVALID")),
+    
+    PAYMENT_CURRENCY_INVALID(String.valueOf("PAYMENT_CURRENCY_INVALID")),
+    
+    PAYMENT_TAX_ADDRESS_INVALID(String.valueOf("PAYMENT_TAX_ADDRESS_INVALID")),
+    
+    PAYMENT_TAX_CALCULATION_FAILED(String.valueOf("PAYMENT_TAX_CALCULATION_FAILED")),
     
     EMAIL_CONFIGURATION_INVALID(String.valueOf("EMAIL_CONFIGURATION_INVALID")),
     
@@ -199,7 +219,9 @@ public class ForteApiException {
     
     ENCRYPTION_PASSWORD_MISMATCH(String.valueOf("ENCRYPTION_PASSWORD_MISMATCH")),
     
-    COMPLIANCE_DOCUMENT_ENCRYPTED(String.valueOf("COMPLIANCE_DOCUMENT_ENCRYPTED"));
+    COMPLIANCE_DOCUMENT_ENCRYPTED(String.valueOf("COMPLIANCE_DOCUMENT_ENCRYPTED")),
+    
+    NOTIFICATION_TEMPLATE_INVALID(String.valueOf("NOTIFICATION_TEMPLATE_INVALID"));
 
     private String value;
 

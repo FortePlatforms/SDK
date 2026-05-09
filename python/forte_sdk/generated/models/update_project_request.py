@@ -30,7 +30,8 @@ class UpdateProjectRequest(BaseModel):
     recaptcha_secret_key: Optional[StrictStr] = Field(default=None, alias="recaptchaSecretKey")
     phone_login_enabled: Optional[StrictBool] = Field(default=None, alias="phoneLoginEnabled")
     email_login_enabled: Optional[StrictBool] = Field(default=None, alias="emailLoginEnabled")
-    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled"]
+    google_login_enabled: Optional[StrictBool] = Field(default=None, alias="googleLoginEnabled")
+    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,7 +87,8 @@ class UpdateProjectRequest(BaseModel):
             "googleOAuthClientId": obj.get("googleOAuthClientId"),
             "recaptchaSecretKey": obj.get("recaptchaSecretKey"),
             "phoneLoginEnabled": obj.get("phoneLoginEnabled"),
-            "emailLoginEnabled": obj.get("emailLoginEnabled")
+            "emailLoginEnabled": obj.get("emailLoginEnabled"),
+            "googleLoginEnabled": obj.get("googleLoginEnabled")
         })
         return _obj
 

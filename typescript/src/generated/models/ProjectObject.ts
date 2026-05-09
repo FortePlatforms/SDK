@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { NotificationTemplatesConfig } from './NotificationTemplatesConfig';
+import {
+    NotificationTemplatesConfigFromJSON,
+    NotificationTemplatesConfigFromJSONTyped,
+    NotificationTemplatesConfigToJSON,
+    NotificationTemplatesConfigToJSONTyped,
+} from './NotificationTemplatesConfig';
 import type { WebAppObject } from './WebAppObject';
 import {
     WebAppObjectFromJSON,
@@ -117,7 +124,19 @@ export interface ProjectObject {
      * @type {boolean}
      * @memberof ProjectObject
      */
+    googleLoginEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ProjectObject
+     */
     sandboxMode?: boolean;
+    /**
+     * 
+     * @type {NotificationTemplatesConfig}
+     * @memberof ProjectObject
+     */
+    notificationTemplatesConfig?: NotificationTemplatesConfig;
     /**
      * 
      * @type {boolean}
@@ -162,7 +181,9 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'googleOAuthClientId': json['googleOAuthClientId'] == null ? undefined : json['googleOAuthClientId'],
         'phoneLoginEnabled': json['phoneLoginEnabled'] == null ? undefined : json['phoneLoginEnabled'],
         'emailLoginEnabled': json['emailLoginEnabled'] == null ? undefined : json['emailLoginEnabled'],
+        'googleLoginEnabled': json['googleLoginEnabled'] == null ? undefined : json['googleLoginEnabled'],
         'sandboxMode': json['sandboxMode'] == null ? undefined : json['sandboxMode'],
+        'notificationTemplatesConfig': json['notificationTemplatesConfig'] == null ? undefined : NotificationTemplatesConfigFromJSON(json['notificationTemplatesConfig']),
         'hasRecaptchaSecretKey': json['hasRecaptchaSecretKey'] == null ? undefined : json['hasRecaptchaSecretKey'],
     };
 }
@@ -191,7 +212,9 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'googleOAuthClientId': value['googleOAuthClientId'],
         'phoneLoginEnabled': value['phoneLoginEnabled'],
         'emailLoginEnabled': value['emailLoginEnabled'],
+        'googleLoginEnabled': value['googleLoginEnabled'],
         'sandboxMode': value['sandboxMode'],
+        'notificationTemplatesConfig': NotificationTemplatesConfigToJSON(value['notificationTemplatesConfig']),
         'hasRecaptchaSecretKey': value['hasRecaptchaSecretKey'],
     };
 }
