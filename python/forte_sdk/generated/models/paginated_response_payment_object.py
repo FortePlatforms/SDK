@@ -17,27 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.payment_object import PaymentObject
 from typing import Optional, Set
 from typing_extensions import Self
 
-class StateHistory(BaseModel):
+class PaginatedResponsePaymentObject(BaseModel):
     """
-    StateHistory
+    PaginatedResponsePaymentObject
     """ # noqa: E501
-    timestamp: datetime
-    state: StrictStr
-    message: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["timestamp", "state", "message"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'REFUNDED']):
-            raise ValueError("must be one of enum values ('DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'REFUNDED')")
-        return value
+    items: List[PaymentObject]
+    has_next_page: StrictBool = Field(alias="hasNextPage")
+    next_page_token: Optional[StrictStr] = Field(default=None, alias="nextPageToken")
+    __properties: ClassVar[List[str]] = ["items", "hasNextPage", "nextPageToken"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,7 +50,7 @@ class StateHistory(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of StateHistory from a JSON string"""
+        """Create an instance of PaginatedResponsePaymentObject from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,11 +71,18 @@ class StateHistory(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item_items in self.items:
+                if _item_items:
+                    _items.append(_item_items.to_dict())
+            _dict['items'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of StateHistory from a dict"""
+        """Create an instance of PaginatedResponsePaymentObject from a dict"""
         if obj is None:
             return None
 
@@ -90,9 +90,9 @@ class StateHistory(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "timestamp": obj.get("timestamp"),
-            "state": obj.get("state"),
-            "message": obj.get("message")
+            "items": [PaymentObject.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None,
+            "hasNextPage": obj.get("hasNextPage"),
+            "nextPageToken": obj.get("nextPageToken")
         })
         return _obj
 

@@ -13,7 +13,7 @@
 
 package com.forteplatforms.sdk.generated.invoker;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:23:51.063233-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class Pair {
   private final String name;
   private final String value;

@@ -18,6 +18,7 @@ import type {
   AddContactMethodRequest,
   ContactMethod,
   LoginUserResponse,
+  PaginatedResponsePaymentObject,
   RegisterUserRequest,
   RegisterUserResponse,
   RenewSessionTokenResponse,
@@ -30,6 +31,8 @@ import {
     ContactMethodToJSON,
     LoginUserResponseFromJSON,
     LoginUserResponseToJSON,
+    PaginatedResponsePaymentObjectFromJSON,
+    PaginatedResponsePaymentObjectToJSON,
     RegisterUserRequestFromJSON,
     RegisterUserRequestToJSON,
     RegisterUserResponseFromJSON,
@@ -59,6 +62,15 @@ export interface GoogleAuthLoginCallbackRequest {
     gCsrfToken: string;
     credential: string;
     recaptchaToken?: string;
+}
+
+export interface ListMyPaymentsRequest {
+    projectId: string;
+    metadataKey?: string;
+    metadataValue?: string;
+    minTime?: Date;
+    maxTime?: Date;
+    nextToken?: string;
 }
 
 export interface LogoutRequest {
@@ -290,6 +302,61 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async googleAuthLoginCallback(requestParameters: GoogleAuthLoginCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginUserResponse> {
         const response = await this.googleAuthLoginCallbackRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async listMyPaymentsRaw(requestParameters: ListMyPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponsePaymentObject>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listMyPayments().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['metadataKey'] != null) {
+            queryParameters['metadataKey'] = requestParameters['metadataKey'];
+        }
+
+        if (requestParameters['metadataValue'] != null) {
+            queryParameters['metadataValue'] = requestParameters['metadataValue'];
+        }
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payments`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponsePaymentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listMyPayments(requestParameters: ListMyPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponsePaymentObject> {
+        const response = await this.listMyPaymentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -43,6 +43,7 @@ from forte_sdk.generated.models.login_user_response import LoginUserResponse
 from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig
 from forte_sdk.generated.models.notification_templates_response import NotificationTemplatesResponse
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject
+from forte_sdk.generated.models.paginated_response_payment_object import PaginatedResponsePaymentObject
 from forte_sdk.generated.models.paginated_response_request_log_object import PaginatedResponseRequestLogObject
 from forte_sdk.generated.models.paginated_response_service_build_request_object import PaginatedResponseServiceBuildRequestObject
 from forte_sdk.generated.models.paginated_response_user_action_log_object import PaginatedResponseUserActionLogObject
@@ -51,6 +52,7 @@ from forte_sdk.generated.models.paginated_response_web_app_build_request_object 
 from forte_sdk.generated.models.payment_address import PaymentAddress
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem
 from forte_sdk.generated.models.payment_object import PaymentObject
+from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig
 from forte_sdk.generated.models.project_object import ProjectObject
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse
@@ -73,6 +75,7 @@ from forte_sdk.generated.models.update_notification_templates_request import Upd
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest
 from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse
+from forte_sdk.generated.models.upsert_payment_trigger_request import UpsertPaymentTriggerRequest
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject

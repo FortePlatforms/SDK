@@ -17,26 +17,36 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class StateHistory(BaseModel):
+class UpsertPaymentTriggerRequest(BaseModel):
     """
-    StateHistory
+    UpsertPaymentTriggerRequest
     """ # noqa: E501
-    timestamp: datetime
-    state: StrictStr
-    message: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["timestamp", "state", "message"]
+    display_name: Annotated[str, Field(min_length=0, strict=True, max_length=120)] = Field(alias="displayName")
+    target_service_id: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="targetServiceId")
+    target_path: Annotated[str, Field(min_length=0, strict=True, max_length=500)] = Field(alias="targetPath")
+    events: Annotated[List[StrictStr], Field(min_length=1)]
+    enabled: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["displayName", "targetServiceId", "targetPath", "events", "enabled"]
 
-    @field_validator('state')
-    def state_validate_enum(cls, value):
+    @field_validator('target_path')
+    def target_path_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^\/.*", value):
+            raise ValueError(r"must validate the regular expression /^\/.*/")
+        return value
+
+    @field_validator('events')
+    def events_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'REFUNDED']):
-            raise ValueError("must be one of enum values ('DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'REFUNDED')")
+        for i in value:
+            if i not in set(['PAYMENT_COMPLETED', 'PAYMENT_REFUNDED']):
+                raise ValueError("each list item must be one of ('PAYMENT_COMPLETED', 'PAYMENT_REFUNDED')")
         return value
 
     model_config = ConfigDict(
@@ -57,7 +67,7 @@ class StateHistory(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of StateHistory from a JSON string"""
+        """Create an instance of UpsertPaymentTriggerRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +92,7 @@ class StateHistory(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of StateHistory from a dict"""
+        """Create an instance of UpsertPaymentTriggerRequest from a dict"""
         if obj is None:
             return None
 
@@ -90,9 +100,11 @@ class StateHistory(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "timestamp": obj.get("timestamp"),
-            "state": obj.get("state"),
-            "message": obj.get("message")
+            "displayName": obj.get("displayName"),
+            "targetServiceId": obj.get("targetServiceId"),
+            "targetPath": obj.get("targetPath"),
+            "events": obj.get("events"),
+            "enabled": obj.get("enabled")
         })
         return _obj
 

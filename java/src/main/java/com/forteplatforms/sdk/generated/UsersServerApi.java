@@ -21,6 +21,8 @@ import com.forteplatforms.sdk.generated.invoker.Pair;
 import com.forteplatforms.sdk.generated.model.AddContactMethodRequest;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.LoginUserResponse;
+import java.time.OffsetDateTime;
+import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
 import com.forteplatforms.sdk.generated.model.RegisterUserRequest;
 import com.forteplatforms.sdk.generated.model.RegisterUserResponse;
 import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
@@ -57,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:23:51.063233-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UsersServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -685,6 +687,167 @@ public class UsersServerApi {
         .header("Content-Type", entity.getContentType().getValue())
         .method("POST", HttpRequest.BodyPublishers
             .ofInputStream(() -> new ByteArrayInputStream(formBytes)));
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param metadataKey  (optional)
+   * @param metadataValue  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return PaginatedResponsePaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponsePaymentObject listMyPayments(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listMyPayments(projectId, metadataKey, metadataValue, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param metadataKey  (optional)
+   * @param metadataValue  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponsePaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponsePaymentObject listMyPayments(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponsePaymentObject> localVarResponse = listMyPaymentsWithHttpInfo(projectId, metadataKey, metadataValue, minTime, maxTime, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param metadataKey  (optional)
+   * @param metadataValue  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponsePaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponsePaymentObject> listMyPaymentsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listMyPaymentsWithHttpInfo(projectId, metadataKey, metadataValue, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param metadataKey  (optional)
+   * @param metadataValue  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponsePaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponsePaymentObject> listMyPaymentsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listMyPaymentsRequestBuilder(projectId, metadataKey, metadataValue, minTime, maxTime, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listMyPayments", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponsePaymentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponsePaymentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponsePaymentObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponsePaymentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listMyPaymentsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listMyPayments");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/payments"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "metadataKey";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metadataKey", metadataKey));
+    localVarQueryParameterBaseName = "metadataValue";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metadataValue", metadataValue));
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

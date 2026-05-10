@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE,
   ForteApiException.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:23:51.063233-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -205,6 +205,12 @@ public class ForteApiException {
     
     PAYMENT_TAX_CALCULATION_FAILED(String.valueOf("PAYMENT_TAX_CALCULATION_FAILED")),
     
+    PAYMENT_METADATA_FILTER_INVALID(String.valueOf("PAYMENT_METADATA_FILTER_INVALID")),
+    
+    PAYMENT_TRIGGER_TARGET_SERVICE_NOT_FOUND(String.valueOf("PAYMENT_TRIGGER_TARGET_SERVICE_NOT_FOUND")),
+    
+    PAYMENT_TRIGGER_NOT_FOUND(String.valueOf("PAYMENT_TRIGGER_NOT_FOUND")),
+    
     EMAIL_CONFIGURATION_INVALID(String.valueOf("EMAIL_CONFIGURATION_INVALID")),
     
     SES_TENANT_NOT_PROVISIONED(String.valueOf("SES_TENANT_NOT_PROVISIONED")),
@@ -221,7 +227,9 @@ public class ForteApiException {
     
     COMPLIANCE_DOCUMENT_ENCRYPTED(String.valueOf("COMPLIANCE_DOCUMENT_ENCRYPTED")),
     
-    NOTIFICATION_TEMPLATE_INVALID(String.valueOf("NOTIFICATION_TEMPLATE_INVALID"));
+    NOTIFICATION_TEMPLATE_INVALID(String.valueOf("NOTIFICATION_TEMPLATE_INVALID")),
+    
+    NOTIFICATION_TEMPLATE_MISSING_REQUIRED_VARIABLE(String.valueOf("NOTIFICATION_TEMPLATE_MISSING_REQUIRED_VARIABLE"));
 
     private String value;
 

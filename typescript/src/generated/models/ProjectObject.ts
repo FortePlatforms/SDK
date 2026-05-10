@@ -34,6 +34,13 @@ import {
     ServiceObjectToJSON,
     ServiceObjectToJSONTyped,
 } from './ServiceObject';
+import type { PaymentTriggerConfig } from './PaymentTriggerConfig';
+import {
+    PaymentTriggerConfigFromJSON,
+    PaymentTriggerConfigFromJSONTyped,
+    PaymentTriggerConfigToJSON,
+    PaymentTriggerConfigToJSONTyped,
+} from './PaymentTriggerConfig';
 
 /**
  * 
@@ -139,6 +146,12 @@ export interface ProjectObject {
     notificationTemplatesConfig?: NotificationTemplatesConfig;
     /**
      * 
+     * @type {Array<PaymentTriggerConfig>}
+     * @memberof ProjectObject
+     */
+    paymentTriggers?: Array<PaymentTriggerConfig>;
+    /**
+     * 
      * @type {boolean}
      * @memberof ProjectObject
      */
@@ -184,6 +197,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'googleLoginEnabled': json['googleLoginEnabled'] == null ? undefined : json['googleLoginEnabled'],
         'sandboxMode': json['sandboxMode'] == null ? undefined : json['sandboxMode'],
         'notificationTemplatesConfig': json['notificationTemplatesConfig'] == null ? undefined : NotificationTemplatesConfigFromJSON(json['notificationTemplatesConfig']),
+        'paymentTriggers': json['paymentTriggers'] == null ? undefined : ((json['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigFromJSON)),
         'hasRecaptchaSecretKey': json['hasRecaptchaSecretKey'] == null ? undefined : json['hasRecaptchaSecretKey'],
     };
 }
@@ -215,6 +229,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'googleLoginEnabled': value['googleLoginEnabled'],
         'sandboxMode': value['sandboxMode'],
         'notificationTemplatesConfig': NotificationTemplatesConfigToJSON(value['notificationTemplatesConfig']),
+        'paymentTriggers': value['paymentTriggers'] == null ? undefined : ((value['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigToJSON)),
         'hasRecaptchaSecretKey': value['hasRecaptchaSecretKey'],
     };
 }

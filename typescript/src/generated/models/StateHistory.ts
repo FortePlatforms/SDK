@@ -48,7 +48,8 @@ export const StateHistoryStateType = {
     PROCESSING: 'PROCESSING',
     COMPLETED: 'COMPLETED',
     CANCELLED: 'CANCELLED',
-    FAILED: 'FAILED'
+    FAILED: 'FAILED',
+    REFUNDED: 'REFUNDED'
 } as const;
 export type StateHistoryStateType = typeof StateHistoryStateType[keyof typeof StateHistoryStateType];
 

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.forteplatforms.sdk.generated.model.RequestLogObject;
+import com.forteplatforms.sdk.generated.model.PaymentObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,18 +33,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * PaginatedResponseRequestLogObject
+ * PaginatedResponsePaymentObject
  */
 @JsonPropertyOrder({
-  PaginatedResponseRequestLogObject.JSON_PROPERTY_ITEMS,
-  PaginatedResponseRequestLogObject.JSON_PROPERTY_HAS_NEXT_PAGE,
-  PaginatedResponseRequestLogObject.JSON_PROPERTY_NEXT_PAGE_TOKEN
+  PaginatedResponsePaymentObject.JSON_PROPERTY_ITEMS,
+  PaginatedResponsePaymentObject.JSON_PROPERTY_HAS_NEXT_PAGE,
+  PaginatedResponsePaymentObject.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:23:51.063233-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
-public class PaginatedResponseRequestLogObject {
+public class PaginatedResponsePaymentObject {
   public static final String JSON_PROPERTY_ITEMS = "items";
   @javax.annotation.Nonnull
-  private List<RequestLogObject> items = new ArrayList<>();
+  private List<PaymentObject> items = new ArrayList<>();
 
   public static final String JSON_PROPERTY_HAS_NEXT_PAGE = "hasNextPage";
   @javax.annotation.Nonnull
@@ -54,15 +54,15 @@ public class PaginatedResponseRequestLogObject {
   @javax.annotation.Nullable
   private String nextPageToken;
 
-  public PaginatedResponseRequestLogObject() { 
+  public PaginatedResponsePaymentObject() { 
   }
 
-  public PaginatedResponseRequestLogObject items(@javax.annotation.Nonnull List<RequestLogObject> items) {
+  public PaginatedResponsePaymentObject items(@javax.annotation.Nonnull List<PaymentObject> items) {
     this.items = items;
     return this;
   }
 
-  public PaginatedResponseRequestLogObject addItemsItem(RequestLogObject itemsItem) {
+  public PaginatedResponsePaymentObject addItemsItem(PaymentObject itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -77,19 +77,19 @@ public class PaginatedResponseRequestLogObject {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_ITEMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<RequestLogObject> getItems() {
+  public List<PaymentObject> getItems() {
     return items;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ITEMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setItems(@javax.annotation.Nonnull List<RequestLogObject> items) {
+  public void setItems(@javax.annotation.Nonnull List<PaymentObject> items) {
     this.items = items;
   }
 
 
-  public PaginatedResponseRequestLogObject hasNextPage(@javax.annotation.Nonnull Boolean hasNextPage) {
+  public PaginatedResponsePaymentObject hasNextPage(@javax.annotation.Nonnull Boolean hasNextPage) {
     this.hasNextPage = hasNextPage;
     return this;
   }
@@ -113,7 +113,7 @@ public class PaginatedResponseRequestLogObject {
   }
 
 
-  public PaginatedResponseRequestLogObject nextPageToken(@javax.annotation.Nullable String nextPageToken) {
+  public PaginatedResponsePaymentObject nextPageToken(@javax.annotation.Nullable String nextPageToken) {
     this.nextPageToken = nextPageToken;
     return this;
   }
@@ -138,7 +138,7 @@ public class PaginatedResponseRequestLogObject {
 
 
   /**
-   * Return true if this PaginatedResponseRequestLogObject object is equal to o.
+   * Return true if this PaginatedResponsePaymentObject object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -148,10 +148,10 @@ public class PaginatedResponseRequestLogObject {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PaginatedResponseRequestLogObject paginatedResponseRequestLogObject = (PaginatedResponseRequestLogObject) o;
-    return Objects.equals(this.items, paginatedResponseRequestLogObject.items) &&
-        Objects.equals(this.hasNextPage, paginatedResponseRequestLogObject.hasNextPage) &&
-        Objects.equals(this.nextPageToken, paginatedResponseRequestLogObject.nextPageToken);
+    PaginatedResponsePaymentObject paginatedResponsePaymentObject = (PaginatedResponsePaymentObject) o;
+    return Objects.equals(this.items, paginatedResponsePaymentObject.items) &&
+        Objects.equals(this.hasNextPage, paginatedResponsePaymentObject.hasNextPage) &&
+        Objects.equals(this.nextPageToken, paginatedResponsePaymentObject.nextPageToken);
   }
 
   @Override
@@ -162,7 +162,7 @@ public class PaginatedResponseRequestLogObject {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PaginatedResponseRequestLogObject {\n");
+    sb.append("class PaginatedResponsePaymentObject {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    hasNextPage: ").append(toIndentedString(hasNextPage)).append("\n");
     sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");

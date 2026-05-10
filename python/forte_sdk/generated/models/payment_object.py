@@ -55,8 +55,8 @@ class PaymentObject(BaseModel):
     @field_validator('state')
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED']):
-            raise ValueError("must be one of enum values ('DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED')")
+        if value not in set(['DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'REFUNDED']):
+            raise ValueError("must be one of enum values ('DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'REFUNDED')")
         return value
 
     model_config = ConfigDict(

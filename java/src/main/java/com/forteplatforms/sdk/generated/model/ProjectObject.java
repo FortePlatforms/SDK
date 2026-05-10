@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesConfig;
+import com.forteplatforms.sdk.generated.model.PaymentTriggerConfig;
 import com.forteplatforms.sdk.generated.model.ServiceObject;
 import com.forteplatforms.sdk.generated.model.WebAppObject;
 import java.time.OffsetDateTime;
@@ -55,9 +56,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_GOOGLE_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_SANDBOX_MODE,
   ProjectObject.JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG,
+  ProjectObject.JSON_PROPERTY_PAYMENT_TRIGGERS,
   ProjectObject.JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T18:24:44.364178-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:23:51.063233-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ProjectObject {
   public static final String JSON_PROPERTY_PROJECT_ID = "projectId";
   @javax.annotation.Nullable
@@ -122,6 +124,10 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG = "notificationTemplatesConfig";
   @javax.annotation.Nullable
   private NotificationTemplatesConfig notificationTemplatesConfig;
+
+  public static final String JSON_PROPERTY_PAYMENT_TRIGGERS = "paymentTriggers";
+  @javax.annotation.Nullable
+  private List<PaymentTriggerConfig> paymentTriggers = new ArrayList<>();
 
   public static final String JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY = "hasRecaptchaSecretKey";
   @javax.annotation.Nullable
@@ -530,6 +536,38 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject paymentTriggers(@javax.annotation.Nullable List<PaymentTriggerConfig> paymentTriggers) {
+    this.paymentTriggers = paymentTriggers;
+    return this;
+  }
+
+  public ProjectObject addPaymentTriggersItem(PaymentTriggerConfig paymentTriggersItem) {
+    if (this.paymentTriggers == null) {
+      this.paymentTriggers = new ArrayList<>();
+    }
+    this.paymentTriggers.add(paymentTriggersItem);
+    return this;
+  }
+
+  /**
+   * Get paymentTriggers
+   * @return paymentTriggers
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PAYMENT_TRIGGERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<PaymentTriggerConfig> getPaymentTriggers() {
+    return paymentTriggers;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PAYMENT_TRIGGERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPaymentTriggers(@javax.annotation.Nullable List<PaymentTriggerConfig> paymentTriggers) {
+    this.paymentTriggers = paymentTriggers;
+  }
+
+
   public ProjectObject hasRecaptchaSecretKey(@javax.annotation.Nullable Boolean hasRecaptchaSecretKey) {
     this.hasRecaptchaSecretKey = hasRecaptchaSecretKey;
     return this;
@@ -582,12 +620,13 @@ public class ProjectObject {
         Objects.equals(this.googleLoginEnabled, projectObject.googleLoginEnabled) &&
         Objects.equals(this.sandboxMode, projectObject.sandboxMode) &&
         Objects.equals(this.notificationTemplatesConfig, projectObject.notificationTemplatesConfig) &&
+        Objects.equals(this.paymentTriggers, projectObject.paymentTriggers) &&
         Objects.equals(this.hasRecaptchaSecretKey, projectObject.hasRecaptchaSecretKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, sandboxMode, notificationTemplatesConfig, hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, sandboxMode, notificationTemplatesConfig, paymentTriggers, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -610,6 +649,7 @@ public class ProjectObject {
     sb.append("    googleLoginEnabled: ").append(toIndentedString(googleLoginEnabled)).append("\n");
     sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
     sb.append("    notificationTemplatesConfig: ").append(toIndentedString(notificationTemplatesConfig)).append("\n");
+    sb.append("    paymentTriggers: ").append(toIndentedString(paymentTriggers)).append("\n");
     sb.append("    hasRecaptchaSecretKey: ").append(toIndentedString(hasRecaptchaSecretKey)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -746,6 +786,16 @@ public class ProjectObject {
     // add `notificationTemplatesConfig` to the URL query string
     if (getNotificationTemplatesConfig() != null) {
       joiner.add(getNotificationTemplatesConfig().toUrlQueryString(prefix + "notificationTemplatesConfig" + suffix));
+    }
+
+    // add `paymentTriggers` to the URL query string
+    if (getPaymentTriggers() != null) {
+      for (int i = 0; i < getPaymentTriggers().size(); i++) {
+        if (getPaymentTriggers().get(i) != null) {
+          joiner.add(getPaymentTriggers().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%spaymentTriggers%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `hasRecaptchaSecretKey` to the URL query string

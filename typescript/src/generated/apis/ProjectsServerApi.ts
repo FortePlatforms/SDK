@@ -31,11 +31,13 @@ import type {
   CreateWebAppRequest,
   NotificationTemplatesResponse,
   PaginatedResponseLogLineObject,
+  PaginatedResponsePaymentObject,
   PaginatedResponseRequestLogObject,
   PaginatedResponseServiceBuildRequestObject,
   PaginatedResponseUserActionLogObject,
   PaginatedResponseUserObject,
   PaginatedResponseWebAppBuildRequestObject,
+  PaymentTriggerConfig,
   ProjectObject,
   RequestLogObject,
   SendUserEmailRequest,
@@ -51,6 +53,7 @@ import type {
   UpdateProjectRequest,
   UpdateWebAppRequest,
   UpdateWebAppResponse,
+  UpsertPaymentTriggerRequest,
   UserMetricsResponse,
   UserObject,
   WebAppBuildRequestObject,
@@ -89,6 +92,8 @@ import {
     NotificationTemplatesResponseToJSON,
     PaginatedResponseLogLineObjectFromJSON,
     PaginatedResponseLogLineObjectToJSON,
+    PaginatedResponsePaymentObjectFromJSON,
+    PaginatedResponsePaymentObjectToJSON,
     PaginatedResponseRequestLogObjectFromJSON,
     PaginatedResponseRequestLogObjectToJSON,
     PaginatedResponseServiceBuildRequestObjectFromJSON,
@@ -99,6 +104,8 @@ import {
     PaginatedResponseUserObjectToJSON,
     PaginatedResponseWebAppBuildRequestObjectFromJSON,
     PaginatedResponseWebAppBuildRequestObjectToJSON,
+    PaymentTriggerConfigFromJSON,
+    PaymentTriggerConfigToJSON,
     ProjectObjectFromJSON,
     ProjectObjectToJSON,
     RequestLogObjectFromJSON,
@@ -129,6 +136,8 @@ import {
     UpdateWebAppRequestToJSON,
     UpdateWebAppResponseFromJSON,
     UpdateWebAppResponseToJSON,
+    UpsertPaymentTriggerRequestFromJSON,
+    UpsertPaymentTriggerRequestToJSON,
     UserMetricsResponseFromJSON,
     UserMetricsResponseToJSON,
     UserObjectFromJSON,
@@ -183,6 +192,11 @@ export interface CreatePaymentPreviewOperationRequest {
     createPaymentPreviewRequest: CreatePaymentPreviewRequest;
 }
 
+export interface CreatePaymentTriggerRequest {
+    projectId: string;
+    upsertPaymentTriggerRequest: UpsertPaymentTriggerRequest;
+}
+
 export interface CreateProjectRequest {
     projectName: string;
     sandboxMode?: boolean;
@@ -219,6 +233,11 @@ export interface CreateWebAppDeploymentRequest {
     projectId: string;
     webAppId: string;
     commitSha?: string;
+}
+
+export interface DeletePaymentTriggerRequest {
+    projectId: string;
+    triggerId: string;
 }
 
 export interface DeleteProjectRequest {
@@ -312,6 +331,10 @@ export interface ListLogLinesRequest {
     nextToken?: string;
 }
 
+export interface ListPaymentTriggersRequest {
+    projectId: string;
+}
+
 export interface ListProjectApiKeysRequest {
     projectId: string;
 }
@@ -322,6 +345,7 @@ export interface ListRequestInvocationLogsRequest {
     minTime?: Date;
     maxTime?: Date;
     statusCode?: number;
+    requestPath?: string;
     nextToken?: string;
 }
 
@@ -337,6 +361,17 @@ export interface ListUserActionLogsRequest {
     projectId: string;
     userId: string;
     actionType?: ListUserActionLogsActionTypeType;
+    minTime?: Date;
+    maxTime?: Date;
+    nextToken?: string;
+}
+
+export interface ListUserPaymentsRequest {
+    projectId: string;
+    userId: string;
+    state?: ListUserPaymentsStateType;
+    metadataKey?: string;
+    metadataValue?: string;
     minTime?: Date;
     maxTime?: Date;
     nextToken?: string;
@@ -404,6 +439,12 @@ export interface TestInvocationOperationRequest {
 export interface UpdateNotificationTemplatesOperationRequest {
     projectId: string;
     updateNotificationTemplatesRequest: UpdateNotificationTemplatesRequest;
+}
+
+export interface UpdatePaymentTriggerRequest {
+    projectId: string;
+    triggerId: string;
+    upsertPaymentTriggerRequest: UpsertPaymentTriggerRequest;
 }
 
 export interface UpdateProjectOperationRequest {
@@ -813,6 +854,51 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async createPaymentTriggerRaw(requestParameters: CreatePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentTriggerConfig>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createPaymentTrigger().'
+            );
+        }
+
+        if (requestParameters['upsertPaymentTriggerRequest'] == null) {
+            throw new runtime.RequiredError(
+                'upsertPaymentTriggerRequest',
+                'Required parameter "upsertPaymentTriggerRequest" was null or undefined when calling createPaymentTrigger().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payment-triggers`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertPaymentTriggerRequestToJSON(requestParameters['upsertPaymentTriggerRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentTriggerConfigFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createPaymentTrigger(requestParameters: CreatePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentTriggerConfig> {
+        const response = await this.createPaymentTriggerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async createProjectRaw(requestParameters: CreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
         if (requestParameters['projectName'] == null) {
             throw new runtime.RequiredError(
@@ -1133,6 +1219,48 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     async createWebAppDeployment(requestParameters: CreateWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppBuildRequestObject> {
         const response = await this.createWebAppDeploymentRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     */
+    async deletePaymentTriggerRaw(requestParameters: DeletePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deletePaymentTrigger().'
+            );
+        }
+
+        if (requestParameters['triggerId'] == null) {
+            throw new runtime.RequiredError(
+                'triggerId',
+                'Required parameter "triggerId" was null or undefined when calling deletePaymentTrigger().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payment-triggers/{triggerId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"triggerId"}}`, encodeURIComponent(String(requestParameters['triggerId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deletePaymentTrigger(requestParameters: DeletePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deletePaymentTriggerRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -1860,6 +1988,41 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async listPaymentTriggersRaw(requestParameters: ListPaymentTriggersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PaymentTriggerConfig>>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listPaymentTriggers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payment-triggers`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PaymentTriggerConfigFromJSON));
+    }
+
+    /**
+     */
+    async listPaymentTriggers(requestParameters: ListPaymentTriggersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PaymentTriggerConfig>> {
+        const response = await this.listPaymentTriggersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async listProjectApiKeysRaw(requestParameters: ListProjectApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApiKeySummary>>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
@@ -1949,6 +2112,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['statusCode'] != null) {
             queryParameters['statusCode'] = requestParameters['statusCode'];
+        }
+
+        if (requestParameters['requestPath'] != null) {
+            queryParameters['requestPath'] = requestParameters['requestPath'];
         }
 
         if (requestParameters['nextToken'] != null) {
@@ -2090,6 +2257,73 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listUserActionLogs(requestParameters: ListUserActionLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseUserActionLogObject> {
         const response = await this.listUserActionLogsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async listUserPaymentsRaw(requestParameters: ListUserPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponsePaymentObject>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listUserPayments().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling listUserPayments().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+
+        if (requestParameters['metadataKey'] != null) {
+            queryParameters['metadataKey'] = requestParameters['metadataKey'];
+        }
+
+        if (requestParameters['metadataValue'] != null) {
+            queryParameters['metadataValue'] = requestParameters['metadataValue'];
+        }
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponsePaymentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listUserPayments(requestParameters: ListUserPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponsePaymentObject> {
+        const response = await this.listUserPaymentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2614,6 +2848,59 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async updatePaymentTriggerRaw(requestParameters: UpdatePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentTriggerConfig>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updatePaymentTrigger().'
+            );
+        }
+
+        if (requestParameters['triggerId'] == null) {
+            throw new runtime.RequiredError(
+                'triggerId',
+                'Required parameter "triggerId" was null or undefined when calling updatePaymentTrigger().'
+            );
+        }
+
+        if (requestParameters['upsertPaymentTriggerRequest'] == null) {
+            throw new runtime.RequiredError(
+                'upsertPaymentTriggerRequest',
+                'Required parameter "upsertPaymentTriggerRequest" was null or undefined when calling updatePaymentTrigger().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payment-triggers/{triggerId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"triggerId"}}`, encodeURIComponent(String(requestParameters['triggerId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertPaymentTriggerRequestToJSON(requestParameters['upsertPaymentTriggerRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentTriggerConfigFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updatePaymentTrigger(requestParameters: UpdatePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentTriggerConfig> {
+        const response = await this.updatePaymentTriggerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async updateProjectRaw(requestParameters: UpdateProjectOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
@@ -2805,3 +3092,15 @@ export const ListUserActionLogsActionTypeType = {
     WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT'
 } as const;
 export type ListUserActionLogsActionTypeType = typeof ListUserActionLogsActionTypeType[keyof typeof ListUserActionLogsActionTypeType];
+/**
+ * @export
+ */
+export const ListUserPaymentsStateType = {
+    DRAFT: 'DRAFT',
+    PROCESSING: 'PROCESSING',
+    COMPLETED: 'COMPLETED',
+    CANCELLED: 'CANCELLED',
+    FAILED: 'FAILED',
+    REFUNDED: 'REFUNDED'
+} as const;
+export type ListUserPaymentsStateType = typeof ListUserPaymentsStateType[keyof typeof ListUserPaymentsStateType];

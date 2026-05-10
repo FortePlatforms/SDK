@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig
+from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig
 from forte_sdk.generated.models.service_object import ServiceObject
 from forte_sdk.generated.models.web_app_object import WebAppObject
 from typing import Optional, Set
@@ -46,8 +47,9 @@ class ProjectObject(BaseModel):
     google_login_enabled: Optional[StrictBool] = Field(default=None, alias="googleLoginEnabled")
     sandbox_mode: Optional[StrictBool] = Field(default=None, alias="sandboxMode")
     notification_templates_config: Optional[NotificationTemplatesConfig] = Field(default=None, alias="notificationTemplatesConfig")
+    payment_triggers: Optional[List[PaymentTriggerConfig]] = Field(default=None, alias="paymentTriggers")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "sandboxMode", "notificationTemplatesConfig", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "hasRecaptchaSecretKey"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -105,6 +107,13 @@ class ProjectObject(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of notification_templates_config
         if self.notification_templates_config:
             _dict['notificationTemplatesConfig'] = self.notification_templates_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in payment_triggers (list)
+        _items = []
+        if self.payment_triggers:
+            for _item_payment_triggers in self.payment_triggers:
+                if _item_payment_triggers:
+                    _items.append(_item_payment_triggers.to_dict())
+            _dict['paymentTriggers'] = _items
         return _dict
 
     @classmethod
@@ -133,6 +142,7 @@ class ProjectObject(BaseModel):
             "googleLoginEnabled": obj.get("googleLoginEnabled"),
             "sandboxMode": obj.get("sandboxMode"),
             "notificationTemplatesConfig": NotificationTemplatesConfig.from_dict(obj["notificationTemplatesConfig"]) if obj.get("notificationTemplatesConfig") is not None else None,
+            "paymentTriggers": [PaymentTriggerConfig.from_dict(_item) for _item in obj["paymentTriggers"]] if obj.get("paymentTriggers") is not None else None,
             "hasRecaptchaSecretKey": obj.get("hasRecaptchaSecretKey")
         })
         return _obj

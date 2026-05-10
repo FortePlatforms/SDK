@@ -172,7 +172,8 @@ export const PaymentObjectStateType = {
     PROCESSING: 'PROCESSING',
     COMPLETED: 'COMPLETED',
     CANCELLED: 'CANCELLED',
-    FAILED: 'FAILED'
+    FAILED: 'FAILED',
+    REFUNDED: 'REFUNDED'
 } as const;
 export type PaymentObjectStateType = typeof PaymentObjectStateType[keyof typeof PaymentObjectStateType];
 
