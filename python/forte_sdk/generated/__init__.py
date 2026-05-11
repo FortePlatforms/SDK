@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.141"
+__version__ = "1.0.144"
 
 # Define package exports
 __all__ = [
@@ -33,8 +33,16 @@ __all__ = [
     "AdminOverrideContactMethodRequest",
     "ApiKeySummary",
     "BuildStepLog",
+    "CompleteOtpLoginRequest",
     "ContactMethod",
+    "ContentObject",
+    "ContentShare",
+    "ContentShareRequestItem",
+    "CreateContentUploadLinkRequest",
+    "CreateContentUploadLinkResponse",
     "CreateForteServiceRequest",
+    "CreateOtpLoginRequest",
+    "CreateOtpLoginResponse",
     "CreatePaymentPreviewRequest",
     "CreatePaymentPreviewResponse",
     "CreatePaymentRequest",
@@ -48,12 +56,14 @@ __all__ = [
     "DockerfileGenerationError",
     "DockerfileGenerationResponse",
     "ForteApiException",
+    "GetContentDownloadLinkResponse",
     "HealthCheckConfig",
     "HealthCheckDetectionError",
     "HealthCheckDetectionOutput",
     "HealthCheckDetectionResponse",
     "LatencyMetrics",
     "LatencyStats",
+    "ListContentResponse",
     "LogLineObject",
     "LoginUserResponse",
     "NotificationTemplatesConfig",
@@ -76,6 +86,7 @@ __all__ = [
     "RepositoryAnalysis",
     "RequestLogObject",
     "RequestLogObjectMeta",
+    "RequiredUploadHeaders",
     "SendUserEmailRequest",
     "SendUserSmsRequest",
     "ServiceBuildRequestObject",
@@ -85,6 +96,7 @@ __all__ = [
     "TestInvocationRequest",
     "TestInvocationResponse",
     "TimeSeriesDataPoint",
+    "UpdateContentSharesRequest",
     "UpdateForteServiceRequest",
     "UpdateForteServiceResponse",
     "UpdateNotificationTemplatesRequest",
@@ -121,8 +133,16 @@ from forte_sdk.generated.models.add_contact_method_request import AddContactMeth
 from forte_sdk.generated.models.admin_override_contact_method_request import AdminOverrideContactMethodRequest as AdminOverrideContactMethodRequest
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary as ApiKeySummary
 from forte_sdk.generated.models.build_step_log import BuildStepLog as BuildStepLog
+from forte_sdk.generated.models.complete_otp_login_request import CompleteOtpLoginRequest as CompleteOtpLoginRequest
 from forte_sdk.generated.models.contact_method import ContactMethod as ContactMethod
+from forte_sdk.generated.models.content_object import ContentObject as ContentObject
+from forte_sdk.generated.models.content_share import ContentShare as ContentShare
+from forte_sdk.generated.models.content_share_request_item import ContentShareRequestItem as ContentShareRequestItem
+from forte_sdk.generated.models.create_content_upload_link_request import CreateContentUploadLinkRequest as CreateContentUploadLinkRequest
+from forte_sdk.generated.models.create_content_upload_link_response import CreateContentUploadLinkResponse as CreateContentUploadLinkResponse
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest as CreateForteServiceRequest
+from forte_sdk.generated.models.create_otp_login_request import CreateOtpLoginRequest as CreateOtpLoginRequest
+from forte_sdk.generated.models.create_otp_login_response import CreateOtpLoginResponse as CreateOtpLoginResponse
 from forte_sdk.generated.models.create_payment_preview_request import CreatePaymentPreviewRequest as CreatePaymentPreviewRequest
 from forte_sdk.generated.models.create_payment_preview_response import CreatePaymentPreviewResponse as CreatePaymentPreviewResponse
 from forte_sdk.generated.models.create_payment_request import CreatePaymentRequest as CreatePaymentRequest
@@ -136,12 +156,14 @@ from forte_sdk.generated.models.dockerfile_detection_output import DockerfileDet
 from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGenerationError as DockerfileGenerationError
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse as DockerfileGenerationResponse
 from forte_sdk.generated.models.forte_api_exception import ForteApiException as ForteApiException
+from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse as GetContentDownloadLinkResponse
 from forte_sdk.generated.models.health_check_config import HealthCheckConfig as HealthCheckConfig
 from forte_sdk.generated.models.health_check_detection_error import HealthCheckDetectionError as HealthCheckDetectionError
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput as HealthCheckDetectionOutput
 from forte_sdk.generated.models.health_check_detection_response import HealthCheckDetectionResponse as HealthCheckDetectionResponse
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics as LatencyMetrics
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats
+from forte_sdk.generated.models.list_content_response import ListContentResponse as ListContentResponse
 from forte_sdk.generated.models.log_line_object import LogLineObject as LogLineObject
 from forte_sdk.generated.models.login_user_response import LoginUserResponse as LoginUserResponse
 from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig as NotificationTemplatesConfig
@@ -164,6 +186,7 @@ from forte_sdk.generated.models.renew_session_token_response import RenewSession
 from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis as RepositoryAnalysis
 from forte_sdk.generated.models.request_log_object import RequestLogObject as RequestLogObject
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta as RequestLogObjectMeta
+from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders as RequiredUploadHeaders
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest as SendUserEmailRequest
 from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest as SendUserSmsRequest
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject as ServiceBuildRequestObject
@@ -173,6 +196,7 @@ from forte_sdk.generated.models.state_history import StateHistory as StateHistor
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint as TimeSeriesDataPoint
+from forte_sdk.generated.models.update_content_shares_request import UpdateContentSharesRequest as UpdateContentSharesRequest
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest as UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse as UpdateForteServiceResponse
 from forte_sdk.generated.models.update_notification_templates_request import UpdateNotificationTemplatesRequest as UpdateNotificationTemplatesRequest

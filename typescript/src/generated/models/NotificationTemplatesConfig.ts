@@ -73,6 +73,24 @@ export interface NotificationTemplatesConfig {
      * @memberof NotificationTemplatesConfig
      */
     welcomeSmsBody?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotificationTemplatesConfig
+     */
+    loginOtpEmailSubject?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotificationTemplatesConfig
+     */
+    loginOtpEmailHtmlBody?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotificationTemplatesConfig
+     */
+    loginOtpSmsBody?: string;
 }
 
 /**
@@ -101,6 +119,9 @@ export function NotificationTemplatesConfigFromJSONTyped(json: any, ignoreDiscri
         'welcomeEmailSubject': json['welcomeEmailSubject'] == null ? undefined : json['welcomeEmailSubject'],
         'welcomeEmailHtmlBody': json['welcomeEmailHtmlBody'] == null ? undefined : json['welcomeEmailHtmlBody'],
         'welcomeSmsBody': json['welcomeSmsBody'] == null ? undefined : json['welcomeSmsBody'],
+        'loginOtpEmailSubject': json['loginOtpEmailSubject'] == null ? undefined : json['loginOtpEmailSubject'],
+        'loginOtpEmailHtmlBody': json['loginOtpEmailHtmlBody'] == null ? undefined : json['loginOtpEmailHtmlBody'],
+        'loginOtpSmsBody': json['loginOtpSmsBody'] == null ? undefined : json['loginOtpSmsBody'],
     };
 }
 
@@ -124,6 +145,9 @@ export function NotificationTemplatesConfigToJSONTyped(value?: NotificationTempl
         'welcomeEmailSubject': value['welcomeEmailSubject'],
         'welcomeEmailHtmlBody': value['welcomeEmailHtmlBody'],
         'welcomeSmsBody': value['welcomeSmsBody'],
+        'loginOtpEmailSubject': value['loginOtpEmailSubject'],
+        'loginOtpEmailHtmlBody': value['loginOtpEmailHtmlBody'],
+        'loginOtpSmsBody': value['loginOtpSmsBody'],
     };
 }
 

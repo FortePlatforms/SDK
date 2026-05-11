@@ -35,7 +35,10 @@ class UpdateNotificationTemplatesRequest(BaseModel):
     welcome_email_subject: Optional[StrictStr] = Field(default=None, alias="welcomeEmailSubject")
     welcome_email_html_body: Optional[StrictStr] = Field(default=None, alias="welcomeEmailHtmlBody")
     welcome_sms_body: Optional[StrictStr] = Field(default=None, alias="welcomeSmsBody")
-    __properties: ClassVar[List[str]] = ["emailVerificationSubject", "emailVerificationHtmlBody", "smsVerificationBody", "welcomeOnGoogleEnabled", "welcomeOnEmailEnabled", "welcomeOnSmsEnabled", "welcomeEmailSubject", "welcomeEmailHtmlBody", "welcomeSmsBody"]
+    login_otp_email_subject: Optional[StrictStr] = Field(default=None, alias="loginOtpEmailSubject")
+    login_otp_email_html_body: Optional[StrictStr] = Field(default=None, alias="loginOtpEmailHtmlBody")
+    login_otp_sms_body: Optional[StrictStr] = Field(default=None, alias="loginOtpSmsBody")
+    __properties: ClassVar[List[str]] = ["emailVerificationSubject", "emailVerificationHtmlBody", "smsVerificationBody", "welcomeOnGoogleEnabled", "welcomeOnEmailEnabled", "welcomeOnSmsEnabled", "welcomeEmailSubject", "welcomeEmailHtmlBody", "welcomeSmsBody", "loginOtpEmailSubject", "loginOtpEmailHtmlBody", "loginOtpSmsBody"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,7 +99,10 @@ class UpdateNotificationTemplatesRequest(BaseModel):
             "welcomeOnSmsEnabled": obj.get("welcomeOnSmsEnabled"),
             "welcomeEmailSubject": obj.get("welcomeEmailSubject"),
             "welcomeEmailHtmlBody": obj.get("welcomeEmailHtmlBody"),
-            "welcomeSmsBody": obj.get("welcomeSmsBody")
+            "welcomeSmsBody": obj.get("welcomeSmsBody"),
+            "loginOtpEmailSubject": obj.get("loginOtpEmailSubject"),
+            "loginOtpEmailHtmlBody": obj.get("loginOtpEmailHtmlBody"),
+            "loginOtpSmsBody": obj.get("loginOtpSmsBody")
         })
         return _obj
 

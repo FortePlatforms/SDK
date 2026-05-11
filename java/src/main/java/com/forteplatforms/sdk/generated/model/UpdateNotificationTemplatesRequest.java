@@ -41,9 +41,12 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_WELCOME_ON_SMS_ENABLED,
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_WELCOME_EMAIL_SUBJECT,
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_WELCOME_EMAIL_HTML_BODY,
-  UpdateNotificationTemplatesRequest.JSON_PROPERTY_WELCOME_SMS_BODY
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_WELCOME_SMS_BODY,
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT,
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY,
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_SMS_BODY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T17:13:54.393643-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UpdateNotificationTemplatesRequest {
   public static final String JSON_PROPERTY_EMAIL_VERIFICATION_SUBJECT = "emailVerificationSubject";
   @javax.annotation.Nullable
@@ -80,6 +83,18 @@ public class UpdateNotificationTemplatesRequest {
   public static final String JSON_PROPERTY_WELCOME_SMS_BODY = "welcomeSmsBody";
   @javax.annotation.Nullable
   private String welcomeSmsBody;
+
+  public static final String JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT = "loginOtpEmailSubject";
+  @javax.annotation.Nullable
+  private String loginOtpEmailSubject;
+
+  public static final String JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY = "loginOtpEmailHtmlBody";
+  @javax.annotation.Nullable
+  private String loginOtpEmailHtmlBody;
+
+  public static final String JSON_PROPERTY_LOGIN_OTP_SMS_BODY = "loginOtpSmsBody";
+  @javax.annotation.Nullable
+  private String loginOtpSmsBody;
 
   public UpdateNotificationTemplatesRequest() { 
   }
@@ -300,6 +315,78 @@ public class UpdateNotificationTemplatesRequest {
   }
 
 
+  public UpdateNotificationTemplatesRequest loginOtpEmailSubject(@javax.annotation.Nullable String loginOtpEmailSubject) {
+    this.loginOtpEmailSubject = loginOtpEmailSubject;
+    return this;
+  }
+
+  /**
+   * Get loginOtpEmailSubject
+   * @return loginOtpEmailSubject
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLoginOtpEmailSubject() {
+    return loginOtpEmailSubject;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLoginOtpEmailSubject(@javax.annotation.Nullable String loginOtpEmailSubject) {
+    this.loginOtpEmailSubject = loginOtpEmailSubject;
+  }
+
+
+  public UpdateNotificationTemplatesRequest loginOtpEmailHtmlBody(@javax.annotation.Nullable String loginOtpEmailHtmlBody) {
+    this.loginOtpEmailHtmlBody = loginOtpEmailHtmlBody;
+    return this;
+  }
+
+  /**
+   * Get loginOtpEmailHtmlBody
+   * @return loginOtpEmailHtmlBody
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLoginOtpEmailHtmlBody() {
+    return loginOtpEmailHtmlBody;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLoginOtpEmailHtmlBody(@javax.annotation.Nullable String loginOtpEmailHtmlBody) {
+    this.loginOtpEmailHtmlBody = loginOtpEmailHtmlBody;
+  }
+
+
+  public UpdateNotificationTemplatesRequest loginOtpSmsBody(@javax.annotation.Nullable String loginOtpSmsBody) {
+    this.loginOtpSmsBody = loginOtpSmsBody;
+    return this;
+  }
+
+  /**
+   * Get loginOtpSmsBody
+   * @return loginOtpSmsBody
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_SMS_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLoginOtpSmsBody() {
+    return loginOtpSmsBody;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_SMS_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLoginOtpSmsBody(@javax.annotation.Nullable String loginOtpSmsBody) {
+    this.loginOtpSmsBody = loginOtpSmsBody;
+  }
+
+
   /**
    * Return true if this UpdateNotificationTemplatesRequest object is equal to o.
    */
@@ -320,12 +407,15 @@ public class UpdateNotificationTemplatesRequest {
         Objects.equals(this.welcomeOnSmsEnabled, updateNotificationTemplatesRequest.welcomeOnSmsEnabled) &&
         Objects.equals(this.welcomeEmailSubject, updateNotificationTemplatesRequest.welcomeEmailSubject) &&
         Objects.equals(this.welcomeEmailHtmlBody, updateNotificationTemplatesRequest.welcomeEmailHtmlBody) &&
-        Objects.equals(this.welcomeSmsBody, updateNotificationTemplatesRequest.welcomeSmsBody);
+        Objects.equals(this.welcomeSmsBody, updateNotificationTemplatesRequest.welcomeSmsBody) &&
+        Objects.equals(this.loginOtpEmailSubject, updateNotificationTemplatesRequest.loginOtpEmailSubject) &&
+        Objects.equals(this.loginOtpEmailHtmlBody, updateNotificationTemplatesRequest.loginOtpEmailHtmlBody) &&
+        Objects.equals(this.loginOtpSmsBody, updateNotificationTemplatesRequest.loginOtpSmsBody);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailVerificationSubject, emailVerificationHtmlBody, smsVerificationBody, welcomeOnGoogleEnabled, welcomeOnEmailEnabled, welcomeOnSmsEnabled, welcomeEmailSubject, welcomeEmailHtmlBody, welcomeSmsBody);
+    return Objects.hash(emailVerificationSubject, emailVerificationHtmlBody, smsVerificationBody, welcomeOnGoogleEnabled, welcomeOnEmailEnabled, welcomeOnSmsEnabled, welcomeEmailSubject, welcomeEmailHtmlBody, welcomeSmsBody, loginOtpEmailSubject, loginOtpEmailHtmlBody, loginOtpSmsBody);
   }
 
   @Override
@@ -341,6 +431,9 @@ public class UpdateNotificationTemplatesRequest {
     sb.append("    welcomeEmailSubject: ").append(toIndentedString(welcomeEmailSubject)).append("\n");
     sb.append("    welcomeEmailHtmlBody: ").append(toIndentedString(welcomeEmailHtmlBody)).append("\n");
     sb.append("    welcomeSmsBody: ").append(toIndentedString(welcomeSmsBody)).append("\n");
+    sb.append("    loginOtpEmailSubject: ").append(toIndentedString(loginOtpEmailSubject)).append("\n");
+    sb.append("    loginOtpEmailHtmlBody: ").append(toIndentedString(loginOtpEmailHtmlBody)).append("\n");
+    sb.append("    loginOtpSmsBody: ").append(toIndentedString(loginOtpSmsBody)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -431,6 +524,21 @@ public class UpdateNotificationTemplatesRequest {
     // add `welcomeSmsBody` to the URL query string
     if (getWelcomeSmsBody() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%swelcomeSmsBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWelcomeSmsBody()))));
+    }
+
+    // add `loginOtpEmailSubject` to the URL query string
+    if (getLoginOtpEmailSubject() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sloginOtpEmailSubject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLoginOtpEmailSubject()))));
+    }
+
+    // add `loginOtpEmailHtmlBody` to the URL query string
+    if (getLoginOtpEmailHtmlBody() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sloginOtpEmailHtmlBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLoginOtpEmailHtmlBody()))));
+    }
+
+    // add `loginOtpSmsBody` to the URL query string
+    if (getLoginOtpSmsBody() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sloginOtpSmsBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLoginOtpSmsBody()))));
     }
 
     return joiner.toString();

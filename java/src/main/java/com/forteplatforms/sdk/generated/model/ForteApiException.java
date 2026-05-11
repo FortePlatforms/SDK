@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE,
   ForteApiException.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T17:13:54.393643-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -229,7 +229,23 @@ public class ForteApiException {
     
     NOTIFICATION_TEMPLATE_INVALID(String.valueOf("NOTIFICATION_TEMPLATE_INVALID")),
     
-    NOTIFICATION_TEMPLATE_MISSING_REQUIRED_VARIABLE(String.valueOf("NOTIFICATION_TEMPLATE_MISSING_REQUIRED_VARIABLE"));
+    NOTIFICATION_TEMPLATE_MISSING_REQUIRED_VARIABLE(String.valueOf("NOTIFICATION_TEMPLATE_MISSING_REQUIRED_VARIABLE")),
+    
+    CONTENT_NOT_FOUND(String.valueOf("CONTENT_NOT_FOUND")),
+    
+    CONTENT_NOT_IN_PENDING_STATE(String.valueOf("CONTENT_NOT_IN_PENDING_STATE")),
+    
+    CONTENT_UPLOAD_NOT_VERIFIED(String.valueOf("CONTENT_UPLOAD_NOT_VERIFIED")),
+    
+    CONTENT_SIZE_MISMATCH(String.valueOf("CONTENT_SIZE_MISMATCH")),
+    
+    CONTENT_CONTENT_TYPE_MISMATCH(String.valueOf("CONTENT_CONTENT_TYPE_MISMATCH")),
+    
+    CONTENT_SIZE_EXCEEDS_LIMIT(String.valueOf("CONTENT_SIZE_EXCEEDS_LIMIT")),
+    
+    CONTENT_SHARE_USER_NOT_IN_PROJECT(String.valueOf("CONTENT_SHARE_USER_NOT_IN_PROJECT")),
+    
+    CONTENT_NOT_SHAREABLE_WHILE_PENDING(String.valueOf("CONTENT_NOT_SHAREABLE_WHILE_PENDING"));
 
     private String value;
 

@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreatePaymentResponse.JSON_PROPERTY_STRIPE_PUBLISHABLE_KEY,
   CreatePaymentResponse.JSON_PROPERTY_STRIPE_CONNECTED_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T17:13:54.393643-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class CreatePaymentResponse {
   public static final String JSON_PROPERTY_PAYMENT = "payment";
   @javax.annotation.Nonnull

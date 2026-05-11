@@ -73,6 +73,24 @@ export interface UpdateNotificationTemplatesRequest {
      * @memberof UpdateNotificationTemplatesRequest
      */
     welcomeSmsBody?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateNotificationTemplatesRequest
+     */
+    loginOtpEmailSubject?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateNotificationTemplatesRequest
+     */
+    loginOtpEmailHtmlBody?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateNotificationTemplatesRequest
+     */
+    loginOtpSmsBody?: string;
 }
 
 /**
@@ -101,6 +119,9 @@ export function UpdateNotificationTemplatesRequestFromJSONTyped(json: any, ignor
         'welcomeEmailSubject': json['welcomeEmailSubject'] == null ? undefined : json['welcomeEmailSubject'],
         'welcomeEmailHtmlBody': json['welcomeEmailHtmlBody'] == null ? undefined : json['welcomeEmailHtmlBody'],
         'welcomeSmsBody': json['welcomeSmsBody'] == null ? undefined : json['welcomeSmsBody'],
+        'loginOtpEmailSubject': json['loginOtpEmailSubject'] == null ? undefined : json['loginOtpEmailSubject'],
+        'loginOtpEmailHtmlBody': json['loginOtpEmailHtmlBody'] == null ? undefined : json['loginOtpEmailHtmlBody'],
+        'loginOtpSmsBody': json['loginOtpSmsBody'] == null ? undefined : json['loginOtpSmsBody'],
     };
 }
 
@@ -124,6 +145,9 @@ export function UpdateNotificationTemplatesRequestToJSONTyped(value?: UpdateNoti
         'welcomeEmailSubject': value['welcomeEmailSubject'],
         'welcomeEmailHtmlBody': value['welcomeEmailHtmlBody'],
         'welcomeSmsBody': value['welcomeSmsBody'],
+        'loginOtpEmailSubject': value['loginOtpEmailSubject'],
+        'loginOtpEmailHtmlBody': value['loginOtpEmailHtmlBody'],
+        'loginOtpSmsBody': value['loginOtpSmsBody'],
     };
 }
 
