@@ -40,7 +40,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentAddress.JSON_PROPERTY_POSTAL_CODE,
   PaymentAddress.JSON_PROPERTY_COUNTRY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T16:50:47.990736-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T17:13:54.393643-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class PaymentAddress {
   public static final String JSON_PROPERTY_LINE1 = "line1";
   @javax.annotation.Nonnull

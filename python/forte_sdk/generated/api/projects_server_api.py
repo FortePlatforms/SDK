@@ -1568,7 +1568,7 @@ class ProjectsServerApi:
 
 
     @validate_call
-    def create_payment(
+    def create_payment1(
         self,
         project_id: StrictStr,
         user_id: StrictStr,
@@ -1586,7 +1586,7 @@ class ProjectsServerApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreatePaymentResponse:
-        """create_payment
+        """create_payment1
 
 
         :param project_id: (required)
@@ -1617,7 +1617,7 @@ class ProjectsServerApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._create_payment_serialize(
+        _param = self._create_payment1_serialize(
             project_id=project_id,
             user_id=user_id,
             create_payment_request=create_payment_request,
@@ -1642,7 +1642,7 @@ class ProjectsServerApi:
 
 
     @validate_call
-    def create_payment_with_http_info(
+    def create_payment1_with_http_info(
         self,
         project_id: StrictStr,
         user_id: StrictStr,
@@ -1660,7 +1660,7 @@ class ProjectsServerApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreatePaymentResponse]:
-        """create_payment
+        """create_payment1
 
 
         :param project_id: (required)
@@ -1691,7 +1691,7 @@ class ProjectsServerApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._create_payment_serialize(
+        _param = self._create_payment1_serialize(
             project_id=project_id,
             user_id=user_id,
             create_payment_request=create_payment_request,
@@ -1716,7 +1716,7 @@ class ProjectsServerApi:
 
 
     @validate_call
-    def create_payment_without_preload_content(
+    def create_payment1_without_preload_content(
         self,
         project_id: StrictStr,
         user_id: StrictStr,
@@ -1734,7 +1734,7 @@ class ProjectsServerApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """create_payment
+        """create_payment1
 
 
         :param project_id: (required)
@@ -1765,7 +1765,7 @@ class ProjectsServerApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._create_payment_serialize(
+        _param = self._create_payment1_serialize(
             project_id=project_id,
             user_id=user_id,
             create_payment_request=create_payment_request,
@@ -1785,7 +1785,7 @@ class ProjectsServerApi:
         return response_data.response
 
 
-    def _create_payment_serialize(
+    def _create_payment1_serialize(
         self,
         project_id,
         user_id,
@@ -1868,7 +1868,7 @@ class ProjectsServerApi:
 
 
     @validate_call
-    def create_payment_preview(
+    def create_payment_preview1(
         self,
         project_id: StrictStr,
         user_id: StrictStr,
@@ -1886,7 +1886,7 @@ class ProjectsServerApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreatePaymentPreviewResponse:
-        """create_payment_preview
+        """create_payment_preview1
 
 
         :param project_id: (required)
@@ -1917,7 +1917,7 @@ class ProjectsServerApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._create_payment_preview_serialize(
+        _param = self._create_payment_preview1_serialize(
             project_id=project_id,
             user_id=user_id,
             create_payment_preview_request=create_payment_preview_request,
@@ -1942,7 +1942,7 @@ class ProjectsServerApi:
 
 
     @validate_call
-    def create_payment_preview_with_http_info(
+    def create_payment_preview1_with_http_info(
         self,
         project_id: StrictStr,
         user_id: StrictStr,
@@ -1960,7 +1960,7 @@ class ProjectsServerApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreatePaymentPreviewResponse]:
-        """create_payment_preview
+        """create_payment_preview1
 
 
         :param project_id: (required)
@@ -1991,7 +1991,7 @@ class ProjectsServerApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._create_payment_preview_serialize(
+        _param = self._create_payment_preview1_serialize(
             project_id=project_id,
             user_id=user_id,
             create_payment_preview_request=create_payment_preview_request,
@@ -2016,7 +2016,7 @@ class ProjectsServerApi:
 
 
     @validate_call
-    def create_payment_preview_without_preload_content(
+    def create_payment_preview1_without_preload_content(
         self,
         project_id: StrictStr,
         user_id: StrictStr,
@@ -2034,7 +2034,7 @@ class ProjectsServerApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """create_payment_preview
+        """create_payment_preview1
 
 
         :param project_id: (required)
@@ -2065,7 +2065,7 @@ class ProjectsServerApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._create_payment_preview_serialize(
+        _param = self._create_payment_preview1_serialize(
             project_id=project_id,
             user_id=user_id,
             create_payment_preview_request=create_payment_preview_request,
@@ -2085,7 +2085,7 @@ class ProjectsServerApi:
         return response_data.response
 
 
-    def _create_payment_preview_serialize(
+    def _create_payment_preview1_serialize(
         self,
         project_id,
         user_id,

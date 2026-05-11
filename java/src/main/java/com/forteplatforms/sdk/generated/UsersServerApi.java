@@ -20,6 +20,10 @@ import com.forteplatforms.sdk.generated.invoker.Pair;
 
 import com.forteplatforms.sdk.generated.model.AddContactMethodRequest;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
+import com.forteplatforms.sdk.generated.model.CreatePaymentPreviewRequest;
+import com.forteplatforms.sdk.generated.model.CreatePaymentPreviewResponse;
+import com.forteplatforms.sdk.generated.model.CreatePaymentRequest;
+import com.forteplatforms.sdk.generated.model.CreatePaymentResponse;
 import com.forteplatforms.sdk.generated.model.LoginUserResponse;
 import java.time.OffsetDateTime;
 import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
@@ -59,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T16:50:47.990736-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T17:13:54.393643-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UsersServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -293,6 +297,270 @@ public class UsersServerApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addContactMethodRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createPaymentRequest  (required)
+   * @return CreatePaymentResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePaymentResponse createPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest) throws ApiException {
+    return createPayment(projectId, createPaymentRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createPaymentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreatePaymentResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePaymentResponse createPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePaymentResponse> localVarResponse = createPaymentWithHttpInfo(projectId, createPaymentRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createPaymentRequest  (required)
+   * @return ApiResponse&lt;CreatePaymentResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePaymentResponse> createPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest) throws ApiException {
+    return createPaymentWithHttpInfo(projectId, createPaymentRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createPaymentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreatePaymentResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePaymentResponse> createPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createPaymentRequestBuilder(projectId, createPaymentRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createPayment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreatePaymentResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreatePaymentResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePaymentResponse>() {});
+        
+
+        return new ApiResponse<CreatePaymentResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createPaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createPayment");
+    }
+    // verify the required parameter 'createPaymentRequest' is set
+    if (createPaymentRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createPaymentRequest' when calling createPayment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/payments"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createPaymentPreviewRequest  (required)
+   * @return CreatePaymentPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePaymentPreviewResponse createPaymentPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest) throws ApiException {
+    return createPaymentPreview(projectId, createPaymentPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createPaymentPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreatePaymentPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePaymentPreviewResponse createPaymentPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePaymentPreviewResponse> localVarResponse = createPaymentPreviewWithHttpInfo(projectId, createPaymentPreviewRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createPaymentPreviewRequest  (required)
+   * @return ApiResponse&lt;CreatePaymentPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePaymentPreviewResponse> createPaymentPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest) throws ApiException {
+    return createPaymentPreviewWithHttpInfo(projectId, createPaymentPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createPaymentPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreatePaymentPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePaymentPreviewResponse> createPaymentPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createPaymentPreviewRequestBuilder(projectId, createPaymentPreviewRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createPaymentPreview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreatePaymentPreviewResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreatePaymentPreviewResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePaymentPreviewResponse>() {});
+        
+
+        return new ApiResponse<CreatePaymentPreviewResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createPaymentPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createPaymentPreview");
+    }
+    // verify the required parameter 'createPaymentPreviewRequest' is set
+    if (createPaymentPreviewRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createPaymentPreviewRequest' when calling createPaymentPreview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/payments/preview"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentPreviewRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

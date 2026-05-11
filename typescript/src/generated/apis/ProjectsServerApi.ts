@@ -180,13 +180,13 @@ export interface AdminVerifyUserContactMethodRequest {
     verificationCode: string;
 }
 
-export interface CreatePaymentOperationRequest {
+export interface CreatePayment1Request {
     projectId: string;
     userId: string;
     createPaymentRequest: CreatePaymentRequest;
 }
 
-export interface CreatePaymentPreviewOperationRequest {
+export interface CreatePaymentPreview1Request {
     projectId: string;
     userId: string;
     createPaymentPreviewRequest: CreatePaymentPreviewRequest;
@@ -748,25 +748,25 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
-    async createPaymentRaw(requestParameters: CreatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentResponse>> {
+    async createPayment1Raw(requestParameters: CreatePayment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentResponse>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
-                'Required parameter "projectId" was null or undefined when calling createPayment().'
+                'Required parameter "projectId" was null or undefined when calling createPayment1().'
             );
         }
 
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
-                'Required parameter "userId" was null or undefined when calling createPayment().'
+                'Required parameter "userId" was null or undefined when calling createPayment1().'
             );
         }
 
         if (requestParameters['createPaymentRequest'] == null) {
             throw new runtime.RequiredError(
                 'createPaymentRequest',
-                'Required parameter "createPaymentRequest" was null or undefined when calling createPayment().'
+                'Required parameter "createPaymentRequest" was null or undefined when calling createPayment1().'
             );
         }
 
@@ -794,32 +794,32 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
-    async createPayment(requestParameters: CreatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentResponse> {
-        const response = await this.createPaymentRaw(requestParameters, initOverrides);
+    async createPayment1(requestParameters: CreatePayment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentResponse> {
+        const response = await this.createPayment1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async createPaymentPreviewRaw(requestParameters: CreatePaymentPreviewOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentPreviewResponse>> {
+    async createPaymentPreview1Raw(requestParameters: CreatePaymentPreview1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentPreviewResponse>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
-                'Required parameter "projectId" was null or undefined when calling createPaymentPreview().'
+                'Required parameter "projectId" was null or undefined when calling createPaymentPreview1().'
             );
         }
 
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
-                'Required parameter "userId" was null or undefined when calling createPaymentPreview().'
+                'Required parameter "userId" was null or undefined when calling createPaymentPreview1().'
             );
         }
 
         if (requestParameters['createPaymentPreviewRequest'] == null) {
             throw new runtime.RequiredError(
                 'createPaymentPreviewRequest',
-                'Required parameter "createPaymentPreviewRequest" was null or undefined when calling createPaymentPreview().'
+                'Required parameter "createPaymentPreviewRequest" was null or undefined when calling createPaymentPreview1().'
             );
         }
 
@@ -847,8 +847,8 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
-    async createPaymentPreview(requestParameters: CreatePaymentPreviewOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentPreviewResponse> {
-        const response = await this.createPaymentPreviewRaw(requestParameters, initOverrides);
+    async createPaymentPreview1(requestParameters: CreatePaymentPreview1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentPreviewResponse> {
+        const response = await this.createPaymentPreview1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

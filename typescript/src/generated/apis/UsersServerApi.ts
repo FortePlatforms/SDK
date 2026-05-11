@@ -17,6 +17,10 @@ import * as runtime from '../runtime';
 import type {
   AddContactMethodRequest,
   ContactMethod,
+  CreatePaymentPreviewRequest,
+  CreatePaymentPreviewResponse,
+  CreatePaymentRequest,
+  CreatePaymentResponse,
   LoginUserResponse,
   PaginatedResponsePaymentObject,
   RegisterUserRequest,
@@ -29,6 +33,14 @@ import {
     AddContactMethodRequestToJSON,
     ContactMethodFromJSON,
     ContactMethodToJSON,
+    CreatePaymentPreviewRequestFromJSON,
+    CreatePaymentPreviewRequestToJSON,
+    CreatePaymentPreviewResponseFromJSON,
+    CreatePaymentPreviewResponseToJSON,
+    CreatePaymentRequestFromJSON,
+    CreatePaymentRequestToJSON,
+    CreatePaymentResponseFromJSON,
+    CreatePaymentResponseToJSON,
     LoginUserResponseFromJSON,
     LoginUserResponseToJSON,
     PaginatedResponsePaymentObjectFromJSON,
@@ -46,6 +58,16 @@ import {
 export interface CreateContactMethodRequest {
     projectId: string;
     addContactMethodRequest: AddContactMethodRequest;
+}
+
+export interface CreatePaymentOperationRequest {
+    projectId: string;
+    createPaymentRequest: CreatePaymentRequest;
+}
+
+export interface CreatePaymentPreviewOperationRequest {
+    projectId: string;
+    createPaymentPreviewRequest: CreatePaymentPreviewRequest;
 }
 
 export interface DeleteContactMethodRequest {
@@ -149,6 +171,96 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async createContactMethod(requestParameters: CreateContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContactMethod> {
         const response = await this.createContactMethodRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createPaymentRaw(requestParameters: CreatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createPayment().'
+            );
+        }
+
+        if (requestParameters['createPaymentRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createPaymentRequest',
+                'Required parameter "createPaymentRequest" was null or undefined when calling createPayment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payments`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreatePaymentRequestToJSON(requestParameters['createPaymentRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createPayment(requestParameters: CreatePaymentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentResponse> {
+        const response = await this.createPaymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async createPaymentPreviewRaw(requestParameters: CreatePaymentPreviewOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentPreviewResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createPaymentPreview().'
+            );
+        }
+
+        if (requestParameters['createPaymentPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createPaymentPreviewRequest',
+                'Required parameter "createPaymentPreviewRequest" was null or undefined when calling createPaymentPreview().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payments/preview`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreatePaymentPreviewRequestToJSON(requestParameters['createPaymentPreviewRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createPaymentPreview(requestParameters: CreatePaymentPreviewOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentPreviewResponse> {
+        const response = await this.createPaymentPreviewRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

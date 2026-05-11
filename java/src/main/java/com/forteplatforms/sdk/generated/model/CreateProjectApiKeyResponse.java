@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateProjectApiKeyResponse.JSON_PROPERTY_ACCESS_TOKEN,
   CreateProjectApiKeyResponse.JSON_PROPERTY_API_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T16:50:47.990736-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T17:13:54.393643-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class CreateProjectApiKeyResponse {
   public static final String JSON_PROPERTY_ACCESS_TOKEN = "accessToken";
   @javax.annotation.Nullable
