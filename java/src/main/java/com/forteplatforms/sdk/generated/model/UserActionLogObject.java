@@ -26,6 +26,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,9 +40,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_USER_ID,
   UserActionLogObject.JSON_PROPERTY_ACTION_TYPE,
   UserActionLogObject.JSON_PROPERTY_CONTACT_METHOD_ID,
-  UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID
+  UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID,
+  UserActionLogObject.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:23:51.063233-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T16:50:47.990736-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -80,7 +83,11 @@ public class UserActionLogObject {
     
     PAYMENT_CREATED(String.valueOf("PAYMENT_CREATED")),
     
-    WELCOME_MESSAGE_SENT(String.valueOf("WELCOME_MESSAGE_SENT"));
+    WELCOME_MESSAGE_SENT(String.valueOf("WELCOME_MESSAGE_SENT")),
+    
+    EMAIL_SENT(String.valueOf("EMAIL_SENT")),
+    
+    SMS_SENT(String.valueOf("SMS_SENT"));
 
     private String value;
 
@@ -120,6 +127,10 @@ public class UserActionLogObject {
   public static final String JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID = "performedByAccountId";
   @javax.annotation.Nullable
   private String performedByAccountId;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  @javax.annotation.Nullable
+  private Map<String, String> metadata = new HashMap<>();
 
   public UserActionLogObject() { 
   }
@@ -244,6 +255,38 @@ public class UserActionLogObject {
   }
 
 
+  public UserActionLogObject metadata(@javax.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public UserActionLogObject putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(@javax.annotation.Nullable Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   /**
    * Return true if this UserActionLogObject object is equal to o.
    */
@@ -260,12 +303,13 @@ public class UserActionLogObject {
         Objects.equals(this.userId, userActionLogObject.userId) &&
         Objects.equals(this.actionType, userActionLogObject.actionType) &&
         Objects.equals(this.contactMethodId, userActionLogObject.contactMethodId) &&
-        Objects.equals(this.performedByAccountId, userActionLogObject.performedByAccountId);
+        Objects.equals(this.performedByAccountId, userActionLogObject.performedByAccountId) &&
+        Objects.equals(this.metadata, userActionLogObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, userId, actionType, contactMethodId, performedByAccountId);
+    return Objects.hash(timestamp, userId, actionType, contactMethodId, performedByAccountId, metadata);
   }
 
   @Override
@@ -277,6 +321,7 @@ public class UserActionLogObject {
     sb.append("    actionType: ").append(toIndentedString(actionType)).append("\n");
     sb.append("    contactMethodId: ").append(toIndentedString(contactMethodId)).append("\n");
     sb.append("    performedByAccountId: ").append(toIndentedString(performedByAccountId)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -347,6 +392,15 @@ public class UserActionLogObject {
     // add `performedByAccountId` to the URL query string
     if (getPerformedByAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sperformedByAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPerformedByAccountId()))));
+    }
+
+    // add `metadata` to the URL query string
+    if (getMetadata() != null) {
+      for (String _key : getMetadata().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
+      }
     }
 
     return joiner.toString();

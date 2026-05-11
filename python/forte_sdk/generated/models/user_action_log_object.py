@@ -32,13 +32,14 @@ class UserActionLogObject(BaseModel):
     action_type: StrictStr = Field(alias="actionType")
     contact_method_id: Optional[StrictStr] = Field(default=None, alias="contactMethodId")
     performed_by_account_id: Optional[StrictStr] = Field(default=None, alias="performedByAccountId")
-    __properties: ClassVar[List[str]] = ["timestamp", "userId", "actionType", "contactMethodId", "performedByAccountId"]
+    metadata: Optional[Dict[str, StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["timestamp", "userId", "actionType", "contactMethodId", "performedByAccountId", "metadata"]
 
     @field_validator('action_type')
     def action_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['USER_CREATED', 'USER_SUSPENDED', 'USER_DELETED', 'USER_HARD_DELETED', 'CONTACT_METHOD_ADDED', 'CONTACT_METHOD_REMOVED', 'CONTACT_METHOD_VERIFICATION_CODE_SENT', 'CONTACT_METHOD_VERIFICATION_CODE_RE_SENT', 'CONTACT_METHOD_VERIFIED', 'CONTACT_METHOD_ADMIN_OVERRIDE', 'USER_LOGIN', 'USER_LOGOUT', 'PAYMENT_CREATED', 'WELCOME_MESSAGE_SENT']):
-            raise ValueError("must be one of enum values ('USER_CREATED', 'USER_SUSPENDED', 'USER_DELETED', 'USER_HARD_DELETED', 'CONTACT_METHOD_ADDED', 'CONTACT_METHOD_REMOVED', 'CONTACT_METHOD_VERIFICATION_CODE_SENT', 'CONTACT_METHOD_VERIFICATION_CODE_RE_SENT', 'CONTACT_METHOD_VERIFIED', 'CONTACT_METHOD_ADMIN_OVERRIDE', 'USER_LOGIN', 'USER_LOGOUT', 'PAYMENT_CREATED', 'WELCOME_MESSAGE_SENT')")
+        if value not in set(['USER_CREATED', 'USER_SUSPENDED', 'USER_DELETED', 'USER_HARD_DELETED', 'CONTACT_METHOD_ADDED', 'CONTACT_METHOD_REMOVED', 'CONTACT_METHOD_VERIFICATION_CODE_SENT', 'CONTACT_METHOD_VERIFICATION_CODE_RE_SENT', 'CONTACT_METHOD_VERIFIED', 'CONTACT_METHOD_ADMIN_OVERRIDE', 'USER_LOGIN', 'USER_LOGOUT', 'PAYMENT_CREATED', 'WELCOME_MESSAGE_SENT', 'EMAIL_SENT', 'SMS_SENT']):
+            raise ValueError("must be one of enum values ('USER_CREATED', 'USER_SUSPENDED', 'USER_DELETED', 'USER_HARD_DELETED', 'CONTACT_METHOD_ADDED', 'CONTACT_METHOD_REMOVED', 'CONTACT_METHOD_VERIFICATION_CODE_SENT', 'CONTACT_METHOD_VERIFICATION_CODE_RE_SENT', 'CONTACT_METHOD_VERIFIED', 'CONTACT_METHOD_ADMIN_OVERRIDE', 'USER_LOGIN', 'USER_LOGOUT', 'PAYMENT_CREATED', 'WELCOME_MESSAGE_SENT', 'EMAIL_SENT', 'SMS_SENT')")
         return value
 
     model_config = ConfigDict(
@@ -96,7 +97,8 @@ class UserActionLogObject(BaseModel):
             "userId": obj.get("userId"),
             "actionType": obj.get("actionType"),
             "contactMethodId": obj.get("contactMethodId"),
-            "performedByAccountId": obj.get("performedByAccountId")
+            "performedByAccountId": obj.get("performedByAccountId"),
+            "metadata": obj.get("metadata")
         })
         return _obj
 

@@ -36,7 +36,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppDetectionError.JSON_PROPERTY_ERROR_TYPE,
   WebAppDetectionError.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:23:51.063233-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T16:50:47.990736-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class WebAppDetectionError {
   /**
    * Type of error that occurred

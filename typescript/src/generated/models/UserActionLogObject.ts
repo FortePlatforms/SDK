@@ -49,6 +49,12 @@ export interface UserActionLogObject {
      * @memberof UserActionLogObject
      */
     performedByAccountId?: string;
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof UserActionLogObject
+     */
+    metadata?: { [key: string]: string; };
 }
 
 
@@ -69,7 +75,9 @@ export const UserActionLogObjectActionTypeType = {
     USER_LOGIN: 'USER_LOGIN',
     USER_LOGOUT: 'USER_LOGOUT',
     PAYMENT_CREATED: 'PAYMENT_CREATED',
-    WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT'
+    WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT',
+    EMAIL_SENT: 'EMAIL_SENT',
+    SMS_SENT: 'SMS_SENT'
 } as const;
 export type UserActionLogObjectActionTypeType = typeof UserActionLogObjectActionTypeType[keyof typeof UserActionLogObjectActionTypeType];
 
@@ -99,6 +107,7 @@ export function UserActionLogObjectFromJSONTyped(json: any, ignoreDiscriminator:
         'actionType': json['actionType'],
         'contactMethodId': json['contactMethodId'] == null ? undefined : json['contactMethodId'],
         'performedByAccountId': json['performedByAccountId'] == null ? undefined : json['performedByAccountId'],
+        'metadata': json['metadata'] == null ? undefined : json['metadata'],
     };
 }
 
@@ -118,6 +127,7 @@ export function UserActionLogObjectToJSONTyped(value?: UserActionLogObject | nul
         'actionType': value['actionType'],
         'contactMethodId': value['contactMethodId'],
         'performedByAccountId': value['performedByAccountId'],
+        'metadata': value['metadata'],
     };
 }
 

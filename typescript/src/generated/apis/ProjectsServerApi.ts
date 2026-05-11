@@ -3089,7 +3089,9 @@ export const ListUserActionLogsActionTypeType = {
     USER_LOGIN: 'USER_LOGIN',
     USER_LOGOUT: 'USER_LOGOUT',
     PAYMENT_CREATED: 'PAYMENT_CREATED',
-    WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT'
+    WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT',
+    EMAIL_SENT: 'EMAIL_SENT',
+    SMS_SENT: 'SMS_SENT'
 } as const;
 export type ListUserActionLogsActionTypeType = typeof ListUserActionLogsActionTypeType[keyof typeof ListUserActionLogsActionTypeType];
 /**
