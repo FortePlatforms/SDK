@@ -35,7 +35,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   SendUserSmsRequest.JSON_PROPERTY_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:04:47.210086600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:26:49.086487-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class SendUserSmsRequest {
   public static final String JSON_PROPERTY_CONTENT = "content";
   @javax.annotation.Nonnull

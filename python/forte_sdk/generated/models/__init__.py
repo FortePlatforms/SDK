@@ -75,6 +75,7 @@ from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis
 from forte_sdk.generated.models.request_log_object import RequestLogObject
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta
 from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders
+from forte_sdk.generated.models.search_users_request import SearchUsersRequest
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest
 from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject
@@ -94,6 +95,7 @@ from forte_sdk.generated.models.update_project_request import UpdateProjectReque
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest
 from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject
+from forte_sdk.generated.models.user_filter import UserFilter
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject
 from forte_sdk.generated.models.web_app_build_request_object import WebAppBuildRequestObject

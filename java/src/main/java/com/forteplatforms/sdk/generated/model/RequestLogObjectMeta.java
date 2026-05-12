@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RequestLogObjectMeta.JSON_PROPERTY_REQUEST_PATH_ID,
   RequestLogObjectMeta.JSON_PROPERTY_USER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:04:47.210086600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:26:49.086487-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class RequestLogObjectMeta {
   public static final String JSON_PROPERTY_SERVICE_ID = "serviceId";
   @javax.annotation.Nonnull

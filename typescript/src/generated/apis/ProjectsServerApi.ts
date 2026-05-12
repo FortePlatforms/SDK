@@ -169,6 +169,11 @@ import {
     RequestLogObjectToJSON,
 } from '../models/RequestLogObject';
 import {
+    type SearchUsersRequest,
+    SearchUsersRequestFromJSON,
+    SearchUsersRequestToJSON,
+} from '../models/SearchUsersRequest';
+import {
     type SendUserEmailRequest,
     SendUserEmailRequestFromJSON,
     SendUserEmailRequestToJSON,
@@ -571,6 +576,11 @@ export interface SearchLogLinesRequest {
     requestId?: string;
     level?: string;
     nextToken?: string;
+}
+
+export interface SearchUsersOperationRequest {
+    projectId: string;
+    searchUsersRequest: SearchUsersRequest;
 }
 
 export interface SendUserEmailOperationRequest {
@@ -3524,6 +3534,59 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async searchLogLines(requestParameters: SearchLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
         const response = await this.searchLogLinesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for searchUsers without sending the request
+     */
+    async searchUsersRequestOpts(requestParameters: SearchUsersOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling searchUsers().'
+            );
+        }
+
+        if (requestParameters['searchUsersRequest'] == null) {
+            throw new runtime.RequiredError(
+                'searchUsersRequest',
+                'Required parameter "searchUsersRequest" was null or undefined when calling searchUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/search`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SearchUsersRequestToJSON(requestParameters['searchUsersRequest']),
+        };
+    }
+
+    /**
+     */
+    async searchUsersRaw(requestParameters: SearchUsersOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseUserObject>> {
+        const requestOptions = await this.searchUsersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseUserObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async searchUsers(requestParameters: SearchUsersOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseUserObject> {
+        const response = await this.searchUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -30,31 +30,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * CreateOtpLoginRequest
+ * UserFilter
  */
 @JsonPropertyOrder({
-  CreateOtpLoginRequest.JSON_PROPERTY_EMAIL,
-  CreateOtpLoginRequest.JSON_PROPERTY_PHONE_NUMBER,
-  CreateOtpLoginRequest.JSON_PROPERTY_RECAPTCHA_TOKEN
+  UserFilter.JSON_PROPERTY_EMAIL,
+  UserFilter.JSON_PROPERTY_PHONE,
+  UserFilter.JSON_PROPERTY_METADATA_KEY,
+  UserFilter.JSON_PROPERTY_METADATA_VALUE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:26:49.086487-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
-public class CreateOtpLoginRequest {
+public class UserFilter {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable
   private String email;
 
-  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
+  public static final String JSON_PROPERTY_PHONE = "phone";
   @javax.annotation.Nullable
-  private String phoneNumber;
+  private String phone;
 
-  public static final String JSON_PROPERTY_RECAPTCHA_TOKEN = "recaptchaToken";
+  public static final String JSON_PROPERTY_METADATA_KEY = "metadataKey";
   @javax.annotation.Nullable
-  private String recaptchaToken;
+  private String metadataKey;
 
-  public CreateOtpLoginRequest() { 
+  public static final String JSON_PROPERTY_METADATA_VALUE = "metadataValue";
+  @javax.annotation.Nullable
+  private String metadataValue;
+
+  public UserFilter() { 
   }
 
-  public CreateOtpLoginRequest email(@javax.annotation.Nullable String email) {
+  public UserFilter email(@javax.annotation.Nullable String email) {
     this.email = email;
     return this;
   }
@@ -78,56 +83,80 @@ public class CreateOtpLoginRequest {
   }
 
 
-  public CreateOtpLoginRequest phoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public UserFilter phone(@javax.annotation.Nullable String phone) {
+    this.phone = phone;
     return this;
   }
 
   /**
-   * Get phoneNumber
-   * @return phoneNumber
+   * Get phone
+   * @return phone
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPhoneNumber() {
-    return phoneNumber;
+  public String getPhone() {
+    return phone;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public void setPhone(@javax.annotation.Nullable String phone) {
+    this.phone = phone;
   }
 
 
-  public CreateOtpLoginRequest recaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
-    this.recaptchaToken = recaptchaToken;
+  public UserFilter metadataKey(@javax.annotation.Nullable String metadataKey) {
+    this.metadataKey = metadataKey;
     return this;
   }
 
   /**
-   * Get recaptchaToken
-   * @return recaptchaToken
+   * Get metadataKey
+   * @return metadataKey
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
+  @JsonProperty(value = JSON_PROPERTY_METADATA_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRecaptchaToken() {
-    return recaptchaToken;
+  public String getMetadataKey() {
+    return metadataKey;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
+  @JsonProperty(value = JSON_PROPERTY_METADATA_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRecaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
-    this.recaptchaToken = recaptchaToken;
+  public void setMetadataKey(@javax.annotation.Nullable String metadataKey) {
+    this.metadataKey = metadataKey;
+  }
+
+
+  public UserFilter metadataValue(@javax.annotation.Nullable String metadataValue) {
+    this.metadataValue = metadataValue;
+    return this;
+  }
+
+  /**
+   * Get metadataValue
+   * @return metadataValue
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METADATA_VALUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMetadataValue() {
+    return metadataValue;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA_VALUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadataValue(@javax.annotation.Nullable String metadataValue) {
+    this.metadataValue = metadataValue;
   }
 
 
   /**
-   * Return true if this CreateOtpLoginRequest object is equal to o.
+   * Return true if this UserFilter object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -137,24 +166,26 @@ public class CreateOtpLoginRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateOtpLoginRequest createOtpLoginRequest = (CreateOtpLoginRequest) o;
-    return Objects.equals(this.email, createOtpLoginRequest.email) &&
-        Objects.equals(this.phoneNumber, createOtpLoginRequest.phoneNumber) &&
-        Objects.equals(this.recaptchaToken, createOtpLoginRequest.recaptchaToken);
+    UserFilter userFilter = (UserFilter) o;
+    return Objects.equals(this.email, userFilter.email) &&
+        Objects.equals(this.phone, userFilter.phone) &&
+        Objects.equals(this.metadataKey, userFilter.metadataKey) &&
+        Objects.equals(this.metadataValue, userFilter.metadataValue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, phoneNumber, recaptchaToken);
+    return Objects.hash(email, phone, metadataKey, metadataValue);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateOtpLoginRequest {\n");
+    sb.append("class UserFilter {\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
-    sb.append("    recaptchaToken: ").append(toIndentedString(recaptchaToken)).append("\n");
+    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
+    sb.append("    metadataKey: ").append(toIndentedString(metadataKey)).append("\n");
+    sb.append("    metadataValue: ").append(toIndentedString(metadataValue)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -204,14 +235,19 @@ public class CreateOtpLoginRequest {
       joiner.add(String.format(java.util.Locale.ROOT, "%semail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmail()))));
     }
 
-    // add `phoneNumber` to the URL query string
-    if (getPhoneNumber() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
+    // add `phone` to the URL query string
+    if (getPhone() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphone%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhone()))));
     }
 
-    // add `recaptchaToken` to the URL query string
-    if (getRecaptchaToken() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%srecaptchaToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRecaptchaToken()))));
+    // add `metadataKey` to the URL query string
+    if (getMetadataKey() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smetadataKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMetadataKey()))));
+    }
+
+    // add `metadataValue` to the URL query string
+    if (getMetadataValue() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smetadataValue%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMetadataValue()))));
     }
 
     return joiner.toString();

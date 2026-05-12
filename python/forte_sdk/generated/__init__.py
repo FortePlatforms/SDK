@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.151"
+__version__ = "1.0.152"
 
 # Define package exports
 __all__ = [
@@ -91,6 +91,7 @@ __all__ = [
     "RequestLogObject",
     "RequestLogObjectMeta",
     "RequiredUploadHeaders",
+    "SearchUsersRequest",
     "SendUserEmailRequest",
     "SendUserSmsRequest",
     "ServiceBuildRequestObject",
@@ -110,6 +111,7 @@ __all__ = [
     "UpdateWebAppRequest",
     "UpdateWebAppResponse",
     "UserActionLogObject",
+    "UserFilter",
     "UserMetricsResponse",
     "UserObject",
     "WebAppBuildRequestObject",
@@ -196,6 +198,7 @@ from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis as
 from forte_sdk.generated.models.request_log_object import RequestLogObject as RequestLogObject
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta as RequestLogObjectMeta
 from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders as RequiredUploadHeaders
+from forte_sdk.generated.models.search_users_request import SearchUsersRequest as SearchUsersRequest
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest as SendUserEmailRequest
 from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest as SendUserSmsRequest
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject as ServiceBuildRequestObject
@@ -215,6 +218,7 @@ from forte_sdk.generated.models.update_project_request import UpdateProjectReque
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest as UpdateWebAppRequest
 from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse as UpdateWebAppResponse
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject as UserActionLogObject
+from forte_sdk.generated.models.user_filter import UserFilter as UserFilter
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse as UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject as UserObject
 from forte_sdk.generated.models.web_app_build_request_object import WebAppBuildRequestObject as WebAppBuildRequestObject

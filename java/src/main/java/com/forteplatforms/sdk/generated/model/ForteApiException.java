@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:04:47.210086600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:26:49.086487-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -208,6 +208,8 @@ public class ForteApiException {
     PAYMENT_TAX_CALCULATION_FAILED(String.valueOf("PAYMENT_TAX_CALCULATION_FAILED")),
     
     PAYMENT_METADATA_FILTER_INVALID(String.valueOf("PAYMENT_METADATA_FILTER_INVALID")),
+    
+    USER_FILTER_INVALID(String.valueOf("USER_FILTER_INVALID")),
     
     PAYMENT_TRIGGER_TARGET_SERVICE_NOT_FOUND(String.valueOf("PAYMENT_TRIGGER_TARGET_SERVICE_NOT_FOUND")),
     
