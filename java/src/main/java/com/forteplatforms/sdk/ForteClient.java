@@ -3,6 +3,7 @@ package com.forteplatforms.sdk;
 import com.forteplatforms.sdk.generated.ProjectsServerApi;
 import com.forteplatforms.sdk.generated.UsersServerApi;
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
+import java.net.URI;
 
 public class ForteClient {
 
@@ -27,9 +28,19 @@ public class ForteClient {
         }
 
         ApiClient client = new ApiClient();
-        client.setBasePath(baseUrl != null ? baseUrl : DEFAULT_BASE_URL);
-        client.setRequestInterceptor(builder ->
-                builder.header("Authorization", "Bearer " + apiToken));
+        client.updateBaseUri(baseUrl != null ? baseUrl : DEFAULT_BASE_URL);
+        client.setRequestInterceptor(builder -> {
+            builder.header("Authorization", "Bearer " + apiToken);
+            URI uri = builder.build().uri();
+            String path = uri.getRawPath();
+            if (path != null && path.contains("//")) {
+                throw new IllegalArgumentException(
+                        "Request URL contains an empty path segment ("
+                                + path
+                                + "). A required path parameter (such as projectId or userId) "
+                                + "was null or blank.");
+            }
+        });
 
         this.projects = new ProjectsServerApi(client);
         this.users = new UsersServerApi(client);
