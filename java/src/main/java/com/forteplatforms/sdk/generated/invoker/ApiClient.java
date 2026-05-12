@@ -58,7 +58,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * <p>The setter methods of this class return the current object to facilitate
  * a fluent style of configuration.</p>
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T18:32:33.483962-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T12:40:33.159121300-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ApiClient {
 
   protected HttpClient.Builder builder;
@@ -173,7 +173,7 @@ public class ApiClient {
   public ApiClient() {
     this.builder = createDefaultHttpClientBuilder();
     this.mapper = createDefaultObjectMapper();
-    updateBaseUri("http://localhost");
+    updateBaseUri("https://api.forteplatforms.com");
     interceptor = null;
     readTimeout = null;
     connectTimeout = null;
@@ -191,7 +191,7 @@ public class ApiClient {
   public ApiClient(HttpClient.Builder builder, ObjectMapper mapper, String baseUri) {
     this.builder = builder;
     this.mapper = mapper;
-    updateBaseUri(baseUri != null ? baseUri : "http://localhost");
+    updateBaseUri(baseUri != null ? baseUri : "https://api.forteplatforms.com");
     interceptor = null;
     readTimeout = null;
     connectTimeout = null;

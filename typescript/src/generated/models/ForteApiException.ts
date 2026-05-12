@@ -30,13 +30,13 @@ export interface ForteApiException {
      * @type {string}
      * @memberof ForteApiException
      */
-    forteExceptionType?: string;
+    message?: string;
     /**
      * 
      * @type {string}
      * @memberof ForteApiException
      */
-    message?: string;
+    forteExceptionType?: string;
 }
 
 
@@ -170,8 +170,8 @@ export function ForteApiExceptionFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'errorCode': json['errorCode'] == null ? undefined : json['errorCode'],
-        'forteExceptionType': json['forteExceptionType'] == null ? undefined : json['forteExceptionType'],
         'message': json['message'] == null ? undefined : json['message'],
+        'forteExceptionType': json['forteExceptionType'] == null ? undefined : json['forteExceptionType'],
     };
 }
 
@@ -187,8 +187,8 @@ export function ForteApiExceptionToJSONTyped(value?: ForteApiException | null, i
     return {
         
         'errorCode': value['errorCode'],
-        'forteExceptionType': value['forteExceptionType'],
         'message': value['message'],
+        'forteExceptionType': value['forteExceptionType'],
     };
 }
 

@@ -28,9 +28,9 @@ class ForteApiException(BaseModel):
     ForteApiException
     """ # noqa: E501
     error_code: Optional[StrictStr] = Field(default=None, description="Enumeration of possible error codes returned by the Forte API", alias="errorCode")
-    forte_exception_type: Optional[StrictStr] = Field(default=None, alias="forteExceptionType")
     message: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["errorCode", "forteExceptionType", "message"]
+    forte_exception_type: Optional[StrictStr] = Field(default=None, alias="forteExceptionType")
+    __properties: ClassVar[List[str]] = ["errorCode", "message", "forteExceptionType"]
 
     @field_validator('error_code')
     def error_code_validate_enum(cls, value):
@@ -94,8 +94,8 @@ class ForteApiException(BaseModel):
 
         _obj = cls.model_validate({
             "errorCode": obj.get("errorCode"),
-            "forteExceptionType": obj.get("forteExceptionType"),
-            "message": obj.get("message")
+            "message": obj.get("message"),
+            "forteExceptionType": obj.get("forteExceptionType")
         })
         return _obj
 
