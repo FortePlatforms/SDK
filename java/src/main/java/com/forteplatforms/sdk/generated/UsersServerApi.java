@@ -76,7 +76,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:26:49.086487-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T15:07:45.635712600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UsersServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
