@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TriggerEvent } from './TriggerEvent';
+import {
+    TriggerEventFromJSON,
+    TriggerEventFromJSONTyped,
+    TriggerEventToJSON,
+    TriggerEventToJSONTyped,
+} from './TriggerEvent';
+
 /**
  * 
  * @export
@@ -45,10 +53,10 @@ export interface PaymentTriggerConfig {
     targetPath: string;
     /**
      * 
-     * @type {Set<string>}
+     * @type {Set<TriggerEvent>}
      * @memberof PaymentTriggerConfig
      */
-    events: Set<PaymentTriggerConfigEventsType>;
+    events: Set<TriggerEvent>;
     /**
      * 
      * @type {boolean}
@@ -62,17 +70,6 @@ export interface PaymentTriggerConfig {
      */
     createdAt: Date;
 }
-
-
-/**
- * @export
- */
-export const PaymentTriggerConfigEventsType = {
-    PAYMENT_COMPLETED: 'PAYMENT_COMPLETED',
-    PAYMENT_REFUNDED: 'PAYMENT_REFUNDED'
-} as const;
-export type PaymentTriggerConfigEventsType = typeof PaymentTriggerConfigEventsType[keyof typeof PaymentTriggerConfigEventsType];
-
 
 /**
  * Check if a given object implements the PaymentTriggerConfig interface.
@@ -101,7 +98,7 @@ export function PaymentTriggerConfigFromJSONTyped(json: any, ignoreDiscriminator
         'displayName': json['displayName'],
         'targetServiceId': json['targetServiceId'],
         'targetPath': json['targetPath'],
-        'events': new Set(json['events']),
+        'events': (new Set((json['events'] as Array<any>).map(TriggerEventFromJSON))),
         'enabled': json['enabled'] == null ? undefined : json['enabled'],
         'createdAt': (new Date(json['createdAt'])),
     };
@@ -122,7 +119,7 @@ export function PaymentTriggerConfigToJSONTyped(value?: PaymentTriggerConfig | n
         'displayName': value['displayName'],
         'targetServiceId': value['targetServiceId'],
         'targetPath': value['targetPath'],
-        'events': Array.from(value['events'] as Set<any>),
+        'events': (Array.from(value['events'] as Set<any>).map(TriggerEventToJSON)),
         'enabled': value['enabled'],
         'createdAt': value['createdAt'].toISOString(),
     };

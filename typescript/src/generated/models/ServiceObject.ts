@@ -127,7 +127,7 @@ export interface ServiceObject {
     githubRepositoryUrl: string;
     /**
      * 
-     * @type {string}
+     * @type {ServiceObjectGithubBuildTriggerType}
      * @memberof ServiceObject
      */
     githubBuildTrigger: ServiceObjectGithubBuildTriggerType;

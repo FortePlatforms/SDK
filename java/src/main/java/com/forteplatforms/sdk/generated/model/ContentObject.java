@@ -53,7 +53,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ContentObject.JSON_PROPERTY_VALIDATED_AT,
   ContentObject.JSON_PROPERTY_EXPIRES_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ContentObject {
   public static final String JSON_PROPERTY_CONTENT_ID = "contentId";
   @javax.annotation.Nullable
@@ -75,9 +75,7 @@ public class ContentObject {
     
     VALID(String.valueOf("VALID")),
     
-    DELETED(String.valueOf("DELETED")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+    DELETED(String.valueOf("DELETED"));
 
     private String value;
 
@@ -98,11 +96,11 @@ public class ContentObject {
     @JsonCreator
     public static StateEnum fromValue(String value) {
       for (StateEnum b : StateEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
 
@@ -535,10 +533,7 @@ public class ContentObject {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

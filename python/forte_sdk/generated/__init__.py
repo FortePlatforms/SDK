@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.147"
+__version__ = "1.0.148"
 
 # Define package exports
 __all__ = [
@@ -47,6 +47,7 @@ __all__ = [
     "CreatePaymentPreviewResponse",
     "CreatePaymentRequest",
     "CreatePaymentResponse",
+    "CreatePaymentTriggerRequest",
     "CreateProjectApiKeyRequest",
     "CreateProjectApiKeyResponse",
     "CreateServiceRequestProxyRequest",
@@ -99,14 +100,15 @@ __all__ = [
     "TestInvocationRequest",
     "TestInvocationResponse",
     "TimeSeriesDataPoint",
+    "TriggerEvent",
     "UpdateContentSharesRequest",
     "UpdateForteServiceRequest",
     "UpdateForteServiceResponse",
     "UpdateNotificationTemplatesRequest",
+    "UpdatePaymentTriggerRequest",
     "UpdateProjectRequest",
     "UpdateWebAppRequest",
     "UpdateWebAppResponse",
-    "UpsertPaymentTriggerRequest",
     "UserActionLogObject",
     "UserMetricsResponse",
     "UserObject",
@@ -150,6 +152,7 @@ from forte_sdk.generated.models.create_payment_preview_request import CreatePaym
 from forte_sdk.generated.models.create_payment_preview_response import CreatePaymentPreviewResponse as CreatePaymentPreviewResponse
 from forte_sdk.generated.models.create_payment_request import CreatePaymentRequest as CreatePaymentRequest
 from forte_sdk.generated.models.create_payment_response import CreatePaymentResponse as CreatePaymentResponse
+from forte_sdk.generated.models.create_payment_trigger_request import CreatePaymentTriggerRequest as CreatePaymentTriggerRequest
 from forte_sdk.generated.models.create_project_api_key_request import CreateProjectApiKeyRequest as CreateProjectApiKeyRequest
 from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse as CreateProjectApiKeyResponse
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
@@ -202,14 +205,15 @@ from forte_sdk.generated.models.state_history import StateHistory as StateHistor
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint as TimeSeriesDataPoint
+from forte_sdk.generated.models.trigger_event import TriggerEvent as TriggerEvent
 from forte_sdk.generated.models.update_content_shares_request import UpdateContentSharesRequest as UpdateContentSharesRequest
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest as UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse as UpdateForteServiceResponse
 from forte_sdk.generated.models.update_notification_templates_request import UpdateNotificationTemplatesRequest as UpdateNotificationTemplatesRequest
+from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest as UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest as UpdateProjectRequest
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest as UpdateWebAppRequest
 from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse as UpdateWebAppResponse
-from forte_sdk.generated.models.upsert_payment_trigger_request import UpsertPaymentTriggerRequest as UpsertPaymentTriggerRequest
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject as UserActionLogObject
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse as UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject as UserObject

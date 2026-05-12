@@ -27,7 +27,7 @@ export interface CreateForteServiceRequest {
     githubRepositoryUrl: string;
     /**
      * 
-     * @type {string}
+     * @type {CreateForteServiceRequestBuildTriggerType}
      * @memberof CreateForteServiceRequest
      */
     buildTrigger: CreateForteServiceRequestBuildTriggerType;

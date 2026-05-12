@@ -61,7 +61,7 @@ export interface PaymentObject {
     userId: string;
     /**
      * 
-     * @type {string}
+     * @type {PaymentObjectStateType}
      * @memberof PaymentObject
      */
     state: PaymentObjectStateType;

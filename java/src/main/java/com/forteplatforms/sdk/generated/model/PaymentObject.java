@@ -62,7 +62,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentObject.JSON_PROPERTY_CREATED_AT,
   PaymentObject.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class PaymentObject {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -90,9 +90,7 @@ public class PaymentObject {
     
     FAILED(String.valueOf("FAILED")),
     
-    REFUNDED(String.valueOf("REFUNDED")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+    REFUNDED(String.valueOf("REFUNDED"));
 
     private String value;
 
@@ -113,11 +111,11 @@ public class PaymentObject {
     @JsonCreator
     public static StateEnum fromValue(String value) {
       for (StateEnum b : StateEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
 
@@ -768,10 +766,7 @@ public class PaymentObject {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

@@ -33,13 +33,13 @@ export interface BuildStepLog {
     message: string;
     /**
      * 
-     * @type {string}
+     * @type {BuildStepLogPreviousStatusType}
      * @memberof BuildStepLog
      */
     previousStatus?: BuildStepLogPreviousStatusType;
     /**
      * 
-     * @type {string}
+     * @type {BuildStepLogNewStatusType}
      * @memberof BuildStepLog
      */
     newStatus?: BuildStepLogNewStatusType;

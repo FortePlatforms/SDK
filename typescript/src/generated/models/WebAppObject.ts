@@ -65,7 +65,7 @@ export interface WebAppObject {
     buildPath?: string;
     /**
      * 
-     * @type {string}
+     * @type {WebAppObjectWebAppTypeType}
      * @memberof WebAppObject
      */
     webAppType?: WebAppObjectWebAppTypeType;
@@ -143,7 +143,7 @@ export interface WebAppObject {
     githubRepositoryUrl: string;
     /**
      * 
-     * @type {string}
+     * @type {WebAppObjectGithubBuildTriggerType}
      * @memberof WebAppObject
      */
     githubBuildTrigger: WebAppObjectGithubBuildTriggerType;

@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface ForteApiException {
     /**
      * Enumeration of possible error codes returned by the Forte API
-     * @type {string}
+     * @type {ForteApiExceptionErrorCodeType}
      * @memberof ForteApiException
      */
     errorCode?: ForteApiExceptionErrorCodeType;

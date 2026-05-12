@@ -168,13 +168,13 @@ export interface WebAppBuildRequestObject {
     buildStepLogs?: Array<BuildStepLog>;
     /**
      * 
-     * @type {string}
+     * @type {WebAppBuildRequestObjectStatusType}
      * @memberof WebAppBuildRequestObject
      */
     status: WebAppBuildRequestObjectStatusType;
     /**
      * 
-     * @type {string}
+     * @type {WebAppBuildRequestObjectOriginType}
      * @memberof WebAppBuildRequestObject
      */
     origin?: WebAppBuildRequestObjectOriginType;

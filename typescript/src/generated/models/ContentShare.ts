@@ -27,7 +27,7 @@ export interface ContentShare {
     userId: string;
     /**
      * 
-     * @type {string}
+     * @type {ContentSharePermissionType}
      * @memberof ContentShare
      */
     permission: ContentSharePermissionType;

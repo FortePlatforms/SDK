@@ -36,7 +36,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ContentShare.JSON_PROPERTY_USER_ID,
   ContentShare.JSON_PROPERTY_PERMISSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ContentShare {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nonnull
@@ -48,9 +48,7 @@ public class ContentShare {
   public enum PermissionEnum {
     VIEWER(String.valueOf("VIEWER")),
     
-    EDITOR(String.valueOf("EDITOR")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+    EDITOR(String.valueOf("EDITOR"));
 
     private String value;
 
@@ -71,11 +69,11 @@ public class ContentShare {
     @JsonCreator
     public static PermissionEnum fromValue(String value) {
       for (PermissionEnum b : PermissionEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
 
@@ -170,10 +168,7 @@ public class ContentShare {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

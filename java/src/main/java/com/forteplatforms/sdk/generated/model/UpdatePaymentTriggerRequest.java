@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.forteplatforms.sdk.generated.model.TriggerEvent;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -33,17 +34,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * UpsertPaymentTriggerRequest
+ * UpdatePaymentTriggerRequest
  */
 @JsonPropertyOrder({
-  UpsertPaymentTriggerRequest.JSON_PROPERTY_DISPLAY_NAME,
-  UpsertPaymentTriggerRequest.JSON_PROPERTY_TARGET_SERVICE_ID,
-  UpsertPaymentTriggerRequest.JSON_PROPERTY_TARGET_PATH,
-  UpsertPaymentTriggerRequest.JSON_PROPERTY_EVENTS,
-  UpsertPaymentTriggerRequest.JSON_PROPERTY_ENABLED
+  UpdatePaymentTriggerRequest.JSON_PROPERTY_DISPLAY_NAME,
+  UpdatePaymentTriggerRequest.JSON_PROPERTY_TARGET_SERVICE_ID,
+  UpdatePaymentTriggerRequest.JSON_PROPERTY_TARGET_PATH,
+  UpdatePaymentTriggerRequest.JSON_PROPERTY_EVENTS,
+  UpdatePaymentTriggerRequest.JSON_PROPERTY_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
-public class UpsertPaymentTriggerRequest {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+public class UpdatePaymentTriggerRequest {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nonnull
   private String displayName;
@@ -56,55 +57,18 @@ public class UpsertPaymentTriggerRequest {
   @javax.annotation.Nonnull
   private String targetPath;
 
-  /**
-   * Gets or Sets events
-   */
-  public enum EventsEnum {
-    PAYMENT_COMPLETED(String.valueOf("PAYMENT_COMPLETED")),
-    
-    PAYMENT_REFUNDED(String.valueOf("PAYMENT_REFUNDED")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
-
-    private String value;
-
-    EventsEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static EventsEnum fromValue(String value) {
-      for (EventsEnum b : EventsEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
-          return b;
-        }
-      }
-      return UNKNOWN_DEFAULT_OPEN_API;
-    }
-  }
-
   public static final String JSON_PROPERTY_EVENTS = "events";
   @javax.annotation.Nonnull
-  private Set<EventsEnum> events = new LinkedHashSet<>();
+  private Set<TriggerEvent> events = new LinkedHashSet<>();
 
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
   private Boolean enabled;
 
-  public UpsertPaymentTriggerRequest() { 
+  public UpdatePaymentTriggerRequest() { 
   }
 
-  public UpsertPaymentTriggerRequest displayName(@javax.annotation.Nonnull String displayName) {
+  public UpdatePaymentTriggerRequest displayName(@javax.annotation.Nonnull String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -128,7 +92,7 @@ public class UpsertPaymentTriggerRequest {
   }
 
 
-  public UpsertPaymentTriggerRequest targetServiceId(@javax.annotation.Nonnull String targetServiceId) {
+  public UpdatePaymentTriggerRequest targetServiceId(@javax.annotation.Nonnull String targetServiceId) {
     this.targetServiceId = targetServiceId;
     return this;
   }
@@ -152,7 +116,7 @@ public class UpsertPaymentTriggerRequest {
   }
 
 
-  public UpsertPaymentTriggerRequest targetPath(@javax.annotation.Nonnull String targetPath) {
+  public UpdatePaymentTriggerRequest targetPath(@javax.annotation.Nonnull String targetPath) {
     this.targetPath = targetPath;
     return this;
   }
@@ -176,12 +140,12 @@ public class UpsertPaymentTriggerRequest {
   }
 
 
-  public UpsertPaymentTriggerRequest events(@javax.annotation.Nonnull Set<EventsEnum> events) {
+  public UpdatePaymentTriggerRequest events(@javax.annotation.Nonnull Set<TriggerEvent> events) {
     this.events = events;
     return this;
   }
 
-  public UpsertPaymentTriggerRequest addEventsItem(EventsEnum eventsItem) {
+  public UpdatePaymentTriggerRequest addEventsItem(TriggerEvent eventsItem) {
     if (this.events == null) {
       this.events = new LinkedHashSet<>();
     }
@@ -196,7 +160,7 @@ public class UpsertPaymentTriggerRequest {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_EVENTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Set<EventsEnum> getEvents() {
+  public Set<TriggerEvent> getEvents() {
     return events;
   }
 
@@ -204,12 +168,12 @@ public class UpsertPaymentTriggerRequest {
   @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(value = JSON_PROPERTY_EVENTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEvents(@javax.annotation.Nonnull Set<EventsEnum> events) {
+  public void setEvents(@javax.annotation.Nonnull Set<TriggerEvent> events) {
     this.events = events;
   }
 
 
-  public UpsertPaymentTriggerRequest enabled(@javax.annotation.Nullable Boolean enabled) {
+  public UpdatePaymentTriggerRequest enabled(@javax.annotation.Nullable Boolean enabled) {
     this.enabled = enabled;
     return this;
   }
@@ -234,7 +198,7 @@ public class UpsertPaymentTriggerRequest {
 
 
   /**
-   * Return true if this UpsertPaymentTriggerRequest object is equal to o.
+   * Return true if this UpdatePaymentTriggerRequest object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -244,12 +208,12 @@ public class UpsertPaymentTriggerRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpsertPaymentTriggerRequest upsertPaymentTriggerRequest = (UpsertPaymentTriggerRequest) o;
-    return Objects.equals(this.displayName, upsertPaymentTriggerRequest.displayName) &&
-        Objects.equals(this.targetServiceId, upsertPaymentTriggerRequest.targetServiceId) &&
-        Objects.equals(this.targetPath, upsertPaymentTriggerRequest.targetPath) &&
-        Objects.equals(this.events, upsertPaymentTriggerRequest.events) &&
-        Objects.equals(this.enabled, upsertPaymentTriggerRequest.enabled);
+    UpdatePaymentTriggerRequest updatePaymentTriggerRequest = (UpdatePaymentTriggerRequest) o;
+    return Objects.equals(this.displayName, updatePaymentTriggerRequest.displayName) &&
+        Objects.equals(this.targetServiceId, updatePaymentTriggerRequest.targetServiceId) &&
+        Objects.equals(this.targetPath, updatePaymentTriggerRequest.targetPath) &&
+        Objects.equals(this.events, updatePaymentTriggerRequest.events) &&
+        Objects.equals(this.enabled, updatePaymentTriggerRequest.enabled);
   }
 
   @Override
@@ -260,7 +224,7 @@ public class UpsertPaymentTriggerRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpsertPaymentTriggerRequest {\n");
+    sb.append("class UpdatePaymentTriggerRequest {\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    targetServiceId: ").append(toIndentedString(targetServiceId)).append("\n");
     sb.append("    targetPath: ").append(toIndentedString(targetPath)).append("\n");
@@ -275,10 +239,7 @@ public class UpsertPaymentTriggerRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -331,12 +292,14 @@ public class UpsertPaymentTriggerRequest {
     // add `events` to the URL query string
     if (getEvents() != null) {
       int i = 0;
-      for (String _item : getEvents()) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sevents%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(_item))));
+      for (TriggerEvent _item : getEvents()) {
+        if (_item != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%sevents%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(_item))));
+        }
+        i++;
       }
-      i++;
     }
 
     // add `enabled` to the URL query string

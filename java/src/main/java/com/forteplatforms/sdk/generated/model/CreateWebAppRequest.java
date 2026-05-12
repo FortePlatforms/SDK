@@ -48,7 +48,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateWebAppRequest.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
   CreateWebAppRequest.JSON_PROPERTY_SECRETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class CreateWebAppRequest {
   public static final String JSON_PROPERTY_WEB_APP_NAME = "webAppName";
   @javax.annotation.Nonnull
@@ -68,9 +68,7 @@ public class CreateWebAppRequest {
   public enum BuildTriggerEnum {
     PUSH(String.valueOf("PUSH")),
     
-    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED"));
 
     private String value;
 
@@ -91,11 +89,11 @@ public class CreateWebAppRequest {
     @JsonCreator
     public static BuildTriggerEnum fromValue(String value) {
       for (BuildTriggerEnum b : BuildTriggerEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
 
@@ -498,10 +496,7 @@ public class CreateWebAppRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

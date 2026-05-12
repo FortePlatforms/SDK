@@ -121,13 +121,13 @@ export interface ServiceBuildRequestObject {
     buildStepLogs?: Array<BuildStepLog>;
     /**
      * 
-     * @type {string}
+     * @type {ServiceBuildRequestObjectStatusType}
      * @memberof ServiceBuildRequestObject
      */
     status: ServiceBuildRequestObjectStatusType;
     /**
      * 
-     * @type {string}
+     * @type {ServiceBuildRequestObjectOriginType}
      * @memberof ServiceBuildRequestObject
      */
     origin?: ServiceBuildRequestObjectOriginType;

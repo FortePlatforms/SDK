@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     OpenAPI definition
 
@@ -10,6 +8,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -31,6 +30,7 @@ from forte_sdk.generated.models.create_payment_preview_request import CreatePaym
 from forte_sdk.generated.models.create_payment_preview_response import CreatePaymentPreviewResponse
 from forte_sdk.generated.models.create_payment_request import CreatePaymentRequest
 from forte_sdk.generated.models.create_payment_response import CreatePaymentResponse
+from forte_sdk.generated.models.create_payment_trigger_request import CreatePaymentTriggerRequest
 from forte_sdk.generated.models.create_project_api_key_request import CreateProjectApiKeyRequest
 from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest
@@ -60,10 +60,10 @@ from forte_sdk.generated.models.update_content_shares_request import UpdateConte
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse
 from forte_sdk.generated.models.update_notification_templates_request import UpdateNotificationTemplatesRequest
+from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest
 from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse
-from forte_sdk.generated.models.upsert_payment_trigger_request import UpsertPaymentTriggerRequest
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject
 from forte_sdk.generated.models.web_app_build_request_object import WebAppBuildRequestObject
@@ -2477,7 +2477,7 @@ class ProjectsServerApi:
     def create_payment_trigger(
         self,
         project_id: StrictStr,
-        upsert_payment_trigger_request: UpsertPaymentTriggerRequest,
+        create_payment_trigger_request: CreatePaymentTriggerRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2496,8 +2496,8 @@ class ProjectsServerApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param upsert_payment_trigger_request: (required)
-        :type upsert_payment_trigger_request: UpsertPaymentTriggerRequest
+        :param create_payment_trigger_request: (required)
+        :type create_payment_trigger_request: CreatePaymentTriggerRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2522,7 +2522,7 @@ class ProjectsServerApi:
 
         _param = self._create_payment_trigger_serialize(
             project_id=project_id,
-            upsert_payment_trigger_request=upsert_payment_trigger_request,
+            create_payment_trigger_request=create_payment_trigger_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2547,7 +2547,7 @@ class ProjectsServerApi:
     def create_payment_trigger_with_http_info(
         self,
         project_id: StrictStr,
-        upsert_payment_trigger_request: UpsertPaymentTriggerRequest,
+        create_payment_trigger_request: CreatePaymentTriggerRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2566,8 +2566,8 @@ class ProjectsServerApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param upsert_payment_trigger_request: (required)
-        :type upsert_payment_trigger_request: UpsertPaymentTriggerRequest
+        :param create_payment_trigger_request: (required)
+        :type create_payment_trigger_request: CreatePaymentTriggerRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2592,7 +2592,7 @@ class ProjectsServerApi:
 
         _param = self._create_payment_trigger_serialize(
             project_id=project_id,
-            upsert_payment_trigger_request=upsert_payment_trigger_request,
+            create_payment_trigger_request=create_payment_trigger_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2617,7 +2617,7 @@ class ProjectsServerApi:
     def create_payment_trigger_without_preload_content(
         self,
         project_id: StrictStr,
-        upsert_payment_trigger_request: UpsertPaymentTriggerRequest,
+        create_payment_trigger_request: CreatePaymentTriggerRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2636,8 +2636,8 @@ class ProjectsServerApi:
 
         :param project_id: (required)
         :type project_id: str
-        :param upsert_payment_trigger_request: (required)
-        :type upsert_payment_trigger_request: UpsertPaymentTriggerRequest
+        :param create_payment_trigger_request: (required)
+        :type create_payment_trigger_request: CreatePaymentTriggerRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2662,7 +2662,7 @@ class ProjectsServerApi:
 
         _param = self._create_payment_trigger_serialize(
             project_id=project_id,
-            upsert_payment_trigger_request=upsert_payment_trigger_request,
+            create_payment_trigger_request=create_payment_trigger_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2682,7 +2682,7 @@ class ProjectsServerApi:
     def _create_payment_trigger_serialize(
         self,
         project_id,
-        upsert_payment_trigger_request,
+        create_payment_trigger_request,
         _request_auth,
         _content_type,
         _headers,
@@ -2710,8 +2710,8 @@ class ProjectsServerApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if upsert_payment_trigger_request is not None:
-            _body_params = upsert_payment_trigger_request
+        if create_payment_trigger_request is not None:
+            _body_params = create_payment_trigger_request
 
 
         # set the HTTP header `Accept`
@@ -16654,7 +16654,7 @@ class ProjectsServerApi:
         self,
         project_id: StrictStr,
         trigger_id: StrictStr,
-        upsert_payment_trigger_request: UpsertPaymentTriggerRequest,
+        update_payment_trigger_request: UpdatePaymentTriggerRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16675,8 +16675,8 @@ class ProjectsServerApi:
         :type project_id: str
         :param trigger_id: (required)
         :type trigger_id: str
-        :param upsert_payment_trigger_request: (required)
-        :type upsert_payment_trigger_request: UpsertPaymentTriggerRequest
+        :param update_payment_trigger_request: (required)
+        :type update_payment_trigger_request: UpdatePaymentTriggerRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16702,7 +16702,7 @@ class ProjectsServerApi:
         _param = self._update_payment_trigger_serialize(
             project_id=project_id,
             trigger_id=trigger_id,
-            upsert_payment_trigger_request=upsert_payment_trigger_request,
+            update_payment_trigger_request=update_payment_trigger_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -16728,7 +16728,7 @@ class ProjectsServerApi:
         self,
         project_id: StrictStr,
         trigger_id: StrictStr,
-        upsert_payment_trigger_request: UpsertPaymentTriggerRequest,
+        update_payment_trigger_request: UpdatePaymentTriggerRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16749,8 +16749,8 @@ class ProjectsServerApi:
         :type project_id: str
         :param trigger_id: (required)
         :type trigger_id: str
-        :param upsert_payment_trigger_request: (required)
-        :type upsert_payment_trigger_request: UpsertPaymentTriggerRequest
+        :param update_payment_trigger_request: (required)
+        :type update_payment_trigger_request: UpdatePaymentTriggerRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16776,7 +16776,7 @@ class ProjectsServerApi:
         _param = self._update_payment_trigger_serialize(
             project_id=project_id,
             trigger_id=trigger_id,
-            upsert_payment_trigger_request=upsert_payment_trigger_request,
+            update_payment_trigger_request=update_payment_trigger_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -16802,7 +16802,7 @@ class ProjectsServerApi:
         self,
         project_id: StrictStr,
         trigger_id: StrictStr,
-        upsert_payment_trigger_request: UpsertPaymentTriggerRequest,
+        update_payment_trigger_request: UpdatePaymentTriggerRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16823,8 +16823,8 @@ class ProjectsServerApi:
         :type project_id: str
         :param trigger_id: (required)
         :type trigger_id: str
-        :param upsert_payment_trigger_request: (required)
-        :type upsert_payment_trigger_request: UpsertPaymentTriggerRequest
+        :param update_payment_trigger_request: (required)
+        :type update_payment_trigger_request: UpdatePaymentTriggerRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16850,7 +16850,7 @@ class ProjectsServerApi:
         _param = self._update_payment_trigger_serialize(
             project_id=project_id,
             trigger_id=trigger_id,
-            upsert_payment_trigger_request=upsert_payment_trigger_request,
+            update_payment_trigger_request=update_payment_trigger_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -16871,7 +16871,7 @@ class ProjectsServerApi:
         self,
         project_id,
         trigger_id,
-        upsert_payment_trigger_request,
+        update_payment_trigger_request,
         _request_auth,
         _content_type,
         _headers,
@@ -16901,8 +16901,8 @@ class ProjectsServerApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if upsert_payment_trigger_request is not None:
-            _body_params = upsert_payment_trigger_request
+        if update_payment_trigger_request is not None:
+            _body_params = update_payment_trigger_request
 
 
         # set the HTTP header `Accept`

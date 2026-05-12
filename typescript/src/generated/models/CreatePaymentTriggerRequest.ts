@@ -13,59 +13,56 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TriggerEvent } from './TriggerEvent';
+import {
+    TriggerEventFromJSON,
+    TriggerEventFromJSONTyped,
+    TriggerEventToJSON,
+    TriggerEventToJSONTyped,
+} from './TriggerEvent';
+
 /**
  * 
  * @export
- * @interface UpsertPaymentTriggerRequest
+ * @interface CreatePaymentTriggerRequest
  */
-export interface UpsertPaymentTriggerRequest {
+export interface CreatePaymentTriggerRequest {
     /**
      * 
      * @type {string}
-     * @memberof UpsertPaymentTriggerRequest
+     * @memberof CreatePaymentTriggerRequest
      */
     displayName: string;
     /**
      * 
      * @type {string}
-     * @memberof UpsertPaymentTriggerRequest
+     * @memberof CreatePaymentTriggerRequest
      */
     targetServiceId: string;
     /**
      * 
      * @type {string}
-     * @memberof UpsertPaymentTriggerRequest
+     * @memberof CreatePaymentTriggerRequest
      */
     targetPath: string;
     /**
      * 
-     * @type {Set<string>}
-     * @memberof UpsertPaymentTriggerRequest
+     * @type {Set<TriggerEvent>}
+     * @memberof CreatePaymentTriggerRequest
      */
-    events: Set<UpsertPaymentTriggerRequestEventsType>;
+    events: Set<TriggerEvent>;
     /**
      * 
      * @type {boolean}
-     * @memberof UpsertPaymentTriggerRequest
+     * @memberof CreatePaymentTriggerRequest
      */
     enabled?: boolean;
 }
 
-
 /**
- * @export
+ * Check if a given object implements the CreatePaymentTriggerRequest interface.
  */
-export const UpsertPaymentTriggerRequestEventsType = {
-    PAYMENT_COMPLETED: 'PAYMENT_COMPLETED',
-    PAYMENT_REFUNDED: 'PAYMENT_REFUNDED'
-} as const;
-export type UpsertPaymentTriggerRequestEventsType = typeof UpsertPaymentTriggerRequestEventsType[keyof typeof UpsertPaymentTriggerRequestEventsType];
-
-
-/**
- * Check if a given object implements the UpsertPaymentTriggerRequest interface.
- */
-export function instanceOfUpsertPaymentTriggerRequest(value: object): value is UpsertPaymentTriggerRequest {
+export function instanceOfCreatePaymentTriggerRequest(value: object): value is CreatePaymentTriggerRequest {
     if (!('displayName' in value) || value['displayName'] === undefined) return false;
     if (!('targetServiceId' in value) || value['targetServiceId'] === undefined) return false;
     if (!('targetPath' in value) || value['targetPath'] === undefined) return false;
@@ -73,11 +70,11 @@ export function instanceOfUpsertPaymentTriggerRequest(value: object): value is U
     return true;
 }
 
-export function UpsertPaymentTriggerRequestFromJSON(json: any): UpsertPaymentTriggerRequest {
-    return UpsertPaymentTriggerRequestFromJSONTyped(json, false);
+export function CreatePaymentTriggerRequestFromJSON(json: any): CreatePaymentTriggerRequest {
+    return CreatePaymentTriggerRequestFromJSONTyped(json, false);
 }
 
-export function UpsertPaymentTriggerRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertPaymentTriggerRequest {
+export function CreatePaymentTriggerRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreatePaymentTriggerRequest {
     if (json == null) {
         return json;
     }
@@ -86,16 +83,16 @@ export function UpsertPaymentTriggerRequestFromJSONTyped(json: any, ignoreDiscri
         'displayName': json['displayName'],
         'targetServiceId': json['targetServiceId'],
         'targetPath': json['targetPath'],
-        'events': new Set(json['events']),
+        'events': (new Set((json['events'] as Array<any>).map(TriggerEventFromJSON))),
         'enabled': json['enabled'] == null ? undefined : json['enabled'],
     };
 }
 
-export function UpsertPaymentTriggerRequestToJSON(json: any): UpsertPaymentTriggerRequest {
-    return UpsertPaymentTriggerRequestToJSONTyped(json, false);
+export function CreatePaymentTriggerRequestToJSON(json: any): CreatePaymentTriggerRequest {
+    return CreatePaymentTriggerRequestToJSONTyped(json, false);
 }
 
-export function UpsertPaymentTriggerRequestToJSONTyped(value?: UpsertPaymentTriggerRequest | null, ignoreDiscriminator: boolean = false): any {
+export function CreatePaymentTriggerRequestToJSONTyped(value?: CreatePaymentTriggerRequest | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -105,7 +102,7 @@ export function UpsertPaymentTriggerRequestToJSONTyped(value?: UpsertPaymentTrig
         'displayName': value['displayName'],
         'targetServiceId': value['targetServiceId'],
         'targetPath': value['targetPath'],
-        'events': Array.from(value['events'] as Set<any>),
+        'events': (Array.from(value['events'] as Set<any>).map(TriggerEventToJSON)),
         'enabled': value['enabled'],
     };
 }

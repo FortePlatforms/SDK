@@ -45,7 +45,7 @@ export interface TestInvocationRequest {
     body?: string;
     /**
      * 
-     * @type {string}
+     * @type {TestInvocationRequestAuthModeType}
      * @memberof TestInvocationRequest
      */
     authMode: TestInvocationRequestAuthModeType;

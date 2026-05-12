@@ -23,6 +23,7 @@ from forte_sdk.generated.models.latency_metrics import LatencyMetrics
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class ServiceMetricsResponse(BaseModel):
     """
@@ -35,7 +36,8 @@ class ServiceMetricsResponse(BaseModel):
     __properties: ClassVar[List[str]] = ["invocations", "statusCodeCounts", "statusCodeGroupCounts", "latencyMetrics"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -47,8 +49,7 @@ class ServiceMetricsResponse(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -114,22 +115,18 @@ class ServiceMetricsResponse(BaseModel):
 
         _obj = cls.model_validate({
             "invocations": [TimeSeriesDataPoint.from_dict(_item) for _item in obj["invocations"]] if obj.get("invocations") is not None else None,
-            "statusCodeCounts": dict(
-                (_k,
-                        [TimeSeriesDataPoint.from_dict(_item) for _item in _v]
-                        if _v is not None
-                        else None
-                )
-                for _k, _v in obj.get("statusCodeCounts", {}).items()
-            ),
-            "statusCodeGroupCounts": dict(
-                (_k,
-                        [TimeSeriesDataPoint.from_dict(_item) for _item in _v]
-                        if _v is not None
-                        else None
-                )
-                for _k, _v in obj.get("statusCodeGroupCounts", {}).items()
-            ),
+            "statusCodeCounts": {
+                _k: [TimeSeriesDataPoint.from_dict(_item) for _item in _v] if _v is not None else None
+                for _k, _v in obj["statusCodeCounts"].items()
+            }
+            if obj.get("statusCodeCounts") is not None
+            else None,
+            "statusCodeGroupCounts": {
+                _k: [TimeSeriesDataPoint.from_dict(_item) for _item in _v] if _v is not None else None
+                for _k, _v in obj["statusCodeGroupCounts"].items()
+            }
+            if obj.get("statusCodeGroupCounts") is not None
+            else None,
             "latencyMetrics": LatencyMetrics.from_dict(obj["latencyMetrics"]) if obj.get("latencyMetrics") is not None else None
         })
         return _obj

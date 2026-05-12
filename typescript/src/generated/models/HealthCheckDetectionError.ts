@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface HealthCheckDetectionError {
     /**
      * Type of error that occurred
-     * @type {string}
+     * @type {HealthCheckDetectionErrorErrorTypeType}
      * @memberof HealthCheckDetectionError
      */
     errorType?: HealthCheckDetectionErrorErrorTypeType;

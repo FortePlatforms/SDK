@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.forteplatforms.sdk.generated.model.TriggerEvent;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -45,7 +46,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentTriggerConfig.JSON_PROPERTY_ENABLED,
   PaymentTriggerConfig.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class PaymentTriggerConfig {
   public static final String JSON_PROPERTY_TRIGGER_ID = "triggerId";
   @javax.annotation.Nonnull
@@ -63,46 +64,9 @@ public class PaymentTriggerConfig {
   @javax.annotation.Nonnull
   private String targetPath;
 
-  /**
-   * Gets or Sets events
-   */
-  public enum EventsEnum {
-    PAYMENT_COMPLETED(String.valueOf("PAYMENT_COMPLETED")),
-    
-    PAYMENT_REFUNDED(String.valueOf("PAYMENT_REFUNDED")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
-
-    private String value;
-
-    EventsEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static EventsEnum fromValue(String value) {
-      for (EventsEnum b : EventsEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
-          return b;
-        }
-      }
-      return UNKNOWN_DEFAULT_OPEN_API;
-    }
-  }
-
   public static final String JSON_PROPERTY_EVENTS = "events";
   @javax.annotation.Nonnull
-  private Set<EventsEnum> events = new LinkedHashSet<>();
+  private Set<TriggerEvent> events = new LinkedHashSet<>();
 
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
@@ -211,12 +175,12 @@ public class PaymentTriggerConfig {
   }
 
 
-  public PaymentTriggerConfig events(@javax.annotation.Nonnull Set<EventsEnum> events) {
+  public PaymentTriggerConfig events(@javax.annotation.Nonnull Set<TriggerEvent> events) {
     this.events = events;
     return this;
   }
 
-  public PaymentTriggerConfig addEventsItem(EventsEnum eventsItem) {
+  public PaymentTriggerConfig addEventsItem(TriggerEvent eventsItem) {
     if (this.events == null) {
       this.events = new LinkedHashSet<>();
     }
@@ -231,7 +195,7 @@ public class PaymentTriggerConfig {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_EVENTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Set<EventsEnum> getEvents() {
+  public Set<TriggerEvent> getEvents() {
     return events;
   }
 
@@ -239,7 +203,7 @@ public class PaymentTriggerConfig {
   @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(value = JSON_PROPERTY_EVENTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEvents(@javax.annotation.Nonnull Set<EventsEnum> events) {
+  public void setEvents(@javax.annotation.Nonnull Set<TriggerEvent> events) {
     this.events = events;
   }
 
@@ -338,10 +302,7 @@ public class PaymentTriggerConfig {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -399,12 +360,14 @@ public class PaymentTriggerConfig {
     // add `events` to the URL query string
     if (getEvents() != null) {
       int i = 0;
-      for (String _item : getEvents()) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sevents%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(_item))));
+      for (TriggerEvent _item : getEvents()) {
+        if (_item != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%sevents%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(_item))));
+        }
+        i++;
       }
-      i++;
     }
 
     // add `enabled` to the URL query string

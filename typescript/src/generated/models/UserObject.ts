@@ -101,7 +101,7 @@ export interface UserObject {
     invitedByUserId?: string;
     /**
      * 
-     * @type {string}
+     * @type {UserObjectStateType}
      * @memberof UserObject
      */
     state: UserObjectStateType;

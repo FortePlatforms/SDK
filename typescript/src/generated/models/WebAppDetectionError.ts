@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface WebAppDetectionError {
     /**
      * Type of error that occurred
-     * @type {string}
+     * @type {WebAppDetectionErrorErrorTypeType}
      * @memberof WebAppDetectionError
      */
     errorType?: WebAppDetectionErrorErrorTypeType;

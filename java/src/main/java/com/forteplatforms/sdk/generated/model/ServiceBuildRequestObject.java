@@ -55,7 +55,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceBuildRequestObject.JSON_PROPERTY_STATUS,
   ServiceBuildRequestObject.JSON_PROPERTY_ORIGIN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
@@ -169,9 +169,7 @@ public class ServiceBuildRequestObject {
     
     FAILED(String.valueOf("FAILED")),
     
-    SUCCEEDED(String.valueOf("SUCCEEDED")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+    SUCCEEDED(String.valueOf("SUCCEEDED"));
 
     private String value;
 
@@ -192,11 +190,11 @@ public class ServiceBuildRequestObject {
     @JsonCreator
     public static StatusEnum fromValue(String value) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
 
@@ -218,9 +216,7 @@ public class ServiceBuildRequestObject {
     
     CONFIG_CHANGE(String.valueOf("CONFIG_CHANGE")),
     
-    SHADOW_VALIDATION_BUILD(String.valueOf("SHADOW_VALIDATION_BUILD")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+    SHADOW_VALIDATION_BUILD(String.valueOf("SHADOW_VALIDATION_BUILD"));
 
     private String value;
 
@@ -241,11 +237,11 @@ public class ServiceBuildRequestObject {
     @JsonCreator
     public static OriginEnum fromValue(String value) {
       for (OriginEnum b : OriginEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
 
@@ -686,10 +682,7 @@ public class ServiceBuildRequestObject {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

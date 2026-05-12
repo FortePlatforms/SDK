@@ -30,6 +30,7 @@ import com.forteplatforms.sdk.generated.model.CreatePaymentPreviewRequest;
 import com.forteplatforms.sdk.generated.model.CreatePaymentPreviewResponse;
 import com.forteplatforms.sdk.generated.model.CreatePaymentRequest;
 import com.forteplatforms.sdk.generated.model.CreatePaymentResponse;
+import com.forteplatforms.sdk.generated.model.CreatePaymentTriggerRequest;
 import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyRequest;
 import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyResponse;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyRequest;
@@ -60,10 +61,10 @@ import com.forteplatforms.sdk.generated.model.UpdateContentSharesRequest;
 import com.forteplatforms.sdk.generated.model.UpdateForteServiceRequest;
 import com.forteplatforms.sdk.generated.model.UpdateForteServiceResponse;
 import com.forteplatforms.sdk.generated.model.UpdateNotificationTemplatesRequest;
+import com.forteplatforms.sdk.generated.model.UpdatePaymentTriggerRequest;
 import com.forteplatforms.sdk.generated.model.UpdateProjectRequest;
 import com.forteplatforms.sdk.generated.model.UpdateWebAppRequest;
 import com.forteplatforms.sdk.generated.model.UpdateWebAppResponse;
-import com.forteplatforms.sdk.generated.model.UpsertPaymentTriggerRequest;
 import com.forteplatforms.sdk.generated.model.UserMetricsResponse;
 import com.forteplatforms.sdk.generated.model.UserObject;
 import com.forteplatforms.sdk.generated.model.WebAppBuildRequestObject;
@@ -93,8 +94,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -334,10 +336,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addContactMethodRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -484,10 +489,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(adminOverrideContactMethodRequest);
-      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PATCH", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -611,6 +619,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -747,6 +756,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -906,6 +916,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -1042,10 +1053,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createContentUploadLinkRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -1183,10 +1197,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -1324,10 +1341,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentPreviewRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -1346,25 +1366,25 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
-   * @param upsertPaymentTriggerRequest  (required)
+   * @param createPaymentTriggerRequest  (required)
    * @return PaymentTriggerConfig
    * @throws ApiException if fails to make API call
    */
-  public PaymentTriggerConfig createPaymentTrigger(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest) throws ApiException {
-    return createPaymentTrigger(projectId, upsertPaymentTriggerRequest, null);
+  public PaymentTriggerConfig createPaymentTrigger(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentTriggerRequest createPaymentTriggerRequest) throws ApiException {
+    return createPaymentTrigger(projectId, createPaymentTriggerRequest, null);
   }
 
   /**
    * 
    * 
    * @param projectId  (required)
-   * @param upsertPaymentTriggerRequest  (required)
+   * @param createPaymentTriggerRequest  (required)
    * @param headers Optional headers to include in the request
    * @return PaymentTriggerConfig
    * @throws ApiException if fails to make API call
    */
-  public PaymentTriggerConfig createPaymentTrigger(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaymentTriggerConfig> localVarResponse = createPaymentTriggerWithHttpInfo(projectId, upsertPaymentTriggerRequest, headers);
+  public PaymentTriggerConfig createPaymentTrigger(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentTriggerRequest createPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentTriggerConfig> localVarResponse = createPaymentTriggerWithHttpInfo(projectId, createPaymentTriggerRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -1372,25 +1392,25 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
-   * @param upsertPaymentTriggerRequest  (required)
+   * @param createPaymentTriggerRequest  (required)
    * @return ApiResponse&lt;PaymentTriggerConfig&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentTriggerConfig> createPaymentTriggerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest) throws ApiException {
-    return createPaymentTriggerWithHttpInfo(projectId, upsertPaymentTriggerRequest, null);
+  public ApiResponse<PaymentTriggerConfig> createPaymentTriggerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentTriggerRequest createPaymentTriggerRequest) throws ApiException {
+    return createPaymentTriggerWithHttpInfo(projectId, createPaymentTriggerRequest, null);
   }
 
   /**
    * 
    * 
    * @param projectId  (required)
-   * @param upsertPaymentTriggerRequest  (required)
+   * @param createPaymentTriggerRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PaymentTriggerConfig&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentTriggerConfig> createPaymentTriggerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createPaymentTriggerRequestBuilder(projectId, upsertPaymentTriggerRequest, headers);
+  public ApiResponse<PaymentTriggerConfig> createPaymentTriggerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentTriggerRequest createPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createPaymentTriggerRequestBuilder(projectId, createPaymentTriggerRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1437,14 +1457,14 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder createPaymentTriggerRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createPaymentTriggerRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentTriggerRequest createPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling createPaymentTrigger");
     }
-    // verify the required parameter 'upsertPaymentTriggerRequest' is set
-    if (upsertPaymentTriggerRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'upsertPaymentTriggerRequest' when calling createPaymentTrigger");
+    // verify the required parameter 'createPaymentTriggerRequest' is set
+    if (createPaymentTriggerRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createPaymentTriggerRequest' when calling createPaymentTrigger");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -1456,10 +1476,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(upsertPaymentTriggerRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentTriggerRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -1599,6 +1622,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -1726,10 +1750,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createProjectApiKeyRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -1858,10 +1885,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createForteServiceRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -2009,6 +2039,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -2145,10 +2176,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createServiceRequestProxyRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -2277,10 +2311,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createWebAppRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -2428,6 +2465,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -2550,6 +2588,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -2663,6 +2702,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -2767,6 +2807,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -2880,6 +2921,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -2993,6 +3035,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -3106,6 +3149,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -3219,6 +3263,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -3355,6 +3400,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -3491,6 +3537,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -3627,6 +3674,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -3745,6 +3793,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -3863,6 +3912,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -3999,6 +4049,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -4126,6 +4177,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -4262,6 +4314,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -4420,6 +4473,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -4547,6 +4601,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -4696,6 +4751,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -4823,6 +4879,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -4959,6 +5016,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -5111,6 +5169,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -5287,6 +5346,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -5405,6 +5465,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -5523,6 +5584,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -5632,6 +5694,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -5802,6 +5865,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -5960,6 +6024,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -6124,6 +6189,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -6300,6 +6366,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -6449,6 +6516,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -6607,6 +6675,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -6725,6 +6794,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -6861,10 +6931,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(requestBody);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PUT", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -7046,6 +7119,7 @@ public class ProjectsServerApi {
     }
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -7182,10 +7256,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendUserEmailRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -7323,10 +7400,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendUserSmsRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -7455,6 +7535,7 @@ public class ProjectsServerApi {
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
@@ -7591,10 +7672,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(testInvocationRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -7741,10 +7825,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateContentSharesRequest);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PUT", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -7873,10 +7960,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateNotificationTemplatesRequest);
-      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PATCH", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -7896,12 +7986,12 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param triggerId  (required)
-   * @param upsertPaymentTriggerRequest  (required)
+   * @param updatePaymentTriggerRequest  (required)
    * @return PaymentTriggerConfig
    * @throws ApiException if fails to make API call
    */
-  public PaymentTriggerConfig updatePaymentTrigger(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest) throws ApiException {
-    return updatePaymentTrigger(projectId, triggerId, upsertPaymentTriggerRequest, null);
+  public PaymentTriggerConfig updatePaymentTrigger(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpdatePaymentTriggerRequest updatePaymentTriggerRequest) throws ApiException {
+    return updatePaymentTrigger(projectId, triggerId, updatePaymentTriggerRequest, null);
   }
 
   /**
@@ -7909,13 +7999,13 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param triggerId  (required)
-   * @param upsertPaymentTriggerRequest  (required)
+   * @param updatePaymentTriggerRequest  (required)
    * @param headers Optional headers to include in the request
    * @return PaymentTriggerConfig
    * @throws ApiException if fails to make API call
    */
-  public PaymentTriggerConfig updatePaymentTrigger(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaymentTriggerConfig> localVarResponse = updatePaymentTriggerWithHttpInfo(projectId, triggerId, upsertPaymentTriggerRequest, headers);
+  public PaymentTriggerConfig updatePaymentTrigger(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpdatePaymentTriggerRequest updatePaymentTriggerRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentTriggerConfig> localVarResponse = updatePaymentTriggerWithHttpInfo(projectId, triggerId, updatePaymentTriggerRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -7924,12 +8014,12 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param triggerId  (required)
-   * @param upsertPaymentTriggerRequest  (required)
+   * @param updatePaymentTriggerRequest  (required)
    * @return ApiResponse&lt;PaymentTriggerConfig&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentTriggerConfig> updatePaymentTriggerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest) throws ApiException {
-    return updatePaymentTriggerWithHttpInfo(projectId, triggerId, upsertPaymentTriggerRequest, null);
+  public ApiResponse<PaymentTriggerConfig> updatePaymentTriggerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpdatePaymentTriggerRequest updatePaymentTriggerRequest) throws ApiException {
+    return updatePaymentTriggerWithHttpInfo(projectId, triggerId, updatePaymentTriggerRequest, null);
   }
 
   /**
@@ -7937,13 +8027,13 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param triggerId  (required)
-   * @param upsertPaymentTriggerRequest  (required)
+   * @param updatePaymentTriggerRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PaymentTriggerConfig&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentTriggerConfig> updatePaymentTriggerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updatePaymentTriggerRequestBuilder(projectId, triggerId, upsertPaymentTriggerRequest, headers);
+  public ApiResponse<PaymentTriggerConfig> updatePaymentTriggerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpdatePaymentTriggerRequest updatePaymentTriggerRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updatePaymentTriggerRequestBuilder(projectId, triggerId, updatePaymentTriggerRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -7990,7 +8080,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder updatePaymentTriggerRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpsertPaymentTriggerRequest upsertPaymentTriggerRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updatePaymentTriggerRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nonnull UpdatePaymentTriggerRequest updatePaymentTriggerRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling updatePaymentTrigger");
@@ -7999,9 +8089,9 @@ public class ProjectsServerApi {
     if (triggerId == null) {
       throw new ApiException(400, "Missing the required parameter 'triggerId' when calling updatePaymentTrigger");
     }
-    // verify the required parameter 'upsertPaymentTriggerRequest' is set
-    if (upsertPaymentTriggerRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'upsertPaymentTriggerRequest' when calling updatePaymentTrigger");
+    // verify the required parameter 'updatePaymentTriggerRequest' is set
+    if (updatePaymentTriggerRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updatePaymentTriggerRequest' when calling updatePaymentTrigger");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -8014,10 +8104,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(upsertPaymentTriggerRequest);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updatePaymentTriggerRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PUT", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -8146,10 +8239,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateProjectRequest);
-      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PATCH", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -8287,10 +8383,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateForteServiceRequest);
-      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PATCH", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }
@@ -8428,10 +8527,13 @@ public class ProjectsServerApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWebAppRequest);
-      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PATCH", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }

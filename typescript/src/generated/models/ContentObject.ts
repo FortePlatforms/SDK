@@ -47,7 +47,7 @@ export interface ContentObject {
     userId: string;
     /**
      * 
-     * @type {string}
+     * @type {ContentObjectStateType}
      * @memberof ContentObject
      */
     state: ContentObjectStateType;

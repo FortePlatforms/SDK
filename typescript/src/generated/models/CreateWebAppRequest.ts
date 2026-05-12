@@ -39,7 +39,7 @@ export interface CreateWebAppRequest {
     githubBranch?: string;
     /**
      * 
-     * @type {string}
+     * @type {CreateWebAppRequestBuildTriggerType}
      * @memberof CreateWebAppRequest
      */
     buildTrigger: CreateWebAppRequestBuildTriggerType;

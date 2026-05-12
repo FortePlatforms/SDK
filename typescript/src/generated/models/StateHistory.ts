@@ -27,7 +27,7 @@ export interface StateHistory {
     timestamp: Date;
     /**
      * 
-     * @type {string}
+     * @type {StateHistoryStateType}
      * @memberof StateHistory
      */
     state: StateHistoryStateType;

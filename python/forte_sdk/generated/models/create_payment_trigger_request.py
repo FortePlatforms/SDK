@@ -17,40 +17,38 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.trigger_event import TriggerEvent
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
-class UpsertPaymentTriggerRequest(BaseModel):
+class CreatePaymentTriggerRequest(BaseModel):
     """
-    UpsertPaymentTriggerRequest
+    CreatePaymentTriggerRequest
     """ # noqa: E501
     display_name: Annotated[str, Field(min_length=0, strict=True, max_length=120)] = Field(alias="displayName")
     target_service_id: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="targetServiceId")
     target_path: Annotated[str, Field(min_length=0, strict=True, max_length=500)] = Field(alias="targetPath")
-    events: Annotated[List[StrictStr], Field(min_length=1)]
+    events: Annotated[List[TriggerEvent], Field(min_length=1)]
     enabled: Optional[StrictBool] = None
     __properties: ClassVar[List[str]] = ["displayName", "targetServiceId", "targetPath", "events", "enabled"]
 
     @field_validator('target_path')
     def target_path_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if not isinstance(value, str):
+            value = str(value)
+
         if not re.match(r"^\/.*", value):
             raise ValueError(r"must validate the regular expression /^\/.*/")
         return value
 
-    @field_validator('events')
-    def events_validate_enum(cls, value):
-        """Validates the enum"""
-        for i in value:
-            if i not in set(['PAYMENT_COMPLETED', 'PAYMENT_REFUNDED']):
-                raise ValueError("each list item must be one of ('PAYMENT_COMPLETED', 'PAYMENT_REFUNDED')")
-        return value
-
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -62,12 +60,11 @@ class UpsertPaymentTriggerRequest(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpsertPaymentTriggerRequest from a JSON string"""
+        """Create an instance of CreatePaymentTriggerRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -92,7 +89,7 @@ class UpsertPaymentTriggerRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpsertPaymentTriggerRequest from a dict"""
+        """Create an instance of CreatePaymentTriggerRequest from a dict"""
         if obj is None:
             return None
 

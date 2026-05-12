@@ -12,159 +12,257 @@
  * Do not edit the class manually.
  */
 
-
 import * as runtime from '../runtime';
-import type {
-  AddContactMethodRequest,
-  AdminOverrideContactMethodRequest,
-  ApiKeySummary,
-  ContactMethod,
-  ContentObject,
-  CreateContentUploadLinkRequest,
-  CreateContentUploadLinkResponse,
-  CreateForteServiceRequest,
-  CreatePaymentPreviewRequest,
-  CreatePaymentPreviewResponse,
-  CreatePaymentRequest,
-  CreatePaymentResponse,
-  CreateProjectApiKeyRequest,
-  CreateProjectApiKeyResponse,
-  CreateServiceRequestProxyRequest,
-  CreateServiceRequestProxyResponse,
-  CreateWebAppRequest,
-  GetContentDownloadLinkResponse,
-  ListContentResponse,
-  NotificationTemplatesResponse,
-  PaginatedResponseLogLineObject,
-  PaginatedResponsePaymentObject,
-  PaginatedResponseRequestLogObject,
-  PaginatedResponseServiceBuildRequestObject,
-  PaginatedResponseUserActionLogObject,
-  PaginatedResponseUserObject,
-  PaginatedResponseWebAppBuildRequestObject,
-  PaymentTriggerConfig,
-  ProjectObject,
-  RequestLogObject,
-  SendUserEmailRequest,
-  SendUserSmsRequest,
-  ServiceBuildRequestObject,
-  ServiceMetricsResponse,
-  ServiceObject,
-  TestInvocationRequest,
-  TestInvocationResponse,
-  UpdateContentSharesRequest,
-  UpdateForteServiceRequest,
-  UpdateForteServiceResponse,
-  UpdateNotificationTemplatesRequest,
-  UpdateProjectRequest,
-  UpdateWebAppRequest,
-  UpdateWebAppResponse,
-  UpsertPaymentTriggerRequest,
-  UserMetricsResponse,
-  UserObject,
-  WebAppBuildRequestObject,
-  WebAppObject,
-} from '../models/index';
 import {
+    type AddContactMethodRequest,
     AddContactMethodRequestFromJSON,
     AddContactMethodRequestToJSON,
+} from '../models/AddContactMethodRequest';
+import {
+    type AdminOverrideContactMethodRequest,
     AdminOverrideContactMethodRequestFromJSON,
     AdminOverrideContactMethodRequestToJSON,
+} from '../models/AdminOverrideContactMethodRequest';
+import {
+    type ApiKeySummary,
     ApiKeySummaryFromJSON,
     ApiKeySummaryToJSON,
+} from '../models/ApiKeySummary';
+import {
+    type ContactMethod,
     ContactMethodFromJSON,
     ContactMethodToJSON,
+} from '../models/ContactMethod';
+import {
+    type ContentObject,
     ContentObjectFromJSON,
     ContentObjectToJSON,
+} from '../models/ContentObject';
+import {
+    type CreateContentUploadLinkRequest,
     CreateContentUploadLinkRequestFromJSON,
     CreateContentUploadLinkRequestToJSON,
+} from '../models/CreateContentUploadLinkRequest';
+import {
+    type CreateContentUploadLinkResponse,
     CreateContentUploadLinkResponseFromJSON,
     CreateContentUploadLinkResponseToJSON,
+} from '../models/CreateContentUploadLinkResponse';
+import {
+    type CreateForteServiceRequest,
     CreateForteServiceRequestFromJSON,
     CreateForteServiceRequestToJSON,
+} from '../models/CreateForteServiceRequest';
+import {
+    type CreatePaymentPreviewRequest,
     CreatePaymentPreviewRequestFromJSON,
     CreatePaymentPreviewRequestToJSON,
+} from '../models/CreatePaymentPreviewRequest';
+import {
+    type CreatePaymentPreviewResponse,
     CreatePaymentPreviewResponseFromJSON,
     CreatePaymentPreviewResponseToJSON,
+} from '../models/CreatePaymentPreviewResponse';
+import {
+    type CreatePaymentRequest,
     CreatePaymentRequestFromJSON,
     CreatePaymentRequestToJSON,
+} from '../models/CreatePaymentRequest';
+import {
+    type CreatePaymentResponse,
     CreatePaymentResponseFromJSON,
     CreatePaymentResponseToJSON,
+} from '../models/CreatePaymentResponse';
+import {
+    type CreatePaymentTriggerRequest,
+    CreatePaymentTriggerRequestFromJSON,
+    CreatePaymentTriggerRequestToJSON,
+} from '../models/CreatePaymentTriggerRequest';
+import {
+    type CreateProjectApiKeyRequest,
     CreateProjectApiKeyRequestFromJSON,
     CreateProjectApiKeyRequestToJSON,
+} from '../models/CreateProjectApiKeyRequest';
+import {
+    type CreateProjectApiKeyResponse,
     CreateProjectApiKeyResponseFromJSON,
     CreateProjectApiKeyResponseToJSON,
+} from '../models/CreateProjectApiKeyResponse';
+import {
+    type CreateServiceRequestProxyRequest,
     CreateServiceRequestProxyRequestFromJSON,
     CreateServiceRequestProxyRequestToJSON,
+} from '../models/CreateServiceRequestProxyRequest';
+import {
+    type CreateServiceRequestProxyResponse,
     CreateServiceRequestProxyResponseFromJSON,
     CreateServiceRequestProxyResponseToJSON,
+} from '../models/CreateServiceRequestProxyResponse';
+import {
+    type CreateWebAppRequest,
     CreateWebAppRequestFromJSON,
     CreateWebAppRequestToJSON,
+} from '../models/CreateWebAppRequest';
+import {
+    type GetContentDownloadLinkResponse,
     GetContentDownloadLinkResponseFromJSON,
     GetContentDownloadLinkResponseToJSON,
+} from '../models/GetContentDownloadLinkResponse';
+import {
+    type ListContentResponse,
     ListContentResponseFromJSON,
     ListContentResponseToJSON,
+} from '../models/ListContentResponse';
+import {
+    type NotificationTemplatesResponse,
     NotificationTemplatesResponseFromJSON,
     NotificationTemplatesResponseToJSON,
+} from '../models/NotificationTemplatesResponse';
+import {
+    type PaginatedResponseLogLineObject,
     PaginatedResponseLogLineObjectFromJSON,
     PaginatedResponseLogLineObjectToJSON,
+} from '../models/PaginatedResponseLogLineObject';
+import {
+    type PaginatedResponsePaymentObject,
     PaginatedResponsePaymentObjectFromJSON,
     PaginatedResponsePaymentObjectToJSON,
+} from '../models/PaginatedResponsePaymentObject';
+import {
+    type PaginatedResponseRequestLogObject,
     PaginatedResponseRequestLogObjectFromJSON,
     PaginatedResponseRequestLogObjectToJSON,
+} from '../models/PaginatedResponseRequestLogObject';
+import {
+    type PaginatedResponseServiceBuildRequestObject,
     PaginatedResponseServiceBuildRequestObjectFromJSON,
     PaginatedResponseServiceBuildRequestObjectToJSON,
+} from '../models/PaginatedResponseServiceBuildRequestObject';
+import {
+    type PaginatedResponseUserActionLogObject,
     PaginatedResponseUserActionLogObjectFromJSON,
     PaginatedResponseUserActionLogObjectToJSON,
+} from '../models/PaginatedResponseUserActionLogObject';
+import {
+    type PaginatedResponseUserObject,
     PaginatedResponseUserObjectFromJSON,
     PaginatedResponseUserObjectToJSON,
+} from '../models/PaginatedResponseUserObject';
+import {
+    type PaginatedResponseWebAppBuildRequestObject,
     PaginatedResponseWebAppBuildRequestObjectFromJSON,
     PaginatedResponseWebAppBuildRequestObjectToJSON,
+} from '../models/PaginatedResponseWebAppBuildRequestObject';
+import {
+    type PaymentTriggerConfig,
     PaymentTriggerConfigFromJSON,
     PaymentTriggerConfigToJSON,
+} from '../models/PaymentTriggerConfig';
+import {
+    type ProjectObject,
     ProjectObjectFromJSON,
     ProjectObjectToJSON,
+} from '../models/ProjectObject';
+import {
+    type RequestLogObject,
     RequestLogObjectFromJSON,
     RequestLogObjectToJSON,
+} from '../models/RequestLogObject';
+import {
+    type SendUserEmailRequest,
     SendUserEmailRequestFromJSON,
     SendUserEmailRequestToJSON,
+} from '../models/SendUserEmailRequest';
+import {
+    type SendUserSmsRequest,
     SendUserSmsRequestFromJSON,
     SendUserSmsRequestToJSON,
+} from '../models/SendUserSmsRequest';
+import {
+    type ServiceBuildRequestObject,
     ServiceBuildRequestObjectFromJSON,
     ServiceBuildRequestObjectToJSON,
+} from '../models/ServiceBuildRequestObject';
+import {
+    type ServiceMetricsResponse,
     ServiceMetricsResponseFromJSON,
     ServiceMetricsResponseToJSON,
+} from '../models/ServiceMetricsResponse';
+import {
+    type ServiceObject,
     ServiceObjectFromJSON,
     ServiceObjectToJSON,
+} from '../models/ServiceObject';
+import {
+    type TestInvocationRequest,
     TestInvocationRequestFromJSON,
     TestInvocationRequestToJSON,
+} from '../models/TestInvocationRequest';
+import {
+    type TestInvocationResponse,
     TestInvocationResponseFromJSON,
     TestInvocationResponseToJSON,
+} from '../models/TestInvocationResponse';
+import {
+    type UpdateContentSharesRequest,
     UpdateContentSharesRequestFromJSON,
     UpdateContentSharesRequestToJSON,
+} from '../models/UpdateContentSharesRequest';
+import {
+    type UpdateForteServiceRequest,
     UpdateForteServiceRequestFromJSON,
     UpdateForteServiceRequestToJSON,
+} from '../models/UpdateForteServiceRequest';
+import {
+    type UpdateForteServiceResponse,
     UpdateForteServiceResponseFromJSON,
     UpdateForteServiceResponseToJSON,
+} from '../models/UpdateForteServiceResponse';
+import {
+    type UpdateNotificationTemplatesRequest,
     UpdateNotificationTemplatesRequestFromJSON,
     UpdateNotificationTemplatesRequestToJSON,
+} from '../models/UpdateNotificationTemplatesRequest';
+import {
+    type UpdatePaymentTriggerRequest,
+    UpdatePaymentTriggerRequestFromJSON,
+    UpdatePaymentTriggerRequestToJSON,
+} from '../models/UpdatePaymentTriggerRequest';
+import {
+    type UpdateProjectRequest,
     UpdateProjectRequestFromJSON,
     UpdateProjectRequestToJSON,
+} from '../models/UpdateProjectRequest';
+import {
+    type UpdateWebAppRequest,
     UpdateWebAppRequestFromJSON,
     UpdateWebAppRequestToJSON,
+} from '../models/UpdateWebAppRequest';
+import {
+    type UpdateWebAppResponse,
     UpdateWebAppResponseFromJSON,
     UpdateWebAppResponseToJSON,
-    UpsertPaymentTriggerRequestFromJSON,
-    UpsertPaymentTriggerRequestToJSON,
+} from '../models/UpdateWebAppResponse';
+import {
+    type UserMetricsResponse,
     UserMetricsResponseFromJSON,
     UserMetricsResponseToJSON,
+} from '../models/UserMetricsResponse';
+import {
+    type UserObject,
     UserObjectFromJSON,
     UserObjectToJSON,
+} from '../models/UserObject';
+import {
+    type WebAppBuildRequestObject,
     WebAppBuildRequestObjectFromJSON,
     WebAppBuildRequestObjectToJSON,
+} from '../models/WebAppBuildRequestObject';
+import {
+    type WebAppObject,
     WebAppObjectFromJSON,
     WebAppObjectToJSON,
-} from '../models/index';
+} from '../models/WebAppObject';
 
 export interface AdminAddUserContactMethodRequest {
     projectId: string;
@@ -216,9 +314,9 @@ export interface CreatePaymentPreview1Request {
     createPaymentPreviewRequest: CreatePaymentPreviewRequest;
 }
 
-export interface CreatePaymentTriggerRequest {
+export interface CreatePaymentTriggerOperationRequest {
     projectId: string;
-    upsertPaymentTriggerRequest: UpsertPaymentTriggerRequest;
+    createPaymentTriggerRequest: CreatePaymentTriggerRequest;
 }
 
 export interface CreateProjectRequest {
@@ -503,10 +601,10 @@ export interface UpdateNotificationTemplatesOperationRequest {
     updateNotificationTemplatesRequest: UpdateNotificationTemplatesRequest;
 }
 
-export interface UpdatePaymentTriggerRequest {
+export interface UpdatePaymentTriggerOperationRequest {
     projectId: string;
     triggerId: string;
-    upsertPaymentTriggerRequest: UpsertPaymentTriggerRequest;
+    updatePaymentTriggerRequest: UpdatePaymentTriggerRequest;
 }
 
 export interface UpdateProjectOperationRequest {
@@ -532,8 +630,9 @@ export interface UpdateWebAppOperationRequest {
 export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
+     * Creates request options for adminAddUserContactMethod without sending the request
      */
-    async adminAddUserContactMethodRaw(requestParameters: AdminAddUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+    async adminAddUserContactMethodRequestOpts(requestParameters: AdminAddUserContactMethodRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -563,16 +662,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/contact-methods`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: AddContactMethodRequestToJSON(requestParameters['addContactMethodRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async adminAddUserContactMethodRaw(requestParameters: AdminAddUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+        const requestOptions = await this.adminAddUserContactMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ContactMethodFromJSON(jsonValue));
     }
@@ -585,8 +691,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for adminOverrideUserContactMethod without sending the request
      */
-    async adminOverrideUserContactMethodRaw(requestParameters: AdminOverrideUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+    async adminOverrideUserContactMethodRequestOpts(requestParameters: AdminOverrideUserContactMethodRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -623,17 +730,24 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/contact-methods/{contactMethodId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contactMethodId"}}`, encodeURIComponent(String(requestParameters['contactMethodId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contactMethodId}', encodeURIComponent(String(requestParameters['contactMethodId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: AdminOverrideContactMethodRequestToJSON(requestParameters['adminOverrideContactMethodRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async adminOverrideUserContactMethodRaw(requestParameters: AdminOverrideUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+        const requestOptions = await this.adminOverrideUserContactMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ContactMethodFromJSON(jsonValue));
     }
@@ -646,8 +760,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for adminRemoveUserContactMethod without sending the request
      */
-    async adminRemoveUserContactMethodRaw(requestParameters: AdminRemoveUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async adminRemoveUserContactMethodRequestOpts(requestParameters: AdminRemoveUserContactMethodRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -675,16 +790,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/contact-methods/{contactMethodId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contactMethodId"}}`, encodeURIComponent(String(requestParameters['contactMethodId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contactMethodId}', encodeURIComponent(String(requestParameters['contactMethodId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async adminRemoveUserContactMethodRaw(requestParameters: AdminRemoveUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.adminRemoveUserContactMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -696,8 +818,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for adminSendUserContactMethodVerificationCode without sending the request
      */
-    async adminSendUserContactMethodVerificationCodeRaw(requestParameters: AdminSendUserContactMethodVerificationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+    async adminSendUserContactMethodVerificationCodeRequestOpts(requestParameters: AdminSendUserContactMethodVerificationCodeRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -725,16 +848,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/contact-methods/{contactMethodId}/send-verification-code`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contactMethodId"}}`, encodeURIComponent(String(requestParameters['contactMethodId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contactMethodId}', encodeURIComponent(String(requestParameters['contactMethodId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async adminSendUserContactMethodVerificationCodeRaw(requestParameters: AdminSendUserContactMethodVerificationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+        const requestOptions = await this.adminSendUserContactMethodVerificationCodeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ContactMethodFromJSON(jsonValue));
     }
@@ -747,8 +877,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for adminVerifyUserContactMethod without sending the request
      */
-    async adminVerifyUserContactMethodRaw(requestParameters: AdminVerifyUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+    async adminVerifyUserContactMethodRequestOpts(requestParameters: AdminVerifyUserContactMethodRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -787,16 +918,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/contact-methods/{contactMethodId}/verify`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contactMethodId"}}`, encodeURIComponent(String(requestParameters['contactMethodId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contactMethodId}', encodeURIComponent(String(requestParameters['contactMethodId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async adminVerifyUserContactMethodRaw(requestParameters: AdminVerifyUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContactMethod>> {
+        const requestOptions = await this.adminVerifyUserContactMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ContactMethodFromJSON(jsonValue));
     }
@@ -809,8 +947,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createContentUploadLink1 without sending the request
      */
-    async createContentUploadLink1Raw(requestParameters: CreateContentUploadLink1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateContentUploadLinkResponse>> {
+    async createContentUploadLink1RequestOpts(requestParameters: CreateContentUploadLink1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -840,16 +979,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/upload-links`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateContentUploadLinkRequestToJSON(requestParameters['createContentUploadLinkRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createContentUploadLink1Raw(requestParameters: CreateContentUploadLink1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateContentUploadLinkResponse>> {
+        const requestOptions = await this.createContentUploadLink1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateContentUploadLinkResponseFromJSON(jsonValue));
     }
@@ -862,8 +1008,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createPayment1 without sending the request
      */
-    async createPayment1Raw(requestParameters: CreatePayment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentResponse>> {
+    async createPayment1RequestOpts(requestParameters: CreatePayment1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -893,16 +1040,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreatePaymentRequestToJSON(requestParameters['createPaymentRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createPayment1Raw(requestParameters: CreatePayment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentResponse>> {
+        const requestOptions = await this.createPayment1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentResponseFromJSON(jsonValue));
     }
@@ -915,8 +1069,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createPaymentPreview1 without sending the request
      */
-    async createPaymentPreview1Raw(requestParameters: CreatePaymentPreview1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentPreviewResponse>> {
+    async createPaymentPreview1RequestOpts(requestParameters: CreatePaymentPreview1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -946,16 +1101,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments/preview`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreatePaymentPreviewRequestToJSON(requestParameters['createPaymentPreviewRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createPaymentPreview1Raw(requestParameters: CreatePaymentPreview1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentPreviewResponse>> {
+        const requestOptions = await this.createPaymentPreview1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentPreviewResponseFromJSON(jsonValue));
     }
@@ -968,8 +1130,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createPaymentTrigger without sending the request
      */
-    async createPaymentTriggerRaw(requestParameters: CreatePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentTriggerConfig>> {
+    async createPaymentTriggerRequestOpts(requestParameters: CreatePaymentTriggerOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -977,10 +1140,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['upsertPaymentTriggerRequest'] == null) {
+        if (requestParameters['createPaymentTriggerRequest'] == null) {
             throw new runtime.RequiredError(
-                'upsertPaymentTriggerRequest',
-                'Required parameter "upsertPaymentTriggerRequest" was null or undefined when calling createPaymentTrigger().'
+                'createPaymentTriggerRequest',
+                'Required parameter "createPaymentTriggerRequest" was null or undefined when calling createPaymentTrigger().'
             );
         }
 
@@ -992,29 +1155,37 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/payment-triggers`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpsertPaymentTriggerRequestToJSON(requestParameters['upsertPaymentTriggerRequest']),
-        }, initOverrides);
+            body: CreatePaymentTriggerRequestToJSON(requestParameters['createPaymentTriggerRequest']),
+        };
+    }
+
+    /**
+     */
+    async createPaymentTriggerRaw(requestParameters: CreatePaymentTriggerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentTriggerConfig>> {
+        const requestOptions = await this.createPaymentTriggerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaymentTriggerConfigFromJSON(jsonValue));
     }
 
     /**
      */
-    async createPaymentTrigger(requestParameters: CreatePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentTriggerConfig> {
+    async createPaymentTrigger(requestParameters: CreatePaymentTriggerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentTriggerConfig> {
         const response = await this.createPaymentTriggerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
+     * Creates request options for createProject without sending the request
      */
-    async createProjectRaw(requestParameters: CreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
+    async createProjectRequestOpts(requestParameters: CreateProjectRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectName'] == null) {
             throw new runtime.RequiredError(
                 'projectName',
@@ -1037,12 +1208,19 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/projects`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createProjectRaw(requestParameters: CreateProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
+        const requestOptions = await this.createProjectRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectObjectFromJSON(jsonValue));
     }
@@ -1055,8 +1233,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createProjectApiKey without sending the request
      */
-    async createProjectApiKeyRaw(requestParameters: CreateProjectApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateProjectApiKeyResponse>> {
+    async createProjectApiKeyRequestOpts(requestParameters: CreateProjectApiKeyOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1079,15 +1258,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/api-keys`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateProjectApiKeyRequestToJSON(requestParameters['createProjectApiKeyRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createProjectApiKeyRaw(requestParameters: CreateProjectApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateProjectApiKeyResponse>> {
+        const requestOptions = await this.createProjectApiKeyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateProjectApiKeyResponseFromJSON(jsonValue));
     }
@@ -1100,8 +1286,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createService without sending the request
      */
-    async createServiceRaw(requestParameters: CreateServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceObject>> {
+    async createServiceRequestOpts(requestParameters: CreateServiceRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1124,15 +1311,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateForteServiceRequestToJSON(requestParameters['createForteServiceRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createServiceRaw(requestParameters: CreateServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceObject>> {
+        const requestOptions = await this.createServiceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServiceObjectFromJSON(jsonValue));
     }
@@ -1145,8 +1339,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createServiceDeployment without sending the request
      */
-    async createServiceDeploymentRaw(requestParameters: CreateServiceDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBuildRequestObject>> {
+    async createServiceDeploymentRequestOpts(requestParameters: CreateServiceDeploymentRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1171,15 +1366,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/deployments`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createServiceDeploymentRaw(requestParameters: CreateServiceDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBuildRequestObject>> {
+        const requestOptions = await this.createServiceDeploymentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServiceBuildRequestObjectFromJSON(jsonValue));
     }
@@ -1192,8 +1394,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createServiceRequestProxy without sending the request
      */
-    async createServiceRequestProxyRaw(requestParameters: CreateServiceRequestProxyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateServiceRequestProxyResponse>> {
+    async createServiceRequestProxyRequestOpts(requestParameters: CreateServiceRequestProxyOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1223,16 +1426,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/request-proxy`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateServiceRequestProxyRequestToJSON(requestParameters['createServiceRequestProxyRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createServiceRequestProxyRaw(requestParameters: CreateServiceRequestProxyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateServiceRequestProxyResponse>> {
+        const requestOptions = await this.createServiceRequestProxyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateServiceRequestProxyResponseFromJSON(jsonValue));
     }
@@ -1245,8 +1455,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createWebApp without sending the request
      */
-    async createWebAppRaw(requestParameters: CreateWebAppOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppObject>> {
+    async createWebAppRequestOpts(requestParameters: CreateWebAppOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1269,15 +1480,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateWebAppRequestToJSON(requestParameters['createWebAppRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createWebAppRaw(requestParameters: CreateWebAppOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppObject>> {
+        const requestOptions = await this.createWebAppRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebAppObjectFromJSON(jsonValue));
     }
@@ -1290,8 +1508,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createWebAppDeployment without sending the request
      */
-    async createWebAppDeploymentRaw(requestParameters: CreateWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppBuildRequestObject>> {
+    async createWebAppDeploymentRequestOpts(requestParameters: CreateWebAppDeploymentRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1316,15 +1535,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async createWebAppDeploymentRaw(requestParameters: CreateWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppBuildRequestObject>> {
+        const requestOptions = await this.createWebAppDeploymentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebAppBuildRequestObjectFromJSON(jsonValue));
     }
@@ -1337,8 +1563,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteContent1 without sending the request
      */
-    async deleteContent1Raw(requestParameters: DeleteContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteContent1RequestOpts(requestParameters: DeleteContent1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1366,16 +1593,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contentId"}}`, encodeURIComponent(String(requestParameters['contentId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async deleteContent1Raw(requestParameters: DeleteContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteContent1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1387,8 +1621,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deletePaymentTrigger without sending the request
      */
-    async deletePaymentTriggerRaw(requestParameters: DeletePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deletePaymentTriggerRequestOpts(requestParameters: DeletePaymentTriggerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1409,15 +1644,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/payment-triggers/{triggerId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"triggerId"}}`, encodeURIComponent(String(requestParameters['triggerId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{triggerId}', encodeURIComponent(String(requestParameters['triggerId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async deletePaymentTriggerRaw(requestParameters: DeletePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deletePaymentTriggerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1429,8 +1671,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteProject without sending the request
      */
-    async deleteProjectRaw(requestParameters: DeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProjectRequestOpts(requestParameters: DeleteProjectRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1444,14 +1687,21 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async deleteProjectRaw(requestParameters: DeleteProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteProjectRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1463,8 +1713,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteProjectApiKey without sending the request
      */
-    async deleteProjectApiKeyRaw(requestParameters: DeleteProjectApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProjectApiKeyRequestOpts(requestParameters: DeleteProjectApiKeyRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1485,15 +1736,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/api-keys/{apiKeyId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"apiKeyId"}}`, encodeURIComponent(String(requestParameters['apiKeyId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{apiKeyId}', encodeURIComponent(String(requestParameters['apiKeyId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async deleteProjectApiKeyRaw(requestParameters: DeleteProjectApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteProjectApiKeyRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1505,8 +1763,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteService without sending the request
      */
-    async deleteServiceRaw(requestParameters: DeleteServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteServiceRequestOpts(requestParameters: DeleteServiceRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1527,15 +1786,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async deleteServiceRaw(requestParameters: DeleteServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteServiceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1547,8 +1813,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteUser without sending the request
      */
-    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -1569,15 +1836,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1589,8 +1863,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteWebApp without sending the request
      */
-    async deleteWebAppRaw(requestParameters: DeleteWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteWebAppRequestOpts(requestParameters: DeleteWebAppRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1611,15 +1886,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async deleteWebAppRaw(requestParameters: DeleteWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteWebAppRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1631,8 +1913,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for finalizeContent1 without sending the request
      */
-    async finalizeContent1Raw(requestParameters: FinalizeContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+    async finalizeContent1RequestOpts(requestParameters: FinalizeContent1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1660,16 +1943,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/finalize`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contentId"}}`, encodeURIComponent(String(requestParameters['contentId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async finalizeContent1Raw(requestParameters: FinalizeContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+        const requestOptions = await this.finalizeContent1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
     }
@@ -1682,8 +1972,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getContent1 without sending the request
      */
-    async getContent1Raw(requestParameters: GetContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+    async getContent1RequestOpts(requestParameters: GetContent1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1711,16 +2002,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contentId"}}`, encodeURIComponent(String(requestParameters['contentId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getContent1Raw(requestParameters: GetContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+        const requestOptions = await this.getContent1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
     }
@@ -1733,8 +2031,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getContentDownloadLink1 without sending the request
      */
-    async getContentDownloadLink1Raw(requestParameters: GetContentDownloadLink1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetContentDownloadLinkResponse>> {
+    async getContentDownloadLink1RequestOpts(requestParameters: GetContentDownloadLink1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1762,16 +2061,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/download-link`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contentId"}}`, encodeURIComponent(String(requestParameters['contentId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getContentDownloadLink1Raw(requestParameters: GetContentDownloadLink1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetContentDownloadLinkResponse>> {
+        const requestOptions = await this.getContentDownloadLink1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetContentDownloadLinkResponseFromJSON(jsonValue));
     }
@@ -1784,8 +2090,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getNotificationTemplates without sending the request
      */
-    async getNotificationTemplatesRaw(requestParameters: GetNotificationTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotificationTemplatesResponse>> {
+    async getNotificationTemplatesRequestOpts(requestParameters: GetNotificationTemplatesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1799,14 +2106,21 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/notification-templates`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getNotificationTemplatesRaw(requestParameters: GetNotificationTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotificationTemplatesResponse>> {
+        const requestOptions = await this.getNotificationTemplatesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NotificationTemplatesResponseFromJSON(jsonValue));
     }
@@ -1819,8 +2133,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getProject without sending the request
      */
-    async getProjectRaw(requestParameters: GetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
+    async getProjectRequestOpts(requestParameters: GetProjectRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1834,14 +2149,21 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getProjectRaw(requestParameters: GetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
+        const requestOptions = await this.getProjectRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectObjectFromJSON(jsonValue));
     }
@@ -1854,8 +2176,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getRequestInvocationLog without sending the request
      */
-    async getRequestInvocationLogRaw(requestParameters: GetRequestInvocationLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RequestLogObject>> {
+    async getRequestInvocationLogRequestOpts(requestParameters: GetRequestInvocationLogRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1883,16 +2206,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/requests/{requestId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
-        urlPath = urlPath.replace(`{${"requestId"}}`, encodeURIComponent(String(requestParameters['requestId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{requestId}', encodeURIComponent(String(requestParameters['requestId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getRequestInvocationLogRaw(requestParameters: GetRequestInvocationLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RequestLogObject>> {
+        const requestOptions = await this.getRequestInvocationLogRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RequestLogObjectFromJSON(jsonValue));
     }
@@ -1905,8 +2235,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getService without sending the request
      */
-    async getServiceRaw(requestParameters: GetServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceObject>> {
+    async getServiceRequestOpts(requestParameters: GetServiceRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1927,15 +2258,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getServiceRaw(requestParameters: GetServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceObject>> {
+        const requestOptions = await this.getServiceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServiceObjectFromJSON(jsonValue));
     }
@@ -1948,8 +2286,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getServiceDeployment without sending the request
      */
-    async getServiceDeploymentRaw(requestParameters: GetServiceDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBuildRequestObject>> {
+    async getServiceDeploymentRequestOpts(requestParameters: GetServiceDeploymentRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -1977,16 +2316,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/deployments/{deploymentId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
-        urlPath = urlPath.replace(`{${"deploymentId"}}`, encodeURIComponent(String(requestParameters['deploymentId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{deploymentId}', encodeURIComponent(String(requestParameters['deploymentId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getServiceDeploymentRaw(requestParameters: GetServiceDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceBuildRequestObject>> {
+        const requestOptions = await this.getServiceDeploymentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServiceBuildRequestObjectFromJSON(jsonValue));
     }
@@ -1999,8 +2345,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getServiceMetrics without sending the request
      */
-    async getServiceMetricsRaw(requestParameters: GetServiceMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceMetricsResponse>> {
+    async getServiceMetricsRequestOpts(requestParameters: GetServiceMetricsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2033,15 +2380,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/metrics`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getServiceMetricsRaw(requestParameters: GetServiceMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceMetricsResponse>> {
+        const requestOptions = await this.getServiceMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServiceMetricsResponseFromJSON(jsonValue));
     }
@@ -2054,8 +2408,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getUser without sending the request
      */
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+    async getUserRequestOpts(requestParameters: GetUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2076,15 +2431,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+        const requestOptions = await this.getUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserObjectFromJSON(jsonValue));
     }
@@ -2097,8 +2459,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getUserMetrics without sending the request
      */
-    async getUserMetricsRaw(requestParameters: GetUserMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserMetricsResponse>> {
+    async getUserMetricsRequestOpts(requestParameters: GetUserMetricsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2124,14 +2487,21 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/user-metrics`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getUserMetricsRaw(requestParameters: GetUserMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserMetricsResponse>> {
+        const requestOptions = await this.getUserMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserMetricsResponseFromJSON(jsonValue));
     }
@@ -2144,8 +2514,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getWebApp without sending the request
      */
-    async getWebAppRaw(requestParameters: GetWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppObject>> {
+    async getWebAppRequestOpts(requestParameters: GetWebAppRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2166,15 +2537,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getWebAppRaw(requestParameters: GetWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppObject>> {
+        const requestOptions = await this.getWebAppRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebAppObjectFromJSON(jsonValue));
     }
@@ -2187,8 +2565,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getWebAppDeployment without sending the request
      */
-    async getWebAppDeploymentRaw(requestParameters: GetWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppBuildRequestObject>> {
+    async getWebAppDeploymentRequestOpts(requestParameters: GetWebAppDeploymentRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2216,16 +2595,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments/{buildId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
-        urlPath = urlPath.replace(`{${"buildId"}}`, encodeURIComponent(String(requestParameters['buildId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{buildId}', encodeURIComponent(String(requestParameters['buildId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getWebAppDeploymentRaw(requestParameters: GetWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppBuildRequestObject>> {
+        const requestOptions = await this.getWebAppDeploymentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebAppBuildRequestObjectFromJSON(jsonValue));
     }
@@ -2238,8 +2624,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listContent1 without sending the request
      */
-    async listContent1Raw(requestParameters: ListContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListContentResponse>> {
+    async listContent1RequestOpts(requestParameters: ListContent1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2268,15 +2655,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listContent1Raw(requestParameters: ListContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListContentResponse>> {
+        const requestOptions = await this.listContent1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ListContentResponseFromJSON(jsonValue));
     }
@@ -2289,8 +2683,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listLogLines without sending the request
      */
-    async listLogLinesRaw(requestParameters: ListLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLogLineObject>> {
+    async listLogLinesRequestOpts(requestParameters: ListLogLinesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2335,15 +2730,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/logs`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listLogLinesRaw(requestParameters: ListLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLogLineObject>> {
+        const requestOptions = await this.listLogLinesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseLogLineObjectFromJSON(jsonValue));
     }
@@ -2356,8 +2758,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listPaymentTriggers without sending the request
      */
-    async listPaymentTriggersRaw(requestParameters: ListPaymentTriggersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PaymentTriggerConfig>>> {
+    async listPaymentTriggersRequestOpts(requestParameters: ListPaymentTriggersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2371,14 +2774,21 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/payment-triggers`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listPaymentTriggersRaw(requestParameters: ListPaymentTriggersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PaymentTriggerConfig>>> {
+        const requestOptions = await this.listPaymentTriggersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PaymentTriggerConfigFromJSON));
     }
@@ -2391,8 +2801,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listProjectApiKeys without sending the request
      */
-    async listProjectApiKeysRaw(requestParameters: ListProjectApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApiKeySummary>>> {
+    async listProjectApiKeysRequestOpts(requestParameters: ListProjectApiKeysRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2406,14 +2817,21 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/api-keys`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listProjectApiKeysRaw(requestParameters: ListProjectApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApiKeySummary>>> {
+        const requestOptions = await this.listProjectApiKeysRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ApiKeySummaryFromJSON));
     }
@@ -2426,8 +2844,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listProjects without sending the request
      */
-    async listProjectsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectObject>>> {
+    async listProjectsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2435,12 +2854,19 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         let urlPath = `/api/v1/projects`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listProjectsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectObject>>> {
+        const requestOptions = await this.listProjectsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProjectObjectFromJSON));
     }
@@ -2453,8 +2879,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listRequestInvocationLogs without sending the request
      */
-    async listRequestInvocationLogsRaw(requestParameters: ListRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseRequestLogObject>> {
+    async listRequestInvocationLogsRequestOpts(requestParameters: ListRequestInvocationLogsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2495,15 +2922,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/requests`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listRequestInvocationLogsRaw(requestParameters: ListRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseRequestLogObject>> {
+        const requestOptions = await this.listRequestInvocationLogsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseRequestLogObjectFromJSON(jsonValue));
     }
@@ -2516,8 +2950,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listServiceDeployments without sending the request
      */
-    async listServiceDeploymentsRaw(requestParameters: ListServiceDeploymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseServiceBuildRequestObject>> {
+    async listServiceDeploymentsRequestOpts(requestParameters: ListServiceDeploymentsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2550,15 +2985,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/deployments`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listServiceDeploymentsRaw(requestParameters: ListServiceDeploymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseServiceBuildRequestObject>> {
+        const requestOptions = await this.listServiceDeploymentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseServiceBuildRequestObjectFromJSON(jsonValue));
     }
@@ -2571,8 +3013,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listUserActionLogs without sending the request
      */
-    async listUserActionLogsRaw(requestParameters: ListUserActionLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseUserActionLogObject>> {
+    async listUserActionLogsRequestOpts(requestParameters: ListUserActionLogsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2609,15 +3052,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/action-logs`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listUserActionLogsRaw(requestParameters: ListUserActionLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseUserActionLogObject>> {
+        const requestOptions = await this.listUserActionLogsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseUserActionLogObjectFromJSON(jsonValue));
     }
@@ -2630,8 +3080,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listUserPayments without sending the request
      */
-    async listUserPaymentsRaw(requestParameters: ListUserPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponsePaymentObject>> {
+    async listUserPaymentsRequestOpts(requestParameters: ListUserPaymentsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2676,15 +3127,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listUserPaymentsRaw(requestParameters: ListUserPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponsePaymentObject>> {
+        const requestOptions = await this.listUserPaymentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponsePaymentObjectFromJSON(jsonValue));
     }
@@ -2697,8 +3155,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listUsers without sending the request
      */
-    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseUserObject>> {
+    async listUsersRequestOpts(requestParameters: ListUsersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2724,14 +3183,21 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseUserObject>> {
+        const requestOptions = await this.listUsersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseUserObjectFromJSON(jsonValue));
     }
@@ -2744,8 +3210,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listWebAppDeployments without sending the request
      */
-    async listWebAppDeploymentsRaw(requestParameters: ListWebAppDeploymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseWebAppBuildRequestObject>> {
+    async listWebAppDeploymentsRequestOpts(requestParameters: ListWebAppDeploymentsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2778,15 +3245,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listWebAppDeploymentsRaw(requestParameters: ListWebAppDeploymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseWebAppBuildRequestObject>> {
+        const requestOptions = await this.listWebAppDeploymentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseWebAppBuildRequestObjectFromJSON(jsonValue));
     }
@@ -2799,8 +3273,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listWebApps without sending the request
      */
-    async listWebAppsRaw(requestParameters: ListWebAppsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WebAppObject>>> {
+    async listWebAppsRequestOpts(requestParameters: ListWebAppsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2814,14 +3289,21 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async listWebAppsRaw(requestParameters: ListWebAppsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WebAppObject>>> {
+        const requestOptions = await this.listWebAppsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WebAppObjectFromJSON));
     }
@@ -2834,8 +3316,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for putUserCustomAttributes without sending the request
      */
-    async putUserCustomAttributesRaw(requestParameters: PutUserCustomAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+    async putUserCustomAttributesRequestOpts(requestParameters: PutUserCustomAttributesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2865,16 +3348,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/custom-attributes`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: requestParameters['requestBody'],
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async putUserCustomAttributesRaw(requestParameters: PutUserCustomAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+        const requestOptions = await this.putUserCustomAttributesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserObjectFromJSON(jsonValue));
     }
@@ -2887,8 +3377,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for searchLogLines without sending the request
      */
-    async searchLogLinesRaw(requestParameters: SearchLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLogLineObject>> {
+    async searchLogLinesRequestOpts(requestParameters: SearchLogLinesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -2940,15 +3431,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/log-search`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async searchLogLinesRaw(requestParameters: SearchLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLogLineObject>> {
+        const requestOptions = await this.searchLogLinesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseLogLineObjectFromJSON(jsonValue));
     }
@@ -2961,8 +3459,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for sendUserEmail without sending the request
      */
-    async sendUserEmailRaw(requestParameters: SendUserEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async sendUserEmailRequestOpts(requestParameters: SendUserEmailOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -2992,16 +3491,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/email`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: SendUserEmailRequestToJSON(requestParameters['sendUserEmailRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async sendUserEmailRaw(requestParameters: SendUserEmailOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+        const requestOptions = await this.sendUserEmailRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<any>(response);
@@ -3018,8 +3524,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for sendUserSms without sending the request
      */
-    async sendUserSmsRaw(requestParameters: SendUserSmsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+    async sendUserSmsRequestOpts(requestParameters: SendUserSmsOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -3049,16 +3556,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/sms`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: SendUserSmsRequestToJSON(requestParameters['sendUserSmsRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async sendUserSmsRaw(requestParameters: SendUserSmsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+        const requestOptions = await this.sendUserSmsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<any>(response);
@@ -3075,8 +3589,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for suspendUser without sending the request
      */
-    async suspendUserRaw(requestParameters: SuspendUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+    async suspendUserRequestOpts(requestParameters: SuspendUserRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userId'] == null) {
             throw new runtime.RequiredError(
                 'userId',
@@ -3097,15 +3612,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/suspend`;
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async suspendUserRaw(requestParameters: SuspendUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+        const requestOptions = await this.suspendUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserObjectFromJSON(jsonValue));
     }
@@ -3118,8 +3640,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for testInvocation without sending the request
      */
-    async testInvocationRaw(requestParameters: TestInvocationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TestInvocationResponse>> {
+    async testInvocationRequestOpts(requestParameters: TestInvocationOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -3149,16 +3672,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/test-invocation`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: TestInvocationRequestToJSON(requestParameters['testInvocationRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async testInvocationRaw(requestParameters: TestInvocationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TestInvocationResponse>> {
+        const requestOptions = await this.testInvocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TestInvocationResponseFromJSON(jsonValue));
     }
@@ -3171,8 +3701,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for updateContentShares1 without sending the request
      */
-    async updateContentShares1Raw(requestParameters: UpdateContentShares1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+    async updateContentShares1RequestOpts(requestParameters: UpdateContentShares1Request): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -3209,17 +3740,24 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/shares`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contentId"}}`, encodeURIComponent(String(requestParameters['contentId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateContentSharesRequestToJSON(requestParameters['updateContentSharesRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async updateContentShares1Raw(requestParameters: UpdateContentShares1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+        const requestOptions = await this.updateContentShares1RequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
     }
@@ -3232,8 +3770,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for updateNotificationTemplates without sending the request
      */
-    async updateNotificationTemplatesRaw(requestParameters: UpdateNotificationTemplatesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotificationTemplatesResponse>> {
+    async updateNotificationTemplatesRequestOpts(requestParameters: UpdateNotificationTemplatesOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -3256,15 +3795,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/notification-templates`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateNotificationTemplatesRequestToJSON(requestParameters['updateNotificationTemplatesRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async updateNotificationTemplatesRaw(requestParameters: UpdateNotificationTemplatesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotificationTemplatesResponse>> {
+        const requestOptions = await this.updateNotificationTemplatesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => NotificationTemplatesResponseFromJSON(jsonValue));
     }
@@ -3277,8 +3823,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for updatePaymentTrigger without sending the request
      */
-    async updatePaymentTriggerRaw(requestParameters: UpdatePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentTriggerConfig>> {
+    async updatePaymentTriggerRequestOpts(requestParameters: UpdatePaymentTriggerOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -3293,10 +3840,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['upsertPaymentTriggerRequest'] == null) {
+        if (requestParameters['updatePaymentTriggerRequest'] == null) {
             throw new runtime.RequiredError(
-                'upsertPaymentTriggerRequest',
-                'Required parameter "upsertPaymentTriggerRequest" was null or undefined when calling updatePaymentTrigger().'
+                'updatePaymentTriggerRequest',
+                'Required parameter "updatePaymentTriggerRequest" was null or undefined when calling updatePaymentTrigger().'
             );
         }
 
@@ -3308,30 +3855,38 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/payment-triggers/{triggerId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"triggerId"}}`, encodeURIComponent(String(requestParameters['triggerId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{triggerId}', encodeURIComponent(String(requestParameters['triggerId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpsertPaymentTriggerRequestToJSON(requestParameters['upsertPaymentTriggerRequest']),
-        }, initOverrides);
+            body: UpdatePaymentTriggerRequestToJSON(requestParameters['updatePaymentTriggerRequest']),
+        };
+    }
+
+    /**
+     */
+    async updatePaymentTriggerRaw(requestParameters: UpdatePaymentTriggerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentTriggerConfig>> {
+        const requestOptions = await this.updatePaymentTriggerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaymentTriggerConfigFromJSON(jsonValue));
     }
 
     /**
      */
-    async updatePaymentTrigger(requestParameters: UpdatePaymentTriggerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentTriggerConfig> {
+    async updatePaymentTrigger(requestParameters: UpdatePaymentTriggerOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentTriggerConfig> {
         const response = await this.updatePaymentTriggerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
+     * Creates request options for updateProject without sending the request
      */
-    async updateProjectRaw(requestParameters: UpdateProjectOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
+    async updateProjectRequestOpts(requestParameters: UpdateProjectOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -3354,15 +3909,22 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateProjectRequestToJSON(requestParameters['updateProjectRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async updateProjectRaw(requestParameters: UpdateProjectOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectObject>> {
+        const requestOptions = await this.updateProjectRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectObjectFromJSON(jsonValue));
     }
@@ -3375,8 +3937,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for updateService without sending the request
      */
-    async updateServiceRaw(requestParameters: UpdateServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateForteServiceResponse>> {
+    async updateServiceRequestOpts(requestParameters: UpdateServiceRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -3406,16 +3969,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"serviceId"}}`, encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateForteServiceRequestToJSON(requestParameters['updateForteServiceRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async updateServiceRaw(requestParameters: UpdateServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateForteServiceResponse>> {
+        const requestOptions = await this.updateServiceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateForteServiceResponseFromJSON(jsonValue));
     }
@@ -3428,8 +3998,9 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for updateWebApp without sending the request
      */
-    async updateWebAppRaw(requestParameters: UpdateWebAppOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateWebAppResponse>> {
+    async updateWebAppRequestOpts(requestParameters: UpdateWebAppOperationRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
                 'projectId',
@@ -3459,16 +4030,23 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"webAppId"}}`, encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateWebAppRequestToJSON(requestParameters['updateWebAppRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async updateWebAppRaw(requestParameters: UpdateWebAppOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateWebAppResponse>> {
+        const requestOptions = await this.updateWebAppRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateWebAppResponseFromJSON(jsonValue));
     }

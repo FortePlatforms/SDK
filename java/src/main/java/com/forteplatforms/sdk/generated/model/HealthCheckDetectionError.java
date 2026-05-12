@@ -42,7 +42,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   HealthCheckDetectionError.JSON_PROPERTY_SEARCHED_PATHS,
   HealthCheckDetectionError.JSON_PROPERTY_SUGGESTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class HealthCheckDetectionError {
   /**
    * Type of error that occurred
@@ -64,9 +64,7 @@ public class HealthCheckDetectionError {
     
     TCP_ONLY_SERVICE(String.valueOf("TCP_ONLY_SERVICE")),
     
-    INTERNAL_ERROR(String.valueOf("INTERNAL_ERROR")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+    INTERNAL_ERROR(String.valueOf("INTERNAL_ERROR"));
 
     private String value;
 
@@ -87,11 +85,11 @@ public class HealthCheckDetectionError {
     @JsonCreator
     public static ErrorTypeEnum fromValue(String value) {
       for (ErrorTypeEnum b : ErrorTypeEnum.values()) {
-        if (b.value.equalsIgnoreCase(value)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
 
@@ -326,10 +324,7 @@ public class HealthCheckDetectionError {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

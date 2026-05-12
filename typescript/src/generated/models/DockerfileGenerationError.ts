@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface DockerfileGenerationError {
     /**
      * Type of error that occurred
-     * @type {string}
+     * @type {DockerfileGenerationErrorErrorTypeType}
      * @memberof DockerfileGenerationError
      */
     errorType?: DockerfileGenerationErrorErrorTypeType;

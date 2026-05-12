@@ -33,7 +33,7 @@ export interface UserActionLogObject {
     userId: string;
     /**
      * 
-     * @type {string}
+     * @type {UserActionLogObjectActionTypeType}
      * @memberof UserActionLogObject
      */
     actionType: UserActionLogObjectActionTypeType;

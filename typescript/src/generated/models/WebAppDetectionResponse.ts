@@ -29,7 +29,7 @@ import {
 export interface WebAppDetectionResponse {
     /**
      * Whether the web app serves only static assets (STATIC) or includes server-side rendering (SERVER_SIDE)
-     * @type {string}
+     * @type {WebAppDetectionResponseWebAppTypeType}
      * @memberof WebAppDetectionResponse
      */
     webAppType?: WebAppDetectionResponseWebAppTypeType;
