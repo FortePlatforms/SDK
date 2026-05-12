@@ -96,7 +96,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:49:24.437124-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T18:32:33.483962-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -919,438 +919,6 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createContentUploadLinkRequest  (required)
-   * @return CreateContentUploadLinkResponse
-   * @throws ApiException if fails to make API call
-   */
-  public CreateContentUploadLinkResponse createContentUploadLink1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest) throws ApiException {
-    return createContentUploadLink1(projectId, userId, createContentUploadLinkRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createContentUploadLinkRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return CreateContentUploadLinkResponse
-   * @throws ApiException if fails to make API call
-   */
-  public CreateContentUploadLinkResponse createContentUploadLink1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateContentUploadLinkResponse> localVarResponse = createContentUploadLink1WithHttpInfo(projectId, userId, createContentUploadLinkRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createContentUploadLinkRequest  (required)
-   * @return ApiResponse&lt;CreateContentUploadLinkResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreateContentUploadLinkResponse> createContentUploadLink1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest) throws ApiException {
-    return createContentUploadLink1WithHttpInfo(projectId, userId, createContentUploadLinkRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createContentUploadLinkRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateContentUploadLinkResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreateContentUploadLinkResponse> createContentUploadLink1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createContentUploadLink1RequestBuilder(projectId, userId, createContentUploadLinkRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("createContentUploadLink1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<CreateContentUploadLinkResponse>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateContentUploadLinkResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateContentUploadLinkResponse>() {});
-        
-
-        return new ApiResponse<CreateContentUploadLinkResponse>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder createContentUploadLink1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createContentUploadLink1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling createContentUploadLink1");
-    }
-    // verify the required parameter 'createContentUploadLinkRequest' is set
-    if (createContentUploadLinkRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createContentUploadLinkRequest' when calling createContentUploadLink1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/upload-links"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "*/*");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createContentUploadLinkRequest);
-      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
-      localVarRequestBuilder.header("Content-Encoding", "gzip");
-      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createPaymentRequest  (required)
-   * @return CreatePaymentResponse
-   * @throws ApiException if fails to make API call
-   */
-  public CreatePaymentResponse createPayment1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest) throws ApiException {
-    return createPayment1(projectId, userId, createPaymentRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createPaymentRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return CreatePaymentResponse
-   * @throws ApiException if fails to make API call
-   */
-  public CreatePaymentResponse createPayment1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreatePaymentResponse> localVarResponse = createPayment1WithHttpInfo(projectId, userId, createPaymentRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createPaymentRequest  (required)
-   * @return ApiResponse&lt;CreatePaymentResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreatePaymentResponse> createPayment1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest) throws ApiException {
-    return createPayment1WithHttpInfo(projectId, userId, createPaymentRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createPaymentRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreatePaymentResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreatePaymentResponse> createPayment1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createPayment1RequestBuilder(projectId, userId, createPaymentRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("createPayment1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<CreatePaymentResponse>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreatePaymentResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePaymentResponse>() {});
-        
-
-        return new ApiResponse<CreatePaymentResponse>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder createPayment1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createPayment1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling createPayment1");
-    }
-    // verify the required parameter 'createPaymentRequest' is set
-    if (createPaymentRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createPaymentRequest' when calling createPayment1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/payments"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "*/*");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentRequest);
-      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
-      localVarRequestBuilder.header("Content-Encoding", "gzip");
-      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createPaymentPreviewRequest  (required)
-   * @return CreatePaymentPreviewResponse
-   * @throws ApiException if fails to make API call
-   */
-  public CreatePaymentPreviewResponse createPaymentPreview1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest) throws ApiException {
-    return createPaymentPreview1(projectId, userId, createPaymentPreviewRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createPaymentPreviewRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return CreatePaymentPreviewResponse
-   * @throws ApiException if fails to make API call
-   */
-  public CreatePaymentPreviewResponse createPaymentPreview1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreatePaymentPreviewResponse> localVarResponse = createPaymentPreview1WithHttpInfo(projectId, userId, createPaymentPreviewRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createPaymentPreviewRequest  (required)
-   * @return ApiResponse&lt;CreatePaymentPreviewResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreatePaymentPreviewResponse> createPaymentPreview1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest) throws ApiException {
-    return createPaymentPreview1WithHttpInfo(projectId, userId, createPaymentPreviewRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param createPaymentPreviewRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreatePaymentPreviewResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreatePaymentPreviewResponse> createPaymentPreview1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createPaymentPreview1RequestBuilder(projectId, userId, createPaymentPreviewRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("createPaymentPreview1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<CreatePaymentPreviewResponse>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreatePaymentPreviewResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePaymentPreviewResponse>() {});
-        
-
-        return new ApiResponse<CreatePaymentPreviewResponse>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder createPaymentPreview1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createPaymentPreview1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling createPaymentPreview1");
-    }
-    // verify the required parameter 'createPaymentPreviewRequest' is set
-    if (createPaymentPreviewRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createPaymentPreviewRequest' when calling createPaymentPreview1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/payments/preview"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "*/*");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentPreviewRequest);
-      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
-      localVarRequestBuilder.header("Content-Encoding", "gzip");
-      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -2483,129 +2051,6 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void deleteContent1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    deleteContent1(projectId, userId, contentId, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param headers Optional headers to include in the request
-   * @throws ApiException if fails to make API call
-   */
-  public void deleteContent1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    deleteContent1WithHttpInfo(projectId, userId, contentId, headers);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> deleteContent1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return deleteContent1WithHttpInfo(projectId, userId, contentId, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> deleteContent1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteContent1RequestBuilder(projectId, userId, contentId, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("deleteContent1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
-        }
-        return new ApiResponse<>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            null
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder deleteContent1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteContent1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling deleteContent1");
-    }
-    // verify the required parameter 'contentId' is set
-    if (contentId == null) {
-      throw new ApiException(400, "Missing the required parameter 'contentId' when calling deleteContent1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
-        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
    * @param triggerId  (required)
    * @throws ApiException if fails to make API call
    */
@@ -3266,417 +2711,6 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @return ContentObject
-   * @throws ApiException if fails to make API call
-   */
-  public ContentObject finalizeContent1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return finalizeContent1(projectId, userId, contentId, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param headers Optional headers to include in the request
-   * @return ContentObject
-   * @throws ApiException if fails to make API call
-   */
-  public ContentObject finalizeContent1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    ApiResponse<ContentObject> localVarResponse = finalizeContent1WithHttpInfo(projectId, userId, contentId, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @return ApiResponse&lt;ContentObject&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ContentObject> finalizeContent1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return finalizeContent1WithHttpInfo(projectId, userId, contentId, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ContentObject&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ContentObject> finalizeContent1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = finalizeContent1RequestBuilder(projectId, userId, contentId, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("finalizeContent1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<ContentObject>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        ContentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContentObject>() {});
-        
-
-        return new ApiResponse<ContentObject>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder finalizeContent1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling finalizeContent1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling finalizeContent1");
-    }
-    // verify the required parameter 'contentId' is set
-    if (contentId == null) {
-      throw new ApiException(400, "Missing the required parameter 'contentId' when calling finalizeContent1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/finalize"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
-        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "*/*");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @return ContentObject
-   * @throws ApiException if fails to make API call
-   */
-  public ContentObject getContent1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return getContent1(projectId, userId, contentId, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param headers Optional headers to include in the request
-   * @return ContentObject
-   * @throws ApiException if fails to make API call
-   */
-  public ContentObject getContent1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    ApiResponse<ContentObject> localVarResponse = getContent1WithHttpInfo(projectId, userId, contentId, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @return ApiResponse&lt;ContentObject&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ContentObject> getContent1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return getContent1WithHttpInfo(projectId, userId, contentId, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ContentObject&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ContentObject> getContent1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getContent1RequestBuilder(projectId, userId, contentId, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getContent1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<ContentObject>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        ContentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContentObject>() {});
-        
-
-        return new ApiResponse<ContentObject>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder getContent1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getContent1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling getContent1");
-    }
-    // verify the required parameter 'contentId' is set
-    if (contentId == null) {
-      throw new ApiException(400, "Missing the required parameter 'contentId' when calling getContent1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
-        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "*/*");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @return GetContentDownloadLinkResponse
-   * @throws ApiException if fails to make API call
-   */
-  public GetContentDownloadLinkResponse getContentDownloadLink1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return getContentDownloadLink1(projectId, userId, contentId, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param headers Optional headers to include in the request
-   * @return GetContentDownloadLinkResponse
-   * @throws ApiException if fails to make API call
-   */
-  public GetContentDownloadLinkResponse getContentDownloadLink1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetContentDownloadLinkResponse> localVarResponse = getContentDownloadLink1WithHttpInfo(projectId, userId, contentId, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @return ApiResponse&lt;GetContentDownloadLinkResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<GetContentDownloadLinkResponse> getContentDownloadLink1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return getContentDownloadLink1WithHttpInfo(projectId, userId, contentId, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetContentDownloadLinkResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<GetContentDownloadLinkResponse> getContentDownloadLink1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getContentDownloadLink1RequestBuilder(projectId, userId, contentId, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getContentDownloadLink1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<GetContentDownloadLinkResponse>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetContentDownloadLinkResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetContentDownloadLinkResponse>() {});
-        
-
-        return new ApiResponse<GetContentDownloadLinkResponse>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder getContentDownloadLink1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getContentDownloadLink1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling getContentDownloadLink1");
-    }
-    // verify the required parameter 'contentId' is set
-    if (contentId == null) {
-      throw new ApiException(400, "Missing the required parameter 'contentId' when calling getContentDownloadLink1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/download-link"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
-        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "*/*");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -5014,159 +4048,6 @@ public class ProjectsServerApi {
         .replace("{buildId}", ApiClient.urlEncode(buildId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "*/*");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param page  (optional, default to 0)
-   * @param pageSize  (optional, default to 50)
-   * @return ListContentResponse
-   * @throws ApiException if fails to make API call
-   */
-  public ListContentResponse listContent1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize) throws ApiException {
-    return listContent1(projectId, userId, page, pageSize, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param page  (optional, default to 0)
-   * @param pageSize  (optional, default to 50)
-   * @param headers Optional headers to include in the request
-   * @return ListContentResponse
-   * @throws ApiException if fails to make API call
-   */
-  public ListContentResponse listContent1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListContentResponse> localVarResponse = listContent1WithHttpInfo(projectId, userId, page, pageSize, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param page  (optional, default to 0)
-   * @param pageSize  (optional, default to 50)
-   * @return ApiResponse&lt;ListContentResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ListContentResponse> listContent1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize) throws ApiException {
-    return listContent1WithHttpInfo(projectId, userId, page, pageSize, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param page  (optional, default to 0)
-   * @param pageSize  (optional, default to 50)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ListContentResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ListContentResponse> listContent1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listContent1RequestBuilder(projectId, userId, page, pageSize, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("listContent1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<ListContentResponse>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        ListContentResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListContentResponse>() {});
-        
-
-        return new ApiResponse<ListContentResponse>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder listContent1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listContent1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling listContent1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "page";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
-    localVarQueryParameterBaseName = "pageSize";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageSize", pageSize));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
 
     localVarRequestBuilder.header("Accept", "*/*");
     localVarRequestBuilder.header("Accept-Encoding", "gzip");
@@ -6811,6 +5692,1278 @@ public class ProjectsServerApi {
   /**
    * 
    * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createContentUploadLinkRequest  (required)
+   * @return CreateContentUploadLinkResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateContentUploadLinkResponse projectsCreateContentUploadLink(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest) throws ApiException {
+    return projectsCreateContentUploadLink(projectId, userId, createContentUploadLinkRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createContentUploadLinkRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateContentUploadLinkResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateContentUploadLinkResponse projectsCreateContentUploadLink(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateContentUploadLinkResponse> localVarResponse = projectsCreateContentUploadLinkWithHttpInfo(projectId, userId, createContentUploadLinkRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createContentUploadLinkRequest  (required)
+   * @return ApiResponse&lt;CreateContentUploadLinkResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateContentUploadLinkResponse> projectsCreateContentUploadLinkWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest) throws ApiException {
+    return projectsCreateContentUploadLinkWithHttpInfo(projectId, userId, createContentUploadLinkRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createContentUploadLinkRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateContentUploadLinkResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateContentUploadLinkResponse> projectsCreateContentUploadLinkWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsCreateContentUploadLinkRequestBuilder(projectId, userId, createContentUploadLinkRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsCreateContentUploadLink", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateContentUploadLinkResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateContentUploadLinkResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateContentUploadLinkResponse>() {});
+        
+
+        return new ApiResponse<CreateContentUploadLinkResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsCreateContentUploadLinkRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsCreateContentUploadLink");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsCreateContentUploadLink");
+    }
+    // verify the required parameter 'createContentUploadLinkRequest' is set
+    if (createContentUploadLinkRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createContentUploadLinkRequest' when calling projectsCreateContentUploadLink");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/upload-links"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createContentUploadLinkRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createPaymentRequest  (required)
+   * @return CreatePaymentResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePaymentResponse projectsCreatePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest) throws ApiException {
+    return projectsCreatePayment(projectId, userId, createPaymentRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createPaymentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreatePaymentResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePaymentResponse projectsCreatePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePaymentResponse> localVarResponse = projectsCreatePaymentWithHttpInfo(projectId, userId, createPaymentRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createPaymentRequest  (required)
+   * @return ApiResponse&lt;CreatePaymentResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePaymentResponse> projectsCreatePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest) throws ApiException {
+    return projectsCreatePaymentWithHttpInfo(projectId, userId, createPaymentRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createPaymentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreatePaymentResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePaymentResponse> projectsCreatePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsCreatePaymentRequestBuilder(projectId, userId, createPaymentRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsCreatePayment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreatePaymentResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreatePaymentResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePaymentResponse>() {});
+        
+
+        return new ApiResponse<CreatePaymentResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsCreatePaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsCreatePayment");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsCreatePayment");
+    }
+    // verify the required parameter 'createPaymentRequest' is set
+    if (createPaymentRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createPaymentRequest' when calling projectsCreatePayment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/payments"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createPaymentPreviewRequest  (required)
+   * @return CreatePaymentPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePaymentPreviewResponse projectsCreatePaymentPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest) throws ApiException {
+    return projectsCreatePaymentPreview(projectId, userId, createPaymentPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createPaymentPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreatePaymentPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePaymentPreviewResponse projectsCreatePaymentPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePaymentPreviewResponse> localVarResponse = projectsCreatePaymentPreviewWithHttpInfo(projectId, userId, createPaymentPreviewRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createPaymentPreviewRequest  (required)
+   * @return ApiResponse&lt;CreatePaymentPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePaymentPreviewResponse> projectsCreatePaymentPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest) throws ApiException {
+    return projectsCreatePaymentPreviewWithHttpInfo(projectId, userId, createPaymentPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createPaymentPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreatePaymentPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePaymentPreviewResponse> projectsCreatePaymentPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsCreatePaymentPreviewRequestBuilder(projectId, userId, createPaymentPreviewRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsCreatePaymentPreview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreatePaymentPreviewResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreatePaymentPreviewResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePaymentPreviewResponse>() {});
+        
+
+        return new ApiResponse<CreatePaymentPreviewResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsCreatePaymentPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsCreatePaymentPreview");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsCreatePaymentPreview");
+    }
+    // verify the required parameter 'createPaymentPreviewRequest' is set
+    if (createPaymentPreviewRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createPaymentPreviewRequest' when calling projectsCreatePaymentPreview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/payments/preview"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentPreviewRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void projectsDeleteContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
+    projectsDeleteContent(projectId, userId, contentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void projectsDeleteContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    projectsDeleteContentWithHttpInfo(projectId, userId, contentId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> projectsDeleteContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
+    return projectsDeleteContentWithHttpInfo(projectId, userId, contentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> projectsDeleteContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsDeleteContentRequestBuilder(projectId, userId, contentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsDeleteContent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsDeleteContentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsDeleteContent");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsDeleteContent");
+    }
+    // verify the required parameter 'contentId' is set
+    if (contentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contentId' when calling projectsDeleteContent");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @return ContentObject
+   * @throws ApiException if fails to make API call
+   */
+  public ContentObject projectsFinalizeContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
+    return projectsFinalizeContent(projectId, userId, contentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ContentObject
+   * @throws ApiException if fails to make API call
+   */
+  public ContentObject projectsFinalizeContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContentObject> localVarResponse = projectsFinalizeContentWithHttpInfo(projectId, userId, contentId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @return ApiResponse&lt;ContentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContentObject> projectsFinalizeContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
+    return projectsFinalizeContentWithHttpInfo(projectId, userId, contentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ContentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContentObject> projectsFinalizeContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsFinalizeContentRequestBuilder(projectId, userId, contentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsFinalizeContent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ContentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ContentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContentObject>() {});
+        
+
+        return new ApiResponse<ContentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsFinalizeContentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsFinalizeContent");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsFinalizeContent");
+    }
+    // verify the required parameter 'contentId' is set
+    if (contentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contentId' when calling projectsFinalizeContent");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/finalize"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @return ContentObject
+   * @throws ApiException if fails to make API call
+   */
+  public ContentObject projectsGetContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
+    return projectsGetContent(projectId, userId, contentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ContentObject
+   * @throws ApiException if fails to make API call
+   */
+  public ContentObject projectsGetContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContentObject> localVarResponse = projectsGetContentWithHttpInfo(projectId, userId, contentId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @return ApiResponse&lt;ContentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContentObject> projectsGetContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
+    return projectsGetContentWithHttpInfo(projectId, userId, contentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ContentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContentObject> projectsGetContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsGetContentRequestBuilder(projectId, userId, contentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsGetContent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ContentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ContentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContentObject>() {});
+        
+
+        return new ApiResponse<ContentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsGetContentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsGetContent");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsGetContent");
+    }
+    // verify the required parameter 'contentId' is set
+    if (contentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contentId' when calling projectsGetContent");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @return GetContentDownloadLinkResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetContentDownloadLinkResponse projectsGetContentDownloadLink(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
+    return projectsGetContentDownloadLink(projectId, userId, contentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetContentDownloadLinkResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetContentDownloadLinkResponse projectsGetContentDownloadLink(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetContentDownloadLinkResponse> localVarResponse = projectsGetContentDownloadLinkWithHttpInfo(projectId, userId, contentId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @return ApiResponse&lt;GetContentDownloadLinkResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetContentDownloadLinkResponse> projectsGetContentDownloadLinkWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId) throws ApiException {
+    return projectsGetContentDownloadLinkWithHttpInfo(projectId, userId, contentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetContentDownloadLinkResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetContentDownloadLinkResponse> projectsGetContentDownloadLinkWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsGetContentDownloadLinkRequestBuilder(projectId, userId, contentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsGetContentDownloadLink", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetContentDownloadLinkResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetContentDownloadLinkResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetContentDownloadLinkResponse>() {});
+        
+
+        return new ApiResponse<GetContentDownloadLinkResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsGetContentDownloadLinkRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsGetContentDownloadLink");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsGetContentDownloadLink");
+    }
+    // verify the required parameter 'contentId' is set
+    if (contentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contentId' when calling projectsGetContentDownloadLink");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/download-link"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param page  (optional, default to 0)
+   * @param pageSize  (optional, default to 50)
+   * @return ListContentResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListContentResponse projectsListContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize) throws ApiException {
+    return projectsListContent(projectId, userId, page, pageSize, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param page  (optional, default to 0)
+   * @param pageSize  (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ListContentResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListContentResponse projectsListContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListContentResponse> localVarResponse = projectsListContentWithHttpInfo(projectId, userId, page, pageSize, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param page  (optional, default to 0)
+   * @param pageSize  (optional, default to 50)
+   * @return ApiResponse&lt;ListContentResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListContentResponse> projectsListContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize) throws ApiException {
+    return projectsListContentWithHttpInfo(projectId, userId, page, pageSize, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param page  (optional, default to 0)
+   * @param pageSize  (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListContentResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListContentResponse> projectsListContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsListContentRequestBuilder(projectId, userId, page, pageSize, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsListContent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListContentResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListContentResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListContentResponse>() {});
+        
+
+        return new ApiResponse<ListContentResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsListContentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsListContent");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsListContent");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "page";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
+    localVarQueryParameterBaseName = "pageSize";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageSize", pageSize));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param updateContentSharesRequest  (required)
+   * @return ContentObject
+   * @throws ApiException if fails to make API call
+   */
+  public ContentObject projectsUpdateContentShares(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest) throws ApiException {
+    return projectsUpdateContentShares(projectId, userId, contentId, updateContentSharesRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param updateContentSharesRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ContentObject
+   * @throws ApiException if fails to make API call
+   */
+  public ContentObject projectsUpdateContentShares(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContentObject> localVarResponse = projectsUpdateContentSharesWithHttpInfo(projectId, userId, contentId, updateContentSharesRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param updateContentSharesRequest  (required)
+   * @return ApiResponse&lt;ContentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContentObject> projectsUpdateContentSharesWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest) throws ApiException {
+    return projectsUpdateContentSharesWithHttpInfo(projectId, userId, contentId, updateContentSharesRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param contentId  (required)
+   * @param updateContentSharesRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ContentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContentObject> projectsUpdateContentSharesWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsUpdateContentSharesRequestBuilder(projectId, userId, contentId, updateContentSharesRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsUpdateContentShares", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ContentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ContentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContentObject>() {});
+        
+
+        return new ApiResponse<ContentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsUpdateContentSharesRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsUpdateContentShares");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsUpdateContentShares");
+    }
+    // verify the required parameter 'contentId' is set
+    if (contentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contentId' when calling projectsUpdateContentShares");
+    }
+    // verify the required parameter 'updateContentSharesRequest' is set
+    if (updateContentSharesRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateContentSharesRequest' when calling projectsUpdateContentShares");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/shares"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateContentSharesRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PUT", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
    * @param userId  (required)
    * @param projectId  (required)
    * @param requestBody  (required)
@@ -7679,159 +7832,6 @@ public class ProjectsServerApi {
       Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
       localVarRequestBuilder.header("Content-Encoding", "gzip");
       localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param updateContentSharesRequest  (required)
-   * @return ContentObject
-   * @throws ApiException if fails to make API call
-   */
-  public ContentObject updateContentShares1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest) throws ApiException {
-    return updateContentShares1(projectId, userId, contentId, updateContentSharesRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param updateContentSharesRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ContentObject
-   * @throws ApiException if fails to make API call
-   */
-  public ContentObject updateContentShares1(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ContentObject> localVarResponse = updateContentShares1WithHttpInfo(projectId, userId, contentId, updateContentSharesRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param updateContentSharesRequest  (required)
-   * @return ApiResponse&lt;ContentObject&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ContentObject> updateContentShares1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest) throws ApiException {
-    return updateContentShares1WithHttpInfo(projectId, userId, contentId, updateContentSharesRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param userId  (required)
-   * @param contentId  (required)
-   * @param updateContentSharesRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ContentObject&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ContentObject> updateContentShares1WithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateContentShares1RequestBuilder(projectId, userId, contentId, updateContentSharesRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("updateContentShares1", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<ContentObject>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        ContentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContentObject>() {});
-        
-
-        return new ApiResponse<ContentObject>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder updateContentShares1RequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling updateContentShares1");
-    }
-    // verify the required parameter 'userId' is set
-    if (userId == null) {
-      throw new ApiException(400, "Missing the required parameter 'userId' when calling updateContentShares1");
-    }
-    // verify the required parameter 'contentId' is set
-    if (contentId == null) {
-      throw new ApiException(400, "Missing the required parameter 'contentId' when calling updateContentShares1");
-    }
-    // verify the required parameter 'updateContentSharesRequest' is set
-    if (updateContentSharesRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'updateContentSharesRequest' when calling updateContentShares1");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/shares"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
-        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "*/*");
-    localVarRequestBuilder.header("Accept-Encoding", "gzip");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateContentSharesRequest);
-      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
-      localVarRequestBuilder.header("Content-Encoding", "gzip");
-      localVarRequestBuilder.method("PUT", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
     } catch (IOException e) {
       throw new ApiException(e);
     }

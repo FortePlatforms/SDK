@@ -296,24 +296,6 @@ export interface AdminVerifyUserContactMethodRequest {
     verificationCode: string;
 }
 
-export interface CreateContentUploadLink1Request {
-    projectId: string;
-    userId: string;
-    createContentUploadLinkRequest: CreateContentUploadLinkRequest;
-}
-
-export interface CreatePayment1Request {
-    projectId: string;
-    userId: string;
-    createPaymentRequest: CreatePaymentRequest;
-}
-
-export interface CreatePaymentPreview1Request {
-    projectId: string;
-    userId: string;
-    createPaymentPreviewRequest: CreatePaymentPreviewRequest;
-}
-
 export interface CreatePaymentTriggerOperationRequest {
     projectId: string;
     createPaymentTriggerRequest: CreatePaymentTriggerRequest;
@@ -357,12 +339,6 @@ export interface CreateWebAppDeploymentRequest {
     commitSha?: string;
 }
 
-export interface DeleteContent1Request {
-    projectId: string;
-    userId: string;
-    contentId: string;
-}
-
 export interface DeletePaymentTriggerRequest {
     projectId: string;
     triggerId: string;
@@ -390,24 +366,6 @@ export interface DeleteUserRequest {
 export interface DeleteWebAppRequest {
     projectId: string;
     webAppId: string;
-}
-
-export interface FinalizeContent1Request {
-    projectId: string;
-    userId: string;
-    contentId: string;
-}
-
-export interface GetContent1Request {
-    projectId: string;
-    userId: string;
-    contentId: string;
-}
-
-export interface GetContentDownloadLink1Request {
-    projectId: string;
-    userId: string;
-    contentId: string;
 }
 
 export interface GetNotificationTemplatesRequest {
@@ -464,13 +422,6 @@ export interface GetWebAppDeploymentRequest {
     projectId: string;
     webAppId: string;
     buildId: string;
-}
-
-export interface ListContent1Request {
-    projectId: string;
-    userId: string;
-    page?: number;
-    pageSize?: number;
 }
 
 export interface ListLogLinesRequest {
@@ -549,6 +500,62 @@ export interface ListWebAppsRequest {
     projectId: string;
 }
 
+export interface ProjectsCreateContentUploadLinkRequest {
+    projectId: string;
+    userId: string;
+    createContentUploadLinkRequest: CreateContentUploadLinkRequest;
+}
+
+export interface ProjectsCreatePaymentRequest {
+    projectId: string;
+    userId: string;
+    createPaymentRequest: CreatePaymentRequest;
+}
+
+export interface ProjectsCreatePaymentPreviewRequest {
+    projectId: string;
+    userId: string;
+    createPaymentPreviewRequest: CreatePaymentPreviewRequest;
+}
+
+export interface ProjectsDeleteContentRequest {
+    projectId: string;
+    userId: string;
+    contentId: string;
+}
+
+export interface ProjectsFinalizeContentRequest {
+    projectId: string;
+    userId: string;
+    contentId: string;
+}
+
+export interface ProjectsGetContentRequest {
+    projectId: string;
+    userId: string;
+    contentId: string;
+}
+
+export interface ProjectsGetContentDownloadLinkRequest {
+    projectId: string;
+    userId: string;
+    contentId: string;
+}
+
+export interface ProjectsListContentRequest {
+    projectId: string;
+    userId: string;
+    page?: number;
+    pageSize?: number;
+}
+
+export interface ProjectsUpdateContentSharesRequest {
+    projectId: string;
+    userId: string;
+    contentId: string;
+    updateContentSharesRequest: UpdateContentSharesRequest;
+}
+
 export interface PutUserCustomAttributesRequest {
     userId: string;
     projectId: string;
@@ -587,13 +594,6 @@ export interface TestInvocationOperationRequest {
     projectId: string;
     serviceId: string;
     testInvocationRequest: TestInvocationRequest;
-}
-
-export interface UpdateContentShares1Request {
-    projectId: string;
-    userId: string;
-    contentId: string;
-    updateContentSharesRequest: UpdateContentSharesRequest;
 }
 
 export interface UpdateNotificationTemplatesOperationRequest {
@@ -943,189 +943,6 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async adminVerifyUserContactMethod(requestParameters: AdminVerifyUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContactMethod> {
         const response = await this.adminVerifyUserContactMethodRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for createContentUploadLink1 without sending the request
-     */
-    async createContentUploadLink1RequestOpts(requestParameters: CreateContentUploadLink1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling createContentUploadLink1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling createContentUploadLink1().'
-            );
-        }
-
-        if (requestParameters['createContentUploadLinkRequest'] == null) {
-            throw new runtime.RequiredError(
-                'createContentUploadLinkRequest',
-                'Required parameter "createContentUploadLinkRequest" was null or undefined when calling createContentUploadLink1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/upload-links`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateContentUploadLinkRequestToJSON(requestParameters['createContentUploadLinkRequest']),
-        };
-    }
-
-    /**
-     */
-    async createContentUploadLink1Raw(requestParameters: CreateContentUploadLink1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateContentUploadLinkResponse>> {
-        const requestOptions = await this.createContentUploadLink1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateContentUploadLinkResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async createContentUploadLink1(requestParameters: CreateContentUploadLink1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateContentUploadLinkResponse> {
-        const response = await this.createContentUploadLink1Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for createPayment1 without sending the request
-     */
-    async createPayment1RequestOpts(requestParameters: CreatePayment1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling createPayment1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling createPayment1().'
-            );
-        }
-
-        if (requestParameters['createPaymentRequest'] == null) {
-            throw new runtime.RequiredError(
-                'createPaymentRequest',
-                'Required parameter "createPaymentRequest" was null or undefined when calling createPayment1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreatePaymentRequestToJSON(requestParameters['createPaymentRequest']),
-        };
-    }
-
-    /**
-     */
-    async createPayment1Raw(requestParameters: CreatePayment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentResponse>> {
-        const requestOptions = await this.createPayment1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async createPayment1(requestParameters: CreatePayment1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentResponse> {
-        const response = await this.createPayment1Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for createPaymentPreview1 without sending the request
-     */
-    async createPaymentPreview1RequestOpts(requestParameters: CreatePaymentPreview1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling createPaymentPreview1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling createPaymentPreview1().'
-            );
-        }
-
-        if (requestParameters['createPaymentPreviewRequest'] == null) {
-            throw new runtime.RequiredError(
-                'createPaymentPreviewRequest',
-                'Required parameter "createPaymentPreviewRequest" was null or undefined when calling createPaymentPreview1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments/preview`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreatePaymentPreviewRequestToJSON(requestParameters['createPaymentPreviewRequest']),
-        };
-    }
-
-    /**
-     */
-    async createPaymentPreview1Raw(requestParameters: CreatePaymentPreview1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentPreviewResponse>> {
-        const requestOptions = await this.createPaymentPreview1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentPreviewResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async createPaymentPreview1(requestParameters: CreatePaymentPreview1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentPreviewResponse> {
-        const response = await this.createPaymentPreview1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1563,64 +1380,6 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for deleteContent1 without sending the request
-     */
-    async deleteContent1RequestOpts(requestParameters: DeleteContent1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling deleteContent1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling deleteContent1().'
-            );
-        }
-
-        if (requestParameters['contentId'] == null) {
-            throw new runtime.RequiredError(
-                'contentId',
-                'Required parameter "contentId" was null or undefined when calling deleteContent1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
-
-        return {
-            path: urlPath,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async deleteContent1Raw(requestParameters: DeleteContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.deleteContent1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async deleteContent1(requestParameters: DeleteContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteContent1Raw(requestParameters, initOverrides);
-    }
-
-    /**
      * Creates request options for deletePaymentTrigger without sending the request
      */
     async deletePaymentTriggerRequestOpts(requestParameters: DeletePaymentTriggerRequest): Promise<runtime.RequestOpts> {
@@ -1910,183 +1669,6 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteWebApp(requestParameters: DeleteWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteWebAppRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Creates request options for finalizeContent1 without sending the request
-     */
-    async finalizeContent1RequestOpts(requestParameters: FinalizeContent1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling finalizeContent1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling finalizeContent1().'
-            );
-        }
-
-        if (requestParameters['contentId'] == null) {
-            throw new runtime.RequiredError(
-                'contentId',
-                'Required parameter "contentId" was null or undefined when calling finalizeContent1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/finalize`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async finalizeContent1Raw(requestParameters: FinalizeContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
-        const requestOptions = await this.finalizeContent1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async finalizeContent1(requestParameters: FinalizeContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
-        const response = await this.finalizeContent1Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for getContent1 without sending the request
-     */
-    async getContent1RequestOpts(requestParameters: GetContent1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling getContent1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling getContent1().'
-            );
-        }
-
-        if (requestParameters['contentId'] == null) {
-            throw new runtime.RequiredError(
-                'contentId',
-                'Required parameter "contentId" was null or undefined when calling getContent1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async getContent1Raw(requestParameters: GetContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
-        const requestOptions = await this.getContent1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async getContent1(requestParameters: GetContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
-        const response = await this.getContent1Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for getContentDownloadLink1 without sending the request
-     */
-    async getContentDownloadLink1RequestOpts(requestParameters: GetContentDownloadLink1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling getContentDownloadLink1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling getContentDownloadLink1().'
-            );
-        }
-
-        if (requestParameters['contentId'] == null) {
-            throw new runtime.RequiredError(
-                'contentId',
-                'Required parameter "contentId" was null or undefined when calling getContentDownloadLink1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/download-link`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async getContentDownloadLink1Raw(requestParameters: GetContentDownloadLink1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetContentDownloadLinkResponse>> {
-        const requestOptions = await this.getContentDownloadLink1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetContentDownloadLinkResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async getContentDownloadLink1(requestParameters: GetContentDownloadLink1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetContentDownloadLinkResponse> {
-        const response = await this.getContentDownloadLink1Raw(requestParameters, initOverrides);
-        return await response.value();
     }
 
     /**
@@ -2620,65 +2202,6 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getWebAppDeployment(requestParameters: GetWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppBuildRequestObject> {
         const response = await this.getWebAppDeploymentRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for listContent1 without sending the request
-     */
-    async listContent1RequestOpts(requestParameters: ListContent1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling listContent1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling listContent1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['page'] != null) {
-            queryParameters['page'] = requestParameters['page'];
-        }
-
-        if (requestParameters['pageSize'] != null) {
-            queryParameters['pageSize'] = requestParameters['pageSize'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async listContent1Raw(requestParameters: ListContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListContentResponse>> {
-        const requestOptions = await this.listContent1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListContentResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async listContent1(requestParameters: ListContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListContentResponse> {
-        const response = await this.listContent1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3316,6 +2839,552 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for projectsCreateContentUploadLink without sending the request
+     */
+    async projectsCreateContentUploadLinkRequestOpts(requestParameters: ProjectsCreateContentUploadLinkRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsCreateContentUploadLink().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsCreateContentUploadLink().'
+            );
+        }
+
+        if (requestParameters['createContentUploadLinkRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createContentUploadLinkRequest',
+                'Required parameter "createContentUploadLinkRequest" was null or undefined when calling projectsCreateContentUploadLink().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/upload-links`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateContentUploadLinkRequestToJSON(requestParameters['createContentUploadLinkRequest']),
+        };
+    }
+
+    /**
+     */
+    async projectsCreateContentUploadLinkRaw(requestParameters: ProjectsCreateContentUploadLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateContentUploadLinkResponse>> {
+        const requestOptions = await this.projectsCreateContentUploadLinkRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateContentUploadLinkResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsCreateContentUploadLink(requestParameters: ProjectsCreateContentUploadLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateContentUploadLinkResponse> {
+        const response = await this.projectsCreateContentUploadLinkRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for projectsCreatePayment without sending the request
+     */
+    async projectsCreatePaymentRequestOpts(requestParameters: ProjectsCreatePaymentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsCreatePayment().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsCreatePayment().'
+            );
+        }
+
+        if (requestParameters['createPaymentRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createPaymentRequest',
+                'Required parameter "createPaymentRequest" was null or undefined when calling projectsCreatePayment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreatePaymentRequestToJSON(requestParameters['createPaymentRequest']),
+        };
+    }
+
+    /**
+     */
+    async projectsCreatePaymentRaw(requestParameters: ProjectsCreatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentResponse>> {
+        const requestOptions = await this.projectsCreatePaymentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsCreatePayment(requestParameters: ProjectsCreatePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentResponse> {
+        const response = await this.projectsCreatePaymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for projectsCreatePaymentPreview without sending the request
+     */
+    async projectsCreatePaymentPreviewRequestOpts(requestParameters: ProjectsCreatePaymentPreviewRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsCreatePaymentPreview().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsCreatePaymentPreview().'
+            );
+        }
+
+        if (requestParameters['createPaymentPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createPaymentPreviewRequest',
+                'Required parameter "createPaymentPreviewRequest" was null or undefined when calling projectsCreatePaymentPreview().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments/preview`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreatePaymentPreviewRequestToJSON(requestParameters['createPaymentPreviewRequest']),
+        };
+    }
+
+    /**
+     */
+    async projectsCreatePaymentPreviewRaw(requestParameters: ProjectsCreatePaymentPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentPreviewResponse>> {
+        const requestOptions = await this.projectsCreatePaymentPreviewRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsCreatePaymentPreview(requestParameters: ProjectsCreatePaymentPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentPreviewResponse> {
+        const response = await this.projectsCreatePaymentPreviewRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for projectsDeleteContent without sending the request
+     */
+    async projectsDeleteContentRequestOpts(requestParameters: ProjectsDeleteContentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsDeleteContent().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsDeleteContent().'
+            );
+        }
+
+        if (requestParameters['contentId'] == null) {
+            throw new runtime.RequiredError(
+                'contentId',
+                'Required parameter "contentId" was null or undefined when calling projectsDeleteContent().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async projectsDeleteContentRaw(requestParameters: ProjectsDeleteContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.projectsDeleteContentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async projectsDeleteContent(requestParameters: ProjectsDeleteContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.projectsDeleteContentRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for projectsFinalizeContent without sending the request
+     */
+    async projectsFinalizeContentRequestOpts(requestParameters: ProjectsFinalizeContentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsFinalizeContent().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsFinalizeContent().'
+            );
+        }
+
+        if (requestParameters['contentId'] == null) {
+            throw new runtime.RequiredError(
+                'contentId',
+                'Required parameter "contentId" was null or undefined when calling projectsFinalizeContent().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/finalize`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async projectsFinalizeContentRaw(requestParameters: ProjectsFinalizeContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+        const requestOptions = await this.projectsFinalizeContentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsFinalizeContent(requestParameters: ProjectsFinalizeContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
+        const response = await this.projectsFinalizeContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for projectsGetContent without sending the request
+     */
+    async projectsGetContentRequestOpts(requestParameters: ProjectsGetContentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsGetContent().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsGetContent().'
+            );
+        }
+
+        if (requestParameters['contentId'] == null) {
+            throw new runtime.RequiredError(
+                'contentId',
+                'Required parameter "contentId" was null or undefined when calling projectsGetContent().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async projectsGetContentRaw(requestParameters: ProjectsGetContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+        const requestOptions = await this.projectsGetContentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsGetContent(requestParameters: ProjectsGetContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
+        const response = await this.projectsGetContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for projectsGetContentDownloadLink without sending the request
+     */
+    async projectsGetContentDownloadLinkRequestOpts(requestParameters: ProjectsGetContentDownloadLinkRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsGetContentDownloadLink().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsGetContentDownloadLink().'
+            );
+        }
+
+        if (requestParameters['contentId'] == null) {
+            throw new runtime.RequiredError(
+                'contentId',
+                'Required parameter "contentId" was null or undefined when calling projectsGetContentDownloadLink().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/download-link`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async projectsGetContentDownloadLinkRaw(requestParameters: ProjectsGetContentDownloadLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetContentDownloadLinkResponse>> {
+        const requestOptions = await this.projectsGetContentDownloadLinkRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetContentDownloadLinkResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsGetContentDownloadLink(requestParameters: ProjectsGetContentDownloadLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetContentDownloadLinkResponse> {
+        const response = await this.projectsGetContentDownloadLinkRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for projectsListContent without sending the request
+     */
+    async projectsListContentRequestOpts(requestParameters: ProjectsListContentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsListContent().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsListContent().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async projectsListContentRaw(requestParameters: ProjectsListContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListContentResponse>> {
+        const requestOptions = await this.projectsListContentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListContentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsListContent(requestParameters: ProjectsListContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListContentResponse> {
+        const response = await this.projectsListContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for projectsUpdateContentShares without sending the request
+     */
+    async projectsUpdateContentSharesRequestOpts(requestParameters: ProjectsUpdateContentSharesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsUpdateContentShares().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsUpdateContentShares().'
+            );
+        }
+
+        if (requestParameters['contentId'] == null) {
+            throw new runtime.RequiredError(
+                'contentId',
+                'Required parameter "contentId" was null or undefined when calling projectsUpdateContentShares().'
+            );
+        }
+
+        if (requestParameters['updateContentSharesRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateContentSharesRequest',
+                'Required parameter "updateContentSharesRequest" was null or undefined when calling projectsUpdateContentShares().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/shares`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateContentSharesRequestToJSON(requestParameters['updateContentSharesRequest']),
+        };
+    }
+
+    /**
+     */
+    async projectsUpdateContentSharesRaw(requestParameters: ProjectsUpdateContentSharesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+        const requestOptions = await this.projectsUpdateContentSharesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsUpdateContentShares(requestParameters: ProjectsUpdateContentSharesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
+        const response = await this.projectsUpdateContentSharesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for putUserCustomAttributes without sending the request
      */
     async putUserCustomAttributesRequestOpts(requestParameters: PutUserCustomAttributesRequest): Promise<runtime.RequestOpts> {
@@ -3697,75 +3766,6 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async testInvocation(requestParameters: TestInvocationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TestInvocationResponse> {
         const response = await this.testInvocationRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for updateContentShares1 without sending the request
-     */
-    async updateContentShares1RequestOpts(requestParameters: UpdateContentShares1Request): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling updateContentShares1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling updateContentShares1().'
-            );
-        }
-
-        if (requestParameters['contentId'] == null) {
-            throw new runtime.RequiredError(
-                'contentId',
-                'Required parameter "contentId" was null or undefined when calling updateContentShares1().'
-            );
-        }
-
-        if (requestParameters['updateContentSharesRequest'] == null) {
-            throw new runtime.RequiredError(
-                'updateContentSharesRequest',
-                'Required parameter "updateContentSharesRequest" was null or undefined when calling updateContentShares1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/shares`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
-
-        return {
-            path: urlPath,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateContentSharesRequestToJSON(requestParameters['updateContentSharesRequest']),
-        };
-    }
-
-    /**
-     */
-    async updateContentShares1Raw(requestParameters: UpdateContentShares1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
-        const requestOptions = await this.updateContentShares1RequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async updateContentShares1(requestParameters: UpdateContentShares1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
-        const response = await this.updateContentShares1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
