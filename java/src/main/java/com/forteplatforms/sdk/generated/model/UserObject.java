@@ -53,9 +53,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_STRIPE_CUSTOMER_ID,
   UserObject.JSON_PROPERTY_CONTACT_METHODS,
   UserObject.JSON_PROPERTY_WELCOME_MESSAGE_SENT,
+  UserObject.JSON_PROPERTY_INVITED_BY_USER_ID,
   UserObject.JSON_PROPERTY_STATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserObject {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nullable
@@ -101,6 +102,10 @@ public class UserObject {
   @javax.annotation.Nullable
   private Boolean welcomeMessageSent;
 
+  public static final String JSON_PROPERTY_INVITED_BY_USER_ID = "invitedByUserId";
+  @javax.annotation.Nullable
+  private String invitedByUserId;
+
   /**
    * Gets or Sets state
    */
@@ -109,7 +114,9 @@ public class UserObject {
     
     SUSPENDED(String.valueOf("SUSPENDED")),
     
-    DELETED(String.valueOf("DELETED"));
+    DELETED(String.valueOf("DELETED")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -130,11 +137,11 @@ public class UserObject {
     @JsonCreator
     public static StateEnum fromValue(String value) {
       for (StateEnum b : StateEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -434,6 +441,30 @@ public class UserObject {
   }
 
 
+  public UserObject invitedByUserId(@javax.annotation.Nullable String invitedByUserId) {
+    this.invitedByUserId = invitedByUserId;
+    return this;
+  }
+
+  /**
+   * Get invitedByUserId
+   * @return invitedByUserId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INVITED_BY_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInvitedByUserId() {
+    return invitedByUserId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INVITED_BY_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInvitedByUserId(@javax.annotation.Nullable String invitedByUserId) {
+    this.invitedByUserId = invitedByUserId;
+  }
+
+
   public UserObject state(@javax.annotation.Nonnull StateEnum state) {
     this.state = state;
     return this;
@@ -481,12 +512,13 @@ public class UserObject {
         Objects.equals(this.stripeCustomerId, userObject.stripeCustomerId) &&
         Objects.equals(this.contactMethods, userObject.contactMethods) &&
         Objects.equals(this.welcomeMessageSent, userObject.welcomeMessageSent) &&
+        Objects.equals(this.invitedByUserId, userObject.invitedByUserId) &&
         Objects.equals(this.state, userObject.state);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, state);
+    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, invitedByUserId, state);
   }
 
   @Override
@@ -504,6 +536,7 @@ public class UserObject {
     sb.append("    stripeCustomerId: ").append(toIndentedString(stripeCustomerId)).append("\n");
     sb.append("    contactMethods: ").append(toIndentedString(contactMethods)).append("\n");
     sb.append("    welcomeMessageSent: ").append(toIndentedString(welcomeMessageSent)).append("\n");
+    sb.append("    invitedByUserId: ").append(toIndentedString(invitedByUserId)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -620,6 +653,11 @@ public class UserObject {
     // add `welcomeMessageSent` to the URL query string
     if (getWelcomeMessageSent() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%swelcomeMessageSent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWelcomeMessageSent()))));
+    }
+
+    // add `invitedByUserId` to the URL query string
+    if (getInvitedByUserId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinvitedByUserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInvitedByUserId()))));
     }
 
     // add `state` to the URL query string

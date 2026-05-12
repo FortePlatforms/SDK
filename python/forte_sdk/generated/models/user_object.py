@@ -40,8 +40,9 @@ class UserObject(BaseModel):
     stripe_customer_id: Optional[StrictStr] = Field(default=None, alias="stripeCustomerId")
     contact_methods: Annotated[List[ContactMethod], Field(min_length=1)] = Field(alias="contactMethods")
     welcome_message_sent: Optional[StrictBool] = Field(default=None, alias="welcomeMessageSent")
+    invited_by_user_id: Optional[StrictStr] = Field(default=None, alias="invitedByUserId")
     state: StrictStr
-    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "state"]
+    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "invitedByUserId", "state"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -119,6 +120,7 @@ class UserObject(BaseModel):
             "stripeCustomerId": obj.get("stripeCustomerId"),
             "contactMethods": [ContactMethod.from_dict(_item) for _item in obj["contactMethods"]] if obj.get("contactMethods") is not None else None,
             "welcomeMessageSent": obj.get("welcomeMessageSent"),
+            "invitedByUserId": obj.get("invitedByUserId"),
             "state": obj.get("state")
         })
         return _obj

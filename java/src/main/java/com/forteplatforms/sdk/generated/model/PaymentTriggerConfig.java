@@ -45,7 +45,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentTriggerConfig.JSON_PROPERTY_ENABLED,
   PaymentTriggerConfig.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class PaymentTriggerConfig {
   public static final String JSON_PROPERTY_TRIGGER_ID = "triggerId";
   @javax.annotation.Nonnull
@@ -69,7 +69,9 @@ public class PaymentTriggerConfig {
   public enum EventsEnum {
     PAYMENT_COMPLETED(String.valueOf("PAYMENT_COMPLETED")),
     
-    PAYMENT_REFUNDED(String.valueOf("PAYMENT_REFUNDED"));
+    PAYMENT_REFUNDED(String.valueOf("PAYMENT_REFUNDED")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -90,11 +92,11 @@ public class PaymentTriggerConfig {
     @JsonCreator
     public static EventsEnum fromValue(String value) {
       for (EventsEnum b : EventsEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

@@ -42,7 +42,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   TestInvocationRequest.JSON_PROPERTY_AUTH_MODE,
   TestInvocationRequest.JSON_PROPERTY_SESSION_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class TestInvocationRequest {
   public static final String JSON_PROPERTY_PATH = "path";
   @javax.annotation.Nonnull
@@ -66,7 +66,9 @@ public class TestInvocationRequest {
   public enum AuthModeEnum {
     ANONYMOUS(String.valueOf("ANONYMOUS")),
     
-    AS_USER(String.valueOf("AS_USER"));
+    AS_USER(String.valueOf("AS_USER")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -87,11 +89,11 @@ public class TestInvocationRequest {
     @JsonCreator
     public static AuthModeEnum fromValue(String value) {
       for (AuthModeEnum b : AuthModeEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

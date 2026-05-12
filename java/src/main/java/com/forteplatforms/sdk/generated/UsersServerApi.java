@@ -30,11 +30,14 @@ import com.forteplatforms.sdk.generated.model.CreatePaymentPreviewRequest;
 import com.forteplatforms.sdk.generated.model.CreatePaymentPreviewResponse;
 import com.forteplatforms.sdk.generated.model.CreatePaymentRequest;
 import com.forteplatforms.sdk.generated.model.CreatePaymentResponse;
+import com.forteplatforms.sdk.generated.model.CreateUserInviteRequest;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.ListContentResponse;
+import com.forteplatforms.sdk.generated.model.ListUserInvitesResponse;
 import com.forteplatforms.sdk.generated.model.LoginUserResponse;
 import java.time.OffsetDateTime;
 import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
+import com.forteplatforms.sdk.generated.model.PendingUserInviteObject;
 import com.forteplatforms.sdk.generated.model.RegisterUserRequest;
 import com.forteplatforms.sdk.generated.model.RegisterUserResponse;
 import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
@@ -72,7 +75,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UsersServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -994,6 +997,138 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param createUserInviteRequest  (required)
+   * @return PendingUserInviteObject
+   * @throws ApiException if fails to make API call
+   */
+  public PendingUserInviteObject createUserInvite(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest) throws ApiException {
+    return createUserInvite(projectId, createUserInviteRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createUserInviteRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PendingUserInviteObject
+   * @throws ApiException if fails to make API call
+   */
+  public PendingUserInviteObject createUserInvite(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PendingUserInviteObject> localVarResponse = createUserInviteWithHttpInfo(projectId, createUserInviteRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createUserInviteRequest  (required)
+   * @return ApiResponse&lt;PendingUserInviteObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PendingUserInviteObject> createUserInviteWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest) throws ApiException {
+    return createUserInviteWithHttpInfo(projectId, createUserInviteRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createUserInviteRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PendingUserInviteObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PendingUserInviteObject> createUserInviteWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createUserInviteRequestBuilder(projectId, createUserInviteRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createUserInvite", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PendingUserInviteObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PendingUserInviteObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PendingUserInviteObject>() {});
+        
+
+        return new ApiResponse<PendingUserInviteObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createUserInviteRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createUserInvite");
+    }
+    // verify the required parameter 'createUserInviteRequest' is set
+    if (createUserInviteRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createUserInviteRequest' when calling createUserInvite");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/invites"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createUserInviteRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param contactMethodId  (required)
    * @throws ApiException if fails to make API call
    */
@@ -1220,25 +1355,25 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
-   * @param contentId  (required)
+   * @param pendingContentId  (required)
    * @return ContentObject
    * @throws ApiException if fails to make API call
    */
-  public ContentObject finalizeContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return finalizeContent(projectId, contentId, null);
+  public ContentObject finalizeContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String pendingContentId) throws ApiException {
+    return finalizeContent(projectId, pendingContentId, null);
   }
 
   /**
    * 
    * 
    * @param projectId  (required)
-   * @param contentId  (required)
+   * @param pendingContentId  (required)
    * @param headers Optional headers to include in the request
    * @return ContentObject
    * @throws ApiException if fails to make API call
    */
-  public ContentObject finalizeContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    ApiResponse<ContentObject> localVarResponse = finalizeContentWithHttpInfo(projectId, contentId, headers);
+  public ContentObject finalizeContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String pendingContentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContentObject> localVarResponse = finalizeContentWithHttpInfo(projectId, pendingContentId, headers);
     return localVarResponse.getData();
   }
 
@@ -1246,25 +1381,25 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
-   * @param contentId  (required)
+   * @param pendingContentId  (required)
    * @return ApiResponse&lt;ContentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ContentObject> finalizeContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId) throws ApiException {
-    return finalizeContentWithHttpInfo(projectId, contentId, null);
+  public ApiResponse<ContentObject> finalizeContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String pendingContentId) throws ApiException {
+    return finalizeContentWithHttpInfo(projectId, pendingContentId, null);
   }
 
   /**
    * 
    * 
    * @param projectId  (required)
-   * @param contentId  (required)
+   * @param pendingContentId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ContentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ContentObject> finalizeContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = finalizeContentRequestBuilder(projectId, contentId, headers);
+  public ApiResponse<ContentObject> finalizeContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String pendingContentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = finalizeContentRequestBuilder(projectId, pendingContentId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1311,21 +1446,21 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder finalizeContentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder finalizeContentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String pendingContentId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling finalizeContent");
     }
-    // verify the required parameter 'contentId' is set
-    if (contentId == null) {
-      throw new ApiException(400, "Missing the required parameter 'contentId' when calling finalizeContent");
+    // verify the required parameter 'pendingContentId' is set
+    if (pendingContentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'pendingContentId' when calling finalizeContent");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    String localVarPath = "/api/v1/{projectId}/users/me/content/{contentId}/finalize"
+    String localVarPath = "/api/v1/{projectId}/users/me/content/{pendingContentId}"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
+        .replace("{pendingContentId}", ApiClient.urlEncode(pendingContentId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -2182,6 +2317,124 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @return ListUserInvitesResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListUserInvitesResponse listUserInvites(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listUserInvites(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ListUserInvitesResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListUserInvitesResponse listUserInvites(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListUserInvitesResponse> localVarResponse = listUserInvitesWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;ListUserInvitesResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListUserInvitesResponse> listUserInvitesWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listUserInvitesWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListUserInvitesResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListUserInvitesResponse> listUserInvitesWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listUserInvitesRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listUserInvites", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListUserInvitesResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListUserInvitesResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListUserInvitesResponse>() {});
+        
+
+        return new ApiResponse<ListUserInvitesResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listUserInvitesRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listUserInvites");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/invites"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param authorization  (optional)
    * @param forteUserSessionToken  (optional)
    * @throws ApiException if fails to make API call
@@ -2282,147 +2535,6 @@ public class UsersServerApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param contentId  (required)
-   * @param createContentUploadLinkRequest  (required)
-   * @return CreateContentUploadLinkResponse
-   * @throws ApiException if fails to make API call
-   */
-  public CreateContentUploadLinkResponse reUploadContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest) throws ApiException {
-    return reUploadContent(projectId, contentId, createContentUploadLinkRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param contentId  (required)
-   * @param createContentUploadLinkRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return CreateContentUploadLinkResponse
-   * @throws ApiException if fails to make API call
-   */
-  public CreateContentUploadLinkResponse reUploadContent(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateContentUploadLinkResponse> localVarResponse = reUploadContentWithHttpInfo(projectId, contentId, createContentUploadLinkRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param contentId  (required)
-   * @param createContentUploadLinkRequest  (required)
-   * @return ApiResponse&lt;CreateContentUploadLinkResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreateContentUploadLinkResponse> reUploadContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest) throws ApiException {
-    return reUploadContentWithHttpInfo(projectId, contentId, createContentUploadLinkRequest, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param contentId  (required)
-   * @param createContentUploadLinkRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateContentUploadLinkResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<CreateContentUploadLinkResponse> reUploadContentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = reUploadContentRequestBuilder(projectId, contentId, createContentUploadLinkRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("reUploadContent", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<CreateContentUploadLinkResponse>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateContentUploadLinkResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateContentUploadLinkResponse>() {});
-        
-
-        return new ApiResponse<CreateContentUploadLinkResponse>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder reUploadContentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling reUploadContent");
-    }
-    // verify the required parameter 'contentId' is set
-    if (contentId == null) {
-      throw new ApiException(400, "Missing the required parameter 'contentId' when calling reUploadContent");
-    }
-    // verify the required parameter 'createContentUploadLinkRequest' is set
-    if (createContentUploadLinkRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createContentUploadLinkRequest' when calling reUploadContent");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/{projectId}/users/me/content/{contentId}/upload-links"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "*/*");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createContentUploadLinkRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -2957,6 +3069,119 @@ public class UsersServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param inviteId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void revokeUserInvite(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String inviteId) throws ApiException {
+    revokeUserInvite(projectId, inviteId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param inviteId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void revokeUserInvite(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String inviteId, Map<String, String> headers) throws ApiException {
+    revokeUserInviteWithHttpInfo(projectId, inviteId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param inviteId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> revokeUserInviteWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String inviteId) throws ApiException {
+    return revokeUserInviteWithHttpInfo(projectId, inviteId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param inviteId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> revokeUserInviteWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String inviteId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = revokeUserInviteRequestBuilder(projectId, inviteId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("revokeUserInvite", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder revokeUserInviteRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String inviteId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling revokeUserInvite");
+    }
+    // verify the required parameter 'inviteId' is set
+    if (inviteId == null) {
+      throw new ApiException(400, "Missing the required parameter 'inviteId' when calling revokeUserInvite");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/invites/{inviteId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{inviteId}", ApiClient.urlEncode(inviteId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

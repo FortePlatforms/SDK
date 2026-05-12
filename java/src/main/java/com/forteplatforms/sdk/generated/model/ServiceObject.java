@@ -66,7 +66,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_BASE_DIRECTORY,
   ServiceObject.JSON_PROPERTY_SECRET_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ServiceObject {
   public static final String JSON_PROPERTY_SERVICE_ID = "serviceId";
   @javax.annotation.Nullable
@@ -130,7 +130,9 @@ public class ServiceObject {
   public enum GithubBuildTriggerEnum {
     PUSH(String.valueOf("PUSH")),
     
-    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED"));
+    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -151,11 +153,11 @@ public class ServiceObject {
     @JsonCreator
     public static GithubBuildTriggerEnum fromValue(String value) {
       for (GithubBuildTriggerEnum b : GithubBuildTriggerEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

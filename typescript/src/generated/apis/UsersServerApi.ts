@@ -27,10 +27,13 @@ import type {
   CreatePaymentPreviewResponse,
   CreatePaymentRequest,
   CreatePaymentResponse,
+  CreateUserInviteRequest,
   GetContentDownloadLinkResponse,
   ListContentResponse,
+  ListUserInvitesResponse,
   LoginUserResponse,
   PaginatedResponsePaymentObject,
+  PendingUserInviteObject,
   RegisterUserRequest,
   RegisterUserResponse,
   RenewSessionTokenResponse,
@@ -62,14 +65,20 @@ import {
     CreatePaymentRequestToJSON,
     CreatePaymentResponseFromJSON,
     CreatePaymentResponseToJSON,
+    CreateUserInviteRequestFromJSON,
+    CreateUserInviteRequestToJSON,
     GetContentDownloadLinkResponseFromJSON,
     GetContentDownloadLinkResponseToJSON,
     ListContentResponseFromJSON,
     ListContentResponseToJSON,
+    ListUserInvitesResponseFromJSON,
+    ListUserInvitesResponseToJSON,
     LoginUserResponseFromJSON,
     LoginUserResponseToJSON,
     PaginatedResponsePaymentObjectFromJSON,
     PaginatedResponsePaymentObjectToJSON,
+    PendingUserInviteObjectFromJSON,
+    PendingUserInviteObjectToJSON,
     RegisterUserRequestFromJSON,
     RegisterUserRequestToJSON,
     RegisterUserResponseFromJSON,
@@ -113,6 +122,11 @@ export interface CreatePaymentPreviewOperationRequest {
     createPaymentPreviewRequest: CreatePaymentPreviewRequest;
 }
 
+export interface CreateUserInviteOperationRequest {
+    projectId: string;
+    createUserInviteRequest: CreateUserInviteRequest;
+}
+
 export interface DeleteContactMethodRequest {
     projectId: string;
     contactMethodId: string;
@@ -125,7 +139,7 @@ export interface DeleteContentRequest {
 
 export interface FinalizeContentRequest {
     projectId: string;
-    contentId: string;
+    pendingContentId: string;
 }
 
 export interface GetAccountRequest {
@@ -164,16 +178,14 @@ export interface ListMyPaymentsRequest {
     nextToken?: string;
 }
 
+export interface ListUserInvitesRequest {
+    projectId: string;
+}
+
 export interface LogoutRequest {
     projectId: string;
     authorization?: string;
     forteUserSessionToken?: string;
-}
-
-export interface ReUploadContentRequest {
-    projectId: string;
-    contentId: string;
-    createContentUploadLinkRequest: CreateContentUploadLinkRequest;
 }
 
 export interface RegisterUserOperationRequest {
@@ -196,6 +208,11 @@ export interface ResendContactMethodVerificationCodeRequest {
 export interface ResendLoginOtpRequest {
     projectId: string;
     pendingLoginId: string;
+}
+
+export interface RevokeUserInviteRequest {
+    projectId: string;
+    inviteId: string;
 }
 
 export interface UpdateContentSharesOperationRequest {
@@ -495,6 +512,51 @@ export class UsersServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async createUserInviteRaw(requestParameters: CreateUserInviteOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PendingUserInviteObject>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createUserInvite().'
+            );
+        }
+
+        if (requestParameters['createUserInviteRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createUserInviteRequest',
+                'Required parameter "createUserInviteRequest" was null or undefined when calling createUserInvite().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/invites`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateUserInviteRequestToJSON(requestParameters['createUserInviteRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PendingUserInviteObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createUserInvite(requestParameters: CreateUserInviteOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PendingUserInviteObject> {
+        const response = await this.createUserInviteRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async deleteContactMethodRaw(requestParameters: DeleteContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
@@ -587,10 +649,10 @@ export class UsersServerApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['contentId'] == null) {
+        if (requestParameters['pendingContentId'] == null) {
             throw new runtime.RequiredError(
-                'contentId',
-                'Required parameter "contentId" was null or undefined when calling finalizeContent().'
+                'pendingContentId',
+                'Required parameter "pendingContentId" was null or undefined when calling finalizeContent().'
             );
         }
 
@@ -599,9 +661,9 @@ export class UsersServerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
 
-        let urlPath = `/api/v1/{projectId}/users/me/content/{contentId}/finalize`;
+        let urlPath = `/api/v1/{projectId}/users/me/content/{pendingContentId}`;
         urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"contentId"}}`, encodeURIComponent(String(requestParameters['contentId'])));
+        urlPath = urlPath.replace(`{${"pendingContentId"}}`, encodeURIComponent(String(requestParameters['pendingContentId'])));
 
         const response = await this.request({
             path: urlPath,
@@ -917,6 +979,41 @@ export class UsersServerApi extends runtime.BaseAPI {
 
     /**
      */
+    async listUserInvitesRaw(requestParameters: ListUserInvitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListUserInvitesResponse>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listUserInvites().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/invites`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListUserInvitesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listUserInvites(requestParameters: ListUserInvitesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListUserInvitesResponse> {
+        const response = await this.listUserInvitesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
     async logoutRaw(requestParameters: LogoutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
@@ -951,59 +1048,6 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async logout(requestParameters: LogoutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.logoutRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     */
-    async reUploadContentRaw(requestParameters: ReUploadContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateContentUploadLinkResponse>> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling reUploadContent().'
-            );
-        }
-
-        if (requestParameters['contentId'] == null) {
-            throw new runtime.RequiredError(
-                'contentId',
-                'Required parameter "contentId" was null or undefined when calling reUploadContent().'
-            );
-        }
-
-        if (requestParameters['createContentUploadLinkRequest'] == null) {
-            throw new runtime.RequiredError(
-                'createContentUploadLinkRequest',
-                'Required parameter "createContentUploadLinkRequest" was null or undefined when calling reUploadContent().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/v1/{projectId}/users/me/content/{contentId}/upload-links`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"contentId"}}`, encodeURIComponent(String(requestParameters['contentId'])));
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateContentUploadLinkRequestToJSON(requestParameters['createContentUploadLinkRequest']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateContentUploadLinkResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async reUploadContent(requestParameters: ReUploadContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateContentUploadLinkResponse> {
-        const response = await this.reUploadContentRaw(requestParameters, initOverrides);
-        return await response.value();
     }
 
     /**
@@ -1178,6 +1222,48 @@ export class UsersServerApi extends runtime.BaseAPI {
     async resendLoginOtp(requestParameters: ResendLoginOtpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateOtpLoginResponse> {
         const response = await this.resendLoginOtpRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     */
+    async revokeUserInviteRaw(requestParameters: RevokeUserInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling revokeUserInvite().'
+            );
+        }
+
+        if (requestParameters['inviteId'] == null) {
+            throw new runtime.RequiredError(
+                'inviteId',
+                'Required parameter "inviteId" was null or undefined when calling revokeUserInvite().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/invites/{inviteId}`;
+        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace(`{${"inviteId"}}`, encodeURIComponent(String(requestParameters['inviteId'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async revokeUserInvite(requestParameters: RevokeUserInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.revokeUserInviteRaw(requestParameters, initOverrides);
     }
 
     /**

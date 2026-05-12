@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE,
   ForteApiException.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -84,6 +84,8 @@ public class ForteApiException {
     NO_CONTACT_METHOD_PROVIDED(String.valueOf("NO_CONTACT_METHOD_PROVIDED")),
     
     USER_ALREADY_EXISTS(String.valueOf("USER_ALREADY_EXISTS")),
+    
+    INVITE_ALREADY_EXISTS(String.valueOf("INVITE_ALREADY_EXISTS")),
     
     UNSUPPORTED_PHONE_NUMBER(String.valueOf("UNSUPPORTED_PHONE_NUMBER")),
     
@@ -245,7 +247,11 @@ public class ForteApiException {
     
     CONTENT_SHARE_USER_NOT_IN_PROJECT(String.valueOf("CONTENT_SHARE_USER_NOT_IN_PROJECT")),
     
-    CONTENT_NOT_SHAREABLE_WHILE_PENDING(String.valueOf("CONTENT_NOT_SHAREABLE_WHILE_PENDING"));
+    CONTENT_NOT_SHAREABLE_WHILE_PENDING(String.valueOf("CONTENT_NOT_SHAREABLE_WHILE_PENDING")),
+    
+    CONTENT_TYPE_IMMUTABLE_ON_REUPLOAD(String.valueOf("CONTENT_TYPE_IMMUTABLE_ON_REUPLOAD")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -266,11 +272,11 @@ public class ForteApiException {
     @JsonCreator
     public static ErrorCodeEnum fromValue(String value) {
       for (ErrorCodeEnum b : ErrorCodeEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

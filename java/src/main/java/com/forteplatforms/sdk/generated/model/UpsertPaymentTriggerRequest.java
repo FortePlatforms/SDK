@@ -42,7 +42,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpsertPaymentTriggerRequest.JSON_PROPERTY_EVENTS,
   UpsertPaymentTriggerRequest.JSON_PROPERTY_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UpsertPaymentTriggerRequest {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nonnull
@@ -62,7 +62,9 @@ public class UpsertPaymentTriggerRequest {
   public enum EventsEnum {
     PAYMENT_COMPLETED(String.valueOf("PAYMENT_COMPLETED")),
     
-    PAYMENT_REFUNDED(String.valueOf("PAYMENT_REFUNDED"));
+    PAYMENT_REFUNDED(String.valueOf("PAYMENT_REFUNDED")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -83,11 +85,11 @@ public class UpsertPaymentTriggerRequest {
     @JsonCreator
     public static EventsEnum fromValue(String value) {
       for (EventsEnum b : EventsEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

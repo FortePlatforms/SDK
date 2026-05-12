@@ -98,6 +98,12 @@ export interface UserObject {
      * @type {string}
      * @memberof UserObject
      */
+    invitedByUserId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserObject
+     */
     state: UserObjectStateType;
 }
 
@@ -147,6 +153,7 @@ export function UserObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'stripeCustomerId': json['stripeCustomerId'] == null ? undefined : json['stripeCustomerId'],
         'contactMethods': ((json['contactMethods'] as Array<any>).map(ContactMethodFromJSON)),
         'welcomeMessageSent': json['welcomeMessageSent'] == null ? undefined : json['welcomeMessageSent'],
+        'invitedByUserId': json['invitedByUserId'] == null ? undefined : json['invitedByUserId'],
         'state': json['state'],
     };
 }
@@ -173,6 +180,7 @@ export function UserObjectToJSONTyped(value?: UserObject | null, ignoreDiscrimin
         'stripeCustomerId': value['stripeCustomerId'],
         'contactMethods': ((value['contactMethods'] as Array<any>).map(ContactMethodToJSON)),
         'welcomeMessageSent': value['welcomeMessageSent'],
+        'invitedByUserId': value['invitedByUserId'],
         'state': value['state'],
     };
 }

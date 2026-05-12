@@ -457,13 +457,6 @@ export interface PutUserCustomAttributesRequest {
     requestBody: { [key: string]: string; };
 }
 
-export interface ReUploadContent1Request {
-    projectId: string;
-    userId: string;
-    contentId: string;
-    createContentUploadLinkRequest: CreateContentUploadLinkRequest;
-}
-
 export interface SearchLogLinesRequest {
     projectId: string;
     serviceId: string;
@@ -2895,67 +2888,6 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
-    async reUploadContent1Raw(requestParameters: ReUploadContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateContentUploadLinkResponse>> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling reUploadContent1().'
-            );
-        }
-
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError(
-                'userId',
-                'Required parameter "userId" was null or undefined when calling reUploadContent1().'
-            );
-        }
-
-        if (requestParameters['contentId'] == null) {
-            throw new runtime.RequiredError(
-                'contentId',
-                'Required parameter "contentId" was null or undefined when calling reUploadContent1().'
-            );
-        }
-
-        if (requestParameters['createContentUploadLinkRequest'] == null) {
-            throw new runtime.RequiredError(
-                'createContentUploadLinkRequest',
-                'Required parameter "createContentUploadLinkRequest" was null or undefined when calling reUploadContent1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/upload-links`;
-        urlPath = urlPath.replace(`{${"projectId"}}`, encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId'])));
-        urlPath = urlPath.replace(`{${"contentId"}}`, encodeURIComponent(String(requestParameters['contentId'])));
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateContentUploadLinkRequestToJSON(requestParameters['createContentUploadLinkRequest']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateContentUploadLinkResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async reUploadContent1(requestParameters: ReUploadContent1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateContentUploadLinkResponse> {
-        const response = await this.reUploadContent1Raw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     */
     async searchLogLinesRaw(requestParameters: SearchLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLogLineObject>> {
         if (requestParameters['projectId'] == null) {
             throw new runtime.RequiredError(
@@ -3589,6 +3521,9 @@ export const ListUserActionLogsActionTypeType = {
     USER_LOGIN_OTP_SENT: 'USER_LOGIN_OTP_SENT',
     PAYMENT_CREATED: 'PAYMENT_CREATED',
     WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT',
+    USER_INVITE_CREATED: 'USER_INVITE_CREATED',
+    USER_INVITE_REVOKED: 'USER_INVITE_REVOKED',
+    USER_INVITE_ACCEPTED: 'USER_INVITE_ACCEPTED',
     EMAIL_SENT: 'EMAIL_SENT',
     SMS_SENT: 'SMS_SENT'
 } as const;

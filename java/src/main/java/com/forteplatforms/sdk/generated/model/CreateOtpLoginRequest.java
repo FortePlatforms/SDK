@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateOtpLoginRequest.JSON_PROPERTY_PHONE_NUMBER,
   CreateOtpLoginRequest.JSON_PROPERTY_RECAPTCHA_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class CreateOtpLoginRequest {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable

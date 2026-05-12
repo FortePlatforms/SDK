@@ -44,9 +44,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_WELCOME_SMS_BODY,
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT,
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY,
-  UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_SMS_BODY
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_SMS_BODY,
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_INVITE_EMAIL_SUBJECT,
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_INVITE_EMAIL_HTML_BODY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UpdateNotificationTemplatesRequest {
   public static final String JSON_PROPERTY_EMAIL_VERIFICATION_SUBJECT = "emailVerificationSubject";
   @javax.annotation.Nullable
@@ -95,6 +97,14 @@ public class UpdateNotificationTemplatesRequest {
   public static final String JSON_PROPERTY_LOGIN_OTP_SMS_BODY = "loginOtpSmsBody";
   @javax.annotation.Nullable
   private String loginOtpSmsBody;
+
+  public static final String JSON_PROPERTY_INVITE_EMAIL_SUBJECT = "inviteEmailSubject";
+  @javax.annotation.Nullable
+  private String inviteEmailSubject;
+
+  public static final String JSON_PROPERTY_INVITE_EMAIL_HTML_BODY = "inviteEmailHtmlBody";
+  @javax.annotation.Nullable
+  private String inviteEmailHtmlBody;
 
   public UpdateNotificationTemplatesRequest() { 
   }
@@ -387,6 +397,54 @@ public class UpdateNotificationTemplatesRequest {
   }
 
 
+  public UpdateNotificationTemplatesRequest inviteEmailSubject(@javax.annotation.Nullable String inviteEmailSubject) {
+    this.inviteEmailSubject = inviteEmailSubject;
+    return this;
+  }
+
+  /**
+   * Get inviteEmailSubject
+   * @return inviteEmailSubject
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INVITE_EMAIL_SUBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInviteEmailSubject() {
+    return inviteEmailSubject;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INVITE_EMAIL_SUBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInviteEmailSubject(@javax.annotation.Nullable String inviteEmailSubject) {
+    this.inviteEmailSubject = inviteEmailSubject;
+  }
+
+
+  public UpdateNotificationTemplatesRequest inviteEmailHtmlBody(@javax.annotation.Nullable String inviteEmailHtmlBody) {
+    this.inviteEmailHtmlBody = inviteEmailHtmlBody;
+    return this;
+  }
+
+  /**
+   * Get inviteEmailHtmlBody
+   * @return inviteEmailHtmlBody
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INVITE_EMAIL_HTML_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInviteEmailHtmlBody() {
+    return inviteEmailHtmlBody;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INVITE_EMAIL_HTML_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInviteEmailHtmlBody(@javax.annotation.Nullable String inviteEmailHtmlBody) {
+    this.inviteEmailHtmlBody = inviteEmailHtmlBody;
+  }
+
+
   /**
    * Return true if this UpdateNotificationTemplatesRequest object is equal to o.
    */
@@ -410,12 +468,14 @@ public class UpdateNotificationTemplatesRequest {
         Objects.equals(this.welcomeSmsBody, updateNotificationTemplatesRequest.welcomeSmsBody) &&
         Objects.equals(this.loginOtpEmailSubject, updateNotificationTemplatesRequest.loginOtpEmailSubject) &&
         Objects.equals(this.loginOtpEmailHtmlBody, updateNotificationTemplatesRequest.loginOtpEmailHtmlBody) &&
-        Objects.equals(this.loginOtpSmsBody, updateNotificationTemplatesRequest.loginOtpSmsBody);
+        Objects.equals(this.loginOtpSmsBody, updateNotificationTemplatesRequest.loginOtpSmsBody) &&
+        Objects.equals(this.inviteEmailSubject, updateNotificationTemplatesRequest.inviteEmailSubject) &&
+        Objects.equals(this.inviteEmailHtmlBody, updateNotificationTemplatesRequest.inviteEmailHtmlBody);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailVerificationSubject, emailVerificationHtmlBody, smsVerificationBody, welcomeOnGoogleEnabled, welcomeOnEmailEnabled, welcomeOnSmsEnabled, welcomeEmailSubject, welcomeEmailHtmlBody, welcomeSmsBody, loginOtpEmailSubject, loginOtpEmailHtmlBody, loginOtpSmsBody);
+    return Objects.hash(emailVerificationSubject, emailVerificationHtmlBody, smsVerificationBody, welcomeOnGoogleEnabled, welcomeOnEmailEnabled, welcomeOnSmsEnabled, welcomeEmailSubject, welcomeEmailHtmlBody, welcomeSmsBody, loginOtpEmailSubject, loginOtpEmailHtmlBody, loginOtpSmsBody, inviteEmailSubject, inviteEmailHtmlBody);
   }
 
   @Override
@@ -434,6 +494,8 @@ public class UpdateNotificationTemplatesRequest {
     sb.append("    loginOtpEmailSubject: ").append(toIndentedString(loginOtpEmailSubject)).append("\n");
     sb.append("    loginOtpEmailHtmlBody: ").append(toIndentedString(loginOtpEmailHtmlBody)).append("\n");
     sb.append("    loginOtpSmsBody: ").append(toIndentedString(loginOtpSmsBody)).append("\n");
+    sb.append("    inviteEmailSubject: ").append(toIndentedString(inviteEmailSubject)).append("\n");
+    sb.append("    inviteEmailHtmlBody: ").append(toIndentedString(inviteEmailHtmlBody)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -539,6 +601,16 @@ public class UpdateNotificationTemplatesRequest {
     // add `loginOtpSmsBody` to the URL query string
     if (getLoginOtpSmsBody() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sloginOtpSmsBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLoginOtpSmsBody()))));
+    }
+
+    // add `inviteEmailSubject` to the URL query string
+    if (getInviteEmailSubject() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinviteEmailSubject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInviteEmailSubject()))));
+    }
+
+    // add `inviteEmailHtmlBody` to the URL query string
+    if (getInviteEmailHtmlBody() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinviteEmailHtmlBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInviteEmailHtmlBody()))));
     }
 
     return joiner.toString();

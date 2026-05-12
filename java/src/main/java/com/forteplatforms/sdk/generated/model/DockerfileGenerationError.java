@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   DockerfileGenerationError.JSON_PROPERTY_ERROR_MESSAGE,
   DockerfileGenerationError.JSON_PROPERTY_SUGGESTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class DockerfileGenerationError {
   /**
    * Type of error that occurred
@@ -59,7 +59,9 @@ public class DockerfileGenerationError {
     
     BASE_IMAGE_ERROR(String.valueOf("BASE_IMAGE_ERROR")),
     
-    INTERNAL_ERROR(String.valueOf("INTERNAL_ERROR"));
+    INTERNAL_ERROR(String.valueOf("INTERNAL_ERROR")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -80,11 +82,11 @@ public class DockerfileGenerationError {
     @JsonCreator
     public static ErrorTypeEnum fromValue(String value) {
       for (ErrorTypeEnum b : ErrorTypeEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

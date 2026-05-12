@@ -48,7 +48,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateForteServiceRequest.JSON_PROPERTY_BASE_DIRECTORY,
   CreateForteServiceRequest.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class CreateForteServiceRequest {
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
   @javax.annotation.Nonnull
@@ -60,7 +60,9 @@ public class CreateForteServiceRequest {
   public enum BuildTriggerEnum {
     PUSH(String.valueOf("PUSH")),
     
-    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED"));
+    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -81,11 +83,11 @@ public class CreateForteServiceRequest {
     @JsonCreator
     public static BuildTriggerEnum fromValue(String value) {
       for (BuildTriggerEnum b : BuildTriggerEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

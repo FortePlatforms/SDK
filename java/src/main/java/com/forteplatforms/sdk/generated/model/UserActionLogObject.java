@@ -43,7 +43,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID,
   UserActionLogObject.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -87,9 +87,17 @@ public class UserActionLogObject {
     
     WELCOME_MESSAGE_SENT(String.valueOf("WELCOME_MESSAGE_SENT")),
     
+    USER_INVITE_CREATED(String.valueOf("USER_INVITE_CREATED")),
+    
+    USER_INVITE_REVOKED(String.valueOf("USER_INVITE_REVOKED")),
+    
+    USER_INVITE_ACCEPTED(String.valueOf("USER_INVITE_ACCEPTED")),
+    
     EMAIL_SENT(String.valueOf("EMAIL_SENT")),
     
-    SMS_SENT(String.valueOf("SMS_SENT"));
+    SMS_SENT(String.valueOf("SMS_SENT")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -110,11 +118,11 @@ public class UserActionLogObject {
     @JsonCreator
     public static ActionTypeEnum fromValue(String value) {
       for (ActionTypeEnum b : ActionTypeEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

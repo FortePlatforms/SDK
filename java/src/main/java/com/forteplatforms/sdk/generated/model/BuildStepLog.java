@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   BuildStepLog.JSON_PROPERTY_PREVIOUS_STATUS,
   BuildStepLog.JSON_PROPERTY_NEW_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T15:25:43.636045-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T17:15:03.383995-07:00[America/Los_Angeles]", comments = "Generator version: 7.18.0")
 public class BuildStepLog {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -109,7 +109,9 @@ public class BuildStepLog {
     
     FAILED(String.valueOf("FAILED")),
     
-    SUCCEEDED(String.valueOf("SUCCEEDED"));
+    SUCCEEDED(String.valueOf("SUCCEEDED")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -130,11 +132,11 @@ public class BuildStepLog {
     @JsonCreator
     public static PreviousStatusEnum fromValue(String value) {
       for (PreviousStatusEnum b : PreviousStatusEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -202,7 +204,9 @@ public class BuildStepLog {
     
     FAILED(String.valueOf("FAILED")),
     
-    SUCCEEDED(String.valueOf("SUCCEEDED"));
+    SUCCEEDED(String.valueOf("SUCCEEDED")),
+    
+    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
     private String value;
 
@@ -223,11 +227,11 @@ public class BuildStepLog {
     @JsonCreator
     public static NewStatusEnum fromValue(String value) {
       for (NewStatusEnum b : NewStatusEnum.values()) {
-        if (b.value.equals(value)) {
+        if (b.value.equalsIgnoreCase(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

@@ -35,6 +35,7 @@ from forte_sdk.generated.models.create_project_api_key_request import CreateProj
 from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse
+from forte_sdk.generated.models.create_user_invite_request import CreateUserInviteRequest
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest
 from forte_sdk.generated.models.dockerfile_detection_output import DockerfileDetectionOutput
 from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGenerationError
@@ -48,6 +49,7 @@ from forte_sdk.generated.models.health_check_detection_response import HealthChe
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics
 from forte_sdk.generated.models.latency_stats import LatencyStats
 from forte_sdk.generated.models.list_content_response import ListContentResponse
+from forte_sdk.generated.models.list_user_invites_response import ListUserInvitesResponse
 from forte_sdk.generated.models.log_line_object import LogLineObject
 from forte_sdk.generated.models.login_user_response import LoginUserResponse
 from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig
@@ -63,6 +65,7 @@ from forte_sdk.generated.models.payment_address import PaymentAddress
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem
 from forte_sdk.generated.models.payment_object import PaymentObject
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig
+from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject
 from forte_sdk.generated.models.project_object import ProjectObject
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse
