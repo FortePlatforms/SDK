@@ -43,7 +43,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID,
   UserActionLogObject.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T15:07:45.635712600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T18:20:45.001688200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -95,7 +95,9 @@ public class UserActionLogObject {
     
     EMAIL_SENT(String.valueOf("EMAIL_SENT")),
     
-    SMS_SENT(String.valueOf("SMS_SENT"));
+    SMS_SENT(String.valueOf("SMS_SENT")),
+    
+    IMPERSONATION_TOKEN_ISSUED(String.valueOf("IMPERSONATION_TOKEN_ISSUED"));
 
     private String value;
 

@@ -109,6 +109,11 @@ import {
     GetContentDownloadLinkResponseToJSON,
 } from '../models/GetContentDownloadLinkResponse';
 import {
+    type ImpersonationTokenResponse,
+    ImpersonationTokenResponseFromJSON,
+    ImpersonationTokenResponseToJSON,
+} from '../models/ImpersonationTokenResponse';
+import {
     type ListContentResponse,
     ListContentResponseFromJSON,
     ListContentResponseToJSON,
@@ -427,6 +432,11 @@ export interface GetWebAppDeploymentRequest {
     projectId: string;
     webAppId: string;
     buildId: string;
+}
+
+export interface IssueImpersonationTokenRequest {
+    projectId: string;
+    userId: string;
 }
 
 export interface ListLogLinesRequest {
@@ -2212,6 +2222,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getWebAppDeployment(requestParameters: GetWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppBuildRequestObject> {
         const response = await this.getWebAppDeploymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for issueImpersonationToken without sending the request
+     */
+    async issueImpersonationTokenRequestOpts(requestParameters: IssueImpersonationTokenRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling issueImpersonationToken().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling issueImpersonationToken().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/impersonation-token`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async issueImpersonationTokenRaw(requestParameters: IssueImpersonationTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImpersonationTokenResponse>> {
+        const requestOptions = await this.issueImpersonationTokenRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ImpersonationTokenResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async issueImpersonationToken(requestParameters: IssueImpersonationTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImpersonationTokenResponse> {
+        const response = await this.issueImpersonationTokenRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4166,7 +4227,8 @@ export const ListUserActionLogsActionTypeType = {
     USER_INVITE_REVOKED: 'USER_INVITE_REVOKED',
     USER_INVITE_ACCEPTED: 'USER_INVITE_ACCEPTED',
     EMAIL_SENT: 'EMAIL_SENT',
-    SMS_SENT: 'SMS_SENT'
+    SMS_SENT: 'SMS_SENT',
+    IMPERSONATION_TOKEN_ISSUED: 'IMPERSONATION_TOKEN_ISSUED'
 } as const;
 export type ListUserActionLogsActionTypeType = typeof ListUserActionLogsActionTypeType[keyof typeof ListUserActionLogsActionTypeType];
 /**

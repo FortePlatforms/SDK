@@ -24,58 +24,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
-import com.forteplatforms.sdk.generated.model.UserObject;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * LoginUserResponse
+ * ImpersonationTokenResponse
  */
 @JsonPropertyOrder({
-  LoginUserResponse.JSON_PROPERTY_USER_OBJECT,
-  LoginUserResponse.JSON_PROPERTY_SESSION_TOKEN
+  ImpersonationTokenResponse.JSON_PROPERTY_SESSION_TOKEN,
+  ImpersonationTokenResponse.JSON_PROPERTY_EXPIRATION_TIME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T18:20:45.001688200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
-public class LoginUserResponse {
-  public static final String JSON_PROPERTY_USER_OBJECT = "userObject";
-  @javax.annotation.Nonnull
-  private UserObject userObject;
-
+public class ImpersonationTokenResponse {
   public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
-  @javax.annotation.Nonnull
-  private RenewSessionTokenResponse sessionToken;
+  @javax.annotation.Nullable
+  private String sessionToken;
 
-  public LoginUserResponse() { 
+  public static final String JSON_PROPERTY_EXPIRATION_TIME = "expirationTime";
+  @javax.annotation.Nullable
+  private OffsetDateTime expirationTime;
+
+  public ImpersonationTokenResponse() { 
   }
 
-  public LoginUserResponse userObject(@javax.annotation.Nonnull UserObject userObject) {
-    this.userObject = userObject;
-    return this;
-  }
-
-  /**
-   * Get userObject
-   * @return userObject
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public UserObject getUserObject() {
-    return userObject;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUserObject(@javax.annotation.Nonnull UserObject userObject) {
-    this.userObject = userObject;
-  }
-
-
-  public LoginUserResponse sessionToken(@javax.annotation.Nonnull RenewSessionTokenResponse sessionToken) {
+  public ImpersonationTokenResponse sessionToken(@javax.annotation.Nullable String sessionToken) {
     this.sessionToken = sessionToken;
     return this;
   }
@@ -84,23 +59,47 @@ public class LoginUserResponse {
    * Get sessionToken
    * @return sessionToken
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public RenewSessionTokenResponse getSessionToken() {
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSessionToken() {
     return sessionToken;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSessionToken(@javax.annotation.Nonnull RenewSessionTokenResponse sessionToken) {
+  @JsonProperty(value = JSON_PROPERTY_SESSION_TOKEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSessionToken(@javax.annotation.Nullable String sessionToken) {
     this.sessionToken = sessionToken;
   }
 
 
+  public ImpersonationTokenResponse expirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
+    this.expirationTime = expirationTime;
+    return this;
+  }
+
   /**
-   * Return true if this LoginUserResponse object is equal to o.
+   * Get expirationTime
+   * @return expirationTime
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXPIRATION_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getExpirationTime() {
+    return expirationTime;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXPIRATION_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExpirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
+    this.expirationTime = expirationTime;
+  }
+
+
+  /**
+   * Return true if this ImpersonationTokenResponse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -110,22 +109,22 @@ public class LoginUserResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LoginUserResponse loginUserResponse = (LoginUserResponse) o;
-    return Objects.equals(this.userObject, loginUserResponse.userObject) &&
-        Objects.equals(this.sessionToken, loginUserResponse.sessionToken);
+    ImpersonationTokenResponse impersonationTokenResponse = (ImpersonationTokenResponse) o;
+    return Objects.equals(this.sessionToken, impersonationTokenResponse.sessionToken) &&
+        Objects.equals(this.expirationTime, impersonationTokenResponse.expirationTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userObject, sessionToken);
+    return Objects.hash(sessionToken, expirationTime);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LoginUserResponse {\n");
-    sb.append("    userObject: ").append(toIndentedString(userObject)).append("\n");
+    sb.append("class ImpersonationTokenResponse {\n");
     sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
+    sb.append("    expirationTime: ").append(toIndentedString(expirationTime)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -170,14 +169,14 @@ public class LoginUserResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `userObject` to the URL query string
-    if (getUserObject() != null) {
-      joiner.add(getUserObject().toUrlQueryString(prefix + "userObject" + suffix));
-    }
-
     // add `sessionToken` to the URL query string
     if (getSessionToken() != null) {
-      joiner.add(getSessionToken().toUrlQueryString(prefix + "sessionToken" + suffix));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssessionToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSessionToken()))));
+    }
+
+    // add `expirationTime` to the URL query string
+    if (getExpirationTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexpirationTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExpirationTime()))));
     }
 
     return joiner.toString();

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.153"
+__version__ = "1.0.154"
 
 # Define package exports
 __all__ = [
@@ -63,6 +63,7 @@ __all__ = [
     "HealthCheckDetectionError",
     "HealthCheckDetectionOutput",
     "HealthCheckDetectionResponse",
+    "ImpersonationTokenResponse",
     "LatencyMetrics",
     "LatencyStats",
     "ListContentResponse",
@@ -170,6 +171,7 @@ from forte_sdk.generated.models.health_check_config import HealthCheckConfig as 
 from forte_sdk.generated.models.health_check_detection_error import HealthCheckDetectionError as HealthCheckDetectionError
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput as HealthCheckDetectionOutput
 from forte_sdk.generated.models.health_check_detection_response import HealthCheckDetectionResponse as HealthCheckDetectionResponse
+from forte_sdk.generated.models.impersonation_token_response import ImpersonationTokenResponse as ImpersonationTokenResponse
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics as LatencyMetrics
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats
 from forte_sdk.generated.models.list_content_response import ListContentResponse as ListContentResponse

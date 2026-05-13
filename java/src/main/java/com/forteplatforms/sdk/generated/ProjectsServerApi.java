@@ -37,6 +37,7 @@ import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyRequest;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyResponse;
 import com.forteplatforms.sdk.generated.model.CreateWebAppRequest;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
+import com.forteplatforms.sdk.generated.model.ImpersonationTokenResponse;
 import com.forteplatforms.sdk.generated.model.ListContentResponse;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesResponse;
 import java.time.OffsetDateTime;
@@ -97,7 +98,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T15:07:45.635712600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T18:20:45.001688200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4054,6 +4055,134 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @return ImpersonationTokenResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ImpersonationTokenResponse issueImpersonationToken(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId) throws ApiException {
+    return issueImpersonationToken(projectId, userId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ImpersonationTokenResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ImpersonationTokenResponse issueImpersonationToken(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ImpersonationTokenResponse> localVarResponse = issueImpersonationTokenWithHttpInfo(projectId, userId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @return ApiResponse&lt;ImpersonationTokenResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ImpersonationTokenResponse> issueImpersonationTokenWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId) throws ApiException {
+    return issueImpersonationTokenWithHttpInfo(projectId, userId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ImpersonationTokenResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ImpersonationTokenResponse> issueImpersonationTokenWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = issueImpersonationTokenRequestBuilder(projectId, userId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("issueImpersonationToken", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ImpersonationTokenResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ImpersonationTokenResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ImpersonationTokenResponse>() {});
+        
+
+        return new ApiResponse<ImpersonationTokenResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder issueImpersonationTokenRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling issueImpersonationToken");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling issueImpersonationToken");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/impersonation-token"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T15:07:45.635712600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T18:20:45.001688200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -251,7 +251,11 @@ public class ForteApiException {
     
     CONTENT_NOT_SHAREABLE_WHILE_PENDING(String.valueOf("CONTENT_NOT_SHAREABLE_WHILE_PENDING")),
     
-    CONTENT_TYPE_IMMUTABLE_ON_REUPLOAD(String.valueOf("CONTENT_TYPE_IMMUTABLE_ON_REUPLOAD"));
+    CONTENT_TYPE_IMMUTABLE_ON_REUPLOAD(String.valueOf("CONTENT_TYPE_IMMUTABLE_ON_REUPLOAD")),
+    
+    IMPERSONATION_TOKEN_NOT_RENEWABLE(String.valueOf("IMPERSONATION_TOKEN_NOT_RENEWABLE")),
+    
+    USER_NOT_ACTIVE(String.valueOf("USER_NOT_ACTIVE"));
 
     private String value;
 

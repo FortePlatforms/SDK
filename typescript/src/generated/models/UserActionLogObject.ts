@@ -81,7 +81,8 @@ export const UserActionLogObjectActionTypeType = {
     USER_INVITE_REVOKED: 'USER_INVITE_REVOKED',
     USER_INVITE_ACCEPTED: 'USER_INVITE_ACCEPTED',
     EMAIL_SENT: 'EMAIL_SENT',
-    SMS_SENT: 'SMS_SENT'
+    SMS_SENT: 'SMS_SENT',
+    IMPERSONATION_TOKEN_ISSUED: 'IMPERSONATION_TOKEN_ISSUED'
 } as const;
 export type UserActionLogObjectActionTypeType = typeof UserActionLogObjectActionTypeType[keyof typeof UserActionLogObjectActionTypeType];
 

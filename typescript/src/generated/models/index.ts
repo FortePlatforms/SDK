@@ -34,6 +34,7 @@ export * from './HealthCheckConfig';
 export * from './HealthCheckDetectionError';
 export * from './HealthCheckDetectionOutput';
 export * from './HealthCheckDetectionResponse';
+export * from './ImpersonationTokenResponse';
 export * from './LatencyMetrics';
 export * from './LatencyStats';
 export * from './ListContentResponse';
