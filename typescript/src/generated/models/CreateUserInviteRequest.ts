@@ -25,6 +25,12 @@ export interface CreateUserInviteRequest {
      * @memberof CreateUserInviteRequest
      */
     email: string;
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof CreateUserInviteRequest
+     */
+    customAttributes?: { [key: string]: string; };
 }
 
 /**
@@ -46,6 +52,7 @@ export function CreateUserInviteRequestFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'email': json['email'],
+        'customAttributes': json['customAttributes'] == null ? undefined : json['customAttributes'],
     };
 }
 
@@ -61,6 +68,7 @@ export function CreateUserInviteRequestToJSONTyped(value?: CreateUserInviteReque
     return {
         
         'email': value['email'],
+        'customAttributes': value['customAttributes'],
     };
 }
 

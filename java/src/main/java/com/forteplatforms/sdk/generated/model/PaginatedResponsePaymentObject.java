@@ -40,7 +40,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaginatedResponsePaymentObject.JSON_PROPERTY_HAS_NEXT_PAGE,
   PaginatedResponsePaymentObject.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T18:20:45.001688200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T02:17:14.669554600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class PaginatedResponsePaymentObject {
   public static final String JSON_PROPERTY_ITEMS = "items";
   @javax.annotation.Nonnull

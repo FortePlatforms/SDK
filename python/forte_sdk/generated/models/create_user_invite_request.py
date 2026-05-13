@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,8 @@ class CreateUserInviteRequest(BaseModel):
     CreateUserInviteRequest
     """ # noqa: E501
     email: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["email"]
+    custom_attributes: Optional[Dict[str, StrictStr]] = Field(default=None, alias="customAttributes")
+    __properties: ClassVar[List[str]] = ["email", "customAttributes"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,7 +83,8 @@ class CreateUserInviteRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "email": obj.get("email")
+            "email": obj.get("email"),
+            "customAttributes": obj.get("customAttributes")
         })
         return _obj
 

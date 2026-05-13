@@ -26,6 +26,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,9 +44,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PendingUserInviteObject.JSON_PROPERTY_CREATED_AT,
   PendingUserInviteObject.JSON_PROPERTY_EXPIRES_AT,
   PendingUserInviteObject.JSON_PROPERTY_CONSUMED_AT,
-  PendingUserInviteObject.JSON_PROPERTY_CONSUMED_BY_USER_ID
+  PendingUserInviteObject.JSON_PROPERTY_CONSUMED_BY_USER_ID,
+  PendingUserInviteObject.JSON_PROPERTY_CUSTOM_ATTRIBUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T18:20:45.001688200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T02:17:14.669554600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class PendingUserInviteObject {
   public static final String JSON_PROPERTY_INVITE_ID = "inviteId";
   @javax.annotation.Nullable
@@ -81,6 +84,10 @@ public class PendingUserInviteObject {
   public static final String JSON_PROPERTY_CONSUMED_BY_USER_ID = "consumedByUserId";
   @javax.annotation.Nullable
   private String consumedByUserId;
+
+  public static final String JSON_PROPERTY_CUSTOM_ATTRIBUTES = "customAttributes";
+  @javax.annotation.Nullable
+  private Map<String, String> customAttributes = new HashMap<>();
 
   public PendingUserInviteObject() { 
   }
@@ -301,6 +308,38 @@ public class PendingUserInviteObject {
   }
 
 
+  public PendingUserInviteObject customAttributes(@javax.annotation.Nullable Map<String, String> customAttributes) {
+    this.customAttributes = customAttributes;
+    return this;
+  }
+
+  public PendingUserInviteObject putCustomAttributesItem(String key, String customAttributesItem) {
+    if (this.customAttributes == null) {
+      this.customAttributes = new HashMap<>();
+    }
+    this.customAttributes.put(key, customAttributesItem);
+    return this;
+  }
+
+  /**
+   * Get customAttributes
+   * @return customAttributes
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_ATTRIBUTES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, String> getCustomAttributes() {
+    return customAttributes;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_ATTRIBUTES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomAttributes(@javax.annotation.Nullable Map<String, String> customAttributes) {
+    this.customAttributes = customAttributes;
+  }
+
+
   /**
    * Return true if this PendingUserInviteObject object is equal to o.
    */
@@ -321,12 +360,13 @@ public class PendingUserInviteObject {
         Objects.equals(this.createdAt, pendingUserInviteObject.createdAt) &&
         Objects.equals(this.expiresAt, pendingUserInviteObject.expiresAt) &&
         Objects.equals(this.consumedAt, pendingUserInviteObject.consumedAt) &&
-        Objects.equals(this.consumedByUserId, pendingUserInviteObject.consumedByUserId);
+        Objects.equals(this.consumedByUserId, pendingUserInviteObject.consumedByUserId) &&
+        Objects.equals(this.customAttributes, pendingUserInviteObject.customAttributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(inviteId, projectId, inviteeEmail, inviterUserId, inviterFullName, createdAt, expiresAt, consumedAt, consumedByUserId);
+    return Objects.hash(inviteId, projectId, inviteeEmail, inviterUserId, inviterFullName, createdAt, expiresAt, consumedAt, consumedByUserId, customAttributes);
   }
 
   @Override
@@ -342,6 +382,7 @@ public class PendingUserInviteObject {
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    consumedAt: ").append(toIndentedString(consumedAt)).append("\n");
     sb.append("    consumedByUserId: ").append(toIndentedString(consumedByUserId)).append("\n");
+    sb.append("    customAttributes: ").append(toIndentedString(customAttributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -429,6 +470,15 @@ public class PendingUserInviteObject {
     // add `consumedByUserId` to the URL query string
     if (getConsumedByUserId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconsumedByUserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConsumedByUserId()))));
+    }
+
+    // add `customAttributes` to the URL query string
+    if (getCustomAttributes() != null) {
+      for (String _key : getCustomAttributes().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scustomAttributes%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCustomAttributes().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCustomAttributes().get(_key)))));
+      }
     }
 
     return joiner.toString();

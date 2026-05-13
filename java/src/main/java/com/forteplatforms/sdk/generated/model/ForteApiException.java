@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T18:20:45.001688200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T02:17:14.669554600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -234,6 +234,8 @@ public class ForteApiException {
     NOTIFICATION_TEMPLATE_INVALID(String.valueOf("NOTIFICATION_TEMPLATE_INVALID")),
     
     NOTIFICATION_TEMPLATE_MISSING_REQUIRED_VARIABLE(String.valueOf("NOTIFICATION_TEMPLATE_MISSING_REQUIRED_VARIABLE")),
+    
+    CUSTOM_ATTRIBUTE_RESERVED_KEY(String.valueOf("CUSTOM_ATTRIBUTE_RESERVED_KEY")),
     
     CONTENT_NOT_FOUND(String.valueOf("CONTENT_NOT_FOUND")),
     

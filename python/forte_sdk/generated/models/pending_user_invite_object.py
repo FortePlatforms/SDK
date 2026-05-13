@@ -37,7 +37,8 @@ class PendingUserInviteObject(BaseModel):
     expires_at: Optional[datetime] = Field(default=None, alias="expiresAt")
     consumed_at: Optional[datetime] = Field(default=None, alias="consumedAt")
     consumed_by_user_id: Optional[StrictStr] = Field(default=None, alias="consumedByUserId")
-    __properties: ClassVar[List[str]] = ["inviteId", "projectId", "inviteeEmail", "inviterUserId", "inviterFullName", "createdAt", "expiresAt", "consumedAt", "consumedByUserId"]
+    custom_attributes: Optional[Dict[str, StrictStr]] = Field(default=None, alias="customAttributes")
+    __properties: ClassVar[List[str]] = ["inviteId", "projectId", "inviteeEmail", "inviterUserId", "inviterFullName", "createdAt", "expiresAt", "consumedAt", "consumedByUserId", "customAttributes"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -98,7 +99,8 @@ class PendingUserInviteObject(BaseModel):
             "createdAt": obj.get("createdAt"),
             "expiresAt": obj.get("expiresAt"),
             "consumedAt": obj.get("consumedAt"),
-            "consumedByUserId": obj.get("consumedByUserId")
+            "consumedByUserId": obj.get("consumedByUserId"),
+            "customAttributes": obj.get("customAttributes")
         })
         return _obj
 

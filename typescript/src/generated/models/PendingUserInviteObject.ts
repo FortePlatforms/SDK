@@ -73,6 +73,12 @@ export interface PendingUserInviteObject {
      * @memberof PendingUserInviteObject
      */
     consumedByUserId?: string;
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof PendingUserInviteObject
+     */
+    customAttributes?: { [key: string]: string; };
 }
 
 /**
@@ -101,6 +107,7 @@ export function PendingUserInviteObjectFromJSONTyped(json: any, ignoreDiscrimina
         'expiresAt': json['expiresAt'] == null ? undefined : (new Date(json['expiresAt'])),
         'consumedAt': json['consumedAt'] == null ? undefined : (new Date(json['consumedAt'])),
         'consumedByUserId': json['consumedByUserId'] == null ? undefined : json['consumedByUserId'],
+        'customAttributes': json['customAttributes'] == null ? undefined : json['customAttributes'],
     };
 }
 
@@ -124,6 +131,7 @@ export function PendingUserInviteObjectToJSONTyped(value?: PendingUserInviteObje
         'expiresAt': value['expiresAt'] == null ? value['expiresAt'] : value['expiresAt'].toISOString(),
         'consumedAt': value['consumedAt'] == null ? value['consumedAt'] : value['consumedAt'].toISOString(),
         'consumedByUserId': value['consumedByUserId'],
+        'customAttributes': value['customAttributes'],
     };
 }
 

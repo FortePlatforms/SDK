@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -33,13 +35,18 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * CreateUserInviteRequest
  */
 @JsonPropertyOrder({
-  CreateUserInviteRequest.JSON_PROPERTY_EMAIL
+  CreateUserInviteRequest.JSON_PROPERTY_EMAIL,
+  CreateUserInviteRequest.JSON_PROPERTY_CUSTOM_ATTRIBUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T18:20:45.001688200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T02:17:14.669554600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class CreateUserInviteRequest {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nonnull
   private String email;
+
+  public static final String JSON_PROPERTY_CUSTOM_ATTRIBUTES = "customAttributes";
+  @javax.annotation.Nullable
+  private Map<String, String> customAttributes = new HashMap<>();
 
   public CreateUserInviteRequest() { 
   }
@@ -68,6 +75,38 @@ public class CreateUserInviteRequest {
   }
 
 
+  public CreateUserInviteRequest customAttributes(@javax.annotation.Nullable Map<String, String> customAttributes) {
+    this.customAttributes = customAttributes;
+    return this;
+  }
+
+  public CreateUserInviteRequest putCustomAttributesItem(String key, String customAttributesItem) {
+    if (this.customAttributes == null) {
+      this.customAttributes = new HashMap<>();
+    }
+    this.customAttributes.put(key, customAttributesItem);
+    return this;
+  }
+
+  /**
+   * Get customAttributes
+   * @return customAttributes
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_ATTRIBUTES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, String> getCustomAttributes() {
+    return customAttributes;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_ATTRIBUTES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomAttributes(@javax.annotation.Nullable Map<String, String> customAttributes) {
+    this.customAttributes = customAttributes;
+  }
+
+
   /**
    * Return true if this CreateUserInviteRequest object is equal to o.
    */
@@ -80,12 +119,13 @@ public class CreateUserInviteRequest {
       return false;
     }
     CreateUserInviteRequest createUserInviteRequest = (CreateUserInviteRequest) o;
-    return Objects.equals(this.email, createUserInviteRequest.email);
+    return Objects.equals(this.email, createUserInviteRequest.email) &&
+        Objects.equals(this.customAttributes, createUserInviteRequest.customAttributes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email);
+    return Objects.hash(email, customAttributes);
   }
 
   @Override
@@ -93,6 +133,7 @@ public class CreateUserInviteRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateUserInviteRequest {\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    customAttributes: ").append(toIndentedString(customAttributes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -140,6 +181,15 @@ public class CreateUserInviteRequest {
     // add `email` to the URL query string
     if (getEmail() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%semail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmail()))));
+    }
+
+    // add `customAttributes` to the URL query string
+    if (getCustomAttributes() != null) {
+      for (String _key : getCustomAttributes().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scustomAttributes%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getCustomAttributes().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCustomAttributes().get(_key)))));
+      }
     }
 
     return joiner.toString();
