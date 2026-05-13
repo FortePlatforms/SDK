@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.forteplatforms.sdk.generated.model.CustomDomain;
 import com.forteplatforms.sdk.generated.model.WebAppDetectionResponse;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_WEB_APP_NAME,
   WebAppObject.JSON_PROPERTY_FORTE_DNS_ENDPOINT,
   WebAppObject.JSON_PROPERTY_FORTE_DNS_ENDPOINT_ENABLED,
-  WebAppObject.JSON_PROPERTY_CUSTOM_DNS_ENDPOINTS,
+  WebAppObject.JSON_PROPERTY_CUSTOM_DOMAINS,
   WebAppObject.JSON_PROPERTY_BUILD_PATH,
   WebAppObject.JSON_PROPERTY_WEB_APP_TYPE,
   WebAppObject.JSON_PROPERTY_PACKAGE_MANAGER,
@@ -54,6 +55,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_INSTALL_COMMAND,
   WebAppObject.JSON_PROPERTY_SUBDIRECTORY,
   WebAppObject.JSON_PROPERTY_DETECTED_FRAMEWORK,
+  WebAppObject.JSON_PROPERTY_MONOREPO_TYPE,
+  WebAppObject.JSON_PROPERTY_WORKSPACE_ROOT,
+  WebAppObject.JSON_PROPERTY_APP_PACKAGE_NAME,
+  WebAppObject.JSON_PROPERTY_DETECTION_VERSION,
   WebAppObject.JSON_PROPERTY_DETECTION_RESPONSE,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_APP_ID,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_BRANCH_NAME,
@@ -69,7 +74,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_BASE_DIRECTORY,
   WebAppObject.JSON_PROPERTY_SECRET_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T02:17:14.669554600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T12:03:18.414690800-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppObject {
   public static final String JSON_PROPERTY_WEB_APP_ID = "webAppId";
   @javax.annotation.Nullable
@@ -87,9 +92,9 @@ public class WebAppObject {
   @javax.annotation.Nonnull
   private Boolean forteDnsEndpointEnabled;
 
-  public static final String JSON_PROPERTY_CUSTOM_DNS_ENDPOINTS = "customDnsEndpoints";
+  public static final String JSON_PROPERTY_CUSTOM_DOMAINS = "customDomains";
   @javax.annotation.Nullable
-  private List<String> customDnsEndpoints = new ArrayList<>();
+  private List<CustomDomain> customDomains = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BUILD_PATH = "buildPath";
   @javax.annotation.Nullable
@@ -153,6 +158,61 @@ public class WebAppObject {
   public static final String JSON_PROPERTY_DETECTED_FRAMEWORK = "detectedFramework";
   @javax.annotation.Nullable
   private String detectedFramework;
+
+  /**
+   * Gets or Sets monorepoType
+   */
+  public enum MonorepoTypeEnum {
+    PNPM_WORKSPACES(String.valueOf("PNPM_WORKSPACES")),
+    
+    YARN_WORKSPACES(String.valueOf("YARN_WORKSPACES")),
+    
+    NPM_WORKSPACES(String.valueOf("NPM_WORKSPACES")),
+    
+    BUN_WORKSPACES(String.valueOf("BUN_WORKSPACES"));
+
+    private String value;
+
+    MonorepoTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MonorepoTypeEnum fromValue(String value) {
+      for (MonorepoTypeEnum b : MonorepoTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MONOREPO_TYPE = "monorepoType";
+  @javax.annotation.Nullable
+  private MonorepoTypeEnum monorepoType;
+
+  public static final String JSON_PROPERTY_WORKSPACE_ROOT = "workspaceRoot";
+  @javax.annotation.Nullable
+  private String workspaceRoot;
+
+  public static final String JSON_PROPERTY_APP_PACKAGE_NAME = "appPackageName";
+  @javax.annotation.Nullable
+  private String appPackageName;
+
+  public static final String JSON_PROPERTY_DETECTION_VERSION = "detectionVersion";
+  @javax.annotation.Nullable
+  private Integer detectionVersion;
 
   public static final String JSON_PROPERTY_DETECTION_RESPONSE = "detectionResponse";
   @javax.annotation.Nullable
@@ -344,35 +404,35 @@ public class WebAppObject {
   }
 
 
-  public WebAppObject customDnsEndpoints(@javax.annotation.Nullable List<String> customDnsEndpoints) {
-    this.customDnsEndpoints = customDnsEndpoints;
+  public WebAppObject customDomains(@javax.annotation.Nullable List<CustomDomain> customDomains) {
+    this.customDomains = customDomains;
     return this;
   }
 
-  public WebAppObject addCustomDnsEndpointsItem(String customDnsEndpointsItem) {
-    if (this.customDnsEndpoints == null) {
-      this.customDnsEndpoints = new ArrayList<>();
+  public WebAppObject addCustomDomainsItem(CustomDomain customDomainsItem) {
+    if (this.customDomains == null) {
+      this.customDomains = new ArrayList<>();
     }
-    this.customDnsEndpoints.add(customDnsEndpointsItem);
+    this.customDomains.add(customDomainsItem);
     return this;
   }
 
   /**
-   * Get customDnsEndpoints
-   * @return customDnsEndpoints
+   * Get customDomains
+   * @return customDomains
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CUSTOM_DNS_ENDPOINTS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_DOMAINS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCustomDnsEndpoints() {
-    return customDnsEndpoints;
+  public List<CustomDomain> getCustomDomains() {
+    return customDomains;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CUSTOM_DNS_ENDPOINTS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_DOMAINS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomDnsEndpoints(@javax.annotation.Nullable List<String> customDnsEndpoints) {
-    this.customDnsEndpoints = customDnsEndpoints;
+  public void setCustomDomains(@javax.annotation.Nullable List<CustomDomain> customDomains) {
+    this.customDomains = customDomains;
   }
 
 
@@ -541,6 +601,102 @@ public class WebAppObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetectedFramework(@javax.annotation.Nullable String detectedFramework) {
     this.detectedFramework = detectedFramework;
+  }
+
+
+  public WebAppObject monorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+    this.monorepoType = monorepoType;
+    return this;
+  }
+
+  /**
+   * Get monorepoType
+   * @return monorepoType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MonorepoTypeEnum getMonorepoType() {
+    return monorepoType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMonorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+    this.monorepoType = monorepoType;
+  }
+
+
+  public WebAppObject workspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+    this.workspaceRoot = workspaceRoot;
+    return this;
+  }
+
+  /**
+   * Get workspaceRoot
+   * @return workspaceRoot
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWorkspaceRoot() {
+    return workspaceRoot;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+    this.workspaceRoot = workspaceRoot;
+  }
+
+
+  public WebAppObject appPackageName(@javax.annotation.Nullable String appPackageName) {
+    this.appPackageName = appPackageName;
+    return this;
+  }
+
+  /**
+   * Get appPackageName
+   * @return appPackageName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAppPackageName() {
+    return appPackageName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAppPackageName(@javax.annotation.Nullable String appPackageName) {
+    this.appPackageName = appPackageName;
+  }
+
+
+  public WebAppObject detectionVersion(@javax.annotation.Nullable Integer detectionVersion) {
+    this.detectionVersion = detectionVersion;
+    return this;
+  }
+
+  /**
+   * Get detectionVersion
+   * @return detectionVersion
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DETECTION_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getDetectionVersion() {
+    return detectionVersion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DETECTION_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDetectionVersion(@javax.annotation.Nullable Integer detectionVersion) {
+    this.detectionVersion = detectionVersion;
   }
 
 
@@ -921,7 +1077,7 @@ public class WebAppObject {
         Objects.equals(this.webAppName, webAppObject.webAppName) &&
         Objects.equals(this.forteDnsEndpoint, webAppObject.forteDnsEndpoint) &&
         Objects.equals(this.forteDnsEndpointEnabled, webAppObject.forteDnsEndpointEnabled) &&
-        Objects.equals(this.customDnsEndpoints, webAppObject.customDnsEndpoints) &&
+        Objects.equals(this.customDomains, webAppObject.customDomains) &&
         Objects.equals(this.buildPath, webAppObject.buildPath) &&
         Objects.equals(this.webAppType, webAppObject.webAppType) &&
         Objects.equals(this.packageManager, webAppObject.packageManager) &&
@@ -929,6 +1085,10 @@ public class WebAppObject {
         Objects.equals(this.installCommand, webAppObject.installCommand) &&
         Objects.equals(this.subdirectory, webAppObject.subdirectory) &&
         Objects.equals(this.detectedFramework, webAppObject.detectedFramework) &&
+        Objects.equals(this.monorepoType, webAppObject.monorepoType) &&
+        Objects.equals(this.workspaceRoot, webAppObject.workspaceRoot) &&
+        Objects.equals(this.appPackageName, webAppObject.appPackageName) &&
+        Objects.equals(this.detectionVersion, webAppObject.detectionVersion) &&
         Objects.equals(this.detectionResponse, webAppObject.detectionResponse) &&
         Objects.equals(this.hostingProviderAppId, webAppObject.hostingProviderAppId) &&
         Objects.equals(this.hostingProviderBranchName, webAppObject.hostingProviderBranchName) &&
@@ -947,7 +1107,7 @@ public class WebAppObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDnsEndpoints, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, detectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, detectionVersion, detectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -958,7 +1118,7 @@ public class WebAppObject {
     sb.append("    webAppName: ").append(toIndentedString(webAppName)).append("\n");
     sb.append("    forteDnsEndpoint: ").append(toIndentedString(forteDnsEndpoint)).append("\n");
     sb.append("    forteDnsEndpointEnabled: ").append(toIndentedString(forteDnsEndpointEnabled)).append("\n");
-    sb.append("    customDnsEndpoints: ").append(toIndentedString(customDnsEndpoints)).append("\n");
+    sb.append("    customDomains: ").append(toIndentedString(customDomains)).append("\n");
     sb.append("    buildPath: ").append(toIndentedString(buildPath)).append("\n");
     sb.append("    webAppType: ").append(toIndentedString(webAppType)).append("\n");
     sb.append("    packageManager: ").append(toIndentedString(packageManager)).append("\n");
@@ -966,6 +1126,10 @@ public class WebAppObject {
     sb.append("    installCommand: ").append(toIndentedString(installCommand)).append("\n");
     sb.append("    subdirectory: ").append(toIndentedString(subdirectory)).append("\n");
     sb.append("    detectedFramework: ").append(toIndentedString(detectedFramework)).append("\n");
+    sb.append("    monorepoType: ").append(toIndentedString(monorepoType)).append("\n");
+    sb.append("    workspaceRoot: ").append(toIndentedString(workspaceRoot)).append("\n");
+    sb.append("    appPackageName: ").append(toIndentedString(appPackageName)).append("\n");
+    sb.append("    detectionVersion: ").append(toIndentedString(detectionVersion)).append("\n");
     sb.append("    detectionResponse: ").append(toIndentedString(detectionResponse)).append("\n");
     sb.append("    hostingProviderAppId: ").append(toIndentedString(hostingProviderAppId)).append("\n");
     sb.append("    hostingProviderBranchName: ").append(toIndentedString(hostingProviderBranchName)).append("\n");
@@ -1044,12 +1208,13 @@ public class WebAppObject {
       joiner.add(String.format(java.util.Locale.ROOT, "%sforteDnsEndpointEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForteDnsEndpointEnabled()))));
     }
 
-    // add `customDnsEndpoints` to the URL query string
-    if (getCustomDnsEndpoints() != null) {
-      for (int i = 0; i < getCustomDnsEndpoints().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%scustomDnsEndpoints%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getCustomDnsEndpoints().get(i)))));
+    // add `customDomains` to the URL query string
+    if (getCustomDomains() != null) {
+      for (int i = 0; i < getCustomDomains().size(); i++) {
+        if (getCustomDomains().get(i) != null) {
+          joiner.add(getCustomDomains().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scustomDomains%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 
@@ -1086,6 +1251,26 @@ public class WebAppObject {
     // add `detectedFramework` to the URL query string
     if (getDetectedFramework() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdetectedFramework%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDetectedFramework()))));
+    }
+
+    // add `monorepoType` to the URL query string
+    if (getMonorepoType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smonorepoType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMonorepoType()))));
+    }
+
+    // add `workspaceRoot` to the URL query string
+    if (getWorkspaceRoot() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sworkspaceRoot%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWorkspaceRoot()))));
+    }
+
+    // add `appPackageName` to the URL query string
+    if (getAppPackageName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sappPackageName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAppPackageName()))));
+    }
+
+    // add `detectionVersion` to the URL query string
+    if (getDetectionVersion() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdetectionVersion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDetectionVersion()))));
     }
 
     // add `detectionResponse` to the URL query string

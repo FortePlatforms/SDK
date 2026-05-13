@@ -49,6 +49,11 @@ import {
     CreateContentUploadLinkResponseToJSON,
 } from '../models/CreateContentUploadLinkResponse';
 import {
+    type CreateCustomDomainRequest,
+    CreateCustomDomainRequestFromJSON,
+    CreateCustomDomainRequestToJSON,
+} from '../models/CreateCustomDomainRequest';
+import {
     type CreateForteServiceRequest,
     CreateForteServiceRequestFromJSON,
     CreateForteServiceRequestToJSON,
@@ -104,6 +109,11 @@ import {
     CreateWebAppRequestToJSON,
 } from '../models/CreateWebAppRequest';
 import {
+    type CustomDomainResponse,
+    CustomDomainResponseFromJSON,
+    CustomDomainResponseToJSON,
+} from '../models/CustomDomainResponse';
+import {
     type GetContentDownloadLinkResponse,
     GetContentDownloadLinkResponseFromJSON,
     GetContentDownloadLinkResponseToJSON,
@@ -118,6 +128,11 @@ import {
     ListContentResponseFromJSON,
     ListContentResponseToJSON,
 } from '../models/ListContentResponse';
+import {
+    type ListCustomDomainsResponse,
+    ListCustomDomainsResponseFromJSON,
+    ListCustomDomainsResponseToJSON,
+} from '../models/ListCustomDomainsResponse';
 import {
     type NotificationTemplatesResponse,
     NotificationTemplatesResponseFromJSON,
@@ -203,6 +218,11 @@ import {
     ServiceObjectFromJSON,
     ServiceObjectToJSON,
 } from '../models/ServiceObject';
+import {
+    type SyncCustomDomainResponse,
+    SyncCustomDomainResponseFromJSON,
+    SyncCustomDomainResponseToJSON,
+} from '../models/SyncCustomDomainResponse';
 import {
     type TestInvocationRequest,
     TestInvocationRequestFromJSON,
@@ -306,6 +326,12 @@ export interface AdminVerifyUserContactMethodRequest {
     verificationCode: string;
 }
 
+export interface CreateCustomDomainOperationRequest {
+    projectId: string;
+    webAppId: string;
+    createCustomDomainRequest: CreateCustomDomainRequest;
+}
+
 export interface CreatePaymentTriggerOperationRequest {
     projectId: string;
     createPaymentTriggerRequest: CreatePaymentTriggerRequest;
@@ -349,6 +375,12 @@ export interface CreateWebAppDeploymentRequest {
     commitSha?: string;
 }
 
+export interface DeleteCustomDomainRequest {
+    projectId: string;
+    webAppId: string;
+    customDomainId: string;
+}
+
 export interface DeletePaymentTriggerRequest {
     projectId: string;
     triggerId: string;
@@ -376,6 +408,12 @@ export interface DeleteUserRequest {
 export interface DeleteWebAppRequest {
     projectId: string;
     webAppId: string;
+}
+
+export interface GetCustomDomainRequest {
+    projectId: string;
+    webAppId: string;
+    customDomainId: string;
 }
 
 export interface GetNotificationTemplatesRequest {
@@ -439,6 +477,11 @@ export interface IssueImpersonationTokenRequest {
     userId: string;
 }
 
+export interface ListCustomDomainsRequest {
+    projectId: string;
+    webAppId: string;
+}
+
 export interface ListLogLinesRequest {
     projectId: string;
     serviceId: string;
@@ -500,6 +543,16 @@ export interface ListUsersRequest {
     projectId: string;
     minTime?: Date;
     maxTime?: Date;
+    nextToken?: string;
+}
+
+export interface ListWebAppBuildLogLinesRequest {
+    projectId: string;
+    webAppId: string;
+    buildId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    level?: string;
     nextToken?: string;
 }
 
@@ -608,6 +661,12 @@ export interface SendUserSmsOperationRequest {
 export interface SuspendUserRequest {
     userId: string;
     projectId: string;
+}
+
+export interface SyncCustomDomainRequest {
+    projectId: string;
+    webAppId: string;
+    customDomainId: string;
 }
 
 export interface TestInvocationOperationRequest {
@@ -963,6 +1022,67 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async adminVerifyUserContactMethod(requestParameters: AdminVerifyUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContactMethod> {
         const response = await this.adminVerifyUserContactMethodRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createCustomDomain without sending the request
+     */
+    async createCustomDomainRequestOpts(requestParameters: CreateCustomDomainOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createCustomDomain().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling createCustomDomain().'
+            );
+        }
+
+        if (requestParameters['createCustomDomainRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCustomDomainRequest',
+                'Required parameter "createCustomDomainRequest" was null or undefined when calling createCustomDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/custom-domains`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCustomDomainRequestToJSON(requestParameters['createCustomDomainRequest']),
+        };
+    }
+
+    /**
+     */
+    async createCustomDomainRaw(requestParameters: CreateCustomDomainOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDomainResponse>> {
+        const requestOptions = await this.createCustomDomainRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createCustomDomain(requestParameters: CreateCustomDomainOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDomainResponse> {
+        const response = await this.createCustomDomainRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1400,6 +1520,64 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteCustomDomain without sending the request
+     */
+    async deleteCustomDomainRequestOpts(requestParameters: DeleteCustomDomainRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteCustomDomain().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling deleteCustomDomain().'
+            );
+        }
+
+        if (requestParameters['customDomainId'] == null) {
+            throw new runtime.RequiredError(
+                'customDomainId',
+                'Required parameter "customDomainId" was null or undefined when calling deleteCustomDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/custom-domains/{customDomainId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{customDomainId}', encodeURIComponent(String(requestParameters['customDomainId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteCustomDomainRaw(requestParameters: DeleteCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCustomDomainRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteCustomDomain(requestParameters: DeleteCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteCustomDomainRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deletePaymentTrigger without sending the request
      */
     async deletePaymentTriggerRequestOpts(requestParameters: DeletePaymentTriggerRequest): Promise<runtime.RequestOpts> {
@@ -1689,6 +1867,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteWebApp(requestParameters: DeleteWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteWebAppRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getCustomDomain without sending the request
+     */
+    async getCustomDomainRequestOpts(requestParameters: GetCustomDomainRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getCustomDomain().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling getCustomDomain().'
+            );
+        }
+
+        if (requestParameters['customDomainId'] == null) {
+            throw new runtime.RequiredError(
+                'customDomainId',
+                'Required parameter "customDomainId" was null or undefined when calling getCustomDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/custom-domains/{customDomainId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{customDomainId}', encodeURIComponent(String(requestParameters['customDomainId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getCustomDomainRaw(requestParameters: GetCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDomainResponse>> {
+        const requestOptions = await this.getCustomDomainRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getCustomDomain(requestParameters: GetCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDomainResponse> {
+        const response = await this.getCustomDomainRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -2277,6 +2514,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listCustomDomains without sending the request
+     */
+    async listCustomDomainsRequestOpts(requestParameters: ListCustomDomainsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listCustomDomains().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling listCustomDomains().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/custom-domains`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listCustomDomainsRaw(requestParameters: ListCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCustomDomainsResponse>> {
+        const requestOptions = await this.listCustomDomainsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListCustomDomainsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listCustomDomains(requestParameters: ListCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCustomDomainsResponse> {
+        const response = await this.listCustomDomainsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listLogLines without sending the request
      */
     async listLogLinesRequestOpts(requestParameters: ListLogLinesRequest): Promise<runtime.RequestOpts> {
@@ -2800,6 +3088,81 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listUsers(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseUserObject> {
         const response = await this.listUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listWebAppBuildLogLines without sending the request
+     */
+    async listWebAppBuildLogLinesRequestOpts(requestParameters: ListWebAppBuildLogLinesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listWebAppBuildLogLines().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling listWebAppBuildLogLines().'
+            );
+        }
+
+        if (requestParameters['buildId'] == null) {
+            throw new runtime.RequiredError(
+                'buildId',
+                'Required parameter "buildId" was null or undefined when calling listWebAppBuildLogLines().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['level'] != null) {
+            queryParameters['level'] = requestParameters['level'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments/{buildId}/logs`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{buildId}', encodeURIComponent(String(requestParameters['buildId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listWebAppBuildLogLinesRaw(requestParameters: ListWebAppBuildLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLogLineObject>> {
+        const requestOptions = await this.listWebAppBuildLogLinesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseLogLineObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listWebAppBuildLogLines(requestParameters: ListWebAppBuildLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
+        const response = await this.listWebAppBuildLogLinesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3829,6 +4192,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async suspendUser(requestParameters: SuspendUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserObject> {
         const response = await this.suspendUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for syncCustomDomain without sending the request
+     */
+    async syncCustomDomainRequestOpts(requestParameters: SyncCustomDomainRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling syncCustomDomain().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling syncCustomDomain().'
+            );
+        }
+
+        if (requestParameters['customDomainId'] == null) {
+            throw new runtime.RequiredError(
+                'customDomainId',
+                'Required parameter "customDomainId" was null or undefined when calling syncCustomDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/custom-domains/{customDomainId}/sync`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{customDomainId}', encodeURIComponent(String(requestParameters['customDomainId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async syncCustomDomainRaw(requestParameters: SyncCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SyncCustomDomainResponse>> {
+        const requestOptions = await this.syncCustomDomainRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SyncCustomDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async syncCustomDomain(requestParameters: SyncCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCustomDomainResponse> {
+        const response = await this.syncCustomDomainRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -36,8 +36,11 @@ class WebAppDetectionResponse(BaseModel):
     install_command: Optional[StrictStr] = Field(default=None, description="Install command override, useful for monorepos", alias="installCommand")
     detected_framework: Optional[StrictStr] = Field(default=None, description="Detected frontend framework (e.g. \"Vite\", \"Next.js\", \"Astro\")", alias="detectedFramework")
     subdirectory: Optional[StrictStr] = Field(default=None, description="Monorepo subdirectory containing the web app")
+    monorepo_type: Optional[StrictStr] = Field(default=None, description="Monorepo flavor detected from lockfile + workspace declaration; null for single-project repos", alias="monorepoType")
+    workspace_root: Optional[StrictStr] = Field(default=None, description="Path (relative to repo root) of the directory containing pnpm-workspace.yaml or the root package.json with a workspaces field; empty string for repo root; null for single-project repos", alias="workspaceRoot")
+    app_package_name: Optional[StrictStr] = Field(default=None, description="The `name` field from the web app's package.json, used by monorepo --filter flags", alias="appPackageName")
     repository_analysis: Optional[RepositoryAnalysis] = Field(default=None, description="Analysis results from scanning the repository structure", alias="repositoryAnalysis")
-    __properties: ClassVar[List[str]] = ["webAppType", "packageManager", "nodeVersion", "buildCommand", "buildPath", "installCommand", "detectedFramework", "subdirectory", "repositoryAnalysis"]
+    __properties: ClassVar[List[str]] = ["webAppType", "packageManager", "nodeVersion", "buildCommand", "buildPath", "installCommand", "detectedFramework", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "repositoryAnalysis"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -47,6 +50,16 @@ class WebAppDetectionResponse(BaseModel):
 
         if value not in set(['STATIC', 'SERVER_SIDE']):
             raise ValueError("must be one of enum values ('STATIC', 'SERVER_SIDE')")
+        return value
+
+    @field_validator('monorepo_type')
+    def monorepo_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['PNPM_WORKSPACES', 'YARN_WORKSPACES', 'NPM_WORKSPACES', 'BUN_WORKSPACES']):
+            raise ValueError("must be one of enum values ('PNPM_WORKSPACES', 'YARN_WORKSPACES', 'NPM_WORKSPACES', 'BUN_WORKSPACES')")
         return value
 
     model_config = ConfigDict(
@@ -111,6 +124,9 @@ class WebAppDetectionResponse(BaseModel):
             "installCommand": obj.get("installCommand"),
             "detectedFramework": obj.get("detectedFramework"),
             "subdirectory": obj.get("subdirectory"),
+            "monorepoType": obj.get("monorepoType"),
+            "workspaceRoot": obj.get("workspaceRoot"),
+            "appPackageName": obj.get("appPackageName"),
             "repositoryAnalysis": RepositoryAnalysis.from_dict(obj["repositoryAnalysis"]) if obj.get("repositoryAnalysis") is not None else None
         })
         return _obj

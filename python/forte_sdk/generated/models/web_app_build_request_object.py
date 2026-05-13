@@ -39,6 +39,9 @@ class WebAppBuildRequestObject(BaseModel):
     detected_framework: Optional[StrictStr] = Field(default=None, alias="detectedFramework")
     install_command: Optional[StrictStr] = Field(default=None, alias="installCommand")
     subdirectory: Optional[StrictStr] = None
+    monorepo_type: Optional[StrictStr] = Field(default=None, alias="monorepoType")
+    workspace_root: Optional[StrictStr] = Field(default=None, alias="workspaceRoot")
+    app_package_name: Optional[StrictStr] = Field(default=None, alias="appPackageName")
     output_zip_s3_key: Optional[StrictStr] = Field(default=None, alias="outputZipS3Key")
     hosting_deployment_id: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentId")
     hosting_deployment_status: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentStatus")
@@ -54,7 +57,17 @@ class WebAppBuildRequestObject(BaseModel):
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin"]
+    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin"]
+
+    @field_validator('monorepo_type')
+    def monorepo_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['PNPM_WORKSPACES', 'YARN_WORKSPACES', 'NPM_WORKSPACES', 'BUN_WORKSPACES']):
+            raise ValueError("must be one of enum values ('PNPM_WORKSPACES', 'YARN_WORKSPACES', 'NPM_WORKSPACES', 'BUN_WORKSPACES')")
+        return value
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -143,6 +156,9 @@ class WebAppBuildRequestObject(BaseModel):
             "detectedFramework": obj.get("detectedFramework"),
             "installCommand": obj.get("installCommand"),
             "subdirectory": obj.get("subdirectory"),
+            "monorepoType": obj.get("monorepoType"),
+            "workspaceRoot": obj.get("workspaceRoot"),
+            "appPackageName": obj.get("appPackageName"),
             "outputZipS3Key": obj.get("outputZipS3Key"),
             "hostingDeploymentId": obj.get("hostingDeploymentId"),
             "hostingDeploymentStatus": obj.get("hostingDeploymentStatus"),

@@ -76,6 +76,24 @@ export interface WebAppDetectionResponse {
      */
     subdirectory?: string;
     /**
+     * Monorepo flavor detected from lockfile + workspace declaration; null for single-project repos
+     * @type {WebAppDetectionResponseMonorepoTypeType}
+     * @memberof WebAppDetectionResponse
+     */
+    monorepoType?: WebAppDetectionResponseMonorepoTypeType;
+    /**
+     * Path (relative to repo root) of the directory containing pnpm-workspace.yaml or the root package.json with a workspaces field; empty string for repo root; null for single-project repos
+     * @type {string}
+     * @memberof WebAppDetectionResponse
+     */
+    workspaceRoot?: string;
+    /**
+     * The `name` field from the web app's package.json, used by monorepo --filter flags
+     * @type {string}
+     * @memberof WebAppDetectionResponse
+     */
+    appPackageName?: string;
+    /**
      * Analysis results from scanning the repository structure
      * @type {RepositoryAnalysis}
      * @memberof WebAppDetectionResponse
@@ -92,6 +110,17 @@ export const WebAppDetectionResponseWebAppTypeType = {
     SERVER_SIDE: 'SERVER_SIDE'
 } as const;
 export type WebAppDetectionResponseWebAppTypeType = typeof WebAppDetectionResponseWebAppTypeType[keyof typeof WebAppDetectionResponseWebAppTypeType];
+
+/**
+ * @export
+ */
+export const WebAppDetectionResponseMonorepoTypeType = {
+    PNPM_WORKSPACES: 'PNPM_WORKSPACES',
+    YARN_WORKSPACES: 'YARN_WORKSPACES',
+    NPM_WORKSPACES: 'NPM_WORKSPACES',
+    BUN_WORKSPACES: 'BUN_WORKSPACES'
+} as const;
+export type WebAppDetectionResponseMonorepoTypeType = typeof WebAppDetectionResponseMonorepoTypeType[keyof typeof WebAppDetectionResponseMonorepoTypeType];
 
 
 /**
@@ -119,6 +148,9 @@ export function WebAppDetectionResponseFromJSONTyped(json: any, ignoreDiscrimina
         'installCommand': json['installCommand'] == null ? undefined : json['installCommand'],
         'detectedFramework': json['detectedFramework'] == null ? undefined : json['detectedFramework'],
         'subdirectory': json['subdirectory'] == null ? undefined : json['subdirectory'],
+        'monorepoType': json['monorepoType'] == null ? undefined : json['monorepoType'],
+        'workspaceRoot': json['workspaceRoot'] == null ? undefined : json['workspaceRoot'],
+        'appPackageName': json['appPackageName'] == null ? undefined : json['appPackageName'],
         'repositoryAnalysis': json['repositoryAnalysis'] == null ? undefined : RepositoryAnalysisFromJSON(json['repositoryAnalysis']),
     };
 }
@@ -142,6 +174,9 @@ export function WebAppDetectionResponseToJSONTyped(value?: WebAppDetectionRespon
         'installCommand': value['installCommand'],
         'detectedFramework': value['detectedFramework'],
         'subdirectory': value['subdirectory'],
+        'monorepoType': value['monorepoType'],
+        'workspaceRoot': value['workspaceRoot'],
+        'appPackageName': value['appPackageName'],
         'repositoryAnalysis': RepositoryAnalysisToJSON(value['repositoryAnalysis']),
     };
 }

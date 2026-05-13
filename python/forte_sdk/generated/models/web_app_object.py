@@ -18,9 +18,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.custom_domain import CustomDomain
 from forte_sdk.generated.models.web_app_detection_response import WebAppDetectionResponse
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +35,7 @@ class WebAppObject(BaseModel):
     web_app_name: StrictStr = Field(alias="webAppName")
     forte_dns_endpoint: Optional[StrictStr] = Field(default=None, alias="forteDnsEndpoint")
     forte_dns_endpoint_enabled: StrictBool = Field(alias="forteDnsEndpointEnabled")
-    custom_dns_endpoints: Optional[List[StrictStr]] = Field(default=None, alias="customDnsEndpoints")
+    custom_domains: Optional[List[CustomDomain]] = Field(default=None, alias="customDomains")
     build_path: Optional[StrictStr] = Field(default=None, alias="buildPath")
     web_app_type: Optional[StrictStr] = Field(default=None, alias="webAppType")
     package_manager: Optional[StrictStr] = Field(default=None, alias="packageManager")
@@ -42,6 +43,10 @@ class WebAppObject(BaseModel):
     install_command: Optional[StrictStr] = Field(default=None, alias="installCommand")
     subdirectory: Optional[StrictStr] = None
     detected_framework: Optional[StrictStr] = Field(default=None, alias="detectedFramework")
+    monorepo_type: Optional[StrictStr] = Field(default=None, alias="monorepoType")
+    workspace_root: Optional[StrictStr] = Field(default=None, alias="workspaceRoot")
+    app_package_name: Optional[StrictStr] = Field(default=None, alias="appPackageName")
+    detection_version: Optional[StrictInt] = Field(default=None, alias="detectionVersion")
     detection_response: Optional[WebAppDetectionResponse] = Field(default=None, alias="detectionResponse")
     hosting_provider_app_id: Optional[StrictStr] = Field(default=None, alias="hostingProviderAppId")
     hosting_provider_branch_name: Optional[StrictStr] = Field(default=None, alias="hostingProviderBranchName")
@@ -56,7 +61,7 @@ class WebAppObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDnsEndpoints", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "detectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "detectionVersion", "detectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -66,6 +71,16 @@ class WebAppObject(BaseModel):
 
         if value not in set(['STATIC', 'SERVER_SIDE']):
             raise ValueError("must be one of enum values ('STATIC', 'SERVER_SIDE')")
+        return value
+
+    @field_validator('monorepo_type')
+    def monorepo_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['PNPM_WORKSPACES', 'YARN_WORKSPACES', 'NPM_WORKSPACES', 'BUN_WORKSPACES']):
+            raise ValueError("must be one of enum values ('PNPM_WORKSPACES', 'YARN_WORKSPACES', 'NPM_WORKSPACES', 'BUN_WORKSPACES')")
         return value
 
     @field_validator('github_build_trigger')
@@ -114,6 +129,13 @@ class WebAppObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in custom_domains (list)
+        _items = []
+        if self.custom_domains:
+            for _item_custom_domains in self.custom_domains:
+                if _item_custom_domains:
+                    _items.append(_item_custom_domains.to_dict())
+            _dict['customDomains'] = _items
         # override the default output from pydantic by calling `to_dict()` of detection_response
         if self.detection_response:
             _dict['detectionResponse'] = self.detection_response.to_dict()
@@ -133,7 +155,7 @@ class WebAppObject(BaseModel):
             "webAppName": obj.get("webAppName"),
             "forteDnsEndpoint": obj.get("forteDnsEndpoint"),
             "forteDnsEndpointEnabled": obj.get("forteDnsEndpointEnabled"),
-            "customDnsEndpoints": obj.get("customDnsEndpoints"),
+            "customDomains": [CustomDomain.from_dict(_item) for _item in obj["customDomains"]] if obj.get("customDomains") is not None else None,
             "buildPath": obj.get("buildPath"),
             "webAppType": obj.get("webAppType"),
             "packageManager": obj.get("packageManager"),
@@ -141,6 +163,10 @@ class WebAppObject(BaseModel):
             "installCommand": obj.get("installCommand"),
             "subdirectory": obj.get("subdirectory"),
             "detectedFramework": obj.get("detectedFramework"),
+            "monorepoType": obj.get("monorepoType"),
+            "workspaceRoot": obj.get("workspaceRoot"),
+            "appPackageName": obj.get("appPackageName"),
+            "detectionVersion": obj.get("detectionVersion"),
             "detectionResponse": WebAppDetectionResponse.from_dict(obj["detectionResponse"]) if obj.get("detectionResponse") is not None else None,
             "hostingProviderAppId": obj.get("hostingProviderAppId"),
             "hostingProviderBranchName": obj.get("hostingProviderBranchName"),

@@ -90,6 +90,24 @@ export interface WebAppBuildRequestObject {
     subdirectory?: string;
     /**
      * 
+     * @type {WebAppBuildRequestObjectMonorepoTypeType}
+     * @memberof WebAppBuildRequestObject
+     */
+    monorepoType?: WebAppBuildRequestObjectMonorepoTypeType;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppBuildRequestObject
+     */
+    workspaceRoot?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppBuildRequestObject
+     */
+    appPackageName?: string;
+    /**
+     * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
@@ -184,6 +202,17 @@ export interface WebAppBuildRequestObject {
 /**
  * @export
  */
+export const WebAppBuildRequestObjectMonorepoTypeType = {
+    PNPM_WORKSPACES: 'PNPM_WORKSPACES',
+    YARN_WORKSPACES: 'YARN_WORKSPACES',
+    NPM_WORKSPACES: 'NPM_WORKSPACES',
+    BUN_WORKSPACES: 'BUN_WORKSPACES'
+} as const;
+export type WebAppBuildRequestObjectMonorepoTypeType = typeof WebAppBuildRequestObjectMonorepoTypeType[keyof typeof WebAppBuildRequestObjectMonorepoTypeType];
+
+/**
+ * @export
+ */
 export const WebAppBuildRequestObjectStatusType = {
     PENDING: 'PENDING',
     CLONING_REPOSITORY: 'CLONING_REPOSITORY',
@@ -260,6 +289,9 @@ export function WebAppBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimin
         'detectedFramework': json['detectedFramework'] == null ? undefined : json['detectedFramework'],
         'installCommand': json['installCommand'] == null ? undefined : json['installCommand'],
         'subdirectory': json['subdirectory'] == null ? undefined : json['subdirectory'],
+        'monorepoType': json['monorepoType'] == null ? undefined : json['monorepoType'],
+        'workspaceRoot': json['workspaceRoot'] == null ? undefined : json['workspaceRoot'],
+        'appPackageName': json['appPackageName'] == null ? undefined : json['appPackageName'],
         'outputZipS3Key': json['outputZipS3Key'] == null ? undefined : json['outputZipS3Key'],
         'hostingDeploymentId': json['hostingDeploymentId'] == null ? undefined : json['hostingDeploymentId'],
         'hostingDeploymentStatus': json['hostingDeploymentStatus'] == null ? undefined : json['hostingDeploymentStatus'],
@@ -298,6 +330,9 @@ export function WebAppBuildRequestObjectToJSONTyped(value?: WebAppBuildRequestOb
         'detectedFramework': value['detectedFramework'],
         'installCommand': value['installCommand'],
         'subdirectory': value['subdirectory'],
+        'monorepoType': value['monorepoType'],
+        'workspaceRoot': value['workspaceRoot'],
+        'appPackageName': value['appPackageName'],
         'outputZipS3Key': value['outputZipS3Key'],
         'hostingDeploymentId': value['hostingDeploymentId'],
         'hostingDeploymentStatus': value['hostingDeploymentStatus'],

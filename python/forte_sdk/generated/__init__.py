@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.156"
+__version__ = "1.0.160"
 
 # Define package exports
 __all__ = [
@@ -40,6 +40,7 @@ __all__ = [
     "ContentShareRequestItem",
     "CreateContentUploadLinkRequest",
     "CreateContentUploadLinkResponse",
+    "CreateCustomDomainRequest",
     "CreateForteServiceRequest",
     "CreateOtpLoginRequest",
     "CreateOtpLoginResponse",
@@ -54,6 +55,11 @@ __all__ = [
     "CreateServiceRequestProxyResponse",
     "CreateUserInviteRequest",
     "CreateWebAppRequest",
+    "CustomDomain",
+    "CustomDomainResponse",
+    "DnsRecordCheck",
+    "DnsRecordRequirement",
+    "DnsValidationResult",
     "DockerfileDetectionOutput",
     "DockerfileGenerationError",
     "DockerfileGenerationResponse",
@@ -67,6 +73,7 @@ __all__ = [
     "LatencyMetrics",
     "LatencyStats",
     "ListContentResponse",
+    "ListCustomDomainsResponse",
     "ListUserInvitesResponse",
     "LogLineObject",
     "LoginUserResponse",
@@ -99,6 +106,7 @@ __all__ = [
     "ServiceMetricsResponse",
     "ServiceObject",
     "StateHistory",
+    "SyncCustomDomainResponse",
     "TestInvocationRequest",
     "TestInvocationResponse",
     "TimeSeriesDataPoint",
@@ -148,6 +156,7 @@ from forte_sdk.generated.models.content_share import ContentShare as ContentShar
 from forte_sdk.generated.models.content_share_request_item import ContentShareRequestItem as ContentShareRequestItem
 from forte_sdk.generated.models.create_content_upload_link_request import CreateContentUploadLinkRequest as CreateContentUploadLinkRequest
 from forte_sdk.generated.models.create_content_upload_link_response import CreateContentUploadLinkResponse as CreateContentUploadLinkResponse
+from forte_sdk.generated.models.create_custom_domain_request import CreateCustomDomainRequest as CreateCustomDomainRequest
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest as CreateForteServiceRequest
 from forte_sdk.generated.models.create_otp_login_request import CreateOtpLoginRequest as CreateOtpLoginRequest
 from forte_sdk.generated.models.create_otp_login_response import CreateOtpLoginResponse as CreateOtpLoginResponse
@@ -162,6 +171,11 @@ from forte_sdk.generated.models.create_service_request_proxy_request import Crea
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
 from forte_sdk.generated.models.create_user_invite_request import CreateUserInviteRequest as CreateUserInviteRequest
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest as CreateWebAppRequest
+from forte_sdk.generated.models.custom_domain import CustomDomain as CustomDomain
+from forte_sdk.generated.models.custom_domain_response import CustomDomainResponse as CustomDomainResponse
+from forte_sdk.generated.models.dns_record_check import DnsRecordCheck as DnsRecordCheck
+from forte_sdk.generated.models.dns_record_requirement import DnsRecordRequirement as DnsRecordRequirement
+from forte_sdk.generated.models.dns_validation_result import DnsValidationResult as DnsValidationResult
 from forte_sdk.generated.models.dockerfile_detection_output import DockerfileDetectionOutput as DockerfileDetectionOutput
 from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGenerationError as DockerfileGenerationError
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse as DockerfileGenerationResponse
@@ -175,6 +189,7 @@ from forte_sdk.generated.models.impersonation_token_response import Impersonatio
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics as LatencyMetrics
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats
 from forte_sdk.generated.models.list_content_response import ListContentResponse as ListContentResponse
+from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse as ListCustomDomainsResponse
 from forte_sdk.generated.models.list_user_invites_response import ListUserInvitesResponse as ListUserInvitesResponse
 from forte_sdk.generated.models.log_line_object import LogLineObject as LogLineObject
 from forte_sdk.generated.models.login_user_response import LoginUserResponse as LoginUserResponse
@@ -207,6 +222,7 @@ from forte_sdk.generated.models.service_build_request_object import ServiceBuild
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse as ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject as ServiceObject
 from forte_sdk.generated.models.state_history import StateHistory as StateHistory
+from forte_sdk.generated.models.sync_custom_domain_response import SyncCustomDomainResponse as SyncCustomDomainResponse
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint as TimeSeriesDataPoint

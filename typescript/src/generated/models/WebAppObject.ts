@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CustomDomain } from './CustomDomain';
+import {
+    CustomDomainFromJSON,
+    CustomDomainFromJSONTyped,
+    CustomDomainToJSON,
+    CustomDomainToJSONTyped,
+} from './CustomDomain';
 import type { WebAppDetectionResponse } from './WebAppDetectionResponse';
 import {
     WebAppDetectionResponseFromJSON,
@@ -53,10 +60,10 @@ export interface WebAppObject {
     forteDnsEndpointEnabled: boolean;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<CustomDomain>}
      * @memberof WebAppObject
      */
-    customDnsEndpoints?: Array<string>;
+    customDomains?: Array<CustomDomain>;
     /**
      * 
      * @type {string}
@@ -99,6 +106,30 @@ export interface WebAppObject {
      * @memberof WebAppObject
      */
     detectedFramework?: string;
+    /**
+     * 
+     * @type {WebAppObjectMonorepoTypeType}
+     * @memberof WebAppObject
+     */
+    monorepoType?: WebAppObjectMonorepoTypeType;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppObject
+     */
+    workspaceRoot?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppObject
+     */
+    appPackageName?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebAppObject
+     */
+    detectionVersion?: number;
     /**
      * 
      * @type {WebAppDetectionResponse}
@@ -198,6 +229,17 @@ export type WebAppObjectWebAppTypeType = typeof WebAppObjectWebAppTypeType[keyof
 /**
  * @export
  */
+export const WebAppObjectMonorepoTypeType = {
+    PNPM_WORKSPACES: 'PNPM_WORKSPACES',
+    YARN_WORKSPACES: 'YARN_WORKSPACES',
+    NPM_WORKSPACES: 'NPM_WORKSPACES',
+    BUN_WORKSPACES: 'BUN_WORKSPACES'
+} as const;
+export type WebAppObjectMonorepoTypeType = typeof WebAppObjectMonorepoTypeType[keyof typeof WebAppObjectMonorepoTypeType];
+
+/**
+ * @export
+ */
 export const WebAppObjectGithubBuildTriggerType = {
     PUSH: 'PUSH',
     RELEASE_PUBLISHED: 'RELEASE_PUBLISHED'
@@ -230,7 +272,7 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'webAppName': json['webAppName'],
         'forteDnsEndpoint': json['forteDnsEndpoint'] == null ? undefined : json['forteDnsEndpoint'],
         'forteDnsEndpointEnabled': json['forteDnsEndpointEnabled'],
-        'customDnsEndpoints': json['customDnsEndpoints'] == null ? undefined : json['customDnsEndpoints'],
+        'customDomains': json['customDomains'] == null ? undefined : ((json['customDomains'] as Array<any>).map(CustomDomainFromJSON)),
         'buildPath': json['buildPath'] == null ? undefined : json['buildPath'],
         'webAppType': json['webAppType'] == null ? undefined : json['webAppType'],
         'packageManager': json['packageManager'] == null ? undefined : json['packageManager'],
@@ -238,6 +280,10 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'installCommand': json['installCommand'] == null ? undefined : json['installCommand'],
         'subdirectory': json['subdirectory'] == null ? undefined : json['subdirectory'],
         'detectedFramework': json['detectedFramework'] == null ? undefined : json['detectedFramework'],
+        'monorepoType': json['monorepoType'] == null ? undefined : json['monorepoType'],
+        'workspaceRoot': json['workspaceRoot'] == null ? undefined : json['workspaceRoot'],
+        'appPackageName': json['appPackageName'] == null ? undefined : json['appPackageName'],
+        'detectionVersion': json['detectionVersion'] == null ? undefined : json['detectionVersion'],
         'detectionResponse': json['detectionResponse'] == null ? undefined : WebAppDetectionResponseFromJSON(json['detectionResponse']),
         'hostingProviderAppId': json['hostingProviderAppId'] == null ? undefined : json['hostingProviderAppId'],
         'hostingProviderBranchName': json['hostingProviderBranchName'] == null ? undefined : json['hostingProviderBranchName'],
@@ -270,7 +316,7 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'webAppName': value['webAppName'],
         'forteDnsEndpoint': value['forteDnsEndpoint'],
         'forteDnsEndpointEnabled': value['forteDnsEndpointEnabled'],
-        'customDnsEndpoints': value['customDnsEndpoints'],
+        'customDomains': value['customDomains'] == null ? undefined : ((value['customDomains'] as Array<any>).map(CustomDomainToJSON)),
         'buildPath': value['buildPath'],
         'webAppType': value['webAppType'],
         'packageManager': value['packageManager'],
@@ -278,6 +324,10 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'installCommand': value['installCommand'],
         'subdirectory': value['subdirectory'],
         'detectedFramework': value['detectedFramework'],
+        'monorepoType': value['monorepoType'],
+        'workspaceRoot': value['workspaceRoot'],
+        'appPackageName': value['appPackageName'],
+        'detectionVersion': value['detectionVersion'],
         'detectionResponse': WebAppDetectionResponseToJSON(value['detectionResponse']),
         'hostingProviderAppId': value['hostingProviderAppId'],
         'hostingProviderBranchName': value['hostingProviderBranchName'],

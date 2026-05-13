@@ -47,6 +47,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_DETECTED_FRAMEWORK,
   WebAppBuildRequestObject.JSON_PROPERTY_INSTALL_COMMAND,
   WebAppBuildRequestObject.JSON_PROPERTY_SUBDIRECTORY,
+  WebAppBuildRequestObject.JSON_PROPERTY_MONOREPO_TYPE,
+  WebAppBuildRequestObject.JSON_PROPERTY_WORKSPACE_ROOT,
+  WebAppBuildRequestObject.JSON_PROPERTY_APP_PACKAGE_NAME,
   WebAppBuildRequestObject.JSON_PROPERTY_OUTPUT_ZIP_S3_KEY,
   WebAppBuildRequestObject.JSON_PROPERTY_HOSTING_DEPLOYMENT_ID,
   WebAppBuildRequestObject.JSON_PROPERTY_HOSTING_DEPLOYMENT_STATUS,
@@ -63,7 +66,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_STATUS,
   WebAppBuildRequestObject.JSON_PROPERTY_ORIGIN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T02:17:14.669554600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T12:03:18.414690800-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
@@ -100,6 +103,57 @@ public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_SUBDIRECTORY = "subdirectory";
   @javax.annotation.Nullable
   private String subdirectory;
+
+  /**
+   * Gets or Sets monorepoType
+   */
+  public enum MonorepoTypeEnum {
+    PNPM_WORKSPACES(String.valueOf("PNPM_WORKSPACES")),
+    
+    YARN_WORKSPACES(String.valueOf("YARN_WORKSPACES")),
+    
+    NPM_WORKSPACES(String.valueOf("NPM_WORKSPACES")),
+    
+    BUN_WORKSPACES(String.valueOf("BUN_WORKSPACES"));
+
+    private String value;
+
+    MonorepoTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MonorepoTypeEnum fromValue(String value) {
+      for (MonorepoTypeEnum b : MonorepoTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MONOREPO_TYPE = "monorepoType";
+  @javax.annotation.Nullable
+  private MonorepoTypeEnum monorepoType;
+
+  public static final String JSON_PROPERTY_WORKSPACE_ROOT = "workspaceRoot";
+  @javax.annotation.Nullable
+  private String workspaceRoot;
+
+  public static final String JSON_PROPERTY_APP_PACKAGE_NAME = "appPackageName";
+  @javax.annotation.Nullable
+  private String appPackageName;
 
   public static final String JSON_PROPERTY_OUTPUT_ZIP_S3_KEY = "outputZipS3Key";
   @javax.annotation.Nullable
@@ -512,6 +566,78 @@ public class WebAppBuildRequestObject {
   }
 
 
+  public WebAppBuildRequestObject monorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+    this.monorepoType = monorepoType;
+    return this;
+  }
+
+  /**
+   * Get monorepoType
+   * @return monorepoType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MonorepoTypeEnum getMonorepoType() {
+    return monorepoType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMonorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+    this.monorepoType = monorepoType;
+  }
+
+
+  public WebAppBuildRequestObject workspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+    this.workspaceRoot = workspaceRoot;
+    return this;
+  }
+
+  /**
+   * Get workspaceRoot
+   * @return workspaceRoot
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWorkspaceRoot() {
+    return workspaceRoot;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+    this.workspaceRoot = workspaceRoot;
+  }
+
+
+  public WebAppBuildRequestObject appPackageName(@javax.annotation.Nullable String appPackageName) {
+    this.appPackageName = appPackageName;
+    return this;
+  }
+
+  /**
+   * Get appPackageName
+   * @return appPackageName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAppPackageName() {
+    return appPackageName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAppPackageName(@javax.annotation.Nullable String appPackageName) {
+    this.appPackageName = appPackageName;
+  }
+
+
   public WebAppBuildRequestObject outputZipS3Key(@javax.annotation.Nullable String outputZipS3Key) {
     this.outputZipS3Key = outputZipS3Key;
     return this;
@@ -901,6 +1027,9 @@ public class WebAppBuildRequestObject {
         Objects.equals(this.detectedFramework, webAppBuildRequestObject.detectedFramework) &&
         Objects.equals(this.installCommand, webAppBuildRequestObject.installCommand) &&
         Objects.equals(this.subdirectory, webAppBuildRequestObject.subdirectory) &&
+        Objects.equals(this.monorepoType, webAppBuildRequestObject.monorepoType) &&
+        Objects.equals(this.workspaceRoot, webAppBuildRequestObject.workspaceRoot) &&
+        Objects.equals(this.appPackageName, webAppBuildRequestObject.appPackageName) &&
         Objects.equals(this.outputZipS3Key, webAppBuildRequestObject.outputZipS3Key) &&
         Objects.equals(this.hostingDeploymentId, webAppBuildRequestObject.hostingDeploymentId) &&
         Objects.equals(this.hostingDeploymentStatus, webAppBuildRequestObject.hostingDeploymentStatus) &&
@@ -920,7 +1049,7 @@ public class WebAppBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin);
+    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin);
   }
 
   @Override
@@ -936,6 +1065,9 @@ public class WebAppBuildRequestObject {
     sb.append("    detectedFramework: ").append(toIndentedString(detectedFramework)).append("\n");
     sb.append("    installCommand: ").append(toIndentedString(installCommand)).append("\n");
     sb.append("    subdirectory: ").append(toIndentedString(subdirectory)).append("\n");
+    sb.append("    monorepoType: ").append(toIndentedString(monorepoType)).append("\n");
+    sb.append("    workspaceRoot: ").append(toIndentedString(workspaceRoot)).append("\n");
+    sb.append("    appPackageName: ").append(toIndentedString(appPackageName)).append("\n");
     sb.append("    outputZipS3Key: ").append(toIndentedString(outputZipS3Key)).append("\n");
     sb.append("    hostingDeploymentId: ").append(toIndentedString(hostingDeploymentId)).append("\n");
     sb.append("    hostingDeploymentStatus: ").append(toIndentedString(hostingDeploymentStatus)).append("\n");
@@ -1038,6 +1170,21 @@ public class WebAppBuildRequestObject {
     // add `subdirectory` to the URL query string
     if (getSubdirectory() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssubdirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubdirectory()))));
+    }
+
+    // add `monorepoType` to the URL query string
+    if (getMonorepoType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smonorepoType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMonorepoType()))));
+    }
+
+    // add `workspaceRoot` to the URL query string
+    if (getWorkspaceRoot() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sworkspaceRoot%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWorkspaceRoot()))));
+    }
+
+    // add `appPackageName` to the URL query string
+    if (getAppPackageName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sappPackageName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAppPackageName()))));
     }
 
     // add `outputZipS3Key` to the URL query string

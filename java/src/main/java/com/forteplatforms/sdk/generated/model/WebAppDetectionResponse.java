@@ -42,9 +42,12 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppDetectionResponse.JSON_PROPERTY_INSTALL_COMMAND,
   WebAppDetectionResponse.JSON_PROPERTY_DETECTED_FRAMEWORK,
   WebAppDetectionResponse.JSON_PROPERTY_SUBDIRECTORY,
+  WebAppDetectionResponse.JSON_PROPERTY_MONOREPO_TYPE,
+  WebAppDetectionResponse.JSON_PROPERTY_WORKSPACE_ROOT,
+  WebAppDetectionResponse.JSON_PROPERTY_APP_PACKAGE_NAME,
   WebAppDetectionResponse.JSON_PROPERTY_REPOSITORY_ANALYSIS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T02:17:14.669554600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T12:03:18.414690800-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppDetectionResponse {
   /**
    * Whether the web app serves only static assets (STATIC) or includes server-side rendering (SERVER_SIDE)
@@ -112,6 +115,57 @@ public class WebAppDetectionResponse {
   public static final String JSON_PROPERTY_SUBDIRECTORY = "subdirectory";
   @javax.annotation.Nullable
   private String subdirectory;
+
+  /**
+   * Monorepo flavor detected from lockfile + workspace declaration; null for single-project repos
+   */
+  public enum MonorepoTypeEnum {
+    PNPM_WORKSPACES(String.valueOf("PNPM_WORKSPACES")),
+    
+    YARN_WORKSPACES(String.valueOf("YARN_WORKSPACES")),
+    
+    NPM_WORKSPACES(String.valueOf("NPM_WORKSPACES")),
+    
+    BUN_WORKSPACES(String.valueOf("BUN_WORKSPACES"));
+
+    private String value;
+
+    MonorepoTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MonorepoTypeEnum fromValue(String value) {
+      for (MonorepoTypeEnum b : MonorepoTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MONOREPO_TYPE = "monorepoType";
+  @javax.annotation.Nullable
+  private MonorepoTypeEnum monorepoType;
+
+  public static final String JSON_PROPERTY_WORKSPACE_ROOT = "workspaceRoot";
+  @javax.annotation.Nullable
+  private String workspaceRoot;
+
+  public static final String JSON_PROPERTY_APP_PACKAGE_NAME = "appPackageName";
+  @javax.annotation.Nullable
+  private String appPackageName;
 
   public static final String JSON_PROPERTY_REPOSITORY_ANALYSIS = "repositoryAnalysis";
   @javax.annotation.Nullable
@@ -312,6 +366,78 @@ public class WebAppDetectionResponse {
   }
 
 
+  public WebAppDetectionResponse monorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+    this.monorepoType = monorepoType;
+    return this;
+  }
+
+  /**
+   * Monorepo flavor detected from lockfile + workspace declaration; null for single-project repos
+   * @return monorepoType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MonorepoTypeEnum getMonorepoType() {
+    return monorepoType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMonorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+    this.monorepoType = monorepoType;
+  }
+
+
+  public WebAppDetectionResponse workspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+    this.workspaceRoot = workspaceRoot;
+    return this;
+  }
+
+  /**
+   * Path (relative to repo root) of the directory containing pnpm-workspace.yaml or the root package.json with a workspaces field; empty string for repo root; null for single-project repos
+   * @return workspaceRoot
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWorkspaceRoot() {
+    return workspaceRoot;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWorkspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+    this.workspaceRoot = workspaceRoot;
+  }
+
+
+  public WebAppDetectionResponse appPackageName(@javax.annotation.Nullable String appPackageName) {
+    this.appPackageName = appPackageName;
+    return this;
+  }
+
+  /**
+   * The &#x60;name&#x60; field from the web app&#39;s package.json, used by monorepo --filter flags
+   * @return appPackageName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAppPackageName() {
+    return appPackageName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAppPackageName(@javax.annotation.Nullable String appPackageName) {
+    this.appPackageName = appPackageName;
+  }
+
+
   public WebAppDetectionResponse repositoryAnalysis(@javax.annotation.Nullable RepositoryAnalysis repositoryAnalysis) {
     this.repositoryAnalysis = repositoryAnalysis;
     return this;
@@ -356,12 +482,15 @@ public class WebAppDetectionResponse {
         Objects.equals(this.installCommand, webAppDetectionResponse.installCommand) &&
         Objects.equals(this.detectedFramework, webAppDetectionResponse.detectedFramework) &&
         Objects.equals(this.subdirectory, webAppDetectionResponse.subdirectory) &&
+        Objects.equals(this.monorepoType, webAppDetectionResponse.monorepoType) &&
+        Objects.equals(this.workspaceRoot, webAppDetectionResponse.workspaceRoot) &&
+        Objects.equals(this.appPackageName, webAppDetectionResponse.appPackageName) &&
         Objects.equals(this.repositoryAnalysis, webAppDetectionResponse.repositoryAnalysis);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppType, packageManager, nodeVersion, buildCommand, buildPath, installCommand, detectedFramework, subdirectory, repositoryAnalysis);
+    return Objects.hash(webAppType, packageManager, nodeVersion, buildCommand, buildPath, installCommand, detectedFramework, subdirectory, monorepoType, workspaceRoot, appPackageName, repositoryAnalysis);
   }
 
   @Override
@@ -376,6 +505,9 @@ public class WebAppDetectionResponse {
     sb.append("    installCommand: ").append(toIndentedString(installCommand)).append("\n");
     sb.append("    detectedFramework: ").append(toIndentedString(detectedFramework)).append("\n");
     sb.append("    subdirectory: ").append(toIndentedString(subdirectory)).append("\n");
+    sb.append("    monorepoType: ").append(toIndentedString(monorepoType)).append("\n");
+    sb.append("    workspaceRoot: ").append(toIndentedString(workspaceRoot)).append("\n");
+    sb.append("    appPackageName: ").append(toIndentedString(appPackageName)).append("\n");
     sb.append("    repositoryAnalysis: ").append(toIndentedString(repositoryAnalysis)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -459,6 +591,21 @@ public class WebAppDetectionResponse {
     // add `subdirectory` to the URL query string
     if (getSubdirectory() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssubdirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubdirectory()))));
+    }
+
+    // add `monorepoType` to the URL query string
+    if (getMonorepoType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smonorepoType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMonorepoType()))));
+    }
+
+    // add `workspaceRoot` to the URL query string
+    if (getWorkspaceRoot() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sworkspaceRoot%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWorkspaceRoot()))));
+    }
+
+    // add `appPackageName` to the URL query string
+    if (getAppPackageName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sappPackageName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAppPackageName()))));
     }
 
     // add `repositoryAnalysis` to the URL query string

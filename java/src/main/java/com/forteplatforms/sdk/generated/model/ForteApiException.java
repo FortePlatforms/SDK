@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T02:17:14.669554600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T12:03:18.414690800-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -257,7 +257,17 @@ public class ForteApiException {
     
     IMPERSONATION_TOKEN_NOT_RENEWABLE(String.valueOf("IMPERSONATION_TOKEN_NOT_RENEWABLE")),
     
-    USER_NOT_ACTIVE(String.valueOf("USER_NOT_ACTIVE"));
+    USER_NOT_ACTIVE(String.valueOf("USER_NOT_ACTIVE")),
+    
+    CUSTOM_DOMAIN_INVALID_FORMAT(String.valueOf("CUSTOM_DOMAIN_INVALID_FORMAT")),
+    
+    CUSTOM_DOMAIN_RESERVED_SUFFIX(String.valueOf("CUSTOM_DOMAIN_RESERVED_SUFFIX")),
+    
+    CUSTOM_DOMAIN_ALREADY_REGISTERED(String.valueOf("CUSTOM_DOMAIN_ALREADY_REGISTERED")),
+    
+    CUSTOM_DOMAIN_NOT_FOUND(String.valueOf("CUSTOM_DOMAIN_NOT_FOUND")),
+    
+    CUSTOM_DOMAIN_QUOTA_EXCEEDED(String.valueOf("CUSTOM_DOMAIN_QUOTA_EXCEEDED"));
 
     private String value;
 
