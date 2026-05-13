@@ -10,27 +10,48 @@ npm install @forteplatforms/sdk
 
 ## Authentication
 
-When your code runs inside a Forte-hosted service, `FORTE_API_TOKEN` is set automatically and scoped to the service's project — no configuration needed:
+The SDK supports three auth modes depending on where it runs.
+
+### Inside a Forte-hosted service (no config)
+
+`FORTE_API_TOKEN` is set automatically and scoped to the service's project:
 
 ```typescript
 const client = new ForteClient();
 ```
 
-Outside of Forte (local development, external hosting), pass the token explicitly:
+### Client-side (browser / mobile)
+
+For calls to `client.users.*`, construct with no arguments. The browser sends the `Forte-User-Session-Token` cookie automatically after the user logs in. The SDK sets `credentials: 'include'` so the cookie reaches the API cross-origin.
+
+```typescript
+const client = new ForteClient();
+await client.users.renewSessionToken({ projectId });
+```
+
+Do **not** pass `apiToken` from browser code — it's a server-side secret.
+
+### Server-side BFF calling `client.users.*` (no token, per-call authorization)
+
+In a BFF that proxies user-scoped calls, omit the token and forward each user's session token as the `authorization` parameter on each call:
+
+```typescript
+const client = new ForteClient();
+await client.users.renewSessionToken({
+  projectId,
+  authorization: `Bearer ${userSessionToken}`,
+});
+```
+
+### External server-side calling `client.projects.*` (explicit token)
 
 ```typescript
 const client = new ForteClient({ apiToken: 'your_api_token_here' });
 ```
 
-Or set it as an environment variable (Node.js only):
-
-```bash
-export FORTE_API_TOKEN=your_api_token_here
-```
+Or set `FORTE_API_TOKEN` in the environment (Node.js only) and call `new ForteClient()`.
 
 You can generate an API token from the Forte Platforms dashboard.
-
-> **Note:** The TypeScript SDK works in both Node.js and browser/React environments. In browsers, you must pass `apiToken` directly since environment variables are not available.
 
 ## Quick Start
 

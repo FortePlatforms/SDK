@@ -16,13 +16,18 @@ Official SDKs for the [Forte Platforms](https://forteplatforms.com) API.
 
 ## Authentication
 
-All SDKs authenticate using an API token. Set it as an environment variable:
+The SDKs expose two API surfaces:
+
+- **`projects.*`** — server-side; authenticates with a project API token (`FORTE_API_TOKEN` env var or constructor arg).
+- **`users.*`** — client-side; authenticates with the `Forte-User-Session-Token` cookie (browser) or a per-call `authorization` parameter (server-side BFF).
+
+A token is **not required** to construct the client. Construct with no arguments for browser/cookie auth or for BFFs that pass `authorization` per-call. See each language's README for examples.
 
 ```bash
-export FORTE_API_TOKEN=your_api_token_here
+export FORTE_API_TOKEN=your_api_token_here  # required for projects.* only
 ```
 
-Or pass it directly when creating the client. You can generate an API token from the [Forte Platforms dashboard](https://forteplatforms.com).
+You can generate an API token from the [Forte Platforms dashboard](https://forteplatforms.com).
 
 ## Documentation
 

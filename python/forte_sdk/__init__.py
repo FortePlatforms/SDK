@@ -12,16 +12,14 @@ class ForteClient:
         api_token: str | None = None,
         base_url: str | None = None,
     ):
+        # Falls back to FORTE_API_TOKEN env var. No token is OK for BFF usage where the
+        # caller passes `authorization` per-call to users.* operations.
         token = api_token or os.environ.get("FORTE_API_TOKEN")
-        if not token:
-            raise ValueError(
-                "FORTE_API_TOKEN is required. "
-                "Set it as an environment variable or pass api_token."
-            )
 
         config = Configuration(host=base_url or "https://api.forteplatforms.com")
         client = ApiClient(config)
-        client.default_headers["Authorization"] = f"Bearer {token}"
+        if token:
+            client.default_headers["Authorization"] = f"Bearer {token}"
 
         self.projects = ProjectsServerApi(client)
         self.users = UsersServerApi(client)

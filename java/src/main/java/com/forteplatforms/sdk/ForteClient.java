@@ -21,16 +21,17 @@ public class ForteClient {
     }
 
     public ForteClient(String apiToken, String baseUrl) {
-        if (apiToken == null || apiToken.isBlank()) {
-            throw new IllegalArgumentException(
-                    "FORTE_API_TOKEN is required. "
-                            + "Set it as an environment variable or pass it to the constructor.");
-        }
+        // No token is OK: BFFs pass `authorization` per-call to users.* operations.
+        // Inside a Forte-hosted service FORTE_API_TOKEN is set automatically; outside,
+        // either pass it explicitly here or rely on the per-call authorization parameter.
+        final boolean hasToken = apiToken != null && !apiToken.isBlank();
 
         ApiClient client = new ApiClient();
         client.updateBaseUri(baseUrl != null ? baseUrl : DEFAULT_BASE_URL);
         client.setRequestInterceptor(builder -> {
-            builder.header("Authorization", "Bearer " + apiToken);
+            if (hasToken) {
+                builder.header("Authorization", "Bearer " + apiToken);
+            }
             URI uri = builder.build().uri();
             String path = uri.getRawPath();
             if (path != null && path.contains("//")) {

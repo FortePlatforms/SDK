@@ -10,35 +10,52 @@ Official Java SDK for interacting with the Forte Platforms API.
 <dependency>
     <groupId>com.forteplatforms</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.0.160</version>
+    <version>1.0.163</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'com.forteplatforms:sdk:1.0.160'
+implementation 'com.forteplatforms:sdk:1.0.163'
 ```
 
 ## Authentication
 
-When your code runs inside a Forte-hosted service, `FORTE_API_TOKEN` is set automatically and scoped to the service's project — no configuration needed:
+The SDK supports three auth modes.
+
+### Inside a Forte-hosted service (no config)
+
+`FORTE_API_TOKEN` is set automatically and scoped to the service's project:
 
 ```java
 ForteClient client = new ForteClient();
 ```
 
-Outside of Forte (local development, external hosting), pass the token explicitly:
+### Server-side BFF calling `client.users()` (no token, per-call authorization)
+
+When proxying user-scoped calls from a BFF, construct with no token and pass each user's session token as the `authorization` parameter on each call:
+
+```java
+ForteClient client = new ForteClient((String) null);
+
+client.users().renewSessionToken(
+    projectId,
+    "Bearer " + userSessionToken,
+    null,
+    2592000L
+);
+```
+
+The explicit `(String) null` cast disambiguates from the no-arg constructor (which falls back to the `FORTE_API_TOKEN` env var).
+
+### External server-side calling `client.projects()` (explicit token)
 
 ```java
 ForteClient client = new ForteClient("your_api_token_here");
 ```
 
-Or set it as an environment variable:
-
-```bash
-export FORTE_API_TOKEN=your_api_token_here
-```
+Or set `FORTE_API_TOKEN` in the environment and call `new ForteClient()`.
 
 You can generate an API token from the Forte Platforms dashboard.
 

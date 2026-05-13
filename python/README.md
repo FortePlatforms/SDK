@@ -10,23 +10,35 @@ pip install forte-sdk
 
 ## Authentication
 
-When your code runs inside a Forte-hosted service, `FORTE_API_TOKEN` is set automatically and scoped to the service's project — no configuration needed:
+The SDK supports three auth modes.
+
+### Inside a Forte-hosted service (no config)
+
+`FORTE_API_TOKEN` is set automatically and scoped to the service's project:
 
 ```python
 client = ForteClient()
 ```
 
-Outside of Forte (local development, external hosting), pass the token explicitly:
+### Server-side BFF calling `client.users.*` (no token, per-call authorization)
+
+When proxying user-scoped calls from a BFF, omit the token and pass each user's session token as the `authorization` parameter on each call:
+
+```python
+client = ForteClient()
+client.users.renew_session_token(
+    project_id=project_id,
+    authorization=f"Bearer {user_session_token}",
+)
+```
+
+### External server-side calling `client.projects.*` (explicit token)
 
 ```python
 client = ForteClient(api_token="your_api_token_here")
 ```
 
-Or set it as an environment variable:
-
-```bash
-export FORTE_API_TOKEN=your_api_token_here
-```
+Or set `FORTE_API_TOKEN` in the environment and call `ForteClient()`.
 
 You can generate an API token from the Forte Platforms dashboard.
 

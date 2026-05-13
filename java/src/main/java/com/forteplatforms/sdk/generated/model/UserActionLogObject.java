@@ -43,7 +43,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID,
   UserActionLogObject.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T12:03:18.414690800-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T13:01:59.009660500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -68,6 +68,8 @@ public class UserActionLogObject {
     CONTACT_METHOD_ADDED(String.valueOf("CONTACT_METHOD_ADDED")),
     
     CONTACT_METHOD_REMOVED(String.valueOf("CONTACT_METHOD_REMOVED")),
+    
+    CONTACT_METHOD_DISPLACED(String.valueOf("CONTACT_METHOD_DISPLACED")),
     
     CONTACT_METHOD_VERIFICATION_CODE_SENT(String.valueOf("CONTACT_METHOD_VERIFICATION_CODE_SENT")),
     
