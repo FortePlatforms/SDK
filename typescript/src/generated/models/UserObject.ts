@@ -105,6 +105,24 @@ export interface UserObject {
      * @memberof UserObject
      */
     state: UserObjectStateType;
+    /**
+     * 
+     * @type {Date}
+     * @memberof UserObject
+     */
+    passwordSetAt?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof UserObject
+     */
+    passwordResetLastRequestedAt?: Date;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserObject
+     */
+    hasPassword?: boolean;
 }
 
 
@@ -155,6 +173,9 @@ export function UserObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'welcomeMessageSent': json['welcomeMessageSent'] == null ? undefined : json['welcomeMessageSent'],
         'invitedByUserId': json['invitedByUserId'] == null ? undefined : json['invitedByUserId'],
         'state': json['state'],
+        'passwordSetAt': json['passwordSetAt'] == null ? undefined : (new Date(json['passwordSetAt'])),
+        'passwordResetLastRequestedAt': json['passwordResetLastRequestedAt'] == null ? undefined : (new Date(json['passwordResetLastRequestedAt'])),
+        'hasPassword': json['hasPassword'] == null ? undefined : json['hasPassword'],
     };
 }
 
@@ -182,6 +203,9 @@ export function UserObjectToJSONTyped(value?: UserObject | null, ignoreDiscrimin
         'welcomeMessageSent': value['welcomeMessageSent'],
         'invitedByUserId': value['invitedByUserId'],
         'state': value['state'],
+        'passwordSetAt': value['passwordSetAt'] == null ? value['passwordSetAt'] : value['passwordSetAt'].toISOString(),
+        'passwordResetLastRequestedAt': value['passwordResetLastRequestedAt'] == null ? value['passwordResetLastRequestedAt'] : value['passwordResetLastRequestedAt'].toISOString(),
+        'hasPassword': value['hasPassword'],
     };
 }
 

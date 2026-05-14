@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -267,7 +267,19 @@ public class ForteApiException {
     
     CUSTOM_DOMAIN_NOT_FOUND(String.valueOf("CUSTOM_DOMAIN_NOT_FOUND")),
     
-    CUSTOM_DOMAIN_QUOTA_EXCEEDED(String.valueOf("CUSTOM_DOMAIN_QUOTA_EXCEEDED"));
+    CUSTOM_DOMAIN_QUOTA_EXCEEDED(String.valueOf("CUSTOM_DOMAIN_QUOTA_EXCEEDED")),
+    
+    PASSWORD_LOGIN_NOT_ENABLED(String.valueOf("PASSWORD_LOGIN_NOT_ENABLED")),
+    
+    PASSWORD_TOO_WEAK(String.valueOf("PASSWORD_TOO_WEAK")),
+    
+    INVALID_CREDENTIALS(String.valueOf("INVALID_CREDENTIALS")),
+    
+    INVALID_RESET_TOKEN(String.valueOf("INVALID_RESET_TOKEN")),
+    
+    PASSWORD_CONFIG_INVALID(String.valueOf("PASSWORD_CONFIG_INVALID")),
+    
+    PASSWORD_RESET_TARGET_URL_REQUIRED(String.valueOf("PASSWORD_RESET_TARGET_URL_REQUIRED"));
 
     private String value;
 

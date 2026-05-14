@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig
+from forte_sdk.generated.models.password_config import PasswordConfig
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig
 from forte_sdk.generated.models.service_object import ServiceObject
 from forte_sdk.generated.models.web_app_object import WebAppObject
@@ -46,11 +47,13 @@ class ProjectObject(BaseModel):
     phone_login_enabled: Optional[StrictBool] = Field(default=None, alias="phoneLoginEnabled")
     email_login_enabled: Optional[StrictBool] = Field(default=None, alias="emailLoginEnabled")
     google_login_enabled: Optional[StrictBool] = Field(default=None, alias="googleLoginEnabled")
+    password_login_enabled: Optional[StrictBool] = Field(default=None, alias="passwordLoginEnabled")
+    password_config: Optional[PasswordConfig] = Field(default=None, alias="passwordConfig")
     sandbox_mode: Optional[StrictBool] = Field(default=None, alias="sandboxMode")
     notification_templates_config: Optional[NotificationTemplatesConfig] = Field(default=None, alias="notificationTemplatesConfig")
     payment_triggers: Optional[List[PaymentTriggerConfig]] = Field(default=None, alias="paymentTriggers")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "hasRecaptchaSecretKey"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -105,6 +108,9 @@ class ProjectObject(BaseModel):
                 if _item_web_apps:
                     _items.append(_item_web_apps.to_dict())
             _dict['webApps'] = _items
+        # override the default output from pydantic by calling `to_dict()` of password_config
+        if self.password_config:
+            _dict['passwordConfig'] = self.password_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of notification_templates_config
         if self.notification_templates_config:
             _dict['notificationTemplatesConfig'] = self.notification_templates_config.to_dict()
@@ -141,6 +147,8 @@ class ProjectObject(BaseModel):
             "phoneLoginEnabled": obj.get("phoneLoginEnabled"),
             "emailLoginEnabled": obj.get("emailLoginEnabled"),
             "googleLoginEnabled": obj.get("googleLoginEnabled"),
+            "passwordLoginEnabled": obj.get("passwordLoginEnabled"),
+            "passwordConfig": PasswordConfig.from_dict(obj["passwordConfig"]) if obj.get("passwordConfig") is not None else None,
             "sandboxMode": obj.get("sandboxMode"),
             "notificationTemplatesConfig": NotificationTemplatesConfig.from_dict(obj["notificationTemplatesConfig"]) if obj.get("notificationTemplatesConfig") is not None else None,
             "paymentTriggers": [PaymentTriggerConfig.from_dict(_item) for _item in obj["paymentTriggers"]] if obj.get("paymentTriggers") is not None else None,

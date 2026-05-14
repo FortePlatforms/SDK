@@ -54,9 +54,12 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_CONTACT_METHODS,
   UserObject.JSON_PROPERTY_WELCOME_MESSAGE_SENT,
   UserObject.JSON_PROPERTY_INVITED_BY_USER_ID,
-  UserObject.JSON_PROPERTY_STATE
+  UserObject.JSON_PROPERTY_STATE,
+  UserObject.JSON_PROPERTY_PASSWORD_SET_AT,
+  UserObject.JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT,
+  UserObject.JSON_PROPERTY_HAS_PASSWORD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UserObject {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nullable
@@ -146,6 +149,18 @@ public class UserObject {
   public static final String JSON_PROPERTY_STATE = "state";
   @javax.annotation.Nonnull
   private StateEnum state;
+
+  public static final String JSON_PROPERTY_PASSWORD_SET_AT = "passwordSetAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime passwordSetAt;
+
+  public static final String JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT = "passwordResetLastRequestedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime passwordResetLastRequestedAt;
+
+  public static final String JSON_PROPERTY_HAS_PASSWORD = "hasPassword";
+  @javax.annotation.Nullable
+  private Boolean hasPassword;
 
   public UserObject() { 
   }
@@ -487,6 +502,78 @@ public class UserObject {
   }
 
 
+  public UserObject passwordSetAt(@javax.annotation.Nullable OffsetDateTime passwordSetAt) {
+    this.passwordSetAt = passwordSetAt;
+    return this;
+  }
+
+  /**
+   * Get passwordSetAt
+   * @return passwordSetAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_SET_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getPasswordSetAt() {
+    return passwordSetAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_SET_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPasswordSetAt(@javax.annotation.Nullable OffsetDateTime passwordSetAt) {
+    this.passwordSetAt = passwordSetAt;
+  }
+
+
+  public UserObject passwordResetLastRequestedAt(@javax.annotation.Nullable OffsetDateTime passwordResetLastRequestedAt) {
+    this.passwordResetLastRequestedAt = passwordResetLastRequestedAt;
+    return this;
+  }
+
+  /**
+   * Get passwordResetLastRequestedAt
+   * @return passwordResetLastRequestedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getPasswordResetLastRequestedAt() {
+    return passwordResetLastRequestedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPasswordResetLastRequestedAt(@javax.annotation.Nullable OffsetDateTime passwordResetLastRequestedAt) {
+    this.passwordResetLastRequestedAt = passwordResetLastRequestedAt;
+  }
+
+
+  public UserObject hasPassword(@javax.annotation.Nullable Boolean hasPassword) {
+    this.hasPassword = hasPassword;
+    return this;
+  }
+
+  /**
+   * Get hasPassword
+   * @return hasPassword
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasPassword() {
+    return hasPassword;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasPassword(@javax.annotation.Nullable Boolean hasPassword) {
+    this.hasPassword = hasPassword;
+  }
+
+
   /**
    * Return true if this UserObject object is equal to o.
    */
@@ -511,12 +598,15 @@ public class UserObject {
         Objects.equals(this.contactMethods, userObject.contactMethods) &&
         Objects.equals(this.welcomeMessageSent, userObject.welcomeMessageSent) &&
         Objects.equals(this.invitedByUserId, userObject.invitedByUserId) &&
-        Objects.equals(this.state, userObject.state);
+        Objects.equals(this.state, userObject.state) &&
+        Objects.equals(this.passwordSetAt, userObject.passwordSetAt) &&
+        Objects.equals(this.passwordResetLastRequestedAt, userObject.passwordResetLastRequestedAt) &&
+        Objects.equals(this.hasPassword, userObject.hasPassword);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, invitedByUserId, state);
+    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, invitedByUserId, state, passwordSetAt, passwordResetLastRequestedAt, hasPassword);
   }
 
   @Override
@@ -536,6 +626,9 @@ public class UserObject {
     sb.append("    welcomeMessageSent: ").append(toIndentedString(welcomeMessageSent)).append("\n");
     sb.append("    invitedByUserId: ").append(toIndentedString(invitedByUserId)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    passwordSetAt: ").append(toIndentedString(passwordSetAt)).append("\n");
+    sb.append("    passwordResetLastRequestedAt: ").append(toIndentedString(passwordResetLastRequestedAt)).append("\n");
+    sb.append("    hasPassword: ").append(toIndentedString(hasPassword)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -658,6 +751,21 @@ public class UserObject {
     // add `state` to the URL query string
     if (getState() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getState()))));
+    }
+
+    // add `passwordSetAt` to the URL query string
+    if (getPasswordSetAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spasswordSetAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPasswordSetAt()))));
+    }
+
+    // add `passwordResetLastRequestedAt` to the URL query string
+    if (getPasswordResetLastRequestedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spasswordResetLastRequestedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPasswordResetLastRequestedAt()))));
+    }
+
+    // add `hasPassword` to the URL query string
+    if (getHasPassword() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasPassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPassword()))));
     }
 
     return joiner.toString();

@@ -39,9 +39,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RegisterUserRequest.JSON_PROPERTY_EMAIL,
   RegisterUserRequest.JSON_PROPERTY_PHONE_NUMBER,
   RegisterUserRequest.JSON_PROPERTY_CUSTOM_METADATA_ATTRIBUTES,
-  RegisterUserRequest.JSON_PROPERTY_RECAPTCHA_TOKEN
+  RegisterUserRequest.JSON_PROPERTY_RECAPTCHA_TOKEN,
+  RegisterUserRequest.JSON_PROPERTY_PASSWORD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class RegisterUserRequest {
   public static final String JSON_PROPERTY_FULL_NAME = "fullName";
   @javax.annotation.Nullable
@@ -62,6 +63,10 @@ public class RegisterUserRequest {
   public static final String JSON_PROPERTY_RECAPTCHA_TOKEN = "recaptchaToken";
   @javax.annotation.Nullable
   private String recaptchaToken;
+
+  public static final String JSON_PROPERTY_PASSWORD = "password";
+  @javax.annotation.Nullable
+  private String password;
 
   public RegisterUserRequest() { 
   }
@@ -194,6 +199,30 @@ public class RegisterUserRequest {
   }
 
 
+  public RegisterUserRequest password(@javax.annotation.Nullable String password) {
+    this.password = password;
+    return this;
+  }
+
+  /**
+   * Get password
+   * @return password
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPassword() {
+    return password;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPassword(@javax.annotation.Nullable String password) {
+    this.password = password;
+  }
+
+
   /**
    * Return true if this RegisterUserRequest object is equal to o.
    */
@@ -210,12 +239,13 @@ public class RegisterUserRequest {
         Objects.equals(this.email, registerUserRequest.email) &&
         Objects.equals(this.phoneNumber, registerUserRequest.phoneNumber) &&
         Objects.equals(this.customMetadataAttributes, registerUserRequest.customMetadataAttributes) &&
-        Objects.equals(this.recaptchaToken, registerUserRequest.recaptchaToken);
+        Objects.equals(this.recaptchaToken, registerUserRequest.recaptchaToken) &&
+        Objects.equals(this.password, registerUserRequest.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fullName, email, phoneNumber, customMetadataAttributes, recaptchaToken);
+    return Objects.hash(fullName, email, phoneNumber, customMetadataAttributes, recaptchaToken, password);
   }
 
   @Override
@@ -227,6 +257,7 @@ public class RegisterUserRequest {
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    customMetadataAttributes: ").append(toIndentedString(customMetadataAttributes)).append("\n");
     sb.append("    recaptchaToken: ").append(toIndentedString(recaptchaToken)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -298,6 +329,11 @@ public class RegisterUserRequest {
     // add `recaptchaToken` to the URL query string
     if (getRecaptchaToken() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srecaptchaToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRecaptchaToken()))));
+    }
+
+    // add `password` to the URL query string
+    if (getPassword() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
     }
 
     return joiner.toString();

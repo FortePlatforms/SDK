@@ -103,6 +103,24 @@ export interface NotificationTemplatesConfig {
      * @memberof NotificationTemplatesConfig
      */
     inviteEmailHtmlBody?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotificationTemplatesConfig
+     */
+    passwordResetEmailSubject?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotificationTemplatesConfig
+     */
+    passwordResetEmailHtmlBody?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NotificationTemplatesConfig
+     */
+    passwordResetSmsBody?: string;
 }
 
 /**
@@ -136,6 +154,9 @@ export function NotificationTemplatesConfigFromJSONTyped(json: any, ignoreDiscri
         'loginOtpSmsBody': json['loginOtpSmsBody'] == null ? undefined : json['loginOtpSmsBody'],
         'inviteEmailSubject': json['inviteEmailSubject'] == null ? undefined : json['inviteEmailSubject'],
         'inviteEmailHtmlBody': json['inviteEmailHtmlBody'] == null ? undefined : json['inviteEmailHtmlBody'],
+        'passwordResetEmailSubject': json['passwordResetEmailSubject'] == null ? undefined : json['passwordResetEmailSubject'],
+        'passwordResetEmailHtmlBody': json['passwordResetEmailHtmlBody'] == null ? undefined : json['passwordResetEmailHtmlBody'],
+        'passwordResetSmsBody': json['passwordResetSmsBody'] == null ? undefined : json['passwordResetSmsBody'],
     };
 }
 
@@ -164,6 +185,9 @@ export function NotificationTemplatesConfigToJSONTyped(value?: NotificationTempl
         'loginOtpSmsBody': value['loginOtpSmsBody'],
         'inviteEmailSubject': value['inviteEmailSubject'],
         'inviteEmailHtmlBody': value['inviteEmailHtmlBody'],
+        'passwordResetEmailSubject': value['passwordResetEmailSubject'],
+        'passwordResetEmailHtmlBody': value['passwordResetEmailHtmlBody'],
+        'passwordResetSmsBody': value['passwordResetSmsBody'],
     };
 }
 

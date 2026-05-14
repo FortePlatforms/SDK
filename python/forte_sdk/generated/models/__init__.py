@@ -14,10 +14,14 @@
 
 # import models into model package
 from forte_sdk.generated.models.add_contact_method_request import AddContactMethodRequest
+from forte_sdk.generated.models.admin_force_set_password_request import AdminForceSetPasswordRequest
 from forte_sdk.generated.models.admin_override_contact_method_request import AdminOverrideContactMethodRequest
+from forte_sdk.generated.models.admin_password_reset_response import AdminPasswordResetResponse
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary
 from forte_sdk.generated.models.build_step_log import BuildStepLog
+from forte_sdk.generated.models.change_password_request import ChangePasswordRequest
 from forte_sdk.generated.models.complete_otp_login_request import CompleteOtpLoginRequest
+from forte_sdk.generated.models.complete_password_reset_request import CompletePasswordResetRequest
 from forte_sdk.generated.models.contact_method import ContactMethod
 from forte_sdk.generated.models.content_object import ContentObject
 from forte_sdk.generated.models.content_share import ContentShare
@@ -70,6 +74,8 @@ from forte_sdk.generated.models.paginated_response_service_build_request_object 
 from forte_sdk.generated.models.paginated_response_user_action_log_object import PaginatedResponseUserActionLogObject
 from forte_sdk.generated.models.paginated_response_user_object import PaginatedResponseUserObject
 from forte_sdk.generated.models.paginated_response_web_app_build_request_object import PaginatedResponseWebAppBuildRequestObject
+from forte_sdk.generated.models.password_config import PasswordConfig
+from forte_sdk.generated.models.password_login_request import PasswordLoginRequest
 from forte_sdk.generated.models.payment_address import PaymentAddress
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem
 from forte_sdk.generated.models.payment_object import PaymentObject
@@ -82,6 +88,7 @@ from forte_sdk.generated.models.renew_session_token_response import RenewSession
 from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis
 from forte_sdk.generated.models.request_log_object import RequestLogObject
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta
+from forte_sdk.generated.models.request_password_reset_request import RequestPasswordResetRequest
 from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders
 from forte_sdk.generated.models.search_users_request import SearchUsersRequest
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest

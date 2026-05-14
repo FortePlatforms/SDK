@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.164"
+__version__ = "1.0.166"
 
 # Define package exports
 __all__ = [
@@ -30,10 +30,14 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "AddContactMethodRequest",
+    "AdminForceSetPasswordRequest",
     "AdminOverrideContactMethodRequest",
+    "AdminPasswordResetResponse",
     "ApiKeySummary",
     "BuildStepLog",
+    "ChangePasswordRequest",
     "CompleteOtpLoginRequest",
+    "CompletePasswordResetRequest",
     "ContactMethod",
     "ContentObject",
     "ContentShare",
@@ -86,6 +90,8 @@ __all__ = [
     "PaginatedResponseUserActionLogObject",
     "PaginatedResponseUserObject",
     "PaginatedResponseWebAppBuildRequestObject",
+    "PasswordConfig",
+    "PasswordLoginRequest",
     "PaymentAddress",
     "PaymentLineItem",
     "PaymentObject",
@@ -98,6 +104,7 @@ __all__ = [
     "RepositoryAnalysis",
     "RequestLogObject",
     "RequestLogObjectMeta",
+    "RequestPasswordResetRequest",
     "RequiredUploadHeaders",
     "SearchUsersRequest",
     "SendUserEmailRequest",
@@ -145,10 +152,14 @@ from forte_sdk.generated.exceptions import ApiException as ApiException
 
 # import models into sdk package
 from forte_sdk.generated.models.add_contact_method_request import AddContactMethodRequest as AddContactMethodRequest
+from forte_sdk.generated.models.admin_force_set_password_request import AdminForceSetPasswordRequest as AdminForceSetPasswordRequest
 from forte_sdk.generated.models.admin_override_contact_method_request import AdminOverrideContactMethodRequest as AdminOverrideContactMethodRequest
+from forte_sdk.generated.models.admin_password_reset_response import AdminPasswordResetResponse as AdminPasswordResetResponse
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary as ApiKeySummary
 from forte_sdk.generated.models.build_step_log import BuildStepLog as BuildStepLog
+from forte_sdk.generated.models.change_password_request import ChangePasswordRequest as ChangePasswordRequest
 from forte_sdk.generated.models.complete_otp_login_request import CompleteOtpLoginRequest as CompleteOtpLoginRequest
+from forte_sdk.generated.models.complete_password_reset_request import CompletePasswordResetRequest as CompletePasswordResetRequest
 from forte_sdk.generated.models.contact_method import ContactMethod as ContactMethod
 from forte_sdk.generated.models.content_object import ContentObject as ContentObject
 from forte_sdk.generated.models.content_share import ContentShare as ContentShare
@@ -201,6 +212,8 @@ from forte_sdk.generated.models.paginated_response_service_build_request_object 
 from forte_sdk.generated.models.paginated_response_user_action_log_object import PaginatedResponseUserActionLogObject as PaginatedResponseUserActionLogObject
 from forte_sdk.generated.models.paginated_response_user_object import PaginatedResponseUserObject as PaginatedResponseUserObject
 from forte_sdk.generated.models.paginated_response_web_app_build_request_object import PaginatedResponseWebAppBuildRequestObject as PaginatedResponseWebAppBuildRequestObject
+from forte_sdk.generated.models.password_config import PasswordConfig as PasswordConfig
+from forte_sdk.generated.models.password_login_request import PasswordLoginRequest as PasswordLoginRequest
 from forte_sdk.generated.models.payment_address import PaymentAddress as PaymentAddress
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem as PaymentLineItem
 from forte_sdk.generated.models.payment_object import PaymentObject as PaymentObject
@@ -213,6 +226,7 @@ from forte_sdk.generated.models.renew_session_token_response import RenewSession
 from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis as RepositoryAnalysis
 from forte_sdk.generated.models.request_log_object import RequestLogObject as RequestLogObject
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta as RequestLogObjectMeta
+from forte_sdk.generated.models.request_password_reset_request import RequestPasswordResetRequest as RequestPasswordResetRequest
 from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders as RequiredUploadHeaders
 from forte_sdk.generated.models.search_users_request import SearchUsersRequest as SearchUsersRequest
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest as SendUserEmailRequest

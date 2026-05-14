@@ -46,9 +46,12 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY,
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_LOGIN_OTP_SMS_BODY,
   UpdateNotificationTemplatesRequest.JSON_PROPERTY_INVITE_EMAIL_SUBJECT,
-  UpdateNotificationTemplatesRequest.JSON_PROPERTY_INVITE_EMAIL_HTML_BODY
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_INVITE_EMAIL_HTML_BODY,
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_PASSWORD_RESET_EMAIL_SUBJECT,
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_PASSWORD_RESET_EMAIL_HTML_BODY,
+  UpdateNotificationTemplatesRequest.JSON_PROPERTY_PASSWORD_RESET_SMS_BODY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UpdateNotificationTemplatesRequest {
   public static final String JSON_PROPERTY_EMAIL_VERIFICATION_SUBJECT = "emailVerificationSubject";
   @javax.annotation.Nullable
@@ -105,6 +108,18 @@ public class UpdateNotificationTemplatesRequest {
   public static final String JSON_PROPERTY_INVITE_EMAIL_HTML_BODY = "inviteEmailHtmlBody";
   @javax.annotation.Nullable
   private String inviteEmailHtmlBody;
+
+  public static final String JSON_PROPERTY_PASSWORD_RESET_EMAIL_SUBJECT = "passwordResetEmailSubject";
+  @javax.annotation.Nullable
+  private String passwordResetEmailSubject;
+
+  public static final String JSON_PROPERTY_PASSWORD_RESET_EMAIL_HTML_BODY = "passwordResetEmailHtmlBody";
+  @javax.annotation.Nullable
+  private String passwordResetEmailHtmlBody;
+
+  public static final String JSON_PROPERTY_PASSWORD_RESET_SMS_BODY = "passwordResetSmsBody";
+  @javax.annotation.Nullable
+  private String passwordResetSmsBody;
 
   public UpdateNotificationTemplatesRequest() { 
   }
@@ -445,6 +460,78 @@ public class UpdateNotificationTemplatesRequest {
   }
 
 
+  public UpdateNotificationTemplatesRequest passwordResetEmailSubject(@javax.annotation.Nullable String passwordResetEmailSubject) {
+    this.passwordResetEmailSubject = passwordResetEmailSubject;
+    return this;
+  }
+
+  /**
+   * Get passwordResetEmailSubject
+   * @return passwordResetEmailSubject
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_EMAIL_SUBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPasswordResetEmailSubject() {
+    return passwordResetEmailSubject;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_EMAIL_SUBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPasswordResetEmailSubject(@javax.annotation.Nullable String passwordResetEmailSubject) {
+    this.passwordResetEmailSubject = passwordResetEmailSubject;
+  }
+
+
+  public UpdateNotificationTemplatesRequest passwordResetEmailHtmlBody(@javax.annotation.Nullable String passwordResetEmailHtmlBody) {
+    this.passwordResetEmailHtmlBody = passwordResetEmailHtmlBody;
+    return this;
+  }
+
+  /**
+   * Get passwordResetEmailHtmlBody
+   * @return passwordResetEmailHtmlBody
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_EMAIL_HTML_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPasswordResetEmailHtmlBody() {
+    return passwordResetEmailHtmlBody;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_EMAIL_HTML_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPasswordResetEmailHtmlBody(@javax.annotation.Nullable String passwordResetEmailHtmlBody) {
+    this.passwordResetEmailHtmlBody = passwordResetEmailHtmlBody;
+  }
+
+
+  public UpdateNotificationTemplatesRequest passwordResetSmsBody(@javax.annotation.Nullable String passwordResetSmsBody) {
+    this.passwordResetSmsBody = passwordResetSmsBody;
+    return this;
+  }
+
+  /**
+   * Get passwordResetSmsBody
+   * @return passwordResetSmsBody
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_SMS_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPasswordResetSmsBody() {
+    return passwordResetSmsBody;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_SMS_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPasswordResetSmsBody(@javax.annotation.Nullable String passwordResetSmsBody) {
+    this.passwordResetSmsBody = passwordResetSmsBody;
+  }
+
+
   /**
    * Return true if this UpdateNotificationTemplatesRequest object is equal to o.
    */
@@ -470,12 +557,15 @@ public class UpdateNotificationTemplatesRequest {
         Objects.equals(this.loginOtpEmailHtmlBody, updateNotificationTemplatesRequest.loginOtpEmailHtmlBody) &&
         Objects.equals(this.loginOtpSmsBody, updateNotificationTemplatesRequest.loginOtpSmsBody) &&
         Objects.equals(this.inviteEmailSubject, updateNotificationTemplatesRequest.inviteEmailSubject) &&
-        Objects.equals(this.inviteEmailHtmlBody, updateNotificationTemplatesRequest.inviteEmailHtmlBody);
+        Objects.equals(this.inviteEmailHtmlBody, updateNotificationTemplatesRequest.inviteEmailHtmlBody) &&
+        Objects.equals(this.passwordResetEmailSubject, updateNotificationTemplatesRequest.passwordResetEmailSubject) &&
+        Objects.equals(this.passwordResetEmailHtmlBody, updateNotificationTemplatesRequest.passwordResetEmailHtmlBody) &&
+        Objects.equals(this.passwordResetSmsBody, updateNotificationTemplatesRequest.passwordResetSmsBody);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailVerificationSubject, emailVerificationHtmlBody, smsVerificationBody, welcomeOnGoogleEnabled, welcomeOnEmailEnabled, welcomeOnSmsEnabled, welcomeEmailSubject, welcomeEmailHtmlBody, welcomeSmsBody, loginOtpEmailSubject, loginOtpEmailHtmlBody, loginOtpSmsBody, inviteEmailSubject, inviteEmailHtmlBody);
+    return Objects.hash(emailVerificationSubject, emailVerificationHtmlBody, smsVerificationBody, welcomeOnGoogleEnabled, welcomeOnEmailEnabled, welcomeOnSmsEnabled, welcomeEmailSubject, welcomeEmailHtmlBody, welcomeSmsBody, loginOtpEmailSubject, loginOtpEmailHtmlBody, loginOtpSmsBody, inviteEmailSubject, inviteEmailHtmlBody, passwordResetEmailSubject, passwordResetEmailHtmlBody, passwordResetSmsBody);
   }
 
   @Override
@@ -496,6 +586,9 @@ public class UpdateNotificationTemplatesRequest {
     sb.append("    loginOtpSmsBody: ").append(toIndentedString(loginOtpSmsBody)).append("\n");
     sb.append("    inviteEmailSubject: ").append(toIndentedString(inviteEmailSubject)).append("\n");
     sb.append("    inviteEmailHtmlBody: ").append(toIndentedString(inviteEmailHtmlBody)).append("\n");
+    sb.append("    passwordResetEmailSubject: ").append(toIndentedString(passwordResetEmailSubject)).append("\n");
+    sb.append("    passwordResetEmailHtmlBody: ").append(toIndentedString(passwordResetEmailHtmlBody)).append("\n");
+    sb.append("    passwordResetSmsBody: ").append(toIndentedString(passwordResetSmsBody)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -608,6 +701,21 @@ public class UpdateNotificationTemplatesRequest {
     // add `inviteEmailHtmlBody` to the URL query string
     if (getInviteEmailHtmlBody() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sinviteEmailHtmlBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInviteEmailHtmlBody()))));
+    }
+
+    // add `passwordResetEmailSubject` to the URL query string
+    if (getPasswordResetEmailSubject() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spasswordResetEmailSubject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPasswordResetEmailSubject()))));
+    }
+
+    // add `passwordResetEmailHtmlBody` to the URL query string
+    if (getPasswordResetEmailHtmlBody() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spasswordResetEmailHtmlBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPasswordResetEmailHtmlBody()))));
+    }
+
+    // add `passwordResetSmsBody` to the URL query string
+    if (getPasswordResetSmsBody() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spasswordResetSmsBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPasswordResetSmsBody()))));
     }
 
     return joiner.toString();

@@ -19,7 +19,9 @@ import com.forteplatforms.sdk.generated.invoker.Configuration;
 import com.forteplatforms.sdk.generated.invoker.Pair;
 
 import com.forteplatforms.sdk.generated.model.AddContactMethodRequest;
+import com.forteplatforms.sdk.generated.model.ChangePasswordRequest;
 import com.forteplatforms.sdk.generated.model.CompleteOtpLoginRequest;
+import com.forteplatforms.sdk.generated.model.CompletePasswordResetRequest;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.ContentObject;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkRequest;
@@ -37,10 +39,12 @@ import com.forteplatforms.sdk.generated.model.ListUserInvitesResponse;
 import com.forteplatforms.sdk.generated.model.LoginUserResponse;
 import java.time.OffsetDateTime;
 import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
+import com.forteplatforms.sdk.generated.model.PasswordLoginRequest;
 import com.forteplatforms.sdk.generated.model.PendingUserInviteObject;
 import com.forteplatforms.sdk.generated.model.RegisterUserRequest;
 import com.forteplatforms.sdk.generated.model.RegisterUserResponse;
 import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
+import com.forteplatforms.sdk.generated.model.RequestPasswordResetRequest;
 import com.forteplatforms.sdk.generated.model.UpdateContentSharesRequest;
 import com.forteplatforms.sdk.generated.model.UserObject;
 
@@ -76,7 +80,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UsersServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -191,6 +195,127 @@ public class UsersServerApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param changePasswordRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void changeMyPassword(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest) throws ApiException {
+    changeMyPassword(projectId, changePasswordRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param changePasswordRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void changeMyPassword(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, Map<String, String> headers) throws ApiException {
+    changeMyPasswordWithHttpInfo(projectId, changePasswordRequest, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param changePasswordRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> changeMyPasswordWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest) throws ApiException {
+    return changeMyPasswordWithHttpInfo(projectId, changePasswordRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param changePasswordRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> changeMyPasswordWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = changeMyPasswordRequestBuilder(projectId, changePasswordRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("changeMyPassword", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder changeMyPasswordRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling changeMyPassword");
+    }
+    // verify the required parameter 'changePasswordRequest' is set
+    if (changePasswordRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'changePasswordRequest' when calling changeMyPassword");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/password"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(changePasswordRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PUT", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -320,6 +445,141 @@ public class UsersServerApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(completeOtpLoginRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param completePasswordResetRequest  (required)
+   * @return LoginUserResponse
+   * @throws ApiException if fails to make API call
+   */
+  public LoginUserResponse completePasswordReset(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CompletePasswordResetRequest completePasswordResetRequest) throws ApiException {
+    return completePasswordReset(projectId, completePasswordResetRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param completePasswordResetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return LoginUserResponse
+   * @throws ApiException if fails to make API call
+   */
+  public LoginUserResponse completePasswordReset(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CompletePasswordResetRequest completePasswordResetRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<LoginUserResponse> localVarResponse = completePasswordResetWithHttpInfo(projectId, completePasswordResetRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param completePasswordResetRequest  (required)
+   * @return ApiResponse&lt;LoginUserResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LoginUserResponse> completePasswordResetWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CompletePasswordResetRequest completePasswordResetRequest) throws ApiException {
+    return completePasswordResetWithHttpInfo(projectId, completePasswordResetRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param completePasswordResetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;LoginUserResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LoginUserResponse> completePasswordResetWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CompletePasswordResetRequest completePasswordResetRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = completePasswordResetRequestBuilder(projectId, completePasswordResetRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("completePasswordReset", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<LoginUserResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        LoginUserResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<LoginUserResponse>() {});
+        
+
+        return new ApiResponse<LoginUserResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder completePasswordResetRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CompletePasswordResetRequest completePasswordResetRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling completePasswordReset");
+    }
+    // verify the required parameter 'completePasswordResetRequest' is set
+    if (completePasswordResetRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'completePasswordResetRequest' when calling completePasswordReset");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/password-reset/complete"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(completePasswordResetRequest);
       Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
       localVarRequestBuilder.header("Content-Encoding", "gzip");
       localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
@@ -1537,6 +1797,141 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param passwordLoginRequest  (required)
+   * @return LoginUserResponse
+   * @throws ApiException if fails to make API call
+   */
+  public LoginUserResponse passwordLogin(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PasswordLoginRequest passwordLoginRequest) throws ApiException {
+    return passwordLogin(projectId, passwordLoginRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param passwordLoginRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return LoginUserResponse
+   * @throws ApiException if fails to make API call
+   */
+  public LoginUserResponse passwordLogin(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PasswordLoginRequest passwordLoginRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<LoginUserResponse> localVarResponse = passwordLoginWithHttpInfo(projectId, passwordLoginRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param passwordLoginRequest  (required)
+   * @return ApiResponse&lt;LoginUserResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LoginUserResponse> passwordLoginWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PasswordLoginRequest passwordLoginRequest) throws ApiException {
+    return passwordLoginWithHttpInfo(projectId, passwordLoginRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param passwordLoginRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;LoginUserResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LoginUserResponse> passwordLoginWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PasswordLoginRequest passwordLoginRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = passwordLoginRequestBuilder(projectId, passwordLoginRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("passwordLogin", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<LoginUserResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        LoginUserResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<LoginUserResponse>() {});
+        
+
+        return new ApiResponse<LoginUserResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder passwordLoginRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PasswordLoginRequest passwordLoginRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling passwordLogin");
+    }
+    // verify the required parameter 'passwordLoginRequest' is set
+    if (passwordLoginRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'passwordLoginRequest' when calling passwordLogin");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/password-login"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(passwordLoginRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param registerUserRequest  (required)
    * @return RegisterUserResponse
    * @throws ApiException if fails to make API call
@@ -1806,6 +2201,127 @@ public class UsersServerApi {
     localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param requestPasswordResetRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void requestPasswordReset(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RequestPasswordResetRequest requestPasswordResetRequest) throws ApiException {
+    requestPasswordReset(projectId, requestPasswordResetRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param requestPasswordResetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void requestPasswordReset(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RequestPasswordResetRequest requestPasswordResetRequest, Map<String, String> headers) throws ApiException {
+    requestPasswordResetWithHttpInfo(projectId, requestPasswordResetRequest, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param requestPasswordResetRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> requestPasswordResetWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RequestPasswordResetRequest requestPasswordResetRequest) throws ApiException {
+    return requestPasswordResetWithHttpInfo(projectId, requestPasswordResetRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param requestPasswordResetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> requestPasswordResetWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RequestPasswordResetRequest requestPasswordResetRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = requestPasswordResetRequestBuilder(projectId, requestPasswordResetRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("requestPasswordReset", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder requestPasswordResetRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull RequestPasswordResetRequest requestPasswordResetRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling requestPasswordReset");
+    }
+    // verify the required parameter 'requestPasswordResetRequest' is set
+    if (requestPasswordResetRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'requestPasswordResetRequest' when calling requestPasswordReset");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/password-reset/request"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(requestPasswordResetRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("POST", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -43,7 +43,10 @@ class UserObject(BaseModel):
     welcome_message_sent: Optional[StrictBool] = Field(default=None, alias="welcomeMessageSent")
     invited_by_user_id: Optional[StrictStr] = Field(default=None, alias="invitedByUserId")
     state: StrictStr
-    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "invitedByUserId", "state"]
+    password_set_at: Optional[datetime] = Field(default=None, alias="passwordSetAt")
+    password_reset_last_requested_at: Optional[datetime] = Field(default=None, alias="passwordResetLastRequestedAt")
+    has_password: Optional[StrictBool] = Field(default=None, alias="hasPassword")
+    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "invitedByUserId", "state", "passwordSetAt", "passwordResetLastRequestedAt", "hasPassword"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -122,7 +125,10 @@ class UserObject(BaseModel):
             "contactMethods": [ContactMethod.from_dict(_item) for _item in obj["contactMethods"]] if obj.get("contactMethods") is not None else None,
             "welcomeMessageSent": obj.get("welcomeMessageSent"),
             "invitedByUserId": obj.get("invitedByUserId"),
-            "state": obj.get("state")
+            "state": obj.get("state"),
+            "passwordSetAt": obj.get("passwordSetAt"),
+            "passwordResetLastRequestedAt": obj.get("passwordResetLastRequestedAt"),
+            "hasPassword": obj.get("hasPassword")
         })
         return _obj
 

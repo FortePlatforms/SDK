@@ -43,7 +43,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID,
   UserActionLogObject.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -99,7 +99,23 @@ public class UserActionLogObject {
     
     SMS_SENT(String.valueOf("SMS_SENT")),
     
-    IMPERSONATION_TOKEN_ISSUED(String.valueOf("IMPERSONATION_TOKEN_ISSUED"));
+    IMPERSONATION_TOKEN_ISSUED(String.valueOf("IMPERSONATION_TOKEN_ISSUED")),
+    
+    PASSWORD_SET(String.valueOf("PASSWORD_SET")),
+    
+    PASSWORD_CHANGED(String.valueOf("PASSWORD_CHANGED")),
+    
+    PASSWORD_RESET_REQUESTED(String.valueOf("PASSWORD_RESET_REQUESTED")),
+    
+    PASSWORD_RESET_COMPLETED(String.valueOf("PASSWORD_RESET_COMPLETED")),
+    
+    PASSWORD_LOGIN_SUCCESS(String.valueOf("PASSWORD_LOGIN_SUCCESS")),
+    
+    PASSWORD_LOGIN_FAILED(String.valueOf("PASSWORD_LOGIN_FAILED")),
+    
+    PASSWORD_ADMIN_RESET(String.valueOf("PASSWORD_ADMIN_RESET")),
+    
+    PASSWORD_ADMIN_FORCE_SET(String.valueOf("PASSWORD_ADMIN_FORCE_SET"));
 
     private String value;
 

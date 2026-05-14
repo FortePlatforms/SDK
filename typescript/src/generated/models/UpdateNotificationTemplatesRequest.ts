@@ -103,6 +103,24 @@ export interface UpdateNotificationTemplatesRequest {
      * @memberof UpdateNotificationTemplatesRequest
      */
     inviteEmailHtmlBody?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateNotificationTemplatesRequest
+     */
+    passwordResetEmailSubject?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateNotificationTemplatesRequest
+     */
+    passwordResetEmailHtmlBody?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateNotificationTemplatesRequest
+     */
+    passwordResetSmsBody?: string;
 }
 
 /**
@@ -136,6 +154,9 @@ export function UpdateNotificationTemplatesRequestFromJSONTyped(json: any, ignor
         'loginOtpSmsBody': json['loginOtpSmsBody'] == null ? undefined : json['loginOtpSmsBody'],
         'inviteEmailSubject': json['inviteEmailSubject'] == null ? undefined : json['inviteEmailSubject'],
         'inviteEmailHtmlBody': json['inviteEmailHtmlBody'] == null ? undefined : json['inviteEmailHtmlBody'],
+        'passwordResetEmailSubject': json['passwordResetEmailSubject'] == null ? undefined : json['passwordResetEmailSubject'],
+        'passwordResetEmailHtmlBody': json['passwordResetEmailHtmlBody'] == null ? undefined : json['passwordResetEmailHtmlBody'],
+        'passwordResetSmsBody': json['passwordResetSmsBody'] == null ? undefined : json['passwordResetSmsBody'],
     };
 }
 
@@ -164,6 +185,9 @@ export function UpdateNotificationTemplatesRequestToJSONTyped(value?: UpdateNoti
         'loginOtpSmsBody': value['loginOtpSmsBody'],
         'inviteEmailSubject': value['inviteEmailSubject'],
         'inviteEmailHtmlBody': value['inviteEmailHtmlBody'],
+        'passwordResetEmailSubject': value['passwordResetEmailSubject'],
+        'passwordResetEmailHtmlBody': value['passwordResetEmailHtmlBody'],
+        'passwordResetSmsBody': value['passwordResetSmsBody'],
     };
 }
 

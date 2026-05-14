@@ -19,10 +19,20 @@ import {
     AddContactMethodRequestToJSON,
 } from '../models/AddContactMethodRequest';
 import {
+    type ChangePasswordRequest,
+    ChangePasswordRequestFromJSON,
+    ChangePasswordRequestToJSON,
+} from '../models/ChangePasswordRequest';
+import {
     type CompleteOtpLoginRequest,
     CompleteOtpLoginRequestFromJSON,
     CompleteOtpLoginRequestToJSON,
 } from '../models/CompleteOtpLoginRequest';
+import {
+    type CompletePasswordResetRequest,
+    CompletePasswordResetRequestFromJSON,
+    CompletePasswordResetRequestToJSON,
+} from '../models/CompletePasswordResetRequest';
 import {
     type ContactMethod,
     ContactMethodFromJSON,
@@ -104,6 +114,11 @@ import {
     PaginatedResponsePaymentObjectToJSON,
 } from '../models/PaginatedResponsePaymentObject';
 import {
+    type PasswordLoginRequest,
+    PasswordLoginRequestFromJSON,
+    PasswordLoginRequestToJSON,
+} from '../models/PasswordLoginRequest';
+import {
     type PendingUserInviteObject,
     PendingUserInviteObjectFromJSON,
     PendingUserInviteObjectToJSON,
@@ -124,6 +139,11 @@ import {
     RenewSessionTokenResponseToJSON,
 } from '../models/RenewSessionTokenResponse';
 import {
+    type RequestPasswordResetRequest,
+    RequestPasswordResetRequestFromJSON,
+    RequestPasswordResetRequestToJSON,
+} from '../models/RequestPasswordResetRequest';
+import {
     type UpdateContentSharesRequest,
     UpdateContentSharesRequestFromJSON,
     UpdateContentSharesRequestToJSON,
@@ -134,10 +154,20 @@ import {
     UserObjectToJSON,
 } from '../models/UserObject';
 
+export interface ChangeMyPasswordRequest {
+    projectId: string;
+    changePasswordRequest: ChangePasswordRequest;
+}
+
 export interface CompleteOtpLoginOperationRequest {
     projectId: string;
     pendingLoginId: string;
     completeOtpLoginRequest: CompleteOtpLoginRequest;
+}
+
+export interface CompletePasswordResetOperationRequest {
+    projectId: string;
+    completePasswordResetRequest: CompletePasswordResetRequest;
 }
 
 export interface CreateContactMethodRequest {
@@ -190,6 +220,11 @@ export interface LogoutRequest {
     forteUserSessionToken?: string;
 }
 
+export interface PasswordLoginOperationRequest {
+    projectId: string;
+    passwordLoginRequest: PasswordLoginRequest;
+}
+
 export interface RegisterUserOperationRequest {
     projectId: string;
     registerUserRequest: RegisterUserRequest;
@@ -200,6 +235,11 @@ export interface RenewSessionTokenRequest {
     authorization?: string;
     forteUserSessionToken?: string;
     renewalDurationSeconds?: number;
+}
+
+export interface RequestPasswordResetOperationRequest {
+    projectId: string;
+    requestPasswordResetRequest: RequestPasswordResetRequest;
 }
 
 export interface ResendContactMethodVerificationCodeRequest {
@@ -276,6 +316,58 @@ export interface VerifyContactMethodRequest {
 export class UsersServerApi extends runtime.BaseAPI {
 
     /**
+     * Creates request options for changeMyPassword without sending the request
+     */
+    async changeMyPasswordRequestOpts(requestParameters: ChangeMyPasswordRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling changeMyPassword().'
+            );
+        }
+
+        if (requestParameters['changePasswordRequest'] == null) {
+            throw new runtime.RequiredError(
+                'changePasswordRequest',
+                'Required parameter "changePasswordRequest" was null or undefined when calling changeMyPassword().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/password`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ChangePasswordRequestToJSON(requestParameters['changePasswordRequest']),
+        };
+    }
+
+    /**
+     */
+    async changeMyPasswordRaw(requestParameters: ChangeMyPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.changeMyPasswordRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async changeMyPassword(requestParameters: ChangeMyPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.changeMyPasswordRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for completeOtpLogin without sending the request
      */
     async completeOtpLoginRequestOpts(requestParameters: CompleteOtpLoginOperationRequest): Promise<runtime.RequestOpts> {
@@ -333,6 +425,59 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async completeOtpLogin(requestParameters: CompleteOtpLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginUserResponse> {
         const response = await this.completeOtpLoginRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for completePasswordReset without sending the request
+     */
+    async completePasswordResetRequestOpts(requestParameters: CompletePasswordResetOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling completePasswordReset().'
+            );
+        }
+
+        if (requestParameters['completePasswordResetRequest'] == null) {
+            throw new runtime.RequiredError(
+                'completePasswordResetRequest',
+                'Required parameter "completePasswordResetRequest" was null or undefined when calling completePasswordReset().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/password-reset/complete`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CompletePasswordResetRequestToJSON(requestParameters['completePasswordResetRequest']),
+        };
+    }
+
+    /**
+     */
+    async completePasswordResetRaw(requestParameters: CompletePasswordResetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginUserResponse>> {
+        const requestOptions = await this.completePasswordResetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LoginUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async completePasswordReset(requestParameters: CompletePasswordResetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginUserResponse> {
+        const response = await this.completePasswordResetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -825,6 +970,59 @@ export class UsersServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for passwordLogin without sending the request
+     */
+    async passwordLoginRequestOpts(requestParameters: PasswordLoginOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling passwordLogin().'
+            );
+        }
+
+        if (requestParameters['passwordLoginRequest'] == null) {
+            throw new runtime.RequiredError(
+                'passwordLoginRequest',
+                'Required parameter "passwordLoginRequest" was null or undefined when calling passwordLogin().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/password-login`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PasswordLoginRequestToJSON(requestParameters['passwordLoginRequest']),
+        };
+    }
+
+    /**
+     */
+    async passwordLoginRaw(requestParameters: PasswordLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginUserResponse>> {
+        const requestOptions = await this.passwordLoginRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LoginUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async passwordLogin(requestParameters: PasswordLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginUserResponse> {
+        const response = await this.passwordLoginRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for registerUser without sending the request
      */
     async registerUserRequestOpts(requestParameters: RegisterUserOperationRequest): Promise<runtime.RequestOpts> {
@@ -926,6 +1124,58 @@ export class UsersServerApi extends runtime.BaseAPI {
     async renewSessionToken(requestParameters: RenewSessionTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RenewSessionTokenResponse> {
         const response = await this.renewSessionTokenRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Creates request options for requestPasswordReset without sending the request
+     */
+    async requestPasswordResetRequestOpts(requestParameters: RequestPasswordResetOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling requestPasswordReset().'
+            );
+        }
+
+        if (requestParameters['requestPasswordResetRequest'] == null) {
+            throw new runtime.RequiredError(
+                'requestPasswordResetRequest',
+                'Required parameter "requestPasswordResetRequest" was null or undefined when calling requestPasswordReset().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/password-reset/request`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RequestPasswordResetRequestToJSON(requestParameters['requestPasswordResetRequest']),
+        };
+    }
+
+    /**
+     */
+    async requestPasswordResetRaw(requestParameters: RequestPasswordResetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.requestPasswordResetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async requestPasswordReset(requestParameters: RequestPasswordResetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.requestPasswordResetRaw(requestParameters, initOverrides);
     }
 
     /**

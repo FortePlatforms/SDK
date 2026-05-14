@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesConfig;
+import com.forteplatforms.sdk.generated.model.PasswordConfig;
 import com.forteplatforms.sdk.generated.model.PaymentTriggerConfig;
 import com.forteplatforms.sdk.generated.model.ServiceObject;
 import com.forteplatforms.sdk.generated.model.WebAppObject;
@@ -54,12 +55,14 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_PHONE_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_EMAIL_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_GOOGLE_LOGIN_ENABLED,
+  ProjectObject.JSON_PROPERTY_PASSWORD_LOGIN_ENABLED,
+  ProjectObject.JSON_PROPERTY_PASSWORD_CONFIG,
   ProjectObject.JSON_PROPERTY_SANDBOX_MODE,
   ProjectObject.JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG,
   ProjectObject.JSON_PROPERTY_PAYMENT_TRIGGERS,
   ProjectObject.JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectObject {
   public static final String JSON_PROPERTY_PROJECT_ID = "projectId";
   @javax.annotation.Nullable
@@ -116,6 +119,14 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_GOOGLE_LOGIN_ENABLED = "googleLoginEnabled";
   @javax.annotation.Nullable
   private Boolean googleLoginEnabled;
+
+  public static final String JSON_PROPERTY_PASSWORD_LOGIN_ENABLED = "passwordLoginEnabled";
+  @javax.annotation.Nullable
+  private Boolean passwordLoginEnabled;
+
+  public static final String JSON_PROPERTY_PASSWORD_CONFIG = "passwordConfig";
+  @javax.annotation.Nullable
+  private PasswordConfig passwordConfig;
 
   public static final String JSON_PROPERTY_SANDBOX_MODE = "sandboxMode";
   @javax.annotation.Nullable
@@ -488,6 +499,54 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject passwordLoginEnabled(@javax.annotation.Nullable Boolean passwordLoginEnabled) {
+    this.passwordLoginEnabled = passwordLoginEnabled;
+    return this;
+  }
+
+  /**
+   * Get passwordLoginEnabled
+   * @return passwordLoginEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPasswordLoginEnabled() {
+    return passwordLoginEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_LOGIN_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPasswordLoginEnabled(@javax.annotation.Nullable Boolean passwordLoginEnabled) {
+    this.passwordLoginEnabled = passwordLoginEnabled;
+  }
+
+
+  public ProjectObject passwordConfig(@javax.annotation.Nullable PasswordConfig passwordConfig) {
+    this.passwordConfig = passwordConfig;
+    return this;
+  }
+
+  /**
+   * Get passwordConfig
+   * @return passwordConfig
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_CONFIG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public PasswordConfig getPasswordConfig() {
+    return passwordConfig;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD_CONFIG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPasswordConfig(@javax.annotation.Nullable PasswordConfig passwordConfig) {
+    this.passwordConfig = passwordConfig;
+  }
+
+
   public ProjectObject sandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
     this.sandboxMode = sandboxMode;
     return this;
@@ -618,6 +677,8 @@ public class ProjectObject {
         Objects.equals(this.phoneLoginEnabled, projectObject.phoneLoginEnabled) &&
         Objects.equals(this.emailLoginEnabled, projectObject.emailLoginEnabled) &&
         Objects.equals(this.googleLoginEnabled, projectObject.googleLoginEnabled) &&
+        Objects.equals(this.passwordLoginEnabled, projectObject.passwordLoginEnabled) &&
+        Objects.equals(this.passwordConfig, projectObject.passwordConfig) &&
         Objects.equals(this.sandboxMode, projectObject.sandboxMode) &&
         Objects.equals(this.notificationTemplatesConfig, projectObject.notificationTemplatesConfig) &&
         Objects.equals(this.paymentTriggers, projectObject.paymentTriggers) &&
@@ -626,7 +687,7 @@ public class ProjectObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, sandboxMode, notificationTemplatesConfig, paymentTriggers, hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, sandboxMode, notificationTemplatesConfig, paymentTriggers, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -647,6 +708,8 @@ public class ProjectObject {
     sb.append("    phoneLoginEnabled: ").append(toIndentedString(phoneLoginEnabled)).append("\n");
     sb.append("    emailLoginEnabled: ").append(toIndentedString(emailLoginEnabled)).append("\n");
     sb.append("    googleLoginEnabled: ").append(toIndentedString(googleLoginEnabled)).append("\n");
+    sb.append("    passwordLoginEnabled: ").append(toIndentedString(passwordLoginEnabled)).append("\n");
+    sb.append("    passwordConfig: ").append(toIndentedString(passwordConfig)).append("\n");
     sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
     sb.append("    notificationTemplatesConfig: ").append(toIndentedString(notificationTemplatesConfig)).append("\n");
     sb.append("    paymentTriggers: ").append(toIndentedString(paymentTriggers)).append("\n");
@@ -773,6 +836,16 @@ public class ProjectObject {
     // add `googleLoginEnabled` to the URL query string
     if (getGoogleLoginEnabled() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgoogleLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoogleLoginEnabled()))));
+    }
+
+    // add `passwordLoginEnabled` to the URL query string
+    if (getPasswordLoginEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spasswordLoginEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPasswordLoginEnabled()))));
+    }
+
+    // add `passwordConfig` to the URL query string
+    if (getPasswordConfig() != null) {
+      joiner.add(getPasswordConfig().toUrlQueryString(prefix + "passwordConfig" + suffix));
     }
 
     // add `sandboxMode` to the URL query string

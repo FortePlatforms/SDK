@@ -1,10 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './AddContactMethodRequest';
+export * from './AdminForceSetPasswordRequest';
 export * from './AdminOverrideContactMethodRequest';
+export * from './AdminPasswordResetResponse';
 export * from './ApiKeySummary';
 export * from './BuildStepLog';
+export * from './ChangePasswordRequest';
 export * from './CompleteOtpLoginRequest';
+export * from './CompletePasswordResetRequest';
 export * from './ContactMethod';
 export * from './ContentObject';
 export * from './ContentShare';
@@ -57,6 +61,8 @@ export * from './PaginatedResponseServiceBuildRequestObject';
 export * from './PaginatedResponseUserActionLogObject';
 export * from './PaginatedResponseUserObject';
 export * from './PaginatedResponseWebAppBuildRequestObject';
+export * from './PasswordConfig';
+export * from './PasswordLoginRequest';
 export * from './PaymentAddress';
 export * from './PaymentLineItem';
 export * from './PaymentObject';
@@ -69,6 +75,7 @@ export * from './RenewSessionTokenResponse';
 export * from './RepositoryAnalysis';
 export * from './RequestLogObject';
 export * from './RequestLogObjectMeta';
+export * from './RequestPasswordResetRequest';
 export * from './RequiredUploadHeaders';
 export * from './SearchUsersRequest';
 export * from './SendUserEmailRequest';

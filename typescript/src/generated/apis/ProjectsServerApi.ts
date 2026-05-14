@@ -19,10 +19,20 @@ import {
     AddContactMethodRequestToJSON,
 } from '../models/AddContactMethodRequest';
 import {
+    type AdminForceSetPasswordRequest,
+    AdminForceSetPasswordRequestFromJSON,
+    AdminForceSetPasswordRequestToJSON,
+} from '../models/AdminForceSetPasswordRequest';
+import {
     type AdminOverrideContactMethodRequest,
     AdminOverrideContactMethodRequestFromJSON,
     AdminOverrideContactMethodRequestToJSON,
 } from '../models/AdminOverrideContactMethodRequest';
+import {
+    type AdminPasswordResetResponse,
+    AdminPasswordResetResponseFromJSON,
+    AdminPasswordResetResponseToJSON,
+} from '../models/AdminPasswordResetResponse';
 import {
     type ApiKeySummary,
     ApiKeySummaryFromJSON,
@@ -300,6 +310,12 @@ export interface AdminAddUserContactMethodRequest {
     addContactMethodRequest: AddContactMethodRequest;
 }
 
+export interface AdminForceSetUserPasswordRequest {
+    projectId: string;
+    userId: string;
+    adminForceSetPasswordRequest: AdminForceSetPasswordRequest;
+}
+
 export interface AdminOverrideUserContactMethodRequest {
     projectId: string;
     userId: string;
@@ -311,6 +327,11 @@ export interface AdminRemoveUserContactMethodRequest {
     projectId: string;
     userId: string;
     contactMethodId: string;
+}
+
+export interface AdminResetUserPasswordRequest {
+    projectId: string;
+    userId: string;
 }
 
 export interface AdminSendUserContactMethodVerificationCodeRequest {
@@ -775,6 +796,67 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for adminForceSetUserPassword without sending the request
+     */
+    async adminForceSetUserPasswordRequestOpts(requestParameters: AdminForceSetUserPasswordRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling adminForceSetUserPassword().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling adminForceSetUserPassword().'
+            );
+        }
+
+        if (requestParameters['adminForceSetPasswordRequest'] == null) {
+            throw new runtime.RequiredError(
+                'adminForceSetPasswordRequest',
+                'Required parameter "adminForceSetPasswordRequest" was null or undefined when calling adminForceSetUserPassword().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/password`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AdminForceSetPasswordRequestToJSON(requestParameters['adminForceSetPasswordRequest']),
+        };
+    }
+
+    /**
+     */
+    async adminForceSetUserPasswordRaw(requestParameters: AdminForceSetUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+        const requestOptions = await this.adminForceSetUserPasswordRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async adminForceSetUserPassword(requestParameters: AdminForceSetUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserObject> {
+        const response = await this.adminForceSetUserPasswordRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for adminOverrideUserContactMethod without sending the request
      */
     async adminOverrideUserContactMethodRequestOpts(requestParameters: AdminOverrideUserContactMethodRequest): Promise<runtime.RequestOpts> {
@@ -899,6 +981,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async adminRemoveUserContactMethod(requestParameters: AdminRemoveUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.adminRemoveUserContactMethodRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for adminResetUserPassword without sending the request
+     */
+    async adminResetUserPasswordRequestOpts(requestParameters: AdminResetUserPasswordRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling adminResetUserPassword().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling adminResetUserPassword().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/password-reset`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async adminResetUserPasswordRaw(requestParameters: AdminResetUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdminPasswordResetResponse>> {
+        const requestOptions = await this.adminResetUserPasswordRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AdminPasswordResetResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async adminResetUserPassword(requestParameters: AdminResetUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdminPasswordResetResponse> {
+        const response = await this.adminResetUserPasswordRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -4676,7 +4809,15 @@ export const ListUserActionLogsActionTypeType = {
     USER_INVITE_ACCEPTED: 'USER_INVITE_ACCEPTED',
     EMAIL_SENT: 'EMAIL_SENT',
     SMS_SENT: 'SMS_SENT',
-    IMPERSONATION_TOKEN_ISSUED: 'IMPERSONATION_TOKEN_ISSUED'
+    IMPERSONATION_TOKEN_ISSUED: 'IMPERSONATION_TOKEN_ISSUED',
+    PASSWORD_SET: 'PASSWORD_SET',
+    PASSWORD_CHANGED: 'PASSWORD_CHANGED',
+    PASSWORD_RESET_REQUESTED: 'PASSWORD_RESET_REQUESTED',
+    PASSWORD_RESET_COMPLETED: 'PASSWORD_RESET_COMPLETED',
+    PASSWORD_LOGIN_SUCCESS: 'PASSWORD_LOGIN_SUCCESS',
+    PASSWORD_LOGIN_FAILED: 'PASSWORD_LOGIN_FAILED',
+    PASSWORD_ADMIN_RESET: 'PASSWORD_ADMIN_RESET',
+    PASSWORD_ADMIN_FORCE_SET: 'PASSWORD_ADMIN_FORCE_SET'
 } as const;
 export type ListUserActionLogsActionTypeType = typeof ListUserActionLogsActionTypeType[keyof typeof ListUserActionLogsActionTypeType];
 /**

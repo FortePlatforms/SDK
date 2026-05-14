@@ -41,7 +41,10 @@ class UpdateNotificationTemplatesRequest(BaseModel):
     login_otp_sms_body: Optional[StrictStr] = Field(default=None, alias="loginOtpSmsBody")
     invite_email_subject: Optional[StrictStr] = Field(default=None, alias="inviteEmailSubject")
     invite_email_html_body: Optional[StrictStr] = Field(default=None, alias="inviteEmailHtmlBody")
-    __properties: ClassVar[List[str]] = ["emailVerificationSubject", "emailVerificationHtmlBody", "smsVerificationBody", "welcomeOnGoogleEnabled", "welcomeOnEmailEnabled", "welcomeOnSmsEnabled", "welcomeEmailSubject", "welcomeEmailHtmlBody", "welcomeSmsBody", "loginOtpEmailSubject", "loginOtpEmailHtmlBody", "loginOtpSmsBody", "inviteEmailSubject", "inviteEmailHtmlBody"]
+    password_reset_email_subject: Optional[StrictStr] = Field(default=None, alias="passwordResetEmailSubject")
+    password_reset_email_html_body: Optional[StrictStr] = Field(default=None, alias="passwordResetEmailHtmlBody")
+    password_reset_sms_body: Optional[StrictStr] = Field(default=None, alias="passwordResetSmsBody")
+    __properties: ClassVar[List[str]] = ["emailVerificationSubject", "emailVerificationHtmlBody", "smsVerificationBody", "welcomeOnGoogleEnabled", "welcomeOnEmailEnabled", "welcomeOnSmsEnabled", "welcomeEmailSubject", "welcomeEmailHtmlBody", "welcomeSmsBody", "loginOtpEmailSubject", "loginOtpEmailHtmlBody", "loginOtpSmsBody", "inviteEmailSubject", "inviteEmailHtmlBody", "passwordResetEmailSubject", "passwordResetEmailHtmlBody", "passwordResetSmsBody"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -107,7 +110,10 @@ class UpdateNotificationTemplatesRequest(BaseModel):
             "loginOtpEmailHtmlBody": obj.get("loginOtpEmailHtmlBody"),
             "loginOtpSmsBody": obj.get("loginOtpSmsBody"),
             "inviteEmailSubject": obj.get("inviteEmailSubject"),
-            "inviteEmailHtmlBody": obj.get("inviteEmailHtmlBody")
+            "inviteEmailHtmlBody": obj.get("inviteEmailHtmlBody"),
+            "passwordResetEmailSubject": obj.get("passwordResetEmailSubject"),
+            "passwordResetEmailHtmlBody": obj.get("passwordResetEmailHtmlBody"),
+            "passwordResetSmsBody": obj.get("passwordResetSmsBody")
         })
         return _obj
 

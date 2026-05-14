@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PasswordConfig } from './PasswordConfig';
+import {
+    PasswordConfigFromJSON,
+    PasswordConfigFromJSONTyped,
+    PasswordConfigToJSON,
+    PasswordConfigToJSONTyped,
+} from './PasswordConfig';
+
 /**
  * 
  * @export
@@ -49,6 +57,18 @@ export interface UpdateProjectRequest {
      * @memberof UpdateProjectRequest
      */
     googleLoginEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateProjectRequest
+     */
+    passwordLoginEnabled?: boolean;
+    /**
+     * 
+     * @type {PasswordConfig}
+     * @memberof UpdateProjectRequest
+     */
+    passwordConfig?: PasswordConfig;
 }
 
 /**
@@ -73,6 +93,8 @@ export function UpdateProjectRequestFromJSONTyped(json: any, ignoreDiscriminator
         'phoneLoginEnabled': json['phoneLoginEnabled'] == null ? undefined : json['phoneLoginEnabled'],
         'emailLoginEnabled': json['emailLoginEnabled'] == null ? undefined : json['emailLoginEnabled'],
         'googleLoginEnabled': json['googleLoginEnabled'] == null ? undefined : json['googleLoginEnabled'],
+        'passwordLoginEnabled': json['passwordLoginEnabled'] == null ? undefined : json['passwordLoginEnabled'],
+        'passwordConfig': json['passwordConfig'] == null ? undefined : PasswordConfigFromJSON(json['passwordConfig']),
     };
 }
 
@@ -92,6 +114,8 @@ export function UpdateProjectRequestToJSONTyped(value?: UpdateProjectRequest | n
         'phoneLoginEnabled': value['phoneLoginEnabled'],
         'emailLoginEnabled': value['emailLoginEnabled'],
         'googleLoginEnabled': value['googleLoginEnabled'],
+        'passwordLoginEnabled': value['passwordLoginEnabled'],
+        'passwordConfig': PasswordConfigToJSON(value['passwordConfig']),
     };
 }
 

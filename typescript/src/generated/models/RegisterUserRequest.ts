@@ -49,6 +49,12 @@ export interface RegisterUserRequest {
      * @memberof RegisterUserRequest
      */
     recaptchaToken?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegisterUserRequest
+     */
+    password?: string;
 }
 
 /**
@@ -73,6 +79,7 @@ export function RegisterUserRequestFromJSONTyped(json: any, ignoreDiscriminator:
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'customMetadataAttributes': json['customMetadataAttributes'] == null ? undefined : json['customMetadataAttributes'],
         'recaptchaToken': json['recaptchaToken'] == null ? undefined : json['recaptchaToken'],
+        'password': json['password'] == null ? undefined : json['password'],
     };
 }
 
@@ -92,6 +99,7 @@ export function RegisterUserRequestToJSONTyped(value?: RegisterUserRequest | nul
         'phoneNumber': value['phoneNumber'],
         'customMetadataAttributes': value['customMetadataAttributes'],
         'recaptchaToken': value['recaptchaToken'],
+        'password': value['password'],
     };
 }
 
