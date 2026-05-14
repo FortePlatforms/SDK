@@ -47,6 +47,7 @@ class WebAppObject(BaseModel):
     workspace_root: Optional[StrictStr] = Field(default=None, alias="workspaceRoot")
     app_package_name: Optional[StrictStr] = Field(default=None, alias="appPackageName")
     detection_version: Optional[StrictInt] = Field(default=None, alias="detectionVersion")
+    container_image_uri: Optional[StrictStr] = Field(default=None, alias="containerImageUri")
     detection_response: Optional[WebAppDetectionResponse] = Field(default=None, alias="detectionResponse")
     hosting_provider_app_id: Optional[StrictStr] = Field(default=None, alias="hostingProviderAppId")
     hosting_provider_branch_name: Optional[StrictStr] = Field(default=None, alias="hostingProviderBranchName")
@@ -61,7 +62,7 @@ class WebAppObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "detectionVersion", "detectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "detectionVersion", "containerImageUri", "detectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -167,6 +168,7 @@ class WebAppObject(BaseModel):
             "workspaceRoot": obj.get("workspaceRoot"),
             "appPackageName": obj.get("appPackageName"),
             "detectionVersion": obj.get("detectionVersion"),
+            "containerImageUri": obj.get("containerImageUri"),
             "detectionResponse": WebAppDetectionResponse.from_dict(obj["detectionResponse"]) if obj.get("detectionResponse") is not None else None,
             "hostingProviderAppId": obj.get("hostingProviderAppId"),
             "hostingProviderBranchName": obj.get("hostingProviderBranchName"),

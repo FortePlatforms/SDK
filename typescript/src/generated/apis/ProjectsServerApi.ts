@@ -274,6 +274,11 @@ import {
     UpdateProjectRequestToJSON,
 } from '../models/UpdateProjectRequest';
 import {
+    type UpdateUserRequest,
+    UpdateUserRequestFromJSON,
+    UpdateUserRequestToJSON,
+} from '../models/UpdateUserRequest';
+import {
     type UpdateWebAppRequest,
     UpdateWebAppRequestFromJSON,
     UpdateWebAppRequestToJSON,
@@ -338,6 +343,12 @@ export interface AdminSendUserContactMethodVerificationCodeRequest {
     projectId: string;
     userId: string;
     contactMethodId: string;
+}
+
+export interface AdminUpdateUserRequest {
+    projectId: string;
+    userId: string;
+    updateUserRequest: UpdateUserRequest;
 }
 
 export interface AdminVerifyUserContactMethodRequest {
@@ -1090,6 +1101,67 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async adminSendUserContactMethodVerificationCode(requestParameters: AdminSendUserContactMethodVerificationCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContactMethod> {
         const response = await this.adminSendUserContactMethodVerificationCodeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for adminUpdateUser without sending the request
+     */
+    async adminUpdateUserRequestOpts(requestParameters: AdminUpdateUserRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling adminUpdateUser().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling adminUpdateUser().'
+            );
+        }
+
+        if (requestParameters['updateUserRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateUserRequest',
+                'Required parameter "updateUserRequest" was null or undefined when calling adminUpdateUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateUserRequestToJSON(requestParameters['updateUserRequest']),
+        };
+    }
+
+    /**
+     */
+    async adminUpdateUserRaw(requestParameters: AdminUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+        const requestOptions = await this.adminUpdateUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async adminUpdateUser(requestParameters: AdminUpdateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserObject> {
+        const response = await this.adminUpdateUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4792,6 +4864,7 @@ export const ListUserActionLogsActionTypeType = {
     USER_SUSPENDED: 'USER_SUSPENDED',
     USER_DELETED: 'USER_DELETED',
     USER_HARD_DELETED: 'USER_HARD_DELETED',
+    USER_ADMIN_UPDATED: 'USER_ADMIN_UPDATED',
     CONTACT_METHOD_ADDED: 'CONTACT_METHOD_ADDED',
     CONTACT_METHOD_REMOVED: 'CONTACT_METHOD_REMOVED',
     CONTACT_METHOD_DISPLACED: 'CONTACT_METHOD_DISPLACED',

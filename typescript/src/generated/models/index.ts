@@ -95,6 +95,7 @@ export * from './UpdateForteServiceResponse';
 export * from './UpdateNotificationTemplatesRequest';
 export * from './UpdatePaymentTriggerRequest';
 export * from './UpdateProjectRequest';
+export * from './UpdateUserRequest';
 export * from './UpdateWebAppRequest';
 export * from './UpdateWebAppResponse';
 export * from './UserActionLogObject';

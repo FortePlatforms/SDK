@@ -111,6 +111,18 @@ export interface WebAppBuildRequestObject {
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
+    containerImageUri?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppBuildRequestObject
+     */
+    dockerfilePath?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppBuildRequestObject
+     */
     outputZipS3Key?: string;
     /**
      * 
@@ -292,6 +304,8 @@ export function WebAppBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimin
         'monorepoType': json['monorepoType'] == null ? undefined : json['monorepoType'],
         'workspaceRoot': json['workspaceRoot'] == null ? undefined : json['workspaceRoot'],
         'appPackageName': json['appPackageName'] == null ? undefined : json['appPackageName'],
+        'containerImageUri': json['containerImageUri'] == null ? undefined : json['containerImageUri'],
+        'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
         'outputZipS3Key': json['outputZipS3Key'] == null ? undefined : json['outputZipS3Key'],
         'hostingDeploymentId': json['hostingDeploymentId'] == null ? undefined : json['hostingDeploymentId'],
         'hostingDeploymentStatus': json['hostingDeploymentStatus'] == null ? undefined : json['hostingDeploymentStatus'],
@@ -333,6 +347,8 @@ export function WebAppBuildRequestObjectToJSONTyped(value?: WebAppBuildRequestOb
         'monorepoType': value['monorepoType'],
         'workspaceRoot': value['workspaceRoot'],
         'appPackageName': value['appPackageName'],
+        'containerImageUri': value['containerImageUri'],
+        'dockerfilePath': value['dockerfilePath'],
         'outputZipS3Key': value['outputZipS3Key'],
         'hostingDeploymentId': value['hostingDeploymentId'],
         'hostingDeploymentStatus': value['hostingDeploymentStatus'],

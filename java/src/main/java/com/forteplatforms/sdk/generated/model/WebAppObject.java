@@ -59,6 +59,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_WORKSPACE_ROOT,
   WebAppObject.JSON_PROPERTY_APP_PACKAGE_NAME,
   WebAppObject.JSON_PROPERTY_DETECTION_VERSION,
+  WebAppObject.JSON_PROPERTY_CONTAINER_IMAGE_URI,
   WebAppObject.JSON_PROPERTY_DETECTION_RESPONSE,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_APP_ID,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_BRANCH_NAME,
@@ -74,7 +75,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_BASE_DIRECTORY,
   WebAppObject.JSON_PROPERTY_SECRET_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppObject {
   public static final String JSON_PROPERTY_WEB_APP_ID = "webAppId";
   @javax.annotation.Nullable
@@ -213,6 +214,10 @@ public class WebAppObject {
   public static final String JSON_PROPERTY_DETECTION_VERSION = "detectionVersion";
   @javax.annotation.Nullable
   private Integer detectionVersion;
+
+  public static final String JSON_PROPERTY_CONTAINER_IMAGE_URI = "containerImageUri";
+  @javax.annotation.Nullable
+  private String containerImageUri;
 
   public static final String JSON_PROPERTY_DETECTION_RESPONSE = "detectionResponse";
   @javax.annotation.Nullable
@@ -700,6 +705,30 @@ public class WebAppObject {
   }
 
 
+  public WebAppObject containerImageUri(@javax.annotation.Nullable String containerImageUri) {
+    this.containerImageUri = containerImageUri;
+    return this;
+  }
+
+  /**
+   * Get containerImageUri
+   * @return containerImageUri
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getContainerImageUri() {
+    return containerImageUri;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContainerImageUri(@javax.annotation.Nullable String containerImageUri) {
+    this.containerImageUri = containerImageUri;
+  }
+
+
   public WebAppObject detectionResponse(@javax.annotation.Nullable WebAppDetectionResponse detectionResponse) {
     this.detectionResponse = detectionResponse;
     return this;
@@ -1089,6 +1118,7 @@ public class WebAppObject {
         Objects.equals(this.workspaceRoot, webAppObject.workspaceRoot) &&
         Objects.equals(this.appPackageName, webAppObject.appPackageName) &&
         Objects.equals(this.detectionVersion, webAppObject.detectionVersion) &&
+        Objects.equals(this.containerImageUri, webAppObject.containerImageUri) &&
         Objects.equals(this.detectionResponse, webAppObject.detectionResponse) &&
         Objects.equals(this.hostingProviderAppId, webAppObject.hostingProviderAppId) &&
         Objects.equals(this.hostingProviderBranchName, webAppObject.hostingProviderBranchName) &&
@@ -1107,7 +1137,7 @@ public class WebAppObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, detectionVersion, detectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, detectionVersion, containerImageUri, detectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -1130,6 +1160,7 @@ public class WebAppObject {
     sb.append("    workspaceRoot: ").append(toIndentedString(workspaceRoot)).append("\n");
     sb.append("    appPackageName: ").append(toIndentedString(appPackageName)).append("\n");
     sb.append("    detectionVersion: ").append(toIndentedString(detectionVersion)).append("\n");
+    sb.append("    containerImageUri: ").append(toIndentedString(containerImageUri)).append("\n");
     sb.append("    detectionResponse: ").append(toIndentedString(detectionResponse)).append("\n");
     sb.append("    hostingProviderAppId: ").append(toIndentedString(hostingProviderAppId)).append("\n");
     sb.append("    hostingProviderBranchName: ").append(toIndentedString(hostingProviderBranchName)).append("\n");
@@ -1271,6 +1302,11 @@ public class WebAppObject {
     // add `detectionVersion` to the URL query string
     if (getDetectionVersion() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdetectionVersion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDetectionVersion()))));
+    }
+
+    // add `containerImageUri` to the URL query string
+    if (getContainerImageUri() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontainerImageUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerImageUri()))));
     }
 
     // add `detectionResponse` to the URL query string

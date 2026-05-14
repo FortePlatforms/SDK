@@ -42,6 +42,8 @@ class WebAppBuildRequestObject(BaseModel):
     monorepo_type: Optional[StrictStr] = Field(default=None, alias="monorepoType")
     workspace_root: Optional[StrictStr] = Field(default=None, alias="workspaceRoot")
     app_package_name: Optional[StrictStr] = Field(default=None, alias="appPackageName")
+    container_image_uri: Optional[StrictStr] = Field(default=None, alias="containerImageUri")
+    dockerfile_path: Optional[StrictStr] = Field(default=None, alias="dockerfilePath")
     output_zip_s3_key: Optional[StrictStr] = Field(default=None, alias="outputZipS3Key")
     hosting_deployment_id: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentId")
     hosting_deployment_status: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentStatus")
@@ -57,7 +59,7 @@ class WebAppBuildRequestObject(BaseModel):
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin"]
+    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin"]
 
     @field_validator('monorepo_type')
     def monorepo_type_validate_enum(cls, value):
@@ -159,6 +161,8 @@ class WebAppBuildRequestObject(BaseModel):
             "monorepoType": obj.get("monorepoType"),
             "workspaceRoot": obj.get("workspaceRoot"),
             "appPackageName": obj.get("appPackageName"),
+            "containerImageUri": obj.get("containerImageUri"),
+            "dockerfilePath": obj.get("dockerfilePath"),
             "outputZipS3Key": obj.get("outputZipS3Key"),
             "hostingDeploymentId": obj.get("hostingDeploymentId"),
             "hostingDeploymentStatus": obj.get("hostingDeploymentStatus"),

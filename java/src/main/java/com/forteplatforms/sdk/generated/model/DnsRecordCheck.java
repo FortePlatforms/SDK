@@ -41,7 +41,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   DnsRecordCheck.JSON_PROPERTY_OBSERVED_VALUES,
   DnsRecordCheck.JSON_PROPERTY_ERROR_DETAIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class DnsRecordCheck {
   public static final String JSON_PROPERTY_REQUIREMENT = "requirement";
   @javax.annotation.Nullable

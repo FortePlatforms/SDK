@@ -47,7 +47,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppDetectionResponse.JSON_PROPERTY_APP_PACKAGE_NAME,
   WebAppDetectionResponse.JSON_PROPERTY_REPOSITORY_ANALYSIS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppDetectionResponse {
   /**
    * Whether the web app serves only static assets (STATIC) or includes server-side rendering (SERVER_SIDE)

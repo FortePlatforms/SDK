@@ -132,6 +132,12 @@ export interface WebAppObject {
     detectionVersion?: number;
     /**
      * 
+     * @type {string}
+     * @memberof WebAppObject
+     */
+    containerImageUri?: string;
+    /**
+     * 
      * @type {WebAppDetectionResponse}
      * @memberof WebAppObject
      */
@@ -284,6 +290,7 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'workspaceRoot': json['workspaceRoot'] == null ? undefined : json['workspaceRoot'],
         'appPackageName': json['appPackageName'] == null ? undefined : json['appPackageName'],
         'detectionVersion': json['detectionVersion'] == null ? undefined : json['detectionVersion'],
+        'containerImageUri': json['containerImageUri'] == null ? undefined : json['containerImageUri'],
         'detectionResponse': json['detectionResponse'] == null ? undefined : WebAppDetectionResponseFromJSON(json['detectionResponse']),
         'hostingProviderAppId': json['hostingProviderAppId'] == null ? undefined : json['hostingProviderAppId'],
         'hostingProviderBranchName': json['hostingProviderBranchName'] == null ? undefined : json['hostingProviderBranchName'],
@@ -328,6 +335,7 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'workspaceRoot': value['workspaceRoot'],
         'appPackageName': value['appPackageName'],
         'detectionVersion': value['detectionVersion'],
+        'containerImageUri': value['containerImageUri'],
         'detectionResponse': WebAppDetectionResponseToJSON(value['detectionResponse']),
         'hostingProviderAppId': value['hostingProviderAppId'],
         'hostingProviderBranchName': value['hostingProviderBranchName'],

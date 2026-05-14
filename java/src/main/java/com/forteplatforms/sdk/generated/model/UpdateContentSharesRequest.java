@@ -38,7 +38,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   UpdateContentSharesRequest.JSON_PROPERTY_SHARES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UpdateContentSharesRequest {
   public static final String JSON_PROPERTY_SHARES = "shares";
   @javax.annotation.Nonnull

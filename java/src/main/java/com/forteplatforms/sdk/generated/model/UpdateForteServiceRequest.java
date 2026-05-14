@@ -53,7 +53,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH,
   UpdateForteServiceRequest.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UpdateForteServiceRequest {
   public static final String JSON_PROPERTY_RESET_DOCKERFILE = "resetDockerfile";
   @javax.annotation.Nullable

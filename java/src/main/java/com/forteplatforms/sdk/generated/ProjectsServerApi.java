@@ -71,6 +71,7 @@ import com.forteplatforms.sdk.generated.model.UpdateForteServiceResponse;
 import com.forteplatforms.sdk.generated.model.UpdateNotificationTemplatesRequest;
 import com.forteplatforms.sdk.generated.model.UpdatePaymentTriggerRequest;
 import com.forteplatforms.sdk.generated.model.UpdateProjectRequest;
+import com.forteplatforms.sdk.generated.model.UpdateUserRequest;
 import com.forteplatforms.sdk.generated.model.UpdateWebAppRequest;
 import com.forteplatforms.sdk.generated.model.UpdateWebAppResponse;
 import com.forteplatforms.sdk.generated.model.UserMetricsResponse;
@@ -104,7 +105,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1039,6 +1040,150 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept-Encoding", "gzip");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param updateUserRequest  (required)
+   * @return UserObject
+   * @throws ApiException if fails to make API call
+   */
+  public UserObject adminUpdateUser(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull UpdateUserRequest updateUserRequest) throws ApiException {
+    return adminUpdateUser(projectId, userId, updateUserRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param updateUserRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UserObject
+   * @throws ApiException if fails to make API call
+   */
+  public UserObject adminUpdateUser(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull UpdateUserRequest updateUserRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UserObject> localVarResponse = adminUpdateUserWithHttpInfo(projectId, userId, updateUserRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param updateUserRequest  (required)
+   * @return ApiResponse&lt;UserObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UserObject> adminUpdateUserWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull UpdateUserRequest updateUserRequest) throws ApiException {
+    return adminUpdateUserWithHttpInfo(projectId, userId, updateUserRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param updateUserRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UserObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UserObject> adminUpdateUserWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull UpdateUserRequest updateUserRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = adminUpdateUserRequestBuilder(projectId, userId, updateUserRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("adminUpdateUser", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UserObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UserObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UserObject>() {});
+        
+
+        return new ApiResponse<UserObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder adminUpdateUserRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull UpdateUserRequest updateUserRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling adminUpdateUser");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling adminUpdateUser");
+    }
+    // verify the required parameter 'updateUserRequest' is set
+    if (updateUserRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateUserRequest' when calling adminUpdateUser");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+    localVarRequestBuilder.header("Accept-Encoding", "gzip");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateUserRequest);
+      Supplier<InputStream> localVarRequestBodySupplier = () -> new ByteArrayInputStream(localVarPostBody);
+      localVarRequestBuilder.header("Content-Encoding", "gzip");
+      localVarRequestBuilder.method("PATCH", ApiClient.gzipRequestBody(localVarRequestBodySupplier));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

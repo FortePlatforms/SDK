@@ -24,83 +24,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.forteplatforms.sdk.generated.model.WebAppBuildRequestObject;
-import com.forteplatforms.sdk.generated.model.WebAppObject;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import com.forteplatforms.sdk.generated.invoker.ApiClient;
 /**
- * UpdateWebAppResponse
+ * UpdateUserRequest
  */
 @JsonPropertyOrder({
-  UpdateWebAppResponse.JSON_PROPERTY_UPDATED_WEB_APP,
-  UpdateWebAppResponse.JSON_PROPERTY_BUILD
+  UpdateUserRequest.JSON_PROPERTY_FULL_NAME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
-public class UpdateWebAppResponse {
-  public static final String JSON_PROPERTY_UPDATED_WEB_APP = "updatedWebApp";
-  @javax.annotation.Nonnull
-  private WebAppObject updatedWebApp;
-
-  public static final String JSON_PROPERTY_BUILD = "build";
+public class UpdateUserRequest {
+  public static final String JSON_PROPERTY_FULL_NAME = "fullName";
   @javax.annotation.Nullable
-  private WebAppBuildRequestObject build;
+  private String fullName;
 
-  public UpdateWebAppResponse() { 
+  public UpdateUserRequest() { 
   }
 
-  public UpdateWebAppResponse updatedWebApp(@javax.annotation.Nonnull WebAppObject updatedWebApp) {
-    this.updatedWebApp = updatedWebApp;
+  public UpdateUserRequest fullName(@javax.annotation.Nullable String fullName) {
+    this.fullName = fullName;
     return this;
   }
 
   /**
-   * Get updatedWebApp
-   * @return updatedWebApp
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_UPDATED_WEB_APP, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public WebAppObject getUpdatedWebApp() {
-    return updatedWebApp;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_UPDATED_WEB_APP, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUpdatedWebApp(@javax.annotation.Nonnull WebAppObject updatedWebApp) {
-    this.updatedWebApp = updatedWebApp;
-  }
-
-
-  public UpdateWebAppResponse build(@javax.annotation.Nullable WebAppBuildRequestObject build) {
-    this.build = build;
-    return this;
-  }
-
-  /**
-   * Get build
-   * @return build
+   * Get fullName
+   * @return fullName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD, required = false)
+  @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public WebAppBuildRequestObject getBuild() {
-    return build;
+  public String getFullName() {
+    return fullName;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BUILD, required = false)
+  @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuild(@javax.annotation.Nullable WebAppBuildRequestObject build) {
-    this.build = build;
+  public void setFullName(@javax.annotation.Nullable String fullName) {
+    this.fullName = fullName;
   }
 
 
   /**
-   * Return true if this UpdateWebAppResponse object is equal to o.
+   * Return true if this UpdateUserRequest object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -110,22 +79,20 @@ public class UpdateWebAppResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdateWebAppResponse updateWebAppResponse = (UpdateWebAppResponse) o;
-    return Objects.equals(this.updatedWebApp, updateWebAppResponse.updatedWebApp) &&
-        Objects.equals(this.build, updateWebAppResponse.build);
+    UpdateUserRequest updateUserRequest = (UpdateUserRequest) o;
+    return Objects.equals(this.fullName, updateUserRequest.fullName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updatedWebApp, build);
+    return Objects.hash(fullName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdateWebAppResponse {\n");
-    sb.append("    updatedWebApp: ").append(toIndentedString(updatedWebApp)).append("\n");
-    sb.append("    build: ").append(toIndentedString(build)).append("\n");
+    sb.append("class UpdateUserRequest {\n");
+    sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -170,14 +137,9 @@ public class UpdateWebAppResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `updatedWebApp` to the URL query string
-    if (getUpdatedWebApp() != null) {
-      joiner.add(getUpdatedWebApp().toUrlQueryString(prefix + "updatedWebApp" + suffix));
-    }
-
-    // add `build` to the URL query string
-    if (getBuild() != null) {
-      joiner.add(getBuild().toUrlQueryString(prefix + "build" + suffix));
+    // add `fullName` to the URL query string
+    if (getFullName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfullName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFullName()))));
     }
 
     return joiner.toString();

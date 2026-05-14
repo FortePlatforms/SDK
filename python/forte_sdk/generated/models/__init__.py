@@ -108,6 +108,7 @@ from forte_sdk.generated.models.update_forte_service_response import UpdateForte
 from forte_sdk.generated.models.update_notification_templates_request import UpdateNotificationTemplatesRequest
 from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest
+from forte_sdk.generated.models.update_user_request import UpdateUserRequest
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest
 from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject

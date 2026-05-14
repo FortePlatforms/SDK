@@ -50,6 +50,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_MONOREPO_TYPE,
   WebAppBuildRequestObject.JSON_PROPERTY_WORKSPACE_ROOT,
   WebAppBuildRequestObject.JSON_PROPERTY_APP_PACKAGE_NAME,
+  WebAppBuildRequestObject.JSON_PROPERTY_CONTAINER_IMAGE_URI,
+  WebAppBuildRequestObject.JSON_PROPERTY_DOCKERFILE_PATH,
   WebAppBuildRequestObject.JSON_PROPERTY_OUTPUT_ZIP_S3_KEY,
   WebAppBuildRequestObject.JSON_PROPERTY_HOSTING_DEPLOYMENT_ID,
   WebAppBuildRequestObject.JSON_PROPERTY_HOSTING_DEPLOYMENT_STATUS,
@@ -66,7 +68,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_STATUS,
   WebAppBuildRequestObject.JSON_PROPERTY_ORIGIN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T19:37:07.418538200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
@@ -154,6 +156,14 @@ public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_APP_PACKAGE_NAME = "appPackageName";
   @javax.annotation.Nullable
   private String appPackageName;
+
+  public static final String JSON_PROPERTY_CONTAINER_IMAGE_URI = "containerImageUri";
+  @javax.annotation.Nullable
+  private String containerImageUri;
+
+  public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
+  @javax.annotation.Nullable
+  private String dockerfilePath;
 
   public static final String JSON_PROPERTY_OUTPUT_ZIP_S3_KEY = "outputZipS3Key";
   @javax.annotation.Nullable
@@ -638,6 +648,54 @@ public class WebAppBuildRequestObject {
   }
 
 
+  public WebAppBuildRequestObject containerImageUri(@javax.annotation.Nullable String containerImageUri) {
+    this.containerImageUri = containerImageUri;
+    return this;
+  }
+
+  /**
+   * Get containerImageUri
+   * @return containerImageUri
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getContainerImageUri() {
+    return containerImageUri;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContainerImageUri(@javax.annotation.Nullable String containerImageUri) {
+    this.containerImageUri = containerImageUri;
+  }
+
+
+  public WebAppBuildRequestObject dockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+    this.dockerfilePath = dockerfilePath;
+    return this;
+  }
+
+  /**
+   * Get dockerfilePath
+   * @return dockerfilePath
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDockerfilePath() {
+    return dockerfilePath;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+    this.dockerfilePath = dockerfilePath;
+  }
+
+
   public WebAppBuildRequestObject outputZipS3Key(@javax.annotation.Nullable String outputZipS3Key) {
     this.outputZipS3Key = outputZipS3Key;
     return this;
@@ -1030,6 +1088,8 @@ public class WebAppBuildRequestObject {
         Objects.equals(this.monorepoType, webAppBuildRequestObject.monorepoType) &&
         Objects.equals(this.workspaceRoot, webAppBuildRequestObject.workspaceRoot) &&
         Objects.equals(this.appPackageName, webAppBuildRequestObject.appPackageName) &&
+        Objects.equals(this.containerImageUri, webAppBuildRequestObject.containerImageUri) &&
+        Objects.equals(this.dockerfilePath, webAppBuildRequestObject.dockerfilePath) &&
         Objects.equals(this.outputZipS3Key, webAppBuildRequestObject.outputZipS3Key) &&
         Objects.equals(this.hostingDeploymentId, webAppBuildRequestObject.hostingDeploymentId) &&
         Objects.equals(this.hostingDeploymentStatus, webAppBuildRequestObject.hostingDeploymentStatus) &&
@@ -1049,7 +1109,7 @@ public class WebAppBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin);
+    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, containerImageUri, dockerfilePath, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin);
   }
 
   @Override
@@ -1068,6 +1128,8 @@ public class WebAppBuildRequestObject {
     sb.append("    monorepoType: ").append(toIndentedString(monorepoType)).append("\n");
     sb.append("    workspaceRoot: ").append(toIndentedString(workspaceRoot)).append("\n");
     sb.append("    appPackageName: ").append(toIndentedString(appPackageName)).append("\n");
+    sb.append("    containerImageUri: ").append(toIndentedString(containerImageUri)).append("\n");
+    sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
     sb.append("    outputZipS3Key: ").append(toIndentedString(outputZipS3Key)).append("\n");
     sb.append("    hostingDeploymentId: ").append(toIndentedString(hostingDeploymentId)).append("\n");
     sb.append("    hostingDeploymentStatus: ").append(toIndentedString(hostingDeploymentStatus)).append("\n");
@@ -1185,6 +1247,16 @@ public class WebAppBuildRequestObject {
     // add `appPackageName` to the URL query string
     if (getAppPackageName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sappPackageName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAppPackageName()))));
+    }
+
+    // add `containerImageUri` to the URL query string
+    if (getContainerImageUri() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontainerImageUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerImageUri()))));
+    }
+
+    // add `dockerfilePath` to the URL query string
+    if (getDockerfilePath() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfilePath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfilePath()))));
     }
 
     // add `outputZipS3Key` to the URL query string
