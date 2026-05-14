@@ -49,7 +49,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateWebAppRequest.JSON_PROPERTY_SECRET_KEYS_TO_DELETE,
   UpdateWebAppRequest.JSON_PROPERTY_RESET_DETECTED_CONFIG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T03:38:37.326202700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UpdateWebAppRequest {
   public static final String JSON_PROPERTY_WEB_APP_NAME = "webAppName";
   @javax.annotation.Nullable

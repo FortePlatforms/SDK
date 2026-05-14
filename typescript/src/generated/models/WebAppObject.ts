@@ -27,6 +27,13 @@ import {
     WebAppDetectionResponseToJSON,
     WebAppDetectionResponseToJSONTyped,
 } from './WebAppDetectionResponse';
+import type { DockerfileGenerationResponse } from './DockerfileGenerationResponse';
+import {
+    DockerfileGenerationResponseFromJSON,
+    DockerfileGenerationResponseFromJSONTyped,
+    DockerfileGenerationResponseToJSON,
+    DockerfileGenerationResponseToJSONTyped,
+} from './DockerfileGenerationResponse';
 
 /**
  * 
@@ -142,6 +149,18 @@ export interface WebAppObject {
      * @memberof WebAppObject
      */
     detectionResponse?: WebAppDetectionResponse;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppObject
+     */
+    dockerfilePath?: string;
+    /**
+     * 
+     * @type {DockerfileGenerationResponse}
+     * @memberof WebAppObject
+     */
+    dockerfileDetectionResponse?: DockerfileGenerationResponse;
     /**
      * 
      * @type {string}
@@ -292,6 +311,8 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'detectionVersion': json['detectionVersion'] == null ? undefined : json['detectionVersion'],
         'containerImageUri': json['containerImageUri'] == null ? undefined : json['containerImageUri'],
         'detectionResponse': json['detectionResponse'] == null ? undefined : WebAppDetectionResponseFromJSON(json['detectionResponse']),
+        'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
+        'dockerfileDetectionResponse': json['dockerfileDetectionResponse'] == null ? undefined : DockerfileGenerationResponseFromJSON(json['dockerfileDetectionResponse']),
         'hostingProviderAppId': json['hostingProviderAppId'] == null ? undefined : json['hostingProviderAppId'],
         'hostingProviderBranchName': json['hostingProviderBranchName'] == null ? undefined : json['hostingProviderBranchName'],
         'hostingProviderDomainStatus': json['hostingProviderDomainStatus'] == null ? undefined : json['hostingProviderDomainStatus'],
@@ -337,6 +358,8 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'detectionVersion': value['detectionVersion'],
         'containerImageUri': value['containerImageUri'],
         'detectionResponse': WebAppDetectionResponseToJSON(value['detectionResponse']),
+        'dockerfilePath': value['dockerfilePath'],
+        'dockerfileDetectionResponse': DockerfileGenerationResponseToJSON(value['dockerfileDetectionResponse']),
         'hostingProviderAppId': value['hostingProviderAppId'],
         'hostingProviderBranchName': value['hostingProviderBranchName'],
         'hostingProviderDomainStatus': value['hostingProviderDomainStatus'],

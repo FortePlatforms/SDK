@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from forte_sdk.generated.models.custom_domain import CustomDomain
+from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse
 from forte_sdk.generated.models.web_app_detection_response import WebAppDetectionResponse
 from typing import Optional, Set
 from typing_extensions import Self
@@ -49,6 +50,8 @@ class WebAppObject(BaseModel):
     detection_version: Optional[StrictInt] = Field(default=None, alias="detectionVersion")
     container_image_uri: Optional[StrictStr] = Field(default=None, alias="containerImageUri")
     detection_response: Optional[WebAppDetectionResponse] = Field(default=None, alias="detectionResponse")
+    dockerfile_path: Optional[StrictStr] = Field(default=None, alias="dockerfilePath")
+    dockerfile_detection_response: Optional[DockerfileGenerationResponse] = Field(default=None, alias="dockerfileDetectionResponse")
     hosting_provider_app_id: Optional[StrictStr] = Field(default=None, alias="hostingProviderAppId")
     hosting_provider_branch_name: Optional[StrictStr] = Field(default=None, alias="hostingProviderBranchName")
     hosting_provider_domain_status: Optional[StrictStr] = Field(default=None, alias="hostingProviderDomainStatus")
@@ -62,7 +65,7 @@ class WebAppObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "detectionVersion", "containerImageUri", "detectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "detectionVersion", "containerImageUri", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -140,6 +143,9 @@ class WebAppObject(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of detection_response
         if self.detection_response:
             _dict['detectionResponse'] = self.detection_response.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of dockerfile_detection_response
+        if self.dockerfile_detection_response:
+            _dict['dockerfileDetectionResponse'] = self.dockerfile_detection_response.to_dict()
         return _dict
 
     @classmethod
@@ -170,6 +176,8 @@ class WebAppObject(BaseModel):
             "detectionVersion": obj.get("detectionVersion"),
             "containerImageUri": obj.get("containerImageUri"),
             "detectionResponse": WebAppDetectionResponse.from_dict(obj["detectionResponse"]) if obj.get("detectionResponse") is not None else None,
+            "dockerfilePath": obj.get("dockerfilePath"),
+            "dockerfileDetectionResponse": DockerfileGenerationResponse.from_dict(obj["dockerfileDetectionResponse"]) if obj.get("dockerfileDetectionResponse") is not None else None,
             "hostingProviderAppId": obj.get("hostingProviderAppId"),
             "hostingProviderBranchName": obj.get("hostingProviderBranchName"),
             "hostingProviderDomainStatus": obj.get("hostingProviderDomainStatus"),

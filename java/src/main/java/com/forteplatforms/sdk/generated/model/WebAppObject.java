@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.forteplatforms.sdk.generated.model.CustomDomain;
+import com.forteplatforms.sdk.generated.model.DockerfileGenerationResponse;
 import com.forteplatforms.sdk.generated.model.WebAppDetectionResponse;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -61,6 +62,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_DETECTION_VERSION,
   WebAppObject.JSON_PROPERTY_CONTAINER_IMAGE_URI,
   WebAppObject.JSON_PROPERTY_DETECTION_RESPONSE,
+  WebAppObject.JSON_PROPERTY_DOCKERFILE_PATH,
+  WebAppObject.JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_APP_ID,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_BRANCH_NAME,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_DOMAIN_STATUS,
@@ -75,7 +78,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_BASE_DIRECTORY,
   WebAppObject.JSON_PROPERTY_SECRET_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T01:02:04.888528-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T03:38:37.326202700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppObject {
   public static final String JSON_PROPERTY_WEB_APP_ID = "webAppId";
   @javax.annotation.Nullable
@@ -222,6 +225,14 @@ public class WebAppObject {
   public static final String JSON_PROPERTY_DETECTION_RESPONSE = "detectionResponse";
   @javax.annotation.Nullable
   private WebAppDetectionResponse detectionResponse;
+
+  public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
+  @javax.annotation.Nullable
+  private String dockerfilePath;
+
+  public static final String JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE = "dockerfileDetectionResponse";
+  @javax.annotation.Nullable
+  private DockerfileGenerationResponse dockerfileDetectionResponse;
 
   public static final String JSON_PROPERTY_HOSTING_PROVIDER_APP_ID = "hostingProviderAppId";
   @javax.annotation.Nullable
@@ -753,6 +764,54 @@ public class WebAppObject {
   }
 
 
+  public WebAppObject dockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+    this.dockerfilePath = dockerfilePath;
+    return this;
+  }
+
+  /**
+   * Get dockerfilePath
+   * @return dockerfilePath
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDockerfilePath() {
+    return dockerfilePath;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+    this.dockerfilePath = dockerfilePath;
+  }
+
+
+  public WebAppObject dockerfileDetectionResponse(@javax.annotation.Nullable DockerfileGenerationResponse dockerfileDetectionResponse) {
+    this.dockerfileDetectionResponse = dockerfileDetectionResponse;
+    return this;
+  }
+
+  /**
+   * Get dockerfileDetectionResponse
+   * @return dockerfileDetectionResponse
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public DockerfileGenerationResponse getDockerfileDetectionResponse() {
+    return dockerfileDetectionResponse;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDockerfileDetectionResponse(@javax.annotation.Nullable DockerfileGenerationResponse dockerfileDetectionResponse) {
+    this.dockerfileDetectionResponse = dockerfileDetectionResponse;
+  }
+
+
   public WebAppObject hostingProviderAppId(@javax.annotation.Nullable String hostingProviderAppId) {
     this.hostingProviderAppId = hostingProviderAppId;
     return this;
@@ -1120,6 +1179,8 @@ public class WebAppObject {
         Objects.equals(this.detectionVersion, webAppObject.detectionVersion) &&
         Objects.equals(this.containerImageUri, webAppObject.containerImageUri) &&
         Objects.equals(this.detectionResponse, webAppObject.detectionResponse) &&
+        Objects.equals(this.dockerfilePath, webAppObject.dockerfilePath) &&
+        Objects.equals(this.dockerfileDetectionResponse, webAppObject.dockerfileDetectionResponse) &&
         Objects.equals(this.hostingProviderAppId, webAppObject.hostingProviderAppId) &&
         Objects.equals(this.hostingProviderBranchName, webAppObject.hostingProviderBranchName) &&
         Objects.equals(this.hostingProviderDomainStatus, webAppObject.hostingProviderDomainStatus) &&
@@ -1137,7 +1198,7 @@ public class WebAppObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, detectionVersion, containerImageUri, detectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, detectionVersion, containerImageUri, detectionResponse, dockerfilePath, dockerfileDetectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -1162,6 +1223,8 @@ public class WebAppObject {
     sb.append("    detectionVersion: ").append(toIndentedString(detectionVersion)).append("\n");
     sb.append("    containerImageUri: ").append(toIndentedString(containerImageUri)).append("\n");
     sb.append("    detectionResponse: ").append(toIndentedString(detectionResponse)).append("\n");
+    sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
+    sb.append("    dockerfileDetectionResponse: ").append(toIndentedString(dockerfileDetectionResponse)).append("\n");
     sb.append("    hostingProviderAppId: ").append(toIndentedString(hostingProviderAppId)).append("\n");
     sb.append("    hostingProviderBranchName: ").append(toIndentedString(hostingProviderBranchName)).append("\n");
     sb.append("    hostingProviderDomainStatus: ").append(toIndentedString(hostingProviderDomainStatus)).append("\n");
@@ -1312,6 +1375,16 @@ public class WebAppObject {
     // add `detectionResponse` to the URL query string
     if (getDetectionResponse() != null) {
       joiner.add(getDetectionResponse().toUrlQueryString(prefix + "detectionResponse" + suffix));
+    }
+
+    // add `dockerfilePath` to the URL query string
+    if (getDockerfilePath() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfilePath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfilePath()))));
+    }
+
+    // add `dockerfileDetectionResponse` to the URL query string
+    if (getDockerfileDetectionResponse() != null) {
+      joiner.add(getDockerfileDetectionResponse().toUrlQueryString(prefix + "dockerfileDetectionResponse" + suffix));
     }
 
     // add `hostingProviderAppId` to the URL query string
