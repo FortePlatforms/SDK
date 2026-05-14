@@ -43,7 +43,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   LogLineObject.JSON_PROPERTY_BUILD_ID,
   LogLineObject.JSON_PROPERTY_INSTANCE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T13:01:59.009660500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class LogLineObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull

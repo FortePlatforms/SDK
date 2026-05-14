@@ -17,10 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from forte_sdk.generated.models.user_filter import UserFilter
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,11 +28,8 @@ class SearchUsersRequest(BaseModel):
     """
     SearchUsersRequest
     """ # noqa: E501
-    filters: Optional[List[UserFilter]] = None
-    min_time: Optional[datetime] = Field(default=None, alias="minTime")
-    max_time: Optional[datetime] = Field(default=None, alias="maxTime")
-    next_token: Optional[StrictStr] = Field(default=None, alias="nextToken")
-    __properties: ClassVar[List[str]] = ["filters", "minTime", "maxTime", "nextToken"]
+    q: Annotated[str, Field(min_length=1, strict=True)]
+    __properties: ClassVar[List[str]] = ["q"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,13 +70,6 @@ class SearchUsersRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in filters (list)
-        _items = []
-        if self.filters:
-            for _item_filters in self.filters:
-                if _item_filters:
-                    _items.append(_item_filters.to_dict())
-            _dict['filters'] = _items
         return _dict
 
     @classmethod
@@ -93,10 +82,7 @@ class SearchUsersRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "filters": [UserFilter.from_dict(_item) for _item in obj["filters"]] if obj.get("filters") is not None else None,
-            "minTime": obj.get("minTime"),
-            "maxTime": obj.get("maxTime"),
-            "nextToken": obj.get("nextToken")
+            "q": obj.get("q")
         })
         return _obj
 

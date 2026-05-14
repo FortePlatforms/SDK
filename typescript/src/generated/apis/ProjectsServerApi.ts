@@ -541,6 +541,11 @@ export interface ListUserPaymentsRequest {
 
 export interface ListUsersRequest {
     projectId: string;
+    email?: string;
+    phone?: string;
+    fullName?: string;
+    metadataKey?: string;
+    metadataValue?: string;
     minTime?: Date;
     maxTime?: Date;
     nextToken?: string;
@@ -3048,6 +3053,26 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['email'] != null) {
+            queryParameters['email'] = requestParameters['email'];
+        }
+
+        if (requestParameters['phone'] != null) {
+            queryParameters['phone'] = requestParameters['phone'];
+        }
+
+        if (requestParameters['fullName'] != null) {
+            queryParameters['fullName'] = requestParameters['fullName'];
+        }
+
+        if (requestParameters['metadataKey'] != null) {
+            queryParameters['metadataKey'] = requestParameters['metadataKey'];
+        }
+
+        if (requestParameters['metadataValue'] != null) {
+            queryParameters['metadataValue'] = requestParameters['metadataValue'];
+        }
 
         if (requestParameters['minTime'] != null) {
             queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();

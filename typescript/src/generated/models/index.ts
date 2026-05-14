@@ -91,7 +91,6 @@ export * from './UpdateProjectRequest';
 export * from './UpdateWebAppRequest';
 export * from './UpdateWebAppResponse';
 export * from './UserActionLogObject';
-export * from './UserFilter';
 export * from './UserMetricsResponse';
 export * from './UserObject';
 export * from './WebAppBuildRequestObject';

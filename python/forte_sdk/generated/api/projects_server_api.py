@@ -12335,6 +12335,11 @@ class ProjectsServerApi:
     def list_users(
         self,
         project_id: StrictStr,
+        email: Optional[StrictStr] = None,
+        phone: Optional[StrictStr] = None,
+        full_name: Optional[StrictStr] = None,
+        metadata_key: Optional[StrictStr] = None,
+        metadata_value: Optional[StrictStr] = None,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         next_token: Optional[StrictStr] = None,
@@ -12356,6 +12361,16 @@ class ProjectsServerApi:
 
         :param project_id: (required)
         :type project_id: str
+        :param email:
+        :type email: str
+        :param phone:
+        :type phone: str
+        :param full_name:
+        :type full_name: str
+        :param metadata_key:
+        :type metadata_key: str
+        :param metadata_value:
+        :type metadata_value: str
         :param min_time:
         :type min_time: datetime
         :param max_time:
@@ -12386,6 +12401,11 @@ class ProjectsServerApi:
 
         _param = self._list_users_serialize(
             project_id=project_id,
+            email=email,
+            phone=phone,
+            full_name=full_name,
+            metadata_key=metadata_key,
+            metadata_value=metadata_value,
             min_time=min_time,
             max_time=max_time,
             next_token=next_token,
@@ -12413,6 +12433,11 @@ class ProjectsServerApi:
     def list_users_with_http_info(
         self,
         project_id: StrictStr,
+        email: Optional[StrictStr] = None,
+        phone: Optional[StrictStr] = None,
+        full_name: Optional[StrictStr] = None,
+        metadata_key: Optional[StrictStr] = None,
+        metadata_value: Optional[StrictStr] = None,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         next_token: Optional[StrictStr] = None,
@@ -12434,6 +12459,16 @@ class ProjectsServerApi:
 
         :param project_id: (required)
         :type project_id: str
+        :param email:
+        :type email: str
+        :param phone:
+        :type phone: str
+        :param full_name:
+        :type full_name: str
+        :param metadata_key:
+        :type metadata_key: str
+        :param metadata_value:
+        :type metadata_value: str
         :param min_time:
         :type min_time: datetime
         :param max_time:
@@ -12464,6 +12499,11 @@ class ProjectsServerApi:
 
         _param = self._list_users_serialize(
             project_id=project_id,
+            email=email,
+            phone=phone,
+            full_name=full_name,
+            metadata_key=metadata_key,
+            metadata_value=metadata_value,
             min_time=min_time,
             max_time=max_time,
             next_token=next_token,
@@ -12491,6 +12531,11 @@ class ProjectsServerApi:
     def list_users_without_preload_content(
         self,
         project_id: StrictStr,
+        email: Optional[StrictStr] = None,
+        phone: Optional[StrictStr] = None,
+        full_name: Optional[StrictStr] = None,
+        metadata_key: Optional[StrictStr] = None,
+        metadata_value: Optional[StrictStr] = None,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         next_token: Optional[StrictStr] = None,
@@ -12512,6 +12557,16 @@ class ProjectsServerApi:
 
         :param project_id: (required)
         :type project_id: str
+        :param email:
+        :type email: str
+        :param phone:
+        :type phone: str
+        :param full_name:
+        :type full_name: str
+        :param metadata_key:
+        :type metadata_key: str
+        :param metadata_value:
+        :type metadata_value: str
         :param min_time:
         :type min_time: datetime
         :param max_time:
@@ -12542,6 +12597,11 @@ class ProjectsServerApi:
 
         _param = self._list_users_serialize(
             project_id=project_id,
+            email=email,
+            phone=phone,
+            full_name=full_name,
+            metadata_key=metadata_key,
+            metadata_value=metadata_value,
             min_time=min_time,
             max_time=max_time,
             next_token=next_token,
@@ -12564,6 +12624,11 @@ class ProjectsServerApi:
     def _list_users_serialize(
         self,
         project_id,
+        email,
+        phone,
+        full_name,
+        metadata_key,
+        metadata_value,
         min_time,
         max_time,
         next_token,
@@ -12591,6 +12656,26 @@ class ProjectsServerApi:
         if project_id is not None:
             _path_params['projectId'] = project_id
         # process the query parameters
+        if email is not None:
+            
+            _query_params.append(('email', email))
+            
+        if phone is not None:
+            
+            _query_params.append(('phone', phone))
+            
+        if full_name is not None:
+            
+            _query_params.append(('fullName', full_name))
+            
+        if metadata_key is not None:
+            
+            _query_params.append(('metadataKey', metadata_key))
+            
+        if metadata_value is not None:
+            
+            _query_params.append(('metadataValue', metadata_value))
+            
         if min_time is not None:
             if isinstance(min_time, datetime):
                 _query_params.append(

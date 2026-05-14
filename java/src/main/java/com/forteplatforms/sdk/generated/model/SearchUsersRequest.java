@@ -24,11 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.forteplatforms.sdk.generated.model.UserFilter;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,133 +33,38 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * SearchUsersRequest
  */
 @JsonPropertyOrder({
-  SearchUsersRequest.JSON_PROPERTY_FILTERS,
-  SearchUsersRequest.JSON_PROPERTY_MIN_TIME,
-  SearchUsersRequest.JSON_PROPERTY_MAX_TIME,
-  SearchUsersRequest.JSON_PROPERTY_NEXT_TOKEN
+  SearchUsersRequest.JSON_PROPERTY_Q
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T13:01:59.009660500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:12:16.461391900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class SearchUsersRequest {
-  public static final String JSON_PROPERTY_FILTERS = "filters";
-  @javax.annotation.Nullable
-  private List<UserFilter> filters = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_MIN_TIME = "minTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime minTime;
-
-  public static final String JSON_PROPERTY_MAX_TIME = "maxTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime maxTime;
-
-  public static final String JSON_PROPERTY_NEXT_TOKEN = "nextToken";
-  @javax.annotation.Nullable
-  private String nextToken;
+  public static final String JSON_PROPERTY_Q = "q";
+  @javax.annotation.Nonnull
+  private String q;
 
   public SearchUsersRequest() { 
   }
 
-  public SearchUsersRequest filters(@javax.annotation.Nullable List<UserFilter> filters) {
-    this.filters = filters;
-    return this;
-  }
-
-  public SearchUsersRequest addFiltersItem(UserFilter filtersItem) {
-    if (this.filters == null) {
-      this.filters = new ArrayList<>();
-    }
-    this.filters.add(filtersItem);
+  public SearchUsersRequest q(@javax.annotation.Nonnull String q) {
+    this.q = q;
     return this;
   }
 
   /**
-   * Get filters
-   * @return filters
+   * Get q
+   * @return q
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FILTERS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<UserFilter> getFilters() {
-    return filters;
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_Q, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getQ() {
+    return q;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_FILTERS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFilters(@javax.annotation.Nullable List<UserFilter> filters) {
-    this.filters = filters;
-  }
-
-
-  public SearchUsersRequest minTime(@javax.annotation.Nullable OffsetDateTime minTime) {
-    this.minTime = minTime;
-    return this;
-  }
-
-  /**
-   * Get minTime
-   * @return minTime
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MIN_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getMinTime() {
-    return minTime;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_MIN_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinTime(@javax.annotation.Nullable OffsetDateTime minTime) {
-    this.minTime = minTime;
-  }
-
-
-  public SearchUsersRequest maxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
-    this.maxTime = maxTime;
-    return this;
-  }
-
-  /**
-   * Get maxTime
-   * @return maxTime
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAX_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getMaxTime() {
-    return maxTime;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_MAX_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
-    this.maxTime = maxTime;
-  }
-
-
-  public SearchUsersRequest nextToken(@javax.annotation.Nullable String nextToken) {
-    this.nextToken = nextToken;
-    return this;
-  }
-
-  /**
-   * Get nextToken
-   * @return nextToken
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNextToken() {
-    return nextToken;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_NEXT_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextToken(@javax.annotation.Nullable String nextToken) {
-    this.nextToken = nextToken;
+  @JsonProperty(value = JSON_PROPERTY_Q, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setQ(@javax.annotation.Nonnull String q) {
+    this.q = q;
   }
 
 
@@ -179,25 +80,19 @@ public class SearchUsersRequest {
       return false;
     }
     SearchUsersRequest searchUsersRequest = (SearchUsersRequest) o;
-    return Objects.equals(this.filters, searchUsersRequest.filters) &&
-        Objects.equals(this.minTime, searchUsersRequest.minTime) &&
-        Objects.equals(this.maxTime, searchUsersRequest.maxTime) &&
-        Objects.equals(this.nextToken, searchUsersRequest.nextToken);
+    return Objects.equals(this.q, searchUsersRequest.q);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filters, minTime, maxTime, nextToken);
+    return Objects.hash(q);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchUsersRequest {\n");
-    sb.append("    filters: ").append(toIndentedString(filters)).append("\n");
-    sb.append("    minTime: ").append(toIndentedString(minTime)).append("\n");
-    sb.append("    maxTime: ").append(toIndentedString(maxTime)).append("\n");
-    sb.append("    nextToken: ").append(toIndentedString(nextToken)).append("\n");
+    sb.append("    q: ").append(toIndentedString(q)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -242,29 +137,9 @@ public class SearchUsersRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `filters` to the URL query string
-    if (getFilters() != null) {
-      for (int i = 0; i < getFilters().size(); i++) {
-        if (getFilters().get(i) != null) {
-          joiner.add(getFilters().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sfilters%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
-        }
-      }
-    }
-
-    // add `minTime` to the URL query string
-    if (getMinTime() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sminTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMinTime()))));
-    }
-
-    // add `maxTime` to the URL query string
-    if (getMaxTime() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smaxTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaxTime()))));
-    }
-
-    // add `nextToken` to the URL query string
-    if (getNextToken() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%snextToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNextToken()))));
+    // add `q` to the URL query string
+    if (getQ() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sq%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQ()))));
     }
 
     return joiner.toString();

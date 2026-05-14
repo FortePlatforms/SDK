@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserFilter } from './UserFilter';
-import {
-    UserFilterFromJSON,
-    UserFilterFromJSONTyped,
-    UserFilterToJSON,
-    UserFilterToJSONTyped,
-} from './UserFilter';
-
 /**
  * 
  * @export
@@ -29,34 +21,17 @@ import {
 export interface SearchUsersRequest {
     /**
      * 
-     * @type {Array<UserFilter>}
-     * @memberof SearchUsersRequest
-     */
-    filters?: Array<UserFilter>;
-    /**
-     * 
-     * @type {Date}
-     * @memberof SearchUsersRequest
-     */
-    minTime?: Date;
-    /**
-     * 
-     * @type {Date}
-     * @memberof SearchUsersRequest
-     */
-    maxTime?: Date;
-    /**
-     * 
      * @type {string}
      * @memberof SearchUsersRequest
      */
-    nextToken?: string;
+    q: string;
 }
 
 /**
  * Check if a given object implements the SearchUsersRequest interface.
  */
 export function instanceOfSearchUsersRequest(value: object): value is SearchUsersRequest {
+    if (!('q' in value) || value['q'] === undefined) return false;
     return true;
 }
 
@@ -70,10 +45,7 @@ export function SearchUsersRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'filters': json['filters'] == null ? undefined : ((json['filters'] as Array<any>).map(UserFilterFromJSON)),
-        'minTime': json['minTime'] == null ? undefined : (new Date(json['minTime'])),
-        'maxTime': json['maxTime'] == null ? undefined : (new Date(json['maxTime'])),
-        'nextToken': json['nextToken'] == null ? undefined : json['nextToken'],
+        'q': json['q'],
     };
 }
 
@@ -88,10 +60,7 @@ export function SearchUsersRequestToJSONTyped(value?: SearchUsersRequest | null,
 
     return {
         
-        'filters': value['filters'] == null ? undefined : ((value['filters'] as Array<any>).map(UserFilterToJSON)),
-        'minTime': value['minTime'] == null ? value['minTime'] : value['minTime'].toISOString(),
-        'maxTime': value['maxTime'] == null ? value['maxTime'] : value['maxTime'].toISOString(),
-        'nextToken': value['nextToken'],
+        'q': value['q'],
     };
 }
 
