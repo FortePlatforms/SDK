@@ -104,7 +104,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T03:38:37.326202700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T00:19:02.532665900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2019,11 +2019,12 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param serviceId  (required)
    * @param commitSha  (optional)
+   * @param releaseTagName  (optional)
    * @return ServiceBuildRequestObject
    * @throws ApiException if fails to make API call
    */
-  public ServiceBuildRequestObject createServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha) throws ApiException {
-    return createServiceDeployment(projectId, serviceId, commitSha, null);
+  public ServiceBuildRequestObject createServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName) throws ApiException {
+    return createServiceDeployment(projectId, serviceId, commitSha, releaseTagName, null);
   }
 
   /**
@@ -2032,12 +2033,13 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param serviceId  (required)
    * @param commitSha  (optional)
+   * @param releaseTagName  (optional)
    * @param headers Optional headers to include in the request
    * @return ServiceBuildRequestObject
    * @throws ApiException if fails to make API call
    */
-  public ServiceBuildRequestObject createServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
-    ApiResponse<ServiceBuildRequestObject> localVarResponse = createServiceDeploymentWithHttpInfo(projectId, serviceId, commitSha, headers);
+  public ServiceBuildRequestObject createServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
+    ApiResponse<ServiceBuildRequestObject> localVarResponse = createServiceDeploymentWithHttpInfo(projectId, serviceId, commitSha, releaseTagName, headers);
     return localVarResponse.getData();
   }
 
@@ -2047,11 +2049,12 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param serviceId  (required)
    * @param commitSha  (optional)
+   * @param releaseTagName  (optional)
    * @return ApiResponse&lt;ServiceBuildRequestObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ServiceBuildRequestObject> createServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha) throws ApiException {
-    return createServiceDeploymentWithHttpInfo(projectId, serviceId, commitSha, null);
+  public ApiResponse<ServiceBuildRequestObject> createServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName) throws ApiException {
+    return createServiceDeploymentWithHttpInfo(projectId, serviceId, commitSha, releaseTagName, null);
   }
 
   /**
@@ -2060,12 +2063,13 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param serviceId  (required)
    * @param commitSha  (optional)
+   * @param releaseTagName  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ServiceBuildRequestObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ServiceBuildRequestObject> createServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createServiceDeploymentRequestBuilder(projectId, serviceId, commitSha, headers);
+  public ApiResponse<ServiceBuildRequestObject> createServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createServiceDeploymentRequestBuilder(projectId, serviceId, commitSha, releaseTagName, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2112,7 +2116,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder createServiceDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createServiceDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling createServiceDeployment");
@@ -2133,6 +2137,8 @@ public class ProjectsServerApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "commitSha";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("commitSha", commitSha));
+    localVarQueryParameterBaseName = "releaseTagName";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("releaseTagName", releaseTagName));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -2438,11 +2444,12 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param webAppId  (required)
    * @param commitSha  (optional)
+   * @param releaseTagName  (optional)
    * @return WebAppBuildRequestObject
    * @throws ApiException if fails to make API call
    */
-  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha) throws ApiException {
-    return createWebAppDeployment(projectId, webAppId, commitSha, null);
+  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName) throws ApiException {
+    return createWebAppDeployment(projectId, webAppId, commitSha, releaseTagName, null);
   }
 
   /**
@@ -2451,12 +2458,13 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param webAppId  (required)
    * @param commitSha  (optional)
+   * @param releaseTagName  (optional)
    * @param headers Optional headers to include in the request
    * @return WebAppBuildRequestObject
    * @throws ApiException if fails to make API call
    */
-  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
-    ApiResponse<WebAppBuildRequestObject> localVarResponse = createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, headers);
+  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
+    ApiResponse<WebAppBuildRequestObject> localVarResponse = createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, releaseTagName, headers);
     return localVarResponse.getData();
   }
 
@@ -2466,11 +2474,12 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param webAppId  (required)
    * @param commitSha  (optional)
+   * @param releaseTagName  (optional)
    * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha) throws ApiException {
-    return createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, null);
+  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName) throws ApiException {
+    return createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, releaseTagName, null);
   }
 
   /**
@@ -2479,12 +2488,13 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param webAppId  (required)
    * @param commitSha  (optional)
+   * @param releaseTagName  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createWebAppDeploymentRequestBuilder(projectId, webAppId, commitSha, headers);
+  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createWebAppDeploymentRequestBuilder(projectId, webAppId, commitSha, releaseTagName, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2531,7 +2541,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder createWebAppDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createWebAppDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling createWebAppDeployment");
@@ -2552,6 +2562,8 @@ public class ProjectsServerApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "commitSha";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("commitSha", commitSha));
+    localVarQueryParameterBaseName = "releaseTagName";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("releaseTagName", releaseTagName));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

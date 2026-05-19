@@ -34,17 +34,22 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   SendUserEmailRequest.JSON_PROPERTY_SUBJECT,
-  SendUserEmailRequest.JSON_PROPERTY_BODY
+  SendUserEmailRequest.JSON_PROPERTY_BODY,
+  SendUserEmailRequest.JSON_PROPERTY_HTML_BODY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T03:38:37.326202700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T00:19:02.532665900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class SendUserEmailRequest {
   public static final String JSON_PROPERTY_SUBJECT = "subject";
   @javax.annotation.Nonnull
   private String subject;
 
   public static final String JSON_PROPERTY_BODY = "body";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String body;
+
+  public static final String JSON_PROPERTY_HTML_BODY = "htmlBody";
+  @javax.annotation.Nullable
+  private String htmlBody;
 
   public SendUserEmailRequest() { 
   }
@@ -73,7 +78,7 @@ public class SendUserEmailRequest {
   }
 
 
-  public SendUserEmailRequest body(@javax.annotation.Nonnull String body) {
+  public SendUserEmailRequest body(@javax.annotation.Nullable String body) {
     this.body = body;
     return this;
   }
@@ -82,18 +87,42 @@ public class SendUserEmailRequest {
    * Get body
    * @return body
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getBody() {
     return body;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBody(@javax.annotation.Nonnull String body) {
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBody(@javax.annotation.Nullable String body) {
     this.body = body;
+  }
+
+
+  public SendUserEmailRequest htmlBody(@javax.annotation.Nullable String htmlBody) {
+    this.htmlBody = htmlBody;
+    return this;
+  }
+
+  /**
+   * Get htmlBody
+   * @return htmlBody
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HTML_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getHtmlBody() {
+    return htmlBody;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HTML_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHtmlBody(@javax.annotation.Nullable String htmlBody) {
+    this.htmlBody = htmlBody;
   }
 
 
@@ -110,12 +139,13 @@ public class SendUserEmailRequest {
     }
     SendUserEmailRequest sendUserEmailRequest = (SendUserEmailRequest) o;
     return Objects.equals(this.subject, sendUserEmailRequest.subject) &&
-        Objects.equals(this.body, sendUserEmailRequest.body);
+        Objects.equals(this.body, sendUserEmailRequest.body) &&
+        Objects.equals(this.htmlBody, sendUserEmailRequest.htmlBody);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subject, body);
+    return Objects.hash(subject, body, htmlBody);
   }
 
   @Override
@@ -124,6 +154,7 @@ public class SendUserEmailRequest {
     sb.append("class SendUserEmailRequest {\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    htmlBody: ").append(toIndentedString(htmlBody)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -176,6 +207,11 @@ public class SendUserEmailRequest {
     // add `body` to the URL query string
     if (getBody() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBody()))));
+    }
+
+    // add `htmlBody` to the URL query string
+    if (getHtmlBody() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shtmlBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHtmlBody()))));
     }
 
     return joiner.toString();

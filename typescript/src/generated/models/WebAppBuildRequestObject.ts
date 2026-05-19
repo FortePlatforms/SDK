@@ -208,6 +208,18 @@ export interface WebAppBuildRequestObject {
      * @memberof WebAppBuildRequestObject
      */
     origin?: WebAppBuildRequestObjectOriginType;
+    /**
+     * 
+     * @type {WebAppBuildRequestObjectBuildTierType}
+     * @memberof WebAppBuildRequestObject
+     */
+    buildTier?: WebAppBuildRequestObjectBuildTierType;
+    /**
+     * 
+     * @type {WebAppBuildRequestObjectFailureReasonType}
+     * @memberof WebAppBuildRequestObject
+     */
+    failureReason?: WebAppBuildRequestObjectFailureReasonType;
 }
 
 
@@ -271,6 +283,23 @@ export const WebAppBuildRequestObjectOriginType = {
 } as const;
 export type WebAppBuildRequestObjectOriginType = typeof WebAppBuildRequestObjectOriginType[keyof typeof WebAppBuildRequestObjectOriginType];
 
+/**
+ * @export
+ */
+export const WebAppBuildRequestObjectBuildTierType = {
+    STANDARD: 'STANDARD',
+    SMART: 'SMART'
+} as const;
+export type WebAppBuildRequestObjectBuildTierType = typeof WebAppBuildRequestObjectBuildTierType[keyof typeof WebAppBuildRequestObjectBuildTierType];
+
+/**
+ * @export
+ */
+export const WebAppBuildRequestObjectFailureReasonType = {
+    BILLING_REQUIRED: 'BILLING_REQUIRED'
+} as const;
+export type WebAppBuildRequestObjectFailureReasonType = typeof WebAppBuildRequestObjectFailureReasonType[keyof typeof WebAppBuildRequestObjectFailureReasonType];
+
 
 /**
  * Check if a given object implements the WebAppBuildRequestObject interface.
@@ -321,6 +350,8 @@ export function WebAppBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimin
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
+        'buildTier': json['buildTier'] == null ? undefined : json['buildTier'],
+        'failureReason': json['failureReason'] == null ? undefined : json['failureReason'],
     };
 }
 
@@ -364,6 +395,8 @@ export function WebAppBuildRequestObjectToJSONTyped(value?: WebAppBuildRequestOb
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],
+        'buildTier': value['buildTier'],
+        'failureReason': value['failureReason'],
     };
 }
 

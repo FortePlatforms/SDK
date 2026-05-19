@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T03:38:37.326202700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T00:19:02.532665900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -189,6 +189,12 @@ public class ForteApiException {
     
     MISSING_GITHUB_BRANCH(String.valueOf("MISSING_GITHUB_BRANCH")),
     
+    NO_RELEASE_AVAILABLE(String.valueOf("NO_RELEASE_AVAILABLE")),
+    
+    RELEASE_AND_COMMIT_BOTH_SPECIFIED(String.valueOf("RELEASE_AND_COMMIT_BOTH_SPECIFIED")),
+    
+    RELEASE_TAG_NOT_FOUND(String.valueOf("RELEASE_TAG_NOT_FOUND")),
+    
     EXTERNAL_API_ERROR(String.valueOf("EXTERNAL_API_ERROR")),
     
     PAYMENTS_PROVIDER_REJECTED(String.valueOf("PAYMENTS_PROVIDER_REJECTED")),
@@ -216,6 +222,8 @@ public class ForteApiException {
     PAYMENT_TRIGGER_NOT_FOUND(String.valueOf("PAYMENT_TRIGGER_NOT_FOUND")),
     
     EMAIL_CONFIGURATION_INVALID(String.valueOf("EMAIL_CONFIGURATION_INVALID")),
+    
+    EMAIL_BODY_REQUIRED(String.valueOf("EMAIL_BODY_REQUIRED")),
     
     SES_TENANT_NOT_PROVISIONED(String.valueOf("SES_TENANT_NOT_PROVISIONED")),
     

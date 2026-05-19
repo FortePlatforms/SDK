@@ -36,7 +36,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ChangePasswordRequest.JSON_PROPERTY_CURRENT_PASSWORD,
   ChangePasswordRequest.JSON_PROPERTY_NEW_PASSWORD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T03:38:37.326202700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T00:19:02.532665900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ChangePasswordRequest {
   public static final String JSON_PROPERTY_CURRENT_PASSWORD = "currentPassword";
   @javax.annotation.Nullable

@@ -388,6 +388,7 @@ export interface CreateServiceDeploymentRequest {
     projectId: string;
     serviceId: string;
     commitSha?: string;
+    releaseTagName?: string;
 }
 
 export interface CreateServiceRequestProxyOperationRequest {
@@ -405,6 +406,7 @@ export interface CreateWebAppDeploymentRequest {
     projectId: string;
     webAppId: string;
     commitSha?: string;
+    releaseTagName?: string;
 }
 
 export interface DeleteCustomDomainRequest {
@@ -1529,6 +1531,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['commitSha'] = requestParameters['commitSha'];
         }
 
+        if (requestParameters['releaseTagName'] != null) {
+            queryParameters['releaseTagName'] = requestParameters['releaseTagName'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
 
@@ -1696,6 +1702,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['commitSha'] != null) {
             queryParameters['commitSha'] = requestParameters['commitSha'];
+        }
+
+        if (requestParameters['releaseTagName'] != null) {
+            queryParameters['releaseTagName'] = requestParameters['releaseTagName'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

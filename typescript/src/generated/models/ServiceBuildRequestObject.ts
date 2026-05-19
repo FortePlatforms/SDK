@@ -131,6 +131,18 @@ export interface ServiceBuildRequestObject {
      * @memberof ServiceBuildRequestObject
      */
     origin?: ServiceBuildRequestObjectOriginType;
+    /**
+     * 
+     * @type {ServiceBuildRequestObjectBuildTierType}
+     * @memberof ServiceBuildRequestObject
+     */
+    buildTier?: ServiceBuildRequestObjectBuildTierType;
+    /**
+     * 
+     * @type {ServiceBuildRequestObjectFailureReasonType}
+     * @memberof ServiceBuildRequestObject
+     */
+    failureReason?: ServiceBuildRequestObjectFailureReasonType;
 }
 
 
@@ -183,6 +195,23 @@ export const ServiceBuildRequestObjectOriginType = {
 } as const;
 export type ServiceBuildRequestObjectOriginType = typeof ServiceBuildRequestObjectOriginType[keyof typeof ServiceBuildRequestObjectOriginType];
 
+/**
+ * @export
+ */
+export const ServiceBuildRequestObjectBuildTierType = {
+    STANDARD: 'STANDARD',
+    SMART: 'SMART'
+} as const;
+export type ServiceBuildRequestObjectBuildTierType = typeof ServiceBuildRequestObjectBuildTierType[keyof typeof ServiceBuildRequestObjectBuildTierType];
+
+/**
+ * @export
+ */
+export const ServiceBuildRequestObjectFailureReasonType = {
+    BILLING_REQUIRED: 'BILLING_REQUIRED'
+} as const;
+export type ServiceBuildRequestObjectFailureReasonType = typeof ServiceBuildRequestObjectFailureReasonType[keyof typeof ServiceBuildRequestObjectFailureReasonType];
+
 
 /**
  * Check if a given object implements the ServiceBuildRequestObject interface.
@@ -219,6 +248,8 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
+        'buildTier': json['buildTier'] == null ? undefined : json['buildTier'],
+        'failureReason': json['failureReason'] == null ? undefined : json['failureReason'],
     };
 }
 
@@ -248,6 +279,8 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],
+        'buildTier': value['buildTier'],
+        'failureReason': value['failureReason'],
     };
 }
 

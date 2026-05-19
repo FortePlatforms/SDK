@@ -51,7 +51,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RequestLogObject.JSON_PROPERTY_RESPONSE_HEADERS,
   RequestLogObject.JSON_PROPERTY_RETRY_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T03:38:37.326202700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T00:19:02.532665900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class RequestLogObject {
   public static final String JSON_PROPERTY_REQUEST_ID = "requestId";
   @javax.annotation.Nullable

@@ -66,9 +66,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_RELEASE_TAG_NAME,
   WebAppBuildRequestObject.JSON_PROPERTY_BUILD_STEP_LOGS,
   WebAppBuildRequestObject.JSON_PROPERTY_STATUS,
-  WebAppBuildRequestObject.JSON_PROPERTY_ORIGIN
+  WebAppBuildRequestObject.JSON_PROPERTY_ORIGIN,
+  WebAppBuildRequestObject.JSON_PROPERTY_BUILD_TIER,
+  WebAppBuildRequestObject.JSON_PROPERTY_FAILURE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T03:38:37.326202700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T00:19:02.532665900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
@@ -356,6 +358,82 @@ public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_ORIGIN = "origin";
   @javax.annotation.Nullable
   private OriginEnum origin;
+
+  /**
+   * Gets or Sets buildTier
+   */
+  public enum BuildTierEnum {
+    STANDARD(String.valueOf("STANDARD")),
+    
+    SMART(String.valueOf("SMART"));
+
+    private String value;
+
+    BuildTierEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BuildTierEnum fromValue(String value) {
+      for (BuildTierEnum b : BuildTierEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BUILD_TIER = "buildTier";
+  @javax.annotation.Nullable
+  private BuildTierEnum buildTier;
+
+  /**
+   * Gets or Sets failureReason
+   */
+  public enum FailureReasonEnum {
+    BILLING_REQUIRED(String.valueOf("BILLING_REQUIRED"));
+
+    private String value;
+
+    FailureReasonEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static FailureReasonEnum fromValue(String value) {
+      for (FailureReasonEnum b : FailureReasonEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_FAILURE_REASON = "failureReason";
+  @javax.annotation.Nullable
+  private FailureReasonEnum failureReason;
 
   public WebAppBuildRequestObject() { 
   }
@@ -1064,6 +1142,54 @@ public class WebAppBuildRequestObject {
   }
 
 
+  public WebAppBuildRequestObject buildTier(@javax.annotation.Nullable BuildTierEnum buildTier) {
+    this.buildTier = buildTier;
+    return this;
+  }
+
+  /**
+   * Get buildTier
+   * @return buildTier
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUILD_TIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BuildTierEnum getBuildTier() {
+    return buildTier;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUILD_TIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBuildTier(@javax.annotation.Nullable BuildTierEnum buildTier) {
+    this.buildTier = buildTier;
+  }
+
+
+  public WebAppBuildRequestObject failureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
+    this.failureReason = failureReason;
+    return this;
+  }
+
+  /**
+   * Get failureReason
+   * @return failureReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public FailureReasonEnum getFailureReason() {
+    return failureReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFailureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
+    this.failureReason = failureReason;
+  }
+
+
   /**
    * Return true if this WebAppBuildRequestObject object is equal to o.
    */
@@ -1104,12 +1230,14 @@ public class WebAppBuildRequestObject {
         Objects.equals(this.releaseTagName, webAppBuildRequestObject.releaseTagName) &&
         Objects.equals(this.buildStepLogs, webAppBuildRequestObject.buildStepLogs) &&
         Objects.equals(this.status, webAppBuildRequestObject.status) &&
-        Objects.equals(this.origin, webAppBuildRequestObject.origin);
+        Objects.equals(this.origin, webAppBuildRequestObject.origin) &&
+        Objects.equals(this.buildTier, webAppBuildRequestObject.buildTier) &&
+        Objects.equals(this.failureReason, webAppBuildRequestObject.failureReason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, containerImageUri, dockerfilePath, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin);
+    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, containerImageUri, dockerfilePath, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, buildTier, failureReason);
   }
 
   @Override
@@ -1145,6 +1273,8 @@ public class WebAppBuildRequestObject {
     sb.append("    buildStepLogs: ").append(toIndentedString(buildStepLogs)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
+    sb.append("    buildTier: ").append(toIndentedString(buildTier)).append("\n");
+    sb.append("    failureReason: ").append(toIndentedString(failureReason)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1337,6 +1467,16 @@ public class WebAppBuildRequestObject {
     // add `origin` to the URL query string
     if (getOrigin() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sorigin%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOrigin()))));
+    }
+
+    // add `buildTier` to the URL query string
+    if (getBuildTier() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbuildTier%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuildTier()))));
+    }
+
+    // add `failureReason` to the URL query string
+    if (getFailureReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfailureReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFailureReason()))));
     }
 
     return joiner.toString();

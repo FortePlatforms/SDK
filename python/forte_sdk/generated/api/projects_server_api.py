@@ -3891,6 +3891,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         service_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
+        release_tag_name: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3913,6 +3914,8 @@ class ProjectsServerApi:
         :type service_id: str
         :param commit_sha:
         :type commit_sha: str
+        :param release_tag_name:
+        :type release_tag_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3939,6 +3942,7 @@ class ProjectsServerApi:
             project_id=project_id,
             service_id=service_id,
             commit_sha=commit_sha,
+            release_tag_name=release_tag_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3965,6 +3969,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         service_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
+        release_tag_name: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3987,6 +3992,8 @@ class ProjectsServerApi:
         :type service_id: str
         :param commit_sha:
         :type commit_sha: str
+        :param release_tag_name:
+        :type release_tag_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4013,6 +4020,7 @@ class ProjectsServerApi:
             project_id=project_id,
             service_id=service_id,
             commit_sha=commit_sha,
+            release_tag_name=release_tag_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4039,6 +4047,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         service_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
+        release_tag_name: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4061,6 +4070,8 @@ class ProjectsServerApi:
         :type service_id: str
         :param commit_sha:
         :type commit_sha: str
+        :param release_tag_name:
+        :type release_tag_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4087,6 +4098,7 @@ class ProjectsServerApi:
             project_id=project_id,
             service_id=service_id,
             commit_sha=commit_sha,
+            release_tag_name=release_tag_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4108,6 +4120,7 @@ class ProjectsServerApi:
         project_id,
         service_id,
         commit_sha,
+        release_tag_name,
         _request_auth,
         _content_type,
         _headers,
@@ -4137,6 +4150,10 @@ class ProjectsServerApi:
         if commit_sha is not None:
             
             _query_params.append(('commitSha', commit_sha))
+            
+        if release_tag_name is not None:
+            
+            _query_params.append(('releaseTagName', release_tag_name))
             
         # process the header parameters
         # process the form parameters
@@ -4765,6 +4782,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         web_app_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
+        release_tag_name: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4787,6 +4805,8 @@ class ProjectsServerApi:
         :type web_app_id: str
         :param commit_sha:
         :type commit_sha: str
+        :param release_tag_name:
+        :type release_tag_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4813,6 +4833,7 @@ class ProjectsServerApi:
             project_id=project_id,
             web_app_id=web_app_id,
             commit_sha=commit_sha,
+            release_tag_name=release_tag_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4839,6 +4860,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         web_app_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
+        release_tag_name: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4861,6 +4883,8 @@ class ProjectsServerApi:
         :type web_app_id: str
         :param commit_sha:
         :type commit_sha: str
+        :param release_tag_name:
+        :type release_tag_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4887,6 +4911,7 @@ class ProjectsServerApi:
             project_id=project_id,
             web_app_id=web_app_id,
             commit_sha=commit_sha,
+            release_tag_name=release_tag_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4913,6 +4938,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         web_app_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
+        release_tag_name: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4935,6 +4961,8 @@ class ProjectsServerApi:
         :type web_app_id: str
         :param commit_sha:
         :type commit_sha: str
+        :param release_tag_name:
+        :type release_tag_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4961,6 +4989,7 @@ class ProjectsServerApi:
             project_id=project_id,
             web_app_id=web_app_id,
             commit_sha=commit_sha,
+            release_tag_name=release_tag_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4982,6 +5011,7 @@ class ProjectsServerApi:
         project_id,
         web_app_id,
         commit_sha,
+        release_tag_name,
         _request_auth,
         _content_type,
         _headers,
@@ -5011,6 +5041,10 @@ class ProjectsServerApi:
         if commit_sha is not None:
             
             _query_params.append(('commitSha', commit_sha))
+            
+        if release_tag_name is not None:
+            
+            _query_params.append(('releaseTagName', release_tag_name))
             
         # process the header parameters
         # process the form parameters

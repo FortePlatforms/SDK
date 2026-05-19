@@ -59,7 +59,9 @@ class WebAppBuildRequestObject(BaseModel):
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin"]
+    build_tier: Optional[StrictStr] = Field(default=None, alias="buildTier")
+    failure_reason: Optional[StrictStr] = Field(default=None, alias="failureReason")
+    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "buildTier", "failureReason"]
 
     @field_validator('monorepo_type')
     def monorepo_type_validate_enum(cls, value):
@@ -86,6 +88,26 @@ class WebAppBuildRequestObject(BaseModel):
 
         if value not in set(['INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'TRIGGERED_BY_RELEASE', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD']):
             raise ValueError("must be one of enum values ('INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'TRIGGERED_BY_RELEASE', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD')")
+        return value
+
+    @field_validator('build_tier')
+    def build_tier_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['STANDARD', 'SMART']):
+            raise ValueError("must be one of enum values ('STANDARD', 'SMART')")
+        return value
+
+    @field_validator('failure_reason')
+    def failure_reason_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['BILLING_REQUIRED']):
+            raise ValueError("must be one of enum values ('BILLING_REQUIRED')")
         return value
 
     model_config = ConfigDict(
@@ -177,7 +199,9 @@ class WebAppBuildRequestObject(BaseModel):
             "releaseTagName": obj.get("releaseTagName"),
             "buildStepLogs": [BuildStepLog.from_dict(_item) for _item in obj["buildStepLogs"]] if obj.get("buildStepLogs") is not None else None,
             "status": obj.get("status"),
-            "origin": obj.get("origin")
+            "origin": obj.get("origin"),
+            "buildTier": obj.get("buildTier"),
+            "failureReason": obj.get("failureReason")
         })
         return _obj
 

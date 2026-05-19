@@ -30,7 +30,13 @@ export interface SendUserEmailRequest {
      * @type {string}
      * @memberof SendUserEmailRequest
      */
-    body: string;
+    body?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SendUserEmailRequest
+     */
+    htmlBody?: string;
 }
 
 /**
@@ -38,7 +44,6 @@ export interface SendUserEmailRequest {
  */
 export function instanceOfSendUserEmailRequest(value: object): value is SendUserEmailRequest {
     if (!('subject' in value) || value['subject'] === undefined) return false;
-    if (!('body' in value) || value['body'] === undefined) return false;
     return true;
 }
 
@@ -53,7 +58,8 @@ export function SendUserEmailRequestFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'subject': json['subject'],
-        'body': json['body'],
+        'body': json['body'] == null ? undefined : json['body'],
+        'htmlBody': json['htmlBody'] == null ? undefined : json['htmlBody'],
     };
 }
 
@@ -70,6 +76,7 @@ export function SendUserEmailRequestToJSONTyped(value?: SendUserEmailRequest | n
         
         'subject': value['subject'],
         'body': value['body'],
+        'htmlBody': value['htmlBody'],
     };
 }
 
