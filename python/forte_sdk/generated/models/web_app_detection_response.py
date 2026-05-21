@@ -30,7 +30,7 @@ class WebAppDetectionResponse(BaseModel):
     """ # noqa: E501
     web_app_type: Optional[StrictStr] = Field(default=None, description="Whether the web app serves only static assets (STATIC) or includes server-side rendering (SERVER_SIDE)", alias="webAppType")
     package_manager: Optional[StrictStr] = Field(default=None, description="Detected package manager (npm, yarn, pnpm, or bun)", alias="packageManager")
-    node_version: Optional[StrictStr] = Field(default=None, description="Detected Node.js version (e.g. \"20\")", alias="nodeVersion")
+    node_version: Optional[StrictStr] = Field(default=None, description="Detected Node.js version (e.g. \"22\")", alias="nodeVersion")
     build_command: Optional[StrictStr] = Field(default=None, description="Build command to produce the output directory", alias="buildCommand")
     build_path: Optional[StrictStr] = Field(default=None, description="Path to the build output directory", alias="buildPath")
     install_command: Optional[StrictStr] = Field(default=None, description="Install command override, useful for monorepos", alias="installCommand")

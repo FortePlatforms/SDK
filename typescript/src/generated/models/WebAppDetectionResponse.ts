@@ -40,7 +40,7 @@ export interface WebAppDetectionResponse {
      */
     packageManager?: string;
     /**
-     * Detected Node.js version (e.g. "20")
+     * Detected Node.js version (e.g. "22")
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
