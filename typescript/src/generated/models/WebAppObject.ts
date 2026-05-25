@@ -184,6 +184,12 @@ export interface WebAppObject {
      * @type {Date}
      * @memberof WebAppObject
      */
+    hostingProviderDomainAvailableAt?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof WebAppObject
+     */
     createdTimestamp?: Date;
     /**
      * 
@@ -316,6 +322,7 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'hostingProviderAppId': json['hostingProviderAppId'] == null ? undefined : json['hostingProviderAppId'],
         'hostingProviderBranchName': json['hostingProviderBranchName'] == null ? undefined : json['hostingProviderBranchName'],
         'hostingProviderDomainStatus': json['hostingProviderDomainStatus'] == null ? undefined : json['hostingProviderDomainStatus'],
+        'hostingProviderDomainAvailableAt': json['hostingProviderDomainAvailableAt'] == null ? undefined : (new Date(json['hostingProviderDomainAvailableAt'])),
         'createdTimestamp': json['createdTimestamp'] == null ? undefined : (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
         'githubRepositoryUrl': json['githubRepositoryUrl'],
@@ -363,6 +370,7 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'hostingProviderAppId': value['hostingProviderAppId'],
         'hostingProviderBranchName': value['hostingProviderBranchName'],
         'hostingProviderDomainStatus': value['hostingProviderDomainStatus'],
+        'hostingProviderDomainAvailableAt': value['hostingProviderDomainAvailableAt'] == null ? value['hostingProviderDomainAvailableAt'] : value['hostingProviderDomainAvailableAt'].toISOString(),
         'createdTimestamp': value['createdTimestamp'] == null ? value['createdTimestamp'] : value['createdTimestamp'].toISOString(),
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
         'githubRepositoryUrl': value['githubRepositoryUrl'],

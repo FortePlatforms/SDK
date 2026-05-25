@@ -40,7 +40,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaginatedResponseServiceBuildRequestObject.JSON_PROPERTY_HAS_NEXT_PAGE,
   PaginatedResponseServiceBuildRequestObject.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T14:33:57.884730-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-23T12:05:14.617384500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class PaginatedResponseServiceBuildRequestObject {
   public static final String JSON_PROPERTY_ITEMS = "items";
   @javax.annotation.Nonnull

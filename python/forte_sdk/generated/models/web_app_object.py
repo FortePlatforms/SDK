@@ -55,6 +55,7 @@ class WebAppObject(BaseModel):
     hosting_provider_app_id: Optional[StrictStr] = Field(default=None, alias="hostingProviderAppId")
     hosting_provider_branch_name: Optional[StrictStr] = Field(default=None, alias="hostingProviderBranchName")
     hosting_provider_domain_status: Optional[StrictStr] = Field(default=None, alias="hostingProviderDomainStatus")
+    hosting_provider_domain_available_at: Optional[datetime] = Field(default=None, alias="hostingProviderDomainAvailableAt")
     created_timestamp: Optional[datetime] = Field(default=None, alias="createdTimestamp")
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
     github_repository_url: StrictStr = Field(alias="githubRepositoryUrl")
@@ -65,7 +66,7 @@ class WebAppObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "detectionVersion", "containerImageUri", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "detectionVersion", "containerImageUri", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -181,6 +182,7 @@ class WebAppObject(BaseModel):
             "hostingProviderAppId": obj.get("hostingProviderAppId"),
             "hostingProviderBranchName": obj.get("hostingProviderBranchName"),
             "hostingProviderDomainStatus": obj.get("hostingProviderDomainStatus"),
+            "hostingProviderDomainAvailableAt": obj.get("hostingProviderDomainAvailableAt"),
             "createdTimestamp": obj.get("createdTimestamp"),
             "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),

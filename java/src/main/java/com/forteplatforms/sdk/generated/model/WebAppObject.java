@@ -67,6 +67,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_APP_ID,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_BRANCH_NAME,
   WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_DOMAIN_STATUS,
+  WebAppObject.JSON_PROPERTY_HOSTING_PROVIDER_DOMAIN_AVAILABLE_AT,
   WebAppObject.JSON_PROPERTY_CREATED_TIMESTAMP,
   WebAppObject.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
   WebAppObject.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
@@ -78,7 +79,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_BASE_DIRECTORY,
   WebAppObject.JSON_PROPERTY_SECRET_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T14:33:57.884730-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-23T12:05:14.617384500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class WebAppObject {
   public static final String JSON_PROPERTY_WEB_APP_ID = "webAppId";
   @javax.annotation.Nullable
@@ -245,6 +246,10 @@ public class WebAppObject {
   public static final String JSON_PROPERTY_HOSTING_PROVIDER_DOMAIN_STATUS = "hostingProviderDomainStatus";
   @javax.annotation.Nullable
   private String hostingProviderDomainStatus;
+
+  public static final String JSON_PROPERTY_HOSTING_PROVIDER_DOMAIN_AVAILABLE_AT = "hostingProviderDomainAvailableAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime hostingProviderDomainAvailableAt;
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nullable
@@ -884,6 +889,30 @@ public class WebAppObject {
   }
 
 
+  public WebAppObject hostingProviderDomainAvailableAt(@javax.annotation.Nullable OffsetDateTime hostingProviderDomainAvailableAt) {
+    this.hostingProviderDomainAvailableAt = hostingProviderDomainAvailableAt;
+    return this;
+  }
+
+  /**
+   * Get hostingProviderDomainAvailableAt
+   * @return hostingProviderDomainAvailableAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HOSTING_PROVIDER_DOMAIN_AVAILABLE_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getHostingProviderDomainAvailableAt() {
+    return hostingProviderDomainAvailableAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HOSTING_PROVIDER_DOMAIN_AVAILABLE_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHostingProviderDomainAvailableAt(@javax.annotation.Nullable OffsetDateTime hostingProviderDomainAvailableAt) {
+    this.hostingProviderDomainAvailableAt = hostingProviderDomainAvailableAt;
+  }
+
+
   public WebAppObject createdTimestamp(@javax.annotation.Nullable OffsetDateTime createdTimestamp) {
     this.createdTimestamp = createdTimestamp;
     return this;
@@ -1184,6 +1213,7 @@ public class WebAppObject {
         Objects.equals(this.hostingProviderAppId, webAppObject.hostingProviderAppId) &&
         Objects.equals(this.hostingProviderBranchName, webAppObject.hostingProviderBranchName) &&
         Objects.equals(this.hostingProviderDomainStatus, webAppObject.hostingProviderDomainStatus) &&
+        Objects.equals(this.hostingProviderDomainAvailableAt, webAppObject.hostingProviderDomainAvailableAt) &&
         Objects.equals(this.createdTimestamp, webAppObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, webAppObject.lastModifiedTimestamp) &&
         Objects.equals(this.githubRepositoryUrl, webAppObject.githubRepositoryUrl) &&
@@ -1198,7 +1228,7 @@ public class WebAppObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, detectionVersion, containerImageUri, detectionResponse, dockerfilePath, dockerfileDetectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, detectionVersion, containerImageUri, detectionResponse, dockerfilePath, dockerfileDetectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, hostingProviderDomainAvailableAt, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -1228,6 +1258,7 @@ public class WebAppObject {
     sb.append("    hostingProviderAppId: ").append(toIndentedString(hostingProviderAppId)).append("\n");
     sb.append("    hostingProviderBranchName: ").append(toIndentedString(hostingProviderBranchName)).append("\n");
     sb.append("    hostingProviderDomainStatus: ").append(toIndentedString(hostingProviderDomainStatus)).append("\n");
+    sb.append("    hostingProviderDomainAvailableAt: ").append(toIndentedString(hostingProviderDomainAvailableAt)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
     sb.append("    lastModifiedTimestamp: ").append(toIndentedString(lastModifiedTimestamp)).append("\n");
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
@@ -1400,6 +1431,11 @@ public class WebAppObject {
     // add `hostingProviderDomainStatus` to the URL query string
     if (getHostingProviderDomainStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shostingProviderDomainStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostingProviderDomainStatus()))));
+    }
+
+    // add `hostingProviderDomainAvailableAt` to the URL query string
+    if (getHostingProviderDomainAvailableAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shostingProviderDomainAvailableAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostingProviderDomainAvailableAt()))));
     }
 
     // add `createdTimestamp` to the URL query string

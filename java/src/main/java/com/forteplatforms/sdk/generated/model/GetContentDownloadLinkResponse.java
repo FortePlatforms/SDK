@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   GetContentDownloadLinkResponse.JSON_PROPERTY_DOWNLOAD_URL,
   GetContentDownloadLinkResponse.JSON_PROPERTY_EXPIRES_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T14:33:57.884730-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-23T12:05:14.617384500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class GetContentDownloadLinkResponse {
   public static final String JSON_PROPERTY_DOWNLOAD_URL = "downloadUrl";
   @javax.annotation.Nonnull
