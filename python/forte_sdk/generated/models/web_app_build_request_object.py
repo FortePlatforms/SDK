@@ -106,8 +106,8 @@ class WebAppBuildRequestObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['BILLING_REQUIRED', 'RECONCILIATION_TIMEOUT']):
-            raise ValueError("must be one of enum values ('BILLING_REQUIRED', 'RECONCILIATION_TIMEOUT')")
+        if value not in set(['BILLING_REQUIRED', 'BILLING_SUSPENDED', 'RECONCILIATION_TIMEOUT']):
+            raise ValueError("must be one of enum values ('BILLING_REQUIRED', 'BILLING_SUSPENDED', 'RECONCILIATION_TIMEOUT')")
         return value
 
     model_config = ConfigDict(

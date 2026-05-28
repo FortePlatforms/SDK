@@ -297,6 +297,7 @@ export type WebAppBuildRequestObjectBuildTierType = typeof WebAppBuildRequestObj
  */
 export const WebAppBuildRequestObjectFailureReasonType = {
     BILLING_REQUIRED: 'BILLING_REQUIRED',
+    BILLING_SUSPENDED: 'BILLING_SUSPENDED',
     RECONCILIATION_TIMEOUT: 'RECONCILIATION_TIMEOUT'
 } as const;
 export type WebAppBuildRequestObjectFailureReasonType = typeof WebAppBuildRequestObjectFailureReasonType[keyof typeof WebAppBuildRequestObjectFailureReasonType];

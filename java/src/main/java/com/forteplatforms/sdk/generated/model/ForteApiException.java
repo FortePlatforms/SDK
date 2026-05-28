@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-23T12:05:14.617384500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T18:01:44.825693900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -206,6 +206,8 @@ public class ForteApiException {
     PAYMENT_LINE_ITEMS_REQUIRED(String.valueOf("PAYMENT_LINE_ITEMS_REQUIRED")),
     
     PAYMENT_AMOUNT_INVALID(String.valueOf("PAYMENT_AMOUNT_INVALID")),
+    
+    PAYMENT_TOTAL_INVALID(String.valueOf("PAYMENT_TOTAL_INVALID")),
     
     PAYMENT_CURRENCY_INVALID(String.valueOf("PAYMENT_CURRENCY_INVALID")),
     

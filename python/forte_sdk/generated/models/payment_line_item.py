@@ -29,7 +29,7 @@ class PaymentLineItem(BaseModel):
     PaymentLineItem
     """ # noqa: E501
     description: Annotated[str, Field(min_length=1, strict=True, max_length=250)]
-    unit_amount_cents: Annotated[int, Field(strict=True, ge=1)] = Field(alias="unitAmountCents")
+    unit_amount_cents: Annotated[int, Field(strict=True, ge=0)] = Field(alias="unitAmountCents")
     quantity: Annotated[int, Field(strict=True, ge=1)]
     tax_code: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="taxCode")
     tax_amount_cents: Optional[StrictInt] = Field(default=None, alias="taxAmountCents")

@@ -209,6 +209,7 @@ export type ServiceBuildRequestObjectBuildTierType = typeof ServiceBuildRequestO
  */
 export const ServiceBuildRequestObjectFailureReasonType = {
     BILLING_REQUIRED: 'BILLING_REQUIRED',
+    BILLING_SUSPENDED: 'BILLING_SUSPENDED',
     RECONCILIATION_TIMEOUT: 'RECONCILIATION_TIMEOUT'
 } as const;
 export type ServiceBuildRequestObjectFailureReasonType = typeof ServiceBuildRequestObjectFailureReasonType[keyof typeof ServiceBuildRequestObjectFailureReasonType];

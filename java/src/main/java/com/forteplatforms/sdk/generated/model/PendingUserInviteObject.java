@@ -47,7 +47,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PendingUserInviteObject.JSON_PROPERTY_CONSUMED_BY_USER_ID,
   PendingUserInviteObject.JSON_PROPERTY_CUSTOM_ATTRIBUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-23T12:05:14.617384500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T18:01:44.825693900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class PendingUserInviteObject {
   public static final String JSON_PROPERTY_INVITE_ID = "inviteId";
   @javax.annotation.Nullable
