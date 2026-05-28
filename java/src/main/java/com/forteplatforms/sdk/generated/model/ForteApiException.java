@@ -37,12 +37,14 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T18:01:44.825693900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
    */
   public enum ErrorCodeEnum {
+    REQUEST_VALIDATION_FAILED(String.valueOf("REQUEST_VALIDATION_FAILED")),
+    
     GITHUB_APP_NOT_CONFIGURED(String.valueOf("GITHUB_APP_NOT_CONFIGURED")),
     
     EMAIL_NOT_VERIFIED(String.valueOf("EMAIL_NOT_VERIFIED")),

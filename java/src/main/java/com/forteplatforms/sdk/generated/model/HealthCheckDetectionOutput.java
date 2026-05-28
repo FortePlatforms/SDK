@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   HealthCheckDetectionOutput.JSON_PROPERTY_APPLICATION_PORT,
   HealthCheckDetectionOutput.JSON_PROPERTY_HEALTH_CHECK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T18:01:44.825693900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class HealthCheckDetectionOutput {
   public static final String JSON_PROPERTY_APPLICATION_PORT = "applicationPort";
   @javax.annotation.Nullable
