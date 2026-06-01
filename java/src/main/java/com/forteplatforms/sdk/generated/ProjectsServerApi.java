@@ -106,7 +106,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T11:04:36.588006600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2292,6 +2292,147 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param serviceId  (required)
+   * @param createCustomDomainRequest  (required)
+   * @return CustomDomainResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CustomDomainResponse createServiceCustomDomain(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateCustomDomainRequest createCustomDomainRequest) throws ApiException {
+    return createServiceCustomDomain(projectId, serviceId, createCustomDomainRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createCustomDomainRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CustomDomainResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CustomDomainResponse createServiceCustomDomain(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateCustomDomainRequest createCustomDomainRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CustomDomainResponse> localVarResponse = createServiceCustomDomainWithHttpInfo(projectId, serviceId, createCustomDomainRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createCustomDomainRequest  (required)
+   * @return ApiResponse&lt;CustomDomainResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomDomainResponse> createServiceCustomDomainWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateCustomDomainRequest createCustomDomainRequest) throws ApiException {
+    return createServiceCustomDomainWithHttpInfo(projectId, serviceId, createCustomDomainRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createCustomDomainRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CustomDomainResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomDomainResponse> createServiceCustomDomainWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateCustomDomainRequest createCustomDomainRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createServiceCustomDomainRequestBuilder(projectId, serviceId, createCustomDomainRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createServiceCustomDomain", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CustomDomainResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CustomDomainResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CustomDomainResponse>() {});
+        
+
+        return new ApiResponse<CustomDomainResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createServiceCustomDomainRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateCustomDomainRequest createCustomDomainRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createServiceCustomDomain");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling createServiceCustomDomain");
+    }
+    // verify the required parameter 'createCustomDomainRequest' is set
+    if (createCustomDomainRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCustomDomainRequest' when calling createServiceCustomDomain");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/custom-domains"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCustomDomainRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
    * @return ServiceBuildRequestObject
@@ -3432,6 +3573,128 @@ public class ProjectsServerApi {
   /**
    * 
    * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServiceCustomDomain(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId) throws ApiException {
+    deleteServiceCustomDomain(projectId, serviceId, customDomainId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServiceCustomDomain(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    deleteServiceCustomDomainWithHttpInfo(projectId, serviceId, customDomainId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServiceCustomDomainWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId) throws ApiException {
+    return deleteServiceCustomDomainWithHttpInfo(projectId, serviceId, customDomainId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServiceCustomDomainWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteServiceCustomDomainRequestBuilder(projectId, serviceId, customDomainId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteServiceCustomDomain", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteServiceCustomDomainRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteServiceCustomDomain");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling deleteServiceCustomDomain");
+    }
+    // verify the required parameter 'customDomainId' is set
+    if (customDomainId == null) {
+      throw new ApiException(400, "Missing the required parameter 'customDomainId' when calling deleteServiceCustomDomain");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/custom-domains/{customDomainId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
+        .replace("{customDomainId}", ApiClient.urlEncode(customDomainId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
    * @param userId  (required)
    * @param projectId  (required)
    * @throws ApiException if fails to make API call
@@ -4434,6 +4697,142 @@ public class ProjectsServerApi {
     String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @return CustomDomainResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CustomDomainResponse getServiceCustomDomain(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId) throws ApiException {
+    return getServiceCustomDomain(projectId, serviceId, customDomainId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @param headers Optional headers to include in the request
+   * @return CustomDomainResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CustomDomainResponse getServiceCustomDomain(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    ApiResponse<CustomDomainResponse> localVarResponse = getServiceCustomDomainWithHttpInfo(projectId, serviceId, customDomainId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @return ApiResponse&lt;CustomDomainResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomDomainResponse> getServiceCustomDomainWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId) throws ApiException {
+    return getServiceCustomDomainWithHttpInfo(projectId, serviceId, customDomainId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CustomDomainResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomDomainResponse> getServiceCustomDomainWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getServiceCustomDomainRequestBuilder(projectId, serviceId, customDomainId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getServiceCustomDomain", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CustomDomainResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CustomDomainResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CustomDomainResponse>() {});
+        
+
+        return new ApiResponse<CustomDomainResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getServiceCustomDomainRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getServiceCustomDomain");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling getServiceCustomDomain");
+    }
+    // verify the required parameter 'customDomainId' is set
+    if (customDomainId == null) {
+      throw new ApiException(400, "Missing the required parameter 'customDomainId' when calling getServiceCustomDomain");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/custom-domains/{customDomainId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
+        .replace("{customDomainId}", ApiClient.urlEncode(customDomainId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -6387,6 +6786,133 @@ public class ProjectsServerApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @return ListCustomDomainsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListCustomDomainsResponse listServiceCustomDomains(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId) throws ApiException {
+    return listServiceCustomDomains(projectId, serviceId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ListCustomDomainsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListCustomDomainsResponse listServiceCustomDomains(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListCustomDomainsResponse> localVarResponse = listServiceCustomDomainsWithHttpInfo(projectId, serviceId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @return ApiResponse&lt;ListCustomDomainsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListCustomDomainsResponse> listServiceCustomDomainsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId) throws ApiException {
+    return listServiceCustomDomainsWithHttpInfo(projectId, serviceId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListCustomDomainsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListCustomDomainsResponse> listServiceCustomDomainsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listServiceCustomDomainsRequestBuilder(projectId, serviceId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listServiceCustomDomains", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListCustomDomainsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListCustomDomainsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListCustomDomainsResponse>() {});
+        
+
+        return new ApiResponse<ListCustomDomainsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listServiceCustomDomainsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listServiceCustomDomains");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling listServiceCustomDomains");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/custom-domains"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -9899,6 +10425,142 @@ public class ProjectsServerApi {
     String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/custom-domains/{customDomainId}/sync"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()))
+        .replace("{customDomainId}", ApiClient.urlEncode(customDomainId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @return SyncCustomDomainResponse
+   * @throws ApiException if fails to make API call
+   */
+  public SyncCustomDomainResponse syncServiceCustomDomain(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId) throws ApiException {
+    return syncServiceCustomDomain(projectId, serviceId, customDomainId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @param headers Optional headers to include in the request
+   * @return SyncCustomDomainResponse
+   * @throws ApiException if fails to make API call
+   */
+  public SyncCustomDomainResponse syncServiceCustomDomain(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    ApiResponse<SyncCustomDomainResponse> localVarResponse = syncServiceCustomDomainWithHttpInfo(projectId, serviceId, customDomainId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @return ApiResponse&lt;SyncCustomDomainResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SyncCustomDomainResponse> syncServiceCustomDomainWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId) throws ApiException {
+    return syncServiceCustomDomainWithHttpInfo(projectId, serviceId, customDomainId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param customDomainId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SyncCustomDomainResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SyncCustomDomainResponse> syncServiceCustomDomainWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = syncServiceCustomDomainRequestBuilder(projectId, serviceId, customDomainId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("syncServiceCustomDomain", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SyncCustomDomainResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SyncCustomDomainResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SyncCustomDomainResponse>() {});
+        
+
+        return new ApiResponse<SyncCustomDomainResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder syncServiceCustomDomainRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String customDomainId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling syncServiceCustomDomain");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling syncServiceCustomDomain");
+    }
+    // verify the required parameter 'customDomainId' is set
+    if (customDomainId == null) {
+      throw new ApiException(400, "Missing the required parameter 'customDomainId' when calling syncServiceCustomDomain");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/custom-domains/{customDomainId}/sync"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
         .replace("{customDomainId}", ApiClient.urlEncode(customDomainId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));

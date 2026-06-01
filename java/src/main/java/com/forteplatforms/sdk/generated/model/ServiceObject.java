@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.forteplatforms.sdk.generated.model.CustomDomain;
 import com.forteplatforms.sdk.generated.model.DockerfileGenerationResponse;
 import com.forteplatforms.sdk.generated.model.HealthCheckDetectionOutput;
 import com.forteplatforms.sdk.generated.model.HealthCheckDetectionResponse;
@@ -55,6 +56,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
   ServiceObject.JSON_PROPERTY_BASE_INSTANCES,
   ServiceObject.JSON_PROPERTY_CONTAINER_CPU,
+  ServiceObject.JSON_PROPERTY_CUSTOM_DOMAINS,
   ServiceObject.JSON_PROPERTY_CREATED_TIMESTAMP,
   ServiceObject.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
   ServiceObject.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
@@ -66,7 +68,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_BASE_DIRECTORY,
   ServiceObject.JSON_PROPERTY_SECRET_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T11:04:36.588006600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ServiceObject {
   public static final String JSON_PROPERTY_SERVICE_ID = "serviceId";
   @javax.annotation.Nullable
@@ -111,6 +113,10 @@ public class ServiceObject {
   public static final String JSON_PROPERTY_CONTAINER_CPU = "containerCpu";
   @javax.annotation.Nonnull
   private String containerCpu;
+
+  public static final String JSON_PROPERTY_CUSTOM_DOMAINS = "customDomains";
+  @javax.annotation.Nullable
+  private List<CustomDomain> customDomains = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nullable
@@ -462,6 +468,38 @@ public class ServiceObject {
   }
 
 
+  public ServiceObject customDomains(@javax.annotation.Nullable List<CustomDomain> customDomains) {
+    this.customDomains = customDomains;
+    return this;
+  }
+
+  public ServiceObject addCustomDomainsItem(CustomDomain customDomainsItem) {
+    if (this.customDomains == null) {
+      this.customDomains = new ArrayList<>();
+    }
+    this.customDomains.add(customDomainsItem);
+    return this;
+  }
+
+  /**
+   * Get customDomains
+   * @return customDomains
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_DOMAINS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CustomDomain> getCustomDomains() {
+    return customDomains;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_DOMAINS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomDomains(@javax.annotation.Nullable List<CustomDomain> customDomains) {
+    this.customDomains = customDomains;
+  }
+
+
   public ServiceObject createdTimestamp(@javax.annotation.Nullable OffsetDateTime createdTimestamp) {
     this.createdTimestamp = createdTimestamp;
     return this;
@@ -750,6 +788,7 @@ public class ServiceObject {
         Objects.equals(this.authPathExclusions, serviceObject.authPathExclusions) &&
         Objects.equals(this.baseInstances, serviceObject.baseInstances) &&
         Objects.equals(this.containerCpu, serviceObject.containerCpu) &&
+        Objects.equals(this.customDomains, serviceObject.customDomains) &&
         Objects.equals(this.createdTimestamp, serviceObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, serviceObject.lastModifiedTimestamp) &&
         Objects.equals(this.githubRepositoryUrl, serviceObject.githubRepositoryUrl) &&
@@ -764,7 +803,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, containerCpu, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -782,6 +821,7 @@ public class ServiceObject {
     sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
     sb.append("    baseInstances: ").append(toIndentedString(baseInstances)).append("\n");
     sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
+    sb.append("    customDomains: ").append(toIndentedString(customDomains)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
     sb.append("    lastModifiedTimestamp: ").append(toIndentedString(lastModifiedTimestamp)).append("\n");
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
@@ -893,6 +933,16 @@ public class ServiceObject {
     // add `containerCpu` to the URL query string
     if (getContainerCpu() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontainerCpu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerCpu()))));
+    }
+
+    // add `customDomains` to the URL query string
+    if (getCustomDomains() != null) {
+      for (int i = 0; i < getCustomDomains().size(); i++) {
+        if (getCustomDomains().get(i) != null) {
+          joiner.add(getCustomDomains().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scustomDomains%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `createdTimestamp` to the URL query string

@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CustomDomain } from './CustomDomain';
+import {
+    CustomDomainFromJSON,
+    CustomDomainFromJSONTyped,
+    CustomDomainToJSON,
+    CustomDomainToJSONTyped,
+} from './CustomDomain';
 import type { DockerfileGenerationResponse } from './DockerfileGenerationResponse';
 import {
     DockerfileGenerationResponseFromJSON,
@@ -107,6 +114,12 @@ export interface ServiceObject {
      * @memberof ServiceObject
      */
     containerCpu: string;
+    /**
+     * 
+     * @type {Array<CustomDomain>}
+     * @memberof ServiceObject
+     */
+    customDomains?: Array<CustomDomain>;
     /**
      * 
      * @type {Date}
@@ -213,6 +226,7 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
         'baseInstances': json['baseInstances'],
         'containerCpu': json['containerCpu'],
+        'customDomains': json['customDomains'] == null ? undefined : ((json['customDomains'] as Array<any>).map(CustomDomainFromJSON)),
         'createdTimestamp': json['createdTimestamp'] == null ? undefined : (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
         'githubRepositoryUrl': json['githubRepositoryUrl'],
@@ -248,6 +262,7 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'authPathExclusions': value['authPathExclusions'],
         'baseInstances': value['baseInstances'],
         'containerCpu': value['containerCpu'],
+        'customDomains': value['customDomains'] == null ? undefined : ((value['customDomains'] as Array<any>).map(CustomDomainToJSON)),
         'createdTimestamp': value['createdTimestamp'] == null ? value['createdTimestamp'] : value['createdTimestamp'].toISOString(),
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
         'githubRepositoryUrl': value['githubRepositoryUrl'],

@@ -46,7 +46,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreatePaymentRequest.JSON_PROPERTY_CUSTOMER_ADDRESS,
   CreatePaymentRequest.JSON_PROPERTY_SHIPPING_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T11:04:36.588006600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class CreatePaymentRequest {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nonnull

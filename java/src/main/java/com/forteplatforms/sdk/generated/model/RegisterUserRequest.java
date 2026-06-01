@@ -42,7 +42,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RegisterUserRequest.JSON_PROPERTY_RECAPTCHA_TOKEN,
   RegisterUserRequest.JSON_PROPERTY_PASSWORD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T11:04:36.588006600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class RegisterUserRequest {
   public static final String JSON_PROPERTY_FULL_NAME = "fullName";
   @javax.annotation.Nullable

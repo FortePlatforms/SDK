@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.custom_domain import CustomDomain
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput
 from forte_sdk.generated.models.health_check_detection_response import HealthCheckDetectionResponse
@@ -43,6 +44,7 @@ class ServiceObject(BaseModel):
     auth_path_exclusions: Optional[List[StrictStr]] = Field(default=None, alias="authPathExclusions")
     base_instances: StrictInt = Field(alias="baseInstances")
     container_cpu: StrictStr = Field(alias="containerCpu")
+    custom_domains: Optional[List[CustomDomain]] = Field(default=None, alias="customDomains")
     created_timestamp: Optional[datetime] = Field(default=None, alias="createdTimestamp")
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
     github_repository_url: StrictStr = Field(alias="githubRepositoryUrl")
@@ -53,7 +55,7 @@ class ServiceObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "baseInstances", "containerCpu", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "baseInstances", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('github_build_trigger')
     def github_build_trigger_validate_enum(cls, value):
@@ -110,6 +112,13 @@ class ServiceObject(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of health_check_detection_response
         if self.health_check_detection_response:
             _dict['healthCheckDetectionResponse'] = self.health_check_detection_response.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in custom_domains (list)
+        _items = []
+        if self.custom_domains:
+            for _item_custom_domains in self.custom_domains:
+                if _item_custom_domains:
+                    _items.append(_item_custom_domains.to_dict())
+            _dict['customDomains'] = _items
         return _dict
 
     @classmethod
@@ -133,6 +142,7 @@ class ServiceObject(BaseModel):
             "authPathExclusions": obj.get("authPathExclusions"),
             "baseInstances": obj.get("baseInstances"),
             "containerCpu": obj.get("containerCpu"),
+            "customDomains": [CustomDomain.from_dict(_item) for _item in obj["customDomains"]] if obj.get("customDomains") is not None else None,
             "createdTimestamp": obj.get("createdTimestamp"),
             "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),

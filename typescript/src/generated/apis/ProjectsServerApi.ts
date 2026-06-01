@@ -406,6 +406,12 @@ export interface CreateServiceRequest {
     createForteServiceRequest: CreateForteServiceRequest;
 }
 
+export interface CreateServiceCustomDomainRequest {
+    projectId: string;
+    serviceId: string;
+    createCustomDomainRequest: CreateCustomDomainRequest;
+}
+
 export interface CreateServiceDeploymentRequest {
     projectId: string;
     serviceId: string;
@@ -456,6 +462,12 @@ export interface DeleteServiceRequest {
     serviceId: string;
 }
 
+export interface DeleteServiceCustomDomainRequest {
+    projectId: string;
+    serviceId: string;
+    customDomainId: string;
+}
+
 export interface DeleteUserRequest {
     userId: string;
     projectId: string;
@@ -498,6 +510,12 @@ export interface GetRequestInvocationLogRequest {
 export interface GetServiceRequest {
     projectId: string;
     serviceId: string;
+}
+
+export interface GetServiceCustomDomainRequest {
+    projectId: string;
+    serviceId: string;
+    customDomainId: string;
 }
 
 export interface GetServiceDeploymentRequest {
@@ -585,6 +603,11 @@ export interface ListRequestInvocationLogsRequest {
     statusCode?: number;
     requestPath?: string;
     nextToken?: string;
+}
+
+export interface ListServiceCustomDomainsRequest {
+    projectId: string;
+    serviceId: string;
 }
 
 export interface ListServiceDeploymentsRequest {
@@ -753,6 +776,12 @@ export interface SuspendUserRequest {
 export interface SyncCustomDomainRequest {
     projectId: string;
     webAppId: string;
+    customDomainId: string;
+}
+
+export interface SyncServiceCustomDomainRequest {
+    projectId: string;
+    serviceId: string;
     customDomainId: string;
 }
 
@@ -1674,6 +1703,67 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createServiceCustomDomain without sending the request
+     */
+    async createServiceCustomDomainRequestOpts(requestParameters: CreateServiceCustomDomainRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createServiceCustomDomain().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling createServiceCustomDomain().'
+            );
+        }
+
+        if (requestParameters['createCustomDomainRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCustomDomainRequest',
+                'Required parameter "createCustomDomainRequest" was null or undefined when calling createServiceCustomDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/custom-domains`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCustomDomainRequestToJSON(requestParameters['createCustomDomainRequest']),
+        };
+    }
+
+    /**
+     */
+    async createServiceCustomDomainRaw(requestParameters: CreateServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDomainResponse>> {
+        const requestOptions = await this.createServiceCustomDomainRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createServiceCustomDomain(requestParameters: CreateServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDomainResponse> {
+        const response = await this.createServiceCustomDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createServiceDeployment without sending the request
      */
     async createServiceDeploymentRequestOpts(requestParameters: CreateServiceDeploymentRequest): Promise<runtime.RequestOpts> {
@@ -2156,6 +2246,64 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteServiceCustomDomain without sending the request
+     */
+    async deleteServiceCustomDomainRequestOpts(requestParameters: DeleteServiceCustomDomainRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteServiceCustomDomain().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling deleteServiceCustomDomain().'
+            );
+        }
+
+        if (requestParameters['customDomainId'] == null) {
+            throw new runtime.RequiredError(
+                'customDomainId',
+                'Required parameter "customDomainId" was null or undefined when calling deleteServiceCustomDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/custom-domains/{customDomainId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{customDomainId}', encodeURIComponent(String(requestParameters['customDomainId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteServiceCustomDomainRaw(requestParameters: DeleteServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteServiceCustomDomainRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteServiceCustomDomain(requestParameters: DeleteServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteServiceCustomDomainRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deleteUser without sending the request
      */
     async deleteUserRequestOpts(requestParameters: DeleteUserRequest): Promise<runtime.RequestOpts> {
@@ -2570,6 +2718,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getService(requestParameters: GetServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceObject> {
         const response = await this.getServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getServiceCustomDomain without sending the request
+     */
+    async getServiceCustomDomainRequestOpts(requestParameters: GetServiceCustomDomainRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getServiceCustomDomain().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling getServiceCustomDomain().'
+            );
+        }
+
+        if (requestParameters['customDomainId'] == null) {
+            throw new runtime.RequiredError(
+                'customDomainId',
+                'Required parameter "customDomainId" was null or undefined when calling getServiceCustomDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/custom-domains/{customDomainId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{customDomainId}', encodeURIComponent(String(requestParameters['customDomainId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getServiceCustomDomainRaw(requestParameters: GetServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDomainResponse>> {
+        const requestOptions = await this.getServiceCustomDomainRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getServiceCustomDomain(requestParameters: GetServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDomainResponse> {
+        const response = await this.getServiceCustomDomainRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3348,6 +3555,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listRequestInvocationLogs(requestParameters: ListRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseRequestLogObject> {
         const response = await this.listRequestInvocationLogsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listServiceCustomDomains without sending the request
+     */
+    async listServiceCustomDomainsRequestOpts(requestParameters: ListServiceCustomDomainsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listServiceCustomDomains().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling listServiceCustomDomains().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/custom-domains`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listServiceCustomDomainsRaw(requestParameters: ListServiceCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCustomDomainsResponse>> {
+        const requestOptions = await this.listServiceCustomDomainsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListCustomDomainsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listServiceCustomDomains(requestParameters: ListServiceCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCustomDomainsResponse> {
+        const response = await this.listServiceCustomDomainsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4850,6 +5108,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async syncCustomDomain(requestParameters: SyncCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCustomDomainResponse> {
         const response = await this.syncCustomDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for syncServiceCustomDomain without sending the request
+     */
+    async syncServiceCustomDomainRequestOpts(requestParameters: SyncServiceCustomDomainRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling syncServiceCustomDomain().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling syncServiceCustomDomain().'
+            );
+        }
+
+        if (requestParameters['customDomainId'] == null) {
+            throw new runtime.RequiredError(
+                'customDomainId',
+                'Required parameter "customDomainId" was null or undefined when calling syncServiceCustomDomain().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/custom-domains/{customDomainId}/sync`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{customDomainId}', encodeURIComponent(String(requestParameters['customDomainId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async syncServiceCustomDomainRaw(requestParameters: SyncServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SyncCustomDomainResponse>> {
+        const requestOptions = await this.syncServiceCustomDomainRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SyncCustomDomainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async syncServiceCustomDomain(requestParameters: SyncServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCustomDomainResponse> {
+        const response = await this.syncServiceCustomDomainRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
