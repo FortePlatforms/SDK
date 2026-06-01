@@ -38,7 +38,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   LatencyMetrics.JSON_PROPERTY_INTEGRATION_LATENCY,
   LatencyMetrics.JSON_PROPERTY_TOTAL_LATENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class LatencyMetrics {
   public static final String JSON_PROPERTY_TARGET_LATENCY = "targetLatency";
   @javax.annotation.Nonnull

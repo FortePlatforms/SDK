@@ -105,6 +105,36 @@ export interface RequestLogObject {
      * @memberof RequestLogObject
      */
     retryCount?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RequestLogObject
+     */
+    exceptionType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RequestLogObject
+     */
+    exceptionMessage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RequestLogObject
+     */
+    exceptionStackTrace?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RequestLogObject
+     */
+    ownerAccountId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RequestLogObject
+     */
+    environment?: string;
 }
 
 /**
@@ -145,6 +175,11 @@ export function RequestLogObjectFromJSONTyped(json: any, ignoreDiscriminator: bo
         'requestHeaders': json['requestHeaders'],
         'responseHeaders': json['responseHeaders'],
         'retryCount': json['retryCount'] == null ? undefined : json['retryCount'],
+        'exceptionType': json['exceptionType'] == null ? undefined : json['exceptionType'],
+        'exceptionMessage': json['exceptionMessage'] == null ? undefined : json['exceptionMessage'],
+        'exceptionStackTrace': json['exceptionStackTrace'] == null ? undefined : json['exceptionStackTrace'],
+        'ownerAccountId': json['ownerAccountId'] == null ? undefined : json['ownerAccountId'],
+        'environment': json['environment'] == null ? undefined : json['environment'],
     };
 }
 
@@ -172,6 +207,11 @@ export function RequestLogObjectToJSONTyped(value?: RequestLogObject | null, ign
         'requestHeaders': value['requestHeaders'],
         'responseHeaders': value['responseHeaders'],
         'retryCount': value['retryCount'],
+        'exceptionType': value['exceptionType'],
+        'exceptionMessage': value['exceptionMessage'],
+        'exceptionStackTrace': value['exceptionStackTrace'],
+        'ownerAccountId': value['ownerAccountId'],
+        'environment': value['environment'],
     };
 }
 

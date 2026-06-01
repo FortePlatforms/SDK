@@ -42,7 +42,12 @@ class RequestLogObject(BaseModel):
     request_headers: Dict[str, StrictStr] = Field(alias="requestHeaders")
     response_headers: Dict[str, StrictStr] = Field(alias="responseHeaders")
     retry_count: Optional[StrictInt] = Field(default=None, alias="retryCount")
-    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "sourceIpAddress", "requestLogObjectMeta", "targetLatencyMilliseconds", "integrationLatencyMilliseconds", "totalLatencyMilliseconds", "requestBody", "responseBody", "statusCode", "requestHeaders", "responseHeaders", "retryCount"]
+    exception_type: Optional[StrictStr] = Field(default=None, alias="exceptionType")
+    exception_message: Optional[StrictStr] = Field(default=None, alias="exceptionMessage")
+    exception_stack_trace: Optional[StrictStr] = Field(default=None, alias="exceptionStackTrace")
+    owner_account_id: Optional[StrictStr] = Field(default=None, alias="ownerAccountId")
+    environment: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "sourceIpAddress", "requestLogObjectMeta", "targetLatencyMilliseconds", "integrationLatencyMilliseconds", "totalLatencyMilliseconds", "requestBody", "responseBody", "statusCode", "requestHeaders", "responseHeaders", "retryCount", "exceptionType", "exceptionMessage", "exceptionStackTrace", "ownerAccountId", "environment"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -110,7 +115,12 @@ class RequestLogObject(BaseModel):
             "statusCode": obj.get("statusCode"),
             "requestHeaders": obj.get("requestHeaders"),
             "responseHeaders": obj.get("responseHeaders"),
-            "retryCount": obj.get("retryCount")
+            "retryCount": obj.get("retryCount"),
+            "exceptionType": obj.get("exceptionType"),
+            "exceptionMessage": obj.get("exceptionMessage"),
+            "exceptionStackTrace": obj.get("exceptionStackTrace"),
+            "ownerAccountId": obj.get("ownerAccountId"),
+            "environment": obj.get("environment")
         })
         return _obj
 

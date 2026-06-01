@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   BuildStepLog.JSON_PROPERTY_PREVIOUS_STATUS,
   BuildStepLog.JSON_PROPERTY_NEW_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class BuildStepLog {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -84,6 +84,8 @@ public class BuildStepLog {
     DEPLOYMENT_FAILURE(String.valueOf("DEPLOYMENT_FAILURE")),
     
     VALIDATION_HEALTH_CHECK_FAILURE(String.valueOf("VALIDATION_HEALTH_CHECK_FAILURE")),
+    
+    SERVICE_STARTUP_FAILURE(String.valueOf("SERVICE_STARTUP_FAILURE")),
     
     DETECTING_WEB_APP_CONFIG(String.valueOf("DETECTING_WEB_APP_CONFIG")),
     
@@ -177,6 +179,8 @@ public class BuildStepLog {
     DEPLOYMENT_FAILURE(String.valueOf("DEPLOYMENT_FAILURE")),
     
     VALIDATION_HEALTH_CHECK_FAILURE(String.valueOf("VALIDATION_HEALTH_CHECK_FAILURE")),
+    
+    SERVICE_STARTUP_FAILURE(String.valueOf("SERVICE_STARTUP_FAILURE")),
     
     DETECTING_WEB_APP_CONFIG(String.valueOf("DETECTING_WEB_APP_CONFIG")),
     

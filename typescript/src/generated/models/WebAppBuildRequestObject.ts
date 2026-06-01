@@ -144,6 +144,12 @@ export interface WebAppBuildRequestObject {
     allBuildLogsReceived?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof WebAppBuildRequestObject
+     */
+    cancellationRequested?: boolean;
+    /**
+     * 
      * @type {Date}
      * @memberof WebAppBuildRequestObject
      */
@@ -254,6 +260,7 @@ export const WebAppBuildRequestObjectStatusType = {
     VALIDATING_SERVICE_HEALTH: 'VALIDATING_SERVICE_HEALTH',
     DEPLOYMENT_FAILURE: 'DEPLOYMENT_FAILURE',
     VALIDATION_HEALTH_CHECK_FAILURE: 'VALIDATION_HEALTH_CHECK_FAILURE',
+    SERVICE_STARTUP_FAILURE: 'SERVICE_STARTUP_FAILURE',
     DETECTING_WEB_APP_CONFIG: 'DETECTING_WEB_APP_CONFIG',
     WEB_APP_CONFIG_DETECTION_FAILURE: 'WEB_APP_CONFIG_DETECTION_FAILURE',
     BUILDING_WEB_APP: 'BUILDING_WEB_APP',
@@ -341,6 +348,7 @@ export function WebAppBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimin
         'hostingDeploymentId': json['hostingDeploymentId'] == null ? undefined : json['hostingDeploymentId'],
         'hostingDeploymentStatus': json['hostingDeploymentStatus'] == null ? undefined : json['hostingDeploymentStatus'],
         'allBuildLogsReceived': json['allBuildLogsReceived'] == null ? undefined : json['allBuildLogsReceived'],
+        'cancellationRequested': json['cancellationRequested'] == null ? undefined : json['cancellationRequested'],
         'startTime': (new Date(json['startTime'])),
         'lastUpdatedTime': json['lastUpdatedTime'] == null ? undefined : (new Date(json['lastUpdatedTime'])),
         'serviceId': json['serviceId'],
@@ -386,6 +394,7 @@ export function WebAppBuildRequestObjectToJSONTyped(value?: WebAppBuildRequestOb
         'hostingDeploymentId': value['hostingDeploymentId'],
         'hostingDeploymentStatus': value['hostingDeploymentStatus'],
         'allBuildLogsReceived': value['allBuildLogsReceived'],
+        'cancellationRequested': value['cancellationRequested'],
         'startTime': value['startTime'].toISOString(),
         'lastUpdatedTime': value['lastUpdatedTime'] == null ? value['lastUpdatedTime'] : value['lastUpdatedTime'].toISOString(),
         'serviceId': value['serviceId'],

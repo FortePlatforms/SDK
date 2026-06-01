@@ -45,7 +45,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreatePaymentPreviewResponse.JSON_PROPERTY_CUSTOMER_ADDRESS,
   CreatePaymentPreviewResponse.JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class CreatePaymentPreviewResponse {
   public static final String JSON_PROPERTY_SUBTOTAL_CENTS = "subtotalCents";
   @javax.annotation.Nonnull

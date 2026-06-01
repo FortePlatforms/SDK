@@ -53,6 +53,8 @@ import com.forteplatforms.sdk.generated.model.PaginatedResponseServiceBuildReque
 import com.forteplatforms.sdk.generated.model.PaginatedResponseUserActionLogObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseUserObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseWebAppBuildRequestObject;
+import com.forteplatforms.sdk.generated.model.PaymentAnalyticsResponse;
+import com.forteplatforms.sdk.generated.model.PaymentObject;
 import com.forteplatforms.sdk.generated.model.PaymentTriggerConfig;
 import com.forteplatforms.sdk.generated.model.ProjectObject;
 import com.forteplatforms.sdk.generated.model.RequestLogObject;
@@ -104,7 +106,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1323,6 +1325,278 @@ public class ProjectsServerApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param deploymentId  (required)
+   * @return ServiceBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public ServiceBuildRequestObject cancelServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String deploymentId) throws ApiException {
+    return cancelServiceDeployment(projectId, serviceId, deploymentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param deploymentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ServiceBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public ServiceBuildRequestObject cancelServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String deploymentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ServiceBuildRequestObject> localVarResponse = cancelServiceDeploymentWithHttpInfo(projectId, serviceId, deploymentId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param deploymentId  (required)
+   * @return ApiResponse&lt;ServiceBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ServiceBuildRequestObject> cancelServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String deploymentId) throws ApiException {
+    return cancelServiceDeploymentWithHttpInfo(projectId, serviceId, deploymentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param deploymentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ServiceBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ServiceBuildRequestObject> cancelServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String deploymentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cancelServiceDeploymentRequestBuilder(projectId, serviceId, deploymentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("cancelServiceDeployment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ServiceBuildRequestObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ServiceBuildRequestObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ServiceBuildRequestObject>() {});
+        
+
+        return new ApiResponse<ServiceBuildRequestObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder cancelServiceDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String deploymentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling cancelServiceDeployment");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling cancelServiceDeployment");
+    }
+    // verify the required parameter 'deploymentId' is set
+    if (deploymentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'deploymentId' when calling cancelServiceDeployment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/deployments/{deploymentId}/cancel"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
+        .replace("{deploymentId}", ApiClient.urlEncode(deploymentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param buildId  (required)
+   * @return WebAppBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppBuildRequestObject cancelWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId) throws ApiException {
+    return cancelWebAppDeployment(projectId, webAppId, buildId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param buildId  (required)
+   * @param headers Optional headers to include in the request
+   * @return WebAppBuildRequestObject
+   * @throws ApiException if fails to make API call
+   */
+  public WebAppBuildRequestObject cancelWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId, Map<String, String> headers) throws ApiException {
+    ApiResponse<WebAppBuildRequestObject> localVarResponse = cancelWebAppDeploymentWithHttpInfo(projectId, webAppId, buildId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param buildId  (required)
+   * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppBuildRequestObject> cancelWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId) throws ApiException {
+    return cancelWebAppDeploymentWithHttpInfo(projectId, webAppId, buildId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param buildId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<WebAppBuildRequestObject> cancelWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cancelWebAppDeploymentRequestBuilder(projectId, webAppId, buildId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("cancelWebAppDeployment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<WebAppBuildRequestObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        WebAppBuildRequestObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<WebAppBuildRequestObject>() {});
+        
+
+        return new ApiResponse<WebAppBuildRequestObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder cancelWebAppDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String buildId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling cancelWebAppDeployment");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling cancelWebAppDeployment");
+    }
+    // verify the required parameter 'buildId' is set
+    if (buildId == null) {
+      throw new ApiException(400, "Missing the required parameter 'buildId' when calling cancelWebAppDeployment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments/{buildId}/cancel"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()))
+        .replace("{buildId}", ApiClient.urlEncode(buildId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -3639,6 +3913,167 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param groupBy  (optional)
+   * @param metadataKey  (optional)
+   * @param topN  (optional)
+   * @return PaymentAnalyticsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentAnalyticsResponse getPaymentAnalytics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN) throws ApiException {
+    return getPaymentAnalytics(projectId, minTime, maxTime, groupBy, metadataKey, topN, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param groupBy  (optional)
+   * @param metadataKey  (optional)
+   * @param topN  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaymentAnalyticsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentAnalyticsResponse getPaymentAnalytics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentAnalyticsResponse> localVarResponse = getPaymentAnalyticsWithHttpInfo(projectId, minTime, maxTime, groupBy, metadataKey, topN, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param groupBy  (optional)
+   * @param metadataKey  (optional)
+   * @param topN  (optional)
+   * @return ApiResponse&lt;PaymentAnalyticsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentAnalyticsResponse> getPaymentAnalyticsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN) throws ApiException {
+    return getPaymentAnalyticsWithHttpInfo(projectId, minTime, maxTime, groupBy, metadataKey, topN, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param groupBy  (optional)
+   * @param metadataKey  (optional)
+   * @param topN  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaymentAnalyticsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentAnalyticsResponse> getPaymentAnalyticsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPaymentAnalyticsRequestBuilder(projectId, minTime, maxTime, groupBy, metadataKey, topN, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getPaymentAnalytics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaymentAnalyticsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaymentAnalyticsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaymentAnalyticsResponse>() {});
+        
+
+        return new ApiResponse<PaymentAnalyticsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getPaymentAnalyticsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getPaymentAnalytics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/payments/analytics"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "groupBy";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("groupBy", groupBy));
+    localVarQueryParameterBaseName = "metadataKey";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metadataKey", metadataKey));
+    localVarQueryParameterBaseName = "topN";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("topN", topN));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @return ProjectObject
    * @throws ApiException if fails to make API call
    */
@@ -5500,6 +5935,179 @@ public class ProjectsServerApi {
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (optional)
+   * @param state  (optional)
+   * @param metadataKey  (optional)
+   * @param metadataValue  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return PaginatedResponsePaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponsePaymentObject listProjectPayments(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String state, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listProjectPayments(projectId, userId, state, metadataKey, metadataValue, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (optional)
+   * @param state  (optional)
+   * @param metadataKey  (optional)
+   * @param metadataValue  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponsePaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponsePaymentObject listProjectPayments(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String state, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponsePaymentObject> localVarResponse = listProjectPaymentsWithHttpInfo(projectId, userId, state, metadataKey, metadataValue, minTime, maxTime, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (optional)
+   * @param state  (optional)
+   * @param metadataKey  (optional)
+   * @param metadataValue  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponsePaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponsePaymentObject> listProjectPaymentsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String state, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listProjectPaymentsWithHttpInfo(projectId, userId, state, metadataKey, metadataValue, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (optional)
+   * @param state  (optional)
+   * @param metadataKey  (optional)
+   * @param metadataValue  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponsePaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponsePaymentObject> listProjectPaymentsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String state, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listProjectPaymentsRequestBuilder(projectId, userId, state, metadataKey, metadataValue, minTime, maxTime, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listProjectPayments", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponsePaymentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponsePaymentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponsePaymentObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponsePaymentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listProjectPaymentsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String state, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listProjectPayments");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/payments"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "userId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("userId", userId));
+    localVarQueryParameterBaseName = "state";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("state", state));
+    localVarQueryParameterBaseName = "metadataKey";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metadataKey", metadataKey));
+    localVarQueryParameterBaseName = "metadataValue";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metadataValue", metadataValue));
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -8305,6 +8913,142 @@ public class ProjectsServerApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param paymentId  (required)
+   * @return PaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId) throws ApiException {
+    return refundPayment(projectId, userId, paymentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param paymentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return PaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentObject> localVarResponse = refundPaymentWithHttpInfo(projectId, userId, paymentId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param paymentId  (required)
+   * @return ApiResponse&lt;PaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId) throws ApiException {
+    return refundPaymentWithHttpInfo(projectId, userId, paymentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param paymentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = refundPaymentRequestBuilder(projectId, userId, paymentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("refundPayment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaymentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaymentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaymentObject>() {});
+        
+
+        return new ApiResponse<PaymentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder refundPaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling refundPayment");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling refundPayment");
+    }
+    // verify the required parameter 'paymentId' is set
+    if (paymentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'paymentId' when calling refundPayment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/payments/{paymentId}/refund"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{paymentId}", ApiClient.urlEncode(paymentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

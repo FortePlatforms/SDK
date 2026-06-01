@@ -48,6 +48,7 @@ class WebAppBuildRequestObject(BaseModel):
     hosting_deployment_id: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentId")
     hosting_deployment_status: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentStatus")
     all_build_logs_received: Optional[StrictBool] = Field(default=None, alias="allBuildLogsReceived")
+    cancellation_requested: Optional[StrictBool] = Field(default=None, alias="cancellationRequested")
     start_time: datetime = Field(alias="startTime")
     last_updated_time: Optional[datetime] = Field(default=None, alias="lastUpdatedTime")
     service_id: StrictStr = Field(alias="serviceId")
@@ -61,7 +62,7 @@ class WebAppBuildRequestObject(BaseModel):
     origin: Optional[StrictStr] = None
     build_tier: Optional[StrictStr] = Field(default=None, alias="buildTier")
     failure_reason: Optional[StrictStr] = Field(default=None, alias="failureReason")
-    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "buildTier", "failureReason"]
+    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "buildTier", "failureReason"]
 
     @field_validator('monorepo_type')
     def monorepo_type_validate_enum(cls, value):
@@ -76,8 +77,8 @@ class WebAppBuildRequestObject(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['PENDING', 'CLONING_REPOSITORY', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'DETECTING_WEB_APP_CONFIG', 'WEB_APP_CONFIG_DETECTION_FAILURE', 'BUILDING_WEB_APP', 'WEB_APP_BUILD_FAILURE', 'DEPLOYING_STATIC_SITE', 'STATIC_SITE_DEPLOYMENT_FAILURE', 'DEPLOYING_SERVER_SIDE_SITE', 'SERVER_SIDE_SITE_DEPLOYMENT_FAILURE', 'CONFIGURING_CUSTOM_DOMAIN', 'CUSTOM_DOMAIN_CONFIGURATION_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED']):
-            raise ValueError("must be one of enum values ('PENDING', 'CLONING_REPOSITORY', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'DETECTING_WEB_APP_CONFIG', 'WEB_APP_CONFIG_DETECTION_FAILURE', 'BUILDING_WEB_APP', 'WEB_APP_BUILD_FAILURE', 'DEPLOYING_STATIC_SITE', 'STATIC_SITE_DEPLOYMENT_FAILURE', 'DEPLOYING_SERVER_SIDE_SITE', 'SERVER_SIDE_SITE_DEPLOYMENT_FAILURE', 'CONFIGURING_CUSTOM_DOMAIN', 'CUSTOM_DOMAIN_CONFIGURATION_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED')")
+        if value not in set(['PENDING', 'CLONING_REPOSITORY', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'SERVICE_STARTUP_FAILURE', 'DETECTING_WEB_APP_CONFIG', 'WEB_APP_CONFIG_DETECTION_FAILURE', 'BUILDING_WEB_APP', 'WEB_APP_BUILD_FAILURE', 'DEPLOYING_STATIC_SITE', 'STATIC_SITE_DEPLOYMENT_FAILURE', 'DEPLOYING_SERVER_SIDE_SITE', 'SERVER_SIDE_SITE_DEPLOYMENT_FAILURE', 'CONFIGURING_CUSTOM_DOMAIN', 'CUSTOM_DOMAIN_CONFIGURATION_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED']):
+            raise ValueError("must be one of enum values ('PENDING', 'CLONING_REPOSITORY', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'SERVICE_STARTUP_FAILURE', 'DETECTING_WEB_APP_CONFIG', 'WEB_APP_CONFIG_DETECTION_FAILURE', 'BUILDING_WEB_APP', 'WEB_APP_BUILD_FAILURE', 'DEPLOYING_STATIC_SITE', 'STATIC_SITE_DEPLOYMENT_FAILURE', 'DEPLOYING_SERVER_SIDE_SITE', 'SERVER_SIDE_SITE_DEPLOYMENT_FAILURE', 'CONFIGURING_CUSTOM_DOMAIN', 'CUSTOM_DOMAIN_CONFIGURATION_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED')")
         return value
 
     @field_validator('origin')
@@ -189,6 +190,7 @@ class WebAppBuildRequestObject(BaseModel):
             "hostingDeploymentId": obj.get("hostingDeploymentId"),
             "hostingDeploymentStatus": obj.get("hostingDeploymentStatus"),
             "allBuildLogsReceived": obj.get("allBuildLogsReceived"),
+            "cancellationRequested": obj.get("cancellationRequested"),
             "startTime": obj.get("startTime"),
             "lastUpdatedTime": obj.get("lastUpdatedTime"),
             "serviceId": obj.get("serviceId"),

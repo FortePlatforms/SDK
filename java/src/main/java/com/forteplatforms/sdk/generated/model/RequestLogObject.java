@@ -49,9 +49,14 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RequestLogObject.JSON_PROPERTY_STATUS_CODE,
   RequestLogObject.JSON_PROPERTY_REQUEST_HEADERS,
   RequestLogObject.JSON_PROPERTY_RESPONSE_HEADERS,
-  RequestLogObject.JSON_PROPERTY_RETRY_COUNT
+  RequestLogObject.JSON_PROPERTY_RETRY_COUNT,
+  RequestLogObject.JSON_PROPERTY_EXCEPTION_TYPE,
+  RequestLogObject.JSON_PROPERTY_EXCEPTION_MESSAGE,
+  RequestLogObject.JSON_PROPERTY_EXCEPTION_STACK_TRACE,
+  RequestLogObject.JSON_PROPERTY_OWNER_ACCOUNT_ID,
+  RequestLogObject.JSON_PROPERTY_ENVIRONMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class RequestLogObject {
   public static final String JSON_PROPERTY_REQUEST_ID = "requestId";
   @javax.annotation.Nullable
@@ -104,6 +109,26 @@ public class RequestLogObject {
   public static final String JSON_PROPERTY_RETRY_COUNT = "retryCount";
   @javax.annotation.Nullable
   private Integer retryCount;
+
+  public static final String JSON_PROPERTY_EXCEPTION_TYPE = "exceptionType";
+  @javax.annotation.Nullable
+  private String exceptionType;
+
+  public static final String JSON_PROPERTY_EXCEPTION_MESSAGE = "exceptionMessage";
+  @javax.annotation.Nullable
+  private String exceptionMessage;
+
+  public static final String JSON_PROPERTY_EXCEPTION_STACK_TRACE = "exceptionStackTrace";
+  @javax.annotation.Nullable
+  private String exceptionStackTrace;
+
+  public static final String JSON_PROPERTY_OWNER_ACCOUNT_ID = "ownerAccountId";
+  @javax.annotation.Nullable
+  private String ownerAccountId;
+
+  public static final String JSON_PROPERTY_ENVIRONMENT = "environment";
+  @javax.annotation.Nullable
+  private String environment;
 
   public RequestLogObject() { 
   }
@@ -436,6 +461,126 @@ public class RequestLogObject {
   }
 
 
+  public RequestLogObject exceptionType(@javax.annotation.Nullable String exceptionType) {
+    this.exceptionType = exceptionType;
+    return this;
+  }
+
+  /**
+   * Get exceptionType
+   * @return exceptionType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExceptionType() {
+    return exceptionType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExceptionType(@javax.annotation.Nullable String exceptionType) {
+    this.exceptionType = exceptionType;
+  }
+
+
+  public RequestLogObject exceptionMessage(@javax.annotation.Nullable String exceptionMessage) {
+    this.exceptionMessage = exceptionMessage;
+    return this;
+  }
+
+  /**
+   * Get exceptionMessage
+   * @return exceptionMessage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExceptionMessage() {
+    return exceptionMessage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExceptionMessage(@javax.annotation.Nullable String exceptionMessage) {
+    this.exceptionMessage = exceptionMessage;
+  }
+
+
+  public RequestLogObject exceptionStackTrace(@javax.annotation.Nullable String exceptionStackTrace) {
+    this.exceptionStackTrace = exceptionStackTrace;
+    return this;
+  }
+
+  /**
+   * Get exceptionStackTrace
+   * @return exceptionStackTrace
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_STACK_TRACE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExceptionStackTrace() {
+    return exceptionStackTrace;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_STACK_TRACE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExceptionStackTrace(@javax.annotation.Nullable String exceptionStackTrace) {
+    this.exceptionStackTrace = exceptionStackTrace;
+  }
+
+
+  public RequestLogObject ownerAccountId(@javax.annotation.Nullable String ownerAccountId) {
+    this.ownerAccountId = ownerAccountId;
+    return this;
+  }
+
+  /**
+   * Get ownerAccountId
+   * @return ownerAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OWNER_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOwnerAccountId() {
+    return ownerAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OWNER_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOwnerAccountId(@javax.annotation.Nullable String ownerAccountId) {
+    this.ownerAccountId = ownerAccountId;
+  }
+
+
+  public RequestLogObject environment(@javax.annotation.Nullable String environment) {
+    this.environment = environment;
+    return this;
+  }
+
+  /**
+   * Get environment
+   * @return environment
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ENVIRONMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEnvironment() {
+    return environment;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ENVIRONMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEnvironment(@javax.annotation.Nullable String environment) {
+    this.environment = environment;
+  }
+
+
   /**
    * Return true if this RequestLogObject object is equal to o.
    */
@@ -460,12 +605,17 @@ public class RequestLogObject {
         Objects.equals(this.statusCode, requestLogObject.statusCode) &&
         Objects.equals(this.requestHeaders, requestLogObject.requestHeaders) &&
         Objects.equals(this.responseHeaders, requestLogObject.responseHeaders) &&
-        Objects.equals(this.retryCount, requestLogObject.retryCount);
+        Objects.equals(this.retryCount, requestLogObject.retryCount) &&
+        Objects.equals(this.exceptionType, requestLogObject.exceptionType) &&
+        Objects.equals(this.exceptionMessage, requestLogObject.exceptionMessage) &&
+        Objects.equals(this.exceptionStackTrace, requestLogObject.exceptionStackTrace) &&
+        Objects.equals(this.ownerAccountId, requestLogObject.ownerAccountId) &&
+        Objects.equals(this.environment, requestLogObject.environment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, timestamp, sourceIpAddress, requestLogObjectMeta, targetLatencyMilliseconds, integrationLatencyMilliseconds, totalLatencyMilliseconds, requestBody, responseBody, statusCode, requestHeaders, responseHeaders, retryCount);
+    return Objects.hash(requestId, timestamp, sourceIpAddress, requestLogObjectMeta, targetLatencyMilliseconds, integrationLatencyMilliseconds, totalLatencyMilliseconds, requestBody, responseBody, statusCode, requestHeaders, responseHeaders, retryCount, exceptionType, exceptionMessage, exceptionStackTrace, ownerAccountId, environment);
   }
 
   @Override
@@ -485,6 +635,11 @@ public class RequestLogObject {
     sb.append("    requestHeaders: ").append(toIndentedString(requestHeaders)).append("\n");
     sb.append("    responseHeaders: ").append(toIndentedString(responseHeaders)).append("\n");
     sb.append("    retryCount: ").append(toIndentedString(retryCount)).append("\n");
+    sb.append("    exceptionType: ").append(toIndentedString(exceptionType)).append("\n");
+    sb.append("    exceptionMessage: ").append(toIndentedString(exceptionMessage)).append("\n");
+    sb.append("    exceptionStackTrace: ").append(toIndentedString(exceptionStackTrace)).append("\n");
+    sb.append("    ownerAccountId: ").append(toIndentedString(ownerAccountId)).append("\n");
+    sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -600,6 +755,31 @@ public class RequestLogObject {
     // add `retryCount` to the URL query string
     if (getRetryCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sretryCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetryCount()))));
+    }
+
+    // add `exceptionType` to the URL query string
+    if (getExceptionType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexceptionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExceptionType()))));
+    }
+
+    // add `exceptionMessage` to the URL query string
+    if (getExceptionMessage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexceptionMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExceptionMessage()))));
+    }
+
+    // add `exceptionStackTrace` to the URL query string
+    if (getExceptionStackTrace() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexceptionStackTrace%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExceptionStackTrace()))));
+    }
+
+    // add `ownerAccountId` to the URL query string
+    if (getOwnerAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sownerAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOwnerAccountId()))));
+    }
+
+    // add `environment` to the URL query string
+    if (getEnvironment() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%senvironment%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnvironment()))));
     }
 
     return joiner.toString();

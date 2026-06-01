@@ -43,6 +43,7 @@ from forte_sdk.generated.models.create_service_request_proxy_request import Crea
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse
 from forte_sdk.generated.models.create_user_invite_request import CreateUserInviteRequest
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest
+from forte_sdk.generated.models.currency_totals import CurrencyTotals
 from forte_sdk.generated.models.custom_domain import CustomDomain
 from forte_sdk.generated.models.custom_domain_response import CustomDomainResponse
 from forte_sdk.generated.models.dns_record_check import DnsRecordCheck
@@ -77,10 +78,12 @@ from forte_sdk.generated.models.paginated_response_web_app_build_request_object 
 from forte_sdk.generated.models.password_config import PasswordConfig
 from forte_sdk.generated.models.password_login_request import PasswordLoginRequest
 from forte_sdk.generated.models.payment_address import PaymentAddress
+from forte_sdk.generated.models.payment_analytics_response import PaymentAnalyticsResponse
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem
 from forte_sdk.generated.models.payment_object import PaymentObject
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig
 from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject
+from forte_sdk.generated.models.product_aggregate import ProductAggregate
 from forte_sdk.generated.models.project_object import ProjectObject
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse
@@ -96,6 +99,8 @@ from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject
+from forte_sdk.generated.models.spender_aggregate import SpenderAggregate
+from forte_sdk.generated.models.state_currency_totals import StateCurrencyTotals
 from forte_sdk.generated.models.state_history import StateHistory
 from forte_sdk.generated.models.sync_custom_domain_response import SyncCustomDomainResponse
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest

@@ -67,6 +67,12 @@ export interface ServiceBuildRequestObject {
     allBuildLogsReceived?: boolean;
     /**
      * 
+     * @type {boolean}
+     * @memberof ServiceBuildRequestObject
+     */
+    cancellationRequested?: boolean;
+    /**
+     * 
      * @type {Date}
      * @memberof ServiceBuildRequestObject
      */
@@ -166,6 +172,7 @@ export const ServiceBuildRequestObjectStatusType = {
     VALIDATING_SERVICE_HEALTH: 'VALIDATING_SERVICE_HEALTH',
     DEPLOYMENT_FAILURE: 'DEPLOYMENT_FAILURE',
     VALIDATION_HEALTH_CHECK_FAILURE: 'VALIDATION_HEALTH_CHECK_FAILURE',
+    SERVICE_STARTUP_FAILURE: 'SERVICE_STARTUP_FAILURE',
     DETECTING_WEB_APP_CONFIG: 'DETECTING_WEB_APP_CONFIG',
     WEB_APP_CONFIG_DETECTION_FAILURE: 'WEB_APP_CONFIG_DETECTION_FAILURE',
     BUILDING_WEB_APP: 'BUILDING_WEB_APP',
@@ -239,6 +246,7 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
         'dockerfileGenerationError': json['dockerfileGenerationError'] == null ? undefined : DockerfileGenerationErrorFromJSON(json['dockerfileGenerationError']),
         'healthCheckDetectionError': json['healthCheckDetectionError'] == null ? undefined : HealthCheckDetectionErrorFromJSON(json['healthCheckDetectionError']),
         'allBuildLogsReceived': json['allBuildLogsReceived'] == null ? undefined : json['allBuildLogsReceived'],
+        'cancellationRequested': json['cancellationRequested'] == null ? undefined : json['cancellationRequested'],
         'startTime': (new Date(json['startTime'])),
         'lastUpdatedTime': json['lastUpdatedTime'] == null ? undefined : (new Date(json['lastUpdatedTime'])),
         'serviceId': json['serviceId'],
@@ -270,6 +278,7 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
         'dockerfileGenerationError': DockerfileGenerationErrorToJSON(value['dockerfileGenerationError']),
         'healthCheckDetectionError': HealthCheckDetectionErrorToJSON(value['healthCheckDetectionError']),
         'allBuildLogsReceived': value['allBuildLogsReceived'],
+        'cancellationRequested': value['cancellationRequested'],
         'startTime': value['startTime'].toISOString(),
         'lastUpdatedTime': value['lastUpdatedTime'] == null ? value['lastUpdatedTime'] : value['lastUpdatedTime'].toISOString(),
         'serviceId': value['serviceId'],

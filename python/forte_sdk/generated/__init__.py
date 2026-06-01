@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.182"
+__version__ = "1.0.198"
 
 # Define package exports
 __all__ = [
@@ -59,6 +59,7 @@ __all__ = [
     "CreateServiceRequestProxyResponse",
     "CreateUserInviteRequest",
     "CreateWebAppRequest",
+    "CurrencyTotals",
     "CustomDomain",
     "CustomDomainResponse",
     "DnsRecordCheck",
@@ -93,10 +94,12 @@ __all__ = [
     "PasswordConfig",
     "PasswordLoginRequest",
     "PaymentAddress",
+    "PaymentAnalyticsResponse",
     "PaymentLineItem",
     "PaymentObject",
     "PaymentTriggerConfig",
     "PendingUserInviteObject",
+    "ProductAggregate",
     "ProjectObject",
     "RegisterUserRequest",
     "RegisterUserResponse",
@@ -112,6 +115,8 @@ __all__ = [
     "ServiceBuildRequestObject",
     "ServiceMetricsResponse",
     "ServiceObject",
+    "SpenderAggregate",
+    "StateCurrencyTotals",
     "StateHistory",
     "SyncCustomDomainResponse",
     "TestInvocationRequest",
@@ -182,6 +187,7 @@ from forte_sdk.generated.models.create_service_request_proxy_request import Crea
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
 from forte_sdk.generated.models.create_user_invite_request import CreateUserInviteRequest as CreateUserInviteRequest
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest as CreateWebAppRequest
+from forte_sdk.generated.models.currency_totals import CurrencyTotals as CurrencyTotals
 from forte_sdk.generated.models.custom_domain import CustomDomain as CustomDomain
 from forte_sdk.generated.models.custom_domain_response import CustomDomainResponse as CustomDomainResponse
 from forte_sdk.generated.models.dns_record_check import DnsRecordCheck as DnsRecordCheck
@@ -216,10 +222,12 @@ from forte_sdk.generated.models.paginated_response_web_app_build_request_object 
 from forte_sdk.generated.models.password_config import PasswordConfig as PasswordConfig
 from forte_sdk.generated.models.password_login_request import PasswordLoginRequest as PasswordLoginRequest
 from forte_sdk.generated.models.payment_address import PaymentAddress as PaymentAddress
+from forte_sdk.generated.models.payment_analytics_response import PaymentAnalyticsResponse as PaymentAnalyticsResponse
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem as PaymentLineItem
 from forte_sdk.generated.models.payment_object import PaymentObject as PaymentObject
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig as PaymentTriggerConfig
 from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject as PendingUserInviteObject
+from forte_sdk.generated.models.product_aggregate import ProductAggregate as ProductAggregate
 from forte_sdk.generated.models.project_object import ProjectObject as ProjectObject
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest as RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse as RegisterUserResponse
@@ -235,6 +243,8 @@ from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest 
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject as ServiceBuildRequestObject
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse as ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject as ServiceObject
+from forte_sdk.generated.models.spender_aggregate import SpenderAggregate as SpenderAggregate
+from forte_sdk.generated.models.state_currency_totals import StateCurrencyTotals as StateCurrencyTotals
 from forte_sdk.generated.models.state_history import StateHistory as StateHistory
 from forte_sdk.generated.models.sync_custom_domain_response import SyncCustomDomainResponse as SyncCustomDomainResponse
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest

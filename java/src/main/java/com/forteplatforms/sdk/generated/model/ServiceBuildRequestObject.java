@@ -43,6 +43,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceBuildRequestObject.JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR,
   ServiceBuildRequestObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR,
   ServiceBuildRequestObject.JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED,
+  ServiceBuildRequestObject.JSON_PROPERTY_CANCELLATION_REQUESTED,
   ServiceBuildRequestObject.JSON_PROPERTY_START_TIME,
   ServiceBuildRequestObject.JSON_PROPERTY_LAST_UPDATED_TIME,
   ServiceBuildRequestObject.JSON_PROPERTY_SERVICE_ID,
@@ -57,7 +58,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceBuildRequestObject.JSON_PROPERTY_BUILD_TIER,
   ServiceBuildRequestObject.JSON_PROPERTY_FAILURE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
@@ -74,6 +75,10 @@ public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED = "allBuildLogsReceived";
   @javax.annotation.Nullable
   private Boolean allBuildLogsReceived;
+
+  public static final String JSON_PROPERTY_CANCELLATION_REQUESTED = "cancellationRequested";
+  @javax.annotation.Nullable
+  private Boolean cancellationRequested;
 
   public static final String JSON_PROPERTY_START_TIME = "startTime";
   @javax.annotation.Nonnull
@@ -146,6 +151,8 @@ public class ServiceBuildRequestObject {
     DEPLOYMENT_FAILURE(String.valueOf("DEPLOYMENT_FAILURE")),
     
     VALIDATION_HEALTH_CHECK_FAILURE(String.valueOf("VALIDATION_HEALTH_CHECK_FAILURE")),
+    
+    SERVICE_STARTUP_FAILURE(String.valueOf("SERVICE_STARTUP_FAILURE")),
     
     DETECTING_WEB_APP_CONFIG(String.valueOf("DETECTING_WEB_APP_CONFIG")),
     
@@ -427,6 +434,30 @@ public class ServiceBuildRequestObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAllBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
     this.allBuildLogsReceived = allBuildLogsReceived;
+  }
+
+
+  public ServiceBuildRequestObject cancellationRequested(@javax.annotation.Nullable Boolean cancellationRequested) {
+    this.cancellationRequested = cancellationRequested;
+    return this;
+  }
+
+  /**
+   * Get cancellationRequested
+   * @return cancellationRequested
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CANCELLATION_REQUESTED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getCancellationRequested() {
+    return cancellationRequested;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CANCELLATION_REQUESTED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCancellationRequested(@javax.annotation.Nullable Boolean cancellationRequested) {
+    this.cancellationRequested = cancellationRequested;
   }
 
 
@@ -766,6 +797,7 @@ public class ServiceBuildRequestObject {
         Objects.equals(this.dockerfileGenerationError, serviceBuildRequestObject.dockerfileGenerationError) &&
         Objects.equals(this.healthCheckDetectionError, serviceBuildRequestObject.healthCheckDetectionError) &&
         Objects.equals(this.allBuildLogsReceived, serviceBuildRequestObject.allBuildLogsReceived) &&
+        Objects.equals(this.cancellationRequested, serviceBuildRequestObject.cancellationRequested) &&
         Objects.equals(this.startTime, serviceBuildRequestObject.startTime) &&
         Objects.equals(this.lastUpdatedTime, serviceBuildRequestObject.lastUpdatedTime) &&
         Objects.equals(this.serviceId, serviceBuildRequestObject.serviceId) &&
@@ -783,7 +815,7 @@ public class ServiceBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, dockerfileGenerationError, healthCheckDetectionError, allBuildLogsReceived, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, buildTier, failureReason);
+    return Objects.hash(buildId, dockerfileGenerationError, healthCheckDetectionError, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, buildTier, failureReason);
   }
 
   @Override
@@ -794,6 +826,7 @@ public class ServiceBuildRequestObject {
     sb.append("    dockerfileGenerationError: ").append(toIndentedString(dockerfileGenerationError)).append("\n");
     sb.append("    healthCheckDetectionError: ").append(toIndentedString(healthCheckDetectionError)).append("\n");
     sb.append("    allBuildLogsReceived: ").append(toIndentedString(allBuildLogsReceived)).append("\n");
+    sb.append("    cancellationRequested: ").append(toIndentedString(cancellationRequested)).append("\n");
     sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
     sb.append("    lastUpdatedTime: ").append(toIndentedString(lastUpdatedTime)).append("\n");
     sb.append("    serviceId: ").append(toIndentedString(serviceId)).append("\n");
@@ -869,6 +902,11 @@ public class ServiceBuildRequestObject {
     // add `allBuildLogsReceived` to the URL query string
     if (getAllBuildLogsReceived() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sallBuildLogsReceived%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllBuildLogsReceived()))));
+    }
+
+    // add `cancellationRequested` to the URL query string
+    if (getCancellationRequested() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scancellationRequested%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCancellationRequested()))));
     }
 
     // add `startTime` to the URL query string

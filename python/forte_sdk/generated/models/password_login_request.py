@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,7 +28,7 @@ class PasswordLoginRequest(BaseModel):
     """
     PasswordLoginRequest
     """ # noqa: E501
-    contact_value: StrictStr = Field(alias="contactValue")
+    contact_value: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="contactValue")
     password: StrictStr
     recaptcha_token: Optional[StrictStr] = Field(default=None, alias="recaptchaToken")
     __properties: ClassVar[List[str]] = ["contactValue", "password", "recaptchaToken"]

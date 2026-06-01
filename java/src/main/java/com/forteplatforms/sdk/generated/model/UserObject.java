@@ -59,7 +59,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT,
   UserObject.JSON_PROPERTY_HAS_PASSWORD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T22:31:20.790909200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-31T17:45:31.916886500-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UserObject {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nullable
