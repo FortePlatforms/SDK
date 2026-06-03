@@ -64,6 +64,11 @@ import {
     CreateOtpLoginResponseToJSON,
 } from '../models/CreateOtpLoginResponse';
 import {
+    type CreatePaymentMethodResponse,
+    CreatePaymentMethodResponseFromJSON,
+    CreatePaymentMethodResponseToJSON,
+} from '../models/CreatePaymentMethodResponse';
+import {
     type CreatePaymentPreviewRequest,
     CreatePaymentPreviewRequestFromJSON,
     CreatePaymentPreviewRequestToJSON,
@@ -119,6 +124,11 @@ import {
     PasswordLoginRequestToJSON,
 } from '../models/PasswordLoginRequest';
 import {
+    type PaymentMethodObject,
+    PaymentMethodObjectFromJSON,
+    PaymentMethodObjectToJSON,
+} from '../models/PaymentMethodObject';
+import {
     type PendingUserInviteObject,
     PendingUserInviteObjectFromJSON,
     PendingUserInviteObjectToJSON,
@@ -148,6 +158,11 @@ import {
     UpdateContentSharesRequestFromJSON,
     UpdateContentSharesRequestToJSON,
 } from '../models/UpdateContentSharesRequest';
+import {
+    type UpdatePaymentMethodRequest,
+    UpdatePaymentMethodRequestFromJSON,
+    UpdatePaymentMethodRequestToJSON,
+} from '../models/UpdatePaymentMethodRequest';
 import {
     type UserObject,
     UserObjectFromJSON,
@@ -267,6 +282,10 @@ export interface UsersCreatePaymentRequest {
     createPaymentRequest: CreatePaymentRequest;
 }
 
+export interface UsersCreatePaymentMethodRequest {
+    projectId: string;
+}
+
 export interface UsersCreatePaymentPreviewRequest {
     projectId: string;
     createPaymentPreviewRequest: CreatePaymentPreviewRequest;
@@ -275,6 +294,11 @@ export interface UsersCreatePaymentPreviewRequest {
 export interface UsersDeleteContentRequest {
     projectId: string;
     contentId: string;
+}
+
+export interface UsersDeletePaymentMethodRequest {
+    projectId: string;
+    paymentMethodId: string;
 }
 
 export interface UsersFinalizeContentRequest {
@@ -292,16 +316,31 @@ export interface UsersGetContentDownloadLinkRequest {
     contentId: string;
 }
 
+export interface UsersGetPaymentMethodRequest {
+    projectId: string;
+    paymentMethodId: string;
+}
+
 export interface UsersListContentRequest {
     projectId: string;
     page?: number;
     pageSize?: number;
 }
 
+export interface UsersListPaymentMethodsRequest {
+    projectId: string;
+}
+
 export interface UsersUpdateContentSharesRequest {
     projectId: string;
     contentId: string;
     updateContentSharesRequest: UpdateContentSharesRequest;
+}
+
+export interface UsersUpdatePaymentMethodRequest {
+    projectId: string;
+    paymentMethodId: string;
+    updatePaymentMethodRequest: UpdatePaymentMethodRequest;
 }
 
 export interface VerifyContactMethodRequest {
@@ -1437,6 +1476,49 @@ export class UsersServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for usersCreatePaymentMethod without sending the request
+     */
+    async usersCreatePaymentMethodRequestOpts(requestParameters: UsersCreatePaymentMethodRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersCreatePaymentMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payment-methods`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async usersCreatePaymentMethodRaw(requestParameters: UsersCreatePaymentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentMethodResponse>> {
+        const requestOptions = await this.usersCreatePaymentMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentMethodResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersCreatePaymentMethod(requestParameters: UsersCreatePaymentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentMethodResponse> {
+        const response = await this.usersCreatePaymentMethodRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for usersCreatePaymentPreview without sending the request
      */
     async usersCreatePaymentPreviewRequestOpts(requestParameters: UsersCreatePaymentPreviewRequest): Promise<runtime.RequestOpts> {
@@ -1537,6 +1619,56 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async usersDeleteContent(requestParameters: UsersDeleteContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.usersDeleteContentRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for usersDeletePaymentMethod without sending the request
+     */
+    async usersDeletePaymentMethodRequestOpts(requestParameters: UsersDeletePaymentMethodRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersDeletePaymentMethod().'
+            );
+        }
+
+        if (requestParameters['paymentMethodId'] == null) {
+            throw new runtime.RequiredError(
+                'paymentMethodId',
+                'Required parameter "paymentMethodId" was null or undefined when calling usersDeletePaymentMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payment-methods/{paymentMethodId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{paymentMethodId}', encodeURIComponent(String(requestParameters['paymentMethodId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async usersDeletePaymentMethodRaw(requestParameters: UsersDeletePaymentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.usersDeletePaymentMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async usersDeletePaymentMethod(requestParameters: UsersDeletePaymentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.usersDeletePaymentMethodRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -1693,6 +1825,57 @@ export class UsersServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for usersGetPaymentMethod without sending the request
+     */
+    async usersGetPaymentMethodRequestOpts(requestParameters: UsersGetPaymentMethodRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersGetPaymentMethod().'
+            );
+        }
+
+        if (requestParameters['paymentMethodId'] == null) {
+            throw new runtime.RequiredError(
+                'paymentMethodId',
+                'Required parameter "paymentMethodId" was null or undefined when calling usersGetPaymentMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payment-methods/{paymentMethodId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{paymentMethodId}', encodeURIComponent(String(requestParameters['paymentMethodId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async usersGetPaymentMethodRaw(requestParameters: UsersGetPaymentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentMethodObject>> {
+        const requestOptions = await this.usersGetPaymentMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentMethodObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersGetPaymentMethod(requestParameters: UsersGetPaymentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentMethodObject> {
+        const response = await this.usersGetPaymentMethodRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for usersListContent without sending the request
      */
     async usersListContentRequestOpts(requestParameters: UsersListContentRequest): Promise<runtime.RequestOpts> {
@@ -1740,6 +1923,49 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async usersListContent(requestParameters: UsersListContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListContentResponse> {
         const response = await this.usersListContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for usersListPaymentMethods without sending the request
+     */
+    async usersListPaymentMethodsRequestOpts(requestParameters: UsersListPaymentMethodsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersListPaymentMethods().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payment-methods`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async usersListPaymentMethodsRaw(requestParameters: UsersListPaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PaymentMethodObject>>> {
+        const requestOptions = await this.usersListPaymentMethodsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PaymentMethodObjectFromJSON));
+    }
+
+    /**
+     */
+    async usersListPaymentMethods(requestParameters: UsersListPaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PaymentMethodObject>> {
+        const response = await this.usersListPaymentMethodsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1801,6 +2027,67 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async usersUpdateContentShares(requestParameters: UsersUpdateContentSharesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
         const response = await this.usersUpdateContentSharesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for usersUpdatePaymentMethod without sending the request
+     */
+    async usersUpdatePaymentMethodRequestOpts(requestParameters: UsersUpdatePaymentMethodRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersUpdatePaymentMethod().'
+            );
+        }
+
+        if (requestParameters['paymentMethodId'] == null) {
+            throw new runtime.RequiredError(
+                'paymentMethodId',
+                'Required parameter "paymentMethodId" was null or undefined when calling usersUpdatePaymentMethod().'
+            );
+        }
+
+        if (requestParameters['updatePaymentMethodRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updatePaymentMethodRequest',
+                'Required parameter "updatePaymentMethodRequest" was null or undefined when calling usersUpdatePaymentMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payment-methods/{paymentMethodId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{paymentMethodId}', encodeURIComponent(String(requestParameters['paymentMethodId'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdatePaymentMethodRequestToJSON(requestParameters['updatePaymentMethodRequest']),
+        };
+    }
+
+    /**
+     */
+    async usersUpdatePaymentMethodRaw(requestParameters: UsersUpdatePaymentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentMethodObject>> {
+        const requestOptions = await this.usersUpdatePaymentMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentMethodObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersUpdatePaymentMethod(requestParameters: UsersUpdatePaymentMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentMethodObject> {
+        const response = await this.usersUpdatePaymentMethodRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

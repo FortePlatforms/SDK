@@ -40,10 +40,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_USER_ID,
   UserActionLogObject.JSON_PROPERTY_ACTION_TYPE,
   UserActionLogObject.JSON_PROPERTY_CONTACT_METHOD_ID,
+  UserActionLogObject.JSON_PROPERTY_PAYMENT_METHOD_ID,
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID,
   UserActionLogObject.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T11:04:36.588006600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T18:19:31.255074100-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UserActionLogObject {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -90,6 +91,12 @@ public class UserActionLogObject {
     PAYMENT_CREATED(String.valueOf("PAYMENT_CREATED")),
     
     PAYMENT_REFUNDED(String.valueOf("PAYMENT_REFUNDED")),
+    
+    PAYMENT_METHOD_SETUP_STARTED(String.valueOf("PAYMENT_METHOD_SETUP_STARTED")),
+    
+    PAYMENT_METHOD_DEFAULT_CHANGED(String.valueOf("PAYMENT_METHOD_DEFAULT_CHANGED")),
+    
+    PAYMENT_METHOD_REMOVED(String.valueOf("PAYMENT_METHOD_REMOVED")),
     
     WELCOME_MESSAGE_SENT(String.valueOf("WELCOME_MESSAGE_SENT")),
     
@@ -155,6 +162,10 @@ public class UserActionLogObject {
   public static final String JSON_PROPERTY_CONTACT_METHOD_ID = "contactMethodId";
   @javax.annotation.Nullable
   private String contactMethodId;
+
+  public static final String JSON_PROPERTY_PAYMENT_METHOD_ID = "paymentMethodId";
+  @javax.annotation.Nullable
+  private String paymentMethodId;
 
   public static final String JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID = "performedByAccountId";
   @javax.annotation.Nullable
@@ -263,6 +274,30 @@ public class UserActionLogObject {
   }
 
 
+  public UserActionLogObject paymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+    this.paymentMethodId = paymentMethodId;
+    return this;
+  }
+
+  /**
+   * Get paymentMethodId
+   * @return paymentMethodId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPaymentMethodId() {
+    return paymentMethodId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+    this.paymentMethodId = paymentMethodId;
+  }
+
+
   public UserActionLogObject performedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
     this.performedByAccountId = performedByAccountId;
     return this;
@@ -335,13 +370,14 @@ public class UserActionLogObject {
         Objects.equals(this.userId, userActionLogObject.userId) &&
         Objects.equals(this.actionType, userActionLogObject.actionType) &&
         Objects.equals(this.contactMethodId, userActionLogObject.contactMethodId) &&
+        Objects.equals(this.paymentMethodId, userActionLogObject.paymentMethodId) &&
         Objects.equals(this.performedByAccountId, userActionLogObject.performedByAccountId) &&
         Objects.equals(this.metadata, userActionLogObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, userId, actionType, contactMethodId, performedByAccountId, metadata);
+    return Objects.hash(timestamp, userId, actionType, contactMethodId, paymentMethodId, performedByAccountId, metadata);
   }
 
   @Override
@@ -352,6 +388,7 @@ public class UserActionLogObject {
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    actionType: ").append(toIndentedString(actionType)).append("\n");
     sb.append("    contactMethodId: ").append(toIndentedString(contactMethodId)).append("\n");
+    sb.append("    paymentMethodId: ").append(toIndentedString(paymentMethodId)).append("\n");
     sb.append("    performedByAccountId: ").append(toIndentedString(performedByAccountId)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
@@ -416,6 +453,11 @@ public class UserActionLogObject {
     // add `contactMethodId` to the URL query string
     if (getContactMethodId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontactMethodId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContactMethodId()))));
+    }
+
+    // add `paymentMethodId` to the URL query string
+    if (getPaymentMethodId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spaymentMethodId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPaymentMethodId()))));
     }
 
     // add `performedByAccountId` to the URL query string

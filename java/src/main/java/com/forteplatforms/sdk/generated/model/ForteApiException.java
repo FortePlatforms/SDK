@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T11:04:36.588006600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T18:19:31.255074100-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -213,6 +213,8 @@ public class ForteApiException {
     
     PAYMENT_TOTAL_INVALID(String.valueOf("PAYMENT_TOTAL_INVALID")),
     
+    PAYMENT_BELOW_MINIMUM(String.valueOf("PAYMENT_BELOW_MINIMUM")),
+    
     PAYMENT_CURRENCY_INVALID(String.valueOf("PAYMENT_CURRENCY_INVALID")),
     
     PAYMENT_TAX_ADDRESS_INVALID(String.valueOf("PAYMENT_TAX_ADDRESS_INVALID")),
@@ -224,6 +226,8 @@ public class ForteApiException {
     PAYMENT_NOT_REFUNDABLE(String.valueOf("PAYMENT_NOT_REFUNDABLE")),
     
     PAYMENT_ALREADY_REFUNDED(String.valueOf("PAYMENT_ALREADY_REFUNDED")),
+    
+    PAYMENT_METHOD_NOT_FOUND(String.valueOf("PAYMENT_METHOD_NOT_FOUND")),
     
     USER_FILTER_INVALID(String.valueOf("USER_FILTER_INVALID")),
     

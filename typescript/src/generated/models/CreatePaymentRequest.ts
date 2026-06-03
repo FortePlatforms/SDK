@@ -70,6 +70,12 @@ export interface CreatePaymentRequest {
      * @memberof CreatePaymentRequest
      */
     shippingAddress?: PaymentAddress;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePaymentRequest
+     */
+    paymentMethodId?: string;
 }
 
 /**
@@ -97,6 +103,7 @@ export function CreatePaymentRequestFromJSONTyped(json: any, ignoreDiscriminator
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
         'customerAddress': json['customerAddress'] == null ? undefined : PaymentAddressFromJSON(json['customerAddress']),
         'shippingAddress': json['shippingAddress'] == null ? undefined : PaymentAddressFromJSON(json['shippingAddress']),
+        'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
     };
 }
 
@@ -117,6 +124,7 @@ export function CreatePaymentRequestToJSONTyped(value?: CreatePaymentRequest | n
         'metadata': value['metadata'],
         'customerAddress': PaymentAddressToJSON(value['customerAddress']),
         'shippingAddress': PaymentAddressToJSON(value['shippingAddress']),
+        'paymentMethodId': value['paymentMethodId'],
     };
 }
 

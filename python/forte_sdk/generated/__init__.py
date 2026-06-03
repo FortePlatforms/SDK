@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.199"
+__version__ = "1.0.200"
 
 # Define package exports
 __all__ = [
@@ -48,6 +48,7 @@ __all__ = [
     "CreateForteServiceRequest",
     "CreateOtpLoginRequest",
     "CreateOtpLoginResponse",
+    "CreatePaymentMethodResponse",
     "CreatePaymentPreviewRequest",
     "CreatePaymentPreviewResponse",
     "CreatePaymentRequest",
@@ -96,6 +97,7 @@ __all__ = [
     "PaymentAddress",
     "PaymentAnalyticsResponse",
     "PaymentLineItem",
+    "PaymentMethodObject",
     "PaymentObject",
     "PaymentTriggerConfig",
     "PendingUserInviteObject",
@@ -127,6 +129,7 @@ __all__ = [
     "UpdateForteServiceRequest",
     "UpdateForteServiceResponse",
     "UpdateNotificationTemplatesRequest",
+    "UpdatePaymentMethodRequest",
     "UpdatePaymentTriggerRequest",
     "UpdateProjectRequest",
     "UpdateUserRequest",
@@ -176,6 +179,7 @@ from forte_sdk.generated.models.create_custom_domain_request import CreateCustom
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest as CreateForteServiceRequest
 from forte_sdk.generated.models.create_otp_login_request import CreateOtpLoginRequest as CreateOtpLoginRequest
 from forte_sdk.generated.models.create_otp_login_response import CreateOtpLoginResponse as CreateOtpLoginResponse
+from forte_sdk.generated.models.create_payment_method_response import CreatePaymentMethodResponse as CreatePaymentMethodResponse
 from forte_sdk.generated.models.create_payment_preview_request import CreatePaymentPreviewRequest as CreatePaymentPreviewRequest
 from forte_sdk.generated.models.create_payment_preview_response import CreatePaymentPreviewResponse as CreatePaymentPreviewResponse
 from forte_sdk.generated.models.create_payment_request import CreatePaymentRequest as CreatePaymentRequest
@@ -224,6 +228,7 @@ from forte_sdk.generated.models.password_login_request import PasswordLoginReque
 from forte_sdk.generated.models.payment_address import PaymentAddress as PaymentAddress
 from forte_sdk.generated.models.payment_analytics_response import PaymentAnalyticsResponse as PaymentAnalyticsResponse
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem as PaymentLineItem
+from forte_sdk.generated.models.payment_method_object import PaymentMethodObject as PaymentMethodObject
 from forte_sdk.generated.models.payment_object import PaymentObject as PaymentObject
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig as PaymentTriggerConfig
 from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject as PendingUserInviteObject
@@ -255,6 +260,7 @@ from forte_sdk.generated.models.update_content_shares_request import UpdateConte
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest as UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse as UpdateForteServiceResponse
 from forte_sdk.generated.models.update_notification_templates_request import UpdateNotificationTemplatesRequest as UpdateNotificationTemplatesRequest
+from forte_sdk.generated.models.update_payment_method_request import UpdatePaymentMethodRequest as UpdatePaymentMethodRequest
 from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest as UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest as UpdateProjectRequest
 from forte_sdk.generated.models.update_user_request import UpdateUserRequest as UpdateUserRequest

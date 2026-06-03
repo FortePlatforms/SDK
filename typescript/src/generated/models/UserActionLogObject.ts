@@ -48,6 +48,12 @@ export interface UserActionLogObject {
      * @type {string}
      * @memberof UserActionLogObject
      */
+    paymentMethodId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserActionLogObject
+     */
     performedByAccountId?: string;
     /**
      * 
@@ -79,6 +85,9 @@ export const UserActionLogObjectActionTypeType = {
     USER_LOGIN_OTP_SENT: 'USER_LOGIN_OTP_SENT',
     PAYMENT_CREATED: 'PAYMENT_CREATED',
     PAYMENT_REFUNDED: 'PAYMENT_REFUNDED',
+    PAYMENT_METHOD_SETUP_STARTED: 'PAYMENT_METHOD_SETUP_STARTED',
+    PAYMENT_METHOD_DEFAULT_CHANGED: 'PAYMENT_METHOD_DEFAULT_CHANGED',
+    PAYMENT_METHOD_REMOVED: 'PAYMENT_METHOD_REMOVED',
     WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT',
     USER_INVITE_CREATED: 'USER_INVITE_CREATED',
     USER_INVITE_REVOKED: 'USER_INVITE_REVOKED',
@@ -122,6 +131,7 @@ export function UserActionLogObjectFromJSONTyped(json: any, ignoreDiscriminator:
         'userId': json['userId'],
         'actionType': json['actionType'],
         'contactMethodId': json['contactMethodId'] == null ? undefined : json['contactMethodId'],
+        'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
         'performedByAccountId': json['performedByAccountId'] == null ? undefined : json['performedByAccountId'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
     };
@@ -142,6 +152,7 @@ export function UserActionLogObjectToJSONTyped(value?: UserActionLogObject | nul
         'userId': value['userId'],
         'actionType': value['actionType'],
         'contactMethodId': value['contactMethodId'],
+        'paymentMethodId': value['paymentMethodId'],
         'performedByAccountId': value['performedByAccountId'],
         'metadata': value['metadata'],
     };

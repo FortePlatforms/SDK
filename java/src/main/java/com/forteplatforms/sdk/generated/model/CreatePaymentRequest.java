@@ -44,9 +44,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreatePaymentRequest.JSON_PROPERTY_DESCRIPTION,
   CreatePaymentRequest.JSON_PROPERTY_METADATA,
   CreatePaymentRequest.JSON_PROPERTY_CUSTOMER_ADDRESS,
-  CreatePaymentRequest.JSON_PROPERTY_SHIPPING_ADDRESS
+  CreatePaymentRequest.JSON_PROPERTY_SHIPPING_ADDRESS,
+  CreatePaymentRequest.JSON_PROPERTY_PAYMENT_METHOD_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T11:04:36.588006600-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T18:19:31.255074100-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class CreatePaymentRequest {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nonnull
@@ -71,6 +72,10 @@ public class CreatePaymentRequest {
   public static final String JSON_PROPERTY_SHIPPING_ADDRESS = "shippingAddress";
   @javax.annotation.Nullable
   private PaymentAddress shippingAddress;
+
+  public static final String JSON_PROPERTY_PAYMENT_METHOD_ID = "paymentMethodId";
+  @javax.annotation.Nullable
+  private String paymentMethodId;
 
   public CreatePaymentRequest() { 
   }
@@ -235,6 +240,30 @@ public class CreatePaymentRequest {
   }
 
 
+  public CreatePaymentRequest paymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+    this.paymentMethodId = paymentMethodId;
+    return this;
+  }
+
+  /**
+   * Get paymentMethodId
+   * @return paymentMethodId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPaymentMethodId() {
+    return paymentMethodId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+    this.paymentMethodId = paymentMethodId;
+  }
+
+
   /**
    * Return true if this CreatePaymentRequest object is equal to o.
    */
@@ -252,12 +281,13 @@ public class CreatePaymentRequest {
         Objects.equals(this.description, createPaymentRequest.description) &&
         Objects.equals(this.metadata, createPaymentRequest.metadata) &&
         Objects.equals(this.customerAddress, createPaymentRequest.customerAddress) &&
-        Objects.equals(this.shippingAddress, createPaymentRequest.shippingAddress);
+        Objects.equals(this.shippingAddress, createPaymentRequest.shippingAddress) &&
+        Objects.equals(this.paymentMethodId, createPaymentRequest.paymentMethodId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, lineItems, description, metadata, customerAddress, shippingAddress);
+    return Objects.hash(currency, lineItems, description, metadata, customerAddress, shippingAddress, paymentMethodId);
   }
 
   @Override
@@ -270,6 +300,7 @@ public class CreatePaymentRequest {
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    customerAddress: ").append(toIndentedString(customerAddress)).append("\n");
     sb.append("    shippingAddress: ").append(toIndentedString(shippingAddress)).append("\n");
+    sb.append("    paymentMethodId: ").append(toIndentedString(paymentMethodId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -351,6 +382,11 @@ public class CreatePaymentRequest {
     // add `shippingAddress` to the URL query string
     if (getShippingAddress() != null) {
       joiner.add(getShippingAddress().toUrlQueryString(prefix + "shippingAddress" + suffix));
+    }
+
+    // add `paymentMethodId` to the URL query string
+    if (getPaymentMethodId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spaymentMethodId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPaymentMethodId()))));
     }
 
     return joiner.toString();

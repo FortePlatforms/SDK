@@ -36,7 +36,8 @@ class CreatePaymentRequest(BaseModel):
     metadata: Optional[Dict[str, StrictStr]] = None
     customer_address: Optional[PaymentAddress] = Field(default=None, alias="customerAddress")
     shipping_address: Optional[PaymentAddress] = Field(default=None, alias="shippingAddress")
-    __properties: ClassVar[List[str]] = ["currency", "lineItems", "description", "metadata", "customerAddress", "shippingAddress"]
+    payment_method_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="paymentMethodId")
+    __properties: ClassVar[List[str]] = ["currency", "lineItems", "description", "metadata", "customerAddress", "shippingAddress", "paymentMethodId"]
 
     @field_validator('currency')
     def currency_validate_regular_expression(cls, value):
@@ -46,6 +47,19 @@ class CreatePaymentRequest(BaseModel):
 
         if not re.match(r"^[a-z]{3}$", value):
             raise ValueError(r"must validate the regular expression /^[a-z]{3}$/")
+        return value
+
+    @field_validator('payment_method_id')
+    def payment_method_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^pm_[A-Za-z0-9]+$", value):
+            raise ValueError(r"must validate the regular expression /^pm_[A-Za-z0-9]+$/")
         return value
 
     model_config = ConfigDict(
@@ -117,7 +131,8 @@ class CreatePaymentRequest(BaseModel):
             "description": obj.get("description"),
             "metadata": obj.get("metadata"),
             "customerAddress": PaymentAddress.from_dict(obj["customerAddress"]) if obj.get("customerAddress") is not None else None,
-            "shippingAddress": PaymentAddress.from_dict(obj["shippingAddress"]) if obj.get("shippingAddress") is not None else None
+            "shippingAddress": PaymentAddress.from_dict(obj["shippingAddress"]) if obj.get("shippingAddress") is not None else None,
+            "paymentMethodId": obj.get("paymentMethodId")
         })
         return _obj
 
