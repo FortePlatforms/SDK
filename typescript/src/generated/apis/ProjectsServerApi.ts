@@ -14,6 +14,21 @@
 
 import * as runtime from '../runtime';
 import {
+    type ActionInvocationObject,
+    ActionInvocationObjectFromJSON,
+    ActionInvocationObjectToJSON,
+} from '../models/ActionInvocationObject';
+import {
+    type ActionObject,
+    ActionObjectFromJSON,
+    ActionObjectToJSON,
+} from '../models/ActionObject';
+import {
+    type ActionsMetricsResponse,
+    ActionsMetricsResponseFromJSON,
+    ActionsMetricsResponseToJSON,
+} from '../models/ActionsMetricsResponse';
+import {
     type AddContactMethodRequest,
     AddContactMethodRequestFromJSON,
     AddContactMethodRequestToJSON,
@@ -48,6 +63,11 @@ import {
     ContentObjectFromJSON,
     ContentObjectToJSON,
 } from '../models/ContentObject';
+import {
+    type CreateActionRequest,
+    CreateActionRequestFromJSON,
+    CreateActionRequestToJSON,
+} from '../models/CreateActionRequest';
 import {
     type CreateContentUploadLinkRequest,
     CreateContentUploadLinkRequestFromJSON,
@@ -154,6 +174,11 @@ import {
     NotificationTemplatesResponseToJSON,
 } from '../models/NotificationTemplatesResponse';
 import {
+    type PaginatedResponseActionInvocationObject,
+    PaginatedResponseActionInvocationObjectFromJSON,
+    PaginatedResponseActionInvocationObjectToJSON,
+} from '../models/PaginatedResponseActionInvocationObject';
+import {
     type PaginatedResponseLogLineObject,
     PaginatedResponseLogLineObjectFromJSON,
     PaginatedResponseLogLineObjectToJSON,
@@ -249,6 +274,11 @@ import {
     ServiceObjectToJSON,
 } from '../models/ServiceObject';
 import {
+    type ServiceRouteMetricsResponse,
+    ServiceRouteMetricsResponseFromJSON,
+    ServiceRouteMetricsResponseToJSON,
+} from '../models/ServiceRouteMetricsResponse';
+import {
     type SyncCustomDomainResponse,
     SyncCustomDomainResponseFromJSON,
     SyncCustomDomainResponseToJSON,
@@ -263,6 +293,11 @@ import {
     TestInvocationResponseFromJSON,
     TestInvocationResponseToJSON,
 } from '../models/TestInvocationResponse';
+import {
+    type UpdateActionRequest,
+    UpdateActionRequestFromJSON,
+    UpdateActionRequestToJSON,
+} from '../models/UpdateActionRequest';
 import {
     type UpdateContentSharesRequest,
     UpdateContentSharesRequestFromJSON,
@@ -383,6 +418,12 @@ export interface AdminVerifyUserContactMethodRequest {
     verificationCode: string;
 }
 
+export interface CancelActionInvocationRequest {
+    projectId: string;
+    actionId: string;
+    invocationId: string;
+}
+
 export interface CancelServiceDeploymentRequest {
     projectId: string;
     serviceId: string;
@@ -393,6 +434,16 @@ export interface CancelWebAppDeploymentRequest {
     projectId: string;
     webAppId: string;
     buildId: string;
+}
+
+export interface CreateActionOperationRequest {
+    projectId: string;
+    createActionRequest: CreateActionRequest;
+}
+
+export interface CreateActionInvocationRequest {
+    projectId: string;
+    actionId: string;
 }
 
 export interface CreateCustomDomainOperationRequest {
@@ -452,6 +503,11 @@ export interface CreateWebAppDeploymentRequest {
     releaseTagName?: string;
 }
 
+export interface DeleteActionRequest {
+    projectId: string;
+    actionId: string;
+}
+
 export interface DeleteCustomDomainRequest {
     projectId: string;
     webAppId: string;
@@ -491,6 +547,23 @@ export interface DeleteUserRequest {
 export interface DeleteWebAppRequest {
     projectId: string;
     webAppId: string;
+}
+
+export interface GetActionRequest {
+    projectId: string;
+    actionId: string;
+}
+
+export interface GetActionInvocationRequest {
+    projectId: string;
+    actionId: string;
+    invocationId: string;
+}
+
+export interface GetActionsMetricsRequest {
+    projectId: string;
+    minTime?: Date;
+    maxTime?: Date;
 }
 
 export interface GetCustomDomainRequest {
@@ -547,6 +620,13 @@ export interface GetServiceMetricsRequest {
     granularity?: GetServiceMetricsGranularityType;
 }
 
+export interface GetServiceRouteMetricsRequest {
+    projectId: string;
+    serviceId: string;
+    minTime?: Date;
+    maxTime?: Date;
+}
+
 export interface GetUserRequest {
     userId: string;
     projectId: string;
@@ -573,6 +653,18 @@ export interface GetWebAppDeploymentRequest {
 export interface IssueImpersonationTokenRequest {
     projectId: string;
     userId: string;
+}
+
+export interface ListActionInvocationsRequest {
+    projectId: string;
+    actionId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    nextToken?: string;
+}
+
+export interface ListActionsRequest {
+    projectId: string;
 }
 
 export interface ListCustomDomainsRequest {
@@ -833,6 +925,12 @@ export interface TestInvocationOperationRequest {
     projectId: string;
     serviceId: string;
     testInvocationRequest: TestInvocationRequest;
+}
+
+export interface UpdateActionOperationRequest {
+    projectId: string;
+    actionId: string;
+    updateActionRequest: UpdateActionRequest;
 }
 
 export interface UpdateNotificationTemplatesOperationRequest {
@@ -1359,6 +1457,64 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for cancelActionInvocation without sending the request
+     */
+    async cancelActionInvocationRequestOpts(requestParameters: CancelActionInvocationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling cancelActionInvocation().'
+            );
+        }
+
+        if (requestParameters['actionId'] == null) {
+            throw new runtime.RequiredError(
+                'actionId',
+                'Required parameter "actionId" was null or undefined when calling cancelActionInvocation().'
+            );
+        }
+
+        if (requestParameters['invocationId'] == null) {
+            throw new runtime.RequiredError(
+                'invocationId',
+                'Required parameter "invocationId" was null or undefined when calling cancelActionInvocation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions/{actionId}/invocations/{invocationId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{actionId}', encodeURIComponent(String(requestParameters['actionId'])));
+        urlPath = urlPath.replace('{invocationId}', encodeURIComponent(String(requestParameters['invocationId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async cancelActionInvocationRaw(requestParameters: CancelActionInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.cancelActionInvocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async cancelActionInvocation(requestParameters: CancelActionInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.cancelActionInvocationRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for cancelServiceDeployment without sending the request
      */
     async cancelServiceDeploymentRequestOpts(requestParameters: CancelServiceDeploymentRequest): Promise<runtime.RequestOpts> {
@@ -1473,6 +1629,110 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async cancelWebAppDeployment(requestParameters: CancelWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppBuildRequestObject> {
         const response = await this.cancelWebAppDeploymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createAction without sending the request
+     */
+    async createActionRequestOpts(requestParameters: CreateActionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createAction().'
+            );
+        }
+
+        if (requestParameters['createActionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createActionRequest',
+                'Required parameter "createActionRequest" was null or undefined when calling createAction().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateActionRequestToJSON(requestParameters['createActionRequest']),
+        };
+    }
+
+    /**
+     */
+    async createActionRaw(requestParameters: CreateActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionObject>> {
+        const requestOptions = await this.createActionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ActionObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createAction(requestParameters: CreateActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionObject> {
+        const response = await this.createActionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createActionInvocation without sending the request
+     */
+    async createActionInvocationRequestOpts(requestParameters: CreateActionInvocationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createActionInvocation().'
+            );
+        }
+
+        if (requestParameters['actionId'] == null) {
+            throw new runtime.RequiredError(
+                'actionId',
+                'Required parameter "actionId" was null or undefined when calling createActionInvocation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions/{actionId}/invocations`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{actionId}', encodeURIComponent(String(requestParameters['actionId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async createActionInvocationRaw(requestParameters: CreateActionInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionInvocationObject>> {
+        const requestOptions = await this.createActionInvocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ActionInvocationObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createActionInvocation(requestParameters: CreateActionInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionInvocationObject> {
+        const response = await this.createActionInvocationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2040,6 +2300,56 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteAction without sending the request
+     */
+    async deleteActionRequestOpts(requestParameters: DeleteActionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteAction().'
+            );
+        }
+
+        if (requestParameters['actionId'] == null) {
+            throw new runtime.RequiredError(
+                'actionId',
+                'Required parameter "actionId" was null or undefined when calling deleteAction().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions/{actionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{actionId}', encodeURIComponent(String(requestParameters['actionId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteActionRaw(requestParameters: DeleteActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteActionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteAction(requestParameters: DeleteActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteActionRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deleteCustomDomain without sending the request
      */
     async deleteCustomDomainRequestOpts(requestParameters: DeleteCustomDomainRequest): Promise<runtime.RequestOpts> {
@@ -2445,6 +2755,167 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteWebApp(requestParameters: DeleteWebAppRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteWebAppRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for getAction without sending the request
+     */
+    async getActionRequestOpts(requestParameters: GetActionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getAction().'
+            );
+        }
+
+        if (requestParameters['actionId'] == null) {
+            throw new runtime.RequiredError(
+                'actionId',
+                'Required parameter "actionId" was null or undefined when calling getAction().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions/{actionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{actionId}', encodeURIComponent(String(requestParameters['actionId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getActionRaw(requestParameters: GetActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionObject>> {
+        const requestOptions = await this.getActionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ActionObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getAction(requestParameters: GetActionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionObject> {
+        const response = await this.getActionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getActionInvocation without sending the request
+     */
+    async getActionInvocationRequestOpts(requestParameters: GetActionInvocationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getActionInvocation().'
+            );
+        }
+
+        if (requestParameters['actionId'] == null) {
+            throw new runtime.RequiredError(
+                'actionId',
+                'Required parameter "actionId" was null or undefined when calling getActionInvocation().'
+            );
+        }
+
+        if (requestParameters['invocationId'] == null) {
+            throw new runtime.RequiredError(
+                'invocationId',
+                'Required parameter "invocationId" was null or undefined when calling getActionInvocation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions/{actionId}/invocations/{invocationId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{actionId}', encodeURIComponent(String(requestParameters['actionId'])));
+        urlPath = urlPath.replace('{invocationId}', encodeURIComponent(String(requestParameters['invocationId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getActionInvocationRaw(requestParameters: GetActionInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionInvocationObject>> {
+        const requestOptions = await this.getActionInvocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ActionInvocationObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getActionInvocation(requestParameters: GetActionInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionInvocationObject> {
+        const response = await this.getActionInvocationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getActionsMetrics without sending the request
+     */
+    async getActionsMetricsRequestOpts(requestParameters: GetActionsMetricsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getActionsMetrics().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions/metrics`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getActionsMetricsRaw(requestParameters: GetActionsMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionsMetricsResponse>> {
+        const requestOptions = await this.getActionsMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ActionsMetricsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getActionsMetrics(requestParameters: GetActionsMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionsMetricsResponse> {
+        const response = await this.getActionsMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -2947,6 +3418,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getServiceRouteMetrics without sending the request
+     */
+    async getServiceRouteMetricsRequestOpts(requestParameters: GetServiceRouteMetricsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getServiceRouteMetrics().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling getServiceRouteMetrics().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/route-metrics`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getServiceRouteMetricsRaw(requestParameters: GetServiceRouteMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceRouteMetricsResponse>> {
+        const requestOptions = await this.getServiceRouteMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ServiceRouteMetricsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getServiceRouteMetrics(requestParameters: GetServiceRouteMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceRouteMetricsResponse> {
+        const response = await this.getServiceRouteMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getUser without sending the request
      */
     async getUserRequestOpts(requestParameters: GetUserRequest): Promise<runtime.RequestOpts> {
@@ -3210,6 +3740,112 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async issueImpersonationToken(requestParameters: IssueImpersonationTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImpersonationTokenResponse> {
         const response = await this.issueImpersonationTokenRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listActionInvocations without sending the request
+     */
+    async listActionInvocationsRequestOpts(requestParameters: ListActionInvocationsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listActionInvocations().'
+            );
+        }
+
+        if (requestParameters['actionId'] == null) {
+            throw new runtime.RequiredError(
+                'actionId',
+                'Required parameter "actionId" was null or undefined when calling listActionInvocations().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions/{actionId}/invocations`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{actionId}', encodeURIComponent(String(requestParameters['actionId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listActionInvocationsRaw(requestParameters: ListActionInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseActionInvocationObject>> {
+        const requestOptions = await this.listActionInvocationsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseActionInvocationObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listActionInvocations(requestParameters: ListActionInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseActionInvocationObject> {
+        const response = await this.listActionInvocationsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listActions without sending the request
+     */
+    async listActionsRequestOpts(requestParameters: ListActionsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listActions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listActionsRaw(requestParameters: ListActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ActionObject>>> {
+        const requestOptions = await this.listActionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ActionObjectFromJSON));
+    }
+
+    /**
+     */
+    async listActions(requestParameters: ListActionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ActionObject>> {
+        const response = await this.listActionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5560,6 +6196,67 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async testInvocation(requestParameters: TestInvocationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TestInvocationResponse> {
         const response = await this.testInvocationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for updateAction without sending the request
+     */
+    async updateActionRequestOpts(requestParameters: UpdateActionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateAction().'
+            );
+        }
+
+        if (requestParameters['actionId'] == null) {
+            throw new runtime.RequiredError(
+                'actionId',
+                'Required parameter "actionId" was null or undefined when calling updateAction().'
+            );
+        }
+
+        if (requestParameters['updateActionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateActionRequest',
+                'Required parameter "updateActionRequest" was null or undefined when calling updateAction().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/actions/{actionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{actionId}', encodeURIComponent(String(requestParameters['actionId'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateActionRequestToJSON(requestParameters['updateActionRequest']),
+        };
+    }
+
+    /**
+     */
+    async updateActionRaw(requestParameters: UpdateActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ActionObject>> {
+        const requestOptions = await this.updateActionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ActionObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateAction(requestParameters: UpdateActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionObject> {
+        const response = await this.updateActionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

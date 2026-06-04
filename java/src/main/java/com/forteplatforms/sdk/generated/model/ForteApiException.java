@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T18:19:31.255074100-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T00:28:40.945263200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -234,6 +234,28 @@ public class ForteApiException {
     PAYMENT_TRIGGER_TARGET_SERVICE_NOT_FOUND(String.valueOf("PAYMENT_TRIGGER_TARGET_SERVICE_NOT_FOUND")),
     
     PAYMENT_TRIGGER_NOT_FOUND(String.valueOf("PAYMENT_TRIGGER_NOT_FOUND")),
+    
+    ACTION_NOT_FOUND(String.valueOf("ACTION_NOT_FOUND")),
+    
+    ACTION_INVOCATION_NOT_FOUND(String.valueOf("ACTION_INVOCATION_NOT_FOUND")),
+    
+    ACTION_TARGET_SERVICE_NOT_FOUND(String.valueOf("ACTION_TARGET_SERVICE_NOT_FOUND")),
+    
+    ACTION_QUOTA_EXCEEDED(String.valueOf("ACTION_QUOTA_EXCEEDED")),
+    
+    INVALID_CRON_EXPRESSION(String.valueOf("INVALID_CRON_EXPRESSION")),
+    
+    INVALID_TIMEZONE(String.valueOf("INVALID_TIMEZONE")),
+    
+    INVALID_ACTION_SCHEDULE(String.valueOf("INVALID_ACTION_SCHEDULE")),
+    
+    ACTION_SCHEDULE_TOO_FREQUENT(String.valueOf("ACTION_SCHEDULE_TOO_FREQUENT")),
+    
+    INVOCATION_NOT_CANCELLABLE(String.valueOf("INVOCATION_NOT_CANCELLABLE")),
+    
+    ACTION_NOT_ENABLED(String.valueOf("ACTION_NOT_ENABLED")),
+    
+    ACTIONS_ACCESS_REQUIRED(String.valueOf("ACTIONS_ACCESS_REQUIRED")),
     
     EMAIL_CONFIGURATION_INVALID(String.valueOf("EMAIL_CONFIGURATION_INVALID")),
     

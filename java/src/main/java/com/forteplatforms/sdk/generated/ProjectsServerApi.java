@@ -18,6 +18,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiResponse;
 import com.forteplatforms.sdk.generated.invoker.Configuration;
 import com.forteplatforms.sdk.generated.invoker.Pair;
 
+import com.forteplatforms.sdk.generated.model.ActionInvocationObject;
+import com.forteplatforms.sdk.generated.model.ActionObject;
+import com.forteplatforms.sdk.generated.model.ActionsMetricsResponse;
 import com.forteplatforms.sdk.generated.model.AddContactMethodRequest;
 import com.forteplatforms.sdk.generated.model.AdminForceSetPasswordRequest;
 import com.forteplatforms.sdk.generated.model.AdminOverrideContactMethodRequest;
@@ -25,6 +28,7 @@ import com.forteplatforms.sdk.generated.model.AdminPasswordResetResponse;
 import com.forteplatforms.sdk.generated.model.ApiKeySummary;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.ContentObject;
+import com.forteplatforms.sdk.generated.model.CreateActionRequest;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkRequest;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkResponse;
 import com.forteplatforms.sdk.generated.model.CreateCustomDomainRequest;
@@ -47,6 +51,7 @@ import com.forteplatforms.sdk.generated.model.ListContentResponse;
 import com.forteplatforms.sdk.generated.model.ListCustomDomainsResponse;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesResponse;
 import java.time.OffsetDateTime;
+import com.forteplatforms.sdk.generated.model.PaginatedResponseActionInvocationObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseLogLineObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseRequestLogObject;
@@ -66,9 +71,11 @@ import com.forteplatforms.sdk.generated.model.SendUserSmsRequest;
 import com.forteplatforms.sdk.generated.model.ServiceBuildRequestObject;
 import com.forteplatforms.sdk.generated.model.ServiceMetricsResponse;
 import com.forteplatforms.sdk.generated.model.ServiceObject;
+import com.forteplatforms.sdk.generated.model.ServiceRouteMetricsResponse;
 import com.forteplatforms.sdk.generated.model.SyncCustomDomainResponse;
 import com.forteplatforms.sdk.generated.model.TestInvocationRequest;
 import com.forteplatforms.sdk.generated.model.TestInvocationResponse;
+import com.forteplatforms.sdk.generated.model.UpdateActionRequest;
 import com.forteplatforms.sdk.generated.model.UpdateContentSharesRequest;
 import com.forteplatforms.sdk.generated.model.UpdateForteServiceRequest;
 import com.forteplatforms.sdk.generated.model.UpdateForteServiceResponse;
@@ -109,7 +116,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T18:19:31.255074100-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T00:28:40.945263200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ProjectsServerApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1347,6 +1354,128 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param actionId  (required)
+   * @param invocationId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void cancelActionInvocation(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId) throws ApiException {
+    cancelActionInvocation(projectId, actionId, invocationId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param invocationId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void cancelActionInvocation(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId, Map<String, String> headers) throws ApiException {
+    cancelActionInvocationWithHttpInfo(projectId, actionId, invocationId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param invocationId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> cancelActionInvocationWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId) throws ApiException {
+    return cancelActionInvocationWithHttpInfo(projectId, actionId, invocationId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param invocationId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> cancelActionInvocationWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cancelActionInvocationRequestBuilder(projectId, actionId, invocationId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("cancelActionInvocation", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder cancelActionInvocationRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling cancelActionInvocation");
+    }
+    // verify the required parameter 'actionId' is set
+    if (actionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'actionId' when calling cancelActionInvocation");
+    }
+    // verify the required parameter 'invocationId' is set
+    if (invocationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'invocationId' when calling cancelActionInvocation");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions/{actionId}/invocations/{invocationId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{actionId}", ApiClient.urlEncode(actionId.toString()))
+        .replace("{invocationId}", ApiClient.urlEncode(invocationId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param serviceId  (required)
    * @param deploymentId  (required)
    * @return ServiceBuildRequestObject
@@ -1598,6 +1727,265 @@ public class ProjectsServerApi {
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()))
         .replace("{buildId}", ApiClient.urlEncode(buildId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createActionRequest  (required)
+   * @return ActionObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionObject createAction(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateActionRequest createActionRequest) throws ApiException {
+    return createAction(projectId, createActionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createActionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ActionObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionObject createAction(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateActionRequest createActionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ActionObject> localVarResponse = createActionWithHttpInfo(projectId, createActionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createActionRequest  (required)
+   * @return ApiResponse&lt;ActionObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionObject> createActionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateActionRequest createActionRequest) throws ApiException {
+    return createActionWithHttpInfo(projectId, createActionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createActionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ActionObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionObject> createActionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateActionRequest createActionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createActionRequestBuilder(projectId, createActionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createAction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ActionObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ActionObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ActionObject>() {});
+        
+
+        return new ApiResponse<ActionObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createActionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateActionRequest createActionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createAction");
+    }
+    // verify the required parameter 'createActionRequest' is set
+    if (createActionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createActionRequest' when calling createAction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createActionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @return ActionInvocationObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionInvocationObject createActionInvocation(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId) throws ApiException {
+    return createActionInvocation(projectId, actionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ActionInvocationObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionInvocationObject createActionInvocation(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ActionInvocationObject> localVarResponse = createActionInvocationWithHttpInfo(projectId, actionId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @return ApiResponse&lt;ActionInvocationObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionInvocationObject> createActionInvocationWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId) throws ApiException {
+    return createActionInvocationWithHttpInfo(projectId, actionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ActionInvocationObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionInvocationObject> createActionInvocationWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createActionInvocationRequestBuilder(projectId, actionId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createActionInvocation", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ActionInvocationObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ActionInvocationObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ActionInvocationObject>() {});
+        
+
+        return new ApiResponse<ActionInvocationObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createActionInvocationRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createActionInvocation");
+    }
+    // verify the required parameter 'actionId' is set
+    if (actionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'actionId' when calling createActionInvocation");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions/{actionId}/invocations"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{actionId}", ApiClient.urlEncode(actionId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -3012,6 +3400,119 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param actionId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteAction(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId) throws ApiException {
+    deleteAction(projectId, actionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteAction(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    deleteActionWithHttpInfo(projectId, actionId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteActionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId) throws ApiException {
+    return deleteActionWithHttpInfo(projectId, actionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteActionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteActionRequestBuilder(projectId, actionId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteAction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteActionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteAction");
+    }
+    // verify the required parameter 'actionId' is set
+    if (actionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'actionId' when calling deleteAction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions/{actionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{actionId}", ApiClient.urlEncode(actionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param webAppId  (required)
    * @param customDomainId  (required)
    * @throws ApiException if fails to make API call
@@ -3910,6 +4411,412 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @return ActionObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionObject getAction(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId) throws ApiException {
+    return getAction(projectId, actionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ActionObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionObject getAction(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ActionObject> localVarResponse = getActionWithHttpInfo(projectId, actionId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @return ApiResponse&lt;ActionObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionObject> getActionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId) throws ApiException {
+    return getActionWithHttpInfo(projectId, actionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ActionObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionObject> getActionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getActionRequestBuilder(projectId, actionId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ActionObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ActionObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ActionObject>() {});
+        
+
+        return new ApiResponse<ActionObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getActionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getAction");
+    }
+    // verify the required parameter 'actionId' is set
+    if (actionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'actionId' when calling getAction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions/{actionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{actionId}", ApiClient.urlEncode(actionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param invocationId  (required)
+   * @return ActionInvocationObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionInvocationObject getActionInvocation(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId) throws ApiException {
+    return getActionInvocation(projectId, actionId, invocationId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param invocationId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ActionInvocationObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionInvocationObject getActionInvocation(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ActionInvocationObject> localVarResponse = getActionInvocationWithHttpInfo(projectId, actionId, invocationId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param invocationId  (required)
+   * @return ApiResponse&lt;ActionInvocationObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionInvocationObject> getActionInvocationWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId) throws ApiException {
+    return getActionInvocationWithHttpInfo(projectId, actionId, invocationId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param invocationId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ActionInvocationObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionInvocationObject> getActionInvocationWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getActionInvocationRequestBuilder(projectId, actionId, invocationId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getActionInvocation", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ActionInvocationObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ActionInvocationObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ActionInvocationObject>() {});
+        
+
+        return new ApiResponse<ActionInvocationObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getActionInvocationRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull String invocationId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getActionInvocation");
+    }
+    // verify the required parameter 'actionId' is set
+    if (actionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'actionId' when calling getActionInvocation");
+    }
+    // verify the required parameter 'invocationId' is set
+    if (invocationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'invocationId' when calling getActionInvocation");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions/{actionId}/invocations/{invocationId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{actionId}", ApiClient.urlEncode(actionId.toString()))
+        .replace("{invocationId}", ApiClient.urlEncode(invocationId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @return ActionsMetricsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ActionsMetricsResponse getActionsMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime) throws ApiException {
+    return getActionsMetrics(projectId, minTime, maxTime, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ActionsMetricsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ActionsMetricsResponse getActionsMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
+    ApiResponse<ActionsMetricsResponse> localVarResponse = getActionsMetricsWithHttpInfo(projectId, minTime, maxTime, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @return ApiResponse&lt;ActionsMetricsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionsMetricsResponse> getActionsMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime) throws ApiException {
+    return getActionsMetricsWithHttpInfo(projectId, minTime, maxTime, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ActionsMetricsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionsMetricsResponse> getActionsMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getActionsMetricsRequestBuilder(projectId, minTime, maxTime, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getActionsMetrics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ActionsMetricsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ActionsMetricsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ActionsMetricsResponse>() {});
+        
+
+        return new ApiResponse<ActionsMetricsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getActionsMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getActionsMetrics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions/metrics"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -5150,6 +6057,158 @@ public class ProjectsServerApi {
   /**
    * 
    * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @return ServiceRouteMetricsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ServiceRouteMetricsResponse getServiceRouteMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime) throws ApiException {
+    return getServiceRouteMetrics(projectId, serviceId, minTime, maxTime, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ServiceRouteMetricsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ServiceRouteMetricsResponse getServiceRouteMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
+    ApiResponse<ServiceRouteMetricsResponse> localVarResponse = getServiceRouteMetricsWithHttpInfo(projectId, serviceId, minTime, maxTime, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @return ApiResponse&lt;ServiceRouteMetricsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ServiceRouteMetricsResponse> getServiceRouteMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime) throws ApiException {
+    return getServiceRouteMetricsWithHttpInfo(projectId, serviceId, minTime, maxTime, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ServiceRouteMetricsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ServiceRouteMetricsResponse> getServiceRouteMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getServiceRouteMetricsRequestBuilder(projectId, serviceId, minTime, maxTime, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getServiceRouteMetrics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ServiceRouteMetricsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ServiceRouteMetricsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ServiceRouteMetricsResponse>() {});
+        
+
+        return new ApiResponse<ServiceRouteMetricsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getServiceRouteMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getServiceRouteMetrics");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling getServiceRouteMetrics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/route-metrics"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
    * @param userId  (required)
    * @param projectId  (required)
    * @return UserObject
@@ -5802,6 +6861,282 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return PaginatedResponseActionInvocationObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseActionInvocationObject listActionInvocations(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listActionInvocations(projectId, actionId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponseActionInvocationObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseActionInvocationObject listActionInvocations(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseActionInvocationObject> localVarResponse = listActionInvocationsWithHttpInfo(projectId, actionId, minTime, maxTime, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponseActionInvocationObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseActionInvocationObject> listActionInvocationsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listActionInvocationsWithHttpInfo(projectId, actionId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponseActionInvocationObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseActionInvocationObject> listActionInvocationsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listActionInvocationsRequestBuilder(projectId, actionId, minTime, maxTime, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listActionInvocations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponseActionInvocationObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponseActionInvocationObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseActionInvocationObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponseActionInvocationObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listActionInvocationsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listActionInvocations");
+    }
+    // verify the required parameter 'actionId' is set
+    if (actionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'actionId' when calling listActionInvocations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions/{actionId}/invocations"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{actionId}", ApiClient.urlEncode(actionId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return List&lt;ActionObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<ActionObject> listActions(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listActions(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return List&lt;ActionObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<ActionObject> listActions(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<List<ActionObject>> localVarResponse = listActionsWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;List&lt;ActionObject&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<ActionObject>> listActionsWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listActionsWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;List&lt;ActionObject&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<ActionObject>> listActionsWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listActionsRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listActions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<List<ActionObject>>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        List<ActionObject> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<ActionObject>>() {});
+        
+
+        return new ApiResponse<List<ActionObject>>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listActionsRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listActions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -11371,6 +12706,147 @@ public class ProjectsServerApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(testInvocationRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param updateActionRequest  (required)
+   * @return ActionObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionObject updateAction(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull UpdateActionRequest updateActionRequest) throws ApiException {
+    return updateAction(projectId, actionId, updateActionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param updateActionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ActionObject
+   * @throws ApiException if fails to make API call
+   */
+  public ActionObject updateAction(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull UpdateActionRequest updateActionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ActionObject> localVarResponse = updateActionWithHttpInfo(projectId, actionId, updateActionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param updateActionRequest  (required)
+   * @return ApiResponse&lt;ActionObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionObject> updateActionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull UpdateActionRequest updateActionRequest) throws ApiException {
+    return updateActionWithHttpInfo(projectId, actionId, updateActionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param actionId  (required)
+   * @param updateActionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ActionObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ActionObject> updateActionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull UpdateActionRequest updateActionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateActionRequestBuilder(projectId, actionId, updateActionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ActionObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ActionObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ActionObject>() {});
+        
+
+        return new ApiResponse<ActionObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateActionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String actionId, @javax.annotation.Nonnull UpdateActionRequest updateActionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling updateAction");
+    }
+    // verify the required parameter 'actionId' is set
+    if (actionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'actionId' when calling updateAction");
+    }
+    // verify the required parameter 'updateActionRequest' is set
+    if (updateActionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateActionRequest' when calling updateAction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/actions/{actionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{actionId}", ApiClient.urlEncode(actionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateActionRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

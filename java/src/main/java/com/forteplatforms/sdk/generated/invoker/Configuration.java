@@ -17,9 +17,9 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T18:19:31.255074100-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T00:28:40.945263200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class Configuration {
-  public static final String VERSION = "1.0.200";
+  public static final String VERSION = "1.0.207";
 
   private static final AtomicReference<ApiClient> defaultApiClient = new AtomicReference<>();
   private static volatile Supplier<ApiClient> apiClientFactory = ApiClient::new;
