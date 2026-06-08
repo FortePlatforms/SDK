@@ -40,7 +40,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   TestInvocationResponse.JSON_PROPERTY_RESPONSE_BODY,
   TestInvocationResponse.JSON_PROPERTY_LATENCY_MILLISECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T00:28:40.945263200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T14:04:08.311107300-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class TestInvocationResponse {
   public static final String JSON_PROPERTY_STATUS_CODE = "statusCode";
   @javax.annotation.Nullable

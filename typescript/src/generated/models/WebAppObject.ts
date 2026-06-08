@@ -133,12 +133,6 @@ export interface WebAppObject {
     appPackageName?: string;
     /**
      * 
-     * @type {number}
-     * @memberof WebAppObject
-     */
-    detectionVersion?: number;
-    /**
-     * 
      * @type {string}
      * @memberof WebAppObject
      */
@@ -314,7 +308,6 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'monorepoType': json['monorepoType'] == null ? undefined : json['monorepoType'],
         'workspaceRoot': json['workspaceRoot'] == null ? undefined : json['workspaceRoot'],
         'appPackageName': json['appPackageName'] == null ? undefined : json['appPackageName'],
-        'detectionVersion': json['detectionVersion'] == null ? undefined : json['detectionVersion'],
         'containerImageUri': json['containerImageUri'] == null ? undefined : json['containerImageUri'],
         'detectionResponse': json['detectionResponse'] == null ? undefined : WebAppDetectionResponseFromJSON(json['detectionResponse']),
         'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
@@ -362,7 +355,6 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'monorepoType': value['monorepoType'],
         'workspaceRoot': value['workspaceRoot'],
         'appPackageName': value['appPackageName'],
-        'detectionVersion': value['detectionVersion'],
         'containerImageUri': value['containerImageUri'],
         'detectionResponse': WebAppDetectionResponseToJSON(value['detectionResponse']),
         'dockerfilePath': value['dockerfilePath'],

@@ -16882,6 +16882,8 @@ class ProjectsServerApi:
         max_time: Optional[datetime] = None,
         status_code: Optional[StrictInt] = None,
         request_path: Optional[StrictStr] = None,
+        request_method: Optional[StrictStr] = None,
+        request_path_id: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -16911,6 +16913,10 @@ class ProjectsServerApi:
         :type status_code: int
         :param request_path:
         :type request_path: str
+        :param request_method:
+        :type request_method: str
+        :param request_path_id:
+        :type request_path_id: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -16942,6 +16948,8 @@ class ProjectsServerApi:
             max_time=max_time,
             status_code=status_code,
             request_path=request_path,
+            request_method=request_method,
+            request_path_id=request_path_id,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -16972,6 +16980,8 @@ class ProjectsServerApi:
         max_time: Optional[datetime] = None,
         status_code: Optional[StrictInt] = None,
         request_path: Optional[StrictStr] = None,
+        request_method: Optional[StrictStr] = None,
+        request_path_id: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -17001,6 +17011,10 @@ class ProjectsServerApi:
         :type status_code: int
         :param request_path:
         :type request_path: str
+        :param request_method:
+        :type request_method: str
+        :param request_path_id:
+        :type request_path_id: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -17032,6 +17046,8 @@ class ProjectsServerApi:
             max_time=max_time,
             status_code=status_code,
             request_path=request_path,
+            request_method=request_method,
+            request_path_id=request_path_id,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -17062,6 +17078,8 @@ class ProjectsServerApi:
         max_time: Optional[datetime] = None,
         status_code: Optional[StrictInt] = None,
         request_path: Optional[StrictStr] = None,
+        request_method: Optional[StrictStr] = None,
+        request_path_id: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -17091,6 +17109,10 @@ class ProjectsServerApi:
         :type status_code: int
         :param request_path:
         :type request_path: str
+        :param request_method:
+        :type request_method: str
+        :param request_path_id:
+        :type request_path_id: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -17122,6 +17144,8 @@ class ProjectsServerApi:
             max_time=max_time,
             status_code=status_code,
             request_path=request_path,
+            request_method=request_method,
+            request_path_id=request_path_id,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -17147,6 +17171,8 @@ class ProjectsServerApi:
         max_time,
         status_code,
         request_path,
+        request_method,
+        request_path_id,
         next_token,
         _request_auth,
         _content_type,
@@ -17207,6 +17233,14 @@ class ProjectsServerApi:
         if request_path is not None:
             
             _query_params.append(('requestPath', request_path))
+            
+        if request_method is not None:
+            
+            _query_params.append(('requestMethod', request_method))
+            
+        if request_path_id is not None:
+            
+            _query_params.append(('requestPathId', request_path_id))
             
         if next_token is not None:
             

@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T00:28:40.945263200-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T14:04:08.311107300-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -66,6 +66,8 @@ public class ForteApiException {
     INVALID_SESSION_TOKEN(String.valueOf("INVALID_SESSION_TOKEN")),
     
     NO_AUTHORIZATION_CREDENTIAL(String.valueOf("NO_AUTHORIZATION_CREDENTIAL")),
+    
+    INSUFFICIENT_PERMISSIONS(String.valueOf("INSUFFICIENT_PERMISSIONS")),
     
     INVALID_AUTHORIZATION_CODE(String.valueOf("INVALID_AUTHORIZATION_CODE")),
     
