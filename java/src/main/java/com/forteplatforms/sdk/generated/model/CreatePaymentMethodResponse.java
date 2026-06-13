@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreatePaymentMethodResponse.JSON_PROPERTY_STRIPE_PUBLISHABLE_KEY,
   CreatePaymentMethodResponse.JSON_PROPERTY_STRIPE_CONNECTED_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T14:04:08.311107300-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T12:29:11.851732100-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class CreatePaymentMethodResponse {
   public static final String JSON_PROPERTY_STRIPE_CLIENT_SECRET = "stripeClientSecret";
   @javax.annotation.Nonnull
