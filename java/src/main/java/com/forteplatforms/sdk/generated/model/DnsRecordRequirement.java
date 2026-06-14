@@ -40,7 +40,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   DnsRecordRequirement.JSON_PROPERTY_REQUIRED,
   DnsRecordRequirement.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T12:29:11.851732100-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T23:32:48.925623700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class DnsRecordRequirement {
   /**
    * Gets or Sets type
