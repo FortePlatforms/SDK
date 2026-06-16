@@ -58,11 +58,13 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentObject.JSON_PROPERTY_STRIPE_STATUS,
   PaymentObject.JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID,
   PaymentObject.JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID,
+  PaymentObject.JSON_PROPERTY_SUBSCRIPTION_ID,
+  PaymentObject.JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME,
   PaymentObject.JSON_PROPERTY_STATE_HISTORY,
   PaymentObject.JSON_PROPERTY_CREATED_AT,
   PaymentObject.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T23:32:48.925623700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T22:08:22.978858900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class PaymentObject {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -174,6 +176,14 @@ public class PaymentObject {
   public static final String JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID = "stripeTaxTransactionId";
   @javax.annotation.Nullable
   private String stripeTaxTransactionId;
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
+  @javax.annotation.Nullable
+  private String subscriptionId;
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME = "subscriptionRenewalTime";
+  @javax.annotation.Nullable
+  private OffsetDateTime subscriptionRenewalTime;
 
   public static final String JSON_PROPERTY_STATE_HISTORY = "stateHistory";
   @javax.annotation.Nonnull
@@ -614,6 +624,54 @@ public class PaymentObject {
   }
 
 
+  public PaymentObject subscriptionId(@javax.annotation.Nullable String subscriptionId) {
+    this.subscriptionId = subscriptionId;
+    return this;
+  }
+
+  /**
+   * Get subscriptionId
+   * @return subscriptionId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSubscriptionId() {
+    return subscriptionId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubscriptionId(@javax.annotation.Nullable String subscriptionId) {
+    this.subscriptionId = subscriptionId;
+  }
+
+
+  public PaymentObject subscriptionRenewalTime(@javax.annotation.Nullable OffsetDateTime subscriptionRenewalTime) {
+    this.subscriptionRenewalTime = subscriptionRenewalTime;
+    return this;
+  }
+
+  /**
+   * Get subscriptionRenewalTime
+   * @return subscriptionRenewalTime
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getSubscriptionRenewalTime() {
+    return subscriptionRenewalTime;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubscriptionRenewalTime(@javax.annotation.Nullable OffsetDateTime subscriptionRenewalTime) {
+    this.subscriptionRenewalTime = subscriptionRenewalTime;
+  }
+
+
   public PaymentObject stateHistory(@javax.annotation.Nonnull List<StateHistory> stateHistory) {
     this.stateHistory = stateHistory;
     return this;
@@ -723,6 +781,8 @@ public class PaymentObject {
         Objects.equals(this.stripeStatus, paymentObject.stripeStatus) &&
         Objects.equals(this.stripeTaxCalculationId, paymentObject.stripeTaxCalculationId) &&
         Objects.equals(this.stripeTaxTransactionId, paymentObject.stripeTaxTransactionId) &&
+        Objects.equals(this.subscriptionId, paymentObject.subscriptionId) &&
+        Objects.equals(this.subscriptionRenewalTime, paymentObject.subscriptionRenewalTime) &&
         Objects.equals(this.stateHistory, paymentObject.stateHistory) &&
         Objects.equals(this.createdAt, paymentObject.createdAt) &&
         Objects.equals(this.updatedAt, paymentObject.updatedAt);
@@ -730,7 +790,7 @@ public class PaymentObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, taxCents, amountCents, currency, description, lineItems, metadata, customerAddress, shippingAddress, stripePaymentIntentId, stripeStatus, stripeTaxCalculationId, stripeTaxTransactionId, stateHistory, createdAt, updatedAt);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, taxCents, amountCents, currency, description, lineItems, metadata, customerAddress, shippingAddress, stripePaymentIntentId, stripeStatus, stripeTaxCalculationId, stripeTaxTransactionId, subscriptionId, subscriptionRenewalTime, stateHistory, createdAt, updatedAt);
   }
 
   @Override
@@ -754,6 +814,8 @@ public class PaymentObject {
     sb.append("    stripeStatus: ").append(toIndentedString(stripeStatus)).append("\n");
     sb.append("    stripeTaxCalculationId: ").append(toIndentedString(stripeTaxCalculationId)).append("\n");
     sb.append("    stripeTaxTransactionId: ").append(toIndentedString(stripeTaxTransactionId)).append("\n");
+    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
+    sb.append("    subscriptionRenewalTime: ").append(toIndentedString(subscriptionRenewalTime)).append("\n");
     sb.append("    stateHistory: ").append(toIndentedString(stateHistory)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
@@ -893,6 +955,16 @@ public class PaymentObject {
     // add `stripeTaxTransactionId` to the URL query string
     if (getStripeTaxTransactionId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstripeTaxTransactionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStripeTaxTransactionId()))));
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionId()))));
+    }
+
+    // add `subscriptionRenewalTime` to the URL query string
+    if (getSubscriptionRenewalTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionRenewalTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionRenewalTime()))));
     }
 
     // add `stateHistory` to the URL query string

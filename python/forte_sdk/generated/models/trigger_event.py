@@ -28,6 +28,7 @@ class TriggerEvent(str, Enum):
     """
     PAYMENT_COMPLETED = 'PAYMENT_COMPLETED'
     PAYMENT_REFUNDED = 'PAYMENT_REFUNDED'
+    SUBSCRIPTION_STATUS_CHANGED = 'SUBSCRIPTION_STATUS_CHANGED'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

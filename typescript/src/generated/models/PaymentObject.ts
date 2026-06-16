@@ -145,6 +145,18 @@ export interface PaymentObject {
     stripeTaxTransactionId?: string;
     /**
      * 
+     * @type {string}
+     * @memberof PaymentObject
+     */
+    subscriptionId?: string;
+    /**
+     * 
+     * @type {Date}
+     * @memberof PaymentObject
+     */
+    subscriptionRenewalTime?: Date;
+    /**
+     * 
      * @type {Array<StateHistory>}
      * @memberof PaymentObject
      */
@@ -223,6 +235,8 @@ export function PaymentObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'stripeStatus': json['stripeStatus'] == null ? undefined : json['stripeStatus'],
         'stripeTaxCalculationId': json['stripeTaxCalculationId'] == null ? undefined : json['stripeTaxCalculationId'],
         'stripeTaxTransactionId': json['stripeTaxTransactionId'] == null ? undefined : json['stripeTaxTransactionId'],
+        'subscriptionId': json['subscriptionId'] == null ? undefined : json['subscriptionId'],
+        'subscriptionRenewalTime': json['subscriptionRenewalTime'] == null ? undefined : (new Date(json['subscriptionRenewalTime'])),
         'stateHistory': ((json['stateHistory'] as Array<any>).map(StateHistoryFromJSON)),
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
@@ -257,6 +271,8 @@ export function PaymentObjectToJSONTyped(value?: PaymentObject | null, ignoreDis
         'stripeStatus': value['stripeStatus'],
         'stripeTaxCalculationId': value['stripeTaxCalculationId'],
         'stripeTaxTransactionId': value['stripeTaxTransactionId'],
+        'subscriptionId': value['subscriptionId'],
+        'subscriptionRenewalTime': value['subscriptionRenewalTime'] == null ? value['subscriptionRenewalTime'] : value['subscriptionRenewalTime'].toISOString(),
         'stateHistory': ((value['stateHistory'] as Array<any>).map(StateHistoryToJSON)),
         'createdAt': value['createdAt'].toISOString(),
         'updatedAt': value['updatedAt'] == null ? value['updatedAt'] : value['updatedAt'].toISOString(),

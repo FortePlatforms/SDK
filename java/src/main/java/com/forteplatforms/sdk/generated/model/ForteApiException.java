@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T23:32:48.925623700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T22:08:22.978858900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -232,6 +232,22 @@ public class ForteApiException {
     PAYMENT_ALREADY_REFUNDED(String.valueOf("PAYMENT_ALREADY_REFUNDED")),
     
     PAYMENT_METHOD_NOT_FOUND(String.valueOf("PAYMENT_METHOD_NOT_FOUND")),
+    
+    SUBSCRIPTION_NOT_FOUND(String.valueOf("SUBSCRIPTION_NOT_FOUND")),
+    
+    SUBSCRIPTION_NOT_ACTIVE(String.valueOf("SUBSCRIPTION_NOT_ACTIVE")),
+    
+    SUBSCRIPTION_INTERVAL_INVALID(String.valueOf("SUBSCRIPTION_INTERVAL_INVALID")),
+    
+    SUBSCRIPTION_END_TIME_INVALID(String.valueOf("SUBSCRIPTION_END_TIME_INVALID")),
+    
+    SUBSCRIPTION_PAYMENT_METHOD_REQUIRED(String.valueOf("SUBSCRIPTION_PAYMENT_METHOD_REQUIRED")),
+    
+    SUBSCRIPTION_PAYMENT_METHOD_NOT_REUSABLE(String.valueOf("SUBSCRIPTION_PAYMENT_METHOD_NOT_REUSABLE")),
+    
+    PAYMENT_METHOD_IN_USE_BY_SUBSCRIPTION(String.valueOf("PAYMENT_METHOD_IN_USE_BY_SUBSCRIPTION")),
+    
+    SUBSCRIPTIONS_ACCESS_REQUIRED(String.valueOf("SUBSCRIPTIONS_ACCESS_REQUIRED")),
     
     USER_FILTER_INVALID(String.valueOf("USER_FILTER_INVALID")),
     

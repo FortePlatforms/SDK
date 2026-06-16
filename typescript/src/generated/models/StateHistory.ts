@@ -44,12 +44,10 @@ export interface StateHistory {
  * @export
  */
 export const StateHistoryStateType = {
-    DRAFT: 'DRAFT',
-    PROCESSING: 'PROCESSING',
-    COMPLETED: 'COMPLETED',
-    CANCELLED: 'CANCELLED',
-    FAILED: 'FAILED',
-    REFUNDED: 'REFUNDED'
+    INCOMPLETE: 'INCOMPLETE',
+    ACTIVE: 'ACTIVE',
+    PAST_DUE: 'PAST_DUE',
+    CANCELLED: 'CANCELLED'
 } as const;
 export type StateHistoryStateType = typeof StateHistoryStateType[keyof typeof StateHistoryStateType];
 

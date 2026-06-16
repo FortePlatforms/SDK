@@ -48,10 +48,12 @@ class PaymentObject(BaseModel):
     stripe_status: Optional[StrictStr] = Field(default=None, alias="stripeStatus")
     stripe_tax_calculation_id: Optional[StrictStr] = Field(default=None, alias="stripeTaxCalculationId")
     stripe_tax_transaction_id: Optional[StrictStr] = Field(default=None, alias="stripeTaxTransactionId")
+    subscription_id: Optional[StrictStr] = Field(default=None, alias="subscriptionId")
+    subscription_renewal_time: Optional[datetime] = Field(default=None, alias="subscriptionRenewalTime")
     state_history: List[StateHistory] = Field(alias="stateHistory")
     created_at: datetime = Field(alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "stripePaymentIntentId", "stripeStatus", "stripeTaxCalculationId", "stripeTaxTransactionId", "stateHistory", "createdAt", "updatedAt"]
+    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "stripePaymentIntentId", "stripeStatus", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionId", "subscriptionRenewalTime", "stateHistory", "createdAt", "updatedAt"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -148,6 +150,8 @@ class PaymentObject(BaseModel):
             "stripeStatus": obj.get("stripeStatus"),
             "stripeTaxCalculationId": obj.get("stripeTaxCalculationId"),
             "stripeTaxTransactionId": obj.get("stripeTaxTransactionId"),
+            "subscriptionId": obj.get("subscriptionId"),
+            "subscriptionRenewalTime": obj.get("subscriptionRenewalTime"),
             "stateHistory": [StateHistory.from_dict(_item) for _item in obj["stateHistory"]] if obj.get("stateHistory") is not None else None,
             "createdAt": obj.get("createdAt"),
             "updatedAt": obj.get("updatedAt")

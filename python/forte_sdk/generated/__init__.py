@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.211"
+__version__ = "1.0.216"
 
 # Define package exports
 __all__ = [
@@ -66,6 +66,10 @@ __all__ = [
     "CreateProjectApiKeyResponse",
     "CreateServiceRequestProxyRequest",
     "CreateServiceRequestProxyResponse",
+    "CreateSubscriptionPreviewRequest",
+    "CreateSubscriptionPreviewResponse",
+    "CreateSubscriptionRequest",
+    "CreateSubscriptionResponse",
     "CreateUserInviteRequest",
     "CreateWebAppRequest",
     "CurrencyTotals",
@@ -112,6 +116,7 @@ __all__ = [
     "PendingUserInviteObject",
     "ProductAggregate",
     "ProjectObject",
+    "PutSubscriptionItemsRequest",
     "RegisterUserRequest",
     "RegisterUserResponse",
     "RenewSessionTokenResponse",
@@ -131,6 +136,7 @@ __all__ = [
     "SpenderAggregate",
     "StateCurrencyTotals",
     "StateHistory",
+    "SubscriptionObject",
     "SyncCustomDomainResponse",
     "TestInvocationRequest",
     "TestInvocationResponse",
@@ -144,6 +150,7 @@ __all__ = [
     "UpdatePaymentMethodRequest",
     "UpdatePaymentTriggerRequest",
     "UpdateProjectRequest",
+    "UpdateSubscriptionRequest",
     "UpdateUserRequest",
     "UpdateWebAppRequest",
     "UpdateWebAppResponse",
@@ -209,6 +216,10 @@ from forte_sdk.generated.models.create_project_api_key_request import CreateProj
 from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse as CreateProjectApiKeyResponse
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
+from forte_sdk.generated.models.create_subscription_preview_request import CreateSubscriptionPreviewRequest as CreateSubscriptionPreviewRequest
+from forte_sdk.generated.models.create_subscription_preview_response import CreateSubscriptionPreviewResponse as CreateSubscriptionPreviewResponse
+from forte_sdk.generated.models.create_subscription_request import CreateSubscriptionRequest as CreateSubscriptionRequest
+from forte_sdk.generated.models.create_subscription_response import CreateSubscriptionResponse as CreateSubscriptionResponse
 from forte_sdk.generated.models.create_user_invite_request import CreateUserInviteRequest as CreateUserInviteRequest
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest as CreateWebAppRequest
 from forte_sdk.generated.models.currency_totals import CurrencyTotals as CurrencyTotals
@@ -255,6 +266,7 @@ from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConf
 from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject as PendingUserInviteObject
 from forte_sdk.generated.models.product_aggregate import ProductAggregate as ProductAggregate
 from forte_sdk.generated.models.project_object import ProjectObject as ProjectObject
+from forte_sdk.generated.models.put_subscription_items_request import PutSubscriptionItemsRequest as PutSubscriptionItemsRequest
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest as RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse as RegisterUserResponse
 from forte_sdk.generated.models.renew_session_token_response import RenewSessionTokenResponse as RenewSessionTokenResponse
@@ -274,6 +286,7 @@ from forte_sdk.generated.models.service_route_metrics_response import ServiceRou
 from forte_sdk.generated.models.spender_aggregate import SpenderAggregate as SpenderAggregate
 from forte_sdk.generated.models.state_currency_totals import StateCurrencyTotals as StateCurrencyTotals
 from forte_sdk.generated.models.state_history import StateHistory as StateHistory
+from forte_sdk.generated.models.subscription_object import SubscriptionObject as SubscriptionObject
 from forte_sdk.generated.models.sync_custom_domain_response import SyncCustomDomainResponse as SyncCustomDomainResponse
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
@@ -287,6 +300,7 @@ from forte_sdk.generated.models.update_notification_templates_request import Upd
 from forte_sdk.generated.models.update_payment_method_request import UpdatePaymentMethodRequest as UpdatePaymentMethodRequest
 from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest as UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest as UpdateProjectRequest
+from forte_sdk.generated.models.update_subscription_request import UpdateSubscriptionRequest as UpdateSubscriptionRequest
 from forte_sdk.generated.models.update_user_request import UpdateUserRequest as UpdateUserRequest
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest as UpdateWebAppRequest
 from forte_sdk.generated.models.update_web_app_response import UpdateWebAppResponse as UpdateWebAppResponse

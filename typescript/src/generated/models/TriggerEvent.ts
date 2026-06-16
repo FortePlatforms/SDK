@@ -19,7 +19,8 @@
  */
 export const TriggerEvent = {
     PAYMENT_COMPLETED: 'PAYMENT_COMPLETED',
-    PAYMENT_REFUNDED: 'PAYMENT_REFUNDED'
+    PAYMENT_REFUNDED: 'PAYMENT_REFUNDED',
+    SUBSCRIPTION_STATUS_CHANGED: 'SUBSCRIPTION_STATUS_CHANGED'
 } as const;
 export type TriggerEvent = typeof TriggerEvent[keyof typeof TriggerEvent];
 

@@ -42,7 +42,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateProjectRequest.JSON_PROPERTY_PASSWORD_LOGIN_ENABLED,
   UpdateProjectRequest.JSON_PROPERTY_PASSWORD_CONFIG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T23:32:48.925623700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T22:08:22.978858900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID = "googleOAuthClientId";
   @javax.annotation.Nullable

@@ -28,7 +28,7 @@ class UpdateWebAppRequest(BaseModel):
     """
     UpdateWebAppRequest
     """ # noqa: E501
-    web_app_name: Optional[StrictStr] = Field(default=None, alias="webAppName")
+    web_app_name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="webAppName")
     build_command: Optional[StrictStr] = Field(default=None, alias="buildCommand")
     build_path: Optional[StrictStr] = Field(default=None, alias="buildPath")
     package_manager: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="packageManager")
@@ -39,6 +39,19 @@ class UpdateWebAppRequest(BaseModel):
     secret_keys_to_delete: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="secretKeysToDelete")
     reset_detected_config: Optional[StrictBool] = Field(default=None, alias="resetDetectedConfig")
     __properties: ClassVar[List[str]] = ["webAppName", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "resetDetectedConfig"]
+
+    @field_validator('web_app_name')
+    def web_app_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-zA-Z0-9-_]{3,30}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_]{3,30}$/")
+        return value
 
     @field_validator('package_manager')
     def package_manager_validate_regular_expression(cls, value):

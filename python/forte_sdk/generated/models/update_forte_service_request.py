@@ -30,7 +30,7 @@ class UpdateForteServiceRequest(BaseModel):
     """ # noqa: E501
     reset_dockerfile: Optional[StrictBool] = Field(default=None, alias="resetDockerfile")
     reset_health_check_config: Optional[StrictBool] = Field(default=None, alias="resetHealthCheckConfig")
-    service_name: Optional[StrictStr] = Field(default=None, alias="serviceName")
+    service_name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="serviceName")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     secrets_to_upsert: Optional[Dict[str, StrictStr]] = Field(default=None, alias="secretsToUpsert")
     secret_keys_to_delete: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="secretKeysToDelete")
@@ -41,6 +41,19 @@ class UpdateForteServiceRequest(BaseModel):
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
     request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
     __properties: ClassVar[List[str]] = ["resetDockerfile", "resetHealthCheckConfig", "serviceName", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "authPathExclusions", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath", "requestResponseBodyLoggingEnabled"]
+
+    @field_validator('service_name')
+    def service_name_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-zA-Z0-9-_]{3,30}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_]{3,30}$/")
+        return value
 
     @field_validator('container_cpu')
     def container_cpu_validate_regular_expression(cls, value):

@@ -39,7 +39,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentLineItem.JSON_PROPERTY_TAX_CODE,
   PaymentLineItem.JSON_PROPERTY_TAX_AMOUNT_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T23:32:48.925623700-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T22:08:22.978858900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
 public class PaymentLineItem {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   @javax.annotation.Nonnull
