@@ -230,16 +230,6 @@ export interface CreateOtpLoginOperationRequest {
     createOtpLoginRequest: CreateOtpLoginRequest;
 }
 
-export interface CreateSubscriptionOperationRequest {
-    projectId: string;
-    createSubscriptionRequest: CreateSubscriptionRequest;
-}
-
-export interface CreateSubscriptionPreviewOperationRequest {
-    projectId: string;
-    createSubscriptionPreviewRequest: CreateSubscriptionPreviewRequest;
-}
-
 export interface CreateUserInviteOperationRequest {
     projectId: string;
     createUserInviteRequest: CreateUserInviteRequest;
@@ -351,6 +341,16 @@ export interface UsersCreatePaymentMethodRequest {
 export interface UsersCreatePaymentPreviewRequest {
     projectId: string;
     createPaymentPreviewRequest: CreatePaymentPreviewRequest;
+}
+
+export interface UsersCreateSubscriptionRequest {
+    projectId: string;
+    createSubscriptionRequest: CreateSubscriptionRequest;
+}
+
+export interface UsersCreateSubscriptionPreviewRequest {
+    projectId: string;
+    createSubscriptionPreviewRequest: CreateSubscriptionPreviewRequest;
 }
 
 export interface UsersDeleteContentRequest {
@@ -736,112 +736,6 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async createOtpLogin(requestParameters: CreateOtpLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateOtpLoginResponse> {
         const response = await this.createOtpLoginRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for createSubscription without sending the request
-     */
-    async createSubscriptionRequestOpts(requestParameters: CreateSubscriptionOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling createSubscription().'
-            );
-        }
-
-        if (requestParameters['createSubscriptionRequest'] == null) {
-            throw new runtime.RequiredError(
-                'createSubscriptionRequest',
-                'Required parameter "createSubscriptionRequest" was null or undefined when calling createSubscription().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/v1/{projectId}/users/me/subscriptions`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateSubscriptionRequestToJSON(requestParameters['createSubscriptionRequest']),
-        };
-    }
-
-    /**
-     */
-    async createSubscriptionRaw(requestParameters: CreateSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscriptionResponse>> {
-        const requestOptions = await this.createSubscriptionRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscriptionResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async createSubscription(requestParameters: CreateSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscriptionResponse> {
-        const response = await this.createSubscriptionRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Creates request options for createSubscriptionPreview without sending the request
-     */
-    async createSubscriptionPreviewRequestOpts(requestParameters: CreateSubscriptionPreviewOperationRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling createSubscriptionPreview().'
-            );
-        }
-
-        if (requestParameters['createSubscriptionPreviewRequest'] == null) {
-            throw new runtime.RequiredError(
-                'createSubscriptionPreviewRequest',
-                'Required parameter "createSubscriptionPreviewRequest" was null or undefined when calling createSubscriptionPreview().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-
-        let urlPath = `/api/v1/{projectId}/users/me/subscriptions/preview`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-
-        return {
-            path: urlPath,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateSubscriptionPreviewRequestToJSON(requestParameters['createSubscriptionPreviewRequest']),
-        };
-    }
-
-    /**
-     */
-    async createSubscriptionPreviewRaw(requestParameters: CreateSubscriptionPreviewOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscriptionPreviewResponse>> {
-        const requestOptions = await this.createSubscriptionPreviewRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscriptionPreviewResponseFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async createSubscriptionPreview(requestParameters: CreateSubscriptionPreviewOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscriptionPreviewResponse> {
-        const response = await this.createSubscriptionPreviewRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1950,6 +1844,112 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async usersCreatePaymentPreview(requestParameters: UsersCreatePaymentPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentPreviewResponse> {
         const response = await this.usersCreatePaymentPreviewRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for usersCreateSubscription without sending the request
+     */
+    async usersCreateSubscriptionRequestOpts(requestParameters: UsersCreateSubscriptionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersCreateSubscription().'
+            );
+        }
+
+        if (requestParameters['createSubscriptionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createSubscriptionRequest',
+                'Required parameter "createSubscriptionRequest" was null or undefined when calling usersCreateSubscription().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/subscriptions`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateSubscriptionRequestToJSON(requestParameters['createSubscriptionRequest']),
+        };
+    }
+
+    /**
+     */
+    async usersCreateSubscriptionRaw(requestParameters: UsersCreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscriptionResponse>> {
+        const requestOptions = await this.usersCreateSubscriptionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscriptionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersCreateSubscription(requestParameters: UsersCreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscriptionResponse> {
+        const response = await this.usersCreateSubscriptionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for usersCreateSubscriptionPreview without sending the request
+     */
+    async usersCreateSubscriptionPreviewRequestOpts(requestParameters: UsersCreateSubscriptionPreviewRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersCreateSubscriptionPreview().'
+            );
+        }
+
+        if (requestParameters['createSubscriptionPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createSubscriptionPreviewRequest',
+                'Required parameter "createSubscriptionPreviewRequest" was null or undefined when calling usersCreateSubscriptionPreview().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/subscriptions/preview`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateSubscriptionPreviewRequestToJSON(requestParameters['createSubscriptionPreviewRequest']),
+        };
+    }
+
+    /**
+     */
+    async usersCreateSubscriptionPreviewRaw(requestParameters: UsersCreateSubscriptionPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscriptionPreviewResponse>> {
+        const requestOptions = await this.usersCreateSubscriptionPreviewRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscriptionPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersCreateSubscriptionPreview(requestParameters: UsersCreateSubscriptionPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscriptionPreviewResponse> {
+        const response = await this.usersCreateSubscriptionPreviewRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

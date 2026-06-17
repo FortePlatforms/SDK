@@ -39,6 +39,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateWebAppRequest.JSON_PROPERTY_WEB_APP_NAME,
+  UpdateWebAppRequest.JSON_PROPERTY_GITHUB_BUILD_TRIGGER,
+  UpdateWebAppRequest.JSON_PROPERTY_GITHUB_BRANCH,
+  UpdateWebAppRequest.JSON_PROPERTY_SUBDIRECTORY,
   UpdateWebAppRequest.JSON_PROPERTY_BUILD_COMMAND,
   UpdateWebAppRequest.JSON_PROPERTY_BUILD_PATH,
   UpdateWebAppRequest.JSON_PROPERTY_PACKAGE_MANAGER,
@@ -49,11 +52,58 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateWebAppRequest.JSON_PROPERTY_SECRET_KEYS_TO_DELETE,
   UpdateWebAppRequest.JSON_PROPERTY_RESET_DETECTED_CONFIG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T22:08:22.978858900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateWebAppRequest {
   public static final String JSON_PROPERTY_WEB_APP_NAME = "webAppName";
   @javax.annotation.Nullable
   private String webAppName;
+
+  /**
+   * Gets or Sets githubBuildTrigger
+   */
+  public enum GithubBuildTriggerEnum {
+    PUSH(String.valueOf("PUSH")),
+    
+    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED"));
+
+    private String value;
+
+    GithubBuildTriggerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static GithubBuildTriggerEnum fromValue(String value) {
+      for (GithubBuildTriggerEnum b : GithubBuildTriggerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_GITHUB_BUILD_TRIGGER = "githubBuildTrigger";
+  @javax.annotation.Nullable
+  private GithubBuildTriggerEnum githubBuildTrigger;
+
+  public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
+  @javax.annotation.Nullable
+  private String githubBranch;
+
+  public static final String JSON_PROPERTY_SUBDIRECTORY = "subdirectory";
+  @javax.annotation.Nullable
+  private String subdirectory;
 
   public static final String JSON_PROPERTY_BUILD_COMMAND = "buildCommand";
   @javax.annotation.Nullable
@@ -115,6 +165,78 @@ public class UpdateWebAppRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWebAppName(@javax.annotation.Nullable String webAppName) {
     this.webAppName = webAppName;
+  }
+
+
+  public UpdateWebAppRequest githubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
+    this.githubBuildTrigger = githubBuildTrigger;
+    return this;
+  }
+
+  /**
+   * Get githubBuildTrigger
+   * @return githubBuildTrigger
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GithubBuildTriggerEnum getGithubBuildTrigger() {
+    return githubBuildTrigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGithubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
+    this.githubBuildTrigger = githubBuildTrigger;
+  }
+
+
+  public UpdateWebAppRequest githubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = githubBranch;
+    return this;
+  }
+
+  /**
+   * Get githubBranch
+   * @return githubBranch
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getGithubBranch() {
+    return githubBranch;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = githubBranch;
+  }
+
+
+  public UpdateWebAppRequest subdirectory(@javax.annotation.Nullable String subdirectory) {
+    this.subdirectory = subdirectory;
+    return this;
+  }
+
+  /**
+   * Get subdirectory
+   * @return subdirectory
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSubdirectory() {
+    return subdirectory;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+    this.subdirectory = subdirectory;
   }
 
 
@@ -372,6 +494,9 @@ public class UpdateWebAppRequest {
     }
     UpdateWebAppRequest updateWebAppRequest = (UpdateWebAppRequest) o;
     return Objects.equals(this.webAppName, updateWebAppRequest.webAppName) &&
+        Objects.equals(this.githubBuildTrigger, updateWebAppRequest.githubBuildTrigger) &&
+        Objects.equals(this.githubBranch, updateWebAppRequest.githubBranch) &&
+        Objects.equals(this.subdirectory, updateWebAppRequest.subdirectory) &&
         Objects.equals(this.buildCommand, updateWebAppRequest.buildCommand) &&
         Objects.equals(this.buildPath, updateWebAppRequest.buildPath) &&
         Objects.equals(this.packageManager, updateWebAppRequest.packageManager) &&
@@ -385,7 +510,7 @@ public class UpdateWebAppRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppName, buildCommand, buildPath, packageManager, nodeVersion, installCommand, environmentVariables, secretsToUpsert, secretKeysToDelete, resetDetectedConfig);
+    return Objects.hash(webAppName, githubBuildTrigger, githubBranch, subdirectory, buildCommand, buildPath, packageManager, nodeVersion, installCommand, environmentVariables, secretsToUpsert, secretKeysToDelete, resetDetectedConfig);
   }
 
   @Override
@@ -393,6 +518,9 @@ public class UpdateWebAppRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateWebAppRequest {\n");
     sb.append("    webAppName: ").append(toIndentedString(webAppName)).append("\n");
+    sb.append("    githubBuildTrigger: ").append(toIndentedString(githubBuildTrigger)).append("\n");
+    sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
+    sb.append("    subdirectory: ").append(toIndentedString(subdirectory)).append("\n");
     sb.append("    buildCommand: ").append(toIndentedString(buildCommand)).append("\n");
     sb.append("    buildPath: ").append(toIndentedString(buildPath)).append("\n");
     sb.append("    packageManager: ").append(toIndentedString(packageManager)).append("\n");
@@ -449,6 +577,21 @@ public class UpdateWebAppRequest {
     // add `webAppName` to the URL query string
     if (getWebAppName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%swebAppName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWebAppName()))));
+    }
+
+    // add `githubBuildTrigger` to the URL query string
+    if (getGithubBuildTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgithubBuildTrigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubBuildTrigger()))));
+    }
+
+    // add `githubBranch` to the URL query string
+    if (getGithubBranch() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgithubBranch%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubBranch()))));
+    }
+
+    // add `subdirectory` to the URL query string
+    if (getSubdirectory() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubdirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubdirectory()))));
     }
 
     // add `buildCommand` to the URL query string

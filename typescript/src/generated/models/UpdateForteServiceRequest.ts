@@ -33,6 +33,24 @@ export interface UpdateForteServiceRequest {
     resetHealthCheckConfig?: boolean;
     /**
      * 
+     * @type {UpdateForteServiceRequestGithubBuildTriggerType}
+     * @memberof UpdateForteServiceRequest
+     */
+    githubBuildTrigger?: UpdateForteServiceRequestGithubBuildTriggerType;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateForteServiceRequest
+     */
+    githubBranch?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateForteServiceRequest
+     */
+    baseDirectory?: string;
+    /**
+     * 
      * @type {string}
      * @memberof UpdateForteServiceRequest
      */
@@ -93,6 +111,17 @@ export interface UpdateForteServiceRequest {
     requestResponseBodyLoggingEnabled?: boolean;
 }
 
+
+/**
+ * @export
+ */
+export const UpdateForteServiceRequestGithubBuildTriggerType = {
+    PUSH: 'PUSH',
+    RELEASE_PUBLISHED: 'RELEASE_PUBLISHED'
+} as const;
+export type UpdateForteServiceRequestGithubBuildTriggerType = typeof UpdateForteServiceRequestGithubBuildTriggerType[keyof typeof UpdateForteServiceRequestGithubBuildTriggerType];
+
+
 /**
  * Check if a given object implements the UpdateForteServiceRequest interface.
  */
@@ -112,6 +141,9 @@ export function UpdateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         
         'resetDockerfile': json['resetDockerfile'] == null ? undefined : json['resetDockerfile'],
         'resetHealthCheckConfig': json['resetHealthCheckConfig'] == null ? undefined : json['resetHealthCheckConfig'],
+        'githubBuildTrigger': json['githubBuildTrigger'] == null ? undefined : json['githubBuildTrigger'],
+        'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
+        'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
         'serviceName': json['serviceName'] == null ? undefined : json['serviceName'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
         'secretsToUpsert': json['secretsToUpsert'] == null ? undefined : json['secretsToUpsert'],
@@ -138,6 +170,9 @@ export function UpdateForteServiceRequestToJSONTyped(value?: UpdateForteServiceR
         
         'resetDockerfile': value['resetDockerfile'],
         'resetHealthCheckConfig': value['resetHealthCheckConfig'],
+        'githubBuildTrigger': value['githubBuildTrigger'],
+        'githubBranch': value['githubBranch'],
+        'baseDirectory': value['baseDirectory'],
         'serviceName': value['serviceName'],
         'environmentVariables': value['environmentVariables'],
         'secretsToUpsert': value['secretsToUpsert'],

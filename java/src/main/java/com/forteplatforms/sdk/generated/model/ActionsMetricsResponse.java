@@ -47,7 +47,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ActionsMetricsResponse.JSON_PROPERTY_SUCCESS_RATE,
   ActionsMetricsResponse.JSON_PROPERTY_INVOCATION_SERIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T22:08:22.978858900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ActionsMetricsResponse {
   public static final String JSON_PROPERTY_TOTAL_ACTIONS = "totalActions";
   @javax.annotation.Nullable

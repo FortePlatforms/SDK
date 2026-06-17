@@ -26,7 +26,7 @@ public class ForteClient {
         // either pass it explicitly here or rely on the per-call authorization parameter.
         final boolean hasToken = apiToken != null && !apiToken.isBlank();
 
-        ApiClient client = new ApiClient();
+        ApiClient client = new RetryingApiClient();
         client.updateBaseUri(baseUrl != null ? baseUrl : DEFAULT_BASE_URL);
         client.setRequestInterceptor(builder -> {
             if (hasToken) {

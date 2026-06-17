@@ -27,6 +27,24 @@ export interface UpdateWebAppRequest {
     webAppName?: string;
     /**
      * 
+     * @type {UpdateWebAppRequestGithubBuildTriggerType}
+     * @memberof UpdateWebAppRequest
+     */
+    githubBuildTrigger?: UpdateWebAppRequestGithubBuildTriggerType;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateWebAppRequest
+     */
+    githubBranch?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateWebAppRequest
+     */
+    subdirectory?: string;
+    /**
+     * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
@@ -81,6 +99,17 @@ export interface UpdateWebAppRequest {
     resetDetectedConfig?: boolean;
 }
 
+
+/**
+ * @export
+ */
+export const UpdateWebAppRequestGithubBuildTriggerType = {
+    PUSH: 'PUSH',
+    RELEASE_PUBLISHED: 'RELEASE_PUBLISHED'
+} as const;
+export type UpdateWebAppRequestGithubBuildTriggerType = typeof UpdateWebAppRequestGithubBuildTriggerType[keyof typeof UpdateWebAppRequestGithubBuildTriggerType];
+
+
 /**
  * Check if a given object implements the UpdateWebAppRequest interface.
  */
@@ -99,6 +128,9 @@ export function UpdateWebAppRequestFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'webAppName': json['webAppName'] == null ? undefined : json['webAppName'],
+        'githubBuildTrigger': json['githubBuildTrigger'] == null ? undefined : json['githubBuildTrigger'],
+        'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
+        'subdirectory': json['subdirectory'] == null ? undefined : json['subdirectory'],
         'buildCommand': json['buildCommand'] == null ? undefined : json['buildCommand'],
         'buildPath': json['buildPath'] == null ? undefined : json['buildPath'],
         'packageManager': json['packageManager'] == null ? undefined : json['packageManager'],
@@ -123,6 +155,9 @@ export function UpdateWebAppRequestToJSONTyped(value?: UpdateWebAppRequest | nul
     return {
         
         'webAppName': value['webAppName'],
+        'githubBuildTrigger': value['githubBuildTrigger'],
+        'githubBranch': value['githubBranch'],
+        'subdirectory': value['subdirectory'],
         'buildCommand': value['buildCommand'],
         'buildPath': value['buildPath'],
         'packageManager': value['packageManager'],

@@ -37,7 +37,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ForteApiException.JSON_PROPERTY_MESSAGE,
   ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T22:08:22.978858900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ForteApiException {
   /**
    * Enumeration of possible error codes returned by the Forte API
@@ -122,6 +122,14 @@ public class ForteApiException {
     SANDBOX_MODE_REQUIRED(String.valueOf("SANDBOX_MODE_REQUIRED")),
     
     BILLING_NOT_CONFIGURED(String.valueOf("BILLING_NOT_CONFIGURED")),
+    
+    BILLING_NOTIFICATION_EMAIL_NOT_AUTHORIZED(String.valueOf("BILLING_NOTIFICATION_EMAIL_NOT_AUTHORIZED")),
+    
+    BILLING_NOTIFICATION_EMAIL_IS_OWNER(String.valueOf("BILLING_NOTIFICATION_EMAIL_IS_OWNER")),
+    
+    BILLING_NOTIFICATION_EMAIL_LIMIT_REACHED(String.valueOf("BILLING_NOTIFICATION_EMAIL_LIMIT_REACHED")),
+    
+    INVALID_UNSUBSCRIBE_TOKEN(String.valueOf("INVALID_UNSUBSCRIBE_TOKEN")),
     
     SERVICE_QUOTA_EXCEEDED(String.valueOf("SERVICE_QUOTA_EXCEEDED")),
     

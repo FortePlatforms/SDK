@@ -29,6 +29,9 @@ class UpdateWebAppRequest(BaseModel):
     UpdateWebAppRequest
     """ # noqa: E501
     web_app_name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="webAppName")
+    github_build_trigger: Optional[StrictStr] = Field(default=None, alias="githubBuildTrigger")
+    github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="githubBranch")
+    subdirectory: Optional[Annotated[str, Field(strict=True)]] = None
     build_command: Optional[StrictStr] = Field(default=None, alias="buildCommand")
     build_path: Optional[StrictStr] = Field(default=None, alias="buildPath")
     package_manager: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="packageManager")
@@ -38,7 +41,7 @@ class UpdateWebAppRequest(BaseModel):
     secrets_to_upsert: Optional[Dict[str, StrictStr]] = Field(default=None, alias="secretsToUpsert")
     secret_keys_to_delete: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="secretKeysToDelete")
     reset_detected_config: Optional[StrictBool] = Field(default=None, alias="resetDetectedConfig")
-    __properties: ClassVar[List[str]] = ["webAppName", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "resetDetectedConfig"]
+    __properties: ClassVar[List[str]] = ["webAppName", "githubBuildTrigger", "githubBranch", "subdirectory", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "resetDetectedConfig"]
 
     @field_validator('web_app_name')
     def web_app_name_validate_regular_expression(cls, value):
@@ -51,6 +54,42 @@ class UpdateWebAppRequest(BaseModel):
 
         if not re.match(r"^[a-zA-Z0-9-_]{3,30}$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_]{3,30}$/")
+        return value
+
+    @field_validator('github_build_trigger')
+    def github_build_trigger_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['PUSH', 'RELEASE_PUBLISHED']):
+            raise ValueError("must be one of enum values ('PUSH', 'RELEASE_PUBLISHED')")
+        return value
+
+    @field_validator('github_branch')
+    def github_branch_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-zA-Z0-9-_.\/]{1,100}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_.\/]{1,100}$/")
+        return value
+
+    @field_validator('subdirectory')
+    def subdirectory_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^$|^(?!.*\.\.(\/|$))[.\/a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$", value):
+            raise ValueError(r"must validate the regular expression /^$|^(?!.*\.\.(\/|$))[.\/a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$/")
         return value
 
     @field_validator('package_manager')
@@ -118,6 +157,9 @@ class UpdateWebAppRequest(BaseModel):
 
         _obj = cls.model_validate({
             "webAppName": obj.get("webAppName"),
+            "githubBuildTrigger": obj.get("githubBuildTrigger"),
+            "githubBranch": obj.get("githubBranch"),
+            "subdirectory": obj.get("subdirectory"),
             "buildCommand": obj.get("buildCommand"),
             "buildPath": obj.get("buildPath"),
             "packageManager": obj.get("packageManager"),

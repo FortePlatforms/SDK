@@ -1,6 +1,7 @@
 import { Configuration } from './generated/runtime';
 import { ProjectsServerApi } from './generated/apis/ProjectsServerApi';
 import { UsersServerApi } from './generated/apis/UsersServerApi';
+import { withRetries } from './transport';
 
 declare var process: { env: Record<string, string | undefined> } | undefined;
 
@@ -33,6 +34,9 @@ export class ForteClient {
       // Always include credentials so browsers send the Forte-User-Session-Token cookie
       // cross-origin. No-op for Node.js fetch.
       credentials: 'include',
+      // Quick automatic retries on network / 5xx failures. Only GET/HEAD and requests carrying an
+      // Idempotency-Key (idempotent endpoints) are retried; the same key is reused on every attempt.
+      fetchApi: withRetries((input, init) => fetch(input, init)),
     });
 
     this.projects = new ProjectsServerApi(config);

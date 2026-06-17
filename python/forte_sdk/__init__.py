@@ -1,7 +1,8 @@
 import os
 
-from forte_sdk.generated import ApiClient, Configuration
+from forte_sdk.generated import Configuration
 from forte_sdk.generated.api import ProjectsServerApi, UsersServerApi
+from forte_sdk._transport import RetryingApiClient
 
 
 class ForteClient:
@@ -17,7 +18,7 @@ class ForteClient:
         token = api_token or os.environ.get("FORTE_API_TOKEN")
 
         config = Configuration(host=base_url or "https://api.forteplatforms.com")
-        client = ApiClient(config)
+        client = RetryingApiClient(config)
         if token:
             client.default_headers["Authorization"] = f"Bearer {token}"
 

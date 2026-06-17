@@ -30,6 +30,9 @@ class UpdateForteServiceRequest(BaseModel):
     """ # noqa: E501
     reset_dockerfile: Optional[StrictBool] = Field(default=None, alias="resetDockerfile")
     reset_health_check_config: Optional[StrictBool] = Field(default=None, alias="resetHealthCheckConfig")
+    github_build_trigger: Optional[StrictStr] = Field(default=None, alias="githubBuildTrigger")
+    github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="githubBranch")
+    base_directory: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="baseDirectory")
     service_name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="serviceName")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     secrets_to_upsert: Optional[Dict[str, StrictStr]] = Field(default=None, alias="secretsToUpsert")
@@ -40,7 +43,43 @@ class UpdateForteServiceRequest(BaseModel):
     health_check_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(default=None, alias="healthCheckPort")
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
     request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
-    __properties: ClassVar[List[str]] = ["resetDockerfile", "resetHealthCheckConfig", "serviceName", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "authPathExclusions", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath", "requestResponseBodyLoggingEnabled"]
+    __properties: ClassVar[List[str]] = ["resetDockerfile", "resetHealthCheckConfig", "githubBuildTrigger", "githubBranch", "baseDirectory", "serviceName", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "authPathExclusions", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath", "requestResponseBodyLoggingEnabled"]
+
+    @field_validator('github_build_trigger')
+    def github_build_trigger_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['PUSH', 'RELEASE_PUBLISHED']):
+            raise ValueError("must be one of enum values ('PUSH', 'RELEASE_PUBLISHED')")
+        return value
+
+    @field_validator('github_branch')
+    def github_branch_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-zA-Z0-9-_.\/]{1,100}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_.\/]{1,100}$/")
+        return value
+
+    @field_validator('base_directory')
+    def base_directory_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^$|^(?!\/)(?!.*\.\.(\/|$))[a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$", value):
+            raise ValueError(r"must validate the regular expression /^$|^(?!\/)(?!.*\.\.(\/|$))[a-zA-Z0-9][a-zA-Z0-9\-_.\/]{0,199}$/")
+        return value
 
     @field_validator('service_name')
     def service_name_validate_regular_expression(cls, value):
@@ -134,6 +173,9 @@ class UpdateForteServiceRequest(BaseModel):
         _obj = cls.model_validate({
             "resetDockerfile": obj.get("resetDockerfile"),
             "resetHealthCheckConfig": obj.get("resetHealthCheckConfig"),
+            "githubBuildTrigger": obj.get("githubBuildTrigger"),
+            "githubBranch": obj.get("githubBranch"),
+            "baseDirectory": obj.get("baseDirectory"),
             "serviceName": obj.get("serviceName"),
             "environmentVariables": obj.get("environmentVariables"),
             "secretsToUpsert": obj.get("secretsToUpsert"),

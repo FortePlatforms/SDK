@@ -42,6 +42,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   UpdateForteServiceRequest.JSON_PROPERTY_RESET_DOCKERFILE,
   UpdateForteServiceRequest.JSON_PROPERTY_RESET_HEALTH_CHECK_CONFIG,
+  UpdateForteServiceRequest.JSON_PROPERTY_GITHUB_BUILD_TRIGGER,
+  UpdateForteServiceRequest.JSON_PROPERTY_GITHUB_BRANCH,
+  UpdateForteServiceRequest.JSON_PROPERTY_BASE_DIRECTORY,
   UpdateForteServiceRequest.JSON_PROPERTY_SERVICE_NAME,
   UpdateForteServiceRequest.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
   UpdateForteServiceRequest.JSON_PROPERTY_SECRETS_TO_UPSERT,
@@ -53,7 +56,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH,
   UpdateForteServiceRequest.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T22:08:22.978858900-07:00[America/Los_Angeles]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateForteServiceRequest {
   public static final String JSON_PROPERTY_RESET_DOCKERFILE = "resetDockerfile";
   @javax.annotation.Nullable
@@ -62,6 +65,53 @@ public class UpdateForteServiceRequest {
   public static final String JSON_PROPERTY_RESET_HEALTH_CHECK_CONFIG = "resetHealthCheckConfig";
   @javax.annotation.Nullable
   private Boolean resetHealthCheckConfig;
+
+  /**
+   * Gets or Sets githubBuildTrigger
+   */
+  public enum GithubBuildTriggerEnum {
+    PUSH(String.valueOf("PUSH")),
+    
+    RELEASE_PUBLISHED(String.valueOf("RELEASE_PUBLISHED"));
+
+    private String value;
+
+    GithubBuildTriggerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static GithubBuildTriggerEnum fromValue(String value) {
+      for (GithubBuildTriggerEnum b : GithubBuildTriggerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_GITHUB_BUILD_TRIGGER = "githubBuildTrigger";
+  @javax.annotation.Nullable
+  private GithubBuildTriggerEnum githubBuildTrigger;
+
+  public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
+  @javax.annotation.Nullable
+  private String githubBranch;
+
+  public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
+  @javax.annotation.Nullable
+  private String baseDirectory;
 
   public static final String JSON_PROPERTY_SERVICE_NAME = "serviceName";
   @javax.annotation.Nullable
@@ -151,6 +201,78 @@ public class UpdateForteServiceRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResetHealthCheckConfig(@javax.annotation.Nullable Boolean resetHealthCheckConfig) {
     this.resetHealthCheckConfig = resetHealthCheckConfig;
+  }
+
+
+  public UpdateForteServiceRequest githubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
+    this.githubBuildTrigger = githubBuildTrigger;
+    return this;
+  }
+
+  /**
+   * Get githubBuildTrigger
+   * @return githubBuildTrigger
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GithubBuildTriggerEnum getGithubBuildTrigger() {
+    return githubBuildTrigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGithubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
+    this.githubBuildTrigger = githubBuildTrigger;
+  }
+
+
+  public UpdateForteServiceRequest githubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = githubBranch;
+    return this;
+  }
+
+  /**
+   * Get githubBranch
+   * @return githubBranch
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getGithubBranch() {
+    return githubBranch;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = githubBranch;
+  }
+
+
+  public UpdateForteServiceRequest baseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = baseDirectory;
+    return this;
+  }
+
+  /**
+   * Get baseDirectory
+   * @return baseDirectory
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBaseDirectory() {
+    return baseDirectory;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = baseDirectory;
   }
 
 
@@ -445,6 +567,9 @@ public class UpdateForteServiceRequest {
     UpdateForteServiceRequest updateForteServiceRequest = (UpdateForteServiceRequest) o;
     return Objects.equals(this.resetDockerfile, updateForteServiceRequest.resetDockerfile) &&
         Objects.equals(this.resetHealthCheckConfig, updateForteServiceRequest.resetHealthCheckConfig) &&
+        Objects.equals(this.githubBuildTrigger, updateForteServiceRequest.githubBuildTrigger) &&
+        Objects.equals(this.githubBranch, updateForteServiceRequest.githubBranch) &&
+        Objects.equals(this.baseDirectory, updateForteServiceRequest.baseDirectory) &&
         Objects.equals(this.serviceName, updateForteServiceRequest.serviceName) &&
         Objects.equals(this.environmentVariables, updateForteServiceRequest.environmentVariables) &&
         Objects.equals(this.secretsToUpsert, updateForteServiceRequest.secretsToUpsert) &&
@@ -459,7 +584,7 @@ public class UpdateForteServiceRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(resetDockerfile, resetHealthCheckConfig, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, baseInstances, containerCpu, healthCheckPort, healthCheckPath, requestResponseBodyLoggingEnabled);
+    return Objects.hash(resetDockerfile, resetHealthCheckConfig, githubBuildTrigger, githubBranch, baseDirectory, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, baseInstances, containerCpu, healthCheckPort, healthCheckPath, requestResponseBodyLoggingEnabled);
   }
 
   @Override
@@ -468,6 +593,9 @@ public class UpdateForteServiceRequest {
     sb.append("class UpdateForteServiceRequest {\n");
     sb.append("    resetDockerfile: ").append(toIndentedString(resetDockerfile)).append("\n");
     sb.append("    resetHealthCheckConfig: ").append(toIndentedString(resetHealthCheckConfig)).append("\n");
+    sb.append("    githubBuildTrigger: ").append(toIndentedString(githubBuildTrigger)).append("\n");
+    sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
+    sb.append("    baseDirectory: ").append(toIndentedString(baseDirectory)).append("\n");
     sb.append("    serviceName: ").append(toIndentedString(serviceName)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
     sb.append("    secretsToUpsert: ").append(toIndentedString(secretsToUpsert)).append("\n");
@@ -530,6 +658,21 @@ public class UpdateForteServiceRequest {
     // add `resetHealthCheckConfig` to the URL query string
     if (getResetHealthCheckConfig() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sresetHealthCheckConfig%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getResetHealthCheckConfig()))));
+    }
+
+    // add `githubBuildTrigger` to the URL query string
+    if (getGithubBuildTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgithubBuildTrigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubBuildTrigger()))));
+    }
+
+    // add `githubBranch` to the URL query string
+    if (getGithubBranch() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgithubBranch%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubBranch()))));
+    }
+
+    // add `baseDirectory` to the URL query string
+    if (getBaseDirectory() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbaseDirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseDirectory()))));
     }
 
     // add `serviceName` to the URL query string
