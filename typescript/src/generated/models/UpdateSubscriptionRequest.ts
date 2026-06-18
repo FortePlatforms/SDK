@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PaymentAddress } from './PaymentAddress';
+import {
+    PaymentAddressFromJSON,
+    PaymentAddressFromJSONTyped,
+    PaymentAddressToJSON,
+    PaymentAddressToJSONTyped,
+} from './PaymentAddress';
+
 /**
  * 
  * @export
@@ -31,6 +39,12 @@ export interface UpdateSubscriptionRequest {
      * @memberof UpdateSubscriptionRequest
      */
     cancelAtPeriodEnd?: boolean;
+    /**
+     * 
+     * @type {PaymentAddress}
+     * @memberof UpdateSubscriptionRequest
+     */
+    customerAddress?: PaymentAddress;
 }
 
 /**
@@ -52,6 +66,7 @@ export function UpdateSubscriptionRequestFromJSONTyped(json: any, ignoreDiscrimi
         
         'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
         'cancelAtPeriodEnd': json['cancelAtPeriodEnd'] == null ? undefined : json['cancelAtPeriodEnd'],
+        'customerAddress': json['customerAddress'] == null ? undefined : PaymentAddressFromJSON(json['customerAddress']),
     };
 }
 
@@ -68,6 +83,7 @@ export function UpdateSubscriptionRequestToJSONTyped(value?: UpdateSubscriptionR
         
         'paymentMethodId': value['paymentMethodId'],
         'cancelAtPeriodEnd': value['cancelAtPeriodEnd'],
+        'customerAddress': PaymentAddressToJSON(value['customerAddress']),
     };
 }
 

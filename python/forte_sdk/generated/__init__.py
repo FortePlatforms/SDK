@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.225"
+__version__ = "1.0.226"
 
 # Define package exports
 __all__ = [
@@ -150,6 +150,7 @@ __all__ = [
     "UpdatePaymentMethodRequest",
     "UpdatePaymentTriggerRequest",
     "UpdateProjectRequest",
+    "UpdateSubscriptionPreviewRequest",
     "UpdateSubscriptionRequest",
     "UpdateUserRequest",
     "UpdateWebAppRequest",
@@ -300,6 +301,7 @@ from forte_sdk.generated.models.update_notification_templates_request import Upd
 from forte_sdk.generated.models.update_payment_method_request import UpdatePaymentMethodRequest as UpdatePaymentMethodRequest
 from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest as UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest as UpdateProjectRequest
+from forte_sdk.generated.models.update_subscription_preview_request import UpdateSubscriptionPreviewRequest as UpdateSubscriptionPreviewRequest
 from forte_sdk.generated.models.update_subscription_request import UpdateSubscriptionRequest as UpdateSubscriptionRequest
 from forte_sdk.generated.models.update_user_request import UpdateUserRequest as UpdateUserRequest
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest as UpdateWebAppRequest

@@ -134,6 +134,7 @@ from forte_sdk.generated.models.update_notification_templates_request import Upd
 from forte_sdk.generated.models.update_payment_method_request import UpdatePaymentMethodRequest
 from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest
+from forte_sdk.generated.models.update_subscription_preview_request import UpdateSubscriptionPreviewRequest
 from forte_sdk.generated.models.update_subscription_request import UpdateSubscriptionRequest
 from forte_sdk.generated.models.update_user_request import UpdateUserRequest
 from forte_sdk.generated.models.update_web_app_request import UpdateWebAppRequest

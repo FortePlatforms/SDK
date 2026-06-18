@@ -89,6 +89,7 @@ import com.forteplatforms.sdk.generated.model.UpdateNotificationTemplatesRequest
 import com.forteplatforms.sdk.generated.model.UpdatePaymentMethodRequest;
 import com.forteplatforms.sdk.generated.model.UpdatePaymentTriggerRequest;
 import com.forteplatforms.sdk.generated.model.UpdateProjectRequest;
+import com.forteplatforms.sdk.generated.model.UpdateSubscriptionPreviewRequest;
 import com.forteplatforms.sdk.generated.model.UpdateSubscriptionRequest;
 import com.forteplatforms.sdk.generated.model.UpdateUserRequest;
 import com.forteplatforms.sdk.generated.model.UpdateWebAppRequest;
@@ -9824,6 +9825,156 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param subscriptionId  (required)
+   * @param updateSubscriptionPreviewRequest  (required)
+   * @return CreateSubscriptionPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateSubscriptionPreviewResponse previewUserSubscriptionUpdate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest) throws ApiException {
+    return previewUserSubscriptionUpdate(projectId, userId, subscriptionId, updateSubscriptionPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param subscriptionId  (required)
+   * @param updateSubscriptionPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateSubscriptionPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateSubscriptionPreviewResponse previewUserSubscriptionUpdate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateSubscriptionPreviewResponse> localVarResponse = previewUserSubscriptionUpdateWithHttpInfo(projectId, userId, subscriptionId, updateSubscriptionPreviewRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param subscriptionId  (required)
+   * @param updateSubscriptionPreviewRequest  (required)
+   * @return ApiResponse&lt;CreateSubscriptionPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateSubscriptionPreviewResponse> previewUserSubscriptionUpdateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest) throws ApiException {
+    return previewUserSubscriptionUpdateWithHttpInfo(projectId, userId, subscriptionId, updateSubscriptionPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param subscriptionId  (required)
+   * @param updateSubscriptionPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateSubscriptionPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateSubscriptionPreviewResponse> previewUserSubscriptionUpdateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = previewUserSubscriptionUpdateRequestBuilder(projectId, userId, subscriptionId, updateSubscriptionPreviewRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("previewUserSubscriptionUpdate", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateSubscriptionPreviewResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateSubscriptionPreviewResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateSubscriptionPreviewResponse>() {});
+        
+
+        return new ApiResponse<CreateSubscriptionPreviewResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder previewUserSubscriptionUpdateRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling previewUserSubscriptionUpdate");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling previewUserSubscriptionUpdate");
+    }
+    // verify the required parameter 'subscriptionId' is set
+    if (subscriptionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'subscriptionId' when calling previewUserSubscriptionUpdate");
+    }
+    // verify the required parameter 'updateSubscriptionPreviewRequest' is set
+    if (updateSubscriptionPreviewRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateSubscriptionPreviewRequest' when calling previewUserSubscriptionUpdate");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/subscriptions/{subscriptionId}/preview"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateSubscriptionPreviewRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

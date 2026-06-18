@@ -17,35 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from forte_sdk.generated.models.payment_address import PaymentAddress
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class UpdateSubscriptionRequest(BaseModel):
+class UpdateSubscriptionPreviewRequest(BaseModel):
     """
-    UpdateSubscriptionRequest
+    UpdateSubscriptionPreviewRequest
     """ # noqa: E501
-    payment_method_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="paymentMethodId")
-    cancel_at_period_end: Optional[StrictBool] = Field(default=None, alias="cancelAtPeriodEnd")
     customer_address: Optional[PaymentAddress] = Field(default=None, alias="customerAddress")
-    __properties: ClassVar[List[str]] = ["paymentMethodId", "cancelAtPeriodEnd", "customerAddress"]
-
-    @field_validator('payment_method_id')
-    def payment_method_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^pm_[A-Za-z0-9]+$", value):
-            raise ValueError(r"must validate the regular expression /^pm_[A-Za-z0-9]+$/")
-        return value
+    __properties: ClassVar[List[str]] = ["customerAddress"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -65,7 +49,7 @@ class UpdateSubscriptionRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateSubscriptionRequest from a JSON string"""
+        """Create an instance of UpdateSubscriptionPreviewRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -93,7 +77,7 @@ class UpdateSubscriptionRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateSubscriptionRequest from a dict"""
+        """Create an instance of UpdateSubscriptionPreviewRequest from a dict"""
         if obj is None:
             return None
 
@@ -101,8 +85,6 @@ class UpdateSubscriptionRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "paymentMethodId": obj.get("paymentMethodId"),
-            "cancelAtPeriodEnd": obj.get("cancelAtPeriodEnd"),
             "customerAddress": PaymentAddress.from_dict(obj["customerAddress"]) if obj.get("customerAddress") is not None else None
         })
         return _obj

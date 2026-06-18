@@ -189,6 +189,11 @@ import {
     UpdatePaymentMethodRequestToJSON,
 } from '../models/UpdatePaymentMethodRequest';
 import {
+    type UpdateSubscriptionPreviewRequest,
+    UpdateSubscriptionPreviewRequestFromJSON,
+    UpdateSubscriptionPreviewRequestToJSON,
+} from '../models/UpdateSubscriptionPreviewRequest';
+import {
     type UpdateSubscriptionRequest,
     UpdateSubscriptionRequestFromJSON,
     UpdateSubscriptionRequestToJSON,
@@ -284,6 +289,12 @@ export interface LogoutRequest {
 export interface PasswordLoginOperationRequest {
     projectId: string;
     passwordLoginRequest: PasswordLoginRequest;
+}
+
+export interface PreviewMySubscriptionUpdateRequest {
+    projectId: string;
+    subscriptionId: string;
+    updateSubscriptionPreviewRequest: UpdateSubscriptionPreviewRequest;
 }
 
 export interface RegisterUserOperationRequest {
@@ -1273,6 +1284,67 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async passwordLogin(requestParameters: PasswordLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginUserResponse> {
         const response = await this.passwordLoginRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for previewMySubscriptionUpdate without sending the request
+     */
+    async previewMySubscriptionUpdateRequestOpts(requestParameters: PreviewMySubscriptionUpdateRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling previewMySubscriptionUpdate().'
+            );
+        }
+
+        if (requestParameters['subscriptionId'] == null) {
+            throw new runtime.RequiredError(
+                'subscriptionId',
+                'Required parameter "subscriptionId" was null or undefined when calling previewMySubscriptionUpdate().'
+            );
+        }
+
+        if (requestParameters['updateSubscriptionPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateSubscriptionPreviewRequest',
+                'Required parameter "updateSubscriptionPreviewRequest" was null or undefined when calling previewMySubscriptionUpdate().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/subscriptions/{subscriptionId}/preview`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{subscriptionId}', encodeURIComponent(String(requestParameters['subscriptionId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateSubscriptionPreviewRequestToJSON(requestParameters['updateSubscriptionPreviewRequest']),
+        };
+    }
+
+    /**
+     */
+    async previewMySubscriptionUpdateRaw(requestParameters: PreviewMySubscriptionUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscriptionPreviewResponse>> {
+        const requestOptions = await this.previewMySubscriptionUpdateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscriptionPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async previewMySubscriptionUpdate(requestParameters: PreviewMySubscriptionUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscriptionPreviewResponse> {
+        const response = await this.previewMySubscriptionUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

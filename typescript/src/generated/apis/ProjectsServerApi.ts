@@ -364,6 +364,11 @@ import {
     UpdateProjectRequestToJSON,
 } from '../models/UpdateProjectRequest';
 import {
+    type UpdateSubscriptionPreviewRequest,
+    UpdateSubscriptionPreviewRequestFromJSON,
+    UpdateSubscriptionPreviewRequestToJSON,
+} from '../models/UpdateSubscriptionPreviewRequest';
+import {
     type UpdateSubscriptionRequest,
     UpdateSubscriptionRequestFromJSON,
     UpdateSubscriptionRequestToJSON,
@@ -833,6 +838,13 @@ export interface ListWebAppDeploymentsRequest {
 
 export interface ListWebAppsRequest {
     projectId: string;
+}
+
+export interface PreviewUserSubscriptionUpdateRequest {
+    projectId: string;
+    userId: string;
+    subscriptionId: string;
+    updateSubscriptionPreviewRequest: UpdateSubscriptionPreviewRequest;
 }
 
 export interface ProjectsCreateContentUploadLinkRequest {
@@ -5015,6 +5027,75 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listWebApps(requestParameters: ListWebAppsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WebAppObject>> {
         const response = await this.listWebAppsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for previewUserSubscriptionUpdate without sending the request
+     */
+    async previewUserSubscriptionUpdateRequestOpts(requestParameters: PreviewUserSubscriptionUpdateRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling previewUserSubscriptionUpdate().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling previewUserSubscriptionUpdate().'
+            );
+        }
+
+        if (requestParameters['subscriptionId'] == null) {
+            throw new runtime.RequiredError(
+                'subscriptionId',
+                'Required parameter "subscriptionId" was null or undefined when calling previewUserSubscriptionUpdate().'
+            );
+        }
+
+        if (requestParameters['updateSubscriptionPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateSubscriptionPreviewRequest',
+                'Required parameter "updateSubscriptionPreviewRequest" was null or undefined when calling previewUserSubscriptionUpdate().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/subscriptions/{subscriptionId}/preview`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{subscriptionId}', encodeURIComponent(String(requestParameters['subscriptionId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateSubscriptionPreviewRequestToJSON(requestParameters['updateSubscriptionPreviewRequest']),
+        };
+    }
+
+    /**
+     */
+    async previewUserSubscriptionUpdateRaw(requestParameters: PreviewUserSubscriptionUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscriptionPreviewResponse>> {
+        const requestOptions = await this.previewUserSubscriptionUpdateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscriptionPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async previewUserSubscriptionUpdate(requestParameters: PreviewUserSubscriptionUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscriptionPreviewResponse> {
+        const response = await this.previewUserSubscriptionUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

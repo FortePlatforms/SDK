@@ -121,6 +121,7 @@ export * from './UpdateNotificationTemplatesRequest';
 export * from './UpdatePaymentMethodRequest';
 export * from './UpdatePaymentTriggerRequest';
 export * from './UpdateProjectRequest';
+export * from './UpdateSubscriptionPreviewRequest';
 export * from './UpdateSubscriptionRequest';
 export * from './UpdateUserRequest';
 export * from './UpdateWebAppRequest';

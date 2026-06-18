@@ -12,7 +12,7 @@ Official Java SDK for interacting with the Forte Platforms API.
     <artifactId>sdk</artifactId>
 <<<<<<< HEAD
 <<<<<<< Updated upstream
-    <version>1.0.225</version>
+    <version>1.0.226</version>
 =======
 <<<<<<< HEAD
     <version>1.0.212</version>
@@ -31,16 +31,16 @@ Official Java SDK for interacting with the Forte Platforms API.
 ```groovy
 <<<<<<< HEAD
 <<<<<<< Updated upstream
-implementation 'com.forteplatforms:sdk:1.0.225'
+implementation 'com.forteplatforms:sdk:1.0.226'
 =======
 <<<<<<< HEAD
-implementation 'com.forteplatforms:sdk:1.0.225'
+implementation 'com.forteplatforms:sdk:1.0.226'
 =======
-implementation 'com.forteplatforms:sdk:1.0.225'
+implementation 'com.forteplatforms:sdk:1.0.226'
 >>>>>>> worktree-forte-idempotency-support
 >>>>>>> Stashed changes
 =======
-implementation 'com.forteplatforms:sdk:1.0.225'
+implementation 'com.forteplatforms:sdk:1.0.226'
 >>>>>>> feature/billing-notification-emails
 ```
 
