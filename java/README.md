@@ -10,38 +10,14 @@ Official Java SDK for interacting with the Forte Platforms API.
 <dependency>
     <groupId>com.forteplatforms</groupId>
     <artifactId>sdk</artifactId>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    <version>1.0.226</version>
-=======
-<<<<<<< HEAD
-    <version>1.0.212</version>
-=======
-    <version>1.0.212</version>
->>>>>>> worktree-forte-idempotency-support
->>>>>>> Stashed changes
-=======
-    <version>1.0.217</version>
->>>>>>> feature/billing-notification-emails
+    <version>1.0.230</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-implementation 'com.forteplatforms:sdk:1.0.226'
-=======
-<<<<<<< HEAD
-implementation 'com.forteplatforms:sdk:1.0.226'
-=======
-implementation 'com.forteplatforms:sdk:1.0.226'
->>>>>>> worktree-forte-idempotency-support
->>>>>>> Stashed changes
-=======
-implementation 'com.forteplatforms:sdk:1.0.226'
->>>>>>> feature/billing-notification-emails
+implementation 'com.forteplatforms:sdk:1.0.230'
 ```
 
 ## Authentication
