@@ -329,6 +329,11 @@ import {
     UpdateActionRequestToJSON,
 } from '../models/UpdateActionRequest';
 import {
+    type UpdateContentOwnerRequest,
+    UpdateContentOwnerRequestFromJSON,
+    UpdateContentOwnerRequestToJSON,
+} from '../models/UpdateContentOwnerRequest';
+import {
     type UpdateContentSharesRequest,
     UpdateContentSharesRequestFromJSON,
     UpdateContentSharesRequestToJSON,
@@ -928,6 +933,13 @@ export interface ProjectsListContentRequest {
 export interface ProjectsListPaymentMethodsRequest {
     projectId: string;
     userId: string;
+}
+
+export interface ProjectsUpdateContentOwnerRequest {
+    projectId: string;
+    userId: string;
+    contentId: string;
+    updateContentOwnerRequest: UpdateContentOwnerRequest;
 }
 
 export interface ProjectsUpdateContentSharesRequest {
@@ -5918,6 +5930,75 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for projectsUpdateContentOwner without sending the request
+     */
+    async projectsUpdateContentOwnerRequestOpts(requestParameters: ProjectsUpdateContentOwnerRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsUpdateContentOwner().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsUpdateContentOwner().'
+            );
+        }
+
+        if (requestParameters['contentId'] == null) {
+            throw new runtime.RequiredError(
+                'contentId',
+                'Required parameter "contentId" was null or undefined when calling projectsUpdateContentOwner().'
+            );
+        }
+
+        if (requestParameters['updateContentOwnerRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateContentOwnerRequest',
+                'Required parameter "updateContentOwnerRequest" was null or undefined when calling projectsUpdateContentOwner().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/content/{contentId}/owner`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateContentOwnerRequestToJSON(requestParameters['updateContentOwnerRequest']),
+        };
+    }
+
+    /**
+     */
+    async projectsUpdateContentOwnerRaw(requestParameters: ProjectsUpdateContentOwnerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+        const requestOptions = await this.projectsUpdateContentOwnerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsUpdateContentOwner(requestParameters: ProjectsUpdateContentOwnerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
+        const response = await this.projectsUpdateContentOwnerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for projectsUpdateContentShares without sending the request
      */
     async projectsUpdateContentSharesRequestOpts(requestParameters: ProjectsUpdateContentSharesRequest): Promise<runtime.RequestOpts> {
@@ -7230,6 +7311,7 @@ export const ListUserActionLogsActionTypeType = {
     PAYMENT_METHOD_DEFAULT_CHANGED: 'PAYMENT_METHOD_DEFAULT_CHANGED',
     PAYMENT_METHOD_REMOVED: 'PAYMENT_METHOD_REMOVED',
     WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT',
+    CONTENT_OWNERSHIP_TRANSFERRED: 'CONTENT_OWNERSHIP_TRANSFERRED',
     USER_INVITE_CREATED: 'USER_INVITE_CREATED',
     USER_INVITE_REVOKED: 'USER_INVITE_REVOKED',
     USER_INVITE_ACCEPTED: 'USER_INVITE_ACCEPTED',

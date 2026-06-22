@@ -139,6 +139,12 @@ export interface ServiceBuildRequestObject {
     origin?: ServiceBuildRequestObjectOriginType;
     /**
      * 
+     * @type {string}
+     * @memberof ServiceBuildRequestObject
+     */
+    triggeredByAccountId?: string;
+    /**
+     * 
      * @type {ServiceBuildRequestObjectBuildTierType}
      * @memberof ServiceBuildRequestObject
      */
@@ -258,6 +264,7 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
+        'triggeredByAccountId': json['triggeredByAccountId'] == null ? undefined : json['triggeredByAccountId'],
         'buildTier': json['buildTier'] == null ? undefined : json['buildTier'],
         'failureReason': json['failureReason'] == null ? undefined : json['failureReason'],
     };
@@ -290,6 +297,7 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],
+        'triggeredByAccountId': value['triggeredByAccountId'],
         'buildTier': value['buildTier'],
         'failureReason': value['failureReason'],
     };

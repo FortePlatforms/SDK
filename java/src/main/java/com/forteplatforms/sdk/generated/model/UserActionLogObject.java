@@ -100,6 +100,8 @@ public class UserActionLogObject {
     
     WELCOME_MESSAGE_SENT(String.valueOf("WELCOME_MESSAGE_SENT")),
     
+    CONTENT_OWNERSHIP_TRANSFERRED(String.valueOf("CONTENT_OWNERSHIP_TRANSFERRED")),
+    
     USER_INVITE_CREATED(String.valueOf("USER_INVITE_CREATED")),
     
     USER_INVITE_REVOKED(String.valueOf("USER_INVITE_REVOKED")),

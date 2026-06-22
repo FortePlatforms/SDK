@@ -114,6 +114,7 @@ export * from './TestInvocationResponse';
 export * from './TimeSeriesDataPoint';
 export * from './TriggerEvent';
 export * from './UpdateActionRequest';
+export * from './UpdateContentOwnerRequest';
 export * from './UpdateContentSharesRequest';
 export * from './UpdateForteServiceRequest';
 export * from './UpdateForteServiceResponse';

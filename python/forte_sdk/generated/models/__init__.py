@@ -127,6 +127,7 @@ from forte_sdk.generated.models.test_invocation_response import TestInvocationRe
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint
 from forte_sdk.generated.models.trigger_event import TriggerEvent
 from forte_sdk.generated.models.update_action_request import UpdateActionRequest
+from forte_sdk.generated.models.update_content_owner_request import UpdateContentOwnerRequest
 from forte_sdk.generated.models.update_content_shares_request import UpdateContentSharesRequest
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse

@@ -179,6 +179,11 @@ import {
     SubscriptionObjectToJSON,
 } from '../models/SubscriptionObject';
 import {
+    type UpdateContentOwnerRequest,
+    UpdateContentOwnerRequestFromJSON,
+    UpdateContentOwnerRequestToJSON,
+} from '../models/UpdateContentOwnerRequest';
+import {
     type UpdateContentSharesRequest,
     UpdateContentSharesRequestFromJSON,
     UpdateContentSharesRequestToJSON,
@@ -402,6 +407,12 @@ export interface UsersListContentRequest {
 
 export interface UsersListPaymentMethodsRequest {
     projectId: string;
+}
+
+export interface UsersUpdateContentOwnerRequest {
+    projectId: string;
+    contentId: string;
+    updateContentOwnerRequest: UpdateContentOwnerRequest;
 }
 
 export interface UsersUpdateContentSharesRequest {
@@ -2420,6 +2431,67 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async usersListPaymentMethods(requestParameters: UsersListPaymentMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PaymentMethodObject>> {
         const response = await this.usersListPaymentMethodsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for usersUpdateContentOwner without sending the request
+     */
+    async usersUpdateContentOwnerRequestOpts(requestParameters: UsersUpdateContentOwnerRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersUpdateContentOwner().'
+            );
+        }
+
+        if (requestParameters['contentId'] == null) {
+            throw new runtime.RequiredError(
+                'contentId',
+                'Required parameter "contentId" was null or undefined when calling usersUpdateContentOwner().'
+            );
+        }
+
+        if (requestParameters['updateContentOwnerRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateContentOwnerRequest',
+                'Required parameter "updateContentOwnerRequest" was null or undefined when calling usersUpdateContentOwner().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/content/{contentId}/owner`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{contentId}', encodeURIComponent(String(requestParameters['contentId'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateContentOwnerRequestToJSON(requestParameters['updateContentOwnerRequest']),
+        };
+    }
+
+    /**
+     */
+    async usersUpdateContentOwnerRaw(requestParameters: UsersUpdateContentOwnerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ContentObject>> {
+        const requestOptions = await this.usersUpdateContentOwnerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ContentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersUpdateContentOwner(requestParameters: UsersUpdateContentOwnerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContentObject> {
+        const response = await this.usersUpdateContentOwnerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

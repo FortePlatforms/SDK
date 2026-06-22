@@ -216,6 +216,12 @@ export interface WebAppBuildRequestObject {
     origin?: WebAppBuildRequestObjectOriginType;
     /**
      * 
+     * @type {string}
+     * @memberof WebAppBuildRequestObject
+     */
+    triggeredByAccountId?: string;
+    /**
+     * 
      * @type {WebAppBuildRequestObjectBuildTierType}
      * @memberof WebAppBuildRequestObject
      */
@@ -360,6 +366,7 @@ export function WebAppBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimin
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
+        'triggeredByAccountId': json['triggeredByAccountId'] == null ? undefined : json['triggeredByAccountId'],
         'buildTier': json['buildTier'] == null ? undefined : json['buildTier'],
         'failureReason': json['failureReason'] == null ? undefined : json['failureReason'],
     };
@@ -406,6 +413,7 @@ export function WebAppBuildRequestObjectToJSONTyped(value?: WebAppBuildRequestOb
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],
+        'triggeredByAccountId': value['triggeredByAccountId'],
         'buildTier': value['buildTier'],
         'failureReason': value['failureReason'],
     };

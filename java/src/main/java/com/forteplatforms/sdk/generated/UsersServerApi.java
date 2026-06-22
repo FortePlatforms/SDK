@@ -52,6 +52,7 @@ import com.forteplatforms.sdk.generated.model.RegisterUserResponse;
 import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
 import com.forteplatforms.sdk.generated.model.RequestPasswordResetRequest;
 import com.forteplatforms.sdk.generated.model.SubscriptionObject;
+import com.forteplatforms.sdk.generated.model.UpdateContentOwnerRequest;
 import com.forteplatforms.sdk.generated.model.UpdateContentSharesRequest;
 import com.forteplatforms.sdk.generated.model.UpdatePaymentMethodRequest;
 import com.forteplatforms.sdk.generated.model.UpdateSubscriptionPreviewRequest;
@@ -5115,6 +5116,147 @@ public class UsersServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param contentId  (required)
+   * @param updateContentOwnerRequest  (required)
+   * @return ContentObject
+   * @throws ApiException if fails to make API call
+   */
+  public ContentObject usersUpdateContentOwner(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest) throws ApiException {
+    return usersUpdateContentOwner(projectId, contentId, updateContentOwnerRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param contentId  (required)
+   * @param updateContentOwnerRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ContentObject
+   * @throws ApiException if fails to make API call
+   */
+  public ContentObject usersUpdateContentOwner(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContentObject> localVarResponse = usersUpdateContentOwnerWithHttpInfo(projectId, contentId, updateContentOwnerRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param contentId  (required)
+   * @param updateContentOwnerRequest  (required)
+   * @return ApiResponse&lt;ContentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContentObject> usersUpdateContentOwnerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest) throws ApiException {
+    return usersUpdateContentOwnerWithHttpInfo(projectId, contentId, updateContentOwnerRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param contentId  (required)
+   * @param updateContentOwnerRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ContentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ContentObject> usersUpdateContentOwnerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersUpdateContentOwnerRequestBuilder(projectId, contentId, updateContentOwnerRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("usersUpdateContentOwner", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ContentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ContentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ContentObject>() {});
+        
+
+        return new ApiResponse<ContentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder usersUpdateContentOwnerRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersUpdateContentOwner");
+    }
+    // verify the required parameter 'contentId' is set
+    if (contentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'contentId' when calling usersUpdateContentOwner");
+    }
+    // verify the required parameter 'updateContentOwnerRequest' is set
+    if (updateContentOwnerRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateContentOwnerRequest' when calling usersUpdateContentOwner");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/content/{contentId}/owner"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{contentId}", ApiClient.urlEncode(contentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateContentOwnerRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

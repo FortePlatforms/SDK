@@ -60,9 +60,10 @@ class WebAppBuildRequestObject(BaseModel):
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
+    triggered_by_account_id: Optional[StrictStr] = Field(default=None, alias="triggeredByAccountId")
     build_tier: Optional[StrictStr] = Field(default=None, alias="buildTier")
     failure_reason: Optional[StrictStr] = Field(default=None, alias="failureReason")
-    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "buildTier", "failureReason"]
+    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "triggeredByAccountId", "buildTier", "failureReason"]
 
     @field_validator('monorepo_type')
     def monorepo_type_validate_enum(cls, value):
@@ -202,6 +203,7 @@ class WebAppBuildRequestObject(BaseModel):
             "buildStepLogs": [BuildStepLog.from_dict(_item) for _item in obj["buildStepLogs"]] if obj.get("buildStepLogs") is not None else None,
             "status": obj.get("status"),
             "origin": obj.get("origin"),
+            "triggeredByAccountId": obj.get("triggeredByAccountId"),
             "buildTier": obj.get("buildTier"),
             "failureReason": obj.get("failureReason")
         })
