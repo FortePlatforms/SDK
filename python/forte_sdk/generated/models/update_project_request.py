@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.mfa_config import MfaConfig
 from forte_sdk.generated.models.password_config import PasswordConfig
 from typing import Optional, Set
 from typing_extensions import Self
@@ -35,7 +36,8 @@ class UpdateProjectRequest(BaseModel):
     google_login_enabled: Optional[StrictBool] = Field(default=None, alias="googleLoginEnabled")
     password_login_enabled: Optional[StrictBool] = Field(default=None, alias="passwordLoginEnabled")
     password_config: Optional[PasswordConfig] = Field(default=None, alias="passwordConfig")
-    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig"]
+    mfa_config: Optional[MfaConfig] = Field(default=None, alias="mfaConfig")
+    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -79,6 +81,9 @@ class UpdateProjectRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of password_config
         if self.password_config:
             _dict['passwordConfig'] = self.password_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mfa_config
+        if self.mfa_config:
+            _dict['mfaConfig'] = self.mfa_config.to_dict()
         return _dict
 
     @classmethod
@@ -97,7 +102,8 @@ class UpdateProjectRequest(BaseModel):
             "emailLoginEnabled": obj.get("emailLoginEnabled"),
             "googleLoginEnabled": obj.get("googleLoginEnabled"),
             "passwordLoginEnabled": obj.get("passwordLoginEnabled"),
-            "passwordConfig": PasswordConfig.from_dict(obj["passwordConfig"]) if obj.get("passwordConfig") is not None else None
+            "passwordConfig": PasswordConfig.from_dict(obj["passwordConfig"]) if obj.get("passwordConfig") is not None else None,
+            "mfaConfig": MfaConfig.from_dict(obj["mfaConfig"]) if obj.get("mfaConfig") is not None else None
         })
         return _obj
 

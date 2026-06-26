@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.MfaConfig;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesConfig;
 import com.forteplatforms.sdk.generated.model.PasswordConfig;
 import com.forteplatforms.sdk.generated.model.PaymentTriggerConfig;
@@ -57,6 +58,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_GOOGLE_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_PASSWORD_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_PASSWORD_CONFIG,
+  ProjectObject.JSON_PROPERTY_MFA_CONFIG,
   ProjectObject.JSON_PROPERTY_SANDBOX_MODE,
   ProjectObject.JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG,
   ProjectObject.JSON_PROPERTY_PAYMENT_TRIGGERS,
@@ -127,6 +129,10 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_PASSWORD_CONFIG = "passwordConfig";
   @javax.annotation.Nullable
   private PasswordConfig passwordConfig;
+
+  public static final String JSON_PROPERTY_MFA_CONFIG = "mfaConfig";
+  @javax.annotation.Nullable
+  private MfaConfig mfaConfig;
 
   public static final String JSON_PROPERTY_SANDBOX_MODE = "sandboxMode";
   @javax.annotation.Nullable
@@ -547,6 +553,30 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject mfaConfig(@javax.annotation.Nullable MfaConfig mfaConfig) {
+    this.mfaConfig = mfaConfig;
+    return this;
+  }
+
+  /**
+   * Get mfaConfig
+   * @return mfaConfig
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MFA_CONFIG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MfaConfig getMfaConfig() {
+    return mfaConfig;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MFA_CONFIG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMfaConfig(@javax.annotation.Nullable MfaConfig mfaConfig) {
+    this.mfaConfig = mfaConfig;
+  }
+
+
   public ProjectObject sandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
     this.sandboxMode = sandboxMode;
     return this;
@@ -679,6 +709,7 @@ public class ProjectObject {
         Objects.equals(this.googleLoginEnabled, projectObject.googleLoginEnabled) &&
         Objects.equals(this.passwordLoginEnabled, projectObject.passwordLoginEnabled) &&
         Objects.equals(this.passwordConfig, projectObject.passwordConfig) &&
+        Objects.equals(this.mfaConfig, projectObject.mfaConfig) &&
         Objects.equals(this.sandboxMode, projectObject.sandboxMode) &&
         Objects.equals(this.notificationTemplatesConfig, projectObject.notificationTemplatesConfig) &&
         Objects.equals(this.paymentTriggers, projectObject.paymentTriggers) &&
@@ -687,7 +718,7 @@ public class ProjectObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, sandboxMode, notificationTemplatesConfig, paymentTriggers, hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig, sandboxMode, notificationTemplatesConfig, paymentTriggers, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -710,6 +741,7 @@ public class ProjectObject {
     sb.append("    googleLoginEnabled: ").append(toIndentedString(googleLoginEnabled)).append("\n");
     sb.append("    passwordLoginEnabled: ").append(toIndentedString(passwordLoginEnabled)).append("\n");
     sb.append("    passwordConfig: ").append(toIndentedString(passwordConfig)).append("\n");
+    sb.append("    mfaConfig: ").append(toIndentedString(mfaConfig)).append("\n");
     sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
     sb.append("    notificationTemplatesConfig: ").append(toIndentedString(notificationTemplatesConfig)).append("\n");
     sb.append("    paymentTriggers: ").append(toIndentedString(paymentTriggers)).append("\n");
@@ -846,6 +878,11 @@ public class ProjectObject {
     // add `passwordConfig` to the URL query string
     if (getPasswordConfig() != null) {
       joiner.add(getPasswordConfig().toUrlQueryString(prefix + "passwordConfig" + suffix));
+    }
+
+    // add `mfaConfig` to the URL query string
+    if (getMfaConfig() != null) {
+      joiner.add(getMfaConfig().toUrlQueryString(prefix + "mfaConfig" + suffix));
     }
 
     // add `sandboxMode` to the URL query string

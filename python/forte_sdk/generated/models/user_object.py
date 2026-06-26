@@ -18,10 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from forte_sdk.generated.models.contact_method import ContactMethod
+from forte_sdk.generated.models.mfa_method import MfaMethod
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -45,8 +46,11 @@ class UserObject(BaseModel):
     state: StrictStr
     password_set_at: Optional[datetime] = Field(default=None, alias="passwordSetAt")
     password_reset_last_requested_at: Optional[datetime] = Field(default=None, alias="passwordResetLastRequestedAt")
+    mfa_methods: Optional[List[MfaMethod]] = Field(default=None, alias="mfaMethods")
+    backup_codes_generated_at: Optional[datetime] = Field(default=None, alias="backupCodesGeneratedAt")
+    remaining_backup_code_count: Optional[StrictInt] = Field(default=None, alias="remainingBackupCodeCount")
     has_password: Optional[StrictBool] = Field(default=None, alias="hasPassword")
-    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "invitedByUserId", "state", "passwordSetAt", "passwordResetLastRequestedAt", "hasPassword"]
+    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "invitedByUserId", "state", "passwordSetAt", "passwordResetLastRequestedAt", "mfaMethods", "backupCodesGeneratedAt", "remainingBackupCodeCount", "hasPassword"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -101,6 +105,13 @@ class UserObject(BaseModel):
                 if _item_contact_methods:
                     _items.append(_item_contact_methods.to_dict())
             _dict['contactMethods'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in mfa_methods (list)
+        _items = []
+        if self.mfa_methods:
+            for _item_mfa_methods in self.mfa_methods:
+                if _item_mfa_methods:
+                    _items.append(_item_mfa_methods.to_dict())
+            _dict['mfaMethods'] = _items
         return _dict
 
     @classmethod
@@ -128,6 +139,9 @@ class UserObject(BaseModel):
             "state": obj.get("state"),
             "passwordSetAt": obj.get("passwordSetAt"),
             "passwordResetLastRequestedAt": obj.get("passwordResetLastRequestedAt"),
+            "mfaMethods": [MfaMethod.from_dict(_item) for _item in obj["mfaMethods"]] if obj.get("mfaMethods") is not None else None,
+            "backupCodesGeneratedAt": obj.get("backupCodesGeneratedAt"),
+            "remainingBackupCodeCount": obj.get("remainingBackupCodeCount"),
             "hasPassword": obj.get("hasPassword")
         })
         return _obj

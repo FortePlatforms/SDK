@@ -413,6 +413,11 @@ import {
     WebAppObjectFromJSON,
     WebAppObjectToJSON,
 } from '../models/WebAppObject';
+import {
+    type WebAppRuntimeMetricsResponse,
+    WebAppRuntimeMetricsResponseFromJSON,
+    WebAppRuntimeMetricsResponseToJSON,
+} from '../models/WebAppRuntimeMetricsResponse';
 
 export interface AdminAddUserContactMethodRequest {
     projectId: string;
@@ -437,6 +442,11 @@ export interface AdminRemoveUserContactMethodRequest {
     projectId: string;
     userId: string;
     contactMethodId: string;
+}
+
+export interface AdminResetUserMfaRequest {
+    projectId: string;
+    userId: string;
 }
 
 export interface AdminResetUserPasswordRequest {
@@ -707,6 +717,13 @@ export interface GetWebAppDeploymentRequest {
     buildId: string;
 }
 
+export interface GetWebAppRuntimeMetricsRequest {
+    projectId: string;
+    webAppId: string;
+    minTime?: Date;
+    maxTime?: Date;
+}
+
 export interface IssueImpersonationTokenRequest {
     projectId: string;
     userId: string;
@@ -838,6 +855,15 @@ export interface ListWebAppDeploymentsRequest {
     webAppId: string;
     minTime?: Date;
     maxTime?: Date;
+    nextToken?: string;
+}
+
+export interface ListWebAppLogLinesRequest {
+    projectId: string;
+    webAppId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    level?: string;
     nextToken?: string;
 }
 
@@ -990,6 +1016,16 @@ export interface SearchLogLinesRequest {
 export interface SearchUsersOperationRequest {
     projectId: string;
     searchUsersRequest: SearchUsersRequest;
+}
+
+export interface SearchWebAppLogLinesRequest {
+    projectId: string;
+    webAppId: string;
+    query: string;
+    minTime?: Date;
+    maxTime?: Date;
+    level?: string;
+    nextToken?: string;
 }
 
 export interface SendUserEmailOperationRequest {
@@ -1320,6 +1356,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async adminRemoveUserContactMethod(requestParameters: AdminRemoveUserContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.adminRemoveUserContactMethodRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for adminResetUserMfa without sending the request
+     */
+    async adminResetUserMfaRequestOpts(requestParameters: AdminResetUserMfaRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling adminResetUserMfa().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling adminResetUserMfa().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/mfa`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async adminResetUserMfaRaw(requestParameters: AdminResetUserMfaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserObject>> {
+        const requestOptions = await this.adminResetUserMfaRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async adminResetUserMfa(requestParameters: AdminResetUserMfaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserObject> {
+        const response = await this.adminResetUserMfaRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -3918,6 +4005,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getWebAppRuntimeMetrics without sending the request
+     */
+    async getWebAppRuntimeMetricsRequestOpts(requestParameters: GetWebAppRuntimeMetricsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getWebAppRuntimeMetrics().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling getWebAppRuntimeMetrics().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/runtime-metrics`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getWebAppRuntimeMetricsRaw(requestParameters: GetWebAppRuntimeMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebAppRuntimeMetricsResponse>> {
+        const requestOptions = await this.getWebAppRuntimeMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WebAppRuntimeMetricsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getWebAppRuntimeMetrics(requestParameters: GetWebAppRuntimeMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppRuntimeMetricsResponse> {
+        const response = await this.getWebAppRuntimeMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for issueImpersonationToken without sending the request
      */
     async issueImpersonationTokenRequestOpts(requestParameters: IssueImpersonationTokenRequest): Promise<runtime.RequestOpts> {
@@ -4996,6 +5142,73 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listWebAppDeployments(requestParameters: ListWebAppDeploymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseWebAppBuildRequestObject> {
         const response = await this.listWebAppDeploymentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listWebAppLogLines without sending the request
+     */
+    async listWebAppLogLinesRequestOpts(requestParameters: ListWebAppLogLinesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listWebAppLogLines().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling listWebAppLogLines().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['level'] != null) {
+            queryParameters['level'] = requestParameters['level'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/logs`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listWebAppLogLinesRaw(requestParameters: ListWebAppLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLogLineObject>> {
+        const requestOptions = await this.listWebAppLogLinesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseLogLineObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listWebAppLogLines(requestParameters: ListWebAppLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
+        const response = await this.listWebAppLogLinesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6465,6 +6678,84 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for searchWebAppLogLines without sending the request
+     */
+    async searchWebAppLogLinesRequestOpts(requestParameters: SearchWebAppLogLinesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling searchWebAppLogLines().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling searchWebAppLogLines().'
+            );
+        }
+
+        if (requestParameters['query'] == null) {
+            throw new runtime.RequiredError(
+                'query',
+                'Required parameter "query" was null or undefined when calling searchWebAppLogLines().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['query'] != null) {
+            queryParameters['query'] = requestParameters['query'];
+        }
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['level'] != null) {
+            queryParameters['level'] = requestParameters['level'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/log-search`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async searchWebAppLogLinesRaw(requestParameters: SearchWebAppLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLogLineObject>> {
+        const requestOptions = await this.searchWebAppLogLinesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseLogLineObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async searchWebAppLogLines(requestParameters: SearchWebAppLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
+        const response = await this.searchWebAppLogLinesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for sendUserEmail without sending the request
      */
     async sendUserEmailRequestOpts(requestParameters: SendUserEmailOperationRequest): Promise<runtime.RequestOpts> {
@@ -7325,7 +7616,16 @@ export const ListUserActionLogsActionTypeType = {
     PASSWORD_LOGIN_SUCCESS: 'PASSWORD_LOGIN_SUCCESS',
     PASSWORD_LOGIN_FAILED: 'PASSWORD_LOGIN_FAILED',
     PASSWORD_ADMIN_RESET: 'PASSWORD_ADMIN_RESET',
-    PASSWORD_ADMIN_FORCE_SET: 'PASSWORD_ADMIN_FORCE_SET'
+    PASSWORD_ADMIN_FORCE_SET: 'PASSWORD_ADMIN_FORCE_SET',
+    MFA_METHOD_ENROLLED: 'MFA_METHOD_ENROLLED',
+    MFA_METHOD_ACTIVATED: 'MFA_METHOD_ACTIVATED',
+    MFA_METHOD_REMOVED: 'MFA_METHOD_REMOVED',
+    MFA_CHALLENGE_SENT: 'MFA_CHALLENGE_SENT',
+    MFA_CHALLENGE_SUCCEEDED: 'MFA_CHALLENGE_SUCCEEDED',
+    MFA_CHALLENGE_FAILED: 'MFA_CHALLENGE_FAILED',
+    MFA_BACKUP_CODES_GENERATED: 'MFA_BACKUP_CODES_GENERATED',
+    MFA_BACKUP_CODE_USED: 'MFA_BACKUP_CODE_USED',
+    MFA_ADMIN_RESET: 'MFA_ADMIN_RESET'
 } as const;
 export type ListUserActionLogsActionTypeType = typeof ListUserActionLogsActionTypeType[keyof typeof ListUserActionLogsActionTypeType];
 /**

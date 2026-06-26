@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.payment_address import PaymentAddress
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem
+from forte_sdk.generated.models.payment_method_type import PaymentMethodType
 from forte_sdk.generated.models.state_history import StateHistory
 from typing import Optional, Set
 from typing_extensions import Self
@@ -44,6 +45,7 @@ class PaymentObject(BaseModel):
     metadata: Dict[str, StrictStr]
     customer_address: Optional[PaymentAddress] = Field(default=None, alias="customerAddress")
     shipping_address: Optional[PaymentAddress] = Field(default=None, alias="shippingAddress")
+    supported_payment_methods: List[PaymentMethodType] = Field(alias="supportedPaymentMethods")
     stripe_payment_intent_id: StrictStr = Field(alias="stripePaymentIntentId")
     stripe_status: Optional[StrictStr] = Field(default=None, alias="stripeStatus")
     stripe_tax_calculation_id: Optional[StrictStr] = Field(default=None, alias="stripeTaxCalculationId")
@@ -53,7 +55,7 @@ class PaymentObject(BaseModel):
     state_history: List[StateHistory] = Field(alias="stateHistory")
     created_at: datetime = Field(alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "stripePaymentIntentId", "stripeStatus", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionId", "subscriptionRenewalTime", "stateHistory", "createdAt", "updatedAt"]
+    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionId", "subscriptionRenewalTime", "stateHistory", "createdAt", "updatedAt"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -146,6 +148,7 @@ class PaymentObject(BaseModel):
             "metadata": obj.get("metadata"),
             "customerAddress": PaymentAddress.from_dict(obj["customerAddress"]) if obj.get("customerAddress") is not None else None,
             "shippingAddress": PaymentAddress.from_dict(obj["shippingAddress"]) if obj.get("shippingAddress") is not None else None,
+            "supportedPaymentMethods": obj.get("supportedPaymentMethods"),
             "stripePaymentIntentId": obj.get("stripePaymentIntentId"),
             "stripeStatus": obj.get("stripeStatus"),
             "stripeTaxCalculationId": obj.get("stripeTaxCalculationId"),

@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { MfaConfig } from './MfaConfig';
+import {
+    MfaConfigFromJSON,
+    MfaConfigFromJSONTyped,
+    MfaConfigToJSON,
+    MfaConfigToJSONTyped,
+} from './MfaConfig';
 import type { PasswordConfig } from './PasswordConfig';
 import {
     PasswordConfigFromJSON,
@@ -69,6 +76,12 @@ export interface UpdateProjectRequest {
      * @memberof UpdateProjectRequest
      */
     passwordConfig?: PasswordConfig;
+    /**
+     * 
+     * @type {MfaConfig}
+     * @memberof UpdateProjectRequest
+     */
+    mfaConfig?: MfaConfig;
 }
 
 /**
@@ -95,6 +108,7 @@ export function UpdateProjectRequestFromJSONTyped(json: any, ignoreDiscriminator
         'googleLoginEnabled': json['googleLoginEnabled'] == null ? undefined : json['googleLoginEnabled'],
         'passwordLoginEnabled': json['passwordLoginEnabled'] == null ? undefined : json['passwordLoginEnabled'],
         'passwordConfig': json['passwordConfig'] == null ? undefined : PasswordConfigFromJSON(json['passwordConfig']),
+        'mfaConfig': json['mfaConfig'] == null ? undefined : MfaConfigFromJSON(json['mfaConfig']),
     };
 }
 
@@ -116,6 +130,7 @@ export function UpdateProjectRequestToJSONTyped(value?: UpdateProjectRequest | n
         'googleLoginEnabled': value['googleLoginEnabled'],
         'passwordLoginEnabled': value['passwordLoginEnabled'],
         'passwordConfig': PasswordConfigToJSON(value['passwordConfig']),
+        'mfaConfig': MfaConfigToJSON(value['mfaConfig']),
     };
 }
 

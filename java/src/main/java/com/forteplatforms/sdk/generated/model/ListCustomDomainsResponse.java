@@ -36,13 +36,18 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * ListCustomDomainsResponse
  */
 @JsonPropertyOrder({
-  ListCustomDomainsResponse.JSON_PROPERTY_CUSTOM_DOMAINS
+  ListCustomDomainsResponse.JSON_PROPERTY_CUSTOM_DOMAINS,
+  ListCustomDomainsResponse.JSON_PROPERTY_HAS_SUCCESSFUL_DEPLOYMENT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ListCustomDomainsResponse {
   public static final String JSON_PROPERTY_CUSTOM_DOMAINS = "customDomains";
   @javax.annotation.Nullable
   private List<CustomDomain> customDomains = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_HAS_SUCCESSFUL_DEPLOYMENT = "hasSuccessfulDeployment";
+  @javax.annotation.Nullable
+  private Boolean hasSuccessfulDeployment;
 
   public ListCustomDomainsResponse() { 
   }
@@ -79,6 +84,30 @@ public class ListCustomDomainsResponse {
   }
 
 
+  public ListCustomDomainsResponse hasSuccessfulDeployment(@javax.annotation.Nullable Boolean hasSuccessfulDeployment) {
+    this.hasSuccessfulDeployment = hasSuccessfulDeployment;
+    return this;
+  }
+
+  /**
+   * Get hasSuccessfulDeployment
+   * @return hasSuccessfulDeployment
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_SUCCESSFUL_DEPLOYMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasSuccessfulDeployment() {
+    return hasSuccessfulDeployment;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_SUCCESSFUL_DEPLOYMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasSuccessfulDeployment(@javax.annotation.Nullable Boolean hasSuccessfulDeployment) {
+    this.hasSuccessfulDeployment = hasSuccessfulDeployment;
+  }
+
+
   /**
    * Return true if this ListCustomDomainsResponse object is equal to o.
    */
@@ -91,12 +120,13 @@ public class ListCustomDomainsResponse {
       return false;
     }
     ListCustomDomainsResponse listCustomDomainsResponse = (ListCustomDomainsResponse) o;
-    return Objects.equals(this.customDomains, listCustomDomainsResponse.customDomains);
+    return Objects.equals(this.customDomains, listCustomDomainsResponse.customDomains) &&
+        Objects.equals(this.hasSuccessfulDeployment, listCustomDomainsResponse.hasSuccessfulDeployment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customDomains);
+    return Objects.hash(customDomains, hasSuccessfulDeployment);
   }
 
   @Override
@@ -104,6 +134,7 @@ public class ListCustomDomainsResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListCustomDomainsResponse {\n");
     sb.append("    customDomains: ").append(toIndentedString(customDomains)).append("\n");
+    sb.append("    hasSuccessfulDeployment: ").append(toIndentedString(hasSuccessfulDeployment)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,6 +187,11 @@ public class ListCustomDomainsResponse {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `hasSuccessfulDeployment` to the URL query string
+    if (getHasSuccessfulDeployment() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasSuccessfulDeployment%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasSuccessfulDeployment()))));
     }
 
     return joiner.toString();

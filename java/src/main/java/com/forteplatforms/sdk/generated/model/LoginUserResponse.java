@@ -24,9 +24,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.MfaMethodSummary;
 import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
 import com.forteplatforms.sdk.generated.model.UserObject;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,7 +39,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   LoginUserResponse.JSON_PROPERTY_USER_OBJECT,
-  LoginUserResponse.JSON_PROPERTY_SESSION_TOKEN
+  LoginUserResponse.JSON_PROPERTY_SESSION_TOKEN,
+  LoginUserResponse.JSON_PROPERTY_MFA_STATUS,
+  LoginUserResponse.JSON_PROPERTY_AVAILABLE_MFA_METHODS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class LoginUserResponse {
@@ -47,6 +52,51 @@ public class LoginUserResponse {
   public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
   @javax.annotation.Nonnull
   private RenewSessionTokenResponse sessionToken;
+
+  /**
+   * Gets or Sets mfaStatus
+   */
+  public enum MfaStatusEnum {
+    SATISFIED(String.valueOf("SATISFIED")),
+    
+    CHALLENGE_REQUIRED(String.valueOf("CHALLENGE_REQUIRED")),
+    
+    ENROLLMENT_REQUIRED(String.valueOf("ENROLLMENT_REQUIRED"));
+
+    private String value;
+
+    MfaStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MfaStatusEnum fromValue(String value) {
+      for (MfaStatusEnum b : MfaStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MFA_STATUS = "mfaStatus";
+  @javax.annotation.Nullable
+  private MfaStatusEnum mfaStatus;
+
+  public static final String JSON_PROPERTY_AVAILABLE_MFA_METHODS = "availableMfaMethods";
+  @javax.annotation.Nullable
+  private List<MfaMethodSummary> availableMfaMethods = new ArrayList<>();
 
   public LoginUserResponse() { 
   }
@@ -99,6 +149,62 @@ public class LoginUserResponse {
   }
 
 
+  public LoginUserResponse mfaStatus(@javax.annotation.Nullable MfaStatusEnum mfaStatus) {
+    this.mfaStatus = mfaStatus;
+    return this;
+  }
+
+  /**
+   * Get mfaStatus
+   * @return mfaStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MFA_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MfaStatusEnum getMfaStatus() {
+    return mfaStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MFA_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMfaStatus(@javax.annotation.Nullable MfaStatusEnum mfaStatus) {
+    this.mfaStatus = mfaStatus;
+  }
+
+
+  public LoginUserResponse availableMfaMethods(@javax.annotation.Nullable List<MfaMethodSummary> availableMfaMethods) {
+    this.availableMfaMethods = availableMfaMethods;
+    return this;
+  }
+
+  public LoginUserResponse addAvailableMfaMethodsItem(MfaMethodSummary availableMfaMethodsItem) {
+    if (this.availableMfaMethods == null) {
+      this.availableMfaMethods = new ArrayList<>();
+    }
+    this.availableMfaMethods.add(availableMfaMethodsItem);
+    return this;
+  }
+
+  /**
+   * Get availableMfaMethods
+   * @return availableMfaMethods
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AVAILABLE_MFA_METHODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<MfaMethodSummary> getAvailableMfaMethods() {
+    return availableMfaMethods;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AVAILABLE_MFA_METHODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAvailableMfaMethods(@javax.annotation.Nullable List<MfaMethodSummary> availableMfaMethods) {
+    this.availableMfaMethods = availableMfaMethods;
+  }
+
+
   /**
    * Return true if this LoginUserResponse object is equal to o.
    */
@@ -112,12 +218,14 @@ public class LoginUserResponse {
     }
     LoginUserResponse loginUserResponse = (LoginUserResponse) o;
     return Objects.equals(this.userObject, loginUserResponse.userObject) &&
-        Objects.equals(this.sessionToken, loginUserResponse.sessionToken);
+        Objects.equals(this.sessionToken, loginUserResponse.sessionToken) &&
+        Objects.equals(this.mfaStatus, loginUserResponse.mfaStatus) &&
+        Objects.equals(this.availableMfaMethods, loginUserResponse.availableMfaMethods);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userObject, sessionToken);
+    return Objects.hash(userObject, sessionToken, mfaStatus, availableMfaMethods);
   }
 
   @Override
@@ -126,6 +234,8 @@ public class LoginUserResponse {
     sb.append("class LoginUserResponse {\n");
     sb.append("    userObject: ").append(toIndentedString(userObject)).append("\n");
     sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
+    sb.append("    mfaStatus: ").append(toIndentedString(mfaStatus)).append("\n");
+    sb.append("    availableMfaMethods: ").append(toIndentedString(availableMfaMethods)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -178,6 +288,21 @@ public class LoginUserResponse {
     // add `sessionToken` to the URL query string
     if (getSessionToken() != null) {
       joiner.add(getSessionToken().toUrlQueryString(prefix + "sessionToken" + suffix));
+    }
+
+    // add `mfaStatus` to the URL query string
+    if (getMfaStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smfaStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMfaStatus()))));
+    }
+
+    // add `availableMfaMethods` to the URL query string
+    if (getAvailableMfaMethods() != null) {
+      for (int i = 0; i < getAvailableMfaMethods().size(); i++) {
+        if (getAvailableMfaMethods().get(i) != null) {
+          joiner.add(getAvailableMfaMethods().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%savailableMfaMethods%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

@@ -17,11 +17,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from forte_sdk.generated.models.payment_address import PaymentAddress
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem
+from forte_sdk.generated.models.payment_method_type import PaymentMethodType
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -37,7 +38,9 @@ class CreatePaymentRequest(BaseModel):
     customer_address: Optional[PaymentAddress] = Field(default=None, alias="customerAddress")
     shipping_address: Optional[PaymentAddress] = Field(default=None, alias="shippingAddress")
     payment_method_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="paymentMethodId")
-    __properties: ClassVar[List[str]] = ["currency", "lineItems", "description", "metadata", "customerAddress", "shippingAddress", "paymentMethodId"]
+    supported_payment_methods: Optional[List[PaymentMethodType]] = Field(default=None, alias="supportedPaymentMethods")
+    off_session: Optional[StrictBool] = Field(default=None, alias="offSession")
+    __properties: ClassVar[List[str]] = ["currency", "lineItems", "description", "metadata", "customerAddress", "shippingAddress", "paymentMethodId", "supportedPaymentMethods", "offSession"]
 
     @field_validator('currency')
     def currency_validate_regular_expression(cls, value):
@@ -132,7 +135,9 @@ class CreatePaymentRequest(BaseModel):
             "metadata": obj.get("metadata"),
             "customerAddress": PaymentAddress.from_dict(obj["customerAddress"]) if obj.get("customerAddress") is not None else None,
             "shippingAddress": PaymentAddress.from_dict(obj["shippingAddress"]) if obj.get("shippingAddress") is not None else None,
-            "paymentMethodId": obj.get("paymentMethodId")
+            "paymentMethodId": obj.get("paymentMethodId"),
+            "supportedPaymentMethods": obj.get("supportedPaymentMethods"),
+            "offSession": obj.get("offSession")
         })
         return _obj
 

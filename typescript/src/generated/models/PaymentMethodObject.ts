@@ -63,6 +63,18 @@ export interface PaymentMethodObject {
     funding?: string;
     /**
      * 
+     * @type {string}
+     * @memberof PaymentMethodObject
+     */
+    bankName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentMethodObject
+     */
+    accountType?: string;
+    /**
+     * 
      * @type {boolean}
      * @memberof PaymentMethodObject
      */
@@ -96,6 +108,8 @@ export function PaymentMethodObjectFromJSONTyped(json: any, ignoreDiscriminator:
         'expMonth': json['expMonth'] == null ? undefined : json['expMonth'],
         'expYear': json['expYear'] == null ? undefined : json['expYear'],
         'funding': json['funding'] == null ? undefined : json['funding'],
+        'bankName': json['bankName'] == null ? undefined : json['bankName'],
+        'accountType': json['accountType'] == null ? undefined : json['accountType'],
         'isDefault': json['isDefault'],
     };
 }
@@ -118,6 +132,8 @@ export function PaymentMethodObjectToJSONTyped(value?: PaymentMethodObject | nul
         'expMonth': value['expMonth'],
         'expYear': value['expYear'],
         'funding': value['funding'],
+        'bankName': value['bankName'],
+        'accountType': value['accountType'],
         'isDefault': value['isDefault'],
     };
 }

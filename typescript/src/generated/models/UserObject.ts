@@ -20,6 +20,13 @@ import {
     ContactMethodToJSON,
     ContactMethodToJSONTyped,
 } from './ContactMethod';
+import type { MfaMethod } from './MfaMethod';
+import {
+    MfaMethodFromJSON,
+    MfaMethodFromJSONTyped,
+    MfaMethodToJSON,
+    MfaMethodToJSONTyped,
+} from './MfaMethod';
 
 /**
  * 
@@ -119,6 +126,24 @@ export interface UserObject {
     passwordResetLastRequestedAt?: Date;
     /**
      * 
+     * @type {Array<MfaMethod>}
+     * @memberof UserObject
+     */
+    mfaMethods?: Array<MfaMethod>;
+    /**
+     * 
+     * @type {Date}
+     * @memberof UserObject
+     */
+    backupCodesGeneratedAt?: Date;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserObject
+     */
+    remainingBackupCodeCount?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof UserObject
      */
@@ -175,6 +200,9 @@ export function UserObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'state': json['state'],
         'passwordSetAt': json['passwordSetAt'] == null ? undefined : (new Date(json['passwordSetAt'])),
         'passwordResetLastRequestedAt': json['passwordResetLastRequestedAt'] == null ? undefined : (new Date(json['passwordResetLastRequestedAt'])),
+        'mfaMethods': json['mfaMethods'] == null ? undefined : ((json['mfaMethods'] as Array<any>).map(MfaMethodFromJSON)),
+        'backupCodesGeneratedAt': json['backupCodesGeneratedAt'] == null ? undefined : (new Date(json['backupCodesGeneratedAt'])),
+        'remainingBackupCodeCount': json['remainingBackupCodeCount'] == null ? undefined : json['remainingBackupCodeCount'],
         'hasPassword': json['hasPassword'] == null ? undefined : json['hasPassword'],
     };
 }
@@ -205,6 +233,9 @@ export function UserObjectToJSONTyped(value?: UserObject | null, ignoreDiscrimin
         'state': value['state'],
         'passwordSetAt': value['passwordSetAt'] == null ? value['passwordSetAt'] : value['passwordSetAt'].toISOString(),
         'passwordResetLastRequestedAt': value['passwordResetLastRequestedAt'] == null ? value['passwordResetLastRequestedAt'] : value['passwordResetLastRequestedAt'].toISOString(),
+        'mfaMethods': value['mfaMethods'] == null ? undefined : ((value['mfaMethods'] as Array<any>).map(MfaMethodToJSON)),
+        'backupCodesGeneratedAt': value['backupCodesGeneratedAt'] == null ? value['backupCodesGeneratedAt'] : value['backupCodesGeneratedAt'].toISOString(),
+        'remainingBackupCodeCount': value['remainingBackupCodeCount'],
         'hasPassword': value['hasPassword'],
     };
 }

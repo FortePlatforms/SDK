@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PaymentMethodType } from './PaymentMethodType';
+import {
+    PaymentMethodTypeFromJSON,
+    PaymentMethodTypeFromJSONTyped,
+    PaymentMethodTypeToJSON,
+    PaymentMethodTypeToJSONTyped,
+} from './PaymentMethodType';
 import type { PaymentAddress } from './PaymentAddress';
 import {
     PaymentAddressFromJSON,
@@ -76,6 +83,18 @@ export interface CreatePaymentRequest {
      * @memberof CreatePaymentRequest
      */
     paymentMethodId?: string;
+    /**
+     * 
+     * @type {Array<PaymentMethodType>}
+     * @memberof CreatePaymentRequest
+     */
+    supportedPaymentMethods?: Array<PaymentMethodType>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreatePaymentRequest
+     */
+    offSession?: boolean;
 }
 
 /**
@@ -104,6 +123,8 @@ export function CreatePaymentRequestFromJSONTyped(json: any, ignoreDiscriminator
         'customerAddress': json['customerAddress'] == null ? undefined : PaymentAddressFromJSON(json['customerAddress']),
         'shippingAddress': json['shippingAddress'] == null ? undefined : PaymentAddressFromJSON(json['shippingAddress']),
         'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
+        'supportedPaymentMethods': json['supportedPaymentMethods'] == null ? undefined : ((json['supportedPaymentMethods'] as Array<any>).map(PaymentMethodTypeFromJSON)),
+        'offSession': json['offSession'] == null ? undefined : json['offSession'],
     };
 }
 
@@ -125,6 +146,8 @@ export function CreatePaymentRequestToJSONTyped(value?: CreatePaymentRequest | n
         'customerAddress': PaymentAddressToJSON(value['customerAddress']),
         'shippingAddress': PaymentAddressToJSON(value['shippingAddress']),
         'paymentMethodId': value['paymentMethodId'],
+        'supportedPaymentMethods': value['supportedPaymentMethods'] == null ? undefined : ((value['supportedPaymentMethods'] as Array<any>).map(PaymentMethodTypeToJSON)),
+        'offSession': value['offSession'],
     };
 }
 

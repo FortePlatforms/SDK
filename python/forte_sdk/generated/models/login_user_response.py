@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.mfa_method_summary import MfaMethodSummary
 from forte_sdk.generated.models.renew_session_token_response import RenewSessionTokenResponse
 from forte_sdk.generated.models.user_object import UserObject
 from typing import Optional, Set
@@ -31,7 +32,19 @@ class LoginUserResponse(BaseModel):
     """ # noqa: E501
     user_object: UserObject = Field(alias="userObject")
     session_token: RenewSessionTokenResponse = Field(alias="sessionToken")
-    __properties: ClassVar[List[str]] = ["userObject", "sessionToken"]
+    mfa_status: Optional[StrictStr] = Field(default=None, alias="mfaStatus")
+    available_mfa_methods: Optional[List[MfaMethodSummary]] = Field(default=None, alias="availableMfaMethods")
+    __properties: ClassVar[List[str]] = ["userObject", "sessionToken", "mfaStatus", "availableMfaMethods"]
+
+    @field_validator('mfa_status')
+    def mfa_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['SATISFIED', 'CHALLENGE_REQUIRED', 'ENROLLMENT_REQUIRED']):
+            raise ValueError("must be one of enum values ('SATISFIED', 'CHALLENGE_REQUIRED', 'ENROLLMENT_REQUIRED')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -78,6 +91,13 @@ class LoginUserResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of session_token
         if self.session_token:
             _dict['sessionToken'] = self.session_token.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in available_mfa_methods (list)
+        _items = []
+        if self.available_mfa_methods:
+            for _item_available_mfa_methods in self.available_mfa_methods:
+                if _item_available_mfa_methods:
+                    _items.append(_item_available_mfa_methods.to_dict())
+            _dict['availableMfaMethods'] = _items
         return _dict
 
     @classmethod
@@ -91,7 +111,9 @@ class LoginUserResponse(BaseModel):
 
         _obj = cls.model_validate({
             "userObject": UserObject.from_dict(obj["userObject"]) if obj.get("userObject") is not None else None,
-            "sessionToken": RenewSessionTokenResponse.from_dict(obj["sessionToken"]) if obj.get("sessionToken") is not None else None
+            "sessionToken": RenewSessionTokenResponse.from_dict(obj["sessionToken"]) if obj.get("sessionToken") is not None else None,
+            "mfaStatus": obj.get("mfaStatus"),
+            "availableMfaMethods": [MfaMethodSummary.from_dict(_item) for _item in obj["availableMfaMethods"]] if obj.get("availableMfaMethods") is not None else None
         })
         return _obj
 

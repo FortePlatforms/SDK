@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.custom_domain import CustomDomain
 from typing import Optional, Set
@@ -29,7 +29,8 @@ class ListCustomDomainsResponse(BaseModel):
     ListCustomDomainsResponse
     """ # noqa: E501
     custom_domains: Optional[List[CustomDomain]] = Field(default=None, alias="customDomains")
-    __properties: ClassVar[List[str]] = ["customDomains"]
+    has_successful_deployment: Optional[StrictBool] = Field(default=None, alias="hasSuccessfulDeployment")
+    __properties: ClassVar[List[str]] = ["customDomains", "hasSuccessfulDeployment"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -89,7 +90,8 @@ class ListCustomDomainsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "customDomains": [CustomDomain.from_dict(_item) for _item in obj["customDomains"]] if obj.get("customDomains") is not None else None
+            "customDomains": [CustomDomain.from_dict(_item) for _item in obj["customDomains"]] if obj.get("customDomains") is not None else None,
+            "hasSuccessfulDeployment": obj.get("hasSuccessfulDeployment")
         })
         return _obj
 

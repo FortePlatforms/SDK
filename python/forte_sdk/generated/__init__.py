@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.234"
+__version__ = "1.0.242"
 
 # Define package exports
 __all__ = [
@@ -36,11 +36,13 @@ __all__ = [
     "ActionScheduleType",
     "ActionsMetricsBucket",
     "ActionsMetricsResponse",
+    "ActivateMfaMethodRequest",
     "AddContactMethodRequest",
     "AdminForceSetPasswordRequest",
     "AdminOverrideContactMethodRequest",
     "AdminPasswordResetResponse",
     "ApiKeySummary",
+    "BackupCodesResponse",
     "BuildStepLog",
     "ChangePasswordRequest",
     "CompleteOtpLoginRequest",
@@ -54,6 +56,8 @@ __all__ = [
     "CreateContentUploadLinkResponse",
     "CreateCustomDomainRequest",
     "CreateForteServiceRequest",
+    "CreateMfaMethodRequest",
+    "CreateMfaMethodResponse",
     "CreateOtpLoginRequest",
     "CreateOtpLoginResponse",
     "CreatePaymentMethodResponse",
@@ -92,9 +96,16 @@ __all__ = [
     "LatencyStats",
     "ListContentResponse",
     "ListCustomDomainsResponse",
+    "ListMfaMethodsResponse",
     "ListUserInvitesResponse",
     "LogLineObject",
     "LoginUserResponse",
+    "MfaChallengeRequest",
+    "MfaChallengeResponse",
+    "MfaConfig",
+    "MfaMethod",
+    "MfaMethodSummary",
+    "MfaVerifyRequest",
     "NotificationTemplatesConfig",
     "NotificationTemplatesResponse",
     "PaginatedResponseActionInvocationObject",
@@ -111,6 +122,7 @@ __all__ = [
     "PaymentAnalyticsResponse",
     "PaymentLineItem",
     "PaymentMethodObject",
+    "PaymentMethodType",
     "PaymentObject",
     "PaymentTriggerConfig",
     "PendingUserInviteObject",
@@ -119,6 +131,7 @@ __all__ = [
     "PutSubscriptionItemsRequest",
     "RegisterUserRequest",
     "RegisterUserResponse",
+    "RenameMfaMethodRequest",
     "RenewSessionTokenResponse",
     "RepositoryAnalysis",
     "RequestLogObject",
@@ -163,6 +176,7 @@ __all__ = [
     "WebAppDetectionError",
     "WebAppDetectionResponse",
     "WebAppObject",
+    "WebAppRuntimeMetricsResponse",
 ]
 
 # import apis into sdk package
@@ -188,11 +202,13 @@ from forte_sdk.generated.models.action_object import ActionObject as ActionObjec
 from forte_sdk.generated.models.action_schedule_type import ActionScheduleType as ActionScheduleType
 from forte_sdk.generated.models.actions_metrics_bucket import ActionsMetricsBucket as ActionsMetricsBucket
 from forte_sdk.generated.models.actions_metrics_response import ActionsMetricsResponse as ActionsMetricsResponse
+from forte_sdk.generated.models.activate_mfa_method_request import ActivateMfaMethodRequest as ActivateMfaMethodRequest
 from forte_sdk.generated.models.add_contact_method_request import AddContactMethodRequest as AddContactMethodRequest
 from forte_sdk.generated.models.admin_force_set_password_request import AdminForceSetPasswordRequest as AdminForceSetPasswordRequest
 from forte_sdk.generated.models.admin_override_contact_method_request import AdminOverrideContactMethodRequest as AdminOverrideContactMethodRequest
 from forte_sdk.generated.models.admin_password_reset_response import AdminPasswordResetResponse as AdminPasswordResetResponse
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary as ApiKeySummary
+from forte_sdk.generated.models.backup_codes_response import BackupCodesResponse as BackupCodesResponse
 from forte_sdk.generated.models.build_step_log import BuildStepLog as BuildStepLog
 from forte_sdk.generated.models.change_password_request import ChangePasswordRequest as ChangePasswordRequest
 from forte_sdk.generated.models.complete_otp_login_request import CompleteOtpLoginRequest as CompleteOtpLoginRequest
@@ -206,6 +222,8 @@ from forte_sdk.generated.models.create_content_upload_link_request import Create
 from forte_sdk.generated.models.create_content_upload_link_response import CreateContentUploadLinkResponse as CreateContentUploadLinkResponse
 from forte_sdk.generated.models.create_custom_domain_request import CreateCustomDomainRequest as CreateCustomDomainRequest
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest as CreateForteServiceRequest
+from forte_sdk.generated.models.create_mfa_method_request import CreateMfaMethodRequest as CreateMfaMethodRequest
+from forte_sdk.generated.models.create_mfa_method_response import CreateMfaMethodResponse as CreateMfaMethodResponse
 from forte_sdk.generated.models.create_otp_login_request import CreateOtpLoginRequest as CreateOtpLoginRequest
 from forte_sdk.generated.models.create_otp_login_response import CreateOtpLoginResponse as CreateOtpLoginResponse
 from forte_sdk.generated.models.create_payment_method_response import CreatePaymentMethodResponse as CreatePaymentMethodResponse
@@ -244,9 +262,16 @@ from forte_sdk.generated.models.latency_metrics import LatencyMetrics as Latency
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats
 from forte_sdk.generated.models.list_content_response import ListContentResponse as ListContentResponse
 from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse as ListCustomDomainsResponse
+from forte_sdk.generated.models.list_mfa_methods_response import ListMfaMethodsResponse as ListMfaMethodsResponse
 from forte_sdk.generated.models.list_user_invites_response import ListUserInvitesResponse as ListUserInvitesResponse
 from forte_sdk.generated.models.log_line_object import LogLineObject as LogLineObject
 from forte_sdk.generated.models.login_user_response import LoginUserResponse as LoginUserResponse
+from forte_sdk.generated.models.mfa_challenge_request import MfaChallengeRequest as MfaChallengeRequest
+from forte_sdk.generated.models.mfa_challenge_response import MfaChallengeResponse as MfaChallengeResponse
+from forte_sdk.generated.models.mfa_config import MfaConfig as MfaConfig
+from forte_sdk.generated.models.mfa_method import MfaMethod as MfaMethod
+from forte_sdk.generated.models.mfa_method_summary import MfaMethodSummary as MfaMethodSummary
+from forte_sdk.generated.models.mfa_verify_request import MfaVerifyRequest as MfaVerifyRequest
 from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig as NotificationTemplatesConfig
 from forte_sdk.generated.models.notification_templates_response import NotificationTemplatesResponse as NotificationTemplatesResponse
 from forte_sdk.generated.models.paginated_response_action_invocation_object import PaginatedResponseActionInvocationObject as PaginatedResponseActionInvocationObject
@@ -263,6 +288,7 @@ from forte_sdk.generated.models.payment_address import PaymentAddress as Payment
 from forte_sdk.generated.models.payment_analytics_response import PaymentAnalyticsResponse as PaymentAnalyticsResponse
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem as PaymentLineItem
 from forte_sdk.generated.models.payment_method_object import PaymentMethodObject as PaymentMethodObject
+from forte_sdk.generated.models.payment_method_type import PaymentMethodType as PaymentMethodType
 from forte_sdk.generated.models.payment_object import PaymentObject as PaymentObject
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig as PaymentTriggerConfig
 from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject as PendingUserInviteObject
@@ -271,6 +297,7 @@ from forte_sdk.generated.models.project_object import ProjectObject as ProjectOb
 from forte_sdk.generated.models.put_subscription_items_request import PutSubscriptionItemsRequest as PutSubscriptionItemsRequest
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest as RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse as RegisterUserResponse
+from forte_sdk.generated.models.rename_mfa_method_request import RenameMfaMethodRequest as RenameMfaMethodRequest
 from forte_sdk.generated.models.renew_session_token_response import RenewSessionTokenResponse as RenewSessionTokenResponse
 from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis as RepositoryAnalysis
 from forte_sdk.generated.models.request_log_object import RequestLogObject as RequestLogObject
@@ -315,4 +342,5 @@ from forte_sdk.generated.models.web_app_build_request_object import WebAppBuildR
 from forte_sdk.generated.models.web_app_detection_error import WebAppDetectionError as WebAppDetectionError
 from forte_sdk.generated.models.web_app_detection_response import WebAppDetectionResponse as WebAppDetectionResponse
 from forte_sdk.generated.models.web_app_object import WebAppObject as WebAppObject
+from forte_sdk.generated.models.web_app_runtime_metrics_response import WebAppRuntimeMetricsResponse as WebAppRuntimeMetricsResponse
 

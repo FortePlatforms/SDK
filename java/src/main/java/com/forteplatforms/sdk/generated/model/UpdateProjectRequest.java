@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.MfaConfig;
 import com.forteplatforms.sdk.generated.model.PasswordConfig;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -40,7 +41,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateProjectRequest.JSON_PROPERTY_EMAIL_LOGIN_ENABLED,
   UpdateProjectRequest.JSON_PROPERTY_GOOGLE_LOGIN_ENABLED,
   UpdateProjectRequest.JSON_PROPERTY_PASSWORD_LOGIN_ENABLED,
-  UpdateProjectRequest.JSON_PROPERTY_PASSWORD_CONFIG
+  UpdateProjectRequest.JSON_PROPERTY_PASSWORD_CONFIG,
+  UpdateProjectRequest.JSON_PROPERTY_MFA_CONFIG
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateProjectRequest {
@@ -71,6 +73,10 @@ public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_PASSWORD_CONFIG = "passwordConfig";
   @javax.annotation.Nullable
   private PasswordConfig passwordConfig;
+
+  public static final String JSON_PROPERTY_MFA_CONFIG = "mfaConfig";
+  @javax.annotation.Nullable
+  private MfaConfig mfaConfig;
 
   public UpdateProjectRequest() { 
   }
@@ -243,6 +249,30 @@ public class UpdateProjectRequest {
   }
 
 
+  public UpdateProjectRequest mfaConfig(@javax.annotation.Nullable MfaConfig mfaConfig) {
+    this.mfaConfig = mfaConfig;
+    return this;
+  }
+
+  /**
+   * Get mfaConfig
+   * @return mfaConfig
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MFA_CONFIG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MfaConfig getMfaConfig() {
+    return mfaConfig;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MFA_CONFIG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMfaConfig(@javax.annotation.Nullable MfaConfig mfaConfig) {
+    this.mfaConfig = mfaConfig;
+  }
+
+
   /**
    * Return true if this UpdateProjectRequest object is equal to o.
    */
@@ -261,12 +291,13 @@ public class UpdateProjectRequest {
         Objects.equals(this.emailLoginEnabled, updateProjectRequest.emailLoginEnabled) &&
         Objects.equals(this.googleLoginEnabled, updateProjectRequest.googleLoginEnabled) &&
         Objects.equals(this.passwordLoginEnabled, updateProjectRequest.passwordLoginEnabled) &&
-        Objects.equals(this.passwordConfig, updateProjectRequest.passwordConfig);
+        Objects.equals(this.passwordConfig, updateProjectRequest.passwordConfig) &&
+        Objects.equals(this.mfaConfig, updateProjectRequest.mfaConfig);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(googleOAuthClientId, recaptchaSecretKey, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig);
+    return Objects.hash(googleOAuthClientId, recaptchaSecretKey, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig);
   }
 
   @Override
@@ -280,6 +311,7 @@ public class UpdateProjectRequest {
     sb.append("    googleLoginEnabled: ").append(toIndentedString(googleLoginEnabled)).append("\n");
     sb.append("    passwordLoginEnabled: ").append(toIndentedString(passwordLoginEnabled)).append("\n");
     sb.append("    passwordConfig: ").append(toIndentedString(passwordConfig)).append("\n");
+    sb.append("    mfaConfig: ").append(toIndentedString(mfaConfig)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -357,6 +389,11 @@ public class UpdateProjectRequest {
     // add `passwordConfig` to the URL query string
     if (getPasswordConfig() != null) {
       joiner.add(getPasswordConfig().toUrlQueryString(prefix + "passwordConfig" + suffix));
+    }
+
+    // add `mfaConfig` to the URL query string
+    if (getMfaConfig() != null) {
+      joiner.add(getMfaConfig().toUrlQueryString(prefix + "mfaConfig" + suffix));
     }
 
     return joiner.toString();

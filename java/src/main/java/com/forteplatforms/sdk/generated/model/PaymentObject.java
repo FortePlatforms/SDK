@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.PaymentAddress;
 import com.forteplatforms.sdk.generated.model.PaymentLineItem;
+import com.forteplatforms.sdk.generated.model.PaymentMethodType;
 import com.forteplatforms.sdk.generated.model.StateHistory;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentObject.JSON_PROPERTY_METADATA,
   PaymentObject.JSON_PROPERTY_CUSTOMER_ADDRESS,
   PaymentObject.JSON_PROPERTY_SHIPPING_ADDRESS,
+  PaymentObject.JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS,
   PaymentObject.JSON_PROPERTY_STRIPE_PAYMENT_INTENT_ID,
   PaymentObject.JSON_PROPERTY_STRIPE_STATUS,
   PaymentObject.JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID,
@@ -160,6 +162,10 @@ public class PaymentObject {
   public static final String JSON_PROPERTY_SHIPPING_ADDRESS = "shippingAddress";
   @javax.annotation.Nullable
   private PaymentAddress shippingAddress;
+
+  public static final String JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS = "supportedPaymentMethods";
+  @javax.annotation.Nonnull
+  private List<PaymentMethodType> supportedPaymentMethods = new ArrayList<>();
 
   public static final String JSON_PROPERTY_STRIPE_PAYMENT_INTENT_ID = "stripePaymentIntentId";
   @javax.annotation.Nonnull
@@ -528,6 +534,38 @@ public class PaymentObject {
   }
 
 
+  public PaymentObject supportedPaymentMethods(@javax.annotation.Nonnull List<PaymentMethodType> supportedPaymentMethods) {
+    this.supportedPaymentMethods = supportedPaymentMethods;
+    return this;
+  }
+
+  public PaymentObject addSupportedPaymentMethodsItem(PaymentMethodType supportedPaymentMethodsItem) {
+    if (this.supportedPaymentMethods == null) {
+      this.supportedPaymentMethods = new ArrayList<>();
+    }
+    this.supportedPaymentMethods.add(supportedPaymentMethodsItem);
+    return this;
+  }
+
+  /**
+   * Get supportedPaymentMethods
+   * @return supportedPaymentMethods
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<PaymentMethodType> getSupportedPaymentMethods() {
+    return supportedPaymentMethods;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSupportedPaymentMethods(@javax.annotation.Nonnull List<PaymentMethodType> supportedPaymentMethods) {
+    this.supportedPaymentMethods = supportedPaymentMethods;
+  }
+
+
   public PaymentObject stripePaymentIntentId(@javax.annotation.Nonnull String stripePaymentIntentId) {
     this.stripePaymentIntentId = stripePaymentIntentId;
     return this;
@@ -777,6 +815,7 @@ public class PaymentObject {
         Objects.equals(this.metadata, paymentObject.metadata) &&
         Objects.equals(this.customerAddress, paymentObject.customerAddress) &&
         Objects.equals(this.shippingAddress, paymentObject.shippingAddress) &&
+        Objects.equals(this.supportedPaymentMethods, paymentObject.supportedPaymentMethods) &&
         Objects.equals(this.stripePaymentIntentId, paymentObject.stripePaymentIntentId) &&
         Objects.equals(this.stripeStatus, paymentObject.stripeStatus) &&
         Objects.equals(this.stripeTaxCalculationId, paymentObject.stripeTaxCalculationId) &&
@@ -790,7 +829,7 @@ public class PaymentObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, taxCents, amountCents, currency, description, lineItems, metadata, customerAddress, shippingAddress, stripePaymentIntentId, stripeStatus, stripeTaxCalculationId, stripeTaxTransactionId, subscriptionId, subscriptionRenewalTime, stateHistory, createdAt, updatedAt);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, taxCents, amountCents, currency, description, lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, stripeStatus, stripeTaxCalculationId, stripeTaxTransactionId, subscriptionId, subscriptionRenewalTime, stateHistory, createdAt, updatedAt);
   }
 
   @Override
@@ -810,6 +849,7 @@ public class PaymentObject {
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    customerAddress: ").append(toIndentedString(customerAddress)).append("\n");
     sb.append("    shippingAddress: ").append(toIndentedString(shippingAddress)).append("\n");
+    sb.append("    supportedPaymentMethods: ").append(toIndentedString(supportedPaymentMethods)).append("\n");
     sb.append("    stripePaymentIntentId: ").append(toIndentedString(stripePaymentIntentId)).append("\n");
     sb.append("    stripeStatus: ").append(toIndentedString(stripeStatus)).append("\n");
     sb.append("    stripeTaxCalculationId: ").append(toIndentedString(stripeTaxCalculationId)).append("\n");
@@ -935,6 +975,17 @@ public class PaymentObject {
     // add `shippingAddress` to the URL query string
     if (getShippingAddress() != null) {
       joiner.add(getShippingAddress().toUrlQueryString(prefix + "shippingAddress" + suffix));
+    }
+
+    // add `supportedPaymentMethods` to the URL query string
+    if (getSupportedPaymentMethods() != null) {
+      for (int i = 0; i < getSupportedPaymentMethods().size(); i++) {
+        if (getSupportedPaymentMethods().get(i) != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%ssupportedPaymentMethods%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(getSupportedPaymentMethods().get(i)))));
+        }
+      }
     }
 
     // add `stripePaymentIntentId` to the URL query string

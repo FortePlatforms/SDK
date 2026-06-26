@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.PaymentAddress;
 import com.forteplatforms.sdk.generated.model.PaymentLineItem;
+import com.forteplatforms.sdk.generated.model.PaymentMethodType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -45,7 +46,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreatePaymentRequest.JSON_PROPERTY_METADATA,
   CreatePaymentRequest.JSON_PROPERTY_CUSTOMER_ADDRESS,
   CreatePaymentRequest.JSON_PROPERTY_SHIPPING_ADDRESS,
-  CreatePaymentRequest.JSON_PROPERTY_PAYMENT_METHOD_ID
+  CreatePaymentRequest.JSON_PROPERTY_PAYMENT_METHOD_ID,
+  CreatePaymentRequest.JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS,
+  CreatePaymentRequest.JSON_PROPERTY_OFF_SESSION
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreatePaymentRequest {
@@ -76,6 +79,14 @@ public class CreatePaymentRequest {
   public static final String JSON_PROPERTY_PAYMENT_METHOD_ID = "paymentMethodId";
   @javax.annotation.Nullable
   private String paymentMethodId;
+
+  public static final String JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS = "supportedPaymentMethods";
+  @javax.annotation.Nullable
+  private List<PaymentMethodType> supportedPaymentMethods = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_OFF_SESSION = "offSession";
+  @javax.annotation.Nullable
+  private Boolean offSession;
 
   public CreatePaymentRequest() { 
   }
@@ -264,6 +275,62 @@ public class CreatePaymentRequest {
   }
 
 
+  public CreatePaymentRequest supportedPaymentMethods(@javax.annotation.Nullable List<PaymentMethodType> supportedPaymentMethods) {
+    this.supportedPaymentMethods = supportedPaymentMethods;
+    return this;
+  }
+
+  public CreatePaymentRequest addSupportedPaymentMethodsItem(PaymentMethodType supportedPaymentMethodsItem) {
+    if (this.supportedPaymentMethods == null) {
+      this.supportedPaymentMethods = new ArrayList<>();
+    }
+    this.supportedPaymentMethods.add(supportedPaymentMethodsItem);
+    return this;
+  }
+
+  /**
+   * Get supportedPaymentMethods
+   * @return supportedPaymentMethods
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<PaymentMethodType> getSupportedPaymentMethods() {
+    return supportedPaymentMethods;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSupportedPaymentMethods(@javax.annotation.Nullable List<PaymentMethodType> supportedPaymentMethods) {
+    this.supportedPaymentMethods = supportedPaymentMethods;
+  }
+
+
+  public CreatePaymentRequest offSession(@javax.annotation.Nullable Boolean offSession) {
+    this.offSession = offSession;
+    return this;
+  }
+
+  /**
+   * Get offSession
+   * @return offSession
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OFF_SESSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getOffSession() {
+    return offSession;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OFF_SESSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOffSession(@javax.annotation.Nullable Boolean offSession) {
+    this.offSession = offSession;
+  }
+
+
   /**
    * Return true if this CreatePaymentRequest object is equal to o.
    */
@@ -282,12 +349,14 @@ public class CreatePaymentRequest {
         Objects.equals(this.metadata, createPaymentRequest.metadata) &&
         Objects.equals(this.customerAddress, createPaymentRequest.customerAddress) &&
         Objects.equals(this.shippingAddress, createPaymentRequest.shippingAddress) &&
-        Objects.equals(this.paymentMethodId, createPaymentRequest.paymentMethodId);
+        Objects.equals(this.paymentMethodId, createPaymentRequest.paymentMethodId) &&
+        Objects.equals(this.supportedPaymentMethods, createPaymentRequest.supportedPaymentMethods) &&
+        Objects.equals(this.offSession, createPaymentRequest.offSession);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, lineItems, description, metadata, customerAddress, shippingAddress, paymentMethodId);
+    return Objects.hash(currency, lineItems, description, metadata, customerAddress, shippingAddress, paymentMethodId, supportedPaymentMethods, offSession);
   }
 
   @Override
@@ -301,6 +370,8 @@ public class CreatePaymentRequest {
     sb.append("    customerAddress: ").append(toIndentedString(customerAddress)).append("\n");
     sb.append("    shippingAddress: ").append(toIndentedString(shippingAddress)).append("\n");
     sb.append("    paymentMethodId: ").append(toIndentedString(paymentMethodId)).append("\n");
+    sb.append("    supportedPaymentMethods: ").append(toIndentedString(supportedPaymentMethods)).append("\n");
+    sb.append("    offSession: ").append(toIndentedString(offSession)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -387,6 +458,22 @@ public class CreatePaymentRequest {
     // add `paymentMethodId` to the URL query string
     if (getPaymentMethodId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spaymentMethodId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPaymentMethodId()))));
+    }
+
+    // add `supportedPaymentMethods` to the URL query string
+    if (getSupportedPaymentMethods() != null) {
+      for (int i = 0; i < getSupportedPaymentMethods().size(); i++) {
+        if (getSupportedPaymentMethods().get(i) != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%ssupportedPaymentMethods%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(getSupportedPaymentMethods().get(i)))));
+        }
+      }
+    }
+
+    // add `offSession` to the URL query string
+    if (getOffSession() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soffSession%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOffSession()))));
     }
 
     return joiner.toString();

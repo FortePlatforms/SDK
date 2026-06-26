@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PaymentMethodType } from './PaymentMethodType';
+import {
+    PaymentMethodTypeFromJSON,
+    PaymentMethodTypeFromJSONTyped,
+    PaymentMethodTypeToJSON,
+    PaymentMethodTypeToJSONTyped,
+} from './PaymentMethodType';
 import type { PaymentAddress } from './PaymentAddress';
 import {
     PaymentAddressFromJSON,
@@ -121,6 +128,12 @@ export interface PaymentObject {
     shippingAddress?: PaymentAddress;
     /**
      * 
+     * @type {Array<PaymentMethodType>}
+     * @memberof PaymentObject
+     */
+    supportedPaymentMethods: Array<PaymentMethodType>;
+    /**
+     * 
      * @type {string}
      * @memberof PaymentObject
      */
@@ -202,6 +215,7 @@ export function instanceOfPaymentObject(value: object): value is PaymentObject {
     if (!('currency' in value) || value['currency'] === undefined) return false;
     if (!('lineItems' in value) || value['lineItems'] === undefined) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
+    if (!('supportedPaymentMethods' in value) || value['supportedPaymentMethods'] === undefined) return false;
     if (!('stripePaymentIntentId' in value) || value['stripePaymentIntentId'] === undefined) return false;
     if (!('stateHistory' in value) || value['stateHistory'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
@@ -231,6 +245,7 @@ export function PaymentObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'metadata': json['metadata'],
         'customerAddress': json['customerAddress'] == null ? undefined : PaymentAddressFromJSON(json['customerAddress']),
         'shippingAddress': json['shippingAddress'] == null ? undefined : PaymentAddressFromJSON(json['shippingAddress']),
+        'supportedPaymentMethods': ((json['supportedPaymentMethods'] as Array<any>).map(PaymentMethodTypeFromJSON)),
         'stripePaymentIntentId': json['stripePaymentIntentId'],
         'stripeStatus': json['stripeStatus'] == null ? undefined : json['stripeStatus'],
         'stripeTaxCalculationId': json['stripeTaxCalculationId'] == null ? undefined : json['stripeTaxCalculationId'],
@@ -267,6 +282,7 @@ export function PaymentObjectToJSONTyped(value?: PaymentObject | null, ignoreDis
         'metadata': value['metadata'],
         'customerAddress': PaymentAddressToJSON(value['customerAddress']),
         'shippingAddress': PaymentAddressToJSON(value['shippingAddress']),
+        'supportedPaymentMethods': ((value['supportedPaymentMethods'] as Array<any>).map(PaymentMethodTypeToJSON)),
         'stripePaymentIntentId': value['stripePaymentIntentId'],
         'stripeStatus': value['stripeStatus'],
         'stripeTaxCalculationId': value['stripeTaxCalculationId'],

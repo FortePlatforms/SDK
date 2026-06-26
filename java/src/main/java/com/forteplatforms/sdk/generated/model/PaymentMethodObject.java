@@ -40,6 +40,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentMethodObject.JSON_PROPERTY_EXP_MONTH,
   PaymentMethodObject.JSON_PROPERTY_EXP_YEAR,
   PaymentMethodObject.JSON_PROPERTY_FUNDING,
+  PaymentMethodObject.JSON_PROPERTY_BANK_NAME,
+  PaymentMethodObject.JSON_PROPERTY_ACCOUNT_TYPE,
   PaymentMethodObject.JSON_PROPERTY_IS_DEFAULT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -71,6 +73,14 @@ public class PaymentMethodObject {
   public static final String JSON_PROPERTY_FUNDING = "funding";
   @javax.annotation.Nullable
   private String funding;
+
+  public static final String JSON_PROPERTY_BANK_NAME = "bankName";
+  @javax.annotation.Nullable
+  private String bankName;
+
+  public static final String JSON_PROPERTY_ACCOUNT_TYPE = "accountType";
+  @javax.annotation.Nullable
+  private String accountType;
 
   public static final String JSON_PROPERTY_IS_DEFAULT = "isDefault";
   @javax.annotation.Nonnull
@@ -247,6 +257,54 @@ public class PaymentMethodObject {
   }
 
 
+  public PaymentMethodObject bankName(@javax.annotation.Nullable String bankName) {
+    this.bankName = bankName;
+    return this;
+  }
+
+  /**
+   * Get bankName
+   * @return bankName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BANK_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBankName() {
+    return bankName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BANK_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBankName(@javax.annotation.Nullable String bankName) {
+    this.bankName = bankName;
+  }
+
+
+  public PaymentMethodObject accountType(@javax.annotation.Nullable String accountType) {
+    this.accountType = accountType;
+    return this;
+  }
+
+  /**
+   * Get accountType
+   * @return accountType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountType() {
+    return accountType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountType(@javax.annotation.Nullable String accountType) {
+    this.accountType = accountType;
+  }
+
+
   public PaymentMethodObject isDefault(@javax.annotation.Nonnull Boolean isDefault) {
     this.isDefault = isDefault;
     return this;
@@ -290,12 +348,14 @@ public class PaymentMethodObject {
         Objects.equals(this.expMonth, paymentMethodObject.expMonth) &&
         Objects.equals(this.expYear, paymentMethodObject.expYear) &&
         Objects.equals(this.funding, paymentMethodObject.funding) &&
+        Objects.equals(this.bankName, paymentMethodObject.bankName) &&
+        Objects.equals(this.accountType, paymentMethodObject.accountType) &&
         Objects.equals(this.isDefault, paymentMethodObject.isDefault);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, brand, last4, expMonth, expYear, funding, isDefault);
+    return Objects.hash(id, type, brand, last4, expMonth, expYear, funding, bankName, accountType, isDefault);
   }
 
   @Override
@@ -309,6 +369,8 @@ public class PaymentMethodObject {
     sb.append("    expMonth: ").append(toIndentedString(expMonth)).append("\n");
     sb.append("    expYear: ").append(toIndentedString(expYear)).append("\n");
     sb.append("    funding: ").append(toIndentedString(funding)).append("\n");
+    sb.append("    bankName: ").append(toIndentedString(bankName)).append("\n");
+    sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
     sb.append("    isDefault: ").append(toIndentedString(isDefault)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -387,6 +449,16 @@ public class PaymentMethodObject {
     // add `funding` to the URL query string
     if (getFunding() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfunding%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFunding()))));
+    }
+
+    // add `bankName` to the URL query string
+    if (getBankName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbankName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBankName()))));
+    }
+
+    // add `accountType` to the URL query string
+    if (getAccountType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountType()))));
     }
 
     // add `isDefault` to the URL query string

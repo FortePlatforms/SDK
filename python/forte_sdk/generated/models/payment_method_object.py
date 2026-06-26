@@ -34,8 +34,10 @@ class PaymentMethodObject(BaseModel):
     exp_month: Optional[StrictInt] = Field(default=None, alias="expMonth")
     exp_year: Optional[StrictInt] = Field(default=None, alias="expYear")
     funding: Optional[StrictStr] = None
+    bank_name: Optional[StrictStr] = Field(default=None, alias="bankName")
+    account_type: Optional[StrictStr] = Field(default=None, alias="accountType")
     is_default: StrictBool = Field(alias="isDefault")
-    __properties: ClassVar[List[str]] = ["id", "type", "brand", "last4", "expMonth", "expYear", "funding", "isDefault"]
+    __properties: ClassVar[List[str]] = ["id", "type", "brand", "last4", "expMonth", "expYear", "funding", "bankName", "accountType", "isDefault"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -95,6 +97,8 @@ class PaymentMethodObject(BaseModel):
             "expMonth": obj.get("expMonth"),
             "expYear": obj.get("expYear"),
             "funding": obj.get("funding"),
+            "bankName": obj.get("bankName"),
+            "accountType": obj.get("accountType"),
             "isDefault": obj.get("isDefault")
         })
         return _obj

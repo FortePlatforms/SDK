@@ -14,10 +14,20 @@
 
 import * as runtime from '../runtime';
 import {
+    type ActivateMfaMethodRequest,
+    ActivateMfaMethodRequestFromJSON,
+    ActivateMfaMethodRequestToJSON,
+} from '../models/ActivateMfaMethodRequest';
+import {
     type AddContactMethodRequest,
     AddContactMethodRequestFromJSON,
     AddContactMethodRequestToJSON,
 } from '../models/AddContactMethodRequest';
+import {
+    type BackupCodesResponse,
+    BackupCodesResponseFromJSON,
+    BackupCodesResponseToJSON,
+} from '../models/BackupCodesResponse';
 import {
     type ChangePasswordRequest,
     ChangePasswordRequestFromJSON,
@@ -53,6 +63,16 @@ import {
     CreateContentUploadLinkResponseFromJSON,
     CreateContentUploadLinkResponseToJSON,
 } from '../models/CreateContentUploadLinkResponse';
+import {
+    type CreateMfaMethodRequest,
+    CreateMfaMethodRequestFromJSON,
+    CreateMfaMethodRequestToJSON,
+} from '../models/CreateMfaMethodRequest';
+import {
+    type CreateMfaMethodResponse,
+    CreateMfaMethodResponseFromJSON,
+    CreateMfaMethodResponseToJSON,
+} from '../models/CreateMfaMethodResponse';
 import {
     type CreateOtpLoginRequest,
     CreateOtpLoginRequestFromJSON,
@@ -124,6 +144,11 @@ import {
     ListContentResponseToJSON,
 } from '../models/ListContentResponse';
 import {
+    type ListMfaMethodsResponse,
+    ListMfaMethodsResponseFromJSON,
+    ListMfaMethodsResponseToJSON,
+} from '../models/ListMfaMethodsResponse';
+import {
     type ListUserInvitesResponse,
     ListUserInvitesResponseFromJSON,
     ListUserInvitesResponseToJSON,
@@ -133,6 +158,21 @@ import {
     LoginUserResponseFromJSON,
     LoginUserResponseToJSON,
 } from '../models/LoginUserResponse';
+import {
+    type MfaChallengeRequest,
+    MfaChallengeRequestFromJSON,
+    MfaChallengeRequestToJSON,
+} from '../models/MfaChallengeRequest';
+import {
+    type MfaChallengeResponse,
+    MfaChallengeResponseFromJSON,
+    MfaChallengeResponseToJSON,
+} from '../models/MfaChallengeResponse';
+import {
+    type MfaVerifyRequest,
+    MfaVerifyRequestFromJSON,
+    MfaVerifyRequestToJSON,
+} from '../models/MfaVerifyRequest';
 import {
     type PaginatedResponsePaymentObject,
     PaginatedResponsePaymentObjectFromJSON,
@@ -163,6 +203,11 @@ import {
     RegisterUserResponseFromJSON,
     RegisterUserResponseToJSON,
 } from '../models/RegisterUserResponse';
+import {
+    type RenameMfaMethodRequest,
+    RenameMfaMethodRequestFromJSON,
+    RenameMfaMethodRequestToJSON,
+} from '../models/RenameMfaMethodRequest';
 import {
     type RenewSessionTokenResponse,
     RenewSessionTokenResponseFromJSON,
@@ -209,6 +254,12 @@ import {
     UserObjectToJSON,
 } from '../models/UserObject';
 
+export interface ActivateMfaMethodOperationRequest {
+    projectId: string;
+    mfaMethodId: string;
+    activateMfaMethodRequest: ActivateMfaMethodRequest;
+}
+
 export interface CancelMySubscriptionRequest {
     projectId: string;
     subscriptionId: string;
@@ -235,6 +286,11 @@ export interface CreateContactMethodRequest {
     addContactMethodRequest: AddContactMethodRequest;
 }
 
+export interface CreateMfaMethodOperationRequest {
+    projectId: string;
+    createMfaMethodRequest: CreateMfaMethodRequest;
+}
+
 export interface CreateOtpLoginOperationRequest {
     projectId: string;
     createOtpLoginRequest: CreateOtpLoginRequest;
@@ -250,7 +306,20 @@ export interface DeleteContactMethodRequest {
     contactMethodId: string;
 }
 
+export interface DeleteMfaMethodRequest {
+    projectId: string;
+    mfaMethodId: string;
+}
+
+export interface GenerateBackupCodesRequest {
+    projectId: string;
+}
+
 export interface GetAccountRequest {
+    projectId: string;
+}
+
+export interface GetBackupCodeStatusRequest {
     projectId: string;
 }
 
@@ -264,6 +333,10 @@ export interface GoogleAuthLoginCallbackRequest {
     gCsrfToken: string;
     credential: string;
     recaptchaToken?: string;
+}
+
+export interface ListMfaMethodsRequest {
+    projectId: string;
 }
 
 export interface ListMyPaymentsRequest {
@@ -307,6 +380,12 @@ export interface RegisterUserOperationRequest {
     registerUserRequest: RegisterUserRequest;
 }
 
+export interface RenameMfaMethodOperationRequest {
+    projectId: string;
+    mfaMethodId: string;
+    renameMfaMethodRequest: RenameMfaMethodRequest;
+}
+
 export interface RenewSessionTokenRequest {
     projectId: string;
     authorization?: string;
@@ -332,6 +411,11 @@ export interface ResendLoginOtpRequest {
 export interface RevokeUserInviteRequest {
     projectId: string;
     inviteId: string;
+}
+
+export interface SendMfaChallengeRequest {
+    projectId: string;
+    mfaChallengeRequest: MfaChallengeRequest;
 }
 
 export interface UpdateMySubscriptionRequest {
@@ -433,10 +517,75 @@ export interface VerifyContactMethodRequest {
     verificationCode: string;
 }
 
+export interface VerifyMfaRequest {
+    projectId: string;
+    mfaVerifyRequest: MfaVerifyRequest;
+}
+
 /**
  * 
  */
 export class UsersServerApi extends runtime.BaseAPI {
+
+    /**
+     * Creates request options for activateMfaMethod without sending the request
+     */
+    async activateMfaMethodRequestOpts(requestParameters: ActivateMfaMethodOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling activateMfaMethod().'
+            );
+        }
+
+        if (requestParameters['mfaMethodId'] == null) {
+            throw new runtime.RequiredError(
+                'mfaMethodId',
+                'Required parameter "mfaMethodId" was null or undefined when calling activateMfaMethod().'
+            );
+        }
+
+        if (requestParameters['activateMfaMethodRequest'] == null) {
+            throw new runtime.RequiredError(
+                'activateMfaMethodRequest',
+                'Required parameter "activateMfaMethodRequest" was null or undefined when calling activateMfaMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/methods/{mfaMethodId}/verification`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{mfaMethodId}', encodeURIComponent(String(requestParameters['mfaMethodId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ActivateMfaMethodRequestToJSON(requestParameters['activateMfaMethodRequest']),
+        };
+    }
+
+    /**
+     */
+    async activateMfaMethodRaw(requestParameters: ActivateMfaMethodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.activateMfaMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async activateMfaMethod(requestParameters: ActivateMfaMethodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.activateMfaMethodRaw(requestParameters, initOverrides);
+    }
 
     /**
      * Creates request options for cancelMySubscription without sending the request
@@ -709,6 +858,59 @@ export class UsersServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createMfaMethod without sending the request
+     */
+    async createMfaMethodRequestOpts(requestParameters: CreateMfaMethodOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createMfaMethod().'
+            );
+        }
+
+        if (requestParameters['createMfaMethodRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createMfaMethodRequest',
+                'Required parameter "createMfaMethodRequest" was null or undefined when calling createMfaMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/methods`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateMfaMethodRequestToJSON(requestParameters['createMfaMethodRequest']),
+        };
+    }
+
+    /**
+     */
+    async createMfaMethodRaw(requestParameters: CreateMfaMethodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateMfaMethodResponse>> {
+        const requestOptions = await this.createMfaMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateMfaMethodResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createMfaMethod(requestParameters: CreateMfaMethodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateMfaMethodResponse> {
+        const response = await this.createMfaMethodRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createOtpLogin without sending the request
      */
     async createOtpLoginRequestOpts(requestParameters: CreateOtpLoginOperationRequest): Promise<runtime.RequestOpts> {
@@ -865,6 +1067,99 @@ export class UsersServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteMfaMethod without sending the request
+     */
+    async deleteMfaMethodRequestOpts(requestParameters: DeleteMfaMethodRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteMfaMethod().'
+            );
+        }
+
+        if (requestParameters['mfaMethodId'] == null) {
+            throw new runtime.RequiredError(
+                'mfaMethodId',
+                'Required parameter "mfaMethodId" was null or undefined when calling deleteMfaMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/methods/{mfaMethodId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{mfaMethodId}', encodeURIComponent(String(requestParameters['mfaMethodId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteMfaMethodRaw(requestParameters: DeleteMfaMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteMfaMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteMfaMethod(requestParameters: DeleteMfaMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteMfaMethodRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for generateBackupCodes without sending the request
+     */
+    async generateBackupCodesRequestOpts(requestParameters: GenerateBackupCodesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling generateBackupCodes().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/backup-codes`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async generateBackupCodesRaw(requestParameters: GenerateBackupCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BackupCodesResponse>> {
+        const requestOptions = await this.generateBackupCodesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BackupCodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async generateBackupCodes(requestParameters: GenerateBackupCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BackupCodesResponse> {
+        const response = await this.generateBackupCodesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getAccount without sending the request
      */
     async getAccountRequestOpts(requestParameters: GetAccountRequest): Promise<runtime.RequestOpts> {
@@ -904,6 +1199,49 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async getAccount(requestParameters: GetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserObject> {
         const response = await this.getAccountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getBackupCodeStatus without sending the request
+     */
+    async getBackupCodeStatusRequestOpts(requestParameters: GetBackupCodeStatusRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getBackupCodeStatus().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/backup-codes`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getBackupCodeStatusRaw(requestParameters: GetBackupCodeStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BackupCodesResponse>> {
+        const requestOptions = await this.getBackupCodeStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BackupCodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getBackupCodeStatus(requestParameters: GetBackupCodeStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BackupCodesResponse> {
+        const response = await this.getBackupCodeStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1039,6 +1377,49 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async googleAuthLoginCallback(requestParameters: GoogleAuthLoginCallbackRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginUserResponse> {
         const response = await this.googleAuthLoginCallbackRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listMfaMethods without sending the request
+     */
+    async listMfaMethodsRequestOpts(requestParameters: ListMfaMethodsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listMfaMethods().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/methods`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listMfaMethodsRaw(requestParameters: ListMfaMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMfaMethodsResponse>> {
+        const requestOptions = await this.listMfaMethodsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListMfaMethodsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listMfaMethods(requestParameters: ListMfaMethodsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMfaMethodsResponse> {
+        const response = await this.listMfaMethodsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1413,6 +1794,66 @@ export class UsersServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for renameMfaMethod without sending the request
+     */
+    async renameMfaMethodRequestOpts(requestParameters: RenameMfaMethodOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling renameMfaMethod().'
+            );
+        }
+
+        if (requestParameters['mfaMethodId'] == null) {
+            throw new runtime.RequiredError(
+                'mfaMethodId',
+                'Required parameter "mfaMethodId" was null or undefined when calling renameMfaMethod().'
+            );
+        }
+
+        if (requestParameters['renameMfaMethodRequest'] == null) {
+            throw new runtime.RequiredError(
+                'renameMfaMethodRequest',
+                'Required parameter "renameMfaMethodRequest" was null or undefined when calling renameMfaMethod().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/methods/{mfaMethodId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{mfaMethodId}', encodeURIComponent(String(requestParameters['mfaMethodId'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RenameMfaMethodRequestToJSON(requestParameters['renameMfaMethodRequest']),
+        };
+    }
+
+    /**
+     */
+    async renameMfaMethodRaw(requestParameters: RenameMfaMethodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.renameMfaMethodRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async renameMfaMethod(requestParameters: RenameMfaMethodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.renameMfaMethodRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for renewSessionToken without sending the request
      */
     async renewSessionTokenRequestOpts(requestParameters: RenewSessionTokenRequest): Promise<runtime.RequestOpts> {
@@ -1665,6 +2106,59 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async revokeUserInvite(requestParameters: RevokeUserInviteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.revokeUserInviteRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for sendMfaChallenge without sending the request
+     */
+    async sendMfaChallengeRequestOpts(requestParameters: SendMfaChallengeRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling sendMfaChallenge().'
+            );
+        }
+
+        if (requestParameters['mfaChallengeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'mfaChallengeRequest',
+                'Required parameter "mfaChallengeRequest" was null or undefined when calling sendMfaChallenge().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/challenge`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: MfaChallengeRequestToJSON(requestParameters['mfaChallengeRequest']),
+        };
+    }
+
+    /**
+     */
+    async sendMfaChallengeRaw(requestParameters: SendMfaChallengeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MfaChallengeResponse>> {
+        const requestOptions = await this.sendMfaChallengeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => MfaChallengeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async sendMfaChallenge(requestParameters: SendMfaChallengeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MfaChallengeResponse> {
+        const response = await this.sendMfaChallengeRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -2676,6 +3170,59 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async verifyContactMethod(requestParameters: VerifyContactMethodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ContactMethod> {
         const response = await this.verifyContactMethodRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for verifyMfa without sending the request
+     */
+    async verifyMfaRequestOpts(requestParameters: VerifyMfaRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling verifyMfa().'
+            );
+        }
+
+        if (requestParameters['mfaVerifyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'mfaVerifyRequest',
+                'Required parameter "mfaVerifyRequest" was null or undefined when calling verifyMfa().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/mfa/verify`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: MfaVerifyRequestToJSON(requestParameters['mfaVerifyRequest']),
+        };
+    }
+
+    /**
+     */
+    async verifyMfaRaw(requestParameters: VerifyMfaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LoginUserResponse>> {
+        const requestOptions = await this.verifyMfaRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LoginUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async verifyMfa(requestParameters: VerifyMfaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LoginUserResponse> {
+        const response = await this.verifyMfaRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

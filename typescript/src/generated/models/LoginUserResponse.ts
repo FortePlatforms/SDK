@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { MfaMethodSummary } from './MfaMethodSummary';
+import {
+    MfaMethodSummaryFromJSON,
+    MfaMethodSummaryFromJSONTyped,
+    MfaMethodSummaryToJSON,
+    MfaMethodSummaryToJSONTyped,
+} from './MfaMethodSummary';
 import type { UserObject } from './UserObject';
 import {
     UserObjectFromJSON,
@@ -46,7 +53,31 @@ export interface LoginUserResponse {
      * @memberof LoginUserResponse
      */
     sessionToken: RenewSessionTokenResponse;
+    /**
+     * 
+     * @type {LoginUserResponseMfaStatusType}
+     * @memberof LoginUserResponse
+     */
+    mfaStatus?: LoginUserResponseMfaStatusType;
+    /**
+     * 
+     * @type {Array<MfaMethodSummary>}
+     * @memberof LoginUserResponse
+     */
+    availableMfaMethods?: Array<MfaMethodSummary>;
 }
+
+
+/**
+ * @export
+ */
+export const LoginUserResponseMfaStatusType = {
+    SATISFIED: 'SATISFIED',
+    CHALLENGE_REQUIRED: 'CHALLENGE_REQUIRED',
+    ENROLLMENT_REQUIRED: 'ENROLLMENT_REQUIRED'
+} as const;
+export type LoginUserResponseMfaStatusType = typeof LoginUserResponseMfaStatusType[keyof typeof LoginUserResponseMfaStatusType];
+
 
 /**
  * Check if a given object implements the LoginUserResponse interface.
@@ -69,6 +100,8 @@ export function LoginUserResponseFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'userObject': UserObjectFromJSON(json['userObject']),
         'sessionToken': RenewSessionTokenResponseFromJSON(json['sessionToken']),
+        'mfaStatus': json['mfaStatus'] == null ? undefined : json['mfaStatus'],
+        'availableMfaMethods': json['availableMfaMethods'] == null ? undefined : ((json['availableMfaMethods'] as Array<any>).map(MfaMethodSummaryFromJSON)),
     };
 }
 
@@ -85,6 +118,8 @@ export function LoginUserResponseToJSONTyped(value?: LoginUserResponse | null, i
         
         'userObject': UserObjectToJSON(value['userObject']),
         'sessionToken': RenewSessionTokenResponseToJSON(value['sessionToken']),
+        'mfaStatus': value['mfaStatus'],
+        'availableMfaMethods': value['availableMfaMethods'] == null ? undefined : ((value['availableMfaMethods'] as Array<any>).map(MfaMethodSummaryToJSON)),
     };
 }
 

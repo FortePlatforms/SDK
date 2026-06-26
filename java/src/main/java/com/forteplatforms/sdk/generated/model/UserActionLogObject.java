@@ -128,7 +128,25 @@ public class UserActionLogObject {
     
     PASSWORD_ADMIN_RESET(String.valueOf("PASSWORD_ADMIN_RESET")),
     
-    PASSWORD_ADMIN_FORCE_SET(String.valueOf("PASSWORD_ADMIN_FORCE_SET"));
+    PASSWORD_ADMIN_FORCE_SET(String.valueOf("PASSWORD_ADMIN_FORCE_SET")),
+    
+    MFA_METHOD_ENROLLED(String.valueOf("MFA_METHOD_ENROLLED")),
+    
+    MFA_METHOD_ACTIVATED(String.valueOf("MFA_METHOD_ACTIVATED")),
+    
+    MFA_METHOD_REMOVED(String.valueOf("MFA_METHOD_REMOVED")),
+    
+    MFA_CHALLENGE_SENT(String.valueOf("MFA_CHALLENGE_SENT")),
+    
+    MFA_CHALLENGE_SUCCEEDED(String.valueOf("MFA_CHALLENGE_SUCCEEDED")),
+    
+    MFA_CHALLENGE_FAILED(String.valueOf("MFA_CHALLENGE_FAILED")),
+    
+    MFA_BACKUP_CODES_GENERATED(String.valueOf("MFA_BACKUP_CODES_GENERATED")),
+    
+    MFA_BACKUP_CODE_USED(String.valueOf("MFA_BACKUP_CODE_USED")),
+    
+    MFA_ADMIN_RESET(String.valueOf("MFA_ADMIN_RESET"));
 
     private String value;
 

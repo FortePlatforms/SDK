@@ -18,7 +18,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiResponse;
 import com.forteplatforms.sdk.generated.invoker.Configuration;
 import com.forteplatforms.sdk.generated.invoker.Pair;
 
+import com.forteplatforms.sdk.generated.model.ActivateMfaMethodRequest;
 import com.forteplatforms.sdk.generated.model.AddContactMethodRequest;
+import com.forteplatforms.sdk.generated.model.BackupCodesResponse;
 import com.forteplatforms.sdk.generated.model.ChangePasswordRequest;
 import com.forteplatforms.sdk.generated.model.CompleteOtpLoginRequest;
 import com.forteplatforms.sdk.generated.model.CompletePasswordResetRequest;
@@ -26,6 +28,8 @@ import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.ContentObject;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkRequest;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkResponse;
+import com.forteplatforms.sdk.generated.model.CreateMfaMethodRequest;
+import com.forteplatforms.sdk.generated.model.CreateMfaMethodResponse;
 import com.forteplatforms.sdk.generated.model.CreateOtpLoginRequest;
 import com.forteplatforms.sdk.generated.model.CreateOtpLoginResponse;
 import com.forteplatforms.sdk.generated.model.CreatePaymentMethodResponse;
@@ -40,8 +44,12 @@ import com.forteplatforms.sdk.generated.model.CreateSubscriptionResponse;
 import com.forteplatforms.sdk.generated.model.CreateUserInviteRequest;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.ListContentResponse;
+import com.forteplatforms.sdk.generated.model.ListMfaMethodsResponse;
 import com.forteplatforms.sdk.generated.model.ListUserInvitesResponse;
 import com.forteplatforms.sdk.generated.model.LoginUserResponse;
+import com.forteplatforms.sdk.generated.model.MfaChallengeRequest;
+import com.forteplatforms.sdk.generated.model.MfaChallengeResponse;
+import com.forteplatforms.sdk.generated.model.MfaVerifyRequest;
 import java.time.OffsetDateTime;
 import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
 import com.forteplatforms.sdk.generated.model.PasswordLoginRequest;
@@ -49,6 +57,7 @@ import com.forteplatforms.sdk.generated.model.PaymentMethodObject;
 import com.forteplatforms.sdk.generated.model.PendingUserInviteObject;
 import com.forteplatforms.sdk.generated.model.RegisterUserRequest;
 import com.forteplatforms.sdk.generated.model.RegisterUserResponse;
+import com.forteplatforms.sdk.generated.model.RenameMfaMethodRequest;
 import com.forteplatforms.sdk.generated.model.RenewSessionTokenResponse;
 import com.forteplatforms.sdk.generated.model.RequestPasswordResetRequest;
 import com.forteplatforms.sdk.generated.model.SubscriptionObject;
@@ -205,6 +214,133 @@ public class UsersServerApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param activateMfaMethodRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void activateMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest) throws ApiException {
+    activateMfaMethod(projectId, mfaMethodId, activateMfaMethodRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param activateMfaMethodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void activateMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    activateMfaMethodWithHttpInfo(projectId, mfaMethodId, activateMfaMethodRequest, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param activateMfaMethodRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> activateMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest) throws ApiException {
+    return activateMfaMethodWithHttpInfo(projectId, mfaMethodId, activateMfaMethodRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param activateMfaMethodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> activateMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = activateMfaMethodRequestBuilder(projectId, mfaMethodId, activateMfaMethodRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("activateMfaMethod", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder activateMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling activateMfaMethod");
+    }
+    // verify the required parameter 'mfaMethodId' is set
+    if (mfaMethodId == null) {
+      throw new ApiException(400, "Missing the required parameter 'mfaMethodId' when calling activateMfaMethod");
+    }
+    // verify the required parameter 'activateMfaMethodRequest' is set
+    if (activateMfaMethodRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'activateMfaMethodRequest' when calling activateMfaMethod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/methods/{mfaMethodId}/verification"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{mfaMethodId}", ApiClient.urlEncode(mfaMethodId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(activateMfaMethodRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -861,6 +997,138 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param createMfaMethodRequest  (required)
+   * @return CreateMfaMethodResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateMfaMethodResponse createMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest) throws ApiException {
+    return createMfaMethod(projectId, createMfaMethodRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createMfaMethodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateMfaMethodResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateMfaMethodResponse createMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateMfaMethodResponse> localVarResponse = createMfaMethodWithHttpInfo(projectId, createMfaMethodRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createMfaMethodRequest  (required)
+   * @return ApiResponse&lt;CreateMfaMethodResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateMfaMethodResponse> createMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest) throws ApiException {
+    return createMfaMethodWithHttpInfo(projectId, createMfaMethodRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createMfaMethodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateMfaMethodResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateMfaMethodResponse> createMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createMfaMethodRequestBuilder(projectId, createMfaMethodRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createMfaMethod", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateMfaMethodResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateMfaMethodResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateMfaMethodResponse>() {});
+        
+
+        return new ApiResponse<CreateMfaMethodResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createMfaMethod");
+    }
+    // verify the required parameter 'createMfaMethodRequest' is set
+    if (createMfaMethodRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createMfaMethodRequest' when calling createMfaMethod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/methods"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createMfaMethodRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param createOtpLoginRequest  (required)
    * @return CreateOtpLoginResponse
    * @throws ApiException if fails to make API call
@@ -1238,6 +1506,237 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId) throws ApiException {
+    deleteMfaMethod(projectId, mfaMethodId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, Map<String, String> headers) throws ApiException {
+    deleteMfaMethodWithHttpInfo(projectId, mfaMethodId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId) throws ApiException {
+    return deleteMfaMethodWithHttpInfo(projectId, mfaMethodId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteMfaMethodRequestBuilder(projectId, mfaMethodId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteMfaMethod", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteMfaMethod");
+    }
+    // verify the required parameter 'mfaMethodId' is set
+    if (mfaMethodId == null) {
+      throw new ApiException(400, "Missing the required parameter 'mfaMethodId' when calling deleteMfaMethod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/methods/{mfaMethodId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{mfaMethodId}", ApiClient.urlEncode(mfaMethodId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return BackupCodesResponse
+   * @throws ApiException if fails to make API call
+   */
+  public BackupCodesResponse generateBackupCodes(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return generateBackupCodes(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return BackupCodesResponse
+   * @throws ApiException if fails to make API call
+   */
+  public BackupCodesResponse generateBackupCodes(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<BackupCodesResponse> localVarResponse = generateBackupCodesWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;BackupCodesResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BackupCodesResponse> generateBackupCodesWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return generateBackupCodesWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;BackupCodesResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BackupCodesResponse> generateBackupCodesWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = generateBackupCodesRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("generateBackupCodes", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<BackupCodesResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        BackupCodesResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<BackupCodesResponse>() {});
+        
+
+        return new ApiResponse<BackupCodesResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder generateBackupCodesRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling generateBackupCodes");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/backup-codes"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @return UserObject
    * @throws ApiException if fails to make API call
    */
@@ -1334,6 +1833,124 @@ public class UsersServerApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/api/v1/{projectId}/users/me"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return BackupCodesResponse
+   * @throws ApiException if fails to make API call
+   */
+  public BackupCodesResponse getBackupCodeStatus(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return getBackupCodeStatus(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return BackupCodesResponse
+   * @throws ApiException if fails to make API call
+   */
+  public BackupCodesResponse getBackupCodeStatus(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<BackupCodesResponse> localVarResponse = getBackupCodeStatusWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;BackupCodesResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BackupCodesResponse> getBackupCodeStatusWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return getBackupCodeStatusWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;BackupCodesResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BackupCodesResponse> getBackupCodeStatusWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getBackupCodeStatusRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getBackupCodeStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<BackupCodesResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        BackupCodesResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<BackupCodesResponse>() {});
+        
+
+        return new ApiResponse<BackupCodesResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getBackupCodeStatusRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getBackupCodeStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/backup-codes"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
@@ -1627,6 +2244,124 @@ public class UsersServerApi {
         .header("Content-Type", entity.getContentType().getValue())
         .method("POST", HttpRequest.BodyPublishers
             .ofInputStream(() -> new ByteArrayInputStream(formBytes)));
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ListMfaMethodsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListMfaMethodsResponse listMfaMethods(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listMfaMethods(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ListMfaMethodsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListMfaMethodsResponse listMfaMethods(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListMfaMethodsResponse> localVarResponse = listMfaMethodsWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;ListMfaMethodsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListMfaMethodsResponse> listMfaMethodsWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listMfaMethodsWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListMfaMethodsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListMfaMethodsResponse> listMfaMethodsWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listMfaMethodsRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listMfaMethods", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListMfaMethodsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListMfaMethodsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListMfaMethodsResponse>() {});
+        
+
+        return new ApiResponse<ListMfaMethodsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listMfaMethodsRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listMfaMethods");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/methods"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -2584,6 +3319,133 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param renameMfaMethodRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void renameMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest) throws ApiException {
+    renameMfaMethod(projectId, mfaMethodId, renameMfaMethodRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param renameMfaMethodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void renameMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    renameMfaMethodWithHttpInfo(projectId, mfaMethodId, renameMfaMethodRequest, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param renameMfaMethodRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> renameMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest) throws ApiException {
+    return renameMfaMethodWithHttpInfo(projectId, mfaMethodId, renameMfaMethodRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaMethodId  (required)
+   * @param renameMfaMethodRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> renameMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = renameMfaMethodRequestBuilder(projectId, mfaMethodId, renameMfaMethodRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("renameMfaMethod", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder renameMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling renameMfaMethod");
+    }
+    // verify the required parameter 'mfaMethodId' is set
+    if (mfaMethodId == null) {
+      throw new ApiException(400, "Missing the required parameter 'mfaMethodId' when calling renameMfaMethod");
+    }
+    // verify the required parameter 'renameMfaMethodRequest' is set
+    if (renameMfaMethodRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'renameMfaMethodRequest' when calling renameMfaMethod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/methods/{mfaMethodId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{mfaMethodId}", ApiClient.urlEncode(mfaMethodId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(renameMfaMethodRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param authorization  (optional)
    * @param forteUserSessionToken  (optional)
    * @param renewalDurationSeconds Duration in seconds for which the renewed session token should be valid. Defaults to 31536000 seconds (1 year). (optional, default to 31536000)
@@ -3202,6 +4064,138 @@ public class UsersServerApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaChallengeRequest  (required)
+   * @return MfaChallengeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public MfaChallengeResponse sendMfaChallenge(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest) throws ApiException {
+    return sendMfaChallenge(projectId, mfaChallengeRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaChallengeRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return MfaChallengeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public MfaChallengeResponse sendMfaChallenge(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<MfaChallengeResponse> localVarResponse = sendMfaChallengeWithHttpInfo(projectId, mfaChallengeRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaChallengeRequest  (required)
+   * @return ApiResponse&lt;MfaChallengeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<MfaChallengeResponse> sendMfaChallengeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest) throws ApiException {
+    return sendMfaChallengeWithHttpInfo(projectId, mfaChallengeRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaChallengeRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;MfaChallengeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<MfaChallengeResponse> sendMfaChallengeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = sendMfaChallengeRequestBuilder(projectId, mfaChallengeRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("sendMfaChallenge", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<MfaChallengeResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        MfaChallengeResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<MfaChallengeResponse>() {});
+        
+
+        return new ApiResponse<MfaChallengeResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder sendMfaChallengeRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling sendMfaChallenge");
+    }
+    // verify the required parameter 'mfaChallengeRequest' is set
+    if (mfaChallengeRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'mfaChallengeRequest' when calling sendMfaChallenge");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/challenge"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(mfaChallengeRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -5689,6 +6683,138 @@ public class UsersServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaVerifyRequest  (required)
+   * @return LoginUserResponse
+   * @throws ApiException if fails to make API call
+   */
+  public LoginUserResponse verifyMfa(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest) throws ApiException {
+    return verifyMfa(projectId, mfaVerifyRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaVerifyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return LoginUserResponse
+   * @throws ApiException if fails to make API call
+   */
+  public LoginUserResponse verifyMfa(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<LoginUserResponse> localVarResponse = verifyMfaWithHttpInfo(projectId, mfaVerifyRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaVerifyRequest  (required)
+   * @return ApiResponse&lt;LoginUserResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LoginUserResponse> verifyMfaWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest) throws ApiException {
+    return verifyMfaWithHttpInfo(projectId, mfaVerifyRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param mfaVerifyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;LoginUserResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LoginUserResponse> verifyMfaWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = verifyMfaRequestBuilder(projectId, mfaVerifyRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("verifyMfa", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<LoginUserResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        LoginUserResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<LoginUserResponse>() {});
+        
+
+        return new ApiResponse<LoginUserResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder verifyMfaRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling verifyMfa");
+    }
+    // verify the required parameter 'mfaVerifyRequest' is set
+    if (mfaVerifyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'mfaVerifyRequest' when calling verifyMfa");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/mfa/verify"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(mfaVerifyRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

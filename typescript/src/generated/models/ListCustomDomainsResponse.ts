@@ -33,6 +33,12 @@ export interface ListCustomDomainsResponse {
      * @memberof ListCustomDomainsResponse
      */
     customDomains?: Array<CustomDomain>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListCustomDomainsResponse
+     */
+    hasSuccessfulDeployment?: boolean;
 }
 
 /**
@@ -53,6 +59,7 @@ export function ListCustomDomainsResponseFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'customDomains': json['customDomains'] == null ? undefined : ((json['customDomains'] as Array<any>).map(CustomDomainFromJSON)),
+        'hasSuccessfulDeployment': json['hasSuccessfulDeployment'] == null ? undefined : json['hasSuccessfulDeployment'],
     };
 }
 
@@ -68,6 +75,7 @@ export function ListCustomDomainsResponseToJSONTyped(value?: ListCustomDomainsRe
     return {
         
         'customDomains': value['customDomains'] == null ? undefined : ((value['customDomains'] as Array<any>).map(CustomDomainToJSON)),
+        'hasSuccessfulDeployment': value['hasSuccessfulDeployment'],
     };
 }
 

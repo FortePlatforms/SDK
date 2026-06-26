@@ -20,6 +20,13 @@ import {
     NotificationTemplatesConfigToJSON,
     NotificationTemplatesConfigToJSONTyped,
 } from './NotificationTemplatesConfig';
+import type { MfaConfig } from './MfaConfig';
+import {
+    MfaConfigFromJSON,
+    MfaConfigFromJSONTyped,
+    MfaConfigToJSON,
+    MfaConfigToJSONTyped,
+} from './MfaConfig';
 import type { WebAppObject } from './WebAppObject';
 import {
     WebAppObjectFromJSON,
@@ -153,6 +160,12 @@ export interface ProjectObject {
     passwordConfig?: PasswordConfig;
     /**
      * 
+     * @type {MfaConfig}
+     * @memberof ProjectObject
+     */
+    mfaConfig?: MfaConfig;
+    /**
+     * 
      * @type {boolean}
      * @memberof ProjectObject
      */
@@ -216,6 +229,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'googleLoginEnabled': json['googleLoginEnabled'] == null ? undefined : json['googleLoginEnabled'],
         'passwordLoginEnabled': json['passwordLoginEnabled'] == null ? undefined : json['passwordLoginEnabled'],
         'passwordConfig': json['passwordConfig'] == null ? undefined : PasswordConfigFromJSON(json['passwordConfig']),
+        'mfaConfig': json['mfaConfig'] == null ? undefined : MfaConfigFromJSON(json['mfaConfig']),
         'sandboxMode': json['sandboxMode'] == null ? undefined : json['sandboxMode'],
         'notificationTemplatesConfig': json['notificationTemplatesConfig'] == null ? undefined : NotificationTemplatesConfigFromJSON(json['notificationTemplatesConfig']),
         'paymentTriggers': json['paymentTriggers'] == null ? undefined : ((json['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigFromJSON)),
@@ -250,6 +264,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'googleLoginEnabled': value['googleLoginEnabled'],
         'passwordLoginEnabled': value['passwordLoginEnabled'],
         'passwordConfig': PasswordConfigToJSON(value['passwordConfig']),
+        'mfaConfig': MfaConfigToJSON(value['mfaConfig']),
         'sandboxMode': value['sandboxMode'],
         'notificationTemplatesConfig': NotificationTemplatesConfigToJSON(value['notificationTemplatesConfig']),
         'paymentTriggers': value['paymentTriggers'] == null ? undefined : ((value['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigToJSON)),

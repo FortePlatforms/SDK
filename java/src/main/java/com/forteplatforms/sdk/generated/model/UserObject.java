@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
+import com.forteplatforms.sdk.generated.model.MfaMethod;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +58,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_STATE,
   UserObject.JSON_PROPERTY_PASSWORD_SET_AT,
   UserObject.JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT,
+  UserObject.JSON_PROPERTY_MFA_METHODS,
+  UserObject.JSON_PROPERTY_BACKUP_CODES_GENERATED_AT,
+  UserObject.JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT,
   UserObject.JSON_PROPERTY_HAS_PASSWORD
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -157,6 +161,18 @@ public class UserObject {
   public static final String JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT = "passwordResetLastRequestedAt";
   @javax.annotation.Nullable
   private OffsetDateTime passwordResetLastRequestedAt;
+
+  public static final String JSON_PROPERTY_MFA_METHODS = "mfaMethods";
+  @javax.annotation.Nullable
+  private List<MfaMethod> mfaMethods = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BACKUP_CODES_GENERATED_AT = "backupCodesGeneratedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime backupCodesGeneratedAt;
+
+  public static final String JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT = "remainingBackupCodeCount";
+  @javax.annotation.Nullable
+  private Integer remainingBackupCodeCount;
 
   public static final String JSON_PROPERTY_HAS_PASSWORD = "hasPassword";
   @javax.annotation.Nullable
@@ -550,6 +566,86 @@ public class UserObject {
   }
 
 
+  public UserObject mfaMethods(@javax.annotation.Nullable List<MfaMethod> mfaMethods) {
+    this.mfaMethods = mfaMethods;
+    return this;
+  }
+
+  public UserObject addMfaMethodsItem(MfaMethod mfaMethodsItem) {
+    if (this.mfaMethods == null) {
+      this.mfaMethods = new ArrayList<>();
+    }
+    this.mfaMethods.add(mfaMethodsItem);
+    return this;
+  }
+
+  /**
+   * Get mfaMethods
+   * @return mfaMethods
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MFA_METHODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<MfaMethod> getMfaMethods() {
+    return mfaMethods;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MFA_METHODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMfaMethods(@javax.annotation.Nullable List<MfaMethod> mfaMethods) {
+    this.mfaMethods = mfaMethods;
+  }
+
+
+  public UserObject backupCodesGeneratedAt(@javax.annotation.Nullable OffsetDateTime backupCodesGeneratedAt) {
+    this.backupCodesGeneratedAt = backupCodesGeneratedAt;
+    return this;
+  }
+
+  /**
+   * Get backupCodesGeneratedAt
+   * @return backupCodesGeneratedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_CODES_GENERATED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getBackupCodesGeneratedAt() {
+    return backupCodesGeneratedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_CODES_GENERATED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBackupCodesGeneratedAt(@javax.annotation.Nullable OffsetDateTime backupCodesGeneratedAt) {
+    this.backupCodesGeneratedAt = backupCodesGeneratedAt;
+  }
+
+
+  public UserObject remainingBackupCodeCount(@javax.annotation.Nullable Integer remainingBackupCodeCount) {
+    this.remainingBackupCodeCount = remainingBackupCodeCount;
+    return this;
+  }
+
+  /**
+   * Get remainingBackupCodeCount
+   * @return remainingBackupCodeCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getRemainingBackupCodeCount() {
+    return remainingBackupCodeCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRemainingBackupCodeCount(@javax.annotation.Nullable Integer remainingBackupCodeCount) {
+    this.remainingBackupCodeCount = remainingBackupCodeCount;
+  }
+
+
   public UserObject hasPassword(@javax.annotation.Nullable Boolean hasPassword) {
     this.hasPassword = hasPassword;
     return this;
@@ -601,12 +697,15 @@ public class UserObject {
         Objects.equals(this.state, userObject.state) &&
         Objects.equals(this.passwordSetAt, userObject.passwordSetAt) &&
         Objects.equals(this.passwordResetLastRequestedAt, userObject.passwordResetLastRequestedAt) &&
+        Objects.equals(this.mfaMethods, userObject.mfaMethods) &&
+        Objects.equals(this.backupCodesGeneratedAt, userObject.backupCodesGeneratedAt) &&
+        Objects.equals(this.remainingBackupCodeCount, userObject.remainingBackupCodeCount) &&
         Objects.equals(this.hasPassword, userObject.hasPassword);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, invitedByUserId, state, passwordSetAt, passwordResetLastRequestedAt, hasPassword);
+    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, invitedByUserId, state, passwordSetAt, passwordResetLastRequestedAt, mfaMethods, backupCodesGeneratedAt, remainingBackupCodeCount, hasPassword);
   }
 
   @Override
@@ -628,6 +727,9 @@ public class UserObject {
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    passwordSetAt: ").append(toIndentedString(passwordSetAt)).append("\n");
     sb.append("    passwordResetLastRequestedAt: ").append(toIndentedString(passwordResetLastRequestedAt)).append("\n");
+    sb.append("    mfaMethods: ").append(toIndentedString(mfaMethods)).append("\n");
+    sb.append("    backupCodesGeneratedAt: ").append(toIndentedString(backupCodesGeneratedAt)).append("\n");
+    sb.append("    remainingBackupCodeCount: ").append(toIndentedString(remainingBackupCodeCount)).append("\n");
     sb.append("    hasPassword: ").append(toIndentedString(hasPassword)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -761,6 +863,26 @@ public class UserObject {
     // add `passwordResetLastRequestedAt` to the URL query string
     if (getPasswordResetLastRequestedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spasswordResetLastRequestedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPasswordResetLastRequestedAt()))));
+    }
+
+    // add `mfaMethods` to the URL query string
+    if (getMfaMethods() != null) {
+      for (int i = 0; i < getMfaMethods().size(); i++) {
+        if (getMfaMethods().get(i) != null) {
+          joiner.add(getMfaMethods().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smfaMethods%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `backupCodesGeneratedAt` to the URL query string
+    if (getBackupCodesGeneratedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackupCodesGeneratedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupCodesGeneratedAt()))));
+    }
+
+    // add `remainingBackupCodeCount` to the URL query string
+    if (getRemainingBackupCodeCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sremainingBackupCodeCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemainingBackupCodeCount()))));
     }
 
     // add `hasPassword` to the URL query string
