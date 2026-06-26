@@ -8541,12 +8541,13 @@ public class ProjectsServerApi {
    * @param requestPath  (optional)
    * @param requestMethod  (optional)
    * @param requestPathId  (optional)
+   * @param userId  (optional)
    * @param nextToken  (optional)
    * @return PaginatedResponseRequestLogObject
    * @throws ApiException if fails to make API call
    */
-  public PaginatedResponseRequestLogObject listRequestInvocationLogs(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String nextToken) throws ApiException {
-    return listRequestInvocationLogs(projectId, serviceId, minTime, maxTime, statusCode, requestPath, requestMethod, requestPathId, nextToken, null);
+  public PaginatedResponseRequestLogObject listRequestInvocationLogs(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listRequestInvocationLogs(projectId, serviceId, minTime, maxTime, statusCode, requestPath, requestMethod, requestPathId, userId, nextToken, null);
   }
 
   /**
@@ -8560,13 +8561,14 @@ public class ProjectsServerApi {
    * @param requestPath  (optional)
    * @param requestMethod  (optional)
    * @param requestPathId  (optional)
+   * @param userId  (optional)
    * @param nextToken  (optional)
    * @param headers Optional headers to include in the request
    * @return PaginatedResponseRequestLogObject
    * @throws ApiException if fails to make API call
    */
-  public PaginatedResponseRequestLogObject listRequestInvocationLogs(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaginatedResponseRequestLogObject> localVarResponse = listRequestInvocationLogsWithHttpInfo(projectId, serviceId, minTime, maxTime, statusCode, requestPath, requestMethod, requestPathId, nextToken, headers);
+  public PaginatedResponseRequestLogObject listRequestInvocationLogs(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseRequestLogObject> localVarResponse = listRequestInvocationLogsWithHttpInfo(projectId, serviceId, minTime, maxTime, statusCode, requestPath, requestMethod, requestPathId, userId, nextToken, headers);
     return localVarResponse.getData();
   }
 
@@ -8581,12 +8583,13 @@ public class ProjectsServerApi {
    * @param requestPath  (optional)
    * @param requestMethod  (optional)
    * @param requestPathId  (optional)
+   * @param userId  (optional)
    * @param nextToken  (optional)
    * @return ApiResponse&lt;PaginatedResponseRequestLogObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaginatedResponseRequestLogObject> listRequestInvocationLogsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String nextToken) throws ApiException {
-    return listRequestInvocationLogsWithHttpInfo(projectId, serviceId, minTime, maxTime, statusCode, requestPath, requestMethod, requestPathId, nextToken, null);
+  public ApiResponse<PaginatedResponseRequestLogObject> listRequestInvocationLogsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listRequestInvocationLogsWithHttpInfo(projectId, serviceId, minTime, maxTime, statusCode, requestPath, requestMethod, requestPathId, userId, nextToken, null);
   }
 
   /**
@@ -8600,13 +8603,14 @@ public class ProjectsServerApi {
    * @param requestPath  (optional)
    * @param requestMethod  (optional)
    * @param requestPathId  (optional)
+   * @param userId  (optional)
    * @param nextToken  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PaginatedResponseRequestLogObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaginatedResponseRequestLogObject> listRequestInvocationLogsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listRequestInvocationLogsRequestBuilder(projectId, serviceId, minTime, maxTime, statusCode, requestPath, requestMethod, requestPathId, nextToken, headers);
+  public ApiResponse<PaginatedResponseRequestLogObject> listRequestInvocationLogsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listRequestInvocationLogsRequestBuilder(projectId, serviceId, minTime, maxTime, statusCode, requestPath, requestMethod, requestPathId, userId, nextToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -8653,7 +8657,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder listRequestInvocationLogsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listRequestInvocationLogsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling listRequestInvocationLogs");
@@ -8684,6 +8688,8 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("requestMethod", requestMethod));
     localVarQueryParameterBaseName = "requestPathId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("requestPathId", requestPathId));
+    localVarQueryParameterBaseName = "userId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("userId", userId));
     localVarQueryParameterBaseName = "nextToken";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
 

@@ -785,6 +785,7 @@ export interface ListRequestInvocationLogsRequest {
     requestPath?: string;
     requestMethod?: string;
     requestPathId?: string;
+    userId?: string;
     nextToken?: string;
 }
 
@@ -4580,6 +4581,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['requestPathId'] != null) {
             queryParameters['requestPathId'] = requestParameters['requestPathId'];
+        }
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
         }
 
         if (requestParameters['nextToken'] != null) {

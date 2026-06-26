@@ -18064,6 +18064,7 @@ class ProjectsServerApi:
         request_path: Optional[StrictStr] = None,
         request_method: Optional[StrictStr] = None,
         request_path_id: Optional[StrictStr] = None,
+        user_id: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -18097,6 +18098,8 @@ class ProjectsServerApi:
         :type request_method: str
         :param request_path_id:
         :type request_path_id: str
+        :param user_id:
+        :type user_id: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -18130,6 +18133,7 @@ class ProjectsServerApi:
             request_path=request_path,
             request_method=request_method,
             request_path_id=request_path_id,
+            user_id=user_id,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -18162,6 +18166,7 @@ class ProjectsServerApi:
         request_path: Optional[StrictStr] = None,
         request_method: Optional[StrictStr] = None,
         request_path_id: Optional[StrictStr] = None,
+        user_id: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -18195,6 +18200,8 @@ class ProjectsServerApi:
         :type request_method: str
         :param request_path_id:
         :type request_path_id: str
+        :param user_id:
+        :type user_id: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -18228,6 +18235,7 @@ class ProjectsServerApi:
             request_path=request_path,
             request_method=request_method,
             request_path_id=request_path_id,
+            user_id=user_id,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -18260,6 +18268,7 @@ class ProjectsServerApi:
         request_path: Optional[StrictStr] = None,
         request_method: Optional[StrictStr] = None,
         request_path_id: Optional[StrictStr] = None,
+        user_id: Optional[StrictStr] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -18293,6 +18302,8 @@ class ProjectsServerApi:
         :type request_method: str
         :param request_path_id:
         :type request_path_id: str
+        :param user_id:
+        :type user_id: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -18326,6 +18337,7 @@ class ProjectsServerApi:
             request_path=request_path,
             request_method=request_method,
             request_path_id=request_path_id,
+            user_id=user_id,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -18353,6 +18365,7 @@ class ProjectsServerApi:
         request_path,
         request_method,
         request_path_id,
+        user_id,
         next_token,
         _request_auth,
         _content_type,
@@ -18421,6 +18434,10 @@ class ProjectsServerApi:
         if request_path_id is not None:
             
             _query_params.append(('requestPathId', request_path_id))
+            
+        if user_id is not None:
+            
+            _query_params.append(('userId', user_id))
             
         if next_token is not None:
             

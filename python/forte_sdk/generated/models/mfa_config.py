@@ -32,7 +32,8 @@ class MfaConfig(BaseModel):
     email_otp_enabled: Optional[StrictBool] = Field(default=None, alias="emailOtpEnabled")
     sms_otp_enabled: Optional[StrictBool] = Field(default=None, alias="smsOtpEnabled")
     web_authn_enabled: Optional[StrictBool] = Field(default=None, alias="webAuthnEnabled")
-    __properties: ClassVar[List[str]] = ["enforcement", "totpEnabled", "emailOtpEnabled", "smsOtpEnabled", "webAuthnEnabled"]
+    block_otp_first_factor: Optional[StrictBool] = Field(default=None, alias="blockOtpFirstFactor")
+    __properties: ClassVar[List[str]] = ["enforcement", "totpEnabled", "emailOtpEnabled", "smsOtpEnabled", "webAuthnEnabled", "blockOtpFirstFactor"]
 
     @field_validator('enforcement')
     def enforcement_validate_enum(cls, value):
@@ -99,7 +100,8 @@ class MfaConfig(BaseModel):
             "totpEnabled": obj.get("totpEnabled"),
             "emailOtpEnabled": obj.get("emailOtpEnabled"),
             "smsOtpEnabled": obj.get("smsOtpEnabled"),
-            "webAuthnEnabled": obj.get("webAuthnEnabled")
+            "webAuthnEnabled": obj.get("webAuthnEnabled"),
+            "blockOtpFirstFactor": obj.get("blockOtpFirstFactor")
         })
         return _obj
 

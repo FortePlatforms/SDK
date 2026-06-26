@@ -37,7 +37,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   MfaConfig.JSON_PROPERTY_TOTP_ENABLED,
   MfaConfig.JSON_PROPERTY_EMAIL_OTP_ENABLED,
   MfaConfig.JSON_PROPERTY_SMS_OTP_ENABLED,
-  MfaConfig.JSON_PROPERTY_WEB_AUTHN_ENABLED
+  MfaConfig.JSON_PROPERTY_WEB_AUTHN_ENABLED,
+  MfaConfig.JSON_PROPERTY_BLOCK_OTP_FIRST_FACTOR
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class MfaConfig {
@@ -97,6 +98,10 @@ public class MfaConfig {
   public static final String JSON_PROPERTY_WEB_AUTHN_ENABLED = "webAuthnEnabled";
   @javax.annotation.Nullable
   private Boolean webAuthnEnabled;
+
+  public static final String JSON_PROPERTY_BLOCK_OTP_FIRST_FACTOR = "blockOtpFirstFactor";
+  @javax.annotation.Nullable
+  private Boolean blockOtpFirstFactor;
 
   public MfaConfig() { 
   }
@@ -221,6 +226,30 @@ public class MfaConfig {
   }
 
 
+  public MfaConfig blockOtpFirstFactor(@javax.annotation.Nullable Boolean blockOtpFirstFactor) {
+    this.blockOtpFirstFactor = blockOtpFirstFactor;
+    return this;
+  }
+
+  /**
+   * Get blockOtpFirstFactor
+   * @return blockOtpFirstFactor
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BLOCK_OTP_FIRST_FACTOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getBlockOtpFirstFactor() {
+    return blockOtpFirstFactor;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BLOCK_OTP_FIRST_FACTOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBlockOtpFirstFactor(@javax.annotation.Nullable Boolean blockOtpFirstFactor) {
+    this.blockOtpFirstFactor = blockOtpFirstFactor;
+  }
+
+
   /**
    * Return true if this MfaConfig object is equal to o.
    */
@@ -237,12 +266,13 @@ public class MfaConfig {
         Objects.equals(this.totpEnabled, mfaConfig.totpEnabled) &&
         Objects.equals(this.emailOtpEnabled, mfaConfig.emailOtpEnabled) &&
         Objects.equals(this.smsOtpEnabled, mfaConfig.smsOtpEnabled) &&
-        Objects.equals(this.webAuthnEnabled, mfaConfig.webAuthnEnabled);
+        Objects.equals(this.webAuthnEnabled, mfaConfig.webAuthnEnabled) &&
+        Objects.equals(this.blockOtpFirstFactor, mfaConfig.blockOtpFirstFactor);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(enforcement, totpEnabled, emailOtpEnabled, smsOtpEnabled, webAuthnEnabled);
+    return Objects.hash(enforcement, totpEnabled, emailOtpEnabled, smsOtpEnabled, webAuthnEnabled, blockOtpFirstFactor);
   }
 
   @Override
@@ -254,6 +284,7 @@ public class MfaConfig {
     sb.append("    emailOtpEnabled: ").append(toIndentedString(emailOtpEnabled)).append("\n");
     sb.append("    smsOtpEnabled: ").append(toIndentedString(smsOtpEnabled)).append("\n");
     sb.append("    webAuthnEnabled: ").append(toIndentedString(webAuthnEnabled)).append("\n");
+    sb.append("    blockOtpFirstFactor: ").append(toIndentedString(blockOtpFirstFactor)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -321,6 +352,11 @@ public class MfaConfig {
     // add `webAuthnEnabled` to the URL query string
     if (getWebAuthnEnabled() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%swebAuthnEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWebAuthnEnabled()))));
+    }
+
+    // add `blockOtpFirstFactor` to the URL query string
+    if (getBlockOtpFirstFactor() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sblockOtpFirstFactor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBlockOtpFirstFactor()))));
     }
 
     return joiner.toString();

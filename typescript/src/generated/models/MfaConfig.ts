@@ -49,6 +49,12 @@ export interface MfaConfig {
      * @memberof MfaConfig
      */
     webAuthnEnabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof MfaConfig
+     */
+    blockOtpFirstFactor?: boolean;
 }
 
 
@@ -85,6 +91,7 @@ export function MfaConfigFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'emailOtpEnabled': json['emailOtpEnabled'] == null ? undefined : json['emailOtpEnabled'],
         'smsOtpEnabled': json['smsOtpEnabled'] == null ? undefined : json['smsOtpEnabled'],
         'webAuthnEnabled': json['webAuthnEnabled'] == null ? undefined : json['webAuthnEnabled'],
+        'blockOtpFirstFactor': json['blockOtpFirstFactor'] == null ? undefined : json['blockOtpFirstFactor'],
     };
 }
 
@@ -104,6 +111,7 @@ export function MfaConfigToJSONTyped(value?: MfaConfig | null, ignoreDiscriminat
         'emailOtpEnabled': value['emailOtpEnabled'],
         'smsOtpEnabled': value['smsOtpEnabled'],
         'webAuthnEnabled': value['webAuthnEnabled'],
+        'blockOtpFirstFactor': value['blockOtpFirstFactor'],
     };
 }
 
