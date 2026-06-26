@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.CurrencyTotals;
+import com.forteplatforms.sdk.generated.model.CurrencyVolumeSeries;
 import com.forteplatforms.sdk.generated.model.ProductAggregate;
 import com.forteplatforms.sdk.generated.model.SpenderAggregate;
 import com.forteplatforms.sdk.generated.model.StateCurrencyTotals;
@@ -44,6 +45,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentAnalyticsResponse.JSON_PROPERTY_MAX_TIME,
   PaymentAnalyticsResponse.JSON_PROPERTY_TOTAL_PAYMENT_COUNT,
   PaymentAnalyticsResponse.JSON_PROPERTY_VOLUME_BY_CURRENCY,
+  PaymentAnalyticsResponse.JSON_PROPERTY_VOLUME_OVER_TIME,
   PaymentAnalyticsResponse.JSON_PROPERTY_BY_STATE,
   PaymentAnalyticsResponse.JSON_PROPERTY_TOP_PRODUCTS,
   PaymentAnalyticsResponse.JSON_PROPERTY_TOP_SPENDERS,
@@ -66,6 +68,10 @@ public class PaymentAnalyticsResponse {
   public static final String JSON_PROPERTY_VOLUME_BY_CURRENCY = "volumeByCurrency";
   @javax.annotation.Nonnull
   private List<CurrencyTotals> volumeByCurrency = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_VOLUME_OVER_TIME = "volumeOverTime";
+  @javax.annotation.Nonnull
+  private List<CurrencyVolumeSeries> volumeOverTime = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BY_STATE = "byState";
   @javax.annotation.Nonnull
@@ -227,6 +233,38 @@ public class PaymentAnalyticsResponse {
   }
 
 
+  public PaymentAnalyticsResponse volumeOverTime(@javax.annotation.Nonnull List<CurrencyVolumeSeries> volumeOverTime) {
+    this.volumeOverTime = volumeOverTime;
+    return this;
+  }
+
+  public PaymentAnalyticsResponse addVolumeOverTimeItem(CurrencyVolumeSeries volumeOverTimeItem) {
+    if (this.volumeOverTime == null) {
+      this.volumeOverTime = new ArrayList<>();
+    }
+    this.volumeOverTime.add(volumeOverTimeItem);
+    return this;
+  }
+
+  /**
+   * Get volumeOverTime
+   * @return volumeOverTime
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_VOLUME_OVER_TIME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<CurrencyVolumeSeries> getVolumeOverTime() {
+    return volumeOverTime;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VOLUME_OVER_TIME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setVolumeOverTime(@javax.annotation.Nonnull List<CurrencyVolumeSeries> volumeOverTime) {
+    this.volumeOverTime = volumeOverTime;
+  }
+
+
   public PaymentAnalyticsResponse byState(@javax.annotation.Nonnull List<StateCurrencyTotals> byState) {
     this.byState = byState;
     return this;
@@ -363,6 +401,7 @@ public class PaymentAnalyticsResponse {
         Objects.equals(this.maxTime, paymentAnalyticsResponse.maxTime) &&
         Objects.equals(this.totalPaymentCount, paymentAnalyticsResponse.totalPaymentCount) &&
         Objects.equals(this.volumeByCurrency, paymentAnalyticsResponse.volumeByCurrency) &&
+        Objects.equals(this.volumeOverTime, paymentAnalyticsResponse.volumeOverTime) &&
         Objects.equals(this.byState, paymentAnalyticsResponse.byState) &&
         Objects.equals(this.topProducts, paymentAnalyticsResponse.topProducts) &&
         Objects.equals(this.topSpenders, paymentAnalyticsResponse.topSpenders) &&
@@ -371,7 +410,7 @@ public class PaymentAnalyticsResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(minTime, maxTime, totalPaymentCount, volumeByCurrency, byState, topProducts, topSpenders, groupBy);
+    return Objects.hash(minTime, maxTime, totalPaymentCount, volumeByCurrency, volumeOverTime, byState, topProducts, topSpenders, groupBy);
   }
 
   @Override
@@ -382,6 +421,7 @@ public class PaymentAnalyticsResponse {
     sb.append("    maxTime: ").append(toIndentedString(maxTime)).append("\n");
     sb.append("    totalPaymentCount: ").append(toIndentedString(totalPaymentCount)).append("\n");
     sb.append("    volumeByCurrency: ").append(toIndentedString(volumeByCurrency)).append("\n");
+    sb.append("    volumeOverTime: ").append(toIndentedString(volumeOverTime)).append("\n");
     sb.append("    byState: ").append(toIndentedString(byState)).append("\n");
     sb.append("    topProducts: ").append(toIndentedString(topProducts)).append("\n");
     sb.append("    topSpenders: ").append(toIndentedString(topSpenders)).append("\n");
@@ -450,6 +490,16 @@ public class PaymentAnalyticsResponse {
       for (int i = 0; i < getVolumeByCurrency().size(); i++) {
         if (getVolumeByCurrency().get(i) != null) {
           joiner.add(getVolumeByCurrency().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%svolumeByCurrency%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `volumeOverTime` to the URL query string
+    if (getVolumeOverTime() != null) {
+      for (int i = 0; i < getVolumeOverTime().size(); i++) {
+        if (getVolumeOverTime().get(i) != null) {
+          joiner.add(getVolumeOverTime().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%svolumeOverTime%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

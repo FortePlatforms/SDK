@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TimeSeriesDataPoint } from './TimeSeriesDataPoint';
+import {
+    TimeSeriesDataPointFromJSON,
+    TimeSeriesDataPointFromJSONTyped,
+    TimeSeriesDataPointToJSON,
+    TimeSeriesDataPointToJSONTyped,
+} from './TimeSeriesDataPoint';
+
 /**
  * 
  * @export
@@ -30,31 +38,7 @@ export interface WebAppRuntimeMetricsResponse {
      * @type {number}
      * @memberof WebAppRuntimeMetricsResponse
      */
-    coldStartCount: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebAppRuntimeMetricsResponse
-     */
-    coldStartRate: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebAppRuntimeMetricsResponse
-     */
-    avgDurationMillis: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebAppRuntimeMetricsResponse
-     */
     p50DurationMillis: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebAppRuntimeMetricsResponse
-     */
-    p90DurationMillis: number;
     /**
      * 
      * @type {number}
@@ -63,16 +47,10 @@ export interface WebAppRuntimeMetricsResponse {
     p99DurationMillis: number;
     /**
      * 
-     * @type {number}
+     * @type {Array<TimeSeriesDataPoint>}
      * @memberof WebAppRuntimeMetricsResponse
      */
-    maxMemoryUsedMb: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebAppRuntimeMetricsResponse
-     */
-    memorySizeMb: number;
+    invocations: Array<TimeSeriesDataPoint>;
 }
 
 /**
@@ -80,14 +58,9 @@ export interface WebAppRuntimeMetricsResponse {
  */
 export function instanceOfWebAppRuntimeMetricsResponse(value: object): value is WebAppRuntimeMetricsResponse {
     if (!('invocationCount' in value) || value['invocationCount'] === undefined) return false;
-    if (!('coldStartCount' in value) || value['coldStartCount'] === undefined) return false;
-    if (!('coldStartRate' in value) || value['coldStartRate'] === undefined) return false;
-    if (!('avgDurationMillis' in value) || value['avgDurationMillis'] === undefined) return false;
     if (!('p50DurationMillis' in value) || value['p50DurationMillis'] === undefined) return false;
-    if (!('p90DurationMillis' in value) || value['p90DurationMillis'] === undefined) return false;
     if (!('p99DurationMillis' in value) || value['p99DurationMillis'] === undefined) return false;
-    if (!('maxMemoryUsedMb' in value) || value['maxMemoryUsedMb'] === undefined) return false;
-    if (!('memorySizeMb' in value) || value['memorySizeMb'] === undefined) return false;
+    if (!('invocations' in value) || value['invocations'] === undefined) return false;
     return true;
 }
 
@@ -102,14 +75,9 @@ export function WebAppRuntimeMetricsResponseFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'invocationCount': json['invocationCount'],
-        'coldStartCount': json['coldStartCount'],
-        'coldStartRate': json['coldStartRate'],
-        'avgDurationMillis': json['avgDurationMillis'],
         'p50DurationMillis': json['p50DurationMillis'],
-        'p90DurationMillis': json['p90DurationMillis'],
         'p99DurationMillis': json['p99DurationMillis'],
-        'maxMemoryUsedMb': json['maxMemoryUsedMb'],
-        'memorySizeMb': json['memorySizeMb'],
+        'invocations': ((json['invocations'] as Array<any>).map(TimeSeriesDataPointFromJSON)),
     };
 }
 
@@ -125,14 +93,9 @@ export function WebAppRuntimeMetricsResponseToJSONTyped(value?: WebAppRuntimeMet
     return {
         
         'invocationCount': value['invocationCount'],
-        'coldStartCount': value['coldStartCount'],
-        'coldStartRate': value['coldStartRate'],
-        'avgDurationMillis': value['avgDurationMillis'],
         'p50DurationMillis': value['p50DurationMillis'],
-        'p90DurationMillis': value['p90DurationMillis'],
         'p99DurationMillis': value['p99DurationMillis'],
-        'maxMemoryUsedMb': value['maxMemoryUsedMb'],
-        'memorySizeMb': value['memorySizeMb'],
+        'invocations': ((value['invocations'] as Array<any>).map(TimeSeriesDataPointToJSON)),
     };
 }
 

@@ -11195,6 +11195,7 @@ class ProjectsServerApi:
         group_by: Optional[StrictStr] = None,
         metadata_key: Optional[StrictStr] = None,
         top_n: Optional[StrictInt] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11223,6 +11224,8 @@ class ProjectsServerApi:
         :type metadata_key: str
         :param top_n:
         :type top_n: int
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11252,6 +11255,7 @@ class ProjectsServerApi:
             group_by=group_by,
             metadata_key=metadata_key,
             top_n=top_n,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11281,6 +11285,7 @@ class ProjectsServerApi:
         group_by: Optional[StrictStr] = None,
         metadata_key: Optional[StrictStr] = None,
         top_n: Optional[StrictInt] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11309,6 +11314,8 @@ class ProjectsServerApi:
         :type metadata_key: str
         :param top_n:
         :type top_n: int
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11338,6 +11345,7 @@ class ProjectsServerApi:
             group_by=group_by,
             metadata_key=metadata_key,
             top_n=top_n,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11367,6 +11375,7 @@ class ProjectsServerApi:
         group_by: Optional[StrictStr] = None,
         metadata_key: Optional[StrictStr] = None,
         top_n: Optional[StrictInt] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11395,6 +11404,8 @@ class ProjectsServerApi:
         :type metadata_key: str
         :param top_n:
         :type top_n: int
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -11424,6 +11435,7 @@ class ProjectsServerApi:
             group_by=group_by,
             metadata_key=metadata_key,
             top_n=top_n,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -11448,6 +11460,7 @@ class ProjectsServerApi:
         group_by,
         metadata_key,
         top_n,
+        granularity,
         _request_auth,
         _content_type,
         _headers,
@@ -11509,6 +11522,10 @@ class ProjectsServerApi:
         if top_n is not None:
             
             _query_params.append(('topN', top_n))
+            
+        if granularity is not None:
+            
+            _query_params.append(('granularity', granularity))
             
         # process the header parameters
         # process the form parameters

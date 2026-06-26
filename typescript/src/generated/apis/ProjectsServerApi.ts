@@ -644,6 +644,7 @@ export interface GetPaymentAnalyticsRequest {
     groupBy?: GetPaymentAnalyticsGroupByType;
     metadataKey?: string;
     topN?: number;
+    granularity?: GetPaymentAnalyticsGranularityType;
 }
 
 export interface GetProjectRequest {
@@ -3305,6 +3306,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['topN'] != null) {
             queryParameters['topN'] = requestParameters['topN'];
+        }
+
+        if (requestParameters['granularity'] != null) {
+            queryParameters['granularity'] = requestParameters['granularity'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -7550,6 +7555,16 @@ export const GetPaymentAnalyticsGroupByType = {
     METADATA: 'METADATA'
 } as const;
 export type GetPaymentAnalyticsGroupByType = typeof GetPaymentAnalyticsGroupByType[keyof typeof GetPaymentAnalyticsGroupByType];
+/**
+ * @export
+ */
+export const GetPaymentAnalyticsGranularityType = {
+    ONE_MINUTE: 'ONE_MINUTE',
+    FIVE_MINUTES: 'FIVE_MINUTES',
+    FIFTEEN_MINUTES: 'FIFTEEN_MINUTES',
+    ONE_HOUR: 'ONE_HOUR'
+} as const;
+export type GetPaymentAnalyticsGranularityType = typeof GetPaymentAnalyticsGranularityType[keyof typeof GetPaymentAnalyticsGranularityType];
 /**
  * @export
  */

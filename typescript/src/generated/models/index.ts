@@ -48,6 +48,7 @@ export * from './CreateSubscriptionResponse';
 export * from './CreateUserInviteRequest';
 export * from './CreateWebAppRequest';
 export * from './CurrencyTotals';
+export * from './CurrencyVolumeSeries';
 export * from './CustomDomain';
 export * from './CustomDomainResponse';
 export * from './DnsRecordCheck';

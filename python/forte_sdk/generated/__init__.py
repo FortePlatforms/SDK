@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.245"
+__version__ = "1.0.249"
 
 # Define package exports
 __all__ = [
@@ -77,6 +77,7 @@ __all__ = [
     "CreateUserInviteRequest",
     "CreateWebAppRequest",
     "CurrencyTotals",
+    "CurrencyVolumeSeries",
     "CustomDomain",
     "CustomDomainResponse",
     "DnsRecordCheck",
@@ -243,6 +244,7 @@ from forte_sdk.generated.models.create_subscription_response import CreateSubscr
 from forte_sdk.generated.models.create_user_invite_request import CreateUserInviteRequest as CreateUserInviteRequest
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest as CreateWebAppRequest
 from forte_sdk.generated.models.currency_totals import CurrencyTotals as CurrencyTotals
+from forte_sdk.generated.models.currency_volume_series import CurrencyVolumeSeries as CurrencyVolumeSeries
 from forte_sdk.generated.models.custom_domain import CustomDomain as CustomDomain
 from forte_sdk.generated.models.custom_domain_response import CustomDomainResponse as CustomDomainResponse
 from forte_sdk.generated.models.dns_record_check import DnsRecordCheck as DnsRecordCheck

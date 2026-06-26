@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from forte_sdk.generated.models.currency_totals import CurrencyTotals
+from forte_sdk.generated.models.currency_volume_series import CurrencyVolumeSeries
 from forte_sdk.generated.models.product_aggregate import ProductAggregate
 from forte_sdk.generated.models.spender_aggregate import SpenderAggregate
 from forte_sdk.generated.models.state_currency_totals import StateCurrencyTotals
@@ -36,11 +37,12 @@ class PaymentAnalyticsResponse(BaseModel):
     max_time: datetime = Field(alias="maxTime")
     total_payment_count: StrictInt = Field(alias="totalPaymentCount")
     volume_by_currency: List[CurrencyTotals] = Field(alias="volumeByCurrency")
+    volume_over_time: List[CurrencyVolumeSeries] = Field(alias="volumeOverTime")
     by_state: List[StateCurrencyTotals] = Field(alias="byState")
     top_products: List[ProductAggregate] = Field(alias="topProducts")
     top_spenders: List[SpenderAggregate] = Field(alias="topSpenders")
     group_by: StrictStr = Field(alias="groupBy")
-    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "totalPaymentCount", "volumeByCurrency", "byState", "topProducts", "topSpenders", "groupBy"]
+    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "totalPaymentCount", "volumeByCurrency", "volumeOverTime", "byState", "topProducts", "topSpenders", "groupBy"]
 
     @field_validator('group_by')
     def group_by_validate_enum(cls, value):
@@ -95,6 +97,13 @@ class PaymentAnalyticsResponse(BaseModel):
                 if _item_volume_by_currency:
                     _items.append(_item_volume_by_currency.to_dict())
             _dict['volumeByCurrency'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in volume_over_time (list)
+        _items = []
+        if self.volume_over_time:
+            for _item_volume_over_time in self.volume_over_time:
+                if _item_volume_over_time:
+                    _items.append(_item_volume_over_time.to_dict())
+            _dict['volumeOverTime'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in by_state (list)
         _items = []
         if self.by_state:
@@ -132,6 +141,7 @@ class PaymentAnalyticsResponse(BaseModel):
             "maxTime": obj.get("maxTime"),
             "totalPaymentCount": obj.get("totalPaymentCount"),
             "volumeByCurrency": [CurrencyTotals.from_dict(_item) for _item in obj["volumeByCurrency"]] if obj.get("volumeByCurrency") is not None else None,
+            "volumeOverTime": [CurrencyVolumeSeries.from_dict(_item) for _item in obj["volumeOverTime"]] if obj.get("volumeOverTime") is not None else None,
             "byState": [StateCurrencyTotals.from_dict(_item) for _item in obj["byState"]] if obj.get("byState") is not None else None,
             "topProducts": [ProductAggregate.from_dict(_item) for _item in obj["topProducts"]] if obj.get("topProducts") is not None else None,
             "topSpenders": [SpenderAggregate.from_dict(_item) for _item in obj["topSpenders"]] if obj.get("topSpenders") is not None else None,

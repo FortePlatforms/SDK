@@ -5364,11 +5364,12 @@ public class ProjectsServerApi {
    * @param groupBy  (optional)
    * @param metadataKey  (optional)
    * @param topN  (optional)
+   * @param granularity  (optional, default to FIVE_MINUTES)
    * @return PaymentAnalyticsResponse
    * @throws ApiException if fails to make API call
    */
-  public PaymentAnalyticsResponse getPaymentAnalytics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN) throws ApiException {
-    return getPaymentAnalytics(projectId, minTime, maxTime, groupBy, metadataKey, topN, null);
+  public PaymentAnalyticsResponse getPaymentAnalytics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, @javax.annotation.Nullable String granularity) throws ApiException {
+    return getPaymentAnalytics(projectId, minTime, maxTime, groupBy, metadataKey, topN, granularity, null);
   }
 
   /**
@@ -5380,12 +5381,13 @@ public class ProjectsServerApi {
    * @param groupBy  (optional)
    * @param metadataKey  (optional)
    * @param topN  (optional)
+   * @param granularity  (optional, default to FIVE_MINUTES)
    * @param headers Optional headers to include in the request
    * @return PaymentAnalyticsResponse
    * @throws ApiException if fails to make API call
    */
-  public PaymentAnalyticsResponse getPaymentAnalytics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaymentAnalyticsResponse> localVarResponse = getPaymentAnalyticsWithHttpInfo(projectId, minTime, maxTime, groupBy, metadataKey, topN, headers);
+  public PaymentAnalyticsResponse getPaymentAnalytics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentAnalyticsResponse> localVarResponse = getPaymentAnalyticsWithHttpInfo(projectId, minTime, maxTime, groupBy, metadataKey, topN, granularity, headers);
     return localVarResponse.getData();
   }
 
@@ -5398,11 +5400,12 @@ public class ProjectsServerApi {
    * @param groupBy  (optional)
    * @param metadataKey  (optional)
    * @param topN  (optional)
+   * @param granularity  (optional, default to FIVE_MINUTES)
    * @return ApiResponse&lt;PaymentAnalyticsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentAnalyticsResponse> getPaymentAnalyticsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN) throws ApiException {
-    return getPaymentAnalyticsWithHttpInfo(projectId, minTime, maxTime, groupBy, metadataKey, topN, null);
+  public ApiResponse<PaymentAnalyticsResponse> getPaymentAnalyticsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, @javax.annotation.Nullable String granularity) throws ApiException {
+    return getPaymentAnalyticsWithHttpInfo(projectId, minTime, maxTime, groupBy, metadataKey, topN, granularity, null);
   }
 
   /**
@@ -5414,12 +5417,13 @@ public class ProjectsServerApi {
    * @param groupBy  (optional)
    * @param metadataKey  (optional)
    * @param topN  (optional)
+   * @param granularity  (optional, default to FIVE_MINUTES)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PaymentAnalyticsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentAnalyticsResponse> getPaymentAnalyticsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPaymentAnalyticsRequestBuilder(projectId, minTime, maxTime, groupBy, metadataKey, topN, headers);
+  public ApiResponse<PaymentAnalyticsResponse> getPaymentAnalyticsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPaymentAnalyticsRequestBuilder(projectId, minTime, maxTime, groupBy, metadataKey, topN, granularity, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5466,7 +5470,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder getPaymentAnalyticsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getPaymentAnalyticsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String groupBy, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable Integer topN, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling getPaymentAnalytics");
@@ -5490,6 +5494,8 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("metadataKey", metadataKey));
     localVarQueryParameterBaseName = "topN";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("topN", topN));
+    localVarQueryParameterBaseName = "granularity";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

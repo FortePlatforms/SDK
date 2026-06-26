@@ -61,6 +61,7 @@ from forte_sdk.generated.models.create_subscription_response import CreateSubscr
 from forte_sdk.generated.models.create_user_invite_request import CreateUserInviteRequest
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest
 from forte_sdk.generated.models.currency_totals import CurrencyTotals
+from forte_sdk.generated.models.currency_volume_series import CurrencyVolumeSeries
 from forte_sdk.generated.models.custom_domain import CustomDomain
 from forte_sdk.generated.models.custom_domain_response import CustomDomainResponse
 from forte_sdk.generated.models.dns_record_check import DnsRecordCheck

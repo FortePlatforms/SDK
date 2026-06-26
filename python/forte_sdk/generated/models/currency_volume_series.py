@@ -17,22 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class WebAppRuntimeMetricsResponse(BaseModel):
+class CurrencyVolumeSeries(BaseModel):
     """
-    WebAppRuntimeMetricsResponse
+    CurrencyVolumeSeries
     """ # noqa: E501
-    invocation_count: StrictInt = Field(alias="invocationCount")
-    p50_duration_millis: StrictInt = Field(alias="p50DurationMillis")
-    p99_duration_millis: StrictInt = Field(alias="p99DurationMillis")
-    invocations: List[TimeSeriesDataPoint]
-    __properties: ClassVar[List[str]] = ["invocationCount", "p50DurationMillis", "p99DurationMillis", "invocations"]
+    currency: StrictStr
+    points: List[TimeSeriesDataPoint]
+    __properties: ClassVar[List[str]] = ["currency", "points"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -52,7 +50,7 @@ class WebAppRuntimeMetricsResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WebAppRuntimeMetricsResponse from a JSON string"""
+        """Create an instance of CurrencyVolumeSeries from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,18 +71,18 @@ class WebAppRuntimeMetricsResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in invocations (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in points (list)
         _items = []
-        if self.invocations:
-            for _item_invocations in self.invocations:
-                if _item_invocations:
-                    _items.append(_item_invocations.to_dict())
-            _dict['invocations'] = _items
+        if self.points:
+            for _item_points in self.points:
+                if _item_points:
+                    _items.append(_item_points.to_dict())
+            _dict['points'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WebAppRuntimeMetricsResponse from a dict"""
+        """Create an instance of CurrencyVolumeSeries from a dict"""
         if obj is None:
             return None
 
@@ -92,10 +90,8 @@ class WebAppRuntimeMetricsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "invocationCount": obj.get("invocationCount"),
-            "p50DurationMillis": obj.get("p50DurationMillis"),
-            "p99DurationMillis": obj.get("p99DurationMillis"),
-            "invocations": [TimeSeriesDataPoint.from_dict(_item) for _item in obj["invocations"]] if obj.get("invocations") is not None else None
+            "currency": obj.get("currency"),
+            "points": [TimeSeriesDataPoint.from_dict(_item) for _item in obj["points"]] if obj.get("points") is not None else None
         })
         return _obj
 

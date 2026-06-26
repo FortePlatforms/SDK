@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CurrencyVolumeSeries } from './CurrencyVolumeSeries';
+import {
+    CurrencyVolumeSeriesFromJSON,
+    CurrencyVolumeSeriesFromJSONTyped,
+    CurrencyVolumeSeriesToJSON,
+    CurrencyVolumeSeriesToJSONTyped,
+} from './CurrencyVolumeSeries';
 import type { StateCurrencyTotals } from './StateCurrencyTotals';
 import {
     StateCurrencyTotalsFromJSON,
@@ -74,6 +81,12 @@ export interface PaymentAnalyticsResponse {
     volumeByCurrency: Array<CurrencyTotals>;
     /**
      * 
+     * @type {Array<CurrencyVolumeSeries>}
+     * @memberof PaymentAnalyticsResponse
+     */
+    volumeOverTime: Array<CurrencyVolumeSeries>;
+    /**
+     * 
      * @type {Array<StateCurrencyTotals>}
      * @memberof PaymentAnalyticsResponse
      */
@@ -118,6 +131,7 @@ export function instanceOfPaymentAnalyticsResponse(value: object): value is Paym
     if (!('maxTime' in value) || value['maxTime'] === undefined) return false;
     if (!('totalPaymentCount' in value) || value['totalPaymentCount'] === undefined) return false;
     if (!('volumeByCurrency' in value) || value['volumeByCurrency'] === undefined) return false;
+    if (!('volumeOverTime' in value) || value['volumeOverTime'] === undefined) return false;
     if (!('byState' in value) || value['byState'] === undefined) return false;
     if (!('topProducts' in value) || value['topProducts'] === undefined) return false;
     if (!('topSpenders' in value) || value['topSpenders'] === undefined) return false;
@@ -139,6 +153,7 @@ export function PaymentAnalyticsResponseFromJSONTyped(json: any, ignoreDiscrimin
         'maxTime': (new Date(json['maxTime'])),
         'totalPaymentCount': json['totalPaymentCount'],
         'volumeByCurrency': ((json['volumeByCurrency'] as Array<any>).map(CurrencyTotalsFromJSON)),
+        'volumeOverTime': ((json['volumeOverTime'] as Array<any>).map(CurrencyVolumeSeriesFromJSON)),
         'byState': ((json['byState'] as Array<any>).map(StateCurrencyTotalsFromJSON)),
         'topProducts': ((json['topProducts'] as Array<any>).map(ProductAggregateFromJSON)),
         'topSpenders': ((json['topSpenders'] as Array<any>).map(SpenderAggregateFromJSON)),
@@ -161,6 +176,7 @@ export function PaymentAnalyticsResponseToJSONTyped(value?: PaymentAnalyticsResp
         'maxTime': value['maxTime'].toISOString(),
         'totalPaymentCount': value['totalPaymentCount'],
         'volumeByCurrency': ((value['volumeByCurrency'] as Array<any>).map(CurrencyTotalsToJSON)),
+        'volumeOverTime': ((value['volumeOverTime'] as Array<any>).map(CurrencyVolumeSeriesToJSON)),
         'byState': ((value['byState'] as Array<any>).map(StateCurrencyTotalsToJSON)),
         'topProducts': ((value['topProducts'] as Array<any>).map(ProductAggregateToJSON)),
         'topSpenders': ((value['topSpenders'] as Array<any>).map(SpenderAggregateToJSON)),

@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.TimeSeriesDataPoint;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -34,14 +37,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   WebAppRuntimeMetricsResponse.JSON_PROPERTY_INVOCATION_COUNT,
-  WebAppRuntimeMetricsResponse.JSON_PROPERTY_COLD_START_COUNT,
-  WebAppRuntimeMetricsResponse.JSON_PROPERTY_COLD_START_RATE,
-  WebAppRuntimeMetricsResponse.JSON_PROPERTY_AVG_DURATION_MILLIS,
   WebAppRuntimeMetricsResponse.JSON_PROPERTY_P50_DURATION_MILLIS,
-  WebAppRuntimeMetricsResponse.JSON_PROPERTY_P90_DURATION_MILLIS,
   WebAppRuntimeMetricsResponse.JSON_PROPERTY_P99_DURATION_MILLIS,
-  WebAppRuntimeMetricsResponse.JSON_PROPERTY_MAX_MEMORY_USED_MB,
-  WebAppRuntimeMetricsResponse.JSON_PROPERTY_MEMORY_SIZE_MB
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_INVOCATIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class WebAppRuntimeMetricsResponse {
@@ -49,37 +47,17 @@ public class WebAppRuntimeMetricsResponse {
   @javax.annotation.Nonnull
   private Long invocationCount;
 
-  public static final String JSON_PROPERTY_COLD_START_COUNT = "coldStartCount";
-  @javax.annotation.Nonnull
-  private Long coldStartCount;
-
-  public static final String JSON_PROPERTY_COLD_START_RATE = "coldStartRate";
-  @javax.annotation.Nonnull
-  private Double coldStartRate;
-
-  public static final String JSON_PROPERTY_AVG_DURATION_MILLIS = "avgDurationMillis";
-  @javax.annotation.Nonnull
-  private Double avgDurationMillis;
-
   public static final String JSON_PROPERTY_P50_DURATION_MILLIS = "p50DurationMillis";
   @javax.annotation.Nonnull
   private Long p50DurationMillis;
-
-  public static final String JSON_PROPERTY_P90_DURATION_MILLIS = "p90DurationMillis";
-  @javax.annotation.Nonnull
-  private Long p90DurationMillis;
 
   public static final String JSON_PROPERTY_P99_DURATION_MILLIS = "p99DurationMillis";
   @javax.annotation.Nonnull
   private Long p99DurationMillis;
 
-  public static final String JSON_PROPERTY_MAX_MEMORY_USED_MB = "maxMemoryUsedMb";
+  public static final String JSON_PROPERTY_INVOCATIONS = "invocations";
   @javax.annotation.Nonnull
-  private Integer maxMemoryUsedMb;
-
-  public static final String JSON_PROPERTY_MEMORY_SIZE_MB = "memorySizeMb";
-  @javax.annotation.Nonnull
-  private Integer memorySizeMb;
+  private List<TimeSeriesDataPoint> invocations = new ArrayList<>();
 
   public WebAppRuntimeMetricsResponse() { 
   }
@@ -108,78 +86,6 @@ public class WebAppRuntimeMetricsResponse {
   }
 
 
-  public WebAppRuntimeMetricsResponse coldStartCount(@javax.annotation.Nonnull Long coldStartCount) {
-    this.coldStartCount = coldStartCount;
-    return this;
-  }
-
-  /**
-   * Get coldStartCount
-   * @return coldStartCount
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_COLD_START_COUNT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Long getColdStartCount() {
-    return coldStartCount;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_COLD_START_COUNT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setColdStartCount(@javax.annotation.Nonnull Long coldStartCount) {
-    this.coldStartCount = coldStartCount;
-  }
-
-
-  public WebAppRuntimeMetricsResponse coldStartRate(@javax.annotation.Nonnull Double coldStartRate) {
-    this.coldStartRate = coldStartRate;
-    return this;
-  }
-
-  /**
-   * Get coldStartRate
-   * @return coldStartRate
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_COLD_START_RATE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Double getColdStartRate() {
-    return coldStartRate;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_COLD_START_RATE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setColdStartRate(@javax.annotation.Nonnull Double coldStartRate) {
-    this.coldStartRate = coldStartRate;
-  }
-
-
-  public WebAppRuntimeMetricsResponse avgDurationMillis(@javax.annotation.Nonnull Double avgDurationMillis) {
-    this.avgDurationMillis = avgDurationMillis;
-    return this;
-  }
-
-  /**
-   * Get avgDurationMillis
-   * @return avgDurationMillis
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_AVG_DURATION_MILLIS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Double getAvgDurationMillis() {
-    return avgDurationMillis;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_AVG_DURATION_MILLIS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAvgDurationMillis(@javax.annotation.Nonnull Double avgDurationMillis) {
-    this.avgDurationMillis = avgDurationMillis;
-  }
-
-
   public WebAppRuntimeMetricsResponse p50DurationMillis(@javax.annotation.Nonnull Long p50DurationMillis) {
     this.p50DurationMillis = p50DurationMillis;
     return this;
@@ -201,30 +107,6 @@ public class WebAppRuntimeMetricsResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setP50DurationMillis(@javax.annotation.Nonnull Long p50DurationMillis) {
     this.p50DurationMillis = p50DurationMillis;
-  }
-
-
-  public WebAppRuntimeMetricsResponse p90DurationMillis(@javax.annotation.Nonnull Long p90DurationMillis) {
-    this.p90DurationMillis = p90DurationMillis;
-    return this;
-  }
-
-  /**
-   * Get p90DurationMillis
-   * @return p90DurationMillis
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_P90_DURATION_MILLIS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Long getP90DurationMillis() {
-    return p90DurationMillis;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_P90_DURATION_MILLIS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setP90DurationMillis(@javax.annotation.Nonnull Long p90DurationMillis) {
-    this.p90DurationMillis = p90DurationMillis;
   }
 
 
@@ -252,51 +134,35 @@ public class WebAppRuntimeMetricsResponse {
   }
 
 
-  public WebAppRuntimeMetricsResponse maxMemoryUsedMb(@javax.annotation.Nonnull Integer maxMemoryUsedMb) {
-    this.maxMemoryUsedMb = maxMemoryUsedMb;
+  public WebAppRuntimeMetricsResponse invocations(@javax.annotation.Nonnull List<TimeSeriesDataPoint> invocations) {
+    this.invocations = invocations;
+    return this;
+  }
+
+  public WebAppRuntimeMetricsResponse addInvocationsItem(TimeSeriesDataPoint invocationsItem) {
+    if (this.invocations == null) {
+      this.invocations = new ArrayList<>();
+    }
+    this.invocations.add(invocationsItem);
     return this;
   }
 
   /**
-   * Get maxMemoryUsedMb
-   * @return maxMemoryUsedMb
+   * Get invocations
+   * @return invocations
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_MAX_MEMORY_USED_MB, required = true)
+  @JsonProperty(value = JSON_PROPERTY_INVOCATIONS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Integer getMaxMemoryUsedMb() {
-    return maxMemoryUsedMb;
+  public List<TimeSeriesDataPoint> getInvocations() {
+    return invocations;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MAX_MEMORY_USED_MB, required = true)
+  @JsonProperty(value = JSON_PROPERTY_INVOCATIONS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setMaxMemoryUsedMb(@javax.annotation.Nonnull Integer maxMemoryUsedMb) {
-    this.maxMemoryUsedMb = maxMemoryUsedMb;
-  }
-
-
-  public WebAppRuntimeMetricsResponse memorySizeMb(@javax.annotation.Nonnull Integer memorySizeMb) {
-    this.memorySizeMb = memorySizeMb;
-    return this;
-  }
-
-  /**
-   * Get memorySizeMb
-   * @return memorySizeMb
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_MEMORY_SIZE_MB, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Integer getMemorySizeMb() {
-    return memorySizeMb;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_MEMORY_SIZE_MB, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setMemorySizeMb(@javax.annotation.Nonnull Integer memorySizeMb) {
-    this.memorySizeMb = memorySizeMb;
+  public void setInvocations(@javax.annotation.Nonnull List<TimeSeriesDataPoint> invocations) {
+    this.invocations = invocations;
   }
 
 
@@ -313,19 +179,14 @@ public class WebAppRuntimeMetricsResponse {
     }
     WebAppRuntimeMetricsResponse webAppRuntimeMetricsResponse = (WebAppRuntimeMetricsResponse) o;
     return Objects.equals(this.invocationCount, webAppRuntimeMetricsResponse.invocationCount) &&
-        Objects.equals(this.coldStartCount, webAppRuntimeMetricsResponse.coldStartCount) &&
-        Objects.equals(this.coldStartRate, webAppRuntimeMetricsResponse.coldStartRate) &&
-        Objects.equals(this.avgDurationMillis, webAppRuntimeMetricsResponse.avgDurationMillis) &&
         Objects.equals(this.p50DurationMillis, webAppRuntimeMetricsResponse.p50DurationMillis) &&
-        Objects.equals(this.p90DurationMillis, webAppRuntimeMetricsResponse.p90DurationMillis) &&
         Objects.equals(this.p99DurationMillis, webAppRuntimeMetricsResponse.p99DurationMillis) &&
-        Objects.equals(this.maxMemoryUsedMb, webAppRuntimeMetricsResponse.maxMemoryUsedMb) &&
-        Objects.equals(this.memorySizeMb, webAppRuntimeMetricsResponse.memorySizeMb);
+        Objects.equals(this.invocations, webAppRuntimeMetricsResponse.invocations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invocationCount, coldStartCount, coldStartRate, avgDurationMillis, p50DurationMillis, p90DurationMillis, p99DurationMillis, maxMemoryUsedMb, memorySizeMb);
+    return Objects.hash(invocationCount, p50DurationMillis, p99DurationMillis, invocations);
   }
 
   @Override
@@ -333,14 +194,9 @@ public class WebAppRuntimeMetricsResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebAppRuntimeMetricsResponse {\n");
     sb.append("    invocationCount: ").append(toIndentedString(invocationCount)).append("\n");
-    sb.append("    coldStartCount: ").append(toIndentedString(coldStartCount)).append("\n");
-    sb.append("    coldStartRate: ").append(toIndentedString(coldStartRate)).append("\n");
-    sb.append("    avgDurationMillis: ").append(toIndentedString(avgDurationMillis)).append("\n");
     sb.append("    p50DurationMillis: ").append(toIndentedString(p50DurationMillis)).append("\n");
-    sb.append("    p90DurationMillis: ").append(toIndentedString(p90DurationMillis)).append("\n");
     sb.append("    p99DurationMillis: ").append(toIndentedString(p99DurationMillis)).append("\n");
-    sb.append("    maxMemoryUsedMb: ").append(toIndentedString(maxMemoryUsedMb)).append("\n");
-    sb.append("    memorySizeMb: ").append(toIndentedString(memorySizeMb)).append("\n");
+    sb.append("    invocations: ").append(toIndentedString(invocations)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -390,29 +246,9 @@ public class WebAppRuntimeMetricsResponse {
       joiner.add(String.format(java.util.Locale.ROOT, "%sinvocationCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInvocationCount()))));
     }
 
-    // add `coldStartCount` to the URL query string
-    if (getColdStartCount() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scoldStartCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getColdStartCount()))));
-    }
-
-    // add `coldStartRate` to the URL query string
-    if (getColdStartRate() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scoldStartRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getColdStartRate()))));
-    }
-
-    // add `avgDurationMillis` to the URL query string
-    if (getAvgDurationMillis() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%savgDurationMillis%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAvgDurationMillis()))));
-    }
-
     // add `p50DurationMillis` to the URL query string
     if (getP50DurationMillis() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sp50DurationMillis%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getP50DurationMillis()))));
-    }
-
-    // add `p90DurationMillis` to the URL query string
-    if (getP90DurationMillis() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sp90DurationMillis%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getP90DurationMillis()))));
     }
 
     // add `p99DurationMillis` to the URL query string
@@ -420,14 +256,14 @@ public class WebAppRuntimeMetricsResponse {
       joiner.add(String.format(java.util.Locale.ROOT, "%sp99DurationMillis%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getP99DurationMillis()))));
     }
 
-    // add `maxMemoryUsedMb` to the URL query string
-    if (getMaxMemoryUsedMb() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smaxMemoryUsedMb%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaxMemoryUsedMb()))));
-    }
-
-    // add `memorySizeMb` to the URL query string
-    if (getMemorySizeMb() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smemorySizeMb%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemorySizeMb()))));
+    // add `invocations` to the URL query string
+    if (getInvocations() != null) {
+      for (int i = 0; i < getInvocations().size(); i++) {
+        if (getInvocations().get(i) != null) {
+          joiner.add(getInvocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sinvocations%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();
