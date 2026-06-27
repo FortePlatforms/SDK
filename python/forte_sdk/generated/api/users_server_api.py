@@ -92,6 +92,7 @@ class UsersServerApi:
         project_id: StrictStr,
         mfa_method_id: StrictStr,
         activate_mfa_method_request: ActivateMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -114,6 +115,8 @@ class UsersServerApi:
         :type mfa_method_id: str
         :param activate_mfa_method_request: (required)
         :type activate_mfa_method_request: ActivateMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -140,6 +143,7 @@ class UsersServerApi:
             project_id=project_id,
             mfa_method_id=mfa_method_id,
             activate_mfa_method_request=activate_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -166,6 +170,7 @@ class UsersServerApi:
         project_id: StrictStr,
         mfa_method_id: StrictStr,
         activate_mfa_method_request: ActivateMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -188,6 +193,8 @@ class UsersServerApi:
         :type mfa_method_id: str
         :param activate_mfa_method_request: (required)
         :type activate_mfa_method_request: ActivateMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -214,6 +221,7 @@ class UsersServerApi:
             project_id=project_id,
             mfa_method_id=mfa_method_id,
             activate_mfa_method_request=activate_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -240,6 +248,7 @@ class UsersServerApi:
         project_id: StrictStr,
         mfa_method_id: StrictStr,
         activate_mfa_method_request: ActivateMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -262,6 +271,8 @@ class UsersServerApi:
         :type mfa_method_id: str
         :param activate_mfa_method_request: (required)
         :type activate_mfa_method_request: ActivateMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -288,6 +299,7 @@ class UsersServerApi:
             project_id=project_id,
             mfa_method_id=mfa_method_id,
             activate_mfa_method_request=activate_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -309,6 +321,7 @@ class UsersServerApi:
         project_id,
         mfa_method_id,
         activate_mfa_method_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -336,6 +349,8 @@ class UsersServerApi:
             _path_params['mfaMethodId'] = mfa_method_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if activate_mfa_method_request is not None:
@@ -656,6 +671,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         change_password_request: ChangePasswordRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -676,6 +692,8 @@ class UsersServerApi:
         :type project_id: str
         :param change_password_request: (required)
         :type change_password_request: ChangePasswordRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -701,6 +719,7 @@ class UsersServerApi:
         _param = self._change_my_password_serialize(
             project_id=project_id,
             change_password_request=change_password_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -726,6 +745,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         change_password_request: ChangePasswordRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -746,6 +766,8 @@ class UsersServerApi:
         :type project_id: str
         :param change_password_request: (required)
         :type change_password_request: ChangePasswordRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -771,6 +793,7 @@ class UsersServerApi:
         _param = self._change_my_password_serialize(
             project_id=project_id,
             change_password_request=change_password_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -796,6 +819,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         change_password_request: ChangePasswordRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -816,6 +840,8 @@ class UsersServerApi:
         :type project_id: str
         :param change_password_request: (required)
         :type change_password_request: ChangePasswordRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -841,6 +867,7 @@ class UsersServerApi:
         _param = self._change_my_password_serialize(
             project_id=project_id,
             change_password_request=change_password_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -861,6 +888,7 @@ class UsersServerApi:
         self,
         project_id,
         change_password_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -886,6 +914,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if change_password_request is not None:
@@ -1519,6 +1549,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         add_contact_method_request: AddContactMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1539,6 +1570,8 @@ class UsersServerApi:
         :type project_id: str
         :param add_contact_method_request: (required)
         :type add_contact_method_request: AddContactMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1564,6 +1597,7 @@ class UsersServerApi:
         _param = self._create_contact_method_serialize(
             project_id=project_id,
             add_contact_method_request=add_contact_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1589,6 +1623,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         add_contact_method_request: AddContactMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1609,6 +1644,8 @@ class UsersServerApi:
         :type project_id: str
         :param add_contact_method_request: (required)
         :type add_contact_method_request: AddContactMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1634,6 +1671,7 @@ class UsersServerApi:
         _param = self._create_contact_method_serialize(
             project_id=project_id,
             add_contact_method_request=add_contact_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1659,6 +1697,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         add_contact_method_request: AddContactMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1679,6 +1718,8 @@ class UsersServerApi:
         :type project_id: str
         :param add_contact_method_request: (required)
         :type add_contact_method_request: AddContactMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1704,6 +1745,7 @@ class UsersServerApi:
         _param = self._create_contact_method_serialize(
             project_id=project_id,
             add_contact_method_request=add_contact_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1724,6 +1766,7 @@ class UsersServerApi:
         self,
         project_id,
         add_contact_method_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -1749,6 +1792,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if add_contact_method_request is not None:
@@ -1804,6 +1849,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_mfa_method_request: CreateMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1824,6 +1870,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_mfa_method_request: (required)
         :type create_mfa_method_request: CreateMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1849,6 +1897,7 @@ class UsersServerApi:
         _param = self._create_mfa_method_serialize(
             project_id=project_id,
             create_mfa_method_request=create_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1874,6 +1923,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_mfa_method_request: CreateMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1894,6 +1944,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_mfa_method_request: (required)
         :type create_mfa_method_request: CreateMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1919,6 +1971,7 @@ class UsersServerApi:
         _param = self._create_mfa_method_serialize(
             project_id=project_id,
             create_mfa_method_request=create_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1944,6 +1997,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_mfa_method_request: CreateMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1964,6 +2018,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_mfa_method_request: (required)
         :type create_mfa_method_request: CreateMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1989,6 +2045,7 @@ class UsersServerApi:
         _param = self._create_mfa_method_serialize(
             project_id=project_id,
             create_mfa_method_request=create_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2009,6 +2066,7 @@ class UsersServerApi:
         self,
         project_id,
         create_mfa_method_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -2034,6 +2092,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if create_mfa_method_request is not None:
@@ -2374,6 +2434,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_user_invite_request: CreateUserInviteRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2394,6 +2455,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_user_invite_request: (required)
         :type create_user_invite_request: CreateUserInviteRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2419,6 +2482,7 @@ class UsersServerApi:
         _param = self._create_user_invite_serialize(
             project_id=project_id,
             create_user_invite_request=create_user_invite_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2444,6 +2508,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_user_invite_request: CreateUserInviteRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2464,6 +2529,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_user_invite_request: (required)
         :type create_user_invite_request: CreateUserInviteRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2489,6 +2556,7 @@ class UsersServerApi:
         _param = self._create_user_invite_serialize(
             project_id=project_id,
             create_user_invite_request=create_user_invite_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2514,6 +2582,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_user_invite_request: CreateUserInviteRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2534,6 +2603,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_user_invite_request: (required)
         :type create_user_invite_request: CreateUserInviteRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2559,6 +2630,7 @@ class UsersServerApi:
         _param = self._create_user_invite_serialize(
             project_id=project_id,
             create_user_invite_request=create_user_invite_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2579,6 +2651,7 @@ class UsersServerApi:
         self,
         project_id,
         create_user_invite_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -2604,6 +2677,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if create_user_invite_request is not None:
@@ -6276,6 +6351,7 @@ class UsersServerApi:
         project_id: StrictStr,
         subscription_id: StrictStr,
         update_subscription_preview_request: UpdateSubscriptionPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6298,6 +6374,8 @@ class UsersServerApi:
         :type subscription_id: str
         :param update_subscription_preview_request: (required)
         :type update_subscription_preview_request: UpdateSubscriptionPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6324,6 +6402,7 @@ class UsersServerApi:
             project_id=project_id,
             subscription_id=subscription_id,
             update_subscription_preview_request=update_subscription_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6350,6 +6429,7 @@ class UsersServerApi:
         project_id: StrictStr,
         subscription_id: StrictStr,
         update_subscription_preview_request: UpdateSubscriptionPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6372,6 +6452,8 @@ class UsersServerApi:
         :type subscription_id: str
         :param update_subscription_preview_request: (required)
         :type update_subscription_preview_request: UpdateSubscriptionPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6398,6 +6480,7 @@ class UsersServerApi:
             project_id=project_id,
             subscription_id=subscription_id,
             update_subscription_preview_request=update_subscription_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6424,6 +6507,7 @@ class UsersServerApi:
         project_id: StrictStr,
         subscription_id: StrictStr,
         update_subscription_preview_request: UpdateSubscriptionPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6446,6 +6530,8 @@ class UsersServerApi:
         :type subscription_id: str
         :param update_subscription_preview_request: (required)
         :type update_subscription_preview_request: UpdateSubscriptionPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6472,6 +6558,7 @@ class UsersServerApi:
             project_id=project_id,
             subscription_id=subscription_id,
             update_subscription_preview_request=update_subscription_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6493,6 +6580,7 @@ class UsersServerApi:
         project_id,
         subscription_id,
         update_subscription_preview_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -6520,6 +6608,8 @@ class UsersServerApi:
             _path_params['subscriptionId'] = subscription_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if update_subscription_preview_request is not None:
@@ -6861,6 +6951,7 @@ class UsersServerApi:
         project_id: StrictStr,
         mfa_method_id: StrictStr,
         rename_mfa_method_request: RenameMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6883,6 +6974,8 @@ class UsersServerApi:
         :type mfa_method_id: str
         :param rename_mfa_method_request: (required)
         :type rename_mfa_method_request: RenameMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6909,6 +7002,7 @@ class UsersServerApi:
             project_id=project_id,
             mfa_method_id=mfa_method_id,
             rename_mfa_method_request=rename_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6935,6 +7029,7 @@ class UsersServerApi:
         project_id: StrictStr,
         mfa_method_id: StrictStr,
         rename_mfa_method_request: RenameMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6957,6 +7052,8 @@ class UsersServerApi:
         :type mfa_method_id: str
         :param rename_mfa_method_request: (required)
         :type rename_mfa_method_request: RenameMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6983,6 +7080,7 @@ class UsersServerApi:
             project_id=project_id,
             mfa_method_id=mfa_method_id,
             rename_mfa_method_request=rename_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7009,6 +7107,7 @@ class UsersServerApi:
         project_id: StrictStr,
         mfa_method_id: StrictStr,
         rename_mfa_method_request: RenameMfaMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7031,6 +7130,8 @@ class UsersServerApi:
         :type mfa_method_id: str
         :param rename_mfa_method_request: (required)
         :type rename_mfa_method_request: RenameMfaMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7057,6 +7158,7 @@ class UsersServerApi:
             project_id=project_id,
             mfa_method_id=mfa_method_id,
             rename_mfa_method_request=rename_mfa_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7078,6 +7180,7 @@ class UsersServerApi:
         project_id,
         mfa_method_id,
         rename_mfa_method_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -7105,6 +7208,8 @@ class UsersServerApi:
             _path_params['mfaMethodId'] = mfa_method_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if rename_mfa_method_request is not None:
@@ -8542,6 +8647,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         mfa_challenge_request: MfaChallengeRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8562,6 +8668,8 @@ class UsersServerApi:
         :type project_id: str
         :param mfa_challenge_request: (required)
         :type mfa_challenge_request: MfaChallengeRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8587,6 +8695,7 @@ class UsersServerApi:
         _param = self._send_mfa_challenge_serialize(
             project_id=project_id,
             mfa_challenge_request=mfa_challenge_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8612,6 +8721,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         mfa_challenge_request: MfaChallengeRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8632,6 +8742,8 @@ class UsersServerApi:
         :type project_id: str
         :param mfa_challenge_request: (required)
         :type mfa_challenge_request: MfaChallengeRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8657,6 +8769,7 @@ class UsersServerApi:
         _param = self._send_mfa_challenge_serialize(
             project_id=project_id,
             mfa_challenge_request=mfa_challenge_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8682,6 +8795,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         mfa_challenge_request: MfaChallengeRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8702,6 +8816,8 @@ class UsersServerApi:
         :type project_id: str
         :param mfa_challenge_request: (required)
         :type mfa_challenge_request: MfaChallengeRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8727,6 +8843,7 @@ class UsersServerApi:
         _param = self._send_mfa_challenge_serialize(
             project_id=project_id,
             mfa_challenge_request=mfa_challenge_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8747,6 +8864,7 @@ class UsersServerApi:
         self,
         project_id,
         mfa_challenge_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -8772,6 +8890,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if mfa_challenge_request is not None:
@@ -8828,6 +8948,7 @@ class UsersServerApi:
         project_id: StrictStr,
         subscription_id: StrictStr,
         update_subscription_request: UpdateSubscriptionRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8850,6 +8971,8 @@ class UsersServerApi:
         :type subscription_id: str
         :param update_subscription_request: (required)
         :type update_subscription_request: UpdateSubscriptionRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8876,6 +8999,7 @@ class UsersServerApi:
             project_id=project_id,
             subscription_id=subscription_id,
             update_subscription_request=update_subscription_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8902,6 +9026,7 @@ class UsersServerApi:
         project_id: StrictStr,
         subscription_id: StrictStr,
         update_subscription_request: UpdateSubscriptionRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8924,6 +9049,8 @@ class UsersServerApi:
         :type subscription_id: str
         :param update_subscription_request: (required)
         :type update_subscription_request: UpdateSubscriptionRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8950,6 +9077,7 @@ class UsersServerApi:
             project_id=project_id,
             subscription_id=subscription_id,
             update_subscription_request=update_subscription_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8976,6 +9104,7 @@ class UsersServerApi:
         project_id: StrictStr,
         subscription_id: StrictStr,
         update_subscription_request: UpdateSubscriptionRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8998,6 +9127,8 @@ class UsersServerApi:
         :type subscription_id: str
         :param update_subscription_request: (required)
         :type update_subscription_request: UpdateSubscriptionRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9024,6 +9155,7 @@ class UsersServerApi:
             project_id=project_id,
             subscription_id=subscription_id,
             update_subscription_request=update_subscription_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9045,6 +9177,7 @@ class UsersServerApi:
         project_id,
         subscription_id,
         update_subscription_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -9072,6 +9205,8 @@ class UsersServerApi:
             _path_params['subscriptionId'] = subscription_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if update_subscription_request is not None:
@@ -9127,6 +9262,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_content_upload_link_request: CreateContentUploadLinkRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9147,6 +9283,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_content_upload_link_request: (required)
         :type create_content_upload_link_request: CreateContentUploadLinkRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9172,6 +9310,7 @@ class UsersServerApi:
         _param = self._users_create_content_upload_link_serialize(
             project_id=project_id,
             create_content_upload_link_request=create_content_upload_link_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9197,6 +9336,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_content_upload_link_request: CreateContentUploadLinkRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9217,6 +9357,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_content_upload_link_request: (required)
         :type create_content_upload_link_request: CreateContentUploadLinkRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9242,6 +9384,7 @@ class UsersServerApi:
         _param = self._users_create_content_upload_link_serialize(
             project_id=project_id,
             create_content_upload_link_request=create_content_upload_link_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9267,6 +9410,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_content_upload_link_request: CreateContentUploadLinkRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9287,6 +9431,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_content_upload_link_request: (required)
         :type create_content_upload_link_request: CreateContentUploadLinkRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9312,6 +9458,7 @@ class UsersServerApi:
         _param = self._users_create_content_upload_link_serialize(
             project_id=project_id,
             create_content_upload_link_request=create_content_upload_link_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9332,6 +9479,7 @@ class UsersServerApi:
         self,
         project_id,
         create_content_upload_link_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -9357,6 +9505,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if create_content_upload_link_request is not None:
@@ -9412,6 +9562,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_payment_request: CreatePaymentRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9432,6 +9583,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_payment_request: (required)
         :type create_payment_request: CreatePaymentRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9457,6 +9610,7 @@ class UsersServerApi:
         _param = self._users_create_payment_serialize(
             project_id=project_id,
             create_payment_request=create_payment_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9482,6 +9636,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_payment_request: CreatePaymentRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9502,6 +9657,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_payment_request: (required)
         :type create_payment_request: CreatePaymentRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9527,6 +9684,7 @@ class UsersServerApi:
         _param = self._users_create_payment_serialize(
             project_id=project_id,
             create_payment_request=create_payment_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9552,6 +9710,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_payment_request: CreatePaymentRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9572,6 +9731,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_payment_request: (required)
         :type create_payment_request: CreatePaymentRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9597,6 +9758,7 @@ class UsersServerApi:
         _param = self._users_create_payment_serialize(
             project_id=project_id,
             create_payment_request=create_payment_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9617,6 +9779,7 @@ class UsersServerApi:
         self,
         project_id,
         create_payment_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -9642,6 +9805,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if create_payment_request is not None:
@@ -9954,6 +10119,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_payment_preview_request: CreatePaymentPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9974,6 +10140,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_payment_preview_request: (required)
         :type create_payment_preview_request: CreatePaymentPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9999,6 +10167,7 @@ class UsersServerApi:
         _param = self._users_create_payment_preview_serialize(
             project_id=project_id,
             create_payment_preview_request=create_payment_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10024,6 +10193,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_payment_preview_request: CreatePaymentPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10044,6 +10214,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_payment_preview_request: (required)
         :type create_payment_preview_request: CreatePaymentPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10069,6 +10241,7 @@ class UsersServerApi:
         _param = self._users_create_payment_preview_serialize(
             project_id=project_id,
             create_payment_preview_request=create_payment_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10094,6 +10267,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_payment_preview_request: CreatePaymentPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10114,6 +10288,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_payment_preview_request: (required)
         :type create_payment_preview_request: CreatePaymentPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10139,6 +10315,7 @@ class UsersServerApi:
         _param = self._users_create_payment_preview_serialize(
             project_id=project_id,
             create_payment_preview_request=create_payment_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10159,6 +10336,7 @@ class UsersServerApi:
         self,
         project_id,
         create_payment_preview_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -10184,6 +10362,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if create_payment_preview_request is not None:
@@ -10239,6 +10419,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_subscription_request: CreateSubscriptionRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10259,6 +10440,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_subscription_request: (required)
         :type create_subscription_request: CreateSubscriptionRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10284,6 +10467,7 @@ class UsersServerApi:
         _param = self._users_create_subscription_serialize(
             project_id=project_id,
             create_subscription_request=create_subscription_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10309,6 +10493,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_subscription_request: CreateSubscriptionRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10329,6 +10514,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_subscription_request: (required)
         :type create_subscription_request: CreateSubscriptionRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10354,6 +10541,7 @@ class UsersServerApi:
         _param = self._users_create_subscription_serialize(
             project_id=project_id,
             create_subscription_request=create_subscription_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10379,6 +10567,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_subscription_request: CreateSubscriptionRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10399,6 +10588,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_subscription_request: (required)
         :type create_subscription_request: CreateSubscriptionRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10424,6 +10615,7 @@ class UsersServerApi:
         _param = self._users_create_subscription_serialize(
             project_id=project_id,
             create_subscription_request=create_subscription_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10444,6 +10636,7 @@ class UsersServerApi:
         self,
         project_id,
         create_subscription_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -10469,6 +10662,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if create_subscription_request is not None:
@@ -10524,6 +10719,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_subscription_preview_request: CreateSubscriptionPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10544,6 +10740,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_subscription_preview_request: (required)
         :type create_subscription_preview_request: CreateSubscriptionPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10569,6 +10767,7 @@ class UsersServerApi:
         _param = self._users_create_subscription_preview_serialize(
             project_id=project_id,
             create_subscription_preview_request=create_subscription_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10594,6 +10793,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_subscription_preview_request: CreateSubscriptionPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10614,6 +10814,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_subscription_preview_request: (required)
         :type create_subscription_preview_request: CreateSubscriptionPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10639,6 +10841,7 @@ class UsersServerApi:
         _param = self._users_create_subscription_preview_serialize(
             project_id=project_id,
             create_subscription_preview_request=create_subscription_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10664,6 +10867,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         create_subscription_preview_request: CreateSubscriptionPreviewRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10684,6 +10888,8 @@ class UsersServerApi:
         :type project_id: str
         :param create_subscription_preview_request: (required)
         :type create_subscription_preview_request: CreateSubscriptionPreviewRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10709,6 +10915,7 @@ class UsersServerApi:
         _param = self._users_create_subscription_preview_serialize(
             project_id=project_id,
             create_subscription_preview_request=create_subscription_preview_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10729,6 +10936,7 @@ class UsersServerApi:
         self,
         project_id,
         create_subscription_preview_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -10754,6 +10962,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if create_subscription_preview_request is not None:
@@ -12976,6 +13186,7 @@ class UsersServerApi:
         project_id: StrictStr,
         content_id: StrictStr,
         update_content_owner_request: UpdateContentOwnerRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12998,6 +13209,8 @@ class UsersServerApi:
         :type content_id: str
         :param update_content_owner_request: (required)
         :type update_content_owner_request: UpdateContentOwnerRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13024,6 +13237,7 @@ class UsersServerApi:
             project_id=project_id,
             content_id=content_id,
             update_content_owner_request=update_content_owner_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13050,6 +13264,7 @@ class UsersServerApi:
         project_id: StrictStr,
         content_id: StrictStr,
         update_content_owner_request: UpdateContentOwnerRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13072,6 +13287,8 @@ class UsersServerApi:
         :type content_id: str
         :param update_content_owner_request: (required)
         :type update_content_owner_request: UpdateContentOwnerRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13098,6 +13315,7 @@ class UsersServerApi:
             project_id=project_id,
             content_id=content_id,
             update_content_owner_request=update_content_owner_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13124,6 +13342,7 @@ class UsersServerApi:
         project_id: StrictStr,
         content_id: StrictStr,
         update_content_owner_request: UpdateContentOwnerRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13146,6 +13365,8 @@ class UsersServerApi:
         :type content_id: str
         :param update_content_owner_request: (required)
         :type update_content_owner_request: UpdateContentOwnerRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13172,6 +13393,7 @@ class UsersServerApi:
             project_id=project_id,
             content_id=content_id,
             update_content_owner_request=update_content_owner_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13193,6 +13415,7 @@ class UsersServerApi:
         project_id,
         content_id,
         update_content_owner_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -13220,6 +13443,8 @@ class UsersServerApi:
             _path_params['contentId'] = content_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if update_content_owner_request is not None:
@@ -13276,6 +13501,7 @@ class UsersServerApi:
         project_id: StrictStr,
         content_id: StrictStr,
         update_content_shares_request: UpdateContentSharesRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13298,6 +13524,8 @@ class UsersServerApi:
         :type content_id: str
         :param update_content_shares_request: (required)
         :type update_content_shares_request: UpdateContentSharesRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13324,6 +13552,7 @@ class UsersServerApi:
             project_id=project_id,
             content_id=content_id,
             update_content_shares_request=update_content_shares_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13350,6 +13579,7 @@ class UsersServerApi:
         project_id: StrictStr,
         content_id: StrictStr,
         update_content_shares_request: UpdateContentSharesRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13372,6 +13602,8 @@ class UsersServerApi:
         :type content_id: str
         :param update_content_shares_request: (required)
         :type update_content_shares_request: UpdateContentSharesRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13398,6 +13630,7 @@ class UsersServerApi:
             project_id=project_id,
             content_id=content_id,
             update_content_shares_request=update_content_shares_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13424,6 +13657,7 @@ class UsersServerApi:
         project_id: StrictStr,
         content_id: StrictStr,
         update_content_shares_request: UpdateContentSharesRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13446,6 +13680,8 @@ class UsersServerApi:
         :type content_id: str
         :param update_content_shares_request: (required)
         :type update_content_shares_request: UpdateContentSharesRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13472,6 +13708,7 @@ class UsersServerApi:
             project_id=project_id,
             content_id=content_id,
             update_content_shares_request=update_content_shares_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13493,6 +13730,7 @@ class UsersServerApi:
         project_id,
         content_id,
         update_content_shares_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -13520,6 +13758,8 @@ class UsersServerApi:
             _path_params['contentId'] = content_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if update_content_shares_request is not None:
@@ -13576,6 +13816,7 @@ class UsersServerApi:
         project_id: StrictStr,
         payment_method_id: StrictStr,
         update_payment_method_request: UpdatePaymentMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13598,6 +13839,8 @@ class UsersServerApi:
         :type payment_method_id: str
         :param update_payment_method_request: (required)
         :type update_payment_method_request: UpdatePaymentMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13624,6 +13867,7 @@ class UsersServerApi:
             project_id=project_id,
             payment_method_id=payment_method_id,
             update_payment_method_request=update_payment_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13650,6 +13894,7 @@ class UsersServerApi:
         project_id: StrictStr,
         payment_method_id: StrictStr,
         update_payment_method_request: UpdatePaymentMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13672,6 +13917,8 @@ class UsersServerApi:
         :type payment_method_id: str
         :param update_payment_method_request: (required)
         :type update_payment_method_request: UpdatePaymentMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13698,6 +13945,7 @@ class UsersServerApi:
             project_id=project_id,
             payment_method_id=payment_method_id,
             update_payment_method_request=update_payment_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13724,6 +13972,7 @@ class UsersServerApi:
         project_id: StrictStr,
         payment_method_id: StrictStr,
         update_payment_method_request: UpdatePaymentMethodRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13746,6 +13995,8 @@ class UsersServerApi:
         :type payment_method_id: str
         :param update_payment_method_request: (required)
         :type update_payment_method_request: UpdatePaymentMethodRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13772,6 +14023,7 @@ class UsersServerApi:
             project_id=project_id,
             payment_method_id=payment_method_id,
             update_payment_method_request=update_payment_method_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13793,6 +14045,7 @@ class UsersServerApi:
         project_id,
         payment_method_id,
         update_payment_method_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -13820,6 +14073,8 @@ class UsersServerApi:
             _path_params['paymentMethodId'] = payment_method_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if update_payment_method_request is not None:
@@ -14164,6 +14419,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         mfa_verify_request: MfaVerifyRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14184,6 +14440,8 @@ class UsersServerApi:
         :type project_id: str
         :param mfa_verify_request: (required)
         :type mfa_verify_request: MfaVerifyRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14209,6 +14467,7 @@ class UsersServerApi:
         _param = self._verify_mfa_serialize(
             project_id=project_id,
             mfa_verify_request=mfa_verify_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14234,6 +14493,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         mfa_verify_request: MfaVerifyRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14254,6 +14514,8 @@ class UsersServerApi:
         :type project_id: str
         :param mfa_verify_request: (required)
         :type mfa_verify_request: MfaVerifyRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14279,6 +14541,7 @@ class UsersServerApi:
         _param = self._verify_mfa_serialize(
             project_id=project_id,
             mfa_verify_request=mfa_verify_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14304,6 +14567,7 @@ class UsersServerApi:
         self,
         project_id: StrictStr,
         mfa_verify_request: MfaVerifyRequest,
+        authorization: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14324,6 +14588,8 @@ class UsersServerApi:
         :type project_id: str
         :param mfa_verify_request: (required)
         :type mfa_verify_request: MfaVerifyRequest
+        :param authorization:
+        :type authorization: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14349,6 +14615,7 @@ class UsersServerApi:
         _param = self._verify_mfa_serialize(
             project_id=project_id,
             mfa_verify_request=mfa_verify_request,
+            authorization=authorization,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14369,6 +14636,7 @@ class UsersServerApi:
         self,
         project_id,
         mfa_verify_request,
+        authorization,
         _request_auth,
         _content_type,
         _headers,
@@ -14394,6 +14662,8 @@ class UsersServerApi:
             _path_params['projectId'] = project_id
         # process the query parameters
         # process the header parameters
+        if authorization is not None:
+            _header_params['Authorization'] = authorization
         # process the form parameters
         # process the body parameter
         if mfa_verify_request is not None:

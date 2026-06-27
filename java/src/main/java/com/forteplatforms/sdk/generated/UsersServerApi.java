@@ -222,10 +222,11 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param mfaMethodId  (required)
    * @param activateMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @throws ApiException if fails to make API call
    */
-  public void activateMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest) throws ApiException {
-    activateMfaMethod(projectId, mfaMethodId, activateMfaMethodRequest, null);
+  public void activateMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    activateMfaMethod(projectId, mfaMethodId, activateMfaMethodRequest, authorization, null);
   }
 
   /**
@@ -234,11 +235,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param mfaMethodId  (required)
    * @param activateMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
    */
-  public void activateMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, Map<String, String> headers) throws ApiException {
-    activateMfaMethodWithHttpInfo(projectId, mfaMethodId, activateMfaMethodRequest, headers);
+  public void activateMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    activateMfaMethodWithHttpInfo(projectId, mfaMethodId, activateMfaMethodRequest, authorization, headers);
   }
 
   /**
@@ -247,11 +249,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param mfaMethodId  (required)
    * @param activateMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> activateMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest) throws ApiException {
-    return activateMfaMethodWithHttpInfo(projectId, mfaMethodId, activateMfaMethodRequest, null);
+  public ApiResponse<Void> activateMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return activateMfaMethodWithHttpInfo(projectId, mfaMethodId, activateMfaMethodRequest, authorization, null);
   }
 
   /**
@@ -260,12 +263,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param mfaMethodId  (required)
    * @param activateMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> activateMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = activateMfaMethodRequestBuilder(projectId, mfaMethodId, activateMfaMethodRequest, headers);
+  public ApiResponse<Void> activateMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = activateMfaMethodRequestBuilder(projectId, mfaMethodId, activateMfaMethodRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -301,7 +305,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder activateMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder activateMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull ActivateMfaMethodRequest activateMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling activateMfaMethod");
@@ -323,6 +327,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -475,10 +482,11 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param changePasswordRequest  (required)
+   * @param authorization  (optional)
    * @throws ApiException if fails to make API call
    */
-  public void changeMyPassword(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest) throws ApiException {
-    changeMyPassword(projectId, changePasswordRequest, null);
+  public void changeMyPassword(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    changeMyPassword(projectId, changePasswordRequest, authorization, null);
   }
 
   /**
@@ -486,11 +494,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param changePasswordRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
    */
-  public void changeMyPassword(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, Map<String, String> headers) throws ApiException {
-    changeMyPasswordWithHttpInfo(projectId, changePasswordRequest, headers);
+  public void changeMyPassword(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    changeMyPasswordWithHttpInfo(projectId, changePasswordRequest, authorization, headers);
   }
 
   /**
@@ -498,11 +507,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param changePasswordRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> changeMyPasswordWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest) throws ApiException {
-    return changeMyPasswordWithHttpInfo(projectId, changePasswordRequest, null);
+  public ApiResponse<Void> changeMyPasswordWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return changeMyPasswordWithHttpInfo(projectId, changePasswordRequest, authorization, null);
   }
 
   /**
@@ -510,12 +520,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param changePasswordRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> changeMyPasswordWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = changeMyPasswordRequestBuilder(projectId, changePasswordRequest, headers);
+  public ApiResponse<Void> changeMyPasswordWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = changeMyPasswordRequestBuilder(projectId, changePasswordRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -551,7 +562,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder changeMyPasswordRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder changeMyPasswordRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ChangePasswordRequest changePasswordRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling changeMyPassword");
@@ -568,6 +579,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -866,11 +880,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param addContactMethodRequest  (required)
+   * @param authorization  (optional)
    * @return ContactMethod
    * @throws ApiException if fails to make API call
    */
-  public ContactMethod createContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest) throws ApiException {
-    return createContactMethod(projectId, addContactMethodRequest, null);
+  public ContactMethod createContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return createContactMethod(projectId, addContactMethodRequest, authorization, null);
   }
 
   /**
@@ -878,12 +893,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param addContactMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ContactMethod
    * @throws ApiException if fails to make API call
    */
-  public ContactMethod createContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ContactMethod> localVarResponse = createContactMethodWithHttpInfo(projectId, addContactMethodRequest, headers);
+  public ContactMethod createContactMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContactMethod> localVarResponse = createContactMethodWithHttpInfo(projectId, addContactMethodRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -892,11 +908,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param addContactMethodRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;ContactMethod&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ContactMethod> createContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest) throws ApiException {
-    return createContactMethodWithHttpInfo(projectId, addContactMethodRequest, null);
+  public ApiResponse<ContactMethod> createContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return createContactMethodWithHttpInfo(projectId, addContactMethodRequest, authorization, null);
   }
 
   /**
@@ -904,12 +921,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param addContactMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ContactMethod&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ContactMethod> createContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createContactMethodRequestBuilder(projectId, addContactMethodRequest, headers);
+  public ApiResponse<ContactMethod> createContactMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createContactMethodRequestBuilder(projectId, addContactMethodRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -956,7 +974,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder createContactMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createContactMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull AddContactMethodRequest addContactMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling createContactMethod");
@@ -973,6 +991,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -998,11 +1019,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @return CreateMfaMethodResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateMfaMethodResponse createMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest) throws ApiException {
-    return createMfaMethod(projectId, createMfaMethodRequest, null);
+  public CreateMfaMethodResponse createMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return createMfaMethod(projectId, createMfaMethodRequest, authorization, null);
   }
 
   /**
@@ -1010,12 +1032,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return CreateMfaMethodResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateMfaMethodResponse createMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateMfaMethodResponse> localVarResponse = createMfaMethodWithHttpInfo(projectId, createMfaMethodRequest, headers);
+  public CreateMfaMethodResponse createMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateMfaMethodResponse> localVarResponse = createMfaMethodWithHttpInfo(projectId, createMfaMethodRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -1024,11 +1047,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;CreateMfaMethodResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateMfaMethodResponse> createMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest) throws ApiException {
-    return createMfaMethodWithHttpInfo(projectId, createMfaMethodRequest, null);
+  public ApiResponse<CreateMfaMethodResponse> createMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return createMfaMethodWithHttpInfo(projectId, createMfaMethodRequest, authorization, null);
   }
 
   /**
@@ -1036,12 +1060,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateMfaMethodResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateMfaMethodResponse> createMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createMfaMethodRequestBuilder(projectId, createMfaMethodRequest, headers);
+  public ApiResponse<CreateMfaMethodResponse> createMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createMfaMethodRequestBuilder(projectId, createMfaMethodRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1088,7 +1113,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder createMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateMfaMethodRequest createMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling createMfaMethod");
@@ -1105,6 +1130,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -1262,11 +1290,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createUserInviteRequest  (required)
+   * @param authorization  (optional)
    * @return PendingUserInviteObject
    * @throws ApiException if fails to make API call
    */
-  public PendingUserInviteObject createUserInvite(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest) throws ApiException {
-    return createUserInvite(projectId, createUserInviteRequest, null);
+  public PendingUserInviteObject createUserInvite(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return createUserInvite(projectId, createUserInviteRequest, authorization, null);
   }
 
   /**
@@ -1274,12 +1303,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createUserInviteRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return PendingUserInviteObject
    * @throws ApiException if fails to make API call
    */
-  public PendingUserInviteObject createUserInvite(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<PendingUserInviteObject> localVarResponse = createUserInviteWithHttpInfo(projectId, createUserInviteRequest, headers);
+  public PendingUserInviteObject createUserInvite(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<PendingUserInviteObject> localVarResponse = createUserInviteWithHttpInfo(projectId, createUserInviteRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -1288,11 +1318,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createUserInviteRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;PendingUserInviteObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PendingUserInviteObject> createUserInviteWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest) throws ApiException {
-    return createUserInviteWithHttpInfo(projectId, createUserInviteRequest, null);
+  public ApiResponse<PendingUserInviteObject> createUserInviteWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return createUserInviteWithHttpInfo(projectId, createUserInviteRequest, authorization, null);
   }
 
   /**
@@ -1300,12 +1331,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createUserInviteRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PendingUserInviteObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PendingUserInviteObject> createUserInviteWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createUserInviteRequestBuilder(projectId, createUserInviteRequest, headers);
+  public ApiResponse<PendingUserInviteObject> createUserInviteWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createUserInviteRequestBuilder(projectId, createUserInviteRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1352,7 +1384,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder createUserInviteRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createUserInviteRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateUserInviteRequest createUserInviteRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling createUserInvite");
@@ -1369,6 +1401,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -3048,11 +3083,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param subscriptionId  (required)
    * @param updateSubscriptionPreviewRequest  (required)
+   * @param authorization  (optional)
    * @return CreateSubscriptionPreviewResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateSubscriptionPreviewResponse previewMySubscriptionUpdate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest) throws ApiException {
-    return previewMySubscriptionUpdate(projectId, subscriptionId, updateSubscriptionPreviewRequest, null);
+  public CreateSubscriptionPreviewResponse previewMySubscriptionUpdate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return previewMySubscriptionUpdate(projectId, subscriptionId, updateSubscriptionPreviewRequest, authorization, null);
   }
 
   /**
@@ -3061,12 +3097,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param subscriptionId  (required)
    * @param updateSubscriptionPreviewRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return CreateSubscriptionPreviewResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateSubscriptionPreviewResponse previewMySubscriptionUpdate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateSubscriptionPreviewResponse> localVarResponse = previewMySubscriptionUpdateWithHttpInfo(projectId, subscriptionId, updateSubscriptionPreviewRequest, headers);
+  public CreateSubscriptionPreviewResponse previewMySubscriptionUpdate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateSubscriptionPreviewResponse> localVarResponse = previewMySubscriptionUpdateWithHttpInfo(projectId, subscriptionId, updateSubscriptionPreviewRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -3076,11 +3113,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param subscriptionId  (required)
    * @param updateSubscriptionPreviewRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;CreateSubscriptionPreviewResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateSubscriptionPreviewResponse> previewMySubscriptionUpdateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest) throws ApiException {
-    return previewMySubscriptionUpdateWithHttpInfo(projectId, subscriptionId, updateSubscriptionPreviewRequest, null);
+  public ApiResponse<CreateSubscriptionPreviewResponse> previewMySubscriptionUpdateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return previewMySubscriptionUpdateWithHttpInfo(projectId, subscriptionId, updateSubscriptionPreviewRequest, authorization, null);
   }
 
   /**
@@ -3089,12 +3127,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param subscriptionId  (required)
    * @param updateSubscriptionPreviewRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateSubscriptionPreviewResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateSubscriptionPreviewResponse> previewMySubscriptionUpdateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = previewMySubscriptionUpdateRequestBuilder(projectId, subscriptionId, updateSubscriptionPreviewRequest, headers);
+  public ApiResponse<CreateSubscriptionPreviewResponse> previewMySubscriptionUpdateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = previewMySubscriptionUpdateRequestBuilder(projectId, subscriptionId, updateSubscriptionPreviewRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3141,7 +3180,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder previewMySubscriptionUpdateRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder previewMySubscriptionUpdateRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionPreviewRequest updateSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling previewMySubscriptionUpdate");
@@ -3163,6 +3202,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -3321,10 +3363,11 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param mfaMethodId  (required)
    * @param renameMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @throws ApiException if fails to make API call
    */
-  public void renameMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest) throws ApiException {
-    renameMfaMethod(projectId, mfaMethodId, renameMfaMethodRequest, null);
+  public void renameMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    renameMfaMethod(projectId, mfaMethodId, renameMfaMethodRequest, authorization, null);
   }
 
   /**
@@ -3333,11 +3376,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param mfaMethodId  (required)
    * @param renameMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
    */
-  public void renameMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, Map<String, String> headers) throws ApiException {
-    renameMfaMethodWithHttpInfo(projectId, mfaMethodId, renameMfaMethodRequest, headers);
+  public void renameMfaMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    renameMfaMethodWithHttpInfo(projectId, mfaMethodId, renameMfaMethodRequest, authorization, headers);
   }
 
   /**
@@ -3346,11 +3390,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param mfaMethodId  (required)
    * @param renameMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> renameMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest) throws ApiException {
-    return renameMfaMethodWithHttpInfo(projectId, mfaMethodId, renameMfaMethodRequest, null);
+  public ApiResponse<Void> renameMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return renameMfaMethodWithHttpInfo(projectId, mfaMethodId, renameMfaMethodRequest, authorization, null);
   }
 
   /**
@@ -3359,12 +3404,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param mfaMethodId  (required)
    * @param renameMfaMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> renameMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = renameMfaMethodRequestBuilder(projectId, mfaMethodId, renameMfaMethodRequest, headers);
+  public ApiResponse<Void> renameMfaMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = renameMfaMethodRequestBuilder(projectId, mfaMethodId, renameMfaMethodRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3400,7 +3446,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder renameMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder renameMfaMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String mfaMethodId, @javax.annotation.Nonnull RenameMfaMethodRequest renameMfaMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling renameMfaMethod");
@@ -3422,6 +3468,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -4080,11 +4129,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param mfaChallengeRequest  (required)
+   * @param authorization  (optional)
    * @return MfaChallengeResponse
    * @throws ApiException if fails to make API call
    */
-  public MfaChallengeResponse sendMfaChallenge(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest) throws ApiException {
-    return sendMfaChallenge(projectId, mfaChallengeRequest, null);
+  public MfaChallengeResponse sendMfaChallenge(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return sendMfaChallenge(projectId, mfaChallengeRequest, authorization, null);
   }
 
   /**
@@ -4092,12 +4142,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param mfaChallengeRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return MfaChallengeResponse
    * @throws ApiException if fails to make API call
    */
-  public MfaChallengeResponse sendMfaChallenge(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<MfaChallengeResponse> localVarResponse = sendMfaChallengeWithHttpInfo(projectId, mfaChallengeRequest, headers);
+  public MfaChallengeResponse sendMfaChallenge(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<MfaChallengeResponse> localVarResponse = sendMfaChallengeWithHttpInfo(projectId, mfaChallengeRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -4106,11 +4157,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param mfaChallengeRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;MfaChallengeResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<MfaChallengeResponse> sendMfaChallengeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest) throws ApiException {
-    return sendMfaChallengeWithHttpInfo(projectId, mfaChallengeRequest, null);
+  public ApiResponse<MfaChallengeResponse> sendMfaChallengeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return sendMfaChallengeWithHttpInfo(projectId, mfaChallengeRequest, authorization, null);
   }
 
   /**
@@ -4118,12 +4170,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param mfaChallengeRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;MfaChallengeResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<MfaChallengeResponse> sendMfaChallengeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = sendMfaChallengeRequestBuilder(projectId, mfaChallengeRequest, headers);
+  public ApiResponse<MfaChallengeResponse> sendMfaChallengeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = sendMfaChallengeRequestBuilder(projectId, mfaChallengeRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4170,7 +4223,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder sendMfaChallengeRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder sendMfaChallengeRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaChallengeRequest mfaChallengeRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling sendMfaChallenge");
@@ -4187,6 +4240,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -4213,11 +4269,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param subscriptionId  (required)
    * @param updateSubscriptionRequest  (required)
+   * @param authorization  (optional)
    * @return SubscriptionObject
    * @throws ApiException if fails to make API call
    */
-  public SubscriptionObject updateMySubscription(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest) throws ApiException {
-    return updateMySubscription(projectId, subscriptionId, updateSubscriptionRequest, null);
+  public SubscriptionObject updateMySubscription(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return updateMySubscription(projectId, subscriptionId, updateSubscriptionRequest, authorization, null);
   }
 
   /**
@@ -4226,12 +4283,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param subscriptionId  (required)
    * @param updateSubscriptionRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return SubscriptionObject
    * @throws ApiException if fails to make API call
    */
-  public SubscriptionObject updateMySubscription(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<SubscriptionObject> localVarResponse = updateMySubscriptionWithHttpInfo(projectId, subscriptionId, updateSubscriptionRequest, headers);
+  public SubscriptionObject updateMySubscription(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<SubscriptionObject> localVarResponse = updateMySubscriptionWithHttpInfo(projectId, subscriptionId, updateSubscriptionRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -4241,11 +4299,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param subscriptionId  (required)
    * @param updateSubscriptionRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;SubscriptionObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SubscriptionObject> updateMySubscriptionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest) throws ApiException {
-    return updateMySubscriptionWithHttpInfo(projectId, subscriptionId, updateSubscriptionRequest, null);
+  public ApiResponse<SubscriptionObject> updateMySubscriptionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return updateMySubscriptionWithHttpInfo(projectId, subscriptionId, updateSubscriptionRequest, authorization, null);
   }
 
   /**
@@ -4254,12 +4313,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param subscriptionId  (required)
    * @param updateSubscriptionRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SubscriptionObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SubscriptionObject> updateMySubscriptionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateMySubscriptionRequestBuilder(projectId, subscriptionId, updateSubscriptionRequest, headers);
+  public ApiResponse<SubscriptionObject> updateMySubscriptionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateMySubscriptionRequestBuilder(projectId, subscriptionId, updateSubscriptionRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4306,7 +4366,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder updateMySubscriptionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateMySubscriptionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String subscriptionId, @javax.annotation.Nonnull UpdateSubscriptionRequest updateSubscriptionRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling updateMySubscription");
@@ -4328,6 +4388,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -4353,11 +4416,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createContentUploadLinkRequest  (required)
+   * @param authorization  (optional)
    * @return CreateContentUploadLinkResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateContentUploadLinkResponse usersCreateContentUploadLink(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest) throws ApiException {
-    return usersCreateContentUploadLink(projectId, createContentUploadLinkRequest, null);
+  public CreateContentUploadLinkResponse usersCreateContentUploadLink(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateContentUploadLink(projectId, createContentUploadLinkRequest, authorization, null);
   }
 
   /**
@@ -4365,12 +4429,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createContentUploadLinkRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return CreateContentUploadLinkResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateContentUploadLinkResponse usersCreateContentUploadLink(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateContentUploadLinkResponse> localVarResponse = usersCreateContentUploadLinkWithHttpInfo(projectId, createContentUploadLinkRequest, headers);
+  public CreateContentUploadLinkResponse usersCreateContentUploadLink(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateContentUploadLinkResponse> localVarResponse = usersCreateContentUploadLinkWithHttpInfo(projectId, createContentUploadLinkRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -4379,11 +4444,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createContentUploadLinkRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;CreateContentUploadLinkResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateContentUploadLinkResponse> usersCreateContentUploadLinkWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest) throws ApiException {
-    return usersCreateContentUploadLinkWithHttpInfo(projectId, createContentUploadLinkRequest, null);
+  public ApiResponse<CreateContentUploadLinkResponse> usersCreateContentUploadLinkWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateContentUploadLinkWithHttpInfo(projectId, createContentUploadLinkRequest, authorization, null);
   }
 
   /**
@@ -4391,12 +4457,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createContentUploadLinkRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateContentUploadLinkResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateContentUploadLinkResponse> usersCreateContentUploadLinkWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = usersCreateContentUploadLinkRequestBuilder(projectId, createContentUploadLinkRequest, headers);
+  public ApiResponse<CreateContentUploadLinkResponse> usersCreateContentUploadLinkWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersCreateContentUploadLinkRequestBuilder(projectId, createContentUploadLinkRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4443,7 +4510,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder usersCreateContentUploadLinkRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder usersCreateContentUploadLinkRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateContentUploadLinkRequest createContentUploadLinkRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersCreateContentUploadLink");
@@ -4460,6 +4527,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -4485,11 +4555,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createPaymentRequest  (required)
+   * @param authorization  (optional)
    * @return CreatePaymentResponse
    * @throws ApiException if fails to make API call
    */
-  public CreatePaymentResponse usersCreatePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest) throws ApiException {
-    return usersCreatePayment(projectId, createPaymentRequest, null);
+  public CreatePaymentResponse usersCreatePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreatePayment(projectId, createPaymentRequest, authorization, null);
   }
 
   /**
@@ -4497,12 +4568,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createPaymentRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return CreatePaymentResponse
    * @throws ApiException if fails to make API call
    */
-  public CreatePaymentResponse usersCreatePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreatePaymentResponse> localVarResponse = usersCreatePaymentWithHttpInfo(projectId, createPaymentRequest, headers);
+  public CreatePaymentResponse usersCreatePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePaymentResponse> localVarResponse = usersCreatePaymentWithHttpInfo(projectId, createPaymentRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -4511,11 +4583,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createPaymentRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;CreatePaymentResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreatePaymentResponse> usersCreatePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest) throws ApiException {
-    return usersCreatePaymentWithHttpInfo(projectId, createPaymentRequest, null);
+  public ApiResponse<CreatePaymentResponse> usersCreatePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreatePaymentWithHttpInfo(projectId, createPaymentRequest, authorization, null);
   }
 
   /**
@@ -4523,12 +4596,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createPaymentRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreatePaymentResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreatePaymentResponse> usersCreatePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = usersCreatePaymentRequestBuilder(projectId, createPaymentRequest, headers);
+  public ApiResponse<CreatePaymentResponse> usersCreatePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersCreatePaymentRequestBuilder(projectId, createPaymentRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4575,7 +4649,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder usersCreatePaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder usersCreatePaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentRequest createPaymentRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersCreatePayment");
@@ -4592,6 +4666,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -4735,11 +4812,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createPaymentPreviewRequest  (required)
+   * @param authorization  (optional)
    * @return CreatePaymentPreviewResponse
    * @throws ApiException if fails to make API call
    */
-  public CreatePaymentPreviewResponse usersCreatePaymentPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest) throws ApiException {
-    return usersCreatePaymentPreview(projectId, createPaymentPreviewRequest, null);
+  public CreatePaymentPreviewResponse usersCreatePaymentPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreatePaymentPreview(projectId, createPaymentPreviewRequest, authorization, null);
   }
 
   /**
@@ -4747,12 +4825,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createPaymentPreviewRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return CreatePaymentPreviewResponse
    * @throws ApiException if fails to make API call
    */
-  public CreatePaymentPreviewResponse usersCreatePaymentPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreatePaymentPreviewResponse> localVarResponse = usersCreatePaymentPreviewWithHttpInfo(projectId, createPaymentPreviewRequest, headers);
+  public CreatePaymentPreviewResponse usersCreatePaymentPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePaymentPreviewResponse> localVarResponse = usersCreatePaymentPreviewWithHttpInfo(projectId, createPaymentPreviewRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -4761,11 +4840,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createPaymentPreviewRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;CreatePaymentPreviewResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreatePaymentPreviewResponse> usersCreatePaymentPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest) throws ApiException {
-    return usersCreatePaymentPreviewWithHttpInfo(projectId, createPaymentPreviewRequest, null);
+  public ApiResponse<CreatePaymentPreviewResponse> usersCreatePaymentPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreatePaymentPreviewWithHttpInfo(projectId, createPaymentPreviewRequest, authorization, null);
   }
 
   /**
@@ -4773,12 +4853,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createPaymentPreviewRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreatePaymentPreviewResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreatePaymentPreviewResponse> usersCreatePaymentPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = usersCreatePaymentPreviewRequestBuilder(projectId, createPaymentPreviewRequest, headers);
+  public ApiResponse<CreatePaymentPreviewResponse> usersCreatePaymentPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersCreatePaymentPreviewRequestBuilder(projectId, createPaymentPreviewRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4825,7 +4906,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder usersCreatePaymentPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder usersCreatePaymentPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreatePaymentPreviewRequest createPaymentPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersCreatePaymentPreview");
@@ -4842,6 +4923,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -4867,11 +4951,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createSubscriptionRequest  (required)
+   * @param authorization  (optional)
    * @return CreateSubscriptionResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateSubscriptionResponse usersCreateSubscription(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest) throws ApiException {
-    return usersCreateSubscription(projectId, createSubscriptionRequest, null);
+  public CreateSubscriptionResponse usersCreateSubscription(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateSubscription(projectId, createSubscriptionRequest, authorization, null);
   }
 
   /**
@@ -4879,12 +4964,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createSubscriptionRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return CreateSubscriptionResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateSubscriptionResponse usersCreateSubscription(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateSubscriptionResponse> localVarResponse = usersCreateSubscriptionWithHttpInfo(projectId, createSubscriptionRequest, headers);
+  public CreateSubscriptionResponse usersCreateSubscription(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateSubscriptionResponse> localVarResponse = usersCreateSubscriptionWithHttpInfo(projectId, createSubscriptionRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -4893,11 +4979,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createSubscriptionRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;CreateSubscriptionResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateSubscriptionResponse> usersCreateSubscriptionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest) throws ApiException {
-    return usersCreateSubscriptionWithHttpInfo(projectId, createSubscriptionRequest, null);
+  public ApiResponse<CreateSubscriptionResponse> usersCreateSubscriptionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateSubscriptionWithHttpInfo(projectId, createSubscriptionRequest, authorization, null);
   }
 
   /**
@@ -4905,12 +4992,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createSubscriptionRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateSubscriptionResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateSubscriptionResponse> usersCreateSubscriptionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = usersCreateSubscriptionRequestBuilder(projectId, createSubscriptionRequest, headers);
+  public ApiResponse<CreateSubscriptionResponse> usersCreateSubscriptionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersCreateSubscriptionRequestBuilder(projectId, createSubscriptionRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4957,7 +5045,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder usersCreateSubscriptionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder usersCreateSubscriptionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionRequest createSubscriptionRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersCreateSubscription");
@@ -4974,6 +5062,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -4999,11 +5090,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createSubscriptionPreviewRequest  (required)
+   * @param authorization  (optional)
    * @return CreateSubscriptionPreviewResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateSubscriptionPreviewResponse usersCreateSubscriptionPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest) throws ApiException {
-    return usersCreateSubscriptionPreview(projectId, createSubscriptionPreviewRequest, null);
+  public CreateSubscriptionPreviewResponse usersCreateSubscriptionPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateSubscriptionPreview(projectId, createSubscriptionPreviewRequest, authorization, null);
   }
 
   /**
@@ -5011,12 +5103,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createSubscriptionPreviewRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return CreateSubscriptionPreviewResponse
    * @throws ApiException if fails to make API call
    */
-  public CreateSubscriptionPreviewResponse usersCreateSubscriptionPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateSubscriptionPreviewResponse> localVarResponse = usersCreateSubscriptionPreviewWithHttpInfo(projectId, createSubscriptionPreviewRequest, headers);
+  public CreateSubscriptionPreviewResponse usersCreateSubscriptionPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateSubscriptionPreviewResponse> localVarResponse = usersCreateSubscriptionPreviewWithHttpInfo(projectId, createSubscriptionPreviewRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -5025,11 +5118,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createSubscriptionPreviewRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;CreateSubscriptionPreviewResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateSubscriptionPreviewResponse> usersCreateSubscriptionPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest) throws ApiException {
-    return usersCreateSubscriptionPreviewWithHttpInfo(projectId, createSubscriptionPreviewRequest, null);
+  public ApiResponse<CreateSubscriptionPreviewResponse> usersCreateSubscriptionPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateSubscriptionPreviewWithHttpInfo(projectId, createSubscriptionPreviewRequest, authorization, null);
   }
 
   /**
@@ -5037,12 +5131,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param createSubscriptionPreviewRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateSubscriptionPreviewResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateSubscriptionPreviewResponse> usersCreateSubscriptionPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = usersCreateSubscriptionPreviewRequestBuilder(projectId, createSubscriptionPreviewRequest, headers);
+  public ApiResponse<CreateSubscriptionPreviewResponse> usersCreateSubscriptionPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersCreateSubscriptionPreviewRequestBuilder(projectId, createSubscriptionPreviewRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5089,7 +5184,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder usersCreateSubscriptionPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder usersCreateSubscriptionPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateSubscriptionPreviewRequest createSubscriptionPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersCreateSubscriptionPreview");
@@ -5106,6 +5201,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -6127,11 +6225,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param contentId  (required)
    * @param updateContentOwnerRequest  (required)
+   * @param authorization  (optional)
    * @return ContentObject
    * @throws ApiException if fails to make API call
    */
-  public ContentObject usersUpdateContentOwner(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest) throws ApiException {
-    return usersUpdateContentOwner(projectId, contentId, updateContentOwnerRequest, null);
+  public ContentObject usersUpdateContentOwner(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersUpdateContentOwner(projectId, contentId, updateContentOwnerRequest, authorization, null);
   }
 
   /**
@@ -6140,12 +6239,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param contentId  (required)
    * @param updateContentOwnerRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ContentObject
    * @throws ApiException if fails to make API call
    */
-  public ContentObject usersUpdateContentOwner(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ContentObject> localVarResponse = usersUpdateContentOwnerWithHttpInfo(projectId, contentId, updateContentOwnerRequest, headers);
+  public ContentObject usersUpdateContentOwner(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContentObject> localVarResponse = usersUpdateContentOwnerWithHttpInfo(projectId, contentId, updateContentOwnerRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -6155,11 +6255,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param contentId  (required)
    * @param updateContentOwnerRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;ContentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ContentObject> usersUpdateContentOwnerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest) throws ApiException {
-    return usersUpdateContentOwnerWithHttpInfo(projectId, contentId, updateContentOwnerRequest, null);
+  public ApiResponse<ContentObject> usersUpdateContentOwnerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersUpdateContentOwnerWithHttpInfo(projectId, contentId, updateContentOwnerRequest, authorization, null);
   }
 
   /**
@@ -6168,12 +6269,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param contentId  (required)
    * @param updateContentOwnerRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ContentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ContentObject> usersUpdateContentOwnerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = usersUpdateContentOwnerRequestBuilder(projectId, contentId, updateContentOwnerRequest, headers);
+  public ApiResponse<ContentObject> usersUpdateContentOwnerWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersUpdateContentOwnerRequestBuilder(projectId, contentId, updateContentOwnerRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -6220,7 +6322,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder usersUpdateContentOwnerRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder usersUpdateContentOwnerRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentOwnerRequest updateContentOwnerRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersUpdateContentOwner");
@@ -6242,6 +6344,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -6268,11 +6373,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param contentId  (required)
    * @param updateContentSharesRequest  (required)
+   * @param authorization  (optional)
    * @return ContentObject
    * @throws ApiException if fails to make API call
    */
-  public ContentObject usersUpdateContentShares(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest) throws ApiException {
-    return usersUpdateContentShares(projectId, contentId, updateContentSharesRequest, null);
+  public ContentObject usersUpdateContentShares(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersUpdateContentShares(projectId, contentId, updateContentSharesRequest, authorization, null);
   }
 
   /**
@@ -6281,12 +6387,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param contentId  (required)
    * @param updateContentSharesRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ContentObject
    * @throws ApiException if fails to make API call
    */
-  public ContentObject usersUpdateContentShares(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ContentObject> localVarResponse = usersUpdateContentSharesWithHttpInfo(projectId, contentId, updateContentSharesRequest, headers);
+  public ContentObject usersUpdateContentShares(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<ContentObject> localVarResponse = usersUpdateContentSharesWithHttpInfo(projectId, contentId, updateContentSharesRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -6296,11 +6403,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param contentId  (required)
    * @param updateContentSharesRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;ContentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ContentObject> usersUpdateContentSharesWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest) throws ApiException {
-    return usersUpdateContentSharesWithHttpInfo(projectId, contentId, updateContentSharesRequest, null);
+  public ApiResponse<ContentObject> usersUpdateContentSharesWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersUpdateContentSharesWithHttpInfo(projectId, contentId, updateContentSharesRequest, authorization, null);
   }
 
   /**
@@ -6309,12 +6417,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param contentId  (required)
    * @param updateContentSharesRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ContentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ContentObject> usersUpdateContentSharesWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = usersUpdateContentSharesRequestBuilder(projectId, contentId, updateContentSharesRequest, headers);
+  public ApiResponse<ContentObject> usersUpdateContentSharesWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersUpdateContentSharesRequestBuilder(projectId, contentId, updateContentSharesRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -6361,7 +6470,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder usersUpdateContentSharesRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder usersUpdateContentSharesRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String contentId, @javax.annotation.Nonnull UpdateContentSharesRequest updateContentSharesRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersUpdateContentShares");
@@ -6383,6 +6492,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -6409,11 +6521,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param paymentMethodId  (required)
    * @param updatePaymentMethodRequest  (required)
+   * @param authorization  (optional)
    * @return PaymentMethodObject
    * @throws ApiException if fails to make API call
    */
-  public PaymentMethodObject usersUpdatePaymentMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest) throws ApiException {
-    return usersUpdatePaymentMethod(projectId, paymentMethodId, updatePaymentMethodRequest, null);
+  public PaymentMethodObject usersUpdatePaymentMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersUpdatePaymentMethod(projectId, paymentMethodId, updatePaymentMethodRequest, authorization, null);
   }
 
   /**
@@ -6422,12 +6535,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param paymentMethodId  (required)
    * @param updatePaymentMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return PaymentMethodObject
    * @throws ApiException if fails to make API call
    */
-  public PaymentMethodObject usersUpdatePaymentMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaymentMethodObject> localVarResponse = usersUpdatePaymentMethodWithHttpInfo(projectId, paymentMethodId, updatePaymentMethodRequest, headers);
+  public PaymentMethodObject usersUpdatePaymentMethod(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentMethodObject> localVarResponse = usersUpdatePaymentMethodWithHttpInfo(projectId, paymentMethodId, updatePaymentMethodRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -6437,11 +6551,12 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param paymentMethodId  (required)
    * @param updatePaymentMethodRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;PaymentMethodObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentMethodObject> usersUpdatePaymentMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest) throws ApiException {
-    return usersUpdatePaymentMethodWithHttpInfo(projectId, paymentMethodId, updatePaymentMethodRequest, null);
+  public ApiResponse<PaymentMethodObject> usersUpdatePaymentMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersUpdatePaymentMethodWithHttpInfo(projectId, paymentMethodId, updatePaymentMethodRequest, authorization, null);
   }
 
   /**
@@ -6450,12 +6565,13 @@ public class UsersServerApi {
    * @param projectId  (required)
    * @param paymentMethodId  (required)
    * @param updatePaymentMethodRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PaymentMethodObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentMethodObject> usersUpdatePaymentMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = usersUpdatePaymentMethodRequestBuilder(projectId, paymentMethodId, updatePaymentMethodRequest, headers);
+  public ApiResponse<PaymentMethodObject> usersUpdatePaymentMethodWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersUpdatePaymentMethodRequestBuilder(projectId, paymentMethodId, updatePaymentMethodRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -6502,7 +6618,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder usersUpdatePaymentMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder usersUpdatePaymentMethodRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentMethodId, @javax.annotation.Nonnull UpdatePaymentMethodRequest updatePaymentMethodRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersUpdatePaymentMethod");
@@ -6524,6 +6640,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
@@ -6699,11 +6818,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param mfaVerifyRequest  (required)
+   * @param authorization  (optional)
    * @return LoginUserResponse
    * @throws ApiException if fails to make API call
    */
-  public LoginUserResponse verifyMfa(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest) throws ApiException {
-    return verifyMfa(projectId, mfaVerifyRequest, null);
+  public LoginUserResponse verifyMfa(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return verifyMfa(projectId, mfaVerifyRequest, authorization, null);
   }
 
   /**
@@ -6711,12 +6831,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param mfaVerifyRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return LoginUserResponse
    * @throws ApiException if fails to make API call
    */
-  public LoginUserResponse verifyMfa(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<LoginUserResponse> localVarResponse = verifyMfaWithHttpInfo(projectId, mfaVerifyRequest, headers);
+  public LoginUserResponse verifyMfa(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<LoginUserResponse> localVarResponse = verifyMfaWithHttpInfo(projectId, mfaVerifyRequest, authorization, headers);
     return localVarResponse.getData();
   }
 
@@ -6725,11 +6846,12 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param mfaVerifyRequest  (required)
+   * @param authorization  (optional)
    * @return ApiResponse&lt;LoginUserResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LoginUserResponse> verifyMfaWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest) throws ApiException {
-    return verifyMfaWithHttpInfo(projectId, mfaVerifyRequest, null);
+  public ApiResponse<LoginUserResponse> verifyMfaWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return verifyMfaWithHttpInfo(projectId, mfaVerifyRequest, authorization, null);
   }
 
   /**
@@ -6737,12 +6859,13 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param mfaVerifyRequest  (required)
+   * @param authorization  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;LoginUserResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<LoginUserResponse> verifyMfaWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = verifyMfaRequestBuilder(projectId, mfaVerifyRequest, headers);
+  public ApiResponse<LoginUserResponse> verifyMfaWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = verifyMfaRequestBuilder(projectId, mfaVerifyRequest, authorization, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -6789,7 +6912,7 @@ public class UsersServerApi {
     }
   }
 
-  private HttpRequest.Builder verifyMfaRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder verifyMfaRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull MfaVerifyRequest mfaVerifyRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling verifyMfa");
@@ -6806,6 +6929,9 @@ public class UsersServerApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
