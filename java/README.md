@@ -11,7 +11,7 @@ Official Java SDK for interacting with the Forte Platforms API.
     <groupId>com.forteplatforms</groupId>
     <artifactId>sdk</artifactId>
 <<<<<<< Updated upstream
-    <version>1.0.250</version>
+    <version>1.0.253</version>
 =======
     <version>1.0.246</version>
 >>>>>>> Stashed changes
@@ -22,9 +22,9 @@ Official Java SDK for interacting with the Forte Platforms API.
 
 ```groovy
 <<<<<<< Updated upstream
-implementation 'com.forteplatforms:sdk:1.0.250'
+implementation 'com.forteplatforms:sdk:1.0.253'
 =======
-implementation 'com.forteplatforms:sdk:1.0.250'
+implementation 'com.forteplatforms:sdk:1.0.253'
 >>>>>>> Stashed changes
 ```
 

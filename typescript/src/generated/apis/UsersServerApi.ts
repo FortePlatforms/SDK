@@ -264,6 +264,7 @@ export interface ActivateMfaMethodOperationRequest {
 export interface CancelMySubscriptionRequest {
     projectId: string;
     subscriptionId: string;
+    authorization?: string;
 }
 
 export interface ChangeMyPasswordRequest {
@@ -309,28 +310,34 @@ export interface CreateUserInviteOperationRequest {
 export interface DeleteContactMethodRequest {
     projectId: string;
     contactMethodId: string;
+    authorization?: string;
 }
 
 export interface DeleteMfaMethodRequest {
     projectId: string;
     mfaMethodId: string;
+    authorization?: string;
 }
 
 export interface GenerateBackupCodesRequest {
     projectId: string;
+    authorization?: string;
 }
 
 export interface GetAccountRequest {
     projectId: string;
+    authorization?: string;
 }
 
 export interface GetBackupCodeStatusRequest {
     projectId: string;
+    authorization?: string;
 }
 
 export interface GetMySubscriptionRequest {
     projectId: string;
     subscriptionId: string;
+    authorization?: string;
 }
 
 export interface GoogleAuthLoginCallbackRequest {
@@ -342,10 +349,12 @@ export interface GoogleAuthLoginCallbackRequest {
 
 export interface ListMfaMethodsRequest {
     projectId: string;
+    authorization?: string;
 }
 
 export interface ListMyPaymentsRequest {
     projectId: string;
+    authorization?: string;
     metadataKey?: string;
     metadataValue?: string;
     minTime?: Date;
@@ -355,12 +364,14 @@ export interface ListMyPaymentsRequest {
 
 export interface ListMySubscriptionsRequest {
     projectId: string;
+    authorization?: string;
     page?: number;
     pageSize?: number;
 }
 
 export interface ListUserInvitesRequest {
     projectId: string;
+    authorization?: string;
 }
 
 export interface LogoutRequest {
@@ -408,6 +419,7 @@ export interface RequestPasswordResetOperationRequest {
 export interface ResendContactMethodVerificationCodeRequest {
     projectId: string;
     contactMethodId: string;
+    authorization?: string;
 }
 
 export interface ResendLoginOtpRequest {
@@ -418,6 +430,7 @@ export interface ResendLoginOtpRequest {
 export interface RevokeUserInviteRequest {
     projectId: string;
     inviteId: string;
+    authorization?: string;
 }
 
 export interface SendMfaChallengeRequest {
@@ -447,6 +460,7 @@ export interface UsersCreatePaymentRequest {
 
 export interface UsersCreatePaymentMethodRequest {
     projectId: string;
+    authorization?: string;
 }
 
 export interface UsersCreatePaymentPreviewRequest {
@@ -470,41 +484,49 @@ export interface UsersCreateSubscriptionPreviewRequest {
 export interface UsersDeleteContentRequest {
     projectId: string;
     contentId: string;
+    authorization?: string;
 }
 
 export interface UsersDeletePaymentMethodRequest {
     projectId: string;
     paymentMethodId: string;
+    authorization?: string;
 }
 
 export interface UsersFinalizeContentRequest {
     projectId: string;
     pendingContentId: string;
+    authorization?: string;
 }
 
 export interface UsersGetContentRequest {
     projectId: string;
     contentId: string;
+    authorization?: string;
 }
 
 export interface UsersGetContentDownloadLinkRequest {
     projectId: string;
     contentId: string;
+    authorization?: string;
 }
 
 export interface UsersGetPaymentMethodRequest {
     projectId: string;
     paymentMethodId: string;
+    authorization?: string;
 }
 
 export interface UsersListContentRequest {
     projectId: string;
+    authorization?: string;
     page?: number;
     pageSize?: number;
 }
 
 export interface UsersListPaymentMethodsRequest {
     projectId: string;
+    authorization?: string;
 }
 
 export interface UsersUpdateContentOwnerRequest {
@@ -532,6 +554,7 @@ export interface VerifyContactMethodRequest {
     projectId: string;
     contactMethodId: string;
     verificationCode: string;
+    authorization?: string;
 }
 
 export interface VerifyMfaRequest {
@@ -630,6 +653,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/subscriptions/{subscriptionId}`;
@@ -1076,6 +1103,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/contact-methods/{contactMethodId}`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -1126,6 +1157,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/mfa/methods/{mfaMethodId}`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -1168,6 +1203,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/mfa/backup-codes`;
@@ -1212,6 +1251,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -1254,6 +1297,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/mfa/backup-codes`;
@@ -1304,6 +1351,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/subscriptions/{subscriptionId}`;
@@ -1433,6 +1484,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/mfa/methods`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -1496,6 +1551,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/payments`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -1547,6 +1606,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/subscriptions`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -1589,6 +1652,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/invites`;
@@ -2024,6 +2091,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/contact-methods/{contactMethodId}/resend-verification-code`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2125,6 +2196,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/invites/{inviteId}`;
@@ -2405,6 +2480,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/payment-methods`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2626,6 +2705,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/content/{contentId}`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2676,6 +2759,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/payment-methods/{paymentMethodId}`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2725,6 +2812,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/content/{pendingContentId}`;
@@ -2777,6 +2868,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/content/{contentId}`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2828,6 +2923,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/content/{contentId}/download-link`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2878,6 +2977,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/payment-methods/{paymentMethodId}`;
@@ -2931,6 +3034,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/content`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2973,6 +3080,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/payment-methods`;
@@ -3229,6 +3340,10 @@ export class UsersServerApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
 
 
         let urlPath = `/api/v1/{projectId}/users/me/contact-methods/{contactMethodId}/verification`;
