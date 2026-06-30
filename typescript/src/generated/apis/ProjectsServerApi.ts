@@ -189,6 +189,11 @@ import {
     ListCustomDomainsResponseToJSON,
 } from '../models/ListCustomDomainsResponse';
 import {
+    type ListSessionsResponse,
+    ListSessionsResponseFromJSON,
+    ListSessionsResponseToJSON,
+} from '../models/ListSessionsResponse';
+import {
     type NotificationTemplatesResponse,
     NotificationTemplatesResponseFromJSON,
     NotificationTemplatesResponseToJSON,
@@ -823,6 +828,11 @@ export interface ListUserPaymentsRequest {
     nextToken?: string;
 }
 
+export interface ListUserSessionsRequest {
+    projectId: string;
+    userId: string;
+}
+
 export interface ListUserSubscriptionsRequest {
     projectId: string;
     userId: string;
@@ -1002,6 +1012,17 @@ export interface RefundPaymentRequest {
     userId: string;
     paymentId: string;
     keepSubscriptionActive?: boolean;
+}
+
+export interface RevokeAllUserSessionsRequest {
+    projectId: string;
+    userId: string;
+}
+
+export interface RevokeUserSessionRequest {
+    projectId: string;
+    userId: string;
+    sessionId: string;
 }
 
 export interface SearchLogLinesRequest {
@@ -4884,6 +4905,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listUserSessions without sending the request
+     */
+    async listUserSessionsRequestOpts(requestParameters: ListUserSessionsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listUserSessions().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling listUserSessions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/sessions`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listUserSessionsRaw(requestParameters: ListUserSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListSessionsResponse>> {
+        const requestOptions = await this.listUserSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListSessionsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listUserSessions(requestParameters: ListUserSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListSessionsResponse> {
+        const response = await this.listUserSessionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listUserSubscriptions without sending the request
      */
     async listUserSubscriptionsRequestOpts(requestParameters: ListUserSubscriptionsRequest): Promise<runtime.RequestOpts> {
@@ -6553,6 +6625,114 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for revokeAllUserSessions without sending the request
+     */
+    async revokeAllUserSessionsRequestOpts(requestParameters: RevokeAllUserSessionsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling revokeAllUserSessions().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling revokeAllUserSessions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/sessions`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async revokeAllUserSessionsRaw(requestParameters: RevokeAllUserSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.revokeAllUserSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async revokeAllUserSessions(requestParameters: RevokeAllUserSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.revokeAllUserSessionsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for revokeUserSession without sending the request
+     */
+    async revokeUserSessionRequestOpts(requestParameters: RevokeUserSessionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling revokeUserSession().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling revokeUserSession().'
+            );
+        }
+
+        if (requestParameters['sessionId'] == null) {
+            throw new runtime.RequiredError(
+                'sessionId',
+                'Required parameter "sessionId" was null or undefined when calling revokeUserSession().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/sessions/{sessionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{sessionId}', encodeURIComponent(String(requestParameters['sessionId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async revokeUserSessionRaw(requestParameters: RevokeUserSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.revokeUserSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async revokeUserSession(requestParameters: RevokeUserSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.revokeUserSessionRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for searchLogLines without sending the request
      */
     async searchLogLinesRequestOpts(requestParameters: SearchLogLinesRequest): Promise<runtime.RequestOpts> {
@@ -7616,6 +7796,8 @@ export const ListUserActionLogsActionTypeType = {
     USER_LOGIN: 'USER_LOGIN',
     USER_LOGOUT: 'USER_LOGOUT',
     USER_LOGIN_OTP_SENT: 'USER_LOGIN_OTP_SENT',
+    SESSION_REVOKED: 'SESSION_REVOKED',
+    ALL_OTHER_SESSIONS_REVOKED: 'ALL_OTHER_SESSIONS_REVOKED',
     PAYMENT_CREATED: 'PAYMENT_CREATED',
     PAYMENT_REFUNDED: 'PAYMENT_REFUNDED',
     PAYMENT_METHOD_SETUP_STARTED: 'PAYMENT_METHOD_SETUP_STARTED',

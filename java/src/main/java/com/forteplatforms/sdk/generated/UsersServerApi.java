@@ -45,12 +45,14 @@ import com.forteplatforms.sdk.generated.model.CreateUserInviteRequest;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.ListContentResponse;
 import com.forteplatforms.sdk.generated.model.ListMfaMethodsResponse;
+import com.forteplatforms.sdk.generated.model.ListSessionsResponse;
 import com.forteplatforms.sdk.generated.model.ListUserInvitesResponse;
 import com.forteplatforms.sdk.generated.model.LoginUserResponse;
 import com.forteplatforms.sdk.generated.model.MfaChallengeRequest;
 import com.forteplatforms.sdk.generated.model.MfaChallengeResponse;
 import com.forteplatforms.sdk.generated.model.MfaVerifyRequest;
 import java.time.OffsetDateTime;
+import com.forteplatforms.sdk.generated.model.PaginatedResponseLoginHistoryEntry;
 import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
 import com.forteplatforms.sdk.generated.model.PasswordLoginRequest;
 import com.forteplatforms.sdk.generated.model.PaymentMethodObject;
@@ -2344,6 +2346,162 @@ public class UsersServerApi {
    * 
    * @param projectId  (required)
    * @param authorization  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return PaginatedResponseLoginHistoryEntry
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseLoginHistoryEntry listLoginHistory(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listLoginHistory(projectId, authorization, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponseLoginHistoryEntry
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseLoginHistoryEntry listLoginHistory(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseLoginHistoryEntry> localVarResponse = listLoginHistoryWithHttpInfo(projectId, authorization, minTime, maxTime, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponseLoginHistoryEntry&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseLoginHistoryEntry> listLoginHistoryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listLoginHistoryWithHttpInfo(projectId, authorization, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponseLoginHistoryEntry&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseLoginHistoryEntry> listLoginHistoryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLoginHistoryRequestBuilder(projectId, authorization, minTime, maxTime, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listLoginHistory", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponseLoginHistoryEntry>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponseLoginHistoryEntry responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseLoginHistoryEntry>() {});
+        
+
+        return new ApiResponse<PaginatedResponseLoginHistoryEntry>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listLoginHistoryRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listLoginHistory");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/login-history"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
    * @return ListMfaMethodsResponse
    * @throws ApiException if fails to make API call
    */
@@ -2764,6 +2922,131 @@ public class UsersServerApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @return ListSessionsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListSessionsResponse listSessions(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization) throws ApiException {
+    return listSessions(projectId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListSessionsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListSessionsResponse listSessions(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListSessionsResponse> localVarResponse = listSessionsWithHttpInfo(projectId, authorization, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;ListSessionsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSessionsResponse> listSessionsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization) throws ApiException {
+    return listSessionsWithHttpInfo(projectId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListSessionsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSessionsResponse> listSessionsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listSessionsRequestBuilder(projectId, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listSessions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListSessionsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListSessionsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListSessionsResponse>() {});
+        
+
+        return new ApiResponse<ListSessionsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listSessionsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listSessions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/sessions"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     if (authorization != null) {
       localVarRequestBuilder.header("Authorization", authorization.toString());
@@ -4084,6 +4367,237 @@ public class UsersServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @throws ApiException if fails to make API call
+   */
+  public void revokeOtherSessions(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization) throws ApiException {
+    revokeOtherSessions(projectId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void revokeOtherSessions(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    revokeOtherSessionsWithHttpInfo(projectId, authorization, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> revokeOtherSessionsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization) throws ApiException {
+    return revokeOtherSessionsWithHttpInfo(projectId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> revokeOtherSessionsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = revokeOtherSessionsRequestBuilder(projectId, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("revokeOtherSessions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder revokeOtherSessionsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling revokeOtherSessions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/sessions"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param sessionId  (required)
+   * @param authorization  (optional)
+   * @throws ApiException if fails to make API call
+   */
+  public void revokeSession(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String sessionId, @javax.annotation.Nullable String authorization) throws ApiException {
+    revokeSession(projectId, sessionId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param sessionId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void revokeSession(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String sessionId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    revokeSessionWithHttpInfo(projectId, sessionId, authorization, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param sessionId  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> revokeSessionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String sessionId, @javax.annotation.Nullable String authorization) throws ApiException {
+    return revokeSessionWithHttpInfo(projectId, sessionId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param sessionId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> revokeSessionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String sessionId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = revokeSessionRequestBuilder(projectId, sessionId, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("revokeSession", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder revokeSessionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String sessionId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling revokeSession");
+    }
+    // verify the required parameter 'sessionId' is set
+    if (sessionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'sessionId' when calling revokeSession");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/sessions/{sessionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{sessionId}", ApiClient.urlEncode(sessionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

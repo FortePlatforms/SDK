@@ -149,6 +149,11 @@ import {
     ListMfaMethodsResponseToJSON,
 } from '../models/ListMfaMethodsResponse';
 import {
+    type ListSessionsResponse,
+    ListSessionsResponseFromJSON,
+    ListSessionsResponseToJSON,
+} from '../models/ListSessionsResponse';
+import {
     type ListUserInvitesResponse,
     ListUserInvitesResponseFromJSON,
     ListUserInvitesResponseToJSON,
@@ -173,6 +178,11 @@ import {
     MfaVerifyRequestFromJSON,
     MfaVerifyRequestToJSON,
 } from '../models/MfaVerifyRequest';
+import {
+    type PaginatedResponseLoginHistoryEntry,
+    PaginatedResponseLoginHistoryEntryFromJSON,
+    PaginatedResponseLoginHistoryEntryToJSON,
+} from '../models/PaginatedResponseLoginHistoryEntry';
 import {
     type PaginatedResponsePaymentObject,
     PaginatedResponsePaymentObjectFromJSON,
@@ -347,6 +357,14 @@ export interface GoogleAuthLoginCallbackRequest {
     recaptchaToken?: string;
 }
 
+export interface ListLoginHistoryRequest {
+    projectId: string;
+    authorization?: string;
+    minTime?: Date;
+    maxTime?: Date;
+    nextToken?: string;
+}
+
 export interface ListMfaMethodsRequest {
     projectId: string;
     authorization?: string;
@@ -367,6 +385,11 @@ export interface ListMySubscriptionsRequest {
     authorization?: string;
     page?: number;
     pageSize?: number;
+}
+
+export interface ListSessionsRequest {
+    projectId: string;
+    authorization?: string;
 }
 
 export interface ListUserInvitesRequest {
@@ -425,6 +448,17 @@ export interface ResendContactMethodVerificationCodeRequest {
 export interface ResendLoginOtpRequest {
     projectId: string;
     pendingLoginId: string;
+}
+
+export interface RevokeOtherSessionsRequest {
+    projectId: string;
+    authorization?: string;
+}
+
+export interface RevokeSessionRequest {
+    projectId: string;
+    sessionId: string;
+    authorization?: string;
 }
 
 export interface RevokeUserInviteRequest {
@@ -1470,6 +1504,65 @@ export class UsersServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listLoginHistory without sending the request
+     */
+    async listLoginHistoryRequestOpts(requestParameters: ListLoginHistoryRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listLoginHistory().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/login-history`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listLoginHistoryRaw(requestParameters: ListLoginHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseLoginHistoryEntry>> {
+        const requestOptions = await this.listLoginHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseLoginHistoryEntryFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listLoginHistory(requestParameters: ListLoginHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLoginHistoryEntry> {
+        const response = await this.listLoginHistoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listMfaMethods without sending the request
      */
     async listMfaMethodsRequestOpts(requestParameters: ListMfaMethodsRequest): Promise<runtime.RequestOpts> {
@@ -1635,6 +1728,53 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async listMySubscriptions(requestParameters: ListMySubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SubscriptionObject>> {
         const response = await this.listMySubscriptionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listSessions without sending the request
+     */
+    async listSessionsRequestOpts(requestParameters: ListSessionsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listSessions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/sessions`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listSessionsRaw(requestParameters: ListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListSessionsResponse>> {
+        const requestOptions = await this.listSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListSessionsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listSessions(requestParameters: ListSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListSessionsResponse> {
+        const response = await this.listSessionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2173,6 +2313,106 @@ export class UsersServerApi extends runtime.BaseAPI {
     async resendLoginOtp(requestParameters: ResendLoginOtpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateOtpLoginResponse> {
         const response = await this.resendLoginOtpRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Creates request options for revokeOtherSessions without sending the request
+     */
+    async revokeOtherSessionsRequestOpts(requestParameters: RevokeOtherSessionsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling revokeOtherSessions().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/sessions`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async revokeOtherSessionsRaw(requestParameters: RevokeOtherSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.revokeOtherSessionsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async revokeOtherSessions(requestParameters: RevokeOtherSessionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.revokeOtherSessionsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for revokeSession without sending the request
+     */
+    async revokeSessionRequestOpts(requestParameters: RevokeSessionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling revokeSession().'
+            );
+        }
+
+        if (requestParameters['sessionId'] == null) {
+            throw new runtime.RequiredError(
+                'sessionId',
+                'Required parameter "sessionId" was null or undefined when calling revokeSession().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/sessions/{sessionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{sessionId}', encodeURIComponent(String(requestParameters['sessionId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async revokeSessionRaw(requestParameters: RevokeSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.revokeSessionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async revokeSession(requestParameters: RevokeSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.revokeSessionRaw(requestParameters, initOverrides);
     }
 
     /**

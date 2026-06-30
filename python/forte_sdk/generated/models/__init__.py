@@ -82,8 +82,10 @@ from forte_sdk.generated.models.latency_stats import LatencyStats
 from forte_sdk.generated.models.list_content_response import ListContentResponse
 from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse
 from forte_sdk.generated.models.list_mfa_methods_response import ListMfaMethodsResponse
+from forte_sdk.generated.models.list_sessions_response import ListSessionsResponse
 from forte_sdk.generated.models.list_user_invites_response import ListUserInvitesResponse
 from forte_sdk.generated.models.log_line_object import LogLineObject
+from forte_sdk.generated.models.login_history_entry import LoginHistoryEntry
 from forte_sdk.generated.models.login_user_response import LoginUserResponse
 from forte_sdk.generated.models.mfa_challenge_request import MfaChallengeRequest
 from forte_sdk.generated.models.mfa_challenge_response import MfaChallengeResponse
@@ -95,6 +97,7 @@ from forte_sdk.generated.models.notification_templates_config import Notificatio
 from forte_sdk.generated.models.notification_templates_response import NotificationTemplatesResponse
 from forte_sdk.generated.models.paginated_response_action_invocation_object import PaginatedResponseActionInvocationObject
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject
+from forte_sdk.generated.models.paginated_response_login_history_entry import PaginatedResponseLoginHistoryEntry
 from forte_sdk.generated.models.paginated_response_payment_object import PaginatedResponsePaymentObject
 from forte_sdk.generated.models.paginated_response_request_log_object import PaginatedResponseRequestLogObject
 from forte_sdk.generated.models.paginated_response_service_build_request_object import PaginatedResponseServiceBuildRequestObject
@@ -131,6 +134,7 @@ from forte_sdk.generated.models.service_build_request_object import ServiceBuild
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject
 from forte_sdk.generated.models.service_route_metrics_response import ServiceRouteMetricsResponse
+from forte_sdk.generated.models.session_summary import SessionSummary
 from forte_sdk.generated.models.spender_aggregate import SpenderAggregate
 from forte_sdk.generated.models.state_currency_totals import StateCurrencyTotals
 from forte_sdk.generated.models.state_history import StateHistory

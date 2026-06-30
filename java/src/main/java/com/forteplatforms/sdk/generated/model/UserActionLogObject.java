@@ -42,6 +42,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_CONTACT_METHOD_ID,
   UserActionLogObject.JSON_PROPERTY_PAYMENT_METHOD_ID,
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID,
+  UserActionLogObject.JSON_PROPERTY_SOURCE_IP_ADDRESS,
   UserActionLogObject.JSON_PROPERTY_METADATA
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -87,6 +88,10 @@ public class UserActionLogObject {
     USER_LOGOUT(String.valueOf("USER_LOGOUT")),
     
     USER_LOGIN_OTP_SENT(String.valueOf("USER_LOGIN_OTP_SENT")),
+    
+    SESSION_REVOKED(String.valueOf("SESSION_REVOKED")),
+    
+    ALL_OTHER_SESSIONS_REVOKED(String.valueOf("ALL_OTHER_SESSIONS_REVOKED")),
     
     PAYMENT_CREATED(String.valueOf("PAYMENT_CREATED")),
     
@@ -190,6 +195,10 @@ public class UserActionLogObject {
   public static final String JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID = "performedByAccountId";
   @javax.annotation.Nullable
   private String performedByAccountId;
+
+  public static final String JSON_PROPERTY_SOURCE_IP_ADDRESS = "sourceIpAddress";
+  @javax.annotation.Nullable
+  private String sourceIpAddress;
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
@@ -342,6 +351,30 @@ public class UserActionLogObject {
   }
 
 
+  public UserActionLogObject sourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+    this.sourceIpAddress = sourceIpAddress;
+    return this;
+  }
+
+  /**
+   * Get sourceIpAddress
+   * @return sourceIpAddress
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSourceIpAddress() {
+    return sourceIpAddress;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+    this.sourceIpAddress = sourceIpAddress;
+  }
+
+
   public UserActionLogObject metadata(@javax.annotation.Nullable Map<String, String> metadata) {
     this.metadata = metadata;
     return this;
@@ -392,12 +425,13 @@ public class UserActionLogObject {
         Objects.equals(this.contactMethodId, userActionLogObject.contactMethodId) &&
         Objects.equals(this.paymentMethodId, userActionLogObject.paymentMethodId) &&
         Objects.equals(this.performedByAccountId, userActionLogObject.performedByAccountId) &&
+        Objects.equals(this.sourceIpAddress, userActionLogObject.sourceIpAddress) &&
         Objects.equals(this.metadata, userActionLogObject.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, userId, actionType, contactMethodId, paymentMethodId, performedByAccountId, metadata);
+    return Objects.hash(timestamp, userId, actionType, contactMethodId, paymentMethodId, performedByAccountId, sourceIpAddress, metadata);
   }
 
   @Override
@@ -410,6 +444,7 @@ public class UserActionLogObject {
     sb.append("    contactMethodId: ").append(toIndentedString(contactMethodId)).append("\n");
     sb.append("    paymentMethodId: ").append(toIndentedString(paymentMethodId)).append("\n");
     sb.append("    performedByAccountId: ").append(toIndentedString(performedByAccountId)).append("\n");
+    sb.append("    sourceIpAddress: ").append(toIndentedString(sourceIpAddress)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -483,6 +518,11 @@ public class UserActionLogObject {
     // add `performedByAccountId` to the URL query string
     if (getPerformedByAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sperformedByAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPerformedByAccountId()))));
+    }
+
+    // add `sourceIpAddress` to the URL query string
+    if (getSourceIpAddress() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssourceIpAddress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSourceIpAddress()))));
     }
 
     // add `metadata` to the URL query string

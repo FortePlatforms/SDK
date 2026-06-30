@@ -57,6 +57,12 @@ export interface UserActionLogObject {
     performedByAccountId?: string;
     /**
      * 
+     * @type {string}
+     * @memberof UserActionLogObject
+     */
+    sourceIpAddress?: string;
+    /**
+     * 
      * @type {{ [key: string]: string; }}
      * @memberof UserActionLogObject
      */
@@ -83,6 +89,8 @@ export const UserActionLogObjectActionTypeType = {
     USER_LOGIN: 'USER_LOGIN',
     USER_LOGOUT: 'USER_LOGOUT',
     USER_LOGIN_OTP_SENT: 'USER_LOGIN_OTP_SENT',
+    SESSION_REVOKED: 'SESSION_REVOKED',
+    ALL_OTHER_SESSIONS_REVOKED: 'ALL_OTHER_SESSIONS_REVOKED',
     PAYMENT_CREATED: 'PAYMENT_CREATED',
     PAYMENT_REFUNDED: 'PAYMENT_REFUNDED',
     PAYMENT_METHOD_SETUP_STARTED: 'PAYMENT_METHOD_SETUP_STARTED',
@@ -143,6 +151,7 @@ export function UserActionLogObjectFromJSONTyped(json: any, ignoreDiscriminator:
         'contactMethodId': json['contactMethodId'] == null ? undefined : json['contactMethodId'],
         'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
         'performedByAccountId': json['performedByAccountId'] == null ? undefined : json['performedByAccountId'],
+        'sourceIpAddress': json['sourceIpAddress'] == null ? undefined : json['sourceIpAddress'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
     };
 }
@@ -164,6 +173,7 @@ export function UserActionLogObjectToJSONTyped(value?: UserActionLogObject | nul
         'contactMethodId': value['contactMethodId'],
         'paymentMethodId': value['paymentMethodId'],
         'performedByAccountId': value['performedByAccountId'],
+        'sourceIpAddress': value['sourceIpAddress'],
         'metadata': value['metadata'],
     };
 }
