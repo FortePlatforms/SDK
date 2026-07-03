@@ -60,8 +60,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT,
   UserObject.JSON_PROPERTY_MFA_METHODS,
   UserObject.JSON_PROPERTY_BACKUP_CODES_GENERATED_AT,
-  UserObject.JSON_PROPERTY_HAS_PASSWORD,
-  UserObject.JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT
+  UserObject.JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT,
+  UserObject.JSON_PROPERTY_HAS_PASSWORD
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UserObject {
@@ -170,13 +170,13 @@ public class UserObject {
   @javax.annotation.Nullable
   private OffsetDateTime backupCodesGeneratedAt;
 
-  public static final String JSON_PROPERTY_HAS_PASSWORD = "hasPassword";
-  @javax.annotation.Nullable
-  private Boolean hasPassword;
-
   public static final String JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT = "remainingBackupCodeCount";
   @javax.annotation.Nullable
   private Integer remainingBackupCodeCount;
+
+  public static final String JSON_PROPERTY_HAS_PASSWORD = "hasPassword";
+  @javax.annotation.Nullable
+  private Boolean hasPassword;
 
   public UserObject() { 
   }
@@ -622,30 +622,6 @@ public class UserObject {
   }
 
 
-  public UserObject hasPassword(@javax.annotation.Nullable Boolean hasPassword) {
-    this.hasPassword = hasPassword;
-    return this;
-  }
-
-  /**
-   * Get hasPassword
-   * @return hasPassword
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getHasPassword() {
-    return hasPassword;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHasPassword(@javax.annotation.Nullable Boolean hasPassword) {
-    this.hasPassword = hasPassword;
-  }
-
-
   public UserObject remainingBackupCodeCount(@javax.annotation.Nullable Integer remainingBackupCodeCount) {
     this.remainingBackupCodeCount = remainingBackupCodeCount;
     return this;
@@ -667,6 +643,30 @@ public class UserObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRemainingBackupCodeCount(@javax.annotation.Nullable Integer remainingBackupCodeCount) {
     this.remainingBackupCodeCount = remainingBackupCodeCount;
+  }
+
+
+  public UserObject hasPassword(@javax.annotation.Nullable Boolean hasPassword) {
+    this.hasPassword = hasPassword;
+    return this;
+  }
+
+  /**
+   * Get hasPassword
+   * @return hasPassword
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasPassword() {
+    return hasPassword;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasPassword(@javax.annotation.Nullable Boolean hasPassword) {
+    this.hasPassword = hasPassword;
   }
 
 
@@ -699,13 +699,13 @@ public class UserObject {
         Objects.equals(this.passwordResetLastRequestedAt, userObject.passwordResetLastRequestedAt) &&
         Objects.equals(this.mfaMethods, userObject.mfaMethods) &&
         Objects.equals(this.backupCodesGeneratedAt, userObject.backupCodesGeneratedAt) &&
-        Objects.equals(this.hasPassword, userObject.hasPassword) &&
-        Objects.equals(this.remainingBackupCodeCount, userObject.remainingBackupCodeCount);
+        Objects.equals(this.remainingBackupCodeCount, userObject.remainingBackupCodeCount) &&
+        Objects.equals(this.hasPassword, userObject.hasPassword);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, invitedByUserId, state, passwordSetAt, passwordResetLastRequestedAt, mfaMethods, backupCodesGeneratedAt, hasPassword, remainingBackupCodeCount);
+    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, invitedByUserId, state, passwordSetAt, passwordResetLastRequestedAt, mfaMethods, backupCodesGeneratedAt, remainingBackupCodeCount, hasPassword);
   }
 
   @Override
@@ -729,8 +729,8 @@ public class UserObject {
     sb.append("    passwordResetLastRequestedAt: ").append(toIndentedString(passwordResetLastRequestedAt)).append("\n");
     sb.append("    mfaMethods: ").append(toIndentedString(mfaMethods)).append("\n");
     sb.append("    backupCodesGeneratedAt: ").append(toIndentedString(backupCodesGeneratedAt)).append("\n");
-    sb.append("    hasPassword: ").append(toIndentedString(hasPassword)).append("\n");
     sb.append("    remainingBackupCodeCount: ").append(toIndentedString(remainingBackupCodeCount)).append("\n");
+    sb.append("    hasPassword: ").append(toIndentedString(hasPassword)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -880,14 +880,14 @@ public class UserObject {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbackupCodesGeneratedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupCodesGeneratedAt()))));
     }
 
-    // add `hasPassword` to the URL query string
-    if (getHasPassword() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%shasPassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPassword()))));
-    }
-
     // add `remainingBackupCodeCount` to the URL query string
     if (getRemainingBackupCodeCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sremainingBackupCodeCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemainingBackupCodeCount()))));
+    }
+
+    // add `hasPassword` to the URL query string
+    if (getHasPassword() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasPassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPassword()))));
     }
 
     return joiner.toString();

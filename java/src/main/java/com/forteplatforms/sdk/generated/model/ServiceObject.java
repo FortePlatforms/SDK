@@ -48,6 +48,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_SERVICE_ID,
   ServiceObject.JSON_PROPERTY_SERVICE_NAME,
   ServiceObject.JSON_PROPERTY_PUBLIC_DNS_ENDPOINT,
+  ServiceObject.JSON_PROPERTY_PAUSED_AT,
   ServiceObject.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED,
   ServiceObject.JSON_PROPERTY_DOCKERFILE_PATH,
   ServiceObject.JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION,
@@ -81,6 +82,10 @@ public class ServiceObject {
   public static final String JSON_PROPERTY_PUBLIC_DNS_ENDPOINT = "publicDnsEndpoint";
   @javax.annotation.Nullable
   private String publicDnsEndpoint;
+
+  public static final String JSON_PROPERTY_PAUSED_AT = "pausedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime pausedAt;
 
   public static final String JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED = "requestResponseBodyLoggingEnabled";
   @javax.annotation.Nullable
@@ -265,6 +270,30 @@ public class ServiceObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPublicDnsEndpoint(@javax.annotation.Nullable String publicDnsEndpoint) {
     this.publicDnsEndpoint = publicDnsEndpoint;
+  }
+
+
+  public ServiceObject pausedAt(@javax.annotation.Nullable OffsetDateTime pausedAt) {
+    this.pausedAt = pausedAt;
+    return this;
+  }
+
+  /**
+   * Get pausedAt
+   * @return pausedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PAUSED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getPausedAt() {
+    return pausedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PAUSED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPausedAt(@javax.annotation.Nullable OffsetDateTime pausedAt) {
+    this.pausedAt = pausedAt;
   }
 
 
@@ -780,6 +809,7 @@ public class ServiceObject {
     return Objects.equals(this.serviceId, serviceObject.serviceId) &&
         Objects.equals(this.serviceName, serviceObject.serviceName) &&
         Objects.equals(this.publicDnsEndpoint, serviceObject.publicDnsEndpoint) &&
+        Objects.equals(this.pausedAt, serviceObject.pausedAt) &&
         Objects.equals(this.requestResponseBodyLoggingEnabled, serviceObject.requestResponseBodyLoggingEnabled) &&
         Objects.equals(this.dockerfilePath, serviceObject.dockerfilePath) &&
         Objects.equals(this.healthCheckConfiguration, serviceObject.healthCheckConfiguration) &&
@@ -803,7 +833,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, pausedAt, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -813,6 +843,7 @@ public class ServiceObject {
     sb.append("    serviceId: ").append(toIndentedString(serviceId)).append("\n");
     sb.append("    serviceName: ").append(toIndentedString(serviceName)).append("\n");
     sb.append("    publicDnsEndpoint: ").append(toIndentedString(publicDnsEndpoint)).append("\n");
+    sb.append("    pausedAt: ").append(toIndentedString(pausedAt)).append("\n");
     sb.append("    requestResponseBodyLoggingEnabled: ").append(toIndentedString(requestResponseBodyLoggingEnabled)).append("\n");
     sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
     sb.append("    healthCheckConfiguration: ").append(toIndentedString(healthCheckConfiguration)).append("\n");
@@ -889,6 +920,11 @@ public class ServiceObject {
     // add `publicDnsEndpoint` to the URL query string
     if (getPublicDnsEndpoint() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spublicDnsEndpoint%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPublicDnsEndpoint()))));
+    }
+
+    // add `pausedAt` to the URL query string
+    if (getPausedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spausedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPausedAt()))));
     }
 
     // add `requestResponseBodyLoggingEnabled` to the URL query string

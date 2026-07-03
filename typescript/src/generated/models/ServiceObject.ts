@@ -68,6 +68,12 @@ export interface ServiceObject {
     publicDnsEndpoint?: string;
     /**
      * 
+     * @type {Date}
+     * @memberof ServiceObject
+     */
+    pausedAt?: Date;
+    /**
+     * 
      * @type {boolean}
      * @memberof ServiceObject
      */
@@ -218,6 +224,7 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'serviceId': json['serviceId'] == null ? undefined : json['serviceId'],
         'serviceName': json['serviceName'],
         'publicDnsEndpoint': json['publicDnsEndpoint'] == null ? undefined : json['publicDnsEndpoint'],
+        'pausedAt': json['pausedAt'] == null ? undefined : (new Date(json['pausedAt'])),
         'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'] == null ? undefined : json['requestResponseBodyLoggingEnabled'],
         'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
         'healthCheckConfiguration': json['healthCheckConfiguration'] == null ? undefined : HealthCheckDetectionOutputFromJSON(json['healthCheckConfiguration']),
@@ -254,6 +261,7 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'serviceId': value['serviceId'],
         'serviceName': value['serviceName'],
         'publicDnsEndpoint': value['publicDnsEndpoint'],
+        'pausedAt': value['pausedAt'] == null ? value['pausedAt'] : value['pausedAt'].toISOString(),
         'requestResponseBodyLoggingEnabled': value['requestResponseBodyLoggingEnabled'],
         'dockerfilePath': value['dockerfilePath'],
         'healthCheckConfiguration': HealthCheckDetectionOutputToJSON(value['healthCheckConfiguration']),

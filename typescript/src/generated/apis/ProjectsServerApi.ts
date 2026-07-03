@@ -883,6 +883,11 @@ export interface ListWebAppsRequest {
     projectId: string;
 }
 
+export interface PauseServiceRequest {
+    projectId: string;
+    serviceId: string;
+}
+
 export interface PreviewUserSubscriptionUpdateRequest {
     projectId: string;
     userId: string;
@@ -1012,6 +1017,11 @@ export interface RefundPaymentRequest {
     userId: string;
     paymentId: string;
     keepSubscriptionActive?: boolean;
+}
+
+export interface ResumeServiceRequest {
+    projectId: string;
+    serviceId: string;
 }
 
 export interface RevokeAllUserSessionsRequest {
@@ -5338,6 +5348,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for pauseService without sending the request
+     */
+    async pauseServiceRequestOpts(requestParameters: PauseServiceRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling pauseService().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling pauseService().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/pause`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async pauseServiceRaw(requestParameters: PauseServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceObject>> {
+        const requestOptions = await this.pauseServiceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ServiceObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async pauseService(requestParameters: PauseServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceObject> {
+        const response = await this.pauseServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for previewUserSubscriptionUpdate without sending the request
      */
     async previewUserSubscriptionUpdateRequestOpts(requestParameters: PreviewUserSubscriptionUpdateRequest): Promise<runtime.RequestOpts> {
@@ -6621,6 +6682,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async refundPayment(requestParameters: RefundPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentObject> {
         const response = await this.refundPaymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for resumeService without sending the request
+     */
+    async resumeServiceRequestOpts(requestParameters: ResumeServiceRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling resumeService().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling resumeService().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/resume`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async resumeServiceRaw(requestParameters: ResumeServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServiceObject>> {
+        const requestOptions = await this.resumeServiceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ServiceObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async resumeService(requestParameters: ResumeServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceObject> {
+        const response = await this.resumeServiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

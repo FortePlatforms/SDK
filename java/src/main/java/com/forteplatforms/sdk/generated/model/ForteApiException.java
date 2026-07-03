@@ -57,6 +57,10 @@ public class ForteApiException {
     
     SERVICE_NAME_TAKEN_IN_PROJECT(String.valueOf("SERVICE_NAME_TAKEN_IN_PROJECT")),
     
+    SERVICE_PAUSED(String.valueOf("SERVICE_PAUSED")),
+    
+    SERVICE_NOT_PAUSED(String.valueOf("SERVICE_NOT_PAUSED")),
+    
     WEB_APP_NAME_TAKEN_IN_PROJECT(String.valueOf("WEB_APP_NAME_TAKEN_IN_PROJECT")),
     
     WEB_APP_QUOTA_EXCEEDED(String.valueOf("WEB_APP_QUOTA_EXCEEDED")),
