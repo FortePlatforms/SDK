@@ -78,6 +78,7 @@ from forte_sdk.generated.models.health_check_detection_output import HealthCheck
 from forte_sdk.generated.models.health_check_detection_response import HealthCheckDetectionResponse
 from forte_sdk.generated.models.impersonation_token_response import ImpersonationTokenResponse
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics
+from forte_sdk.generated.models.latency_percentile_series import LatencyPercentileSeries
 from forte_sdk.generated.models.latency_stats import LatencyStats
 from forte_sdk.generated.models.list_content_response import ListContentResponse
 from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse

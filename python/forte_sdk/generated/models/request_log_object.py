@@ -36,6 +36,7 @@ class RequestLogObject(BaseModel):
     target_latency_milliseconds: StrictInt = Field(alias="targetLatencyMilliseconds")
     integration_latency_milliseconds: StrictInt = Field(alias="integrationLatencyMilliseconds")
     total_latency_milliseconds: StrictInt = Field(alias="totalLatencyMilliseconds")
+    first_byte_latency_milliseconds: Optional[StrictInt] = Field(default=None, alias="firstByteLatencyMilliseconds")
     request_body: Optional[StrictStr] = Field(default=None, alias="requestBody")
     response_body: Optional[StrictStr] = Field(default=None, alias="responseBody")
     status_code: StrictInt = Field(alias="statusCode")
@@ -47,7 +48,7 @@ class RequestLogObject(BaseModel):
     exception_stack_trace: Optional[StrictStr] = Field(default=None, alias="exceptionStackTrace")
     owner_account_id: Optional[StrictStr] = Field(default=None, alias="ownerAccountId")
     environment: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "sourceIpAddress", "requestLogObjectMeta", "targetLatencyMilliseconds", "integrationLatencyMilliseconds", "totalLatencyMilliseconds", "requestBody", "responseBody", "statusCode", "requestHeaders", "responseHeaders", "retryCount", "exceptionType", "exceptionMessage", "exceptionStackTrace", "ownerAccountId", "environment"]
+    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "sourceIpAddress", "requestLogObjectMeta", "targetLatencyMilliseconds", "integrationLatencyMilliseconds", "totalLatencyMilliseconds", "firstByteLatencyMilliseconds", "requestBody", "responseBody", "statusCode", "requestHeaders", "responseHeaders", "retryCount", "exceptionType", "exceptionMessage", "exceptionStackTrace", "ownerAccountId", "environment"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -110,6 +111,7 @@ class RequestLogObject(BaseModel):
             "targetLatencyMilliseconds": obj.get("targetLatencyMilliseconds"),
             "integrationLatencyMilliseconds": obj.get("integrationLatencyMilliseconds"),
             "totalLatencyMilliseconds": obj.get("totalLatencyMilliseconds"),
+            "firstByteLatencyMilliseconds": obj.get("firstByteLatencyMilliseconds"),
             "requestBody": obj.get("requestBody"),
             "responseBody": obj.get("responseBody"),
             "statusCode": obj.get("statusCode"),

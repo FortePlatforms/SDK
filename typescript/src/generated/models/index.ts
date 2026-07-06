@@ -65,6 +65,7 @@ export * from './HealthCheckDetectionOutput';
 export * from './HealthCheckDetectionResponse';
 export * from './ImpersonationTokenResponse';
 export * from './LatencyMetrics';
+export * from './LatencyPercentileSeries';
 export * from './LatencyStats';
 export * from './ListContentResponse';
 export * from './ListCustomDomainsResponse';

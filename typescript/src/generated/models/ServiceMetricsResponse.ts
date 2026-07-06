@@ -27,6 +27,13 @@ import {
     LatencyMetricsToJSON,
     LatencyMetricsToJSONTyped,
 } from './LatencyMetrics';
+import type { LatencyPercentileSeries } from './LatencyPercentileSeries';
+import {
+    LatencyPercentileSeriesFromJSON,
+    LatencyPercentileSeriesFromJSONTyped,
+    LatencyPercentileSeriesToJSON,
+    LatencyPercentileSeriesToJSONTyped,
+} from './LatencyPercentileSeries';
 
 /**
  * 
@@ -58,6 +65,12 @@ export interface ServiceMetricsResponse {
      * @memberof ServiceMetricsResponse
      */
     latencyMetrics: LatencyMetrics;
+    /**
+     * 
+     * @type {LatencyPercentileSeries}
+     * @memberof ServiceMetricsResponse
+     */
+    totalLatencySeries: LatencyPercentileSeries;
 }
 
 /**
@@ -68,6 +81,7 @@ export function instanceOfServiceMetricsResponse(value: object): value is Servic
     if (!('statusCodeCounts' in value) || value['statusCodeCounts'] === undefined) return false;
     if (!('statusCodeGroupCounts' in value) || value['statusCodeGroupCounts'] === undefined) return false;
     if (!('latencyMetrics' in value) || value['latencyMetrics'] === undefined) return false;
+    if (!('totalLatencySeries' in value) || value['totalLatencySeries'] === undefined) return false;
     return true;
 }
 
@@ -85,6 +99,7 @@ export function ServiceMetricsResponseFromJSONTyped(json: any, ignoreDiscriminat
         'statusCodeCounts': json['statusCodeCounts'],
         'statusCodeGroupCounts': json['statusCodeGroupCounts'],
         'latencyMetrics': LatencyMetricsFromJSON(json['latencyMetrics']),
+        'totalLatencySeries': LatencyPercentileSeriesFromJSON(json['totalLatencySeries']),
     };
 }
 
@@ -103,6 +118,7 @@ export function ServiceMetricsResponseToJSONTyped(value?: ServiceMetricsResponse
         'statusCodeCounts': value['statusCodeCounts'],
         'statusCodeGroupCounts': value['statusCodeGroupCounts'],
         'latencyMetrics': LatencyMetricsToJSON(value['latencyMetrics']),
+        'totalLatencySeries': LatencyPercentileSeriesToJSON(value['totalLatencySeries']),
     };
 }
 

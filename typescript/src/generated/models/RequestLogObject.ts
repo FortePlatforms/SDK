@@ -71,6 +71,12 @@ export interface RequestLogObject {
     totalLatencyMilliseconds: number;
     /**
      * 
+     * @type {number}
+     * @memberof RequestLogObject
+     */
+    firstByteLatencyMilliseconds?: number;
+    /**
+     * 
      * @type {string}
      * @memberof RequestLogObject
      */
@@ -169,6 +175,7 @@ export function RequestLogObjectFromJSONTyped(json: any, ignoreDiscriminator: bo
         'targetLatencyMilliseconds': json['targetLatencyMilliseconds'],
         'integrationLatencyMilliseconds': json['integrationLatencyMilliseconds'],
         'totalLatencyMilliseconds': json['totalLatencyMilliseconds'],
+        'firstByteLatencyMilliseconds': json['firstByteLatencyMilliseconds'] == null ? undefined : json['firstByteLatencyMilliseconds'],
         'requestBody': json['requestBody'] == null ? undefined : json['requestBody'],
         'responseBody': json['responseBody'] == null ? undefined : json['responseBody'],
         'statusCode': json['statusCode'],
@@ -201,6 +208,7 @@ export function RequestLogObjectToJSONTyped(value?: RequestLogObject | null, ign
         'targetLatencyMilliseconds': value['targetLatencyMilliseconds'],
         'integrationLatencyMilliseconds': value['integrationLatencyMilliseconds'],
         'totalLatencyMilliseconds': value['totalLatencyMilliseconds'],
+        'firstByteLatencyMilliseconds': value['firstByteLatencyMilliseconds'],
         'requestBody': value['requestBody'],
         'responseBody': value['responseBody'],
         'statusCode': value['statusCode'],

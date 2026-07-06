@@ -44,6 +44,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RequestLogObject.JSON_PROPERTY_TARGET_LATENCY_MILLISECONDS,
   RequestLogObject.JSON_PROPERTY_INTEGRATION_LATENCY_MILLISECONDS,
   RequestLogObject.JSON_PROPERTY_TOTAL_LATENCY_MILLISECONDS,
+  RequestLogObject.JSON_PROPERTY_FIRST_BYTE_LATENCY_MILLISECONDS,
   RequestLogObject.JSON_PROPERTY_REQUEST_BODY,
   RequestLogObject.JSON_PROPERTY_RESPONSE_BODY,
   RequestLogObject.JSON_PROPERTY_STATUS_CODE,
@@ -85,6 +86,10 @@ public class RequestLogObject {
   public static final String JSON_PROPERTY_TOTAL_LATENCY_MILLISECONDS = "totalLatencyMilliseconds";
   @javax.annotation.Nonnull
   private Long totalLatencyMilliseconds;
+
+  public static final String JSON_PROPERTY_FIRST_BYTE_LATENCY_MILLISECONDS = "firstByteLatencyMilliseconds";
+  @javax.annotation.Nullable
+  private Long firstByteLatencyMilliseconds;
 
   public static final String JSON_PROPERTY_REQUEST_BODY = "requestBody";
   @javax.annotation.Nullable
@@ -298,6 +303,30 @@ public class RequestLogObject {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTotalLatencyMilliseconds(@javax.annotation.Nonnull Long totalLatencyMilliseconds) {
     this.totalLatencyMilliseconds = totalLatencyMilliseconds;
+  }
+
+
+  public RequestLogObject firstByteLatencyMilliseconds(@javax.annotation.Nullable Long firstByteLatencyMilliseconds) {
+    this.firstByteLatencyMilliseconds = firstByteLatencyMilliseconds;
+    return this;
+  }
+
+  /**
+   * Get firstByteLatencyMilliseconds
+   * @return firstByteLatencyMilliseconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FIRST_BYTE_LATENCY_MILLISECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getFirstByteLatencyMilliseconds() {
+    return firstByteLatencyMilliseconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FIRST_BYTE_LATENCY_MILLISECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFirstByteLatencyMilliseconds(@javax.annotation.Nullable Long firstByteLatencyMilliseconds) {
+    this.firstByteLatencyMilliseconds = firstByteLatencyMilliseconds;
   }
 
 
@@ -600,6 +629,7 @@ public class RequestLogObject {
         Objects.equals(this.targetLatencyMilliseconds, requestLogObject.targetLatencyMilliseconds) &&
         Objects.equals(this.integrationLatencyMilliseconds, requestLogObject.integrationLatencyMilliseconds) &&
         Objects.equals(this.totalLatencyMilliseconds, requestLogObject.totalLatencyMilliseconds) &&
+        Objects.equals(this.firstByteLatencyMilliseconds, requestLogObject.firstByteLatencyMilliseconds) &&
         Objects.equals(this.requestBody, requestLogObject.requestBody) &&
         Objects.equals(this.responseBody, requestLogObject.responseBody) &&
         Objects.equals(this.statusCode, requestLogObject.statusCode) &&
@@ -615,7 +645,7 @@ public class RequestLogObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, timestamp, sourceIpAddress, requestLogObjectMeta, targetLatencyMilliseconds, integrationLatencyMilliseconds, totalLatencyMilliseconds, requestBody, responseBody, statusCode, requestHeaders, responseHeaders, retryCount, exceptionType, exceptionMessage, exceptionStackTrace, ownerAccountId, environment);
+    return Objects.hash(requestId, timestamp, sourceIpAddress, requestLogObjectMeta, targetLatencyMilliseconds, integrationLatencyMilliseconds, totalLatencyMilliseconds, firstByteLatencyMilliseconds, requestBody, responseBody, statusCode, requestHeaders, responseHeaders, retryCount, exceptionType, exceptionMessage, exceptionStackTrace, ownerAccountId, environment);
   }
 
   @Override
@@ -629,6 +659,7 @@ public class RequestLogObject {
     sb.append("    targetLatencyMilliseconds: ").append(toIndentedString(targetLatencyMilliseconds)).append("\n");
     sb.append("    integrationLatencyMilliseconds: ").append(toIndentedString(integrationLatencyMilliseconds)).append("\n");
     sb.append("    totalLatencyMilliseconds: ").append(toIndentedString(totalLatencyMilliseconds)).append("\n");
+    sb.append("    firstByteLatencyMilliseconds: ").append(toIndentedString(firstByteLatencyMilliseconds)).append("\n");
     sb.append("    requestBody: ").append(toIndentedString(requestBody)).append("\n");
     sb.append("    responseBody: ").append(toIndentedString(responseBody)).append("\n");
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
@@ -717,6 +748,11 @@ public class RequestLogObject {
     // add `totalLatencyMilliseconds` to the URL query string
     if (getTotalLatencyMilliseconds() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stotalLatencyMilliseconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotalLatencyMilliseconds()))));
+    }
+
+    // add `firstByteLatencyMilliseconds` to the URL query string
+    if (getFirstByteLatencyMilliseconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfirstByteLatencyMilliseconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFirstByteLatencyMilliseconds()))));
     }
 
     // add `requestBody` to the URL query string

@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics
+from forte_sdk.generated.models.latency_percentile_series import LatencyPercentileSeries
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,7 +34,8 @@ class ServiceMetricsResponse(BaseModel):
     status_code_counts: Dict[str, List[TimeSeriesDataPoint]] = Field(alias="statusCodeCounts")
     status_code_group_counts: Dict[str, List[TimeSeriesDataPoint]] = Field(alias="statusCodeGroupCounts")
     latency_metrics: LatencyMetrics = Field(alias="latencyMetrics")
-    __properties: ClassVar[List[str]] = ["invocations", "statusCodeCounts", "statusCodeGroupCounts", "latencyMetrics"]
+    total_latency_series: LatencyPercentileSeries = Field(alias="totalLatencySeries")
+    __properties: ClassVar[List[str]] = ["invocations", "statusCodeCounts", "statusCodeGroupCounts", "latencyMetrics", "totalLatencySeries"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -102,6 +104,9 @@ class ServiceMetricsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of latency_metrics
         if self.latency_metrics:
             _dict['latencyMetrics'] = self.latency_metrics.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of total_latency_series
+        if self.total_latency_series:
+            _dict['totalLatencySeries'] = self.total_latency_series.to_dict()
         return _dict
 
     @classmethod
@@ -127,7 +132,8 @@ class ServiceMetricsResponse(BaseModel):
             }
             if obj.get("statusCodeGroupCounts") is not None
             else None,
-            "latencyMetrics": LatencyMetrics.from_dict(obj["latencyMetrics"]) if obj.get("latencyMetrics") is not None else None
+            "latencyMetrics": LatencyMetrics.from_dict(obj["latencyMetrics"]) if obj.get("latencyMetrics") is not None else None,
+            "totalLatencySeries": LatencyPercentileSeries.from_dict(obj["totalLatencySeries"]) if obj.get("totalLatencySeries") is not None else None
         })
         return _obj
 

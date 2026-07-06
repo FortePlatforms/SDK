@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.LatencyMetrics;
+import com.forteplatforms.sdk.generated.model.LatencyPercentileSeries;
 import com.forteplatforms.sdk.generated.model.TimeSeriesDataPoint;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +43,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceMetricsResponse.JSON_PROPERTY_INVOCATIONS,
   ServiceMetricsResponse.JSON_PROPERTY_STATUS_CODE_COUNTS,
   ServiceMetricsResponse.JSON_PROPERTY_STATUS_CODE_GROUP_COUNTS,
-  ServiceMetricsResponse.JSON_PROPERTY_LATENCY_METRICS
+  ServiceMetricsResponse.JSON_PROPERTY_LATENCY_METRICS,
+  ServiceMetricsResponse.JSON_PROPERTY_TOTAL_LATENCY_SERIES
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ServiceMetricsResponse {
@@ -61,6 +63,10 @@ public class ServiceMetricsResponse {
   public static final String JSON_PROPERTY_LATENCY_METRICS = "latencyMetrics";
   @javax.annotation.Nonnull
   private LatencyMetrics latencyMetrics;
+
+  public static final String JSON_PROPERTY_TOTAL_LATENCY_SERIES = "totalLatencySeries";
+  @javax.annotation.Nonnull
+  private LatencyPercentileSeries totalLatencySeries;
 
   public ServiceMetricsResponse() { 
   }
@@ -185,6 +191,30 @@ public class ServiceMetricsResponse {
   }
 
 
+  public ServiceMetricsResponse totalLatencySeries(@javax.annotation.Nonnull LatencyPercentileSeries totalLatencySeries) {
+    this.totalLatencySeries = totalLatencySeries;
+    return this;
+  }
+
+  /**
+   * Get totalLatencySeries
+   * @return totalLatencySeries
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TOTAL_LATENCY_SERIES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public LatencyPercentileSeries getTotalLatencySeries() {
+    return totalLatencySeries;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TOTAL_LATENCY_SERIES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTotalLatencySeries(@javax.annotation.Nonnull LatencyPercentileSeries totalLatencySeries) {
+    this.totalLatencySeries = totalLatencySeries;
+  }
+
+
   /**
    * Return true if this ServiceMetricsResponse object is equal to o.
    */
@@ -200,12 +230,13 @@ public class ServiceMetricsResponse {
     return Objects.equals(this.invocations, serviceMetricsResponse.invocations) &&
         Objects.equals(this.statusCodeCounts, serviceMetricsResponse.statusCodeCounts) &&
         Objects.equals(this.statusCodeGroupCounts, serviceMetricsResponse.statusCodeGroupCounts) &&
-        Objects.equals(this.latencyMetrics, serviceMetricsResponse.latencyMetrics);
+        Objects.equals(this.latencyMetrics, serviceMetricsResponse.latencyMetrics) &&
+        Objects.equals(this.totalLatencySeries, serviceMetricsResponse.totalLatencySeries);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invocations, statusCodeCounts, statusCodeGroupCounts, latencyMetrics);
+    return Objects.hash(invocations, statusCodeCounts, statusCodeGroupCounts, latencyMetrics, totalLatencySeries);
   }
 
   @Override
@@ -216,6 +247,7 @@ public class ServiceMetricsResponse {
     sb.append("    statusCodeCounts: ").append(toIndentedString(statusCodeCounts)).append("\n");
     sb.append("    statusCodeGroupCounts: ").append(toIndentedString(statusCodeGroupCounts)).append("\n");
     sb.append("    latencyMetrics: ").append(toIndentedString(latencyMetrics)).append("\n");
+    sb.append("    totalLatencySeries: ").append(toIndentedString(totalLatencySeries)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -291,6 +323,11 @@ public class ServiceMetricsResponse {
     // add `latencyMetrics` to the URL query string
     if (getLatencyMetrics() != null) {
       joiner.add(getLatencyMetrics().toUrlQueryString(prefix + "latencyMetrics" + suffix));
+    }
+
+    // add `totalLatencySeries` to the URL query string
+    if (getTotalLatencySeries() != null) {
+      joiner.add(getTotalLatencySeries().toUrlQueryString(prefix + "totalLatencySeries" + suffix));
     }
 
     return joiner.toString();
