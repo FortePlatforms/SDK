@@ -39,10 +39,14 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ContactMethod.JSON_PROPERTY_PHONE_NUMBER,
   ContactMethod.JSON_PROPERTY_EMAIL,
   ContactMethod.JSON_PROPERTY_GOOGLE_UNIQUE_SUB_ID,
+  ContactMethod.JSON_PROPERTY_GITHUB_USER_ID,
+  ContactMethod.JSON_PROPERTY_GITHUB_LOGIN,
+  ContactMethod.JSON_PROPERTY_PENDING_EMAIL,
   ContactMethod.JSON_PROPERTY_LINKED_TIME,
   ContactMethod.JSON_PROPERTY_VERIFIED_TIME,
   ContactMethod.JSON_PROPERTY_PENDING_VERIFICATION_CODE_EXPIRATION_TIME,
-  ContactMethod.JSON_PROPERTY_VERIFICATION_CODE_LAST_SENT_TIME
+  ContactMethod.JSON_PROPERTY_VERIFICATION_CODE_LAST_SENT_TIME,
+  ContactMethod.JSON_PROPERTY_FIXED_VERIFICATION_CODE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ContactMethod {
@@ -66,6 +70,18 @@ public class ContactMethod {
   @javax.annotation.Nullable
   private String googleUniqueSubId;
 
+  public static final String JSON_PROPERTY_GITHUB_USER_ID = "githubUserId";
+  @javax.annotation.Nullable
+  private Long githubUserId;
+
+  public static final String JSON_PROPERTY_GITHUB_LOGIN = "githubLogin";
+  @javax.annotation.Nullable
+  private String githubLogin;
+
+  public static final String JSON_PROPERTY_PENDING_EMAIL = "pendingEmail";
+  @javax.annotation.Nullable
+  private String pendingEmail;
+
   public static final String JSON_PROPERTY_LINKED_TIME = "linkedTime";
   @javax.annotation.Nonnull
   private OffsetDateTime linkedTime;
@@ -81,6 +97,10 @@ public class ContactMethod {
   public static final String JSON_PROPERTY_VERIFICATION_CODE_LAST_SENT_TIME = "verificationCodeLastSentTime";
   @javax.annotation.Nullable
   private OffsetDateTime verificationCodeLastSentTime;
+
+  public static final String JSON_PROPERTY_FIXED_VERIFICATION_CODE = "fixedVerificationCode";
+  @javax.annotation.Nullable
+  private String fixedVerificationCode;
 
   public ContactMethod() { 
   }
@@ -205,6 +225,78 @@ public class ContactMethod {
   }
 
 
+  public ContactMethod githubUserId(@javax.annotation.Nullable Long githubUserId) {
+    this.githubUserId = githubUserId;
+    return this;
+  }
+
+  /**
+   * Get githubUserId
+   * @return githubUserId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getGithubUserId() {
+    return githubUserId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGithubUserId(@javax.annotation.Nullable Long githubUserId) {
+    this.githubUserId = githubUserId;
+  }
+
+
+  public ContactMethod githubLogin(@javax.annotation.Nullable String githubLogin) {
+    this.githubLogin = githubLogin;
+    return this;
+  }
+
+  /**
+   * Get githubLogin
+   * @return githubLogin
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_LOGIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getGithubLogin() {
+    return githubLogin;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_LOGIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGithubLogin(@javax.annotation.Nullable String githubLogin) {
+    this.githubLogin = githubLogin;
+  }
+
+
+  public ContactMethod pendingEmail(@javax.annotation.Nullable String pendingEmail) {
+    this.pendingEmail = pendingEmail;
+    return this;
+  }
+
+  /**
+   * Get pendingEmail
+   * @return pendingEmail
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PENDING_EMAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPendingEmail() {
+    return pendingEmail;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PENDING_EMAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPendingEmail(@javax.annotation.Nullable String pendingEmail) {
+    this.pendingEmail = pendingEmail;
+  }
+
+
   public ContactMethod linkedTime(@javax.annotation.Nonnull OffsetDateTime linkedTime) {
     this.linkedTime = linkedTime;
     return this;
@@ -301,6 +393,30 @@ public class ContactMethod {
   }
 
 
+  public ContactMethod fixedVerificationCode(@javax.annotation.Nullable String fixedVerificationCode) {
+    this.fixedVerificationCode = fixedVerificationCode;
+    return this;
+  }
+
+  /**
+   * Get fixedVerificationCode
+   * @return fixedVerificationCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FIXED_VERIFICATION_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getFixedVerificationCode() {
+    return fixedVerificationCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FIXED_VERIFICATION_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFixedVerificationCode(@javax.annotation.Nullable String fixedVerificationCode) {
+    this.fixedVerificationCode = fixedVerificationCode;
+  }
+
+
   /**
    * Return true if this ContactMethod object is equal to o.
    */
@@ -318,15 +434,19 @@ public class ContactMethod {
         Objects.equals(this.phoneNumber, contactMethod.phoneNumber) &&
         Objects.equals(this.email, contactMethod.email) &&
         Objects.equals(this.googleUniqueSubId, contactMethod.googleUniqueSubId) &&
+        Objects.equals(this.githubUserId, contactMethod.githubUserId) &&
+        Objects.equals(this.githubLogin, contactMethod.githubLogin) &&
+        Objects.equals(this.pendingEmail, contactMethod.pendingEmail) &&
         Objects.equals(this.linkedTime, contactMethod.linkedTime) &&
         Objects.equals(this.verifiedTime, contactMethod.verifiedTime) &&
         Objects.equals(this.pendingVerificationCodeExpirationTime, contactMethod.pendingVerificationCodeExpirationTime) &&
-        Objects.equals(this.verificationCodeLastSentTime, contactMethod.verificationCodeLastSentTime);
+        Objects.equals(this.verificationCodeLastSentTime, contactMethod.verificationCodeLastSentTime) &&
+        Objects.equals(this.fixedVerificationCode, contactMethod.fixedVerificationCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contactMethodId, verified, phoneNumber, email, googleUniqueSubId, linkedTime, verifiedTime, pendingVerificationCodeExpirationTime, verificationCodeLastSentTime);
+    return Objects.hash(contactMethodId, verified, phoneNumber, email, googleUniqueSubId, githubUserId, githubLogin, pendingEmail, linkedTime, verifiedTime, pendingVerificationCodeExpirationTime, verificationCodeLastSentTime, fixedVerificationCode);
   }
 
   @Override
@@ -338,10 +458,14 @@ public class ContactMethod {
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    googleUniqueSubId: ").append(toIndentedString(googleUniqueSubId)).append("\n");
+    sb.append("    githubUserId: ").append(toIndentedString(githubUserId)).append("\n");
+    sb.append("    githubLogin: ").append(toIndentedString(githubLogin)).append("\n");
+    sb.append("    pendingEmail: ").append(toIndentedString(pendingEmail)).append("\n");
     sb.append("    linkedTime: ").append(toIndentedString(linkedTime)).append("\n");
     sb.append("    verifiedTime: ").append(toIndentedString(verifiedTime)).append("\n");
     sb.append("    pendingVerificationCodeExpirationTime: ").append(toIndentedString(pendingVerificationCodeExpirationTime)).append("\n");
     sb.append("    verificationCodeLastSentTime: ").append(toIndentedString(verificationCodeLastSentTime)).append("\n");
+    sb.append("    fixedVerificationCode: ").append(toIndentedString(fixedVerificationCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -411,6 +535,21 @@ public class ContactMethod {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgoogleUniqueSubId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoogleUniqueSubId()))));
     }
 
+    // add `githubUserId` to the URL query string
+    if (getGithubUserId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgithubUserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubUserId()))));
+    }
+
+    // add `githubLogin` to the URL query string
+    if (getGithubLogin() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgithubLogin%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubLogin()))));
+    }
+
+    // add `pendingEmail` to the URL query string
+    if (getPendingEmail() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spendingEmail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPendingEmail()))));
+    }
+
     // add `linkedTime` to the URL query string
     if (getLinkedTime() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slinkedTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkedTime()))));
@@ -429,6 +568,11 @@ public class ContactMethod {
     // add `verificationCodeLastSentTime` to the URL query string
     if (getVerificationCodeLastSentTime() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sverificationCodeLastSentTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVerificationCodeLastSentTime()))));
+    }
+
+    // add `fixedVerificationCode` to the URL query string
+    if (getFixedVerificationCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfixedVerificationCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFixedVerificationCode()))));
     }
 
     return joiner.toString();

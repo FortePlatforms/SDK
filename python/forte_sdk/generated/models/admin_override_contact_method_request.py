@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,7 +31,22 @@ class AdminOverrideContactMethodRequest(BaseModel):
     email: Optional[StrictStr] = None
     phone_number: Optional[StrictStr] = Field(default=None, alias="phoneNumber")
     verified: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["email", "phoneNumber", "verified"]
+    fixed_verification_code: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="fixedVerificationCode")
+    remove_fixed_verification_code: Optional[StrictBool] = Field(default=None, alias="removeFixedVerificationCode")
+    __properties: ClassVar[List[str]] = ["email", "phoneNumber", "verified", "fixedVerificationCode", "removeFixedVerificationCode"]
+
+    @field_validator('fixed_verification_code')
+    def fixed_verification_code_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"\d{6}", value):
+            raise ValueError(r"must validate the regular expression /\d{6}/")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -85,7 +101,9 @@ class AdminOverrideContactMethodRequest(BaseModel):
         _obj = cls.model_validate({
             "email": obj.get("email"),
             "phoneNumber": obj.get("phoneNumber"),
-            "verified": obj.get("verified")
+            "verified": obj.get("verified"),
+            "fixedVerificationCode": obj.get("fixedVerificationCode"),
+            "removeFixedVerificationCode": obj.get("removeFixedVerificationCode")
         })
         return _obj
 

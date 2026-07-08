@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,11 +33,15 @@ class ContactMethod(BaseModel):
     phone_number: Optional[StrictStr] = Field(default=None, alias="phoneNumber")
     email: Optional[StrictStr] = None
     google_unique_sub_id: Optional[StrictStr] = Field(default=None, alias="googleUniqueSubId")
+    github_user_id: Optional[StrictInt] = Field(default=None, alias="githubUserId")
+    github_login: Optional[StrictStr] = Field(default=None, alias="githubLogin")
+    pending_email: Optional[StrictStr] = Field(default=None, alias="pendingEmail")
     linked_time: datetime = Field(alias="linkedTime")
     verified_time: Optional[datetime] = Field(default=None, alias="verifiedTime")
     pending_verification_code_expiration_time: Optional[datetime] = Field(default=None, alias="pendingVerificationCodeExpirationTime")
     verification_code_last_sent_time: Optional[datetime] = Field(default=None, alias="verificationCodeLastSentTime")
-    __properties: ClassVar[List[str]] = ["contactMethodId", "verified", "phoneNumber", "email", "googleUniqueSubId", "linkedTime", "verifiedTime", "pendingVerificationCodeExpirationTime", "verificationCodeLastSentTime"]
+    fixed_verification_code: Optional[StrictStr] = Field(default=None, alias="fixedVerificationCode")
+    __properties: ClassVar[List[str]] = ["contactMethodId", "verified", "phoneNumber", "email", "googleUniqueSubId", "githubUserId", "githubLogin", "pendingEmail", "linkedTime", "verifiedTime", "pendingVerificationCodeExpirationTime", "verificationCodeLastSentTime", "fixedVerificationCode"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -95,10 +99,14 @@ class ContactMethod(BaseModel):
             "phoneNumber": obj.get("phoneNumber"),
             "email": obj.get("email"),
             "googleUniqueSubId": obj.get("googleUniqueSubId"),
+            "githubUserId": obj.get("githubUserId"),
+            "githubLogin": obj.get("githubLogin"),
+            "pendingEmail": obj.get("pendingEmail"),
             "linkedTime": obj.get("linkedTime"),
             "verifiedTime": obj.get("verifiedTime"),
             "pendingVerificationCodeExpirationTime": obj.get("pendingVerificationCodeExpirationTime"),
-            "verificationCodeLastSentTime": obj.get("verificationCodeLastSentTime")
+            "verificationCodeLastSentTime": obj.get("verificationCodeLastSentTime"),
+            "fixedVerificationCode": obj.get("fixedVerificationCode")
         })
         return _obj
 

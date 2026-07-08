@@ -33,7 +33,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * MfaChallengeRequest
  */
 @JsonPropertyOrder({
-  MfaChallengeRequest.JSON_PROPERTY_TYPE
+  MfaChallengeRequest.JSON_PROPERTY_TYPE,
+  MfaChallengeRequest.JSON_PROPERTY_TARGET_CONTACT_METHOD_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class MfaChallengeRequest {
@@ -82,6 +83,10 @@ public class MfaChallengeRequest {
   @javax.annotation.Nonnull
   private TypeEnum type;
 
+  public static final String JSON_PROPERTY_TARGET_CONTACT_METHOD_ID = "targetContactMethodId";
+  @javax.annotation.Nullable
+  private String targetContactMethodId;
+
   public MfaChallengeRequest() { 
   }
 
@@ -109,6 +114,30 @@ public class MfaChallengeRequest {
   }
 
 
+  public MfaChallengeRequest targetContactMethodId(@javax.annotation.Nullable String targetContactMethodId) {
+    this.targetContactMethodId = targetContactMethodId;
+    return this;
+  }
+
+  /**
+   * Get targetContactMethodId
+   * @return targetContactMethodId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TARGET_CONTACT_METHOD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTargetContactMethodId() {
+    return targetContactMethodId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TARGET_CONTACT_METHOD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTargetContactMethodId(@javax.annotation.Nullable String targetContactMethodId) {
+    this.targetContactMethodId = targetContactMethodId;
+  }
+
+
   /**
    * Return true if this MfaChallengeRequest object is equal to o.
    */
@@ -121,12 +150,13 @@ public class MfaChallengeRequest {
       return false;
     }
     MfaChallengeRequest mfaChallengeRequest = (MfaChallengeRequest) o;
-    return Objects.equals(this.type, mfaChallengeRequest.type);
+    return Objects.equals(this.type, mfaChallengeRequest.type) &&
+        Objects.equals(this.targetContactMethodId, mfaChallengeRequest.targetContactMethodId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type);
+    return Objects.hash(type, targetContactMethodId);
   }
 
   @Override
@@ -134,6 +164,7 @@ public class MfaChallengeRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class MfaChallengeRequest {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    targetContactMethodId: ").append(toIndentedString(targetContactMethodId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -181,6 +212,11 @@ public class MfaChallengeRequest {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `targetContactMethodId` to the URL query string
+    if (getTargetContactMethodId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stargetContactMethodId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTargetContactMethodId()))));
     }
 
     return joiner.toString();

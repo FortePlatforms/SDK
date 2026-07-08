@@ -37,6 +37,18 @@ export interface AdminOverrideContactMethodRequest {
      * @memberof AdminOverrideContactMethodRequest
      */
     verified?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof AdminOverrideContactMethodRequest
+     */
+    fixedVerificationCode?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AdminOverrideContactMethodRequest
+     */
+    removeFixedVerificationCode?: boolean;
 }
 
 /**
@@ -59,6 +71,8 @@ export function AdminOverrideContactMethodRequestFromJSONTyped(json: any, ignore
         'email': json['email'] == null ? undefined : json['email'],
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'verified': json['verified'] == null ? undefined : json['verified'],
+        'fixedVerificationCode': json['fixedVerificationCode'] == null ? undefined : json['fixedVerificationCode'],
+        'removeFixedVerificationCode': json['removeFixedVerificationCode'] == null ? undefined : json['removeFixedVerificationCode'],
     };
 }
 
@@ -76,6 +90,8 @@ export function AdminOverrideContactMethodRequestToJSONTyped(value?: AdminOverri
         'email': value['email'],
         'phoneNumber': value['phoneNumber'],
         'verified': value['verified'],
+        'fixedVerificationCode': value['fixedVerificationCode'],
+        'removeFixedVerificationCode': value['removeFixedVerificationCode'],
     };
 }
 

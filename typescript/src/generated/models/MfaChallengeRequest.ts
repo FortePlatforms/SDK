@@ -25,6 +25,12 @@ export interface MfaChallengeRequest {
      * @memberof MfaChallengeRequest
      */
     type: MfaChallengeRequestTypeType;
+    /**
+     * 
+     * @type {string}
+     * @memberof MfaChallengeRequest
+     */
+    targetContactMethodId?: string;
 }
 
 
@@ -60,6 +66,7 @@ export function MfaChallengeRequestFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'type': json['type'],
+        'targetContactMethodId': json['targetContactMethodId'] == null ? undefined : json['targetContactMethodId'],
     };
 }
 
@@ -75,6 +82,7 @@ export function MfaChallengeRequestToJSONTyped(value?: MfaChallengeRequest | nul
     return {
         
         'type': value['type'],
+        'targetContactMethodId': value['targetContactMethodId'],
     };
 }
 

@@ -51,6 +51,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateForteServiceRequest.JSON_PROPERTY_SECRET_KEYS_TO_DELETE,
   UpdateForteServiceRequest.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
   UpdateForteServiceRequest.JSON_PROPERTY_BASE_INSTANCES,
+  UpdateForteServiceRequest.JSON_PROPERTY_REGION_REPLICAS,
   UpdateForteServiceRequest.JSON_PROPERTY_CONTAINER_CPU,
   UpdateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PORT,
   UpdateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH,
@@ -136,6 +137,10 @@ public class UpdateForteServiceRequest {
   public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
   @javax.annotation.Nullable
   private Integer baseInstances;
+
+  public static final String JSON_PROPERTY_REGION_REPLICAS = "regionReplicas";
+  @javax.annotation.Nullable
+  private Map<String, Integer> regionReplicas = new HashMap<>();
 
   public static final String JSON_PROPERTY_CONTAINER_CPU = "containerCpu";
   @javax.annotation.Nullable
@@ -455,6 +460,38 @@ public class UpdateForteServiceRequest {
   }
 
 
+  public UpdateForteServiceRequest regionReplicas(@javax.annotation.Nullable Map<String, Integer> regionReplicas) {
+    this.regionReplicas = regionReplicas;
+    return this;
+  }
+
+  public UpdateForteServiceRequest putRegionReplicasItem(String key, Integer regionReplicasItem) {
+    if (this.regionReplicas == null) {
+      this.regionReplicas = new HashMap<>();
+    }
+    this.regionReplicas.put(key, regionReplicasItem);
+    return this;
+  }
+
+  /**
+   * Get regionReplicas
+   * @return regionReplicas
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGION_REPLICAS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Integer> getRegionReplicas() {
+    return regionReplicas;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGION_REPLICAS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegionReplicas(@javax.annotation.Nullable Map<String, Integer> regionReplicas) {
+    this.regionReplicas = regionReplicas;
+  }
+
+
   public UpdateForteServiceRequest containerCpu(@javax.annotation.Nullable String containerCpu) {
     this.containerCpu = containerCpu;
     return this;
@@ -576,6 +613,7 @@ public class UpdateForteServiceRequest {
         Objects.equals(this.secretKeysToDelete, updateForteServiceRequest.secretKeysToDelete) &&
         Objects.equals(this.authPathExclusions, updateForteServiceRequest.authPathExclusions) &&
         Objects.equals(this.baseInstances, updateForteServiceRequest.baseInstances) &&
+        Objects.equals(this.regionReplicas, updateForteServiceRequest.regionReplicas) &&
         Objects.equals(this.containerCpu, updateForteServiceRequest.containerCpu) &&
         Objects.equals(this.healthCheckPort, updateForteServiceRequest.healthCheckPort) &&
         Objects.equals(this.healthCheckPath, updateForteServiceRequest.healthCheckPath) &&
@@ -584,7 +622,7 @@ public class UpdateForteServiceRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(resetDockerfile, resetHealthCheckConfig, githubBuildTrigger, githubBranch, baseDirectory, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, baseInstances, containerCpu, healthCheckPort, healthCheckPath, requestResponseBodyLoggingEnabled);
+    return Objects.hash(resetDockerfile, resetHealthCheckConfig, githubBuildTrigger, githubBranch, baseDirectory, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, baseInstances, regionReplicas, containerCpu, healthCheckPort, healthCheckPath, requestResponseBodyLoggingEnabled);
   }
 
   @Override
@@ -602,6 +640,7 @@ public class UpdateForteServiceRequest {
     sb.append("    secretKeysToDelete: ").append(toIndentedString(secretKeysToDelete)).append("\n");
     sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
     sb.append("    baseInstances: ").append(toIndentedString(baseInstances)).append("\n");
+    sb.append("    regionReplicas: ").append(toIndentedString(regionReplicas)).append("\n");
     sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
     sb.append("    healthCheckPort: ").append(toIndentedString(healthCheckPort)).append("\n");
     sb.append("    healthCheckPath: ").append(toIndentedString(healthCheckPath)).append("\n");
@@ -721,6 +760,15 @@ public class UpdateForteServiceRequest {
     // add `baseInstances` to the URL query string
     if (getBaseInstances() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbaseInstances%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseInstances()))));
+    }
+
+    // add `regionReplicas` to the URL query string
+    if (getRegionReplicas() != null) {
+      for (String _key : getRegionReplicas().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sregionReplicas%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getRegionReplicas().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getRegionReplicas().get(_key)))));
+      }
     }
 
     // add `containerCpu` to the URL query string

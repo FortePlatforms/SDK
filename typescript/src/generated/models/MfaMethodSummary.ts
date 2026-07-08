@@ -36,6 +36,12 @@ export interface MfaMethodSummary {
      * @type {string}
      * @memberof MfaMethodSummary
      */
+    contactMethodId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MfaMethodSummary
+     */
     maskedTarget?: string;
 }
 
@@ -73,6 +79,7 @@ export function MfaMethodSummaryFromJSONTyped(json: any, ignoreDiscriminator: bo
         
         'mfaMethodId': json['mfaMethodId'] == null ? undefined : json['mfaMethodId'],
         'type': json['type'],
+        'contactMethodId': json['contactMethodId'] == null ? undefined : json['contactMethodId'],
         'maskedTarget': json['maskedTarget'] == null ? undefined : json['maskedTarget'],
     };
 }
@@ -90,6 +97,7 @@ export function MfaMethodSummaryToJSONTyped(value?: MfaMethodSummary | null, ign
         
         'mfaMethodId': value['mfaMethodId'],
         'type': value['type'],
+        'contactMethodId': value['contactMethodId'],
         'maskedTarget': value['maskedTarget'],
     };
 }

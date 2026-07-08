@@ -116,6 +116,12 @@ export interface ServiceObject {
     baseInstances: number;
     /**
      * 
+     * @type {{ [key: string]: number; }}
+     * @memberof ServiceObject
+     */
+    regionReplicas?: { [key: string]: number; };
+    /**
+     * 
      * @type {string}
      * @memberof ServiceObject
      */
@@ -232,6 +238,7 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'healthCheckDetectionResponse': json['healthCheckDetectionResponse'] == null ? undefined : HealthCheckDetectionResponseFromJSON(json['healthCheckDetectionResponse']),
         'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
         'baseInstances': json['baseInstances'],
+        'regionReplicas': json['regionReplicas'] == null ? undefined : json['regionReplicas'],
         'containerCpu': json['containerCpu'],
         'customDomains': json['customDomains'] == null ? undefined : ((json['customDomains'] as Array<any>).map(CustomDomainFromJSON)),
         'createdTimestamp': json['createdTimestamp'] == null ? undefined : (new Date(json['createdTimestamp'])),
@@ -269,6 +276,7 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'healthCheckDetectionResponse': HealthCheckDetectionResponseToJSON(value['healthCheckDetectionResponse']),
         'authPathExclusions': value['authPathExclusions'],
         'baseInstances': value['baseInstances'],
+        'regionReplicas': value['regionReplicas'],
         'containerCpu': value['containerCpu'],
         'customDomains': value['customDomains'] == null ? undefined : ((value['customDomains'] as Array<any>).map(CustomDomainToJSON)),
         'createdTimestamp': value['createdTimestamp'] == null ? value['createdTimestamp'] : value['createdTimestamp'].toISOString(),

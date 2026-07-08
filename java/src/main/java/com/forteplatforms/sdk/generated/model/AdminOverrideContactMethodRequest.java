@@ -35,7 +35,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   AdminOverrideContactMethodRequest.JSON_PROPERTY_EMAIL,
   AdminOverrideContactMethodRequest.JSON_PROPERTY_PHONE_NUMBER,
-  AdminOverrideContactMethodRequest.JSON_PROPERTY_VERIFIED
+  AdminOverrideContactMethodRequest.JSON_PROPERTY_VERIFIED,
+  AdminOverrideContactMethodRequest.JSON_PROPERTY_FIXED_VERIFICATION_CODE,
+  AdminOverrideContactMethodRequest.JSON_PROPERTY_REMOVE_FIXED_VERIFICATION_CODE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class AdminOverrideContactMethodRequest {
@@ -50,6 +52,14 @@ public class AdminOverrideContactMethodRequest {
   public static final String JSON_PROPERTY_VERIFIED = "verified";
   @javax.annotation.Nullable
   private Boolean verified;
+
+  public static final String JSON_PROPERTY_FIXED_VERIFICATION_CODE = "fixedVerificationCode";
+  @javax.annotation.Nullable
+  private String fixedVerificationCode;
+
+  public static final String JSON_PROPERTY_REMOVE_FIXED_VERIFICATION_CODE = "removeFixedVerificationCode";
+  @javax.annotation.Nullable
+  private Boolean removeFixedVerificationCode;
 
   public AdminOverrideContactMethodRequest() { 
   }
@@ -126,6 +136,54 @@ public class AdminOverrideContactMethodRequest {
   }
 
 
+  public AdminOverrideContactMethodRequest fixedVerificationCode(@javax.annotation.Nullable String fixedVerificationCode) {
+    this.fixedVerificationCode = fixedVerificationCode;
+    return this;
+  }
+
+  /**
+   * Get fixedVerificationCode
+   * @return fixedVerificationCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FIXED_VERIFICATION_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getFixedVerificationCode() {
+    return fixedVerificationCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FIXED_VERIFICATION_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFixedVerificationCode(@javax.annotation.Nullable String fixedVerificationCode) {
+    this.fixedVerificationCode = fixedVerificationCode;
+  }
+
+
+  public AdminOverrideContactMethodRequest removeFixedVerificationCode(@javax.annotation.Nullable Boolean removeFixedVerificationCode) {
+    this.removeFixedVerificationCode = removeFixedVerificationCode;
+    return this;
+  }
+
+  /**
+   * Get removeFixedVerificationCode
+   * @return removeFixedVerificationCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REMOVE_FIXED_VERIFICATION_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getRemoveFixedVerificationCode() {
+    return removeFixedVerificationCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REMOVE_FIXED_VERIFICATION_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRemoveFixedVerificationCode(@javax.annotation.Nullable Boolean removeFixedVerificationCode) {
+    this.removeFixedVerificationCode = removeFixedVerificationCode;
+  }
+
+
   /**
    * Return true if this AdminOverrideContactMethodRequest object is equal to o.
    */
@@ -140,12 +198,14 @@ public class AdminOverrideContactMethodRequest {
     AdminOverrideContactMethodRequest adminOverrideContactMethodRequest = (AdminOverrideContactMethodRequest) o;
     return Objects.equals(this.email, adminOverrideContactMethodRequest.email) &&
         Objects.equals(this.phoneNumber, adminOverrideContactMethodRequest.phoneNumber) &&
-        Objects.equals(this.verified, adminOverrideContactMethodRequest.verified);
+        Objects.equals(this.verified, adminOverrideContactMethodRequest.verified) &&
+        Objects.equals(this.fixedVerificationCode, adminOverrideContactMethodRequest.fixedVerificationCode) &&
+        Objects.equals(this.removeFixedVerificationCode, adminOverrideContactMethodRequest.removeFixedVerificationCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, phoneNumber, verified);
+    return Objects.hash(email, phoneNumber, verified, fixedVerificationCode, removeFixedVerificationCode);
   }
 
   @Override
@@ -155,6 +215,8 @@ public class AdminOverrideContactMethodRequest {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    verified: ").append(toIndentedString(verified)).append("\n");
+    sb.append("    fixedVerificationCode: ").append(toIndentedString(fixedVerificationCode)).append("\n");
+    sb.append("    removeFixedVerificationCode: ").append(toIndentedString(removeFixedVerificationCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,6 +274,16 @@ public class AdminOverrideContactMethodRequest {
     // add `verified` to the URL query string
     if (getVerified() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sverified%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVerified()))));
+    }
+
+    // add `fixedVerificationCode` to the URL query string
+    if (getFixedVerificationCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfixedVerificationCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFixedVerificationCode()))));
+    }
+
+    // add `removeFixedVerificationCode` to the URL query string
+    if (getRemoveFixedVerificationCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sremoveFixedVerificationCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemoveFixedVerificationCode()))));
     }
 
     return joiner.toString();

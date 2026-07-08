@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,7 +28,8 @@ class MfaChallengeRequest(BaseModel):
     MfaChallengeRequest
     """ # noqa: E501
     type: StrictStr
-    __properties: ClassVar[List[str]] = ["type"]
+    target_contact_method_id: Optional[StrictStr] = Field(default=None, alias="targetContactMethodId")
+    __properties: ClassVar[List[str]] = ["type", "targetContactMethodId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -88,7 +89,8 @@ class MfaChallengeRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "targetContactMethodId": obj.get("targetContactMethodId")
         })
         return _obj
 

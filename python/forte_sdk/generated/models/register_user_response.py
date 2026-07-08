@@ -30,11 +30,12 @@ class RegisterUserResponse(BaseModel):
     """
     RegisterUserResponse
     """ # noqa: E501
-    user_object: UserObject = Field(alias="userObject")
+    user_id: StrictStr = Field(alias="userId")
+    user_object: Optional[UserObject] = Field(default=None, alias="userObject")
     session_token: RenewSessionTokenResponse = Field(alias="sessionToken")
     mfa_status: Optional[StrictStr] = Field(default=None, alias="mfaStatus")
     available_mfa_methods: Optional[List[MfaMethodSummary]] = Field(default=None, alias="availableMfaMethods")
-    __properties: ClassVar[List[str]] = ["userObject", "sessionToken", "mfaStatus", "availableMfaMethods"]
+    __properties: ClassVar[List[str]] = ["userId", "userObject", "sessionToken", "mfaStatus", "availableMfaMethods"]
 
     @field_validator('mfa_status')
     def mfa_status_validate_enum(cls, value):
@@ -110,6 +111,7 @@ class RegisterUserResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "userId": obj.get("userId"),
             "userObject": UserObject.from_dict(obj["userObject"]) if obj.get("userObject") is not None else None,
             "sessionToken": RenewSessionTokenResponse.from_dict(obj["sessionToken"]) if obj.get("sessionToken") is not None else None,
             "mfaStatus": obj.get("mfaStatus"),

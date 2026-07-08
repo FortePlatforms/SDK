@@ -63,6 +63,12 @@ export interface CreateForteServiceRequest {
     baseInstances?: number;
     /**
      * 
+     * @type {{ [key: string]: number; }}
+     * @memberof CreateForteServiceRequest
+     */
+    regionReplicas?: { [key: string]: number; };
+    /**
+     * 
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
@@ -131,6 +137,7 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
         'secrets': json['secrets'] == null ? undefined : json['secrets'],
         'baseInstances': json['baseInstances'] == null ? undefined : json['baseInstances'],
+        'regionReplicas': json['regionReplicas'] == null ? undefined : json['regionReplicas'],
         'containerCpu': json['containerCpu'] == null ? undefined : json['containerCpu'],
         'healthCheckPort': json['healthCheckPort'] == null ? undefined : json['healthCheckPort'],
         'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
@@ -157,6 +164,7 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
         'environmentVariables': value['environmentVariables'],
         'secrets': value['secrets'],
         'baseInstances': value['baseInstances'],
+        'regionReplicas': value['regionReplicas'],
         'containerCpu': value['containerCpu'],
         'healthCheckPort': value['healthCheckPort'],
         'healthCheckPath': value['healthCheckPath'],

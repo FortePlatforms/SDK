@@ -38,6 +38,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * RegisterUserResponse
  */
 @JsonPropertyOrder({
+  RegisterUserResponse.JSON_PROPERTY_USER_ID,
   RegisterUserResponse.JSON_PROPERTY_USER_OBJECT,
   RegisterUserResponse.JSON_PROPERTY_SESSION_TOKEN,
   RegisterUserResponse.JSON_PROPERTY_MFA_STATUS,
@@ -45,8 +46,12 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RegisterUserResponse {
-  public static final String JSON_PROPERTY_USER_OBJECT = "userObject";
+  public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nonnull
+  private String userId;
+
+  public static final String JSON_PROPERTY_USER_OBJECT = "userObject";
+  @javax.annotation.Nullable
   private UserObject userObject;
 
   public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
@@ -101,7 +106,31 @@ public class RegisterUserResponse {
   public RegisterUserResponse() { 
   }
 
-  public RegisterUserResponse userObject(@javax.annotation.Nonnull UserObject userObject) {
+  public RegisterUserResponse userId(@javax.annotation.Nonnull String userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  /**
+   * Get userId
+   * @return userId
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getUserId() {
+    return userId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setUserId(@javax.annotation.Nonnull String userId) {
+    this.userId = userId;
+  }
+
+
+  public RegisterUserResponse userObject(@javax.annotation.Nullable UserObject userObject) {
     this.userObject = userObject;
     return this;
   }
@@ -110,17 +139,17 @@ public class RegisterUserResponse {
    * Get userObject
    * @return userObject
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UserObject getUserObject() {
     return userObject;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUserObject(@javax.annotation.Nonnull UserObject userObject) {
+  @JsonProperty(value = JSON_PROPERTY_USER_OBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUserObject(@javax.annotation.Nullable UserObject userObject) {
     this.userObject = userObject;
   }
 
@@ -217,7 +246,8 @@ public class RegisterUserResponse {
       return false;
     }
     RegisterUserResponse registerUserResponse = (RegisterUserResponse) o;
-    return Objects.equals(this.userObject, registerUserResponse.userObject) &&
+    return Objects.equals(this.userId, registerUserResponse.userId) &&
+        Objects.equals(this.userObject, registerUserResponse.userObject) &&
         Objects.equals(this.sessionToken, registerUserResponse.sessionToken) &&
         Objects.equals(this.mfaStatus, registerUserResponse.mfaStatus) &&
         Objects.equals(this.availableMfaMethods, registerUserResponse.availableMfaMethods);
@@ -225,13 +255,14 @@ public class RegisterUserResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(userObject, sessionToken, mfaStatus, availableMfaMethods);
+    return Objects.hash(userId, userObject, sessionToken, mfaStatus, availableMfaMethods);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RegisterUserResponse {\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    userObject: ").append(toIndentedString(userObject)).append("\n");
     sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
     sb.append("    mfaStatus: ").append(toIndentedString(mfaStatus)).append("\n");
@@ -279,6 +310,11 @@ public class RegisterUserResponse {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `userId` to the URL query string
+    if (getUserId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
+    }
 
     // add `userObject` to the URL query string
     if (getUserObject() != null) {

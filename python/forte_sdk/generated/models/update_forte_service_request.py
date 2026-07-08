@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -39,11 +39,12 @@ class UpdateForteServiceRequest(BaseModel):
     secret_keys_to_delete: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="secretKeysToDelete")
     auth_path_exclusions: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="authPathExclusions")
     base_instances: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=None, alias="baseInstances")
+    region_replicas: Optional[Dict[str, StrictInt]] = Field(default=None, alias="regionReplicas")
     container_cpu: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="containerCpu")
     health_check_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(default=None, alias="healthCheckPort")
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
     request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
-    __properties: ClassVar[List[str]] = ["resetDockerfile", "resetHealthCheckConfig", "githubBuildTrigger", "githubBranch", "baseDirectory", "serviceName", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "authPathExclusions", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath", "requestResponseBodyLoggingEnabled"]
+    __properties: ClassVar[List[str]] = ["resetDockerfile", "resetHealthCheckConfig", "githubBuildTrigger", "githubBranch", "baseDirectory", "serviceName", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "authPathExclusions", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "requestResponseBodyLoggingEnabled"]
 
     @field_validator('github_build_trigger')
     def github_build_trigger_validate_enum(cls, value):
@@ -182,6 +183,7 @@ class UpdateForteServiceRequest(BaseModel):
             "secretKeysToDelete": obj.get("secretKeysToDelete"),
             "authPathExclusions": obj.get("authPathExclusions"),
             "baseInstances": obj.get("baseInstances"),
+            "regionReplicas": obj.get("regionReplicas"),
             "containerCpu": obj.get("containerCpu"),
             "healthCheckPort": obj.get("healthCheckPort"),
             "healthCheckPath": obj.get("healthCheckPath"),

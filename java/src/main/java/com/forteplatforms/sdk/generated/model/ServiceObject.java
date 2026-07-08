@@ -56,6 +56,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE,
   ServiceObject.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
   ServiceObject.JSON_PROPERTY_BASE_INSTANCES,
+  ServiceObject.JSON_PROPERTY_REGION_REPLICAS,
   ServiceObject.JSON_PROPERTY_CONTAINER_CPU,
   ServiceObject.JSON_PROPERTY_CUSTOM_DOMAINS,
   ServiceObject.JSON_PROPERTY_CREATED_TIMESTAMP,
@@ -114,6 +115,10 @@ public class ServiceObject {
   public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
   @javax.annotation.Nonnull
   private Integer baseInstances;
+
+  public static final String JSON_PROPERTY_REGION_REPLICAS = "regionReplicas";
+  @javax.annotation.Nullable
+  private Map<String, Integer> regionReplicas = new HashMap<>();
 
   public static final String JSON_PROPERTY_CONTAINER_CPU = "containerCpu";
   @javax.annotation.Nonnull
@@ -473,6 +478,38 @@ public class ServiceObject {
   }
 
 
+  public ServiceObject regionReplicas(@javax.annotation.Nullable Map<String, Integer> regionReplicas) {
+    this.regionReplicas = regionReplicas;
+    return this;
+  }
+
+  public ServiceObject putRegionReplicasItem(String key, Integer regionReplicasItem) {
+    if (this.regionReplicas == null) {
+      this.regionReplicas = new HashMap<>();
+    }
+    this.regionReplicas.put(key, regionReplicasItem);
+    return this;
+  }
+
+  /**
+   * Get regionReplicas
+   * @return regionReplicas
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGION_REPLICAS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Integer> getRegionReplicas() {
+    return regionReplicas;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGION_REPLICAS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegionReplicas(@javax.annotation.Nullable Map<String, Integer> regionReplicas) {
+    this.regionReplicas = regionReplicas;
+  }
+
+
   public ServiceObject containerCpu(@javax.annotation.Nonnull String containerCpu) {
     this.containerCpu = containerCpu;
     return this;
@@ -817,6 +854,7 @@ public class ServiceObject {
         Objects.equals(this.healthCheckDetectionResponse, serviceObject.healthCheckDetectionResponse) &&
         Objects.equals(this.authPathExclusions, serviceObject.authPathExclusions) &&
         Objects.equals(this.baseInstances, serviceObject.baseInstances) &&
+        Objects.equals(this.regionReplicas, serviceObject.regionReplicas) &&
         Objects.equals(this.containerCpu, serviceObject.containerCpu) &&
         Objects.equals(this.customDomains, serviceObject.customDomains) &&
         Objects.equals(this.createdTimestamp, serviceObject.createdTimestamp) &&
@@ -833,7 +871,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, pausedAt, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, pausedAt, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, regionReplicas, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -851,6 +889,7 @@ public class ServiceObject {
     sb.append("    healthCheckDetectionResponse: ").append(toIndentedString(healthCheckDetectionResponse)).append("\n");
     sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
     sb.append("    baseInstances: ").append(toIndentedString(baseInstances)).append("\n");
+    sb.append("    regionReplicas: ").append(toIndentedString(regionReplicas)).append("\n");
     sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
     sb.append("    customDomains: ").append(toIndentedString(customDomains)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
@@ -964,6 +1003,15 @@ public class ServiceObject {
     // add `baseInstances` to the URL query string
     if (getBaseInstances() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbaseInstances%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseInstances()))));
+    }
+
+    // add `regionReplicas` to the URL query string
+    if (getRegionReplicas() != null) {
+      for (String _key : getRegionReplicas().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sregionReplicas%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getRegionReplicas().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getRegionReplicas().get(_key)))));
+      }
     }
 
     // add `containerCpu` to the URL query string

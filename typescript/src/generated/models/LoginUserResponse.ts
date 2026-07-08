@@ -43,10 +43,16 @@ import {
 export interface LoginUserResponse {
     /**
      * 
+     * @type {string}
+     * @memberof LoginUserResponse
+     */
+    userId: string;
+    /**
+     * 
      * @type {UserObject}
      * @memberof LoginUserResponse
      */
-    userObject: UserObject;
+    userObject?: UserObject;
     /**
      * 
      * @type {RenewSessionTokenResponse}
@@ -83,7 +89,7 @@ export type LoginUserResponseMfaStatusType = typeof LoginUserResponseMfaStatusTy
  * Check if a given object implements the LoginUserResponse interface.
  */
 export function instanceOfLoginUserResponse(value: object): value is LoginUserResponse {
-    if (!('userObject' in value) || value['userObject'] === undefined) return false;
+    if (!('userId' in value) || value['userId'] === undefined) return false;
     if (!('sessionToken' in value) || value['sessionToken'] === undefined) return false;
     return true;
 }
@@ -98,7 +104,8 @@ export function LoginUserResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'userObject': UserObjectFromJSON(json['userObject']),
+        'userId': json['userId'],
+        'userObject': json['userObject'] == null ? undefined : UserObjectFromJSON(json['userObject']),
         'sessionToken': RenewSessionTokenResponseFromJSON(json['sessionToken']),
         'mfaStatus': json['mfaStatus'] == null ? undefined : json['mfaStatus'],
         'availableMfaMethods': json['availableMfaMethods'] == null ? undefined : ((json['availableMfaMethods'] as Array<any>).map(MfaMethodSummaryFromJSON)),
@@ -116,6 +123,7 @@ export function LoginUserResponseToJSONTyped(value?: LoginUserResponse | null, i
 
     return {
         
+        'userId': value['userId'],
         'userObject': UserObjectToJSON(value['userObject']),
         'sessionToken': RenewSessionTokenResponseToJSON(value['sessionToken']),
         'mfaStatus': value['mfaStatus'],

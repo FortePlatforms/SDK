@@ -35,6 +35,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   MfaMethodSummary.JSON_PROPERTY_MFA_METHOD_ID,
   MfaMethodSummary.JSON_PROPERTY_TYPE,
+  MfaMethodSummary.JSON_PROPERTY_CONTACT_METHOD_ID,
   MfaMethodSummary.JSON_PROPERTY_MASKED_TARGET
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -87,6 +88,10 @@ public class MfaMethodSummary {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
   private TypeEnum type;
+
+  public static final String JSON_PROPERTY_CONTACT_METHOD_ID = "contactMethodId";
+  @javax.annotation.Nullable
+  private String contactMethodId;
 
   public static final String JSON_PROPERTY_MASKED_TARGET = "maskedTarget";
   @javax.annotation.Nullable
@@ -143,6 +148,30 @@ public class MfaMethodSummary {
   }
 
 
+  public MfaMethodSummary contactMethodId(@javax.annotation.Nullable String contactMethodId) {
+    this.contactMethodId = contactMethodId;
+    return this;
+  }
+
+  /**
+   * Get contactMethodId
+   * @return contactMethodId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_METHOD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getContactMethodId() {
+    return contactMethodId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_METHOD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContactMethodId(@javax.annotation.Nullable String contactMethodId) {
+    this.contactMethodId = contactMethodId;
+  }
+
+
   public MfaMethodSummary maskedTarget(@javax.annotation.Nullable String maskedTarget) {
     this.maskedTarget = maskedTarget;
     return this;
@@ -181,12 +210,13 @@ public class MfaMethodSummary {
     MfaMethodSummary mfaMethodSummary = (MfaMethodSummary) o;
     return Objects.equals(this.mfaMethodId, mfaMethodSummary.mfaMethodId) &&
         Objects.equals(this.type, mfaMethodSummary.type) &&
+        Objects.equals(this.contactMethodId, mfaMethodSummary.contactMethodId) &&
         Objects.equals(this.maskedTarget, mfaMethodSummary.maskedTarget);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mfaMethodId, type, maskedTarget);
+    return Objects.hash(mfaMethodId, type, contactMethodId, maskedTarget);
   }
 
   @Override
@@ -195,6 +225,7 @@ public class MfaMethodSummary {
     sb.append("class MfaMethodSummary {\n");
     sb.append("    mfaMethodId: ").append(toIndentedString(mfaMethodId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    contactMethodId: ").append(toIndentedString(contactMethodId)).append("\n");
     sb.append("    maskedTarget: ").append(toIndentedString(maskedTarget)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -248,6 +279,11 @@ public class MfaMethodSummary {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `contactMethodId` to the URL query string
+    if (getContactMethodId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontactMethodId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContactMethodId()))));
     }
 
     // add `maskedTarget` to the URL query string

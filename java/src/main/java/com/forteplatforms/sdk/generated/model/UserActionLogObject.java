@@ -83,6 +83,10 @@ public class UserActionLogObject {
     
     CONTACT_METHOD_ADMIN_OVERRIDE(String.valueOf("CONTACT_METHOD_ADMIN_OVERRIDE")),
     
+    CONTACT_METHOD_FIXED_OTP_SET(String.valueOf("CONTACT_METHOD_FIXED_OTP_SET")),
+    
+    CONTACT_METHOD_FIXED_OTP_REMOVED(String.valueOf("CONTACT_METHOD_FIXED_OTP_REMOVED")),
+    
     USER_LOGIN(String.valueOf("USER_LOGIN")),
     
     USER_LOGOUT(String.valueOf("USER_LOGOUT")),

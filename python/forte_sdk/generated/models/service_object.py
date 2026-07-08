@@ -44,6 +44,7 @@ class ServiceObject(BaseModel):
     health_check_detection_response: Optional[HealthCheckDetectionResponse] = Field(default=None, alias="healthCheckDetectionResponse")
     auth_path_exclusions: Optional[List[StrictStr]] = Field(default=None, alias="authPathExclusions")
     base_instances: StrictInt = Field(alias="baseInstances")
+    region_replicas: Optional[Dict[str, StrictInt]] = Field(default=None, alias="regionReplicas")
     container_cpu: StrictStr = Field(alias="containerCpu")
     custom_domains: Optional[List[CustomDomain]] = Field(default=None, alias="customDomains")
     created_timestamp: Optional[datetime] = Field(default=None, alias="createdTimestamp")
@@ -56,7 +57,7 @@ class ServiceObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "baseInstances", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('github_build_trigger')
     def github_build_trigger_validate_enum(cls, value):
@@ -143,6 +144,7 @@ class ServiceObject(BaseModel):
             "healthCheckDetectionResponse": HealthCheckDetectionResponse.from_dict(obj["healthCheckDetectionResponse"]) if obj.get("healthCheckDetectionResponse") is not None else None,
             "authPathExclusions": obj.get("authPathExclusions"),
             "baseInstances": obj.get("baseInstances"),
+            "regionReplicas": obj.get("regionReplicas"),
             "containerCpu": obj.get("containerCpu"),
             "customDomains": [CustomDomain.from_dict(_item) for _item in obj["customDomains"]] if obj.get("customDomains") is not None else None,
             "createdTimestamp": obj.get("createdTimestamp"),

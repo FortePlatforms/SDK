@@ -29,8 +29,9 @@ class MfaMethodSummary(BaseModel):
     """ # noqa: E501
     mfa_method_id: Optional[StrictStr] = Field(default=None, alias="mfaMethodId")
     type: StrictStr
+    contact_method_id: Optional[StrictStr] = Field(default=None, alias="contactMethodId")
     masked_target: Optional[StrictStr] = Field(default=None, alias="maskedTarget")
-    __properties: ClassVar[List[str]] = ["mfaMethodId", "type", "maskedTarget"]
+    __properties: ClassVar[List[str]] = ["mfaMethodId", "type", "contactMethodId", "maskedTarget"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -92,6 +93,7 @@ class MfaMethodSummary(BaseModel):
         _obj = cls.model_validate({
             "mfaMethodId": obj.get("mfaMethodId"),
             "type": obj.get("type"),
+            "contactMethodId": obj.get("contactMethodId"),
             "maskedTarget": obj.get("maskedTarget")
         })
         return _obj

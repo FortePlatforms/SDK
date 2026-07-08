@@ -51,6 +51,24 @@ export interface ContactMethod {
     googleUniqueSubId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ContactMethod
+     */
+    githubUserId?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactMethod
+     */
+    githubLogin?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactMethod
+     */
+    pendingEmail?: string;
+    /**
+     * 
      * @type {Date}
      * @memberof ContactMethod
      */
@@ -73,6 +91,12 @@ export interface ContactMethod {
      * @memberof ContactMethod
      */
     verificationCodeLastSentTime?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactMethod
+     */
+    fixedVerificationCode?: string;
 }
 
 /**
@@ -100,10 +124,14 @@ export function ContactMethodFromJSONTyped(json: any, ignoreDiscriminator: boole
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'email': json['email'] == null ? undefined : json['email'],
         'googleUniqueSubId': json['googleUniqueSubId'] == null ? undefined : json['googleUniqueSubId'],
+        'githubUserId': json['githubUserId'] == null ? undefined : json['githubUserId'],
+        'githubLogin': json['githubLogin'] == null ? undefined : json['githubLogin'],
+        'pendingEmail': json['pendingEmail'] == null ? undefined : json['pendingEmail'],
         'linkedTime': (new Date(json['linkedTime'])),
         'verifiedTime': json['verifiedTime'] == null ? undefined : (new Date(json['verifiedTime'])),
         'pendingVerificationCodeExpirationTime': json['pendingVerificationCodeExpirationTime'] == null ? undefined : (new Date(json['pendingVerificationCodeExpirationTime'])),
         'verificationCodeLastSentTime': json['verificationCodeLastSentTime'] == null ? undefined : (new Date(json['verificationCodeLastSentTime'])),
+        'fixedVerificationCode': json['fixedVerificationCode'] == null ? undefined : json['fixedVerificationCode'],
     };
 }
 
@@ -123,10 +151,14 @@ export function ContactMethodToJSONTyped(value?: ContactMethod | null, ignoreDis
         'phoneNumber': value['phoneNumber'],
         'email': value['email'],
         'googleUniqueSubId': value['googleUniqueSubId'],
+        'githubUserId': value['githubUserId'],
+        'githubLogin': value['githubLogin'],
+        'pendingEmail': value['pendingEmail'],
         'linkedTime': value['linkedTime'].toISOString(),
         'verifiedTime': value['verifiedTime'] == null ? value['verifiedTime'] : value['verifiedTime'].toISOString(),
         'pendingVerificationCodeExpirationTime': value['pendingVerificationCodeExpirationTime'] == null ? value['pendingVerificationCodeExpirationTime'] : value['pendingVerificationCodeExpirationTime'].toISOString(),
         'verificationCodeLastSentTime': value['verificationCodeLastSentTime'] == null ? value['verificationCodeLastSentTime'] : value['verificationCodeLastSentTime'].toISOString(),
+        'fixedVerificationCode': value['fixedVerificationCode'],
     };
 }
 

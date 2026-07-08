@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -35,12 +35,13 @@ class CreateForteServiceRequest(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     secrets: Optional[Dict[str, StrictStr]] = None
     base_instances: Optional[Annotated[int, Field(le=10, strict=True, ge=1)]] = Field(default=None, alias="baseInstances")
+    region_replicas: Optional[Dict[str, StrictInt]] = Field(default=None, alias="regionReplicas")
     container_cpu: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="containerCpu")
     health_check_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(default=None, alias="healthCheckPort")
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
     base_directory: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="baseDirectory")
     request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
-    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled"]
+    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled"]
 
     @field_validator('build_trigger')
     def build_trigger_validate_enum(cls, value):
@@ -169,6 +170,7 @@ class CreateForteServiceRequest(BaseModel):
             "environmentVariables": obj.get("environmentVariables"),
             "secrets": obj.get("secrets"),
             "baseInstances": obj.get("baseInstances"),
+            "regionReplicas": obj.get("regionReplicas"),
             "containerCpu": obj.get("containerCpu"),
             "healthCheckPort": obj.get("healthCheckPort"),
             "healthCheckPath": obj.get("healthCheckPath"),

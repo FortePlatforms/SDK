@@ -87,6 +87,12 @@ export interface UpdateForteServiceRequest {
     baseInstances?: number;
     /**
      * 
+     * @type {{ [key: string]: number; }}
+     * @memberof UpdateForteServiceRequest
+     */
+    regionReplicas?: { [key: string]: number; };
+    /**
+     * 
      * @type {string}
      * @memberof UpdateForteServiceRequest
      */
@@ -150,6 +156,7 @@ export function UpdateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'secretKeysToDelete': json['secretKeysToDelete'] == null ? undefined : new Set(json['secretKeysToDelete']),
         'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
         'baseInstances': json['baseInstances'] == null ? undefined : json['baseInstances'],
+        'regionReplicas': json['regionReplicas'] == null ? undefined : json['regionReplicas'],
         'containerCpu': json['containerCpu'] == null ? undefined : json['containerCpu'],
         'healthCheckPort': json['healthCheckPort'] == null ? undefined : json['healthCheckPort'],
         'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
@@ -179,6 +186,7 @@ export function UpdateForteServiceRequestToJSONTyped(value?: UpdateForteServiceR
         'secretKeysToDelete': value['secretKeysToDelete'] == null ? undefined : Array.from(value['secretKeysToDelete'] as Set<any>),
         'authPathExclusions': value['authPathExclusions'],
         'baseInstances': value['baseInstances'],
+        'regionReplicas': value['regionReplicas'],
         'containerCpu': value['containerCpu'],
         'healthCheckPort': value['healthCheckPort'],
         'healthCheckPath': value['healthCheckPath'],
