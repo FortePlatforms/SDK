@@ -97,6 +97,18 @@ export interface UpdateWebAppRequest {
      * @memberof UpdateWebAppRequest
      */
     resetDetectedConfig?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateWebAppRequest
+     */
+    sitePassword?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateWebAppRequest
+     */
+    removeSitePassword?: boolean;
 }
 
 
@@ -140,6 +152,8 @@ export function UpdateWebAppRequestFromJSONTyped(json: any, ignoreDiscriminator:
         'secretsToUpsert': json['secretsToUpsert'] == null ? undefined : json['secretsToUpsert'],
         'secretKeysToDelete': json['secretKeysToDelete'] == null ? undefined : new Set(json['secretKeysToDelete']),
         'resetDetectedConfig': json['resetDetectedConfig'] == null ? undefined : json['resetDetectedConfig'],
+        'sitePassword': json['sitePassword'] == null ? undefined : json['sitePassword'],
+        'removeSitePassword': json['removeSitePassword'] == null ? undefined : json['removeSitePassword'],
     };
 }
 
@@ -167,6 +181,8 @@ export function UpdateWebAppRequestToJSONTyped(value?: UpdateWebAppRequest | nul
         'secretsToUpsert': value['secretsToUpsert'],
         'secretKeysToDelete': value['secretKeysToDelete'] == null ? undefined : Array.from(value['secretKeysToDelete'] as Set<any>),
         'resetDetectedConfig': value['resetDetectedConfig'],
+        'sitePassword': value['sitePassword'],
+        'removeSitePassword': value['removeSitePassword'],
     };
 }
 

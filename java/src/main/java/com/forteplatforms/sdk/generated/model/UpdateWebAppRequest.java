@@ -50,7 +50,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateWebAppRequest.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
   UpdateWebAppRequest.JSON_PROPERTY_SECRETS_TO_UPSERT,
   UpdateWebAppRequest.JSON_PROPERTY_SECRET_KEYS_TO_DELETE,
-  UpdateWebAppRequest.JSON_PROPERTY_RESET_DETECTED_CONFIG
+  UpdateWebAppRequest.JSON_PROPERTY_RESET_DETECTED_CONFIG,
+  UpdateWebAppRequest.JSON_PROPERTY_SITE_PASSWORD,
+  UpdateWebAppRequest.JSON_PROPERTY_REMOVE_SITE_PASSWORD
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateWebAppRequest {
@@ -140,6 +142,14 @@ public class UpdateWebAppRequest {
   public static final String JSON_PROPERTY_RESET_DETECTED_CONFIG = "resetDetectedConfig";
   @javax.annotation.Nullable
   private Boolean resetDetectedConfig;
+
+  public static final String JSON_PROPERTY_SITE_PASSWORD = "sitePassword";
+  @javax.annotation.Nullable
+  private String sitePassword;
+
+  public static final String JSON_PROPERTY_REMOVE_SITE_PASSWORD = "removeSitePassword";
+  @javax.annotation.Nullable
+  private Boolean removeSitePassword;
 
   public UpdateWebAppRequest() { 
   }
@@ -481,6 +491,54 @@ public class UpdateWebAppRequest {
   }
 
 
+  public UpdateWebAppRequest sitePassword(@javax.annotation.Nullable String sitePassword) {
+    this.sitePassword = sitePassword;
+    return this;
+  }
+
+  /**
+   * Get sitePassword
+   * @return sitePassword
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SITE_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSitePassword() {
+    return sitePassword;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SITE_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSitePassword(@javax.annotation.Nullable String sitePassword) {
+    this.sitePassword = sitePassword;
+  }
+
+
+  public UpdateWebAppRequest removeSitePassword(@javax.annotation.Nullable Boolean removeSitePassword) {
+    this.removeSitePassword = removeSitePassword;
+    return this;
+  }
+
+  /**
+   * Get removeSitePassword
+   * @return removeSitePassword
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REMOVE_SITE_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getRemoveSitePassword() {
+    return removeSitePassword;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REMOVE_SITE_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRemoveSitePassword(@javax.annotation.Nullable Boolean removeSitePassword) {
+    this.removeSitePassword = removeSitePassword;
+  }
+
+
   /**
    * Return true if this UpdateWebAppRequest object is equal to o.
    */
@@ -505,12 +563,14 @@ public class UpdateWebAppRequest {
         Objects.equals(this.environmentVariables, updateWebAppRequest.environmentVariables) &&
         Objects.equals(this.secretsToUpsert, updateWebAppRequest.secretsToUpsert) &&
         Objects.equals(this.secretKeysToDelete, updateWebAppRequest.secretKeysToDelete) &&
-        Objects.equals(this.resetDetectedConfig, updateWebAppRequest.resetDetectedConfig);
+        Objects.equals(this.resetDetectedConfig, updateWebAppRequest.resetDetectedConfig) &&
+        Objects.equals(this.sitePassword, updateWebAppRequest.sitePassword) &&
+        Objects.equals(this.removeSitePassword, updateWebAppRequest.removeSitePassword);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppName, githubBuildTrigger, githubBranch, subdirectory, buildCommand, buildPath, packageManager, nodeVersion, installCommand, environmentVariables, secretsToUpsert, secretKeysToDelete, resetDetectedConfig);
+    return Objects.hash(webAppName, githubBuildTrigger, githubBranch, subdirectory, buildCommand, buildPath, packageManager, nodeVersion, installCommand, environmentVariables, secretsToUpsert, secretKeysToDelete, resetDetectedConfig, sitePassword, removeSitePassword);
   }
 
   @Override
@@ -530,6 +590,8 @@ public class UpdateWebAppRequest {
     sb.append("    secretsToUpsert: ").append(toIndentedString(secretsToUpsert)).append("\n");
     sb.append("    secretKeysToDelete: ").append(toIndentedString(secretKeysToDelete)).append("\n");
     sb.append("    resetDetectedConfig: ").append(toIndentedString(resetDetectedConfig)).append("\n");
+    sb.append("    sitePassword: ").append(toIndentedString(sitePassword)).append("\n");
+    sb.append("    removeSitePassword: ").append(toIndentedString(removeSitePassword)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -651,6 +713,16 @@ public class UpdateWebAppRequest {
     // add `resetDetectedConfig` to the URL query string
     if (getResetDetectedConfig() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sresetDetectedConfig%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getResetDetectedConfig()))));
+    }
+
+    // add `sitePassword` to the URL query string
+    if (getSitePassword() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssitePassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSitePassword()))));
+    }
+
+    // add `removeSitePassword` to the URL query string
+    if (getRemoveSitePassword() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sremoveSitePassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemoveSitePassword()))));
     }
 
     return joiner.toString();

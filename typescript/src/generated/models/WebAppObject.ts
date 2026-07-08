@@ -235,6 +235,12 @@ export interface WebAppObject {
     baseDirectory?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof WebAppObject
+     */
+    sitePasswordProtectionEnabled?: boolean;
+    /**
+     * 
      * @type {Set<string>}
      * @memberof WebAppObject
      */
@@ -325,6 +331,7 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'enqueuedBuildIds': json['enqueuedBuildIds'] == null ? undefined : json['enqueuedBuildIds'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
         'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
+        'sitePasswordProtectionEnabled': json['sitePasswordProtectionEnabled'] == null ? undefined : json['sitePasswordProtectionEnabled'],
         'secretKeys': json['secretKeys'] == null ? undefined : new Set(json['secretKeys']),
     };
 }
@@ -372,6 +379,7 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'enqueuedBuildIds': value['enqueuedBuildIds'],
         'environmentVariables': value['environmentVariables'],
         'baseDirectory': value['baseDirectory'],
+        'sitePasswordProtectionEnabled': value['sitePasswordProtectionEnabled'],
         'secretKeys': value['secretKeys'] == null ? undefined : Array.from(value['secretKeys'] as Set<any>),
     };
 }

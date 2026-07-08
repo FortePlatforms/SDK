@@ -41,7 +41,9 @@ class UpdateWebAppRequest(BaseModel):
     secrets_to_upsert: Optional[Dict[str, StrictStr]] = Field(default=None, alias="secretsToUpsert")
     secret_keys_to_delete: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="secretKeysToDelete")
     reset_detected_config: Optional[StrictBool] = Field(default=None, alias="resetDetectedConfig")
-    __properties: ClassVar[List[str]] = ["webAppName", "githubBuildTrigger", "githubBranch", "subdirectory", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "resetDetectedConfig"]
+    site_password: Optional[Annotated[str, Field(min_length=4, strict=True, max_length=128)]] = Field(default=None, alias="sitePassword")
+    remove_site_password: Optional[StrictBool] = Field(default=None, alias="removeSitePassword")
+    __properties: ClassVar[List[str]] = ["webAppName", "githubBuildTrigger", "githubBranch", "subdirectory", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "environmentVariables", "secretsToUpsert", "secretKeysToDelete", "resetDetectedConfig", "sitePassword", "removeSitePassword"]
 
     @field_validator('web_app_name')
     def web_app_name_validate_regular_expression(cls, value):
@@ -168,7 +170,9 @@ class UpdateWebAppRequest(BaseModel):
             "environmentVariables": obj.get("environmentVariables"),
             "secretsToUpsert": obj.get("secretsToUpsert"),
             "secretKeysToDelete": obj.get("secretKeysToDelete"),
-            "resetDetectedConfig": obj.get("resetDetectedConfig")
+            "resetDetectedConfig": obj.get("resetDetectedConfig"),
+            "sitePassword": obj.get("sitePassword"),
+            "removeSitePassword": obj.get("removeSitePassword")
         })
         return _obj
 

@@ -76,6 +76,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_ENQUEUED_BUILD_IDS,
   WebAppObject.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
   WebAppObject.JSON_PROPERTY_BASE_DIRECTORY,
+  WebAppObject.JSON_PROPERTY_SITE_PASSWORD_PROTECTION_ENABLED,
   WebAppObject.JSON_PROPERTY_SECRET_KEYS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -316,6 +317,10 @@ public class WebAppObject {
   public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
   @javax.annotation.Nullable
   private String baseDirectory;
+
+  public static final String JSON_PROPERTY_SITE_PASSWORD_PROTECTION_ENABLED = "sitePasswordProtectionEnabled";
+  @javax.annotation.Nullable
+  private Boolean sitePasswordProtectionEnabled;
 
   public static final String JSON_PROPERTY_SECRET_KEYS = "secretKeys";
   @javax.annotation.Nullable
@@ -1116,6 +1121,30 @@ public class WebAppObject {
   }
 
 
+  public WebAppObject sitePasswordProtectionEnabled(@javax.annotation.Nullable Boolean sitePasswordProtectionEnabled) {
+    this.sitePasswordProtectionEnabled = sitePasswordProtectionEnabled;
+    return this;
+  }
+
+  /**
+   * Get sitePasswordProtectionEnabled
+   * @return sitePasswordProtectionEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SITE_PASSWORD_PROTECTION_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getSitePasswordProtectionEnabled() {
+    return sitePasswordProtectionEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SITE_PASSWORD_PROTECTION_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSitePasswordProtectionEnabled(@javax.annotation.Nullable Boolean sitePasswordProtectionEnabled) {
+    this.sitePasswordProtectionEnabled = sitePasswordProtectionEnabled;
+  }
+
+
   public WebAppObject secretKeys(@javax.annotation.Nullable Set<String> secretKeys) {
     this.secretKeys = secretKeys;
     return this;
@@ -1193,12 +1222,13 @@ public class WebAppObject {
         Objects.equals(this.enqueuedBuildIds, webAppObject.enqueuedBuildIds) &&
         Objects.equals(this.environmentVariables, webAppObject.environmentVariables) &&
         Objects.equals(this.baseDirectory, webAppObject.baseDirectory) &&
+        Objects.equals(this.sitePasswordProtectionEnabled, webAppObject.sitePasswordProtectionEnabled) &&
         Objects.equals(this.secretKeys, webAppObject.secretKeys);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, containerImageUri, detectionResponse, dockerfilePath, dockerfileDetectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, hostingProviderDomainAvailableAt, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, containerImageUri, detectionResponse, dockerfilePath, dockerfileDetectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, hostingProviderDomainAvailableAt, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, sitePasswordProtectionEnabled, secretKeys);
   }
 
   @Override
@@ -1237,6 +1267,7 @@ public class WebAppObject {
     sb.append("    enqueuedBuildIds: ").append(toIndentedString(enqueuedBuildIds)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
     sb.append("    baseDirectory: ").append(toIndentedString(baseDirectory)).append("\n");
+    sb.append("    sitePasswordProtectionEnabled: ").append(toIndentedString(sitePasswordProtectionEnabled)).append("\n");
     sb.append("    secretKeys: ").append(toIndentedString(secretKeys)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -1453,6 +1484,11 @@ public class WebAppObject {
     // add `baseDirectory` to the URL query string
     if (getBaseDirectory() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbaseDirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseDirectory()))));
+    }
+
+    // add `sitePasswordProtectionEnabled` to the URL query string
+    if (getSitePasswordProtectionEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssitePasswordProtectionEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSitePasswordProtectionEnabled()))));
     }
 
     // add `secretKeys` to the URL query string

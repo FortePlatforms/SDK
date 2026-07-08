@@ -64,8 +64,9 @@ class WebAppObject(BaseModel):
     enqueued_build_ids: Optional[List[StrictStr]] = Field(default=None, alias="enqueuedBuildIds")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
+    site_password_protection_enabled: Optional[StrictBool] = Field(default=None, alias="sitePasswordProtectionEnabled")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "sitePasswordProtectionEnabled", "secretKeys"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -190,6 +191,7 @@ class WebAppObject(BaseModel):
             "enqueuedBuildIds": obj.get("enqueuedBuildIds"),
             "environmentVariables": obj.get("environmentVariables"),
             "baseDirectory": obj.get("baseDirectory"),
+            "sitePasswordProtectionEnabled": obj.get("sitePasswordProtectionEnabled"),
             "secretKeys": obj.get("secretKeys")
         })
         return _obj
