@@ -18079,6 +18079,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         status_code: Optional[StrictInt] = None,
+        status_class: Optional[StrictStr] = None,
         request_path: Optional[StrictStr] = None,
         request_method: Optional[StrictStr] = None,
         request_path_id: Optional[StrictStr] = None,
@@ -18110,6 +18111,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param status_code:
         :type status_code: int
+        :param status_class:
+        :type status_class: str
         :param request_path:
         :type request_path: str
         :param request_method:
@@ -18148,6 +18151,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             status_code=status_code,
+            status_class=status_class,
             request_path=request_path,
             request_method=request_method,
             request_path_id=request_path_id,
@@ -18181,6 +18185,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         status_code: Optional[StrictInt] = None,
+        status_class: Optional[StrictStr] = None,
         request_path: Optional[StrictStr] = None,
         request_method: Optional[StrictStr] = None,
         request_path_id: Optional[StrictStr] = None,
@@ -18212,6 +18217,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param status_code:
         :type status_code: int
+        :param status_class:
+        :type status_class: str
         :param request_path:
         :type request_path: str
         :param request_method:
@@ -18250,6 +18257,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             status_code=status_code,
+            status_class=status_class,
             request_path=request_path,
             request_method=request_method,
             request_path_id=request_path_id,
@@ -18283,6 +18291,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         status_code: Optional[StrictInt] = None,
+        status_class: Optional[StrictStr] = None,
         request_path: Optional[StrictStr] = None,
         request_method: Optional[StrictStr] = None,
         request_path_id: Optional[StrictStr] = None,
@@ -18314,6 +18323,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param status_code:
         :type status_code: int
+        :param status_class:
+        :type status_class: str
         :param request_path:
         :type request_path: str
         :param request_method:
@@ -18352,6 +18363,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             status_code=status_code,
+            status_class=status_class,
             request_path=request_path,
             request_method=request_method,
             request_path_id=request_path_id,
@@ -18380,6 +18392,7 @@ class ProjectsServerApi:
         min_time,
         max_time,
         status_code,
+        status_class,
         request_path,
         request_method,
         request_path_id,
@@ -18440,6 +18453,10 @@ class ProjectsServerApi:
         if status_code is not None:
             
             _query_params.append(('statusCode', status_code))
+            
+        if status_class is not None:
+            
+            _query_params.append(('statusClass', status_class))
             
         if request_path is not None:
             

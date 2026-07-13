@@ -788,6 +788,7 @@ export interface ListRequestInvocationLogsRequest {
     minTime?: Date;
     maxTime?: Date;
     statusCode?: number;
+    statusClass?: string;
     requestPath?: string;
     requestMethod?: string;
     requestPathId?: string;
@@ -4605,6 +4606,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['statusCode'] != null) {
             queryParameters['statusCode'] = requestParameters['statusCode'];
+        }
+
+        if (requestParameters['statusClass'] != null) {
+            queryParameters['statusClass'] = requestParameters['statusClass'];
         }
 
         if (requestParameters['requestPath'] != null) {
