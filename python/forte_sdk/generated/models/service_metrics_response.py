@@ -19,9 +19,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from forte_sdk.generated.models.instance_count_series import InstanceCountSeries
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics
 from forte_sdk.generated.models.latency_percentile_series import LatencyPercentileSeries
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint
+from forte_sdk.generated.models.utilization_series import UtilizationSeries
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -35,7 +37,10 @@ class ServiceMetricsResponse(BaseModel):
     status_code_group_counts: Dict[str, List[TimeSeriesDataPoint]] = Field(alias="statusCodeGroupCounts")
     latency_metrics: LatencyMetrics = Field(alias="latencyMetrics")
     total_latency_series: LatencyPercentileSeries = Field(alias="totalLatencySeries")
-    __properties: ClassVar[List[str]] = ["invocations", "statusCodeCounts", "statusCodeGroupCounts", "latencyMetrics", "totalLatencySeries"]
+    concurrent_instances: InstanceCountSeries = Field(alias="concurrentInstances")
+    cpu_utilization: UtilizationSeries = Field(alias="cpuUtilization")
+    memory_utilization: UtilizationSeries = Field(alias="memoryUtilization")
+    __properties: ClassVar[List[str]] = ["invocations", "statusCodeCounts", "statusCodeGroupCounts", "latencyMetrics", "totalLatencySeries", "concurrentInstances", "cpuUtilization", "memoryUtilization"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -107,6 +112,15 @@ class ServiceMetricsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of total_latency_series
         if self.total_latency_series:
             _dict['totalLatencySeries'] = self.total_latency_series.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of concurrent_instances
+        if self.concurrent_instances:
+            _dict['concurrentInstances'] = self.concurrent_instances.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of cpu_utilization
+        if self.cpu_utilization:
+            _dict['cpuUtilization'] = self.cpu_utilization.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of memory_utilization
+        if self.memory_utilization:
+            _dict['memoryUtilization'] = self.memory_utilization.to_dict()
         return _dict
 
     @classmethod
@@ -133,7 +147,10 @@ class ServiceMetricsResponse(BaseModel):
             if obj.get("statusCodeGroupCounts") is not None
             else None,
             "latencyMetrics": LatencyMetrics.from_dict(obj["latencyMetrics"]) if obj.get("latencyMetrics") is not None else None,
-            "totalLatencySeries": LatencyPercentileSeries.from_dict(obj["totalLatencySeries"]) if obj.get("totalLatencySeries") is not None else None
+            "totalLatencySeries": LatencyPercentileSeries.from_dict(obj["totalLatencySeries"]) if obj.get("totalLatencySeries") is not None else None,
+            "concurrentInstances": InstanceCountSeries.from_dict(obj["concurrentInstances"]) if obj.get("concurrentInstances") is not None else None,
+            "cpuUtilization": UtilizationSeries.from_dict(obj["cpuUtilization"]) if obj.get("cpuUtilization") is not None else None,
+            "memoryUtilization": UtilizationSeries.from_dict(obj["memoryUtilization"]) if obj.get("memoryUtilization") is not None else None
         })
         return _obj
 

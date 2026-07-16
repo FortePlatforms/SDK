@@ -274,6 +274,11 @@ import {
     RequestLogObjectToJSON,
 } from '../models/RequestLogObject';
 import {
+    type RequestLogSearchRequest,
+    RequestLogSearchRequestFromJSON,
+    RequestLogSearchRequestToJSON,
+} from '../models/RequestLogSearchRequest';
+import {
     type SearchUsersRequest,
     SearchUsersRequestFromJSON,
     SearchUsersRequestToJSON,
@@ -782,20 +787,6 @@ export interface ListProjectPaymentsRequest {
     nextToken?: string;
 }
 
-export interface ListRequestInvocationLogsRequest {
-    projectId: string;
-    serviceId: string;
-    minTime?: Date;
-    maxTime?: Date;
-    statusCode?: number;
-    statusClass?: string;
-    requestPath?: string;
-    requestMethod?: string;
-    requestPathId?: string;
-    userId?: string;
-    nextToken?: string;
-}
-
 export interface ListServiceCustomDomainsRequest {
     projectId: string;
     serviceId: string;
@@ -1045,6 +1036,12 @@ export interface SearchLogLinesRequest {
     requestId?: string;
     level?: string;
     nextToken?: string;
+}
+
+export interface SearchRequestInvocationLogsRequest {
+    projectId: string;
+    serviceId: string;
+    requestLogSearchRequest: RequestLogSearchRequest;
 }
 
 export interface SearchUsersOperationRequest {
@@ -4577,93 +4574,6 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates request options for listRequestInvocationLogs without sending the request
-     */
-    async listRequestInvocationLogsRequestOpts(requestParameters: ListRequestInvocationLogsRequest): Promise<runtime.RequestOpts> {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError(
-                'projectId',
-                'Required parameter "projectId" was null or undefined when calling listRequestInvocationLogs().'
-            );
-        }
-
-        if (requestParameters['serviceId'] == null) {
-            throw new runtime.RequiredError(
-                'serviceId',
-                'Required parameter "serviceId" was null or undefined when calling listRequestInvocationLogs().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['minTime'] != null) {
-            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
-        }
-
-        if (requestParameters['maxTime'] != null) {
-            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
-        }
-
-        if (requestParameters['statusCode'] != null) {
-            queryParameters['statusCode'] = requestParameters['statusCode'];
-        }
-
-        if (requestParameters['statusClass'] != null) {
-            queryParameters['statusClass'] = requestParameters['statusClass'];
-        }
-
-        if (requestParameters['requestPath'] != null) {
-            queryParameters['requestPath'] = requestParameters['requestPath'];
-        }
-
-        if (requestParameters['requestMethod'] != null) {
-            queryParameters['requestMethod'] = requestParameters['requestMethod'];
-        }
-
-        if (requestParameters['requestPathId'] != null) {
-            queryParameters['requestPathId'] = requestParameters['requestPathId'];
-        }
-
-        if (requestParameters['userId'] != null) {
-            queryParameters['userId'] = requestParameters['userId'];
-        }
-
-        if (requestParameters['nextToken'] != null) {
-            queryParameters['nextToken'] = requestParameters['nextToken'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-
-        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/requests`;
-        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
-        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
-
-        return {
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        };
-    }
-
-    /**
-     */
-    async listRequestInvocationLogsRaw(requestParameters: ListRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseRequestLogObject>> {
-        const requestOptions = await this.listRequestInvocationLogsRequestOpts(requestParameters);
-        const response = await this.request(requestOptions, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseRequestLogObjectFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async listRequestInvocationLogs(requestParameters: ListRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseRequestLogObject> {
-        const response = await this.listRequestInvocationLogsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Creates request options for listServiceCustomDomains without sending the request
      */
     async listServiceCustomDomainsRequestOpts(requestParameters: ListServiceCustomDomainsRequest): Promise<runtime.RequestOpts> {
@@ -6928,6 +6838,67 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async searchLogLines(requestParameters: SearchLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
         const response = await this.searchLogLinesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for searchRequestInvocationLogs without sending the request
+     */
+    async searchRequestInvocationLogsRequestOpts(requestParameters: SearchRequestInvocationLogsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling searchRequestInvocationLogs().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling searchRequestInvocationLogs().'
+            );
+        }
+
+        if (requestParameters['requestLogSearchRequest'] == null) {
+            throw new runtime.RequiredError(
+                'requestLogSearchRequest',
+                'Required parameter "requestLogSearchRequest" was null or undefined when calling searchRequestInvocationLogs().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/requests/search`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RequestLogSearchRequestToJSON(requestParameters['requestLogSearchRequest']),
+        };
+    }
+
+    /**
+     */
+    async searchRequestInvocationLogsRaw(requestParameters: SearchRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseRequestLogObject>> {
+        const requestOptions = await this.searchRequestInvocationLogsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseRequestLogObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async searchRequestInvocationLogs(requestParameters: SearchRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseRequestLogObject> {
+        const response = await this.searchRequestInvocationLogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

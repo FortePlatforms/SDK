@@ -71,6 +71,7 @@ import com.forteplatforms.sdk.generated.model.PaymentTriggerConfig;
 import com.forteplatforms.sdk.generated.model.ProjectObject;
 import com.forteplatforms.sdk.generated.model.PutSubscriptionItemsRequest;
 import com.forteplatforms.sdk.generated.model.RequestLogObject;
+import com.forteplatforms.sdk.generated.model.RequestLogSearchRequest;
 import com.forteplatforms.sdk.generated.model.SearchUsersRequest;
 import com.forteplatforms.sdk.generated.model.SendUserEmailRequest;
 import com.forteplatforms.sdk.generated.model.SendUserSmsRequest;
@@ -8542,200 +8543,6 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param serviceId  (required)
-   * @param minTime  (optional)
-   * @param maxTime  (optional)
-   * @param statusCode  (optional)
-   * @param statusClass  (optional)
-   * @param requestPath  (optional)
-   * @param requestMethod  (optional)
-   * @param requestPathId  (optional)
-   * @param userId  (optional)
-   * @param nextToken  (optional)
-   * @return PaginatedResponseRequestLogObject
-   * @throws ApiException if fails to make API call
-   */
-  public PaginatedResponseRequestLogObject listRequestInvocationLogs(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String statusClass, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken) throws ApiException {
-    return listRequestInvocationLogs(projectId, serviceId, minTime, maxTime, statusCode, statusClass, requestPath, requestMethod, requestPathId, userId, nextToken, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param serviceId  (required)
-   * @param minTime  (optional)
-   * @param maxTime  (optional)
-   * @param statusCode  (optional)
-   * @param statusClass  (optional)
-   * @param requestPath  (optional)
-   * @param requestMethod  (optional)
-   * @param requestPathId  (optional)
-   * @param userId  (optional)
-   * @param nextToken  (optional)
-   * @param headers Optional headers to include in the request
-   * @return PaginatedResponseRequestLogObject
-   * @throws ApiException if fails to make API call
-   */
-  public PaginatedResponseRequestLogObject listRequestInvocationLogs(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String statusClass, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaginatedResponseRequestLogObject> localVarResponse = listRequestInvocationLogsWithHttpInfo(projectId, serviceId, minTime, maxTime, statusCode, statusClass, requestPath, requestMethod, requestPathId, userId, nextToken, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param serviceId  (required)
-   * @param minTime  (optional)
-   * @param maxTime  (optional)
-   * @param statusCode  (optional)
-   * @param statusClass  (optional)
-   * @param requestPath  (optional)
-   * @param requestMethod  (optional)
-   * @param requestPathId  (optional)
-   * @param userId  (optional)
-   * @param nextToken  (optional)
-   * @return ApiResponse&lt;PaginatedResponseRequestLogObject&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<PaginatedResponseRequestLogObject> listRequestInvocationLogsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String statusClass, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken) throws ApiException {
-    return listRequestInvocationLogsWithHttpInfo(projectId, serviceId, minTime, maxTime, statusCode, statusClass, requestPath, requestMethod, requestPathId, userId, nextToken, null);
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param serviceId  (required)
-   * @param minTime  (optional)
-   * @param maxTime  (optional)
-   * @param statusCode  (optional)
-   * @param statusClass  (optional)
-   * @param requestPath  (optional)
-   * @param requestMethod  (optional)
-   * @param requestPathId  (optional)
-   * @param userId  (optional)
-   * @param nextToken  (optional)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;PaginatedResponseRequestLogObject&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<PaginatedResponseRequestLogObject> listRequestInvocationLogsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String statusClass, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listRequestInvocationLogsRequestBuilder(projectId, serviceId, minTime, maxTime, statusCode, statusClass, requestPath, requestMethod, requestPathId, userId, nextToken, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("listRequestInvocationLogs", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<PaginatedResponseRequestLogObject>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        PaginatedResponseRequestLogObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseRequestLogObject>() {});
-        
-
-        return new ApiResponse<PaginatedResponseRequestLogObject>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder listRequestInvocationLogsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String statusClass, @javax.annotation.Nullable String requestPath, @javax.annotation.Nullable String requestMethod, @javax.annotation.Nullable String requestPathId, @javax.annotation.Nullable String userId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'projectId' is set
-    if (projectId == null) {
-      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listRequestInvocationLogs");
-    }
-    // verify the required parameter 'serviceId' is set
-    if (serviceId == null) {
-      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling listRequestInvocationLogs");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/requests"
-        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
-        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "minTime";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
-    localVarQueryParameterBaseName = "maxTime";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
-    localVarQueryParameterBaseName = "statusCode";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("statusCode", statusCode));
-    localVarQueryParameterBaseName = "statusClass";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("statusClass", statusClass));
-    localVarQueryParameterBaseName = "requestPath";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("requestPath", requestPath));
-    localVarQueryParameterBaseName = "requestMethod";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("requestMethod", requestMethod));
-    localVarQueryParameterBaseName = "requestPathId";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("requestPathId", requestPathId));
-    localVarQueryParameterBaseName = "userId";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("userId", userId));
-    localVarQueryParameterBaseName = "nextToken";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "*/*");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * 
-   * 
-   * @param projectId  (required)
-   * @param serviceId  (required)
    * @return ListCustomDomainsResponse
    * @throws ApiException if fails to make API call
    */
@@ -14030,6 +13837,147 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param requestLogSearchRequest  (required)
+   * @return PaginatedResponseRequestLogObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseRequestLogObject searchRequestInvocationLogs(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull RequestLogSearchRequest requestLogSearchRequest) throws ApiException {
+    return searchRequestInvocationLogs(projectId, serviceId, requestLogSearchRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param requestLogSearchRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponseRequestLogObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseRequestLogObject searchRequestInvocationLogs(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull RequestLogSearchRequest requestLogSearchRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseRequestLogObject> localVarResponse = searchRequestInvocationLogsWithHttpInfo(projectId, serviceId, requestLogSearchRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param requestLogSearchRequest  (required)
+   * @return ApiResponse&lt;PaginatedResponseRequestLogObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseRequestLogObject> searchRequestInvocationLogsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull RequestLogSearchRequest requestLogSearchRequest) throws ApiException {
+    return searchRequestInvocationLogsWithHttpInfo(projectId, serviceId, requestLogSearchRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param requestLogSearchRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponseRequestLogObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseRequestLogObject> searchRequestInvocationLogsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull RequestLogSearchRequest requestLogSearchRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchRequestInvocationLogsRequestBuilder(projectId, serviceId, requestLogSearchRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchRequestInvocationLogs", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponseRequestLogObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponseRequestLogObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseRequestLogObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponseRequestLogObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchRequestInvocationLogsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull RequestLogSearchRequest requestLogSearchRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling searchRequestInvocationLogs");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling searchRequestInvocationLogs");
+    }
+    // verify the required parameter 'requestLogSearchRequest' is set
+    if (requestLogSearchRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'requestLogSearchRequest' when calling searchRequestInvocationLogs");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/requests/search"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(requestLogSearchRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.290"
+__version__ = "1.0.292"
 
 # Define package exports
 __all__ = [
@@ -93,6 +93,7 @@ __all__ = [
     "HealthCheckDetectionOutput",
     "HealthCheckDetectionResponse",
     "ImpersonationTokenResponse",
+    "InstanceCountSeries",
     "LatencyMetrics",
     "LatencyPercentileSeries",
     "LatencyStats",
@@ -139,8 +140,13 @@ __all__ = [
     "RenameMfaMethodRequest",
     "RenewSessionTokenResponse",
     "RepositoryAnalysis",
+    "RequestLogFilter",
     "RequestLogObject",
     "RequestLogObjectMeta",
+    "RequestLogPathFilter",
+    "RequestLogSearchRequest",
+    "RequestLogSort",
+    "RequestLogStatusFilter",
     "RequestPasswordResetRequest",
     "RequiredUploadHeaders",
     "RouteMetric",
@@ -155,6 +161,7 @@ __all__ = [
     "SpenderAggregate",
     "StateCurrencyTotals",
     "StateHistory",
+    "StatusRange",
     "SubscriptionObject",
     "SyncCustomDomainResponse",
     "TestInvocationRequest",
@@ -178,6 +185,8 @@ __all__ = [
     "UserActionLogObject",
     "UserMetricsResponse",
     "UserObject",
+    "UtilizationDataPoint",
+    "UtilizationSeries",
     "WebAppBuildRequestObject",
     "WebAppDetectionError",
     "WebAppDetectionResponse",
@@ -265,6 +274,7 @@ from forte_sdk.generated.models.health_check_detection_error import HealthCheckD
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput as HealthCheckDetectionOutput
 from forte_sdk.generated.models.health_check_detection_response import HealthCheckDetectionResponse as HealthCheckDetectionResponse
 from forte_sdk.generated.models.impersonation_token_response import ImpersonationTokenResponse as ImpersonationTokenResponse
+from forte_sdk.generated.models.instance_count_series import InstanceCountSeries as InstanceCountSeries
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics as LatencyMetrics
 from forte_sdk.generated.models.latency_percentile_series import LatencyPercentileSeries as LatencyPercentileSeries
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats
@@ -311,8 +321,13 @@ from forte_sdk.generated.models.register_user_response import RegisterUserRespon
 from forte_sdk.generated.models.rename_mfa_method_request import RenameMfaMethodRequest as RenameMfaMethodRequest
 from forte_sdk.generated.models.renew_session_token_response import RenewSessionTokenResponse as RenewSessionTokenResponse
 from forte_sdk.generated.models.repository_analysis import RepositoryAnalysis as RepositoryAnalysis
+from forte_sdk.generated.models.request_log_filter import RequestLogFilter as RequestLogFilter
 from forte_sdk.generated.models.request_log_object import RequestLogObject as RequestLogObject
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta as RequestLogObjectMeta
+from forte_sdk.generated.models.request_log_path_filter import RequestLogPathFilter as RequestLogPathFilter
+from forte_sdk.generated.models.request_log_search_request import RequestLogSearchRequest as RequestLogSearchRequest
+from forte_sdk.generated.models.request_log_sort import RequestLogSort as RequestLogSort
+from forte_sdk.generated.models.request_log_status_filter import RequestLogStatusFilter as RequestLogStatusFilter
 from forte_sdk.generated.models.request_password_reset_request import RequestPasswordResetRequest as RequestPasswordResetRequest
 from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders as RequiredUploadHeaders
 from forte_sdk.generated.models.route_metric import RouteMetric as RouteMetric
@@ -327,6 +342,7 @@ from forte_sdk.generated.models.session_summary import SessionSummary as Session
 from forte_sdk.generated.models.spender_aggregate import SpenderAggregate as SpenderAggregate
 from forte_sdk.generated.models.state_currency_totals import StateCurrencyTotals as StateCurrencyTotals
 from forte_sdk.generated.models.state_history import StateHistory as StateHistory
+from forte_sdk.generated.models.status_range import StatusRange as StatusRange
 from forte_sdk.generated.models.subscription_object import SubscriptionObject as SubscriptionObject
 from forte_sdk.generated.models.sync_custom_domain_response import SyncCustomDomainResponse as SyncCustomDomainResponse
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
@@ -350,6 +366,8 @@ from forte_sdk.generated.models.update_web_app_response import UpdateWebAppRespo
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject as UserActionLogObject
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse as UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject as UserObject
+from forte_sdk.generated.models.utilization_data_point import UtilizationDataPoint as UtilizationDataPoint
+from forte_sdk.generated.models.utilization_series import UtilizationSeries as UtilizationSeries
 from forte_sdk.generated.models.web_app_build_request_object import WebAppBuildRequestObject as WebAppBuildRequestObject
 from forte_sdk.generated.models.web_app_detection_error import WebAppDetectionError as WebAppDetectionError
 from forte_sdk.generated.models.web_app_detection_response import WebAppDetectionResponse as WebAppDetectionResponse

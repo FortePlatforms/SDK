@@ -24,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.InstanceCountSeries;
 import com.forteplatforms.sdk.generated.model.LatencyMetrics;
 import com.forteplatforms.sdk.generated.model.LatencyPercentileSeries;
 import com.forteplatforms.sdk.generated.model.TimeSeriesDataPoint;
+import com.forteplatforms.sdk.generated.model.UtilizationSeries;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -44,7 +46,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceMetricsResponse.JSON_PROPERTY_STATUS_CODE_COUNTS,
   ServiceMetricsResponse.JSON_PROPERTY_STATUS_CODE_GROUP_COUNTS,
   ServiceMetricsResponse.JSON_PROPERTY_LATENCY_METRICS,
-  ServiceMetricsResponse.JSON_PROPERTY_TOTAL_LATENCY_SERIES
+  ServiceMetricsResponse.JSON_PROPERTY_TOTAL_LATENCY_SERIES,
+  ServiceMetricsResponse.JSON_PROPERTY_CONCURRENT_INSTANCES,
+  ServiceMetricsResponse.JSON_PROPERTY_CPU_UTILIZATION,
+  ServiceMetricsResponse.JSON_PROPERTY_MEMORY_UTILIZATION
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ServiceMetricsResponse {
@@ -67,6 +72,18 @@ public class ServiceMetricsResponse {
   public static final String JSON_PROPERTY_TOTAL_LATENCY_SERIES = "totalLatencySeries";
   @javax.annotation.Nonnull
   private LatencyPercentileSeries totalLatencySeries;
+
+  public static final String JSON_PROPERTY_CONCURRENT_INSTANCES = "concurrentInstances";
+  @javax.annotation.Nonnull
+  private InstanceCountSeries concurrentInstances;
+
+  public static final String JSON_PROPERTY_CPU_UTILIZATION = "cpuUtilization";
+  @javax.annotation.Nonnull
+  private UtilizationSeries cpuUtilization;
+
+  public static final String JSON_PROPERTY_MEMORY_UTILIZATION = "memoryUtilization";
+  @javax.annotation.Nonnull
+  private UtilizationSeries memoryUtilization;
 
   public ServiceMetricsResponse() { 
   }
@@ -215,6 +232,78 @@ public class ServiceMetricsResponse {
   }
 
 
+  public ServiceMetricsResponse concurrentInstances(@javax.annotation.Nonnull InstanceCountSeries concurrentInstances) {
+    this.concurrentInstances = concurrentInstances;
+    return this;
+  }
+
+  /**
+   * Get concurrentInstances
+   * @return concurrentInstances
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CONCURRENT_INSTANCES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public InstanceCountSeries getConcurrentInstances() {
+    return concurrentInstances;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONCURRENT_INSTANCES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setConcurrentInstances(@javax.annotation.Nonnull InstanceCountSeries concurrentInstances) {
+    this.concurrentInstances = concurrentInstances;
+  }
+
+
+  public ServiceMetricsResponse cpuUtilization(@javax.annotation.Nonnull UtilizationSeries cpuUtilization) {
+    this.cpuUtilization = cpuUtilization;
+    return this;
+  }
+
+  /**
+   * Get cpuUtilization
+   * @return cpuUtilization
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CPU_UTILIZATION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public UtilizationSeries getCpuUtilization() {
+    return cpuUtilization;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CPU_UTILIZATION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCpuUtilization(@javax.annotation.Nonnull UtilizationSeries cpuUtilization) {
+    this.cpuUtilization = cpuUtilization;
+  }
+
+
+  public ServiceMetricsResponse memoryUtilization(@javax.annotation.Nonnull UtilizationSeries memoryUtilization) {
+    this.memoryUtilization = memoryUtilization;
+    return this;
+  }
+
+  /**
+   * Get memoryUtilization
+   * @return memoryUtilization
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_UTILIZATION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public UtilizationSeries getMemoryUtilization() {
+    return memoryUtilization;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_UTILIZATION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setMemoryUtilization(@javax.annotation.Nonnull UtilizationSeries memoryUtilization) {
+    this.memoryUtilization = memoryUtilization;
+  }
+
+
   /**
    * Return true if this ServiceMetricsResponse object is equal to o.
    */
@@ -231,12 +320,15 @@ public class ServiceMetricsResponse {
         Objects.equals(this.statusCodeCounts, serviceMetricsResponse.statusCodeCounts) &&
         Objects.equals(this.statusCodeGroupCounts, serviceMetricsResponse.statusCodeGroupCounts) &&
         Objects.equals(this.latencyMetrics, serviceMetricsResponse.latencyMetrics) &&
-        Objects.equals(this.totalLatencySeries, serviceMetricsResponse.totalLatencySeries);
+        Objects.equals(this.totalLatencySeries, serviceMetricsResponse.totalLatencySeries) &&
+        Objects.equals(this.concurrentInstances, serviceMetricsResponse.concurrentInstances) &&
+        Objects.equals(this.cpuUtilization, serviceMetricsResponse.cpuUtilization) &&
+        Objects.equals(this.memoryUtilization, serviceMetricsResponse.memoryUtilization);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invocations, statusCodeCounts, statusCodeGroupCounts, latencyMetrics, totalLatencySeries);
+    return Objects.hash(invocations, statusCodeCounts, statusCodeGroupCounts, latencyMetrics, totalLatencySeries, concurrentInstances, cpuUtilization, memoryUtilization);
   }
 
   @Override
@@ -248,6 +340,9 @@ public class ServiceMetricsResponse {
     sb.append("    statusCodeGroupCounts: ").append(toIndentedString(statusCodeGroupCounts)).append("\n");
     sb.append("    latencyMetrics: ").append(toIndentedString(latencyMetrics)).append("\n");
     sb.append("    totalLatencySeries: ").append(toIndentedString(totalLatencySeries)).append("\n");
+    sb.append("    concurrentInstances: ").append(toIndentedString(concurrentInstances)).append("\n");
+    sb.append("    cpuUtilization: ").append(toIndentedString(cpuUtilization)).append("\n");
+    sb.append("    memoryUtilization: ").append(toIndentedString(memoryUtilization)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -328,6 +423,21 @@ public class ServiceMetricsResponse {
     // add `totalLatencySeries` to the URL query string
     if (getTotalLatencySeries() != null) {
       joiner.add(getTotalLatencySeries().toUrlQueryString(prefix + "totalLatencySeries" + suffix));
+    }
+
+    // add `concurrentInstances` to the URL query string
+    if (getConcurrentInstances() != null) {
+      joiner.add(getConcurrentInstances().toUrlQueryString(prefix + "concurrentInstances" + suffix));
+    }
+
+    // add `cpuUtilization` to the URL query string
+    if (getCpuUtilization() != null) {
+      joiner.add(getCpuUtilization().toUrlQueryString(prefix + "cpuUtilization" + suffix));
+    }
+
+    // add `memoryUtilization` to the URL query string
+    if (getMemoryUtilization() != null) {
+      joiner.add(getMemoryUtilization().toUrlQueryString(prefix + "memoryUtilization" + suffix));
     }
 
     return joiner.toString();

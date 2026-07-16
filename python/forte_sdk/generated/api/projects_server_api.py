@@ -70,6 +70,7 @@ from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConf
 from forte_sdk.generated.models.project_object import ProjectObject
 from forte_sdk.generated.models.put_subscription_items_request import PutSubscriptionItemsRequest
 from forte_sdk.generated.models.request_log_object import RequestLogObject
+from forte_sdk.generated.models.request_log_search_request import RequestLogSearchRequest
 from forte_sdk.generated.models.search_users_request import SearchUsersRequest
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest
 from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest
@@ -18072,449 +18073,6 @@ class ProjectsServerApi:
 
 
     @validate_call
-    def list_request_invocation_logs(
-        self,
-        project_id: StrictStr,
-        service_id: StrictStr,
-        min_time: Optional[datetime] = None,
-        max_time: Optional[datetime] = None,
-        status_code: Optional[StrictInt] = None,
-        status_class: Optional[StrictStr] = None,
-        request_path: Optional[StrictStr] = None,
-        request_method: Optional[StrictStr] = None,
-        request_path_id: Optional[StrictStr] = None,
-        user_id: Optional[StrictStr] = None,
-        next_token: Optional[StrictStr] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PaginatedResponseRequestLogObject:
-        """list_request_invocation_logs
-
-
-        :param project_id: (required)
-        :type project_id: str
-        :param service_id: (required)
-        :type service_id: str
-        :param min_time:
-        :type min_time: datetime
-        :param max_time:
-        :type max_time: datetime
-        :param status_code:
-        :type status_code: int
-        :param status_class:
-        :type status_class: str
-        :param request_path:
-        :type request_path: str
-        :param request_method:
-        :type request_method: str
-        :param request_path_id:
-        :type request_path_id: str
-        :param user_id:
-        :type user_id: str
-        :param next_token:
-        :type next_token: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._list_request_invocation_logs_serialize(
-            project_id=project_id,
-            service_id=service_id,
-            min_time=min_time,
-            max_time=max_time,
-            status_code=status_code,
-            status_class=status_class,
-            request_path=request_path,
-            request_method=request_method,
-            request_path_id=request_path_id,
-            user_id=user_id,
-            next_token=next_token,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedResponseRequestLogObject",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def list_request_invocation_logs_with_http_info(
-        self,
-        project_id: StrictStr,
-        service_id: StrictStr,
-        min_time: Optional[datetime] = None,
-        max_time: Optional[datetime] = None,
-        status_code: Optional[StrictInt] = None,
-        status_class: Optional[StrictStr] = None,
-        request_path: Optional[StrictStr] = None,
-        request_method: Optional[StrictStr] = None,
-        request_path_id: Optional[StrictStr] = None,
-        user_id: Optional[StrictStr] = None,
-        next_token: Optional[StrictStr] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PaginatedResponseRequestLogObject]:
-        """list_request_invocation_logs
-
-
-        :param project_id: (required)
-        :type project_id: str
-        :param service_id: (required)
-        :type service_id: str
-        :param min_time:
-        :type min_time: datetime
-        :param max_time:
-        :type max_time: datetime
-        :param status_code:
-        :type status_code: int
-        :param status_class:
-        :type status_class: str
-        :param request_path:
-        :type request_path: str
-        :param request_method:
-        :type request_method: str
-        :param request_path_id:
-        :type request_path_id: str
-        :param user_id:
-        :type user_id: str
-        :param next_token:
-        :type next_token: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._list_request_invocation_logs_serialize(
-            project_id=project_id,
-            service_id=service_id,
-            min_time=min_time,
-            max_time=max_time,
-            status_code=status_code,
-            status_class=status_class,
-            request_path=request_path,
-            request_method=request_method,
-            request_path_id=request_path_id,
-            user_id=user_id,
-            next_token=next_token,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedResponseRequestLogObject",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def list_request_invocation_logs_without_preload_content(
-        self,
-        project_id: StrictStr,
-        service_id: StrictStr,
-        min_time: Optional[datetime] = None,
-        max_time: Optional[datetime] = None,
-        status_code: Optional[StrictInt] = None,
-        status_class: Optional[StrictStr] = None,
-        request_path: Optional[StrictStr] = None,
-        request_method: Optional[StrictStr] = None,
-        request_path_id: Optional[StrictStr] = None,
-        user_id: Optional[StrictStr] = None,
-        next_token: Optional[StrictStr] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """list_request_invocation_logs
-
-
-        :param project_id: (required)
-        :type project_id: str
-        :param service_id: (required)
-        :type service_id: str
-        :param min_time:
-        :type min_time: datetime
-        :param max_time:
-        :type max_time: datetime
-        :param status_code:
-        :type status_code: int
-        :param status_class:
-        :type status_class: str
-        :param request_path:
-        :type request_path: str
-        :param request_method:
-        :type request_method: str
-        :param request_path_id:
-        :type request_path_id: str
-        :param user_id:
-        :type user_id: str
-        :param next_token:
-        :type next_token: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._list_request_invocation_logs_serialize(
-            project_id=project_id,
-            service_id=service_id,
-            min_time=min_time,
-            max_time=max_time,
-            status_code=status_code,
-            status_class=status_class,
-            request_path=request_path,
-            request_method=request_method,
-            request_path_id=request_path_id,
-            user_id=user_id,
-            next_token=next_token,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedResponseRequestLogObject",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _list_request_invocation_logs_serialize(
-        self,
-        project_id,
-        service_id,
-        min_time,
-        max_time,
-        status_code,
-        status_class,
-        request_path,
-        request_method,
-        request_path_id,
-        user_id,
-        next_token,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if project_id is not None:
-            _path_params['projectId'] = project_id
-        if service_id is not None:
-            _path_params['serviceId'] = service_id
-        # process the query parameters
-        if min_time is not None:
-            if isinstance(min_time, datetime):
-                _query_params.append(
-                    (
-                        'minTime',
-                        min_time.strftime(
-                            self.api_client.configuration.datetime_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('minTime', min_time))
-            
-        if max_time is not None:
-            if isinstance(max_time, datetime):
-                _query_params.append(
-                    (
-                        'maxTime',
-                        max_time.strftime(
-                            self.api_client.configuration.datetime_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('maxTime', max_time))
-            
-        if status_code is not None:
-            
-            _query_params.append(('statusCode', status_code))
-            
-        if status_class is not None:
-            
-            _query_params.append(('statusClass', status_class))
-            
-        if request_path is not None:
-            
-            _query_params.append(('requestPath', request_path))
-            
-        if request_method is not None:
-            
-            _query_params.append(('requestMethod', request_method))
-            
-        if request_path_id is not None:
-            
-            _query_params.append(('requestPathId', request_path_id))
-            
-        if user_id is not None:
-            
-            _query_params.append(('userId', user_id))
-            
-        if next_token is not None:
-            
-            _query_params.append(('nextToken', next_token))
-            
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    '*/*'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-        ]
-
-        return self.api_client.param_serialize(
-            method='GET',
-            resource_path='/api/v1/projects/{projectId}/services/{serviceId}/requests',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     def list_service_custom_domains(
         self,
         project_id: StrictStr,
@@ -29898,6 +29456,306 @@ class ProjectsServerApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/api/v1/projects/{projectId}/services/{serviceId}/log-search',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def search_request_invocation_logs(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        request_log_search_request: RequestLogSearchRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PaginatedResponseRequestLogObject:
+        """search_request_invocation_logs
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param request_log_search_request: (required)
+        :type request_log_search_request: RequestLogSearchRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._search_request_invocation_logs_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            request_log_search_request=request_log_search_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedResponseRequestLogObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def search_request_invocation_logs_with_http_info(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        request_log_search_request: RequestLogSearchRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PaginatedResponseRequestLogObject]:
+        """search_request_invocation_logs
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param request_log_search_request: (required)
+        :type request_log_search_request: RequestLogSearchRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._search_request_invocation_logs_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            request_log_search_request=request_log_search_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedResponseRequestLogObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def search_request_invocation_logs_without_preload_content(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        request_log_search_request: RequestLogSearchRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """search_request_invocation_logs
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param request_log_search_request: (required)
+        :type request_log_search_request: RequestLogSearchRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._search_request_invocation_logs_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            request_log_search_request=request_log_search_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedResponseRequestLogObject",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _search_request_invocation_logs_serialize(
+        self,
+        project_id,
+        service_id,
+        request_log_search_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if service_id is not None:
+            _path_params['serviceId'] = service_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if request_log_search_request is not None:
+            _body_params = request_log_search_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/v1/projects/{projectId}/services/{serviceId}/requests/search',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

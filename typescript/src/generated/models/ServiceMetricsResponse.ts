@@ -20,6 +20,20 @@ import {
     TimeSeriesDataPointToJSON,
     TimeSeriesDataPointToJSONTyped,
 } from './TimeSeriesDataPoint';
+import type { InstanceCountSeries } from './InstanceCountSeries';
+import {
+    InstanceCountSeriesFromJSON,
+    InstanceCountSeriesFromJSONTyped,
+    InstanceCountSeriesToJSON,
+    InstanceCountSeriesToJSONTyped,
+} from './InstanceCountSeries';
+import type { UtilizationSeries } from './UtilizationSeries';
+import {
+    UtilizationSeriesFromJSON,
+    UtilizationSeriesFromJSONTyped,
+    UtilizationSeriesToJSON,
+    UtilizationSeriesToJSONTyped,
+} from './UtilizationSeries';
 import type { LatencyMetrics } from './LatencyMetrics';
 import {
     LatencyMetricsFromJSON,
@@ -71,6 +85,24 @@ export interface ServiceMetricsResponse {
      * @memberof ServiceMetricsResponse
      */
     totalLatencySeries: LatencyPercentileSeries;
+    /**
+     * 
+     * @type {InstanceCountSeries}
+     * @memberof ServiceMetricsResponse
+     */
+    concurrentInstances: InstanceCountSeries;
+    /**
+     * 
+     * @type {UtilizationSeries}
+     * @memberof ServiceMetricsResponse
+     */
+    cpuUtilization: UtilizationSeries;
+    /**
+     * 
+     * @type {UtilizationSeries}
+     * @memberof ServiceMetricsResponse
+     */
+    memoryUtilization: UtilizationSeries;
 }
 
 /**
@@ -82,6 +114,9 @@ export function instanceOfServiceMetricsResponse(value: object): value is Servic
     if (!('statusCodeGroupCounts' in value) || value['statusCodeGroupCounts'] === undefined) return false;
     if (!('latencyMetrics' in value) || value['latencyMetrics'] === undefined) return false;
     if (!('totalLatencySeries' in value) || value['totalLatencySeries'] === undefined) return false;
+    if (!('concurrentInstances' in value) || value['concurrentInstances'] === undefined) return false;
+    if (!('cpuUtilization' in value) || value['cpuUtilization'] === undefined) return false;
+    if (!('memoryUtilization' in value) || value['memoryUtilization'] === undefined) return false;
     return true;
 }
 
@@ -100,6 +135,9 @@ export function ServiceMetricsResponseFromJSONTyped(json: any, ignoreDiscriminat
         'statusCodeGroupCounts': json['statusCodeGroupCounts'],
         'latencyMetrics': LatencyMetricsFromJSON(json['latencyMetrics']),
         'totalLatencySeries': LatencyPercentileSeriesFromJSON(json['totalLatencySeries']),
+        'concurrentInstances': InstanceCountSeriesFromJSON(json['concurrentInstances']),
+        'cpuUtilization': UtilizationSeriesFromJSON(json['cpuUtilization']),
+        'memoryUtilization': UtilizationSeriesFromJSON(json['memoryUtilization']),
     };
 }
 
@@ -119,6 +157,9 @@ export function ServiceMetricsResponseToJSONTyped(value?: ServiceMetricsResponse
         'statusCodeGroupCounts': value['statusCodeGroupCounts'],
         'latencyMetrics': LatencyMetricsToJSON(value['latencyMetrics']),
         'totalLatencySeries': LatencyPercentileSeriesToJSON(value['totalLatencySeries']),
+        'concurrentInstances': InstanceCountSeriesToJSON(value['concurrentInstances']),
+        'cpuUtilization': UtilizationSeriesToJSON(value['cpuUtilization']),
+        'memoryUtilization': UtilizationSeriesToJSON(value['memoryUtilization']),
     };
 }
 
