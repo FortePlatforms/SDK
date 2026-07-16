@@ -51,6 +51,12 @@ export interface DnsRecordCheck {
      * @memberof DnsRecordCheck
      */
     errorDetail?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DnsRecordCheck
+     */
+    recommendedValue?: string;
 }
 
 
@@ -88,6 +94,7 @@ export function DnsRecordCheckFromJSONTyped(json: any, ignoreDiscriminator: bool
         'status': json['status'] == null ? undefined : json['status'],
         'observedValues': json['observedValues'] == null ? undefined : json['observedValues'],
         'errorDetail': json['errorDetail'] == null ? undefined : json['errorDetail'],
+        'recommendedValue': json['recommendedValue'] == null ? undefined : json['recommendedValue'],
     };
 }
 
@@ -106,6 +113,7 @@ export function DnsRecordCheckToJSONTyped(value?: DnsRecordCheck | null, ignoreD
         'status': value['status'],
         'observedValues': value['observedValues'],
         'errorDetail': value['errorDetail'],
+        'recommendedValue': value['recommendedValue'],
     };
 }
 

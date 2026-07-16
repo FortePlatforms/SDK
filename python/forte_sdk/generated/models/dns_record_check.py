@@ -32,7 +32,8 @@ class DnsRecordCheck(BaseModel):
     status: Optional[StrictStr] = None
     observed_values: Optional[List[StrictStr]] = Field(default=None, alias="observedValues")
     error_detail: Optional[StrictStr] = Field(default=None, alias="errorDetail")
-    __properties: ClassVar[List[str]] = ["requirement", "status", "observedValues", "errorDetail"]
+    recommended_value: Optional[StrictStr] = Field(default=None, alias="recommendedValue")
+    __properties: ClassVar[List[str]] = ["requirement", "status", "observedValues", "errorDetail", "recommendedValue"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -101,7 +102,8 @@ class DnsRecordCheck(BaseModel):
             "requirement": DnsRecordRequirement.from_dict(obj["requirement"]) if obj.get("requirement") is not None else None,
             "status": obj.get("status"),
             "observedValues": obj.get("observedValues"),
-            "errorDetail": obj.get("errorDetail")
+            "errorDetail": obj.get("errorDetail"),
+            "recommendedValue": obj.get("recommendedValue")
         })
         return _obj
 

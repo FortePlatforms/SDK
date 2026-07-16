@@ -39,7 +39,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   DnsRecordCheck.JSON_PROPERTY_REQUIREMENT,
   DnsRecordCheck.JSON_PROPERTY_STATUS,
   DnsRecordCheck.JSON_PROPERTY_OBSERVED_VALUES,
-  DnsRecordCheck.JSON_PROPERTY_ERROR_DETAIL
+  DnsRecordCheck.JSON_PROPERTY_ERROR_DETAIL,
+  DnsRecordCheck.JSON_PROPERTY_RECOMMENDED_VALUE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class DnsRecordCheck {
@@ -99,6 +100,10 @@ public class DnsRecordCheck {
   public static final String JSON_PROPERTY_ERROR_DETAIL = "errorDetail";
   @javax.annotation.Nullable
   private String errorDetail;
+
+  public static final String JSON_PROPERTY_RECOMMENDED_VALUE = "recommendedValue";
+  @javax.annotation.Nullable
+  private String recommendedValue;
 
   public DnsRecordCheck() { 
   }
@@ -207,6 +212,30 @@ public class DnsRecordCheck {
   }
 
 
+  public DnsRecordCheck recommendedValue(@javax.annotation.Nullable String recommendedValue) {
+    this.recommendedValue = recommendedValue;
+    return this;
+  }
+
+  /**
+   * Get recommendedValue
+   * @return recommendedValue
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RECOMMENDED_VALUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRecommendedValue() {
+    return recommendedValue;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RECOMMENDED_VALUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRecommendedValue(@javax.annotation.Nullable String recommendedValue) {
+    this.recommendedValue = recommendedValue;
+  }
+
+
   /**
    * Return true if this DnsRecordCheck object is equal to o.
    */
@@ -222,12 +251,13 @@ public class DnsRecordCheck {
     return Objects.equals(this.requirement, dnsRecordCheck.requirement) &&
         Objects.equals(this.status, dnsRecordCheck.status) &&
         Objects.equals(this.observedValues, dnsRecordCheck.observedValues) &&
-        Objects.equals(this.errorDetail, dnsRecordCheck.errorDetail);
+        Objects.equals(this.errorDetail, dnsRecordCheck.errorDetail) &&
+        Objects.equals(this.recommendedValue, dnsRecordCheck.recommendedValue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requirement, status, observedValues, errorDetail);
+    return Objects.hash(requirement, status, observedValues, errorDetail, recommendedValue);
   }
 
   @Override
@@ -238,6 +268,7 @@ public class DnsRecordCheck {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    observedValues: ").append(toIndentedString(observedValues)).append("\n");
     sb.append("    errorDetail: ").append(toIndentedString(errorDetail)).append("\n");
+    sb.append("    recommendedValue: ").append(toIndentedString(recommendedValue)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -304,6 +335,11 @@ public class DnsRecordCheck {
     // add `errorDetail` to the URL query string
     if (getErrorDetail() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serrorDetail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getErrorDetail()))));
+    }
+
+    // add `recommendedValue` to the URL query string
+    if (getRecommendedValue() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srecommendedValue%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRecommendedValue()))));
     }
 
     return joiner.toString();
