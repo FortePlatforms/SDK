@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.managed_database_connection import ManagedDatabaseConnection
 from typing import Optional, Set
@@ -33,8 +33,8 @@ class ManagedDatabaseObject(BaseModel):
     managed_database_name: StrictStr = Field(alias="managedDatabaseName")
     type: StrictStr
     tier: StrictStr
-    cpu: StrictStr
-    memory_gb: StrictInt = Field(alias="memoryGb")
+    cpu: Optional[StrictStr] = None
+    memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
     storage_gb: StrictInt = Field(alias="storageGb")
     status: StrictStr
     connections: List[ManagedDatabaseConnection]
@@ -43,7 +43,12 @@ class ManagedDatabaseObject(BaseModel):
     host: Optional[StrictStr] = None
     port: Optional[StrictInt] = None
     database_name: Optional[StrictStr] = Field(default=None, alias="databaseName")
-    __properties: ClassVar[List[str]] = ["managedDatabaseId", "managedDatabaseName", "type", "tier", "cpu", "memoryGb", "storageGb", "status", "connections", "createdTimestamp", "lastModifiedTimestamp", "host", "port", "databaseName"]
+    read_only: Optional[StrictBool] = Field(default=None, alias="readOnly")
+    cleanup_unlock_expires_at: Optional[datetime] = Field(default=None, alias="cleanupUnlockExpiresAt")
+    usage_bytes: Optional[StrictInt] = Field(default=None, alias="usageBytes")
+    physical_usage_bytes: Optional[StrictInt] = Field(default=None, alias="physicalUsageBytes")
+    usage_updated_at: Optional[datetime] = Field(default=None, alias="usageUpdatedAt")
+    __properties: ClassVar[List[str]] = ["managedDatabaseId", "managedDatabaseName", "type", "tier", "cpu", "memoryGb", "storageGb", "status", "connections", "createdTimestamp", "lastModifiedTimestamp", "host", "port", "databaseName", "readOnly", "cleanupUnlockExpiresAt", "usageBytes", "physicalUsageBytes", "usageUpdatedAt"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -62,8 +67,8 @@ class ManagedDatabaseObject(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['CREATING', 'ACTIVE', 'UPDATING', 'DELETING', 'FAILED']):
-            raise ValueError("must be one of enum values ('CREATING', 'ACTIVE', 'UPDATING', 'DELETING', 'FAILED')")
+        if value not in set(['CREATING', 'ACTIVE', 'UPDATING', 'READ_ONLY', 'SUSPENDED', 'DELETING', 'FAILED']):
+            raise ValueError("must be one of enum values ('CREATING', 'ACTIVE', 'UPDATING', 'READ_ONLY', 'SUSPENDED', 'DELETING', 'FAILED')")
         return value
 
     model_config = ConfigDict(
@@ -137,7 +142,12 @@ class ManagedDatabaseObject(BaseModel):
             "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
             "host": obj.get("host"),
             "port": obj.get("port"),
-            "databaseName": obj.get("databaseName")
+            "databaseName": obj.get("databaseName"),
+            "readOnly": obj.get("readOnly"),
+            "cleanupUnlockExpiresAt": obj.get("cleanupUnlockExpiresAt"),
+            "usageBytes": obj.get("usageBytes"),
+            "physicalUsageBytes": obj.get("physicalUsageBytes"),
+            "usageUpdatedAt": obj.get("usageUpdatedAt")
         })
         return _obj
 

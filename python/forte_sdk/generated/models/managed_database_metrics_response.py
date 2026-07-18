@@ -17,35 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
+from forte_sdk.generated.models.managed_database_metric_point import ManagedDatabaseMetricPoint
+from forte_sdk.generated.models.managed_database_usage import ManagedDatabaseUsage
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class UpdateManagedDatabaseRequest(BaseModel):
+class ManagedDatabaseMetricsResponse(BaseModel):
     """
-    UpdateManagedDatabaseRequest
+    ManagedDatabaseMetricsResponse
     """ # noqa: E501
-    name: Optional[Annotated[str, Field(strict=True)]] = None
-    cpu: Optional[StrictStr] = None
-    memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
-    storage_gb: Optional[Annotated[int, Field(le=250, strict=True, ge=10)]] = Field(default=None, alias="storageGb")
-    __properties: ClassVar[List[str]] = ["name", "cpu", "memoryGb", "storageGb"]
-
-    @field_validator('name')
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^[a-zA-Z0-9-_]{3,30}$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_]{3,30}$/")
-        return value
+    points: List[ManagedDatabaseMetricPoint]
+    usage: ManagedDatabaseUsage
+    __properties: ClassVar[List[str]] = ["points", "usage"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -65,7 +51,7 @@ class UpdateManagedDatabaseRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateManagedDatabaseRequest from a JSON string"""
+        """Create an instance of ManagedDatabaseMetricsResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -86,11 +72,21 @@ class UpdateManagedDatabaseRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in points (list)
+        _items = []
+        if self.points:
+            for _item_points in self.points:
+                if _item_points:
+                    _items.append(_item_points.to_dict())
+            _dict['points'] = _items
+        # override the default output from pydantic by calling `to_dict()` of usage
+        if self.usage:
+            _dict['usage'] = self.usage.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateManagedDatabaseRequest from a dict"""
+        """Create an instance of ManagedDatabaseMetricsResponse from a dict"""
         if obj is None:
             return None
 
@@ -98,10 +94,8 @@ class UpdateManagedDatabaseRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "cpu": obj.get("cpu"),
-            "memoryGb": obj.get("memoryGb"),
-            "storageGb": obj.get("storageGb")
+            "points": [ManagedDatabaseMetricPoint.from_dict(_item) for _item in obj["points"]] if obj.get("points") is not None else None,
+            "usage": ManagedDatabaseUsage.from_dict(obj["usage"]) if obj.get("usage") is not None else None
         })
         return _obj
 

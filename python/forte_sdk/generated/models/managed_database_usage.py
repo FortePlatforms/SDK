@@ -17,35 +17,23 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class UpdateManagedDatabaseRequest(BaseModel):
+class ManagedDatabaseUsage(BaseModel):
     """
-    UpdateManagedDatabaseRequest
+    ManagedDatabaseUsage
     """ # noqa: E501
-    name: Optional[Annotated[str, Field(strict=True)]] = None
-    cpu: Optional[StrictStr] = None
-    memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
-    storage_gb: Optional[Annotated[int, Field(le=250, strict=True, ge=10)]] = Field(default=None, alias="storageGb")
-    __properties: ClassVar[List[str]] = ["name", "cpu", "memoryGb", "storageGb"]
-
-    @field_validator('name')
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^[a-zA-Z0-9-_]{3,30}$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_]{3,30}$/")
-        return value
+    usage_bytes: Optional[StrictInt] = Field(default=None, alias="usageBytes")
+    physical_usage_bytes: Optional[StrictInt] = Field(default=None, alias="physicalUsageBytes")
+    storage_gb: StrictInt = Field(alias="storageGb")
+    usage_updated_at: Optional[datetime] = Field(default=None, alias="usageUpdatedAt")
+    read_only: StrictBool = Field(alias="readOnly")
+    __properties: ClassVar[List[str]] = ["usageBytes", "physicalUsageBytes", "storageGb", "usageUpdatedAt", "readOnly"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -65,7 +53,7 @@ class UpdateManagedDatabaseRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateManagedDatabaseRequest from a JSON string"""
+        """Create an instance of ManagedDatabaseUsage from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,7 +78,7 @@ class UpdateManagedDatabaseRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateManagedDatabaseRequest from a dict"""
+        """Create an instance of ManagedDatabaseUsage from a dict"""
         if obj is None:
             return None
 
@@ -98,10 +86,11 @@ class UpdateManagedDatabaseRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "cpu": obj.get("cpu"),
-            "memoryGb": obj.get("memoryGb"),
-            "storageGb": obj.get("storageGb")
+            "usageBytes": obj.get("usageBytes"),
+            "physicalUsageBytes": obj.get("physicalUsageBytes"),
+            "storageGb": obj.get("storageGb"),
+            "usageUpdatedAt": obj.get("usageUpdatedAt"),
+            "readOnly": obj.get("readOnly")
         })
         return _obj
 

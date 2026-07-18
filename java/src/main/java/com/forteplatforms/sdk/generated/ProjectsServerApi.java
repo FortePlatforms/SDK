@@ -57,10 +57,12 @@ import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.ImpersonationTokenResponse;
 import com.forteplatforms.sdk.generated.model.ListContentResponse;
 import com.forteplatforms.sdk.generated.model.ListCustomDomainsResponse;
+import com.forteplatforms.sdk.generated.model.ListManagedDatabaseSlowQueriesResponse;
 import com.forteplatforms.sdk.generated.model.ListManagedDatabaseUsersResponse;
 import com.forteplatforms.sdk.generated.model.ListManagedDatabasesResponse;
 import com.forteplatforms.sdk.generated.model.ListSessionsResponse;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseConnection;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseMetricsResponse;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseObject;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesResponse;
 import java.time.OffsetDateTime;
@@ -6167,6 +6169,152 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param rangeHours  (optional, default to 24)
+   * @return ManagedDatabaseMetricsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ManagedDatabaseMetricsResponse getManagedDatabaseMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours) throws ApiException {
+    return getManagedDatabaseMetrics(projectId, databaseId, rangeHours, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param rangeHours  (optional, default to 24)
+   * @param headers Optional headers to include in the request
+   * @return ManagedDatabaseMetricsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ManagedDatabaseMetricsResponse getManagedDatabaseMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, Map<String, String> headers) throws ApiException {
+    ApiResponse<ManagedDatabaseMetricsResponse> localVarResponse = getManagedDatabaseMetricsWithHttpInfo(projectId, databaseId, rangeHours, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param rangeHours  (optional, default to 24)
+   * @return ApiResponse&lt;ManagedDatabaseMetricsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ManagedDatabaseMetricsResponse> getManagedDatabaseMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours) throws ApiException {
+    return getManagedDatabaseMetricsWithHttpInfo(projectId, databaseId, rangeHours, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param rangeHours  (optional, default to 24)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ManagedDatabaseMetricsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ManagedDatabaseMetricsResponse> getManagedDatabaseMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getManagedDatabaseMetricsRequestBuilder(projectId, databaseId, rangeHours, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getManagedDatabaseMetrics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ManagedDatabaseMetricsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ManagedDatabaseMetricsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ManagedDatabaseMetricsResponse>() {});
+        
+
+        return new ApiResponse<ManagedDatabaseMetricsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getManagedDatabaseMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getManagedDatabaseMetrics");
+    }
+    // verify the required parameter 'databaseId' is set
+    if (databaseId == null) {
+      throw new ApiException(400, "Missing the required parameter 'databaseId' when calling getManagedDatabaseMetrics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/databases/{databaseId}/metrics"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{databaseId}", ApiClient.urlEncode(databaseId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "rangeHours";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("rangeHours", rangeHours));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @return NotificationTemplatesResponse
    * @throws ApiException if fails to make API call
    */
@@ -8918,6 +9066,158 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("level", level));
     localVarQueryParameterBaseName = "nextToken";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param page  (optional, default to 0)
+   * @param pageSize  (optional, default to 50)
+   * @return ListManagedDatabaseSlowQueriesResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListManagedDatabaseSlowQueriesResponse listManagedDatabaseSlowQueries(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize) throws ApiException {
+    return listManagedDatabaseSlowQueries(projectId, databaseId, page, pageSize, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param page  (optional, default to 0)
+   * @param pageSize  (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ListManagedDatabaseSlowQueriesResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ListManagedDatabaseSlowQueriesResponse listManagedDatabaseSlowQueries(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListManagedDatabaseSlowQueriesResponse> localVarResponse = listManagedDatabaseSlowQueriesWithHttpInfo(projectId, databaseId, page, pageSize, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param page  (optional, default to 0)
+   * @param pageSize  (optional, default to 50)
+   * @return ApiResponse&lt;ListManagedDatabaseSlowQueriesResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListManagedDatabaseSlowQueriesResponse> listManagedDatabaseSlowQueriesWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize) throws ApiException {
+    return listManagedDatabaseSlowQueriesWithHttpInfo(projectId, databaseId, page, pageSize, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param page  (optional, default to 0)
+   * @param pageSize  (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListManagedDatabaseSlowQueriesResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListManagedDatabaseSlowQueriesResponse> listManagedDatabaseSlowQueriesWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listManagedDatabaseSlowQueriesRequestBuilder(projectId, databaseId, page, pageSize, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listManagedDatabaseSlowQueries", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListManagedDatabaseSlowQueriesResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListManagedDatabaseSlowQueriesResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListManagedDatabaseSlowQueriesResponse>() {});
+        
+
+        return new ApiResponse<ListManagedDatabaseSlowQueriesResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listManagedDatabaseSlowQueriesRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer pageSize, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listManagedDatabaseSlowQueries");
+    }
+    // verify the required parameter 'databaseId' is set
+    if (databaseId == null) {
+      throw new ApiException(400, "Missing the required parameter 'databaseId' when calling listManagedDatabaseSlowQueries");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/databases/{databaseId}/slow-queries"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{databaseId}", ApiClient.urlEncode(databaseId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "page";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
+    localVarQueryParameterBaseName = "pageSize";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pageSize", pageSize));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

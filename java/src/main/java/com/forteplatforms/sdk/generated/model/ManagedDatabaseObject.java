@@ -50,7 +50,12 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ManagedDatabaseObject.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
   ManagedDatabaseObject.JSON_PROPERTY_HOST,
   ManagedDatabaseObject.JSON_PROPERTY_PORT,
-  ManagedDatabaseObject.JSON_PROPERTY_DATABASE_NAME
+  ManagedDatabaseObject.JSON_PROPERTY_DATABASE_NAME,
+  ManagedDatabaseObject.JSON_PROPERTY_READ_ONLY,
+  ManagedDatabaseObject.JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT,
+  ManagedDatabaseObject.JSON_PROPERTY_USAGE_BYTES,
+  ManagedDatabaseObject.JSON_PROPERTY_PHYSICAL_USAGE_BYTES,
+  ManagedDatabaseObject.JSON_PROPERTY_USAGE_UPDATED_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseObject {
@@ -141,11 +146,11 @@ public class ManagedDatabaseObject {
   private TierEnum tier;
 
   public static final String JSON_PROPERTY_CPU = "cpu";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String cpu;
 
   public static final String JSON_PROPERTY_MEMORY_GB = "memoryGb";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private Integer memoryGb;
 
   public static final String JSON_PROPERTY_STORAGE_GB = "storageGb";
@@ -161,6 +166,10 @@ public class ManagedDatabaseObject {
     ACTIVE(String.valueOf("ACTIVE")),
     
     UPDATING(String.valueOf("UPDATING")),
+    
+    READ_ONLY(String.valueOf("READ_ONLY")),
+    
+    SUSPENDED(String.valueOf("SUSPENDED")),
     
     DELETING(String.valueOf("DELETING")),
     
@@ -220,6 +229,26 @@ public class ManagedDatabaseObject {
   public static final String JSON_PROPERTY_DATABASE_NAME = "databaseName";
   @javax.annotation.Nullable
   private String databaseName;
+
+  public static final String JSON_PROPERTY_READ_ONLY = "readOnly";
+  @javax.annotation.Nullable
+  private Boolean readOnly;
+
+  public static final String JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT = "cleanupUnlockExpiresAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime cleanupUnlockExpiresAt;
+
+  public static final String JSON_PROPERTY_USAGE_BYTES = "usageBytes";
+  @javax.annotation.Nullable
+  private Long usageBytes;
+
+  public static final String JSON_PROPERTY_PHYSICAL_USAGE_BYTES = "physicalUsageBytes";
+  @javax.annotation.Nullable
+  private Long physicalUsageBytes;
+
+  public static final String JSON_PROPERTY_USAGE_UPDATED_AT = "usageUpdatedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime usageUpdatedAt;
 
   public ManagedDatabaseObject() { 
   }
@@ -320,7 +349,7 @@ public class ManagedDatabaseObject {
   }
 
 
-  public ManagedDatabaseObject cpu(@javax.annotation.Nonnull String cpu) {
+  public ManagedDatabaseObject cpu(@javax.annotation.Nullable String cpu) {
     this.cpu = cpu;
     return this;
   }
@@ -329,22 +358,22 @@ public class ManagedDatabaseObject {
    * Get cpu
    * @return cpu
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CPU, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CPU, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCpu() {
     return cpu;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CPU, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCpu(@javax.annotation.Nonnull String cpu) {
+  @JsonProperty(value = JSON_PROPERTY_CPU, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCpu(@javax.annotation.Nullable String cpu) {
     this.cpu = cpu;
   }
 
 
-  public ManagedDatabaseObject memoryGb(@javax.annotation.Nonnull Integer memoryGb) {
+  public ManagedDatabaseObject memoryGb(@javax.annotation.Nullable Integer memoryGb) {
     this.memoryGb = memoryGb;
     return this;
   }
@@ -353,17 +382,17 @@ public class ManagedDatabaseObject {
    * Get memoryGb
    * @return memoryGb
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_MEMORY_GB, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_GB, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getMemoryGb() {
     return memoryGb;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MEMORY_GB, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setMemoryGb(@javax.annotation.Nonnull Integer memoryGb) {
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_GB, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMemoryGb(@javax.annotation.Nullable Integer memoryGb) {
     this.memoryGb = memoryGb;
   }
 
@@ -568,6 +597,126 @@ public class ManagedDatabaseObject {
   }
 
 
+  public ManagedDatabaseObject readOnly(@javax.annotation.Nullable Boolean readOnly) {
+    this.readOnly = readOnly;
+    return this;
+  }
+
+  /**
+   * Get readOnly
+   * @return readOnly
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getReadOnly() {
+    return readOnly;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReadOnly(@javax.annotation.Nullable Boolean readOnly) {
+    this.readOnly = readOnly;
+  }
+
+
+  public ManagedDatabaseObject cleanupUnlockExpiresAt(@javax.annotation.Nullable OffsetDateTime cleanupUnlockExpiresAt) {
+    this.cleanupUnlockExpiresAt = cleanupUnlockExpiresAt;
+    return this;
+  }
+
+  /**
+   * Get cleanupUnlockExpiresAt
+   * @return cleanupUnlockExpiresAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getCleanupUnlockExpiresAt() {
+    return cleanupUnlockExpiresAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCleanupUnlockExpiresAt(@javax.annotation.Nullable OffsetDateTime cleanupUnlockExpiresAt) {
+    this.cleanupUnlockExpiresAt = cleanupUnlockExpiresAt;
+  }
+
+
+  public ManagedDatabaseObject usageBytes(@javax.annotation.Nullable Long usageBytes) {
+    this.usageBytes = usageBytes;
+    return this;
+  }
+
+  /**
+   * Get usageBytes
+   * @return usageBytes
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USAGE_BYTES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getUsageBytes() {
+    return usageBytes;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USAGE_BYTES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUsageBytes(@javax.annotation.Nullable Long usageBytes) {
+    this.usageBytes = usageBytes;
+  }
+
+
+  public ManagedDatabaseObject physicalUsageBytes(@javax.annotation.Nullable Long physicalUsageBytes) {
+    this.physicalUsageBytes = physicalUsageBytes;
+    return this;
+  }
+
+  /**
+   * Get physicalUsageBytes
+   * @return physicalUsageBytes
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE_BYTES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getPhysicalUsageBytes() {
+    return physicalUsageBytes;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE_BYTES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhysicalUsageBytes(@javax.annotation.Nullable Long physicalUsageBytes) {
+    this.physicalUsageBytes = physicalUsageBytes;
+  }
+
+
+  public ManagedDatabaseObject usageUpdatedAt(@javax.annotation.Nullable OffsetDateTime usageUpdatedAt) {
+    this.usageUpdatedAt = usageUpdatedAt;
+    return this;
+  }
+
+  /**
+   * Get usageUpdatedAt
+   * @return usageUpdatedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USAGE_UPDATED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getUsageUpdatedAt() {
+    return usageUpdatedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USAGE_UPDATED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUsageUpdatedAt(@javax.annotation.Nullable OffsetDateTime usageUpdatedAt) {
+    this.usageUpdatedAt = usageUpdatedAt;
+  }
+
+
   /**
    * Return true if this ManagedDatabaseObject object is equal to o.
    */
@@ -593,12 +742,17 @@ public class ManagedDatabaseObject {
         Objects.equals(this.lastModifiedTimestamp, managedDatabaseObject.lastModifiedTimestamp) &&
         Objects.equals(this.host, managedDatabaseObject.host) &&
         Objects.equals(this.port, managedDatabaseObject.port) &&
-        Objects.equals(this.databaseName, managedDatabaseObject.databaseName);
+        Objects.equals(this.databaseName, managedDatabaseObject.databaseName) &&
+        Objects.equals(this.readOnly, managedDatabaseObject.readOnly) &&
+        Objects.equals(this.cleanupUnlockExpiresAt, managedDatabaseObject.cleanupUnlockExpiresAt) &&
+        Objects.equals(this.usageBytes, managedDatabaseObject.usageBytes) &&
+        Objects.equals(this.physicalUsageBytes, managedDatabaseObject.physicalUsageBytes) &&
+        Objects.equals(this.usageUpdatedAt, managedDatabaseObject.usageUpdatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, cpu, memoryGb, storageGb, status, connections, createdTimestamp, lastModifiedTimestamp, host, port, databaseName);
+    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, cpu, memoryGb, storageGb, status, connections, createdTimestamp, lastModifiedTimestamp, host, port, databaseName, readOnly, cleanupUnlockExpiresAt, usageBytes, physicalUsageBytes, usageUpdatedAt);
   }
 
   @Override
@@ -619,6 +773,11 @@ public class ManagedDatabaseObject {
     sb.append("    host: ").append(toIndentedString(host)).append("\n");
     sb.append("    port: ").append(toIndentedString(port)).append("\n");
     sb.append("    databaseName: ").append(toIndentedString(databaseName)).append("\n");
+    sb.append("    readOnly: ").append(toIndentedString(readOnly)).append("\n");
+    sb.append("    cleanupUnlockExpiresAt: ").append(toIndentedString(cleanupUnlockExpiresAt)).append("\n");
+    sb.append("    usageBytes: ").append(toIndentedString(usageBytes)).append("\n");
+    sb.append("    physicalUsageBytes: ").append(toIndentedString(physicalUsageBytes)).append("\n");
+    sb.append("    usageUpdatedAt: ").append(toIndentedString(usageUpdatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -736,6 +895,31 @@ public class ManagedDatabaseObject {
     // add `databaseName` to the URL query string
     if (getDatabaseName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdatabaseName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDatabaseName()))));
+    }
+
+    // add `readOnly` to the URL query string
+    if (getReadOnly() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreadOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
+    }
+
+    // add `cleanupUnlockExpiresAt` to the URL query string
+    if (getCleanupUnlockExpiresAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scleanupUnlockExpiresAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCleanupUnlockExpiresAt()))));
+    }
+
+    // add `usageBytes` to the URL query string
+    if (getUsageBytes() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%susageBytes%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsageBytes()))));
+    }
+
+    // add `physicalUsageBytes` to the URL query string
+    if (getPhysicalUsageBytes() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphysicalUsageBytes%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhysicalUsageBytes()))));
+    }
+
+    // add `usageUpdatedAt` to the URL query string
+    if (getUsageUpdatedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%susageUpdatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsageUpdatedAt()))));
     }
 
     return joiner.toString();

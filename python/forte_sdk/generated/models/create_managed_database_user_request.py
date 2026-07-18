@@ -37,8 +37,8 @@ class CreateManagedDatabaseUserRequest(BaseModel):
         if not isinstance(value, str):
             value = str(value)
 
-        if not re.match(r"^[a-z][a-z0-9_]{2,62}$", value):
-            raise ValueError(r"must validate the regular expression /^[a-z][a-z0-9_]{2,62}$/")
+        if not re.match(r"^[a-z][a-z0-9_]{2,35}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-z][a-z0-9_]{2,35}$/")
         return value
 
     model_config = ConfigDict(

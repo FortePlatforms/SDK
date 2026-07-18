@@ -209,6 +209,11 @@ import {
     ListCustomDomainsResponseToJSON,
 } from '../models/ListCustomDomainsResponse';
 import {
+    type ListManagedDatabaseSlowQueriesResponse,
+    ListManagedDatabaseSlowQueriesResponseFromJSON,
+    ListManagedDatabaseSlowQueriesResponseToJSON,
+} from '../models/ListManagedDatabaseSlowQueriesResponse';
+import {
     type ListManagedDatabaseUsersResponse,
     ListManagedDatabaseUsersResponseFromJSON,
     ListManagedDatabaseUsersResponseToJSON,
@@ -228,6 +233,11 @@ import {
     ManagedDatabaseConnectionFromJSON,
     ManagedDatabaseConnectionToJSON,
 } from '../models/ManagedDatabaseConnection';
+import {
+    type ManagedDatabaseMetricsResponse,
+    ManagedDatabaseMetricsResponseFromJSON,
+    ManagedDatabaseMetricsResponseToJSON,
+} from '../models/ManagedDatabaseMetricsResponse';
 import {
     type ManagedDatabaseObject,
     ManagedDatabaseObjectFromJSON,
@@ -742,6 +752,12 @@ export interface GetManagedDatabaseRequest {
     databaseId: string;
 }
 
+export interface GetManagedDatabaseMetricsRequest {
+    projectId: string;
+    databaseId: string;
+    rangeHours?: number;
+}
+
 export interface GetNotificationTemplatesRequest {
     projectId: string;
 }
@@ -865,6 +881,13 @@ export interface ListLogLinesRequest {
     buildId?: string;
     level?: string;
     nextToken?: string;
+}
+
+export interface ListManagedDatabaseSlowQueriesRequest {
+    projectId: string;
+    databaseId: string;
+    page?: number;
+    pageSize?: number;
 }
 
 export interface ListManagedDatabaseUsersRequest {
@@ -3792,6 +3815,61 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getManagedDatabaseMetrics without sending the request
+     */
+    async getManagedDatabaseMetricsRequestOpts(requestParameters: GetManagedDatabaseMetricsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getManagedDatabaseMetrics().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling getManagedDatabaseMetrics().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['rangeHours'] != null) {
+            queryParameters['rangeHours'] = requestParameters['rangeHours'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/metrics`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getManagedDatabaseMetricsRaw(requestParameters: GetManagedDatabaseMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ManagedDatabaseMetricsResponse>> {
+        const requestOptions = await this.getManagedDatabaseMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ManagedDatabaseMetricsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getManagedDatabaseMetrics(requestParameters: GetManagedDatabaseMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseMetricsResponse> {
+        const response = await this.getManagedDatabaseMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getNotificationTemplates without sending the request
      */
     async getNotificationTemplatesRequestOpts(requestParameters: GetNotificationTemplatesRequest): Promise<runtime.RequestOpts> {
@@ -4908,6 +4986,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listLogLines(requestParameters: ListLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
         const response = await this.listLogLinesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listManagedDatabaseSlowQueries without sending the request
+     */
+    async listManagedDatabaseSlowQueriesRequestOpts(requestParameters: ListManagedDatabaseSlowQueriesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listManagedDatabaseSlowQueries().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling listManagedDatabaseSlowQueries().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/slow-queries`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listManagedDatabaseSlowQueriesRaw(requestParameters: ListManagedDatabaseSlowQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListManagedDatabaseSlowQueriesResponse>> {
+        const requestOptions = await this.listManagedDatabaseSlowQueriesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListManagedDatabaseSlowQueriesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listManagedDatabaseSlowQueries(requestParameters: ListManagedDatabaseSlowQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListManagedDatabaseSlowQueriesResponse> {
+        const response = await this.listManagedDatabaseSlowQueriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

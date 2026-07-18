@@ -56,13 +56,13 @@ export interface ManagedDatabaseObject {
      * @type {string}
      * @memberof ManagedDatabaseObject
      */
-    cpu: string;
+    cpu?: string;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseObject
      */
-    memoryGb: number;
+    memoryGb?: number;
     /**
      * 
      * @type {number}
@@ -111,6 +111,36 @@ export interface ManagedDatabaseObject {
      * @memberof ManagedDatabaseObject
      */
     databaseName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ManagedDatabaseObject
+     */
+    readOnly?: boolean;
+    /**
+     * 
+     * @type {Date}
+     * @memberof ManagedDatabaseObject
+     */
+    cleanupUnlockExpiresAt?: Date;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseObject
+     */
+    usageBytes?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseObject
+     */
+    physicalUsageBytes?: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof ManagedDatabaseObject
+     */
+    usageUpdatedAt?: Date;
 }
 
 
@@ -139,6 +169,8 @@ export const ManagedDatabaseObjectStatusType = {
     CREATING: 'CREATING',
     ACTIVE: 'ACTIVE',
     UPDATING: 'UPDATING',
+    READ_ONLY: 'READ_ONLY',
+    SUSPENDED: 'SUSPENDED',
     DELETING: 'DELETING',
     FAILED: 'FAILED'
 } as const;
@@ -152,8 +184,6 @@ export function instanceOfManagedDatabaseObject(value: object): value is Managed
     if (!('managedDatabaseName' in value) || value['managedDatabaseName'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     if (!('tier' in value) || value['tier'] === undefined) return false;
-    if (!('cpu' in value) || value['cpu'] === undefined) return false;
-    if (!('memoryGb' in value) || value['memoryGb'] === undefined) return false;
     if (!('storageGb' in value) || value['storageGb'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('connections' in value) || value['connections'] === undefined) return false;
@@ -175,8 +205,8 @@ export function ManagedDatabaseObjectFromJSONTyped(json: any, ignoreDiscriminato
         'managedDatabaseName': json['managedDatabaseName'],
         'type': json['type'],
         'tier': json['tier'],
-        'cpu': json['cpu'],
-        'memoryGb': json['memoryGb'],
+        'cpu': json['cpu'] == null ? undefined : json['cpu'],
+        'memoryGb': json['memoryGb'] == null ? undefined : json['memoryGb'],
         'storageGb': json['storageGb'],
         'status': json['status'],
         'connections': ((json['connections'] as Array<any>).map(ManagedDatabaseConnectionFromJSON)),
@@ -185,6 +215,11 @@ export function ManagedDatabaseObjectFromJSONTyped(json: any, ignoreDiscriminato
         'host': json['host'] == null ? undefined : json['host'],
         'port': json['port'] == null ? undefined : json['port'],
         'databaseName': json['databaseName'] == null ? undefined : json['databaseName'],
+        'readOnly': json['readOnly'] == null ? undefined : json['readOnly'],
+        'cleanupUnlockExpiresAt': json['cleanupUnlockExpiresAt'] == null ? undefined : (new Date(json['cleanupUnlockExpiresAt'])),
+        'usageBytes': json['usageBytes'] == null ? undefined : json['usageBytes'],
+        'physicalUsageBytes': json['physicalUsageBytes'] == null ? undefined : json['physicalUsageBytes'],
+        'usageUpdatedAt': json['usageUpdatedAt'] == null ? undefined : (new Date(json['usageUpdatedAt'])),
     };
 }
 
@@ -213,6 +248,11 @@ export function ManagedDatabaseObjectToJSONTyped(value?: ManagedDatabaseObject |
         'host': value['host'],
         'port': value['port'],
         'databaseName': value['databaseName'],
+        'readOnly': value['readOnly'],
+        'cleanupUnlockExpiresAt': value['cleanupUnlockExpiresAt'] == null ? value['cleanupUnlockExpiresAt'] : value['cleanupUnlockExpiresAt'].toISOString(),
+        'usageBytes': value['usageBytes'],
+        'physicalUsageBytes': value['physicalUsageBytes'],
+        'usageUpdatedAt': value['usageUpdatedAt'] == null ? value['usageUpdatedAt'] : value['usageUpdatedAt'].toISOString(),
     };
 }
 

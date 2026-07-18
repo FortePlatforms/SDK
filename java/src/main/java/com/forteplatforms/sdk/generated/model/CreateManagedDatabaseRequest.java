@@ -242,8 +242,6 @@ public class CreateManagedDatabaseRequest {
 
   /**
    * Get memoryGb
-   * minimum: 1
-   * maximum: 8
    * @return memoryGb
    */
   @javax.annotation.Nullable

@@ -17,34 +17,30 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class UpdateManagedDatabaseRequest(BaseModel):
+class ManagedDatabaseSlowQuery(BaseModel):
     """
-    UpdateManagedDatabaseRequest
+    ManagedDatabaseSlowQuery
     """ # noqa: E501
-    name: Optional[Annotated[str, Field(strict=True)]] = None
-    cpu: Optional[StrictStr] = None
-    memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
-    storage_gb: Optional[Annotated[int, Field(le=250, strict=True, ge=10)]] = Field(default=None, alias="storageGb")
-    __properties: ClassVar[List[str]] = ["name", "cpu", "memoryGb", "storageGb"]
+    slow_query_id: StrictStr = Field(alias="slowQueryId")
+    timestamp: datetime
+    duration_ms: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="durationMs")
+    kind: StrictStr
+    query_text: Optional[StrictStr] = Field(default=None, alias="queryText")
+    user_name: Optional[StrictStr] = Field(default=None, alias="userName")
+    __properties: ClassVar[List[str]] = ["slowQueryId", "timestamp", "durationMs", "kind", "queryText", "userName"]
 
-    @field_validator('name')
-    def name_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^[a-zA-Z0-9-_]{3,30}$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_]{3,30}$/")
+    @field_validator('kind')
+    def kind_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['SLOW', 'TEMP_FILE', 'LOCK_WAIT']):
+            raise ValueError("must be one of enum values ('SLOW', 'TEMP_FILE', 'LOCK_WAIT')")
         return value
 
     model_config = ConfigDict(
@@ -65,7 +61,7 @@ class UpdateManagedDatabaseRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateManagedDatabaseRequest from a JSON string"""
+        """Create an instance of ManagedDatabaseSlowQuery from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -90,7 +86,7 @@ class UpdateManagedDatabaseRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateManagedDatabaseRequest from a dict"""
+        """Create an instance of ManagedDatabaseSlowQuery from a dict"""
         if obj is None:
             return None
 
@@ -98,10 +94,12 @@ class UpdateManagedDatabaseRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "cpu": obj.get("cpu"),
-            "memoryGb": obj.get("memoryGb"),
-            "storageGb": obj.get("storageGb")
+            "slowQueryId": obj.get("slowQueryId"),
+            "timestamp": obj.get("timestamp"),
+            "durationMs": obj.get("durationMs"),
+            "kind": obj.get("kind"),
+            "queryText": obj.get("queryText"),
+            "userName": obj.get("userName")
         })
         return _obj
 

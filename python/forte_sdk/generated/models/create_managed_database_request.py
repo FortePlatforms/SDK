@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -31,8 +31,8 @@ class CreateManagedDatabaseRequest(BaseModel):
     name: Annotated[str, Field(strict=True)]
     type: StrictStr
     tier: StrictStr
-    cpu: Optional[Annotated[str, Field(strict=True)]] = None
-    memory_gb: Optional[Annotated[int, Field(le=8, strict=True, ge=1)]] = Field(default=None, alias="memoryGb")
+    cpu: Optional[StrictStr] = None
+    memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
     storage_gb: Optional[Annotated[int, Field(le=250, strict=True, ge=10)]] = Field(default=None, alias="storageGb")
     __properties: ClassVar[List[str]] = ["name", "type", "tier", "cpu", "memoryGb", "storageGb"]
 
@@ -58,19 +58,6 @@ class CreateManagedDatabaseRequest(BaseModel):
         """Validates the enum"""
         if value not in set(['SHARED', 'DEDICATED']):
             raise ValueError("must be one of enum values ('SHARED', 'DEDICATED')")
-        return value
-
-    @field_validator('cpu')
-    def cpu_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^(0\.25|0\.5|1|2)$", value):
-            raise ValueError(r"must validate the regular expression /^(0\.25|0\.5|1|2)$/")
         return value
 
     model_config = ConfigDict(

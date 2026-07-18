@@ -57,10 +57,12 @@ from forte_sdk.generated.models.get_content_download_link_response import GetCon
 from forte_sdk.generated.models.impersonation_token_response import ImpersonationTokenResponse
 from forte_sdk.generated.models.list_content_response import ListContentResponse
 from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse
+from forte_sdk.generated.models.list_managed_database_slow_queries_response import ListManagedDatabaseSlowQueriesResponse
 from forte_sdk.generated.models.list_managed_database_users_response import ListManagedDatabaseUsersResponse
 from forte_sdk.generated.models.list_managed_databases_response import ListManagedDatabasesResponse
 from forte_sdk.generated.models.list_sessions_response import ListSessionsResponse
 from forte_sdk.generated.models.managed_database_connection import ManagedDatabaseConnection
+from forte_sdk.generated.models.managed_database_metrics_response import ManagedDatabaseMetricsResponse
 from forte_sdk.generated.models.managed_database_object import ManagedDatabaseObject
 from forte_sdk.generated.models.notification_templates_response import NotificationTemplatesResponse
 from forte_sdk.generated.models.paginated_response_action_invocation_object import PaginatedResponseActionInvocationObject
@@ -12933,6 +12935,295 @@ class ProjectsServerApi:
 
 
     @validate_call
+    def get_managed_database_metrics(
+        self,
+        project_id: StrictStr,
+        database_id: StrictStr,
+        range_hours: Optional[StrictInt] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ManagedDatabaseMetricsResponse:
+        """get_managed_database_metrics
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param database_id: (required)
+        :type database_id: str
+        :param range_hours:
+        :type range_hours: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_managed_database_metrics_serialize(
+            project_id=project_id,
+            database_id=database_id,
+            range_hours=range_hours,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ManagedDatabaseMetricsResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_managed_database_metrics_with_http_info(
+        self,
+        project_id: StrictStr,
+        database_id: StrictStr,
+        range_hours: Optional[StrictInt] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ManagedDatabaseMetricsResponse]:
+        """get_managed_database_metrics
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param database_id: (required)
+        :type database_id: str
+        :param range_hours:
+        :type range_hours: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_managed_database_metrics_serialize(
+            project_id=project_id,
+            database_id=database_id,
+            range_hours=range_hours,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ManagedDatabaseMetricsResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_managed_database_metrics_without_preload_content(
+        self,
+        project_id: StrictStr,
+        database_id: StrictStr,
+        range_hours: Optional[StrictInt] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_managed_database_metrics
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param database_id: (required)
+        :type database_id: str
+        :param range_hours:
+        :type range_hours: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_managed_database_metrics_serialize(
+            project_id=project_id,
+            database_id=database_id,
+            range_hours=range_hours,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ManagedDatabaseMetricsResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_managed_database_metrics_serialize(
+        self,
+        project_id,
+        database_id,
+        range_hours,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if database_id is not None:
+            _path_params['databaseId'] = database_id
+        # process the query parameters
+        if range_hours is not None:
+            
+            _query_params.append(('rangeHours', range_hours))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/v1/projects/{projectId}/databases/{databaseId}/metrics',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_notification_templates(
         self,
         project_id: StrictStr,
@@ -18908,6 +19199,312 @@ class ProjectsServerApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/api/v1/projects/{projectId}/services/{serviceId}/logs',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def list_managed_database_slow_queries(
+        self,
+        project_id: StrictStr,
+        database_id: StrictStr,
+        page: Optional[StrictInt] = None,
+        page_size: Optional[StrictInt] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListManagedDatabaseSlowQueriesResponse:
+        """list_managed_database_slow_queries
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param database_id: (required)
+        :type database_id: str
+        :param page:
+        :type page: int
+        :param page_size:
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_managed_database_slow_queries_serialize(
+            project_id=project_id,
+            database_id=database_id,
+            page=page,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListManagedDatabaseSlowQueriesResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_managed_database_slow_queries_with_http_info(
+        self,
+        project_id: StrictStr,
+        database_id: StrictStr,
+        page: Optional[StrictInt] = None,
+        page_size: Optional[StrictInt] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListManagedDatabaseSlowQueriesResponse]:
+        """list_managed_database_slow_queries
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param database_id: (required)
+        :type database_id: str
+        :param page:
+        :type page: int
+        :param page_size:
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_managed_database_slow_queries_serialize(
+            project_id=project_id,
+            database_id=database_id,
+            page=page,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListManagedDatabaseSlowQueriesResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_managed_database_slow_queries_without_preload_content(
+        self,
+        project_id: StrictStr,
+        database_id: StrictStr,
+        page: Optional[StrictInt] = None,
+        page_size: Optional[StrictInt] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """list_managed_database_slow_queries
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param database_id: (required)
+        :type database_id: str
+        :param page:
+        :type page: int
+        :param page_size:
+        :type page_size: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_managed_database_slow_queries_serialize(
+            project_id=project_id,
+            database_id=database_id,
+            page=page,
+            page_size=page_size,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "ListManagedDatabaseSlowQueriesResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_managed_database_slow_queries_serialize(
+        self,
+        project_id,
+        database_id,
+        page,
+        page_size,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if database_id is not None:
+            _path_params['databaseId'] = database_id
+        # process the query parameters
+        if page is not None:
+            
+            _query_params.append(('page', page))
+            
+        if page_size is not None:
+            
+            _query_params.append(('pageSize', page_size))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/v1/projects/{projectId}/databases/{databaseId}/slow-queries',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
