@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.managed_database_object import ManagedDatabaseObject
 from forte_sdk.generated.models.mfa_config import MfaConfig
 from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig
 from forte_sdk.generated.models.password_config import PasswordConfig
@@ -39,6 +40,7 @@ class ProjectObject(BaseModel):
     project_name: StrictStr = Field(alias="projectName")
     services: List[ServiceObject]
     web_apps: List[WebAppObject] = Field(alias="webApps")
+    managed_databases: List[ManagedDatabaseObject] = Field(alias="managedDatabases")
     created_timestamp: datetime = Field(alias="createdTimestamp")
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
     role_arn: StrictStr = Field(alias="roleArn")
@@ -55,7 +57,7 @@ class ProjectObject(BaseModel):
     notification_templates_config: Optional[NotificationTemplatesConfig] = Field(default=None, alias="notificationTemplatesConfig")
     payment_triggers: Optional[List[PaymentTriggerConfig]] = Field(default=None, alias="paymentTriggers")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "hasRecaptchaSecretKey"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -110,6 +112,13 @@ class ProjectObject(BaseModel):
                 if _item_web_apps:
                     _items.append(_item_web_apps.to_dict())
             _dict['webApps'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in managed_databases (list)
+        _items = []
+        if self.managed_databases:
+            for _item_managed_databases in self.managed_databases:
+                if _item_managed_databases:
+                    _items.append(_item_managed_databases.to_dict())
+            _dict['managedDatabases'] = _items
         # override the default output from pydantic by calling `to_dict()` of password_config
         if self.password_config:
             _dict['passwordConfig'] = self.password_config.to_dict()
@@ -143,6 +152,7 @@ class ProjectObject(BaseModel):
             "projectName": obj.get("projectName"),
             "services": [ServiceObject.from_dict(_item) for _item in obj["services"]] if obj.get("services") is not None else None,
             "webApps": [WebAppObject.from_dict(_item) for _item in obj["webApps"]] if obj.get("webApps") is not None else None,
+            "managedDatabases": [ManagedDatabaseObject.from_dict(_item) for _item in obj["managedDatabases"]] if obj.get("managedDatabases") is not None else None,
             "createdTimestamp": obj.get("createdTimestamp"),
             "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
             "roleArn": obj.get("roleArn"),

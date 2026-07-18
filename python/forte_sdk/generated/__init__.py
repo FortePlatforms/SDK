@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.296"
+__version__ = "1.0.301"
 
 # Define package exports
 __all__ = [
@@ -56,6 +56,10 @@ __all__ = [
     "CreateContentUploadLinkResponse",
     "CreateCustomDomainRequest",
     "CreateForteServiceRequest",
+    "CreateManagedDatabaseConnectionRequest",
+    "CreateManagedDatabaseRequest",
+    "CreateManagedDatabaseUserRequest",
+    "CreateManagedDatabaseUserResponse",
     "CreateMfaMethodRequest",
     "CreateMfaMethodResponse",
     "CreateOtpLoginRequest",
@@ -99,12 +103,18 @@ __all__ = [
     "LatencyStats",
     "ListContentResponse",
     "ListCustomDomainsResponse",
+    "ListManagedDatabaseUsersResponse",
+    "ListManagedDatabasesResponse",
     "ListMfaMethodsResponse",
     "ListSessionsResponse",
     "ListUserInvitesResponse",
     "LogLineObject",
     "LoginHistoryEntry",
     "LoginUserResponse",
+    "ManagedDatabaseConnection",
+    "ManagedDatabaseEnvVarMappings",
+    "ManagedDatabaseObject",
+    "ManagedDatabaseUser",
     "MfaChallengeRequest",
     "MfaChallengeResponse",
     "MfaConfig",
@@ -149,6 +159,7 @@ __all__ = [
     "RequestLogStatusFilter",
     "RequestPasswordResetRequest",
     "RequiredUploadHeaders",
+    "RotateManagedDatabaseUserPasswordResponse",
     "RouteMetric",
     "SearchUsersRequest",
     "SendUserEmailRequest",
@@ -163,6 +174,7 @@ __all__ = [
     "StateHistory",
     "StatusRange",
     "SubscriptionObject",
+    "SuggestDatabaseEnvVarsResponse",
     "SyncCustomDomainResponse",
     "TestInvocationRequest",
     "TestInvocationResponse",
@@ -173,6 +185,8 @@ __all__ = [
     "UpdateContentSharesRequest",
     "UpdateForteServiceRequest",
     "UpdateForteServiceResponse",
+    "UpdateManagedDatabaseConnectionRequest",
+    "UpdateManagedDatabaseRequest",
     "UpdateNotificationTemplatesRequest",
     "UpdatePaymentMethodRequest",
     "UpdatePaymentTriggerRequest",
@@ -237,6 +251,10 @@ from forte_sdk.generated.models.create_content_upload_link_request import Create
 from forte_sdk.generated.models.create_content_upload_link_response import CreateContentUploadLinkResponse as CreateContentUploadLinkResponse
 from forte_sdk.generated.models.create_custom_domain_request import CreateCustomDomainRequest as CreateCustomDomainRequest
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest as CreateForteServiceRequest
+from forte_sdk.generated.models.create_managed_database_connection_request import CreateManagedDatabaseConnectionRequest as CreateManagedDatabaseConnectionRequest
+from forte_sdk.generated.models.create_managed_database_request import CreateManagedDatabaseRequest as CreateManagedDatabaseRequest
+from forte_sdk.generated.models.create_managed_database_user_request import CreateManagedDatabaseUserRequest as CreateManagedDatabaseUserRequest
+from forte_sdk.generated.models.create_managed_database_user_response import CreateManagedDatabaseUserResponse as CreateManagedDatabaseUserResponse
 from forte_sdk.generated.models.create_mfa_method_request import CreateMfaMethodRequest as CreateMfaMethodRequest
 from forte_sdk.generated.models.create_mfa_method_response import CreateMfaMethodResponse as CreateMfaMethodResponse
 from forte_sdk.generated.models.create_otp_login_request import CreateOtpLoginRequest as CreateOtpLoginRequest
@@ -280,12 +298,18 @@ from forte_sdk.generated.models.latency_percentile_series import LatencyPercenti
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats
 from forte_sdk.generated.models.list_content_response import ListContentResponse as ListContentResponse
 from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse as ListCustomDomainsResponse
+from forte_sdk.generated.models.list_managed_database_users_response import ListManagedDatabaseUsersResponse as ListManagedDatabaseUsersResponse
+from forte_sdk.generated.models.list_managed_databases_response import ListManagedDatabasesResponse as ListManagedDatabasesResponse
 from forte_sdk.generated.models.list_mfa_methods_response import ListMfaMethodsResponse as ListMfaMethodsResponse
 from forte_sdk.generated.models.list_sessions_response import ListSessionsResponse as ListSessionsResponse
 from forte_sdk.generated.models.list_user_invites_response import ListUserInvitesResponse as ListUserInvitesResponse
 from forte_sdk.generated.models.log_line_object import LogLineObject as LogLineObject
 from forte_sdk.generated.models.login_history_entry import LoginHistoryEntry as LoginHistoryEntry
 from forte_sdk.generated.models.login_user_response import LoginUserResponse as LoginUserResponse
+from forte_sdk.generated.models.managed_database_connection import ManagedDatabaseConnection as ManagedDatabaseConnection
+from forte_sdk.generated.models.managed_database_env_var_mappings import ManagedDatabaseEnvVarMappings as ManagedDatabaseEnvVarMappings
+from forte_sdk.generated.models.managed_database_object import ManagedDatabaseObject as ManagedDatabaseObject
+from forte_sdk.generated.models.managed_database_user import ManagedDatabaseUser as ManagedDatabaseUser
 from forte_sdk.generated.models.mfa_challenge_request import MfaChallengeRequest as MfaChallengeRequest
 from forte_sdk.generated.models.mfa_challenge_response import MfaChallengeResponse as MfaChallengeResponse
 from forte_sdk.generated.models.mfa_config import MfaConfig as MfaConfig
@@ -330,6 +354,7 @@ from forte_sdk.generated.models.request_log_sort import RequestLogSort as Reques
 from forte_sdk.generated.models.request_log_status_filter import RequestLogStatusFilter as RequestLogStatusFilter
 from forte_sdk.generated.models.request_password_reset_request import RequestPasswordResetRequest as RequestPasswordResetRequest
 from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders as RequiredUploadHeaders
+from forte_sdk.generated.models.rotate_managed_database_user_password_response import RotateManagedDatabaseUserPasswordResponse as RotateManagedDatabaseUserPasswordResponse
 from forte_sdk.generated.models.route_metric import RouteMetric as RouteMetric
 from forte_sdk.generated.models.search_users_request import SearchUsersRequest as SearchUsersRequest
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest as SendUserEmailRequest
@@ -344,6 +369,7 @@ from forte_sdk.generated.models.state_currency_totals import StateCurrencyTotals
 from forte_sdk.generated.models.state_history import StateHistory as StateHistory
 from forte_sdk.generated.models.status_range import StatusRange as StatusRange
 from forte_sdk.generated.models.subscription_object import SubscriptionObject as SubscriptionObject
+from forte_sdk.generated.models.suggest_database_env_vars_response import SuggestDatabaseEnvVarsResponse as SuggestDatabaseEnvVarsResponse
 from forte_sdk.generated.models.sync_custom_domain_response import SyncCustomDomainResponse as SyncCustomDomainResponse
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
@@ -354,6 +380,8 @@ from forte_sdk.generated.models.update_content_owner_request import UpdateConten
 from forte_sdk.generated.models.update_content_shares_request import UpdateContentSharesRequest as UpdateContentSharesRequest
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest as UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse as UpdateForteServiceResponse
+from forte_sdk.generated.models.update_managed_database_connection_request import UpdateManagedDatabaseConnectionRequest as UpdateManagedDatabaseConnectionRequest
+from forte_sdk.generated.models.update_managed_database_request import UpdateManagedDatabaseRequest as UpdateManagedDatabaseRequest
 from forte_sdk.generated.models.update_notification_templates_request import UpdateNotificationTemplatesRequest as UpdateNotificationTemplatesRequest
 from forte_sdk.generated.models.update_payment_method_request import UpdatePaymentMethodRequest as UpdatePaymentMethodRequest
 from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest as UpdatePaymentTriggerRequest

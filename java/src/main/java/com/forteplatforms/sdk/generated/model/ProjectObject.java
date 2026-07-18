@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseObject;
 import com.forteplatforms.sdk.generated.model.MfaConfig;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesConfig;
 import com.forteplatforms.sdk.generated.model.PasswordConfig;
@@ -47,6 +48,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_PROJECT_NAME,
   ProjectObject.JSON_PROPERTY_SERVICES,
   ProjectObject.JSON_PROPERTY_WEB_APPS,
+  ProjectObject.JSON_PROPERTY_MANAGED_DATABASES,
   ProjectObject.JSON_PROPERTY_CREATED_TIMESTAMP,
   ProjectObject.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
   ProjectObject.JSON_PROPERTY_ROLE_ARN,
@@ -85,6 +87,10 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_WEB_APPS = "webApps";
   @javax.annotation.Nonnull
   private List<WebAppObject> webApps = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MANAGED_DATABASES = "managedDatabases";
+  @javax.annotation.Nonnull
+  private List<ManagedDatabaseObject> managedDatabases = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nonnull
@@ -286,6 +292,38 @@ public class ProjectObject {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setWebApps(@javax.annotation.Nonnull List<WebAppObject> webApps) {
     this.webApps = webApps;
+  }
+
+
+  public ProjectObject managedDatabases(@javax.annotation.Nonnull List<ManagedDatabaseObject> managedDatabases) {
+    this.managedDatabases = managedDatabases;
+    return this;
+  }
+
+  public ProjectObject addManagedDatabasesItem(ManagedDatabaseObject managedDatabasesItem) {
+    if (this.managedDatabases == null) {
+      this.managedDatabases = new ArrayList<>();
+    }
+    this.managedDatabases.add(managedDatabasesItem);
+    return this;
+  }
+
+  /**
+   * Get managedDatabases
+   * @return managedDatabases
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_MANAGED_DATABASES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<ManagedDatabaseObject> getManagedDatabases() {
+    return managedDatabases;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MANAGED_DATABASES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setManagedDatabases(@javax.annotation.Nonnull List<ManagedDatabaseObject> managedDatabases) {
+    this.managedDatabases = managedDatabases;
   }
 
 
@@ -698,6 +736,7 @@ public class ProjectObject {
         Objects.equals(this.projectName, projectObject.projectName) &&
         Objects.equals(this.services, projectObject.services) &&
         Objects.equals(this.webApps, projectObject.webApps) &&
+        Objects.equals(this.managedDatabases, projectObject.managedDatabases) &&
         Objects.equals(this.createdTimestamp, projectObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, projectObject.lastModifiedTimestamp) &&
         Objects.equals(this.roleArn, projectObject.roleArn) &&
@@ -718,7 +757,7 @@ public class ProjectObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig, sandboxMode, notificationTemplatesConfig, paymentTriggers, hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig, sandboxMode, notificationTemplatesConfig, paymentTriggers, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -730,6 +769,7 @@ public class ProjectObject {
     sb.append("    projectName: ").append(toIndentedString(projectName)).append("\n");
     sb.append("    services: ").append(toIndentedString(services)).append("\n");
     sb.append("    webApps: ").append(toIndentedString(webApps)).append("\n");
+    sb.append("    managedDatabases: ").append(toIndentedString(managedDatabases)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
     sb.append("    lastModifiedTimestamp: ").append(toIndentedString(lastModifiedTimestamp)).append("\n");
     sb.append("    roleArn: ").append(toIndentedString(roleArn)).append("\n");
@@ -820,6 +860,16 @@ public class ProjectObject {
       for (int i = 0; i < getWebApps().size(); i++) {
         if (getWebApps().get(i) != null) {
           joiner.add(getWebApps().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%swebApps%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `managedDatabases` to the URL query string
+    if (getManagedDatabases() != null) {
+      for (int i = 0; i < getManagedDatabases().size(); i++) {
+        if (getManagedDatabases().get(i) != null) {
+          joiner.add(getManagedDatabases().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smanagedDatabases%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

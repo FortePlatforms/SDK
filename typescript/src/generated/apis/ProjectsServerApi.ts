@@ -89,6 +89,26 @@ import {
     CreateForteServiceRequestToJSON,
 } from '../models/CreateForteServiceRequest';
 import {
+    type CreateManagedDatabaseConnectionRequest,
+    CreateManagedDatabaseConnectionRequestFromJSON,
+    CreateManagedDatabaseConnectionRequestToJSON,
+} from '../models/CreateManagedDatabaseConnectionRequest';
+import {
+    type CreateManagedDatabaseRequest,
+    CreateManagedDatabaseRequestFromJSON,
+    CreateManagedDatabaseRequestToJSON,
+} from '../models/CreateManagedDatabaseRequest';
+import {
+    type CreateManagedDatabaseUserRequest,
+    CreateManagedDatabaseUserRequestFromJSON,
+    CreateManagedDatabaseUserRequestToJSON,
+} from '../models/CreateManagedDatabaseUserRequest';
+import {
+    type CreateManagedDatabaseUserResponse,
+    CreateManagedDatabaseUserResponseFromJSON,
+    CreateManagedDatabaseUserResponseToJSON,
+} from '../models/CreateManagedDatabaseUserResponse';
+import {
     type CreatePaymentMethodResponse,
     CreatePaymentMethodResponseFromJSON,
     CreatePaymentMethodResponseToJSON,
@@ -189,10 +209,30 @@ import {
     ListCustomDomainsResponseToJSON,
 } from '../models/ListCustomDomainsResponse';
 import {
+    type ListManagedDatabaseUsersResponse,
+    ListManagedDatabaseUsersResponseFromJSON,
+    ListManagedDatabaseUsersResponseToJSON,
+} from '../models/ListManagedDatabaseUsersResponse';
+import {
+    type ListManagedDatabasesResponse,
+    ListManagedDatabasesResponseFromJSON,
+    ListManagedDatabasesResponseToJSON,
+} from '../models/ListManagedDatabasesResponse';
+import {
     type ListSessionsResponse,
     ListSessionsResponseFromJSON,
     ListSessionsResponseToJSON,
 } from '../models/ListSessionsResponse';
+import {
+    type ManagedDatabaseConnection,
+    ManagedDatabaseConnectionFromJSON,
+    ManagedDatabaseConnectionToJSON,
+} from '../models/ManagedDatabaseConnection';
+import {
+    type ManagedDatabaseObject,
+    ManagedDatabaseObjectFromJSON,
+    ManagedDatabaseObjectToJSON,
+} from '../models/ManagedDatabaseObject';
 import {
     type NotificationTemplatesResponse,
     NotificationTemplatesResponseFromJSON,
@@ -279,6 +319,11 @@ import {
     RequestLogSearchRequestToJSON,
 } from '../models/RequestLogSearchRequest';
 import {
+    type RotateManagedDatabaseUserPasswordResponse,
+    RotateManagedDatabaseUserPasswordResponseFromJSON,
+    RotateManagedDatabaseUserPasswordResponseToJSON,
+} from '../models/RotateManagedDatabaseUserPasswordResponse';
+import {
     type SearchUsersRequest,
     SearchUsersRequestFromJSON,
     SearchUsersRequestToJSON,
@@ -319,6 +364,11 @@ import {
     SubscriptionObjectToJSON,
 } from '../models/SubscriptionObject';
 import {
+    type SuggestDatabaseEnvVarsResponse,
+    SuggestDatabaseEnvVarsResponseFromJSON,
+    SuggestDatabaseEnvVarsResponseToJSON,
+} from '../models/SuggestDatabaseEnvVarsResponse';
+import {
     type SyncCustomDomainResponse,
     SyncCustomDomainResponseFromJSON,
     SyncCustomDomainResponseToJSON,
@@ -358,6 +408,16 @@ import {
     UpdateForteServiceResponseFromJSON,
     UpdateForteServiceResponseToJSON,
 } from '../models/UpdateForteServiceResponse';
+import {
+    type UpdateManagedDatabaseConnectionRequest,
+    UpdateManagedDatabaseConnectionRequestFromJSON,
+    UpdateManagedDatabaseConnectionRequestToJSON,
+} from '../models/UpdateManagedDatabaseConnectionRequest';
+import {
+    type UpdateManagedDatabaseRequest,
+    UpdateManagedDatabaseRequestFromJSON,
+    UpdateManagedDatabaseRequestToJSON,
+} from '../models/UpdateManagedDatabaseRequest';
 import {
     type UpdateNotificationTemplatesRequest,
     UpdateNotificationTemplatesRequestFromJSON,
@@ -523,6 +583,23 @@ export interface CreateCustomDomainOperationRequest {
     createCustomDomainRequest: CreateCustomDomainRequest;
 }
 
+export interface CreateManagedDatabaseOperationRequest {
+    projectId: string;
+    createManagedDatabaseRequest: CreateManagedDatabaseRequest;
+}
+
+export interface CreateManagedDatabaseConnectionOperationRequest {
+    projectId: string;
+    databaseId: string;
+    createManagedDatabaseConnectionRequest: CreateManagedDatabaseConnectionRequest;
+}
+
+export interface CreateManagedDatabaseUserOperationRequest {
+    projectId: string;
+    databaseId: string;
+    createManagedDatabaseUserRequest: CreateManagedDatabaseUserRequest;
+}
+
 export interface CreatePaymentTriggerOperationRequest {
     projectId: string;
     createPaymentTriggerRequest: CreatePaymentTriggerRequest;
@@ -585,6 +662,23 @@ export interface DeleteCustomDomainRequest {
     customDomainId: string;
 }
 
+export interface DeleteManagedDatabaseRequest {
+    projectId: string;
+    databaseId: string;
+}
+
+export interface DeleteManagedDatabaseConnectionRequest {
+    projectId: string;
+    databaseId: string;
+    connectionId: string;
+}
+
+export interface DeleteManagedDatabaseUserRequest {
+    projectId: string;
+    databaseId: string;
+    databaseUserId: string;
+}
+
 export interface DeletePaymentTriggerRequest {
     projectId: string;
     triggerId: string;
@@ -641,6 +735,11 @@ export interface GetCustomDomainRequest {
     projectId: string;
     webAppId: string;
     customDomainId: string;
+}
+
+export interface GetManagedDatabaseRequest {
+    projectId: string;
+    databaseId: string;
 }
 
 export interface GetNotificationTemplatesRequest {
@@ -766,6 +865,19 @@ export interface ListLogLinesRequest {
     buildId?: string;
     level?: string;
     nextToken?: string;
+}
+
+export interface ListManagedDatabaseUsersRequest {
+    projectId: string;
+    databaseId: string;
+    page?: number;
+    pageSize?: number;
+}
+
+export interface ListManagedDatabasesRequest {
+    projectId: string;
+    page?: number;
+    pageSize?: number;
 }
 
 export interface ListPaymentTriggersRequest {
@@ -1027,6 +1139,12 @@ export interface RevokeUserSessionRequest {
     sessionId: string;
 }
 
+export interface RotateManagedDatabaseUserPasswordRequest {
+    projectId: string;
+    databaseId: string;
+    databaseUserId: string;
+}
+
 export interface SearchLogLinesRequest {
     projectId: string;
     serviceId: string;
@@ -1071,6 +1189,12 @@ export interface SendUserSmsOperationRequest {
     sendUserSmsRequest: SendUserSmsRequest;
 }
 
+export interface SuggestDatabaseEnvVarsRequest {
+    projectId: string;
+    serviceId: string;
+    databaseType?: SuggestDatabaseEnvVarsDatabaseTypeType;
+}
+
 export interface SuspendUserRequest {
     userId: string;
     projectId: string;
@@ -1098,6 +1222,19 @@ export interface UpdateActionOperationRequest {
     projectId: string;
     actionId: string;
     updateActionRequest: UpdateActionRequest;
+}
+
+export interface UpdateManagedDatabaseOperationRequest {
+    projectId: string;
+    databaseId: string;
+    updateManagedDatabaseRequest: UpdateManagedDatabaseRequest;
+}
+
+export interface UpdateManagedDatabaseConnectionOperationRequest {
+    projectId: string;
+    databaseId: string;
+    connectionId: string;
+    updateManagedDatabaseConnectionRequest: UpdateManagedDatabaseConnectionRequest;
 }
 
 export interface UpdateNotificationTemplatesOperationRequest {
@@ -2082,6 +2219,181 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createManagedDatabase without sending the request
+     */
+    async createManagedDatabaseRequestOpts(requestParameters: CreateManagedDatabaseOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createManagedDatabase().'
+            );
+        }
+
+        if (requestParameters['createManagedDatabaseRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createManagedDatabaseRequest',
+                'Required parameter "createManagedDatabaseRequest" was null or undefined when calling createManagedDatabase().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateManagedDatabaseRequestToJSON(requestParameters['createManagedDatabaseRequest']),
+        };
+    }
+
+    /**
+     */
+    async createManagedDatabaseRaw(requestParameters: CreateManagedDatabaseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ManagedDatabaseObject>> {
+        const requestOptions = await this.createManagedDatabaseRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ManagedDatabaseObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createManagedDatabase(requestParameters: CreateManagedDatabaseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseObject> {
+        const response = await this.createManagedDatabaseRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createManagedDatabaseConnection without sending the request
+     */
+    async createManagedDatabaseConnectionRequestOpts(requestParameters: CreateManagedDatabaseConnectionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createManagedDatabaseConnection().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling createManagedDatabaseConnection().'
+            );
+        }
+
+        if (requestParameters['createManagedDatabaseConnectionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createManagedDatabaseConnectionRequest',
+                'Required parameter "createManagedDatabaseConnectionRequest" was null or undefined when calling createManagedDatabaseConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/connections`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateManagedDatabaseConnectionRequestToJSON(requestParameters['createManagedDatabaseConnectionRequest']),
+        };
+    }
+
+    /**
+     */
+    async createManagedDatabaseConnectionRaw(requestParameters: CreateManagedDatabaseConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ManagedDatabaseConnection>> {
+        const requestOptions = await this.createManagedDatabaseConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ManagedDatabaseConnectionFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createManagedDatabaseConnection(requestParameters: CreateManagedDatabaseConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseConnection> {
+        const response = await this.createManagedDatabaseConnectionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createManagedDatabaseUser without sending the request
+     */
+    async createManagedDatabaseUserRequestOpts(requestParameters: CreateManagedDatabaseUserOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createManagedDatabaseUser().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling createManagedDatabaseUser().'
+            );
+        }
+
+        if (requestParameters['createManagedDatabaseUserRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createManagedDatabaseUserRequest',
+                'Required parameter "createManagedDatabaseUserRequest" was null or undefined when calling createManagedDatabaseUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/users`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateManagedDatabaseUserRequestToJSON(requestParameters['createManagedDatabaseUserRequest']),
+        };
+    }
+
+    /**
+     */
+    async createManagedDatabaseUserRaw(requestParameters: CreateManagedDatabaseUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateManagedDatabaseUserResponse>> {
+        const requestOptions = await this.createManagedDatabaseUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateManagedDatabaseUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createManagedDatabaseUser(requestParameters: CreateManagedDatabaseUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateManagedDatabaseUserResponse> {
+        const response = await this.createManagedDatabaseUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createPaymentTrigger without sending the request
      */
     async createPaymentTriggerRequestOpts(requestParameters: CreatePaymentTriggerOperationRequest): Promise<runtime.RequestOpts> {
@@ -2692,6 +3004,173 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteManagedDatabase without sending the request
+     */
+    async deleteManagedDatabaseRequestOpts(requestParameters: DeleteManagedDatabaseRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteManagedDatabase().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling deleteManagedDatabase().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteManagedDatabaseRaw(requestParameters: DeleteManagedDatabaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ManagedDatabaseObject>> {
+        const requestOptions = await this.deleteManagedDatabaseRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ManagedDatabaseObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async deleteManagedDatabase(requestParameters: DeleteManagedDatabaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseObject> {
+        const response = await this.deleteManagedDatabaseRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for deleteManagedDatabaseConnection without sending the request
+     */
+    async deleteManagedDatabaseConnectionRequestOpts(requestParameters: DeleteManagedDatabaseConnectionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteManagedDatabaseConnection().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling deleteManagedDatabaseConnection().'
+            );
+        }
+
+        if (requestParameters['connectionId'] == null) {
+            throw new runtime.RequiredError(
+                'connectionId',
+                'Required parameter "connectionId" was null or undefined when calling deleteManagedDatabaseConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/connections/{connectionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+        urlPath = urlPath.replace('{connectionId}', encodeURIComponent(String(requestParameters['connectionId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteManagedDatabaseConnectionRaw(requestParameters: DeleteManagedDatabaseConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteManagedDatabaseConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteManagedDatabaseConnection(requestParameters: DeleteManagedDatabaseConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteManagedDatabaseConnectionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteManagedDatabaseUser without sending the request
+     */
+    async deleteManagedDatabaseUserRequestOpts(requestParameters: DeleteManagedDatabaseUserRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteManagedDatabaseUser().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling deleteManagedDatabaseUser().'
+            );
+        }
+
+        if (requestParameters['databaseUserId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseUserId',
+                'Required parameter "databaseUserId" was null or undefined when calling deleteManagedDatabaseUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/users/{databaseUserId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+        urlPath = urlPath.replace('{databaseUserId}', encodeURIComponent(String(requestParameters['databaseUserId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteManagedDatabaseUserRaw(requestParameters: DeleteManagedDatabaseUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteManagedDatabaseUserRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteManagedDatabaseUser(requestParameters: DeleteManagedDatabaseUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteManagedDatabaseUserRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deletePaymentTrigger without sending the request
      */
     async deletePaymentTriggerRequestOpts(requestParameters: DeletePaymentTriggerRequest): Promise<runtime.RequestOpts> {
@@ -3258,6 +3737,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getCustomDomain(requestParameters: GetCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDomainResponse> {
         const response = await this.getCustomDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getManagedDatabase without sending the request
+     */
+    async getManagedDatabaseRequestOpts(requestParameters: GetManagedDatabaseRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getManagedDatabase().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling getManagedDatabase().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getManagedDatabaseRaw(requestParameters: GetManagedDatabaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ManagedDatabaseObject>> {
+        const requestOptions = await this.getManagedDatabaseRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ManagedDatabaseObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getManagedDatabase(requestParameters: GetManagedDatabaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseObject> {
+        const response = await this.getManagedDatabaseRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4378,6 +4908,116 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listLogLines(requestParameters: ListLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
         const response = await this.listLogLinesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listManagedDatabaseUsers without sending the request
+     */
+    async listManagedDatabaseUsersRequestOpts(requestParameters: ListManagedDatabaseUsersRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listManagedDatabaseUsers().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling listManagedDatabaseUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/users`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listManagedDatabaseUsersRaw(requestParameters: ListManagedDatabaseUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListManagedDatabaseUsersResponse>> {
+        const requestOptions = await this.listManagedDatabaseUsersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListManagedDatabaseUsersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listManagedDatabaseUsers(requestParameters: ListManagedDatabaseUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListManagedDatabaseUsersResponse> {
+        const response = await this.listManagedDatabaseUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listManagedDatabases without sending the request
+     */
+    async listManagedDatabasesRequestOpts(requestParameters: ListManagedDatabasesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listManagedDatabases().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listManagedDatabasesRaw(requestParameters: ListManagedDatabasesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListManagedDatabasesResponse>> {
+        const requestOptions = await this.listManagedDatabasesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListManagedDatabasesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listManagedDatabases(requestParameters: ListManagedDatabasesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListManagedDatabasesResponse> {
+        const response = await this.listManagedDatabasesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6760,6 +7400,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for rotateManagedDatabaseUserPassword without sending the request
+     */
+    async rotateManagedDatabaseUserPasswordRequestOpts(requestParameters: RotateManagedDatabaseUserPasswordRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling rotateManagedDatabaseUserPassword().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling rotateManagedDatabaseUserPassword().'
+            );
+        }
+
+        if (requestParameters['databaseUserId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseUserId',
+                'Required parameter "databaseUserId" was null or undefined when calling rotateManagedDatabaseUserPassword().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/users/{databaseUserId}/rotate-password`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+        urlPath = urlPath.replace('{databaseUserId}', encodeURIComponent(String(requestParameters['databaseUserId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async rotateManagedDatabaseUserPasswordRaw(requestParameters: RotateManagedDatabaseUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateManagedDatabaseUserPasswordResponse>> {
+        const requestOptions = await this.rotateManagedDatabaseUserPasswordRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RotateManagedDatabaseUserPasswordResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async rotateManagedDatabaseUserPassword(requestParameters: RotateManagedDatabaseUserPasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateManagedDatabaseUserPasswordResponse> {
+        const response = await this.rotateManagedDatabaseUserPasswordRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for searchLogLines without sending the request
      */
     async searchLogLinesRequestOpts(requestParameters: SearchLogLinesRequest): Promise<runtime.RequestOpts> {
@@ -7164,6 +7863,61 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for suggestDatabaseEnvVars without sending the request
+     */
+    async suggestDatabaseEnvVarsRequestOpts(requestParameters: SuggestDatabaseEnvVarsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling suggestDatabaseEnvVars().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling suggestDatabaseEnvVars().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['databaseType'] != null) {
+            queryParameters['databaseType'] = requestParameters['databaseType'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/database-env-var-suggestions`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async suggestDatabaseEnvVarsRaw(requestParameters: SuggestDatabaseEnvVarsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuggestDatabaseEnvVarsResponse>> {
+        const requestOptions = await this.suggestDatabaseEnvVarsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuggestDatabaseEnvVarsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async suggestDatabaseEnvVars(requestParameters: SuggestDatabaseEnvVarsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuggestDatabaseEnvVarsResponse> {
+        const response = await this.suggestDatabaseEnvVarsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for suspendUser without sending the request
      */
     async suspendUserRequestOpts(requestParameters: SuspendUserRequest): Promise<runtime.RequestOpts> {
@@ -7451,6 +8205,136 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async updateAction(requestParameters: UpdateActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionObject> {
         const response = await this.updateActionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for updateManagedDatabase without sending the request
+     */
+    async updateManagedDatabaseRequestOpts(requestParameters: UpdateManagedDatabaseOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateManagedDatabase().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling updateManagedDatabase().'
+            );
+        }
+
+        if (requestParameters['updateManagedDatabaseRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateManagedDatabaseRequest',
+                'Required parameter "updateManagedDatabaseRequest" was null or undefined when calling updateManagedDatabase().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateManagedDatabaseRequestToJSON(requestParameters['updateManagedDatabaseRequest']),
+        };
+    }
+
+    /**
+     */
+    async updateManagedDatabaseRaw(requestParameters: UpdateManagedDatabaseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ManagedDatabaseObject>> {
+        const requestOptions = await this.updateManagedDatabaseRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ManagedDatabaseObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateManagedDatabase(requestParameters: UpdateManagedDatabaseOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseObject> {
+        const response = await this.updateManagedDatabaseRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for updateManagedDatabaseConnection without sending the request
+     */
+    async updateManagedDatabaseConnectionRequestOpts(requestParameters: UpdateManagedDatabaseConnectionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateManagedDatabaseConnection().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling updateManagedDatabaseConnection().'
+            );
+        }
+
+        if (requestParameters['connectionId'] == null) {
+            throw new runtime.RequiredError(
+                'connectionId',
+                'Required parameter "connectionId" was null or undefined when calling updateManagedDatabaseConnection().'
+            );
+        }
+
+        if (requestParameters['updateManagedDatabaseConnectionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateManagedDatabaseConnectionRequest',
+                'Required parameter "updateManagedDatabaseConnectionRequest" was null or undefined when calling updateManagedDatabaseConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/connections/{connectionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+        urlPath = urlPath.replace('{connectionId}', encodeURIComponent(String(requestParameters['connectionId'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateManagedDatabaseConnectionRequestToJSON(requestParameters['updateManagedDatabaseConnectionRequest']),
+        };
+    }
+
+    /**
+     */
+    async updateManagedDatabaseConnectionRaw(requestParameters: UpdateManagedDatabaseConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ManagedDatabaseConnection>> {
+        const requestOptions = await this.updateManagedDatabaseConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ManagedDatabaseConnectionFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateManagedDatabaseConnection(requestParameters: UpdateManagedDatabaseConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseConnection> {
+        const response = await this.updateManagedDatabaseConnectionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7932,3 +8816,11 @@ export const ListUserPaymentsStateType = {
     REFUNDED: 'REFUNDED'
 } as const;
 export type ListUserPaymentsStateType = typeof ListUserPaymentsStateType[keyof typeof ListUserPaymentsStateType];
+/**
+ * @export
+ */
+export const SuggestDatabaseEnvVarsDatabaseTypeType = {
+    POSTGRES: 'POSTGRES',
+    MONGODB: 'MONGODB'
+} as const;
+export type SuggestDatabaseEnvVarsDatabaseTypeType = typeof SuggestDatabaseEnvVarsDatabaseTypeType[keyof typeof SuggestDatabaseEnvVarsDatabaseTypeType];

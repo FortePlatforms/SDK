@@ -34,6 +34,13 @@ import {
     WebAppObjectToJSON,
     WebAppObjectToJSONTyped,
 } from './WebAppObject';
+import type { ManagedDatabaseObject } from './ManagedDatabaseObject';
+import {
+    ManagedDatabaseObjectFromJSON,
+    ManagedDatabaseObjectFromJSONTyped,
+    ManagedDatabaseObjectToJSON,
+    ManagedDatabaseObjectToJSONTyped,
+} from './ManagedDatabaseObject';
 import type { ServiceObject } from './ServiceObject';
 import {
     ServiceObjectFromJSON,
@@ -92,6 +99,12 @@ export interface ProjectObject {
      * @memberof ProjectObject
      */
     webApps: Array<WebAppObject>;
+    /**
+     * 
+     * @type {Array<ManagedDatabaseObject>}
+     * @memberof ProjectObject
+     */
+    managedDatabases: Array<ManagedDatabaseObject>;
     /**
      * 
      * @type {Date}
@@ -198,6 +211,7 @@ export function instanceOfProjectObject(value: object): value is ProjectObject {
     if (!('projectName' in value) || value['projectName'] === undefined) return false;
     if (!('services' in value) || value['services'] === undefined) return false;
     if (!('webApps' in value) || value['webApps'] === undefined) return false;
+    if (!('managedDatabases' in value) || value['managedDatabases'] === undefined) return false;
     if (!('createdTimestamp' in value) || value['createdTimestamp'] === undefined) return false;
     if (!('roleArn' in value) || value['roleArn'] === undefined) return false;
     return true;
@@ -218,6 +232,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'projectName': json['projectName'],
         'services': ((json['services'] as Array<any>).map(ServiceObjectFromJSON)),
         'webApps': ((json['webApps'] as Array<any>).map(WebAppObjectFromJSON)),
+        'managedDatabases': ((json['managedDatabases'] as Array<any>).map(ManagedDatabaseObjectFromJSON)),
         'createdTimestamp': (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
         'roleArn': json['roleArn'],
@@ -253,6 +268,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'projectName': value['projectName'],
         'services': ((value['services'] as Array<any>).map(ServiceObjectToJSON)),
         'webApps': ((value['webApps'] as Array<any>).map(WebAppObjectToJSON)),
+        'managedDatabases': ((value['managedDatabases'] as Array<any>).map(ManagedDatabaseObjectToJSON)),
         'createdTimestamp': value['createdTimestamp'].toISOString(),
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
         'roleArn': value['roleArn'],
