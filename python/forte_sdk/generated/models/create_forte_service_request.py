@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.create_service_database_connection_request import CreateServiceDatabaseConnectionRequest
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -41,7 +42,8 @@ class CreateForteServiceRequest(BaseModel):
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
     base_directory: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="baseDirectory")
     request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
-    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled"]
+    database_connections: Optional[Annotated[List[CreateServiceDatabaseConnectionRequest], Field(min_length=0, max_length=5)]] = Field(default=None, alias="databaseConnections")
+    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled", "databaseConnections"]
 
     @field_validator('build_trigger')
     def build_trigger_validate_enum(cls, value):
@@ -151,6 +153,13 @@ class CreateForteServiceRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in database_connections (list)
+        _items = []
+        if self.database_connections:
+            for _item_database_connections in self.database_connections:
+                if _item_database_connections:
+                    _items.append(_item_database_connections.to_dict())
+            _dict['databaseConnections'] = _items
         return _dict
 
     @classmethod
@@ -175,7 +184,8 @@ class CreateForteServiceRequest(BaseModel):
             "healthCheckPort": obj.get("healthCheckPort"),
             "healthCheckPath": obj.get("healthCheckPath"),
             "baseDirectory": obj.get("baseDirectory"),
-            "requestResponseBodyLoggingEnabled": obj.get("requestResponseBodyLoggingEnabled")
+            "requestResponseBodyLoggingEnabled": obj.get("requestResponseBodyLoggingEnabled"),
+            "databaseConnections": [CreateServiceDatabaseConnectionRequest.from_dict(_item) for _item in obj["databaseConnections"]] if obj.get("databaseConnections") is not None else None
         })
         return _obj
 

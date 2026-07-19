@@ -17,23 +17,31 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
-from forte_sdk.generated.models.managed_database_metric_limits import ManagedDatabaseMetricLimits
-from forte_sdk.generated.models.managed_database_metric_point import ManagedDatabaseMetricPoint
-from forte_sdk.generated.models.managed_database_usage import ManagedDatabaseUsage
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class ManagedDatabaseMetricsResponse(BaseModel):
+class ManagedDatabaseMetricLimits(BaseModel):
     """
-    ManagedDatabaseMetricsResponse
+    ManagedDatabaseMetricLimits
     """ # noqa: E501
-    points: List[ManagedDatabaseMetricPoint]
-    usage: ManagedDatabaseUsage
-    limits: ManagedDatabaseMetricLimits
-    __properties: ClassVar[List[str]] = ["points", "usage", "limits"]
+    pool_size: Optional[StrictInt] = Field(default=None, alias="poolSize")
+    max_client_connections: Optional[StrictInt] = Field(default=None, alias="maxClientConnections")
+    query_wait_timeout_seconds: Optional[StrictInt] = Field(default=None, alias="queryWaitTimeoutSeconds")
+    per_user_connection_limit: Optional[StrictInt] = Field(default=None, alias="perUserConnectionLimit")
+    user_count: Optional[StrictInt] = Field(default=None, alias="userCount")
+    storage_limit_bytes: StrictInt = Field(alias="storageLimitBytes")
+    tier: StrictStr
+    __properties: ClassVar[List[str]] = ["poolSize", "maxClientConnections", "queryWaitTimeoutSeconds", "perUserConnectionLimit", "userCount", "storageLimitBytes", "tier"]
+
+    @field_validator('tier')
+    def tier_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['SHARED', 'DEDICATED']):
+            raise ValueError("must be one of enum values ('SHARED', 'DEDICATED')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -53,7 +61,7 @@ class ManagedDatabaseMetricsResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ManagedDatabaseMetricsResponse from a JSON string"""
+        """Create an instance of ManagedDatabaseMetricLimits from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,24 +82,11 @@ class ManagedDatabaseMetricsResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in points (list)
-        _items = []
-        if self.points:
-            for _item_points in self.points:
-                if _item_points:
-                    _items.append(_item_points.to_dict())
-            _dict['points'] = _items
-        # override the default output from pydantic by calling `to_dict()` of usage
-        if self.usage:
-            _dict['usage'] = self.usage.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of limits
-        if self.limits:
-            _dict['limits'] = self.limits.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ManagedDatabaseMetricsResponse from a dict"""
+        """Create an instance of ManagedDatabaseMetricLimits from a dict"""
         if obj is None:
             return None
 
@@ -99,9 +94,13 @@ class ManagedDatabaseMetricsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "points": [ManagedDatabaseMetricPoint.from_dict(_item) for _item in obj["points"]] if obj.get("points") is not None else None,
-            "usage": ManagedDatabaseUsage.from_dict(obj["usage"]) if obj.get("usage") is not None else None,
-            "limits": ManagedDatabaseMetricLimits.from_dict(obj["limits"]) if obj.get("limits") is not None else None
+            "poolSize": obj.get("poolSize"),
+            "maxClientConnections": obj.get("maxClientConnections"),
+            "queryWaitTimeoutSeconds": obj.get("queryWaitTimeoutSeconds"),
+            "perUserConnectionLimit": obj.get("perUserConnectionLimit"),
+            "userCount": obj.get("userCount"),
+            "storageLimitBytes": obj.get("storageLimitBytes"),
+            "tier": obj.get("tier")
         })
         return _obj
 

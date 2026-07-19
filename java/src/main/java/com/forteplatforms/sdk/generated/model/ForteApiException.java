@@ -49,6 +49,8 @@ public class ForteApiException {
     
     GITHUB_APP_NOT_CONFIGURED(String.valueOf("GITHUB_APP_NOT_CONFIGURED")),
     
+    GITHUB_API_UNAVAILABLE(String.valueOf("GITHUB_API_UNAVAILABLE")),
+    
     EMAIL_NOT_VERIFIED(String.valueOf("EMAIL_NOT_VERIFIED")),
     
     CSRF_TOKEN_MISMATCH(String.valueOf("CSRF_TOKEN_MISMATCH")),

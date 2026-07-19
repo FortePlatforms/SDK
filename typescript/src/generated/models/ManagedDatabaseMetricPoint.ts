@@ -30,6 +30,12 @@ export interface ManagedDatabaseMetricPoint {
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
+    intervalMs?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
     activeTimeMs?: number;
     /**
      * 
@@ -162,6 +168,66 @@ export interface ManagedDatabaseMetricPoint {
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
+    pgbQueryTimeMicros?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    pgbWaitTimeMicros?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    pgbXactCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    pgbXactTimeMicros?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    maxWaitMicros?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    poolSize?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    sessionTimeMs?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    idleInTransactionTimeMs?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    sessionsAbnormal?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
+    backends?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseMetricPoint
+     */
     logicalSizeBytes?: number;
     /**
      * 
@@ -190,6 +256,7 @@ export function ManagedDatabaseMetricPointFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'timestamp': (new Date(json['timestamp'])),
+        'intervalMs': json['intervalMs'] == null ? undefined : json['intervalMs'],
         'activeTimeMs': json['activeTimeMs'] == null ? undefined : json['activeTimeMs'],
         'xactCommit': json['xactCommit'] == null ? undefined : json['xactCommit'],
         'xactRollback': json['xactRollback'] == null ? undefined : json['xactRollback'],
@@ -212,6 +279,16 @@ export function ManagedDatabaseMetricPointFromJSONTyped(json: any, ignoreDiscrim
         'clientConnections': json['clientConnections'] == null ? undefined : json['clientConnections'],
         'serverConnections': json['serverConnections'] == null ? undefined : json['serverConnections'],
         'clWaiting': json['clWaiting'] == null ? undefined : json['clWaiting'],
+        'pgbQueryTimeMicros': json['pgbQueryTimeMicros'] == null ? undefined : json['pgbQueryTimeMicros'],
+        'pgbWaitTimeMicros': json['pgbWaitTimeMicros'] == null ? undefined : json['pgbWaitTimeMicros'],
+        'pgbXactCount': json['pgbXactCount'] == null ? undefined : json['pgbXactCount'],
+        'pgbXactTimeMicros': json['pgbXactTimeMicros'] == null ? undefined : json['pgbXactTimeMicros'],
+        'maxWaitMicros': json['maxWaitMicros'] == null ? undefined : json['maxWaitMicros'],
+        'poolSize': json['poolSize'] == null ? undefined : json['poolSize'],
+        'sessionTimeMs': json['sessionTimeMs'] == null ? undefined : json['sessionTimeMs'],
+        'idleInTransactionTimeMs': json['idleInTransactionTimeMs'] == null ? undefined : json['idleInTransactionTimeMs'],
+        'sessionsAbnormal': json['sessionsAbnormal'] == null ? undefined : json['sessionsAbnormal'],
+        'backends': json['backends'] == null ? undefined : json['backends'],
         'logicalSizeBytes': json['logicalSizeBytes'] == null ? undefined : json['logicalSizeBytes'],
         'physicalSizeBytes': json['physicalSizeBytes'] == null ? undefined : json['physicalSizeBytes'],
     };
@@ -229,6 +306,7 @@ export function ManagedDatabaseMetricPointToJSONTyped(value?: ManagedDatabaseMet
     return {
         
         'timestamp': value['timestamp'].toISOString(),
+        'intervalMs': value['intervalMs'],
         'activeTimeMs': value['activeTimeMs'],
         'xactCommit': value['xactCommit'],
         'xactRollback': value['xactRollback'],
@@ -251,6 +329,16 @@ export function ManagedDatabaseMetricPointToJSONTyped(value?: ManagedDatabaseMet
         'clientConnections': value['clientConnections'],
         'serverConnections': value['serverConnections'],
         'clWaiting': value['clWaiting'],
+        'pgbQueryTimeMicros': value['pgbQueryTimeMicros'],
+        'pgbWaitTimeMicros': value['pgbWaitTimeMicros'],
+        'pgbXactCount': value['pgbXactCount'],
+        'pgbXactTimeMicros': value['pgbXactTimeMicros'],
+        'maxWaitMicros': value['maxWaitMicros'],
+        'poolSize': value['poolSize'],
+        'sessionTimeMs': value['sessionTimeMs'],
+        'idleInTransactionTimeMs': value['idleInTransactionTimeMs'],
+        'sessionsAbnormal': value['sessionsAbnormal'],
+        'backends': value['backends'],
         'logicalSizeBytes': value['logicalSizeBytes'],
         'physicalSizeBytes': value['physicalSizeBytes'],
     };

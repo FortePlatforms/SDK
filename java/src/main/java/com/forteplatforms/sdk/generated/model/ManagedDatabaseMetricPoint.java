@@ -35,6 +35,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   ManagedDatabaseMetricPoint.JSON_PROPERTY_TIMESTAMP,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_INTERVAL_MS,
   ManagedDatabaseMetricPoint.JSON_PROPERTY_ACTIVE_TIME_MS,
   ManagedDatabaseMetricPoint.JSON_PROPERTY_XACT_COMMIT,
   ManagedDatabaseMetricPoint.JSON_PROPERTY_XACT_ROLLBACK,
@@ -57,6 +58,16 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ManagedDatabaseMetricPoint.JSON_PROPERTY_CLIENT_CONNECTIONS,
   ManagedDatabaseMetricPoint.JSON_PROPERTY_SERVER_CONNECTIONS,
   ManagedDatabaseMetricPoint.JSON_PROPERTY_CL_WAITING,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_PGB_QUERY_TIME_MICROS,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_PGB_WAIT_TIME_MICROS,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_PGB_XACT_COUNT,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_PGB_XACT_TIME_MICROS,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_MAX_WAIT_MICROS,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_POOL_SIZE,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_SESSION_TIME_MS,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_IDLE_IN_TRANSACTION_TIME_MS,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_SESSIONS_ABNORMAL,
+  ManagedDatabaseMetricPoint.JSON_PROPERTY_BACKENDS,
   ManagedDatabaseMetricPoint.JSON_PROPERTY_LOGICAL_SIZE_BYTES,
   ManagedDatabaseMetricPoint.JSON_PROPERTY_PHYSICAL_SIZE_BYTES
 })
@@ -65,6 +76,10 @@ public class ManagedDatabaseMetricPoint {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
   private OffsetDateTime timestamp;
+
+  public static final String JSON_PROPERTY_INTERVAL_MS = "intervalMs";
+  @javax.annotation.Nullable
+  private Long intervalMs;
 
   public static final String JSON_PROPERTY_ACTIVE_TIME_MS = "activeTimeMs";
   @javax.annotation.Nullable
@@ -154,6 +169,46 @@ public class ManagedDatabaseMetricPoint {
   @javax.annotation.Nullable
   private Long clWaiting;
 
+  public static final String JSON_PROPERTY_PGB_QUERY_TIME_MICROS = "pgbQueryTimeMicros";
+  @javax.annotation.Nullable
+  private Long pgbQueryTimeMicros;
+
+  public static final String JSON_PROPERTY_PGB_WAIT_TIME_MICROS = "pgbWaitTimeMicros";
+  @javax.annotation.Nullable
+  private Long pgbWaitTimeMicros;
+
+  public static final String JSON_PROPERTY_PGB_XACT_COUNT = "pgbXactCount";
+  @javax.annotation.Nullable
+  private Long pgbXactCount;
+
+  public static final String JSON_PROPERTY_PGB_XACT_TIME_MICROS = "pgbXactTimeMicros";
+  @javax.annotation.Nullable
+  private Long pgbXactTimeMicros;
+
+  public static final String JSON_PROPERTY_MAX_WAIT_MICROS = "maxWaitMicros";
+  @javax.annotation.Nullable
+  private Long maxWaitMicros;
+
+  public static final String JSON_PROPERTY_POOL_SIZE = "poolSize";
+  @javax.annotation.Nullable
+  private Long poolSize;
+
+  public static final String JSON_PROPERTY_SESSION_TIME_MS = "sessionTimeMs";
+  @javax.annotation.Nullable
+  private Long sessionTimeMs;
+
+  public static final String JSON_PROPERTY_IDLE_IN_TRANSACTION_TIME_MS = "idleInTransactionTimeMs";
+  @javax.annotation.Nullable
+  private Long idleInTransactionTimeMs;
+
+  public static final String JSON_PROPERTY_SESSIONS_ABNORMAL = "sessionsAbnormal";
+  @javax.annotation.Nullable
+  private Long sessionsAbnormal;
+
+  public static final String JSON_PROPERTY_BACKENDS = "backends";
+  @javax.annotation.Nullable
+  private Long backends;
+
   public static final String JSON_PROPERTY_LOGICAL_SIZE_BYTES = "logicalSizeBytes";
   @javax.annotation.Nullable
   private Long logicalSizeBytes;
@@ -186,6 +241,30 @@ public class ManagedDatabaseMetricPoint {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTimestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
+  }
+
+
+  public ManagedDatabaseMetricPoint intervalMs(@javax.annotation.Nullable Long intervalMs) {
+    this.intervalMs = intervalMs;
+    return this;
+  }
+
+  /**
+   * Get intervalMs
+   * @return intervalMs
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INTERVAL_MS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getIntervalMs() {
+    return intervalMs;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INTERVAL_MS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIntervalMs(@javax.annotation.Nullable Long intervalMs) {
+    this.intervalMs = intervalMs;
   }
 
 
@@ -717,6 +796,246 @@ public class ManagedDatabaseMetricPoint {
   }
 
 
+  public ManagedDatabaseMetricPoint pgbQueryTimeMicros(@javax.annotation.Nullable Long pgbQueryTimeMicros) {
+    this.pgbQueryTimeMicros = pgbQueryTimeMicros;
+    return this;
+  }
+
+  /**
+   * Get pgbQueryTimeMicros
+   * @return pgbQueryTimeMicros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PGB_QUERY_TIME_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getPgbQueryTimeMicros() {
+    return pgbQueryTimeMicros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PGB_QUERY_TIME_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPgbQueryTimeMicros(@javax.annotation.Nullable Long pgbQueryTimeMicros) {
+    this.pgbQueryTimeMicros = pgbQueryTimeMicros;
+  }
+
+
+  public ManagedDatabaseMetricPoint pgbWaitTimeMicros(@javax.annotation.Nullable Long pgbWaitTimeMicros) {
+    this.pgbWaitTimeMicros = pgbWaitTimeMicros;
+    return this;
+  }
+
+  /**
+   * Get pgbWaitTimeMicros
+   * @return pgbWaitTimeMicros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PGB_WAIT_TIME_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getPgbWaitTimeMicros() {
+    return pgbWaitTimeMicros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PGB_WAIT_TIME_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPgbWaitTimeMicros(@javax.annotation.Nullable Long pgbWaitTimeMicros) {
+    this.pgbWaitTimeMicros = pgbWaitTimeMicros;
+  }
+
+
+  public ManagedDatabaseMetricPoint pgbXactCount(@javax.annotation.Nullable Long pgbXactCount) {
+    this.pgbXactCount = pgbXactCount;
+    return this;
+  }
+
+  /**
+   * Get pgbXactCount
+   * @return pgbXactCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PGB_XACT_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getPgbXactCount() {
+    return pgbXactCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PGB_XACT_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPgbXactCount(@javax.annotation.Nullable Long pgbXactCount) {
+    this.pgbXactCount = pgbXactCount;
+  }
+
+
+  public ManagedDatabaseMetricPoint pgbXactTimeMicros(@javax.annotation.Nullable Long pgbXactTimeMicros) {
+    this.pgbXactTimeMicros = pgbXactTimeMicros;
+    return this;
+  }
+
+  /**
+   * Get pgbXactTimeMicros
+   * @return pgbXactTimeMicros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PGB_XACT_TIME_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getPgbXactTimeMicros() {
+    return pgbXactTimeMicros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PGB_XACT_TIME_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPgbXactTimeMicros(@javax.annotation.Nullable Long pgbXactTimeMicros) {
+    this.pgbXactTimeMicros = pgbXactTimeMicros;
+  }
+
+
+  public ManagedDatabaseMetricPoint maxWaitMicros(@javax.annotation.Nullable Long maxWaitMicros) {
+    this.maxWaitMicros = maxWaitMicros;
+    return this;
+  }
+
+  /**
+   * Get maxWaitMicros
+   * @return maxWaitMicros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MAX_WAIT_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getMaxWaitMicros() {
+    return maxWaitMicros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MAX_WAIT_MICROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMaxWaitMicros(@javax.annotation.Nullable Long maxWaitMicros) {
+    this.maxWaitMicros = maxWaitMicros;
+  }
+
+
+  public ManagedDatabaseMetricPoint poolSize(@javax.annotation.Nullable Long poolSize) {
+    this.poolSize = poolSize;
+    return this;
+  }
+
+  /**
+   * Get poolSize
+   * @return poolSize
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_POOL_SIZE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getPoolSize() {
+    return poolSize;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_POOL_SIZE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPoolSize(@javax.annotation.Nullable Long poolSize) {
+    this.poolSize = poolSize;
+  }
+
+
+  public ManagedDatabaseMetricPoint sessionTimeMs(@javax.annotation.Nullable Long sessionTimeMs) {
+    this.sessionTimeMs = sessionTimeMs;
+    return this;
+  }
+
+  /**
+   * Get sessionTimeMs
+   * @return sessionTimeMs
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SESSION_TIME_MS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getSessionTimeMs() {
+    return sessionTimeMs;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SESSION_TIME_MS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSessionTimeMs(@javax.annotation.Nullable Long sessionTimeMs) {
+    this.sessionTimeMs = sessionTimeMs;
+  }
+
+
+  public ManagedDatabaseMetricPoint idleInTransactionTimeMs(@javax.annotation.Nullable Long idleInTransactionTimeMs) {
+    this.idleInTransactionTimeMs = idleInTransactionTimeMs;
+    return this;
+  }
+
+  /**
+   * Get idleInTransactionTimeMs
+   * @return idleInTransactionTimeMs
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IDLE_IN_TRANSACTION_TIME_MS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getIdleInTransactionTimeMs() {
+    return idleInTransactionTimeMs;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IDLE_IN_TRANSACTION_TIME_MS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIdleInTransactionTimeMs(@javax.annotation.Nullable Long idleInTransactionTimeMs) {
+    this.idleInTransactionTimeMs = idleInTransactionTimeMs;
+  }
+
+
+  public ManagedDatabaseMetricPoint sessionsAbnormal(@javax.annotation.Nullable Long sessionsAbnormal) {
+    this.sessionsAbnormal = sessionsAbnormal;
+    return this;
+  }
+
+  /**
+   * Get sessionsAbnormal
+   * @return sessionsAbnormal
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SESSIONS_ABNORMAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getSessionsAbnormal() {
+    return sessionsAbnormal;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SESSIONS_ABNORMAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSessionsAbnormal(@javax.annotation.Nullable Long sessionsAbnormal) {
+    this.sessionsAbnormal = sessionsAbnormal;
+  }
+
+
+  public ManagedDatabaseMetricPoint backends(@javax.annotation.Nullable Long backends) {
+    this.backends = backends;
+    return this;
+  }
+
+  /**
+   * Get backends
+   * @return backends
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BACKENDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getBackends() {
+    return backends;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BACKENDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBackends(@javax.annotation.Nullable Long backends) {
+    this.backends = backends;
+  }
+
+
   public ManagedDatabaseMetricPoint logicalSizeBytes(@javax.annotation.Nullable Long logicalSizeBytes) {
     this.logicalSizeBytes = logicalSizeBytes;
     return this;
@@ -778,6 +1097,7 @@ public class ManagedDatabaseMetricPoint {
     }
     ManagedDatabaseMetricPoint managedDatabaseMetricPoint = (ManagedDatabaseMetricPoint) o;
     return Objects.equals(this.timestamp, managedDatabaseMetricPoint.timestamp) &&
+        Objects.equals(this.intervalMs, managedDatabaseMetricPoint.intervalMs) &&
         Objects.equals(this.activeTimeMs, managedDatabaseMetricPoint.activeTimeMs) &&
         Objects.equals(this.xactCommit, managedDatabaseMetricPoint.xactCommit) &&
         Objects.equals(this.xactRollback, managedDatabaseMetricPoint.xactRollback) &&
@@ -800,13 +1120,23 @@ public class ManagedDatabaseMetricPoint {
         Objects.equals(this.clientConnections, managedDatabaseMetricPoint.clientConnections) &&
         Objects.equals(this.serverConnections, managedDatabaseMetricPoint.serverConnections) &&
         Objects.equals(this.clWaiting, managedDatabaseMetricPoint.clWaiting) &&
+        Objects.equals(this.pgbQueryTimeMicros, managedDatabaseMetricPoint.pgbQueryTimeMicros) &&
+        Objects.equals(this.pgbWaitTimeMicros, managedDatabaseMetricPoint.pgbWaitTimeMicros) &&
+        Objects.equals(this.pgbXactCount, managedDatabaseMetricPoint.pgbXactCount) &&
+        Objects.equals(this.pgbXactTimeMicros, managedDatabaseMetricPoint.pgbXactTimeMicros) &&
+        Objects.equals(this.maxWaitMicros, managedDatabaseMetricPoint.maxWaitMicros) &&
+        Objects.equals(this.poolSize, managedDatabaseMetricPoint.poolSize) &&
+        Objects.equals(this.sessionTimeMs, managedDatabaseMetricPoint.sessionTimeMs) &&
+        Objects.equals(this.idleInTransactionTimeMs, managedDatabaseMetricPoint.idleInTransactionTimeMs) &&
+        Objects.equals(this.sessionsAbnormal, managedDatabaseMetricPoint.sessionsAbnormal) &&
+        Objects.equals(this.backends, managedDatabaseMetricPoint.backends) &&
         Objects.equals(this.logicalSizeBytes, managedDatabaseMetricPoint.logicalSizeBytes) &&
         Objects.equals(this.physicalSizeBytes, managedDatabaseMetricPoint.physicalSizeBytes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, activeTimeMs, xactCommit, xactRollback, blksHit, blksRead, tupReturned, tupFetched, tupInserted, tupUpdated, tupDeleted, tempFiles, tempBytes, deadlocks, stmtTotalExecMs, stmtCalls, stmtWalBytes, stmtTempBlks, queryCount, avgQueryTimeMicros, clientConnections, serverConnections, clWaiting, logicalSizeBytes, physicalSizeBytes);
+    return Objects.hash(timestamp, intervalMs, activeTimeMs, xactCommit, xactRollback, blksHit, blksRead, tupReturned, tupFetched, tupInserted, tupUpdated, tupDeleted, tempFiles, tempBytes, deadlocks, stmtTotalExecMs, stmtCalls, stmtWalBytes, stmtTempBlks, queryCount, avgQueryTimeMicros, clientConnections, serverConnections, clWaiting, pgbQueryTimeMicros, pgbWaitTimeMicros, pgbXactCount, pgbXactTimeMicros, maxWaitMicros, poolSize, sessionTimeMs, idleInTransactionTimeMs, sessionsAbnormal, backends, logicalSizeBytes, physicalSizeBytes);
   }
 
   @Override
@@ -814,6 +1144,7 @@ public class ManagedDatabaseMetricPoint {
     StringBuilder sb = new StringBuilder();
     sb.append("class ManagedDatabaseMetricPoint {\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
+    sb.append("    intervalMs: ").append(toIndentedString(intervalMs)).append("\n");
     sb.append("    activeTimeMs: ").append(toIndentedString(activeTimeMs)).append("\n");
     sb.append("    xactCommit: ").append(toIndentedString(xactCommit)).append("\n");
     sb.append("    xactRollback: ").append(toIndentedString(xactRollback)).append("\n");
@@ -836,6 +1167,16 @@ public class ManagedDatabaseMetricPoint {
     sb.append("    clientConnections: ").append(toIndentedString(clientConnections)).append("\n");
     sb.append("    serverConnections: ").append(toIndentedString(serverConnections)).append("\n");
     sb.append("    clWaiting: ").append(toIndentedString(clWaiting)).append("\n");
+    sb.append("    pgbQueryTimeMicros: ").append(toIndentedString(pgbQueryTimeMicros)).append("\n");
+    sb.append("    pgbWaitTimeMicros: ").append(toIndentedString(pgbWaitTimeMicros)).append("\n");
+    sb.append("    pgbXactCount: ").append(toIndentedString(pgbXactCount)).append("\n");
+    sb.append("    pgbXactTimeMicros: ").append(toIndentedString(pgbXactTimeMicros)).append("\n");
+    sb.append("    maxWaitMicros: ").append(toIndentedString(maxWaitMicros)).append("\n");
+    sb.append("    poolSize: ").append(toIndentedString(poolSize)).append("\n");
+    sb.append("    sessionTimeMs: ").append(toIndentedString(sessionTimeMs)).append("\n");
+    sb.append("    idleInTransactionTimeMs: ").append(toIndentedString(idleInTransactionTimeMs)).append("\n");
+    sb.append("    sessionsAbnormal: ").append(toIndentedString(sessionsAbnormal)).append("\n");
+    sb.append("    backends: ").append(toIndentedString(backends)).append("\n");
     sb.append("    logicalSizeBytes: ").append(toIndentedString(logicalSizeBytes)).append("\n");
     sb.append("    physicalSizeBytes: ").append(toIndentedString(physicalSizeBytes)).append("\n");
     sb.append("}");
@@ -885,6 +1226,11 @@ public class ManagedDatabaseMetricPoint {
     // add `timestamp` to the URL query string
     if (getTimestamp() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
+    }
+
+    // add `intervalMs` to the URL query string
+    if (getIntervalMs() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sintervalMs%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIntervalMs()))));
     }
 
     // add `activeTimeMs` to the URL query string
@@ -995,6 +1341,56 @@ public class ManagedDatabaseMetricPoint {
     // add `clWaiting` to the URL query string
     if (getClWaiting() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sclWaiting%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClWaiting()))));
+    }
+
+    // add `pgbQueryTimeMicros` to the URL query string
+    if (getPgbQueryTimeMicros() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spgbQueryTimeMicros%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPgbQueryTimeMicros()))));
+    }
+
+    // add `pgbWaitTimeMicros` to the URL query string
+    if (getPgbWaitTimeMicros() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spgbWaitTimeMicros%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPgbWaitTimeMicros()))));
+    }
+
+    // add `pgbXactCount` to the URL query string
+    if (getPgbXactCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spgbXactCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPgbXactCount()))));
+    }
+
+    // add `pgbXactTimeMicros` to the URL query string
+    if (getPgbXactTimeMicros() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spgbXactTimeMicros%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPgbXactTimeMicros()))));
+    }
+
+    // add `maxWaitMicros` to the URL query string
+    if (getMaxWaitMicros() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smaxWaitMicros%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaxWaitMicros()))));
+    }
+
+    // add `poolSize` to the URL query string
+    if (getPoolSize() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spoolSize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPoolSize()))));
+    }
+
+    // add `sessionTimeMs` to the URL query string
+    if (getSessionTimeMs() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssessionTimeMs%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSessionTimeMs()))));
+    }
+
+    // add `idleInTransactionTimeMs` to the URL query string
+    if (getIdleInTransactionTimeMs() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sidleInTransactionTimeMs%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIdleInTransactionTimeMs()))));
+    }
+
+    // add `sessionsAbnormal` to the URL query string
+    if (getSessionsAbnormal() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssessionsAbnormal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSessionsAbnormal()))));
+    }
+
+    // add `backends` to the URL query string
+    if (getBackends() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackends%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackends()))));
     }
 
     // add `logicalSizeBytes` to the URL query string

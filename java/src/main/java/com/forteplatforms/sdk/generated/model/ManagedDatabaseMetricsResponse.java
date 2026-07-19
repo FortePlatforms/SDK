@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseMetricLimits;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseMetricPoint;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseUsage;
 import java.util.ArrayList;
@@ -38,7 +39,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   ManagedDatabaseMetricsResponse.JSON_PROPERTY_POINTS,
-  ManagedDatabaseMetricsResponse.JSON_PROPERTY_USAGE
+  ManagedDatabaseMetricsResponse.JSON_PROPERTY_USAGE,
+  ManagedDatabaseMetricsResponse.JSON_PROPERTY_LIMITS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseMetricsResponse {
@@ -49,6 +51,10 @@ public class ManagedDatabaseMetricsResponse {
   public static final String JSON_PROPERTY_USAGE = "usage";
   @javax.annotation.Nonnull
   private ManagedDatabaseUsage usage;
+
+  public static final String JSON_PROPERTY_LIMITS = "limits";
+  @javax.annotation.Nonnull
+  private ManagedDatabaseMetricLimits limits;
 
   public ManagedDatabaseMetricsResponse() { 
   }
@@ -109,6 +115,30 @@ public class ManagedDatabaseMetricsResponse {
   }
 
 
+  public ManagedDatabaseMetricsResponse limits(@javax.annotation.Nonnull ManagedDatabaseMetricLimits limits) {
+    this.limits = limits;
+    return this;
+  }
+
+  /**
+   * Get limits
+   * @return limits
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_LIMITS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public ManagedDatabaseMetricLimits getLimits() {
+    return limits;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LIMITS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setLimits(@javax.annotation.Nonnull ManagedDatabaseMetricLimits limits) {
+    this.limits = limits;
+  }
+
+
   /**
    * Return true if this ManagedDatabaseMetricsResponse object is equal to o.
    */
@@ -122,12 +152,13 @@ public class ManagedDatabaseMetricsResponse {
     }
     ManagedDatabaseMetricsResponse managedDatabaseMetricsResponse = (ManagedDatabaseMetricsResponse) o;
     return Objects.equals(this.points, managedDatabaseMetricsResponse.points) &&
-        Objects.equals(this.usage, managedDatabaseMetricsResponse.usage);
+        Objects.equals(this.usage, managedDatabaseMetricsResponse.usage) &&
+        Objects.equals(this.limits, managedDatabaseMetricsResponse.limits);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(points, usage);
+    return Objects.hash(points, usage, limits);
   }
 
   @Override
@@ -136,6 +167,7 @@ public class ManagedDatabaseMetricsResponse {
     sb.append("class ManagedDatabaseMetricsResponse {\n");
     sb.append("    points: ").append(toIndentedString(points)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
+    sb.append("    limits: ").append(toIndentedString(limits)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -193,6 +225,11 @@ public class ManagedDatabaseMetricsResponse {
     // add `usage` to the URL query string
     if (getUsage() != null) {
       joiner.add(getUsage().toUrlQueryString(prefix + "usage" + suffix));
+    }
+
+    // add `limits` to the URL query string
+    if (getLimits() != null) {
+      joiner.add(getLimits().toUrlQueryString(prefix + "limits" + suffix));
     }
 
     return joiner.toString();

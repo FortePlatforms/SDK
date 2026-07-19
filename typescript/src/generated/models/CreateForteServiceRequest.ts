@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CreateServiceDatabaseConnectionRequest } from './CreateServiceDatabaseConnectionRequest';
+import {
+    CreateServiceDatabaseConnectionRequestFromJSON,
+    CreateServiceDatabaseConnectionRequestFromJSONTyped,
+    CreateServiceDatabaseConnectionRequestToJSON,
+    CreateServiceDatabaseConnectionRequestToJSONTyped,
+} from './CreateServiceDatabaseConnectionRequest';
+
 /**
  * 
  * @export
@@ -97,6 +105,12 @@ export interface CreateForteServiceRequest {
      * @memberof CreateForteServiceRequest
      */
     requestResponseBodyLoggingEnabled?: boolean;
+    /**
+     * 
+     * @type {Array<CreateServiceDatabaseConnectionRequest>}
+     * @memberof CreateForteServiceRequest
+     */
+    databaseConnections?: Array<CreateServiceDatabaseConnectionRequest>;
 }
 
 
@@ -143,6 +157,7 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
         'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
         'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'] == null ? undefined : json['requestResponseBodyLoggingEnabled'],
+        'databaseConnections': json['databaseConnections'] == null ? undefined : ((json['databaseConnections'] as Array<any>).map(CreateServiceDatabaseConnectionRequestFromJSON)),
     };
 }
 
@@ -170,6 +185,7 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
         'healthCheckPath': value['healthCheckPath'],
         'baseDirectory': value['baseDirectory'],
         'requestResponseBodyLoggingEnabled': value['requestResponseBodyLoggingEnabled'],
+        'databaseConnections': value['databaseConnections'] == null ? undefined : ((value['databaseConnections'] as Array<any>).map(CreateServiceDatabaseConnectionRequestToJSON)),
     };
 }
 

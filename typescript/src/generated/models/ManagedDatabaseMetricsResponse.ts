@@ -20,6 +20,13 @@ import {
     ManagedDatabaseMetricPointToJSON,
     ManagedDatabaseMetricPointToJSONTyped,
 } from './ManagedDatabaseMetricPoint';
+import type { ManagedDatabaseMetricLimits } from './ManagedDatabaseMetricLimits';
+import {
+    ManagedDatabaseMetricLimitsFromJSON,
+    ManagedDatabaseMetricLimitsFromJSONTyped,
+    ManagedDatabaseMetricLimitsToJSON,
+    ManagedDatabaseMetricLimitsToJSONTyped,
+} from './ManagedDatabaseMetricLimits';
 import type { ManagedDatabaseUsage } from './ManagedDatabaseUsage';
 import {
     ManagedDatabaseUsageFromJSON,
@@ -46,6 +53,12 @@ export interface ManagedDatabaseMetricsResponse {
      * @memberof ManagedDatabaseMetricsResponse
      */
     usage: ManagedDatabaseUsage;
+    /**
+     * 
+     * @type {ManagedDatabaseMetricLimits}
+     * @memberof ManagedDatabaseMetricsResponse
+     */
+    limits: ManagedDatabaseMetricLimits;
 }
 
 /**
@@ -54,6 +67,7 @@ export interface ManagedDatabaseMetricsResponse {
 export function instanceOfManagedDatabaseMetricsResponse(value: object): value is ManagedDatabaseMetricsResponse {
     if (!('points' in value) || value['points'] === undefined) return false;
     if (!('usage' in value) || value['usage'] === undefined) return false;
+    if (!('limits' in value) || value['limits'] === undefined) return false;
     return true;
 }
 
@@ -69,6 +83,7 @@ export function ManagedDatabaseMetricsResponseFromJSONTyped(json: any, ignoreDis
         
         'points': ((json['points'] as Array<any>).map(ManagedDatabaseMetricPointFromJSON)),
         'usage': ManagedDatabaseUsageFromJSON(json['usage']),
+        'limits': ManagedDatabaseMetricLimitsFromJSON(json['limits']),
     };
 }
 
@@ -85,6 +100,7 @@ export function ManagedDatabaseMetricsResponseToJSONTyped(value?: ManagedDatabas
         
         'points': ((value['points'] as Array<any>).map(ManagedDatabaseMetricPointToJSON)),
         'usage': ManagedDatabaseUsageToJSON(value['usage']),
+        'limits': ManagedDatabaseMetricLimitsToJSON(value['limits']),
     };
 }
 

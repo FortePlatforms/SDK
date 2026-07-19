@@ -24,8 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.CreateServiceDatabaseConnectionRequest;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -47,7 +50,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PORT,
   CreateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH,
   CreateForteServiceRequest.JSON_PROPERTY_BASE_DIRECTORY,
-  CreateForteServiceRequest.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED
+  CreateForteServiceRequest.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED,
+  CreateForteServiceRequest.JSON_PROPERTY_DATABASE_CONNECTIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateForteServiceRequest {
@@ -137,6 +141,10 @@ public class CreateForteServiceRequest {
   public static final String JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED = "requestResponseBodyLoggingEnabled";
   @javax.annotation.Nullable
   private Boolean requestResponseBodyLoggingEnabled;
+
+  public static final String JSON_PROPERTY_DATABASE_CONNECTIONS = "databaseConnections";
+  @javax.annotation.Nullable
+  private List<CreateServiceDatabaseConnectionRequest> databaseConnections = new ArrayList<>();
 
   public CreateForteServiceRequest() { 
   }
@@ -481,6 +489,38 @@ public class CreateForteServiceRequest {
   }
 
 
+  public CreateForteServiceRequest databaseConnections(@javax.annotation.Nullable List<CreateServiceDatabaseConnectionRequest> databaseConnections) {
+    this.databaseConnections = databaseConnections;
+    return this;
+  }
+
+  public CreateForteServiceRequest addDatabaseConnectionsItem(CreateServiceDatabaseConnectionRequest databaseConnectionsItem) {
+    if (this.databaseConnections == null) {
+      this.databaseConnections = new ArrayList<>();
+    }
+    this.databaseConnections.add(databaseConnectionsItem);
+    return this;
+  }
+
+  /**
+   * Get databaseConnections
+   * @return databaseConnections
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DATABASE_CONNECTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateServiceDatabaseConnectionRequest> getDatabaseConnections() {
+    return databaseConnections;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DATABASE_CONNECTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDatabaseConnections(@javax.annotation.Nullable List<CreateServiceDatabaseConnectionRequest> databaseConnections) {
+    this.databaseConnections = databaseConnections;
+  }
+
+
   /**
    * Return true if this CreateForteServiceRequest object is equal to o.
    */
@@ -505,12 +545,13 @@ public class CreateForteServiceRequest {
         Objects.equals(this.healthCheckPort, createForteServiceRequest.healthCheckPort) &&
         Objects.equals(this.healthCheckPath, createForteServiceRequest.healthCheckPath) &&
         Objects.equals(this.baseDirectory, createForteServiceRequest.baseDirectory) &&
-        Objects.equals(this.requestResponseBodyLoggingEnabled, createForteServiceRequest.requestResponseBodyLoggingEnabled);
+        Objects.equals(this.requestResponseBodyLoggingEnabled, createForteServiceRequest.requestResponseBodyLoggingEnabled) &&
+        Objects.equals(this.databaseConnections, createForteServiceRequest.databaseConnections);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(githubRepositoryUrl, buildTrigger, githubBranch, serviceName, environmentVariables, secrets, baseInstances, regionReplicas, containerCpu, healthCheckPort, healthCheckPath, baseDirectory, requestResponseBodyLoggingEnabled);
+    return Objects.hash(githubRepositoryUrl, buildTrigger, githubBranch, serviceName, environmentVariables, secrets, baseInstances, regionReplicas, containerCpu, healthCheckPort, healthCheckPath, baseDirectory, requestResponseBodyLoggingEnabled, databaseConnections);
   }
 
   @Override
@@ -530,6 +571,7 @@ public class CreateForteServiceRequest {
     sb.append("    healthCheckPath: ").append(toIndentedString(healthCheckPath)).append("\n");
     sb.append("    baseDirectory: ").append(toIndentedString(baseDirectory)).append("\n");
     sb.append("    requestResponseBodyLoggingEnabled: ").append(toIndentedString(requestResponseBodyLoggingEnabled)).append("\n");
+    sb.append("    databaseConnections: ").append(toIndentedString(databaseConnections)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -649,6 +691,16 @@ public class CreateForteServiceRequest {
     // add `requestResponseBodyLoggingEnabled` to the URL query string
     if (getRequestResponseBodyLoggingEnabled() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srequestResponseBodyLoggingEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequestResponseBodyLoggingEnabled()))));
+    }
+
+    // add `databaseConnections` to the URL query string
+    if (getDatabaseConnections() != null) {
+      for (int i = 0; i < getDatabaseConnections().size(); i++) {
+        if (getDatabaseConnections().get(i) != null) {
+          joiner.add(getDatabaseConnections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdatabaseConnections%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

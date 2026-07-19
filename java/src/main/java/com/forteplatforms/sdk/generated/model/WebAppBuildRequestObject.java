@@ -68,6 +68,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_BUILD_STEP_LOGS,
   WebAppBuildRequestObject.JSON_PROPERTY_STATUS,
   WebAppBuildRequestObject.JSON_PROPERTY_ORIGIN,
+  WebAppBuildRequestObject.JSON_PROPERTY_ORIGIN_DETAIL,
   WebAppBuildRequestObject.JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID,
   WebAppBuildRequestObject.JSON_PROPERTY_BUILD_TIER,
   WebAppBuildRequestObject.JSON_PROPERTY_FAILURE_REASON
@@ -366,6 +367,10 @@ public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_ORIGIN = "origin";
   @javax.annotation.Nullable
   private OriginEnum origin;
+
+  public static final String JSON_PROPERTY_ORIGIN_DETAIL = "originDetail";
+  @javax.annotation.Nullable
+  private String originDetail;
 
   public static final String JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID = "triggeredByAccountId";
   @javax.annotation.Nullable
@@ -1182,6 +1187,30 @@ public class WebAppBuildRequestObject {
   }
 
 
+  public WebAppBuildRequestObject originDetail(@javax.annotation.Nullable String originDetail) {
+    this.originDetail = originDetail;
+    return this;
+  }
+
+  /**
+   * Get originDetail
+   * @return originDetail
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ORIGIN_DETAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOriginDetail() {
+    return originDetail;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ORIGIN_DETAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOriginDetail(@javax.annotation.Nullable String originDetail) {
+    this.originDetail = originDetail;
+  }
+
+
   public WebAppBuildRequestObject triggeredByAccountId(@javax.annotation.Nullable String triggeredByAccountId) {
     this.triggeredByAccountId = triggeredByAccountId;
     return this;
@@ -1296,6 +1325,7 @@ public class WebAppBuildRequestObject {
         Objects.equals(this.buildStepLogs, webAppBuildRequestObject.buildStepLogs) &&
         Objects.equals(this.status, webAppBuildRequestObject.status) &&
         Objects.equals(this.origin, webAppBuildRequestObject.origin) &&
+        Objects.equals(this.originDetail, webAppBuildRequestObject.originDetail) &&
         Objects.equals(this.triggeredByAccountId, webAppBuildRequestObject.triggeredByAccountId) &&
         Objects.equals(this.buildTier, webAppBuildRequestObject.buildTier) &&
         Objects.equals(this.failureReason, webAppBuildRequestObject.failureReason);
@@ -1303,7 +1333,7 @@ public class WebAppBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, containerImageUri, dockerfilePath, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, triggeredByAccountId, buildTier, failureReason);
+    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, containerImageUri, dockerfilePath, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, originDetail, triggeredByAccountId, buildTier, failureReason);
   }
 
   @Override
@@ -1340,6 +1370,7 @@ public class WebAppBuildRequestObject {
     sb.append("    buildStepLogs: ").append(toIndentedString(buildStepLogs)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
+    sb.append("    originDetail: ").append(toIndentedString(originDetail)).append("\n");
     sb.append("    triggeredByAccountId: ").append(toIndentedString(triggeredByAccountId)).append("\n");
     sb.append("    buildTier: ").append(toIndentedString(buildTier)).append("\n");
     sb.append("    failureReason: ").append(toIndentedString(failureReason)).append("\n");
@@ -1540,6 +1571,11 @@ public class WebAppBuildRequestObject {
     // add `origin` to the URL query string
     if (getOrigin() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sorigin%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOrigin()))));
+    }
+
+    // add `originDetail` to the URL query string
+    if (getOriginDetail() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soriginDetail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOriginDetail()))));
     }
 
     // add `triggeredByAccountId` to the URL query string

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.322"
+__version__ = "1.0.327"
 
 # Define package exports
 __all__ = [
@@ -72,6 +72,7 @@ __all__ = [
     "CreatePaymentTriggerRequest",
     "CreateProjectApiKeyRequest",
     "CreateProjectApiKeyResponse",
+    "CreateServiceDatabaseConnectionRequest",
     "CreateServiceRequestProxyRequest",
     "CreateServiceRequestProxyResponse",
     "CreateSubscriptionPreviewRequest",
@@ -114,6 +115,7 @@ __all__ = [
     "LoginUserResponse",
     "ManagedDatabaseConnection",
     "ManagedDatabaseEnvVarMappings",
+    "ManagedDatabaseMetricLimits",
     "ManagedDatabaseMetricPoint",
     "ManagedDatabaseMetricsResponse",
     "ManagedDatabaseObject",
@@ -272,6 +274,7 @@ from forte_sdk.generated.models.create_payment_response import CreatePaymentResp
 from forte_sdk.generated.models.create_payment_trigger_request import CreatePaymentTriggerRequest as CreatePaymentTriggerRequest
 from forte_sdk.generated.models.create_project_api_key_request import CreateProjectApiKeyRequest as CreateProjectApiKeyRequest
 from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse as CreateProjectApiKeyResponse
+from forte_sdk.generated.models.create_service_database_connection_request import CreateServiceDatabaseConnectionRequest as CreateServiceDatabaseConnectionRequest
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
 from forte_sdk.generated.models.create_subscription_preview_request import CreateSubscriptionPreviewRequest as CreateSubscriptionPreviewRequest
@@ -314,6 +317,7 @@ from forte_sdk.generated.models.login_history_entry import LoginHistoryEntry as 
 from forte_sdk.generated.models.login_user_response import LoginUserResponse as LoginUserResponse
 from forte_sdk.generated.models.managed_database_connection import ManagedDatabaseConnection as ManagedDatabaseConnection
 from forte_sdk.generated.models.managed_database_env_var_mappings import ManagedDatabaseEnvVarMappings as ManagedDatabaseEnvVarMappings
+from forte_sdk.generated.models.managed_database_metric_limits import ManagedDatabaseMetricLimits as ManagedDatabaseMetricLimits
 from forte_sdk.generated.models.managed_database_metric_point import ManagedDatabaseMetricPoint as ManagedDatabaseMetricPoint
 from forte_sdk.generated.models.managed_database_metrics_response import ManagedDatabaseMetricsResponse as ManagedDatabaseMetricsResponse
 from forte_sdk.generated.models.managed_database_object import ManagedDatabaseObject as ManagedDatabaseObject

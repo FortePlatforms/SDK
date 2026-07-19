@@ -29,6 +29,7 @@ class ManagedDatabaseMetricPoint(BaseModel):
     ManagedDatabaseMetricPoint
     """ # noqa: E501
     timestamp: datetime
+    interval_ms: Optional[StrictInt] = Field(default=None, alias="intervalMs")
     active_time_ms: Optional[StrictInt] = Field(default=None, alias="activeTimeMs")
     xact_commit: Optional[StrictInt] = Field(default=None, alias="xactCommit")
     xact_rollback: Optional[StrictInt] = Field(default=None, alias="xactRollback")
@@ -51,9 +52,19 @@ class ManagedDatabaseMetricPoint(BaseModel):
     client_connections: Optional[StrictInt] = Field(default=None, alias="clientConnections")
     server_connections: Optional[StrictInt] = Field(default=None, alias="serverConnections")
     cl_waiting: Optional[StrictInt] = Field(default=None, alias="clWaiting")
+    pgb_query_time_micros: Optional[StrictInt] = Field(default=None, alias="pgbQueryTimeMicros")
+    pgb_wait_time_micros: Optional[StrictInt] = Field(default=None, alias="pgbWaitTimeMicros")
+    pgb_xact_count: Optional[StrictInt] = Field(default=None, alias="pgbXactCount")
+    pgb_xact_time_micros: Optional[StrictInt] = Field(default=None, alias="pgbXactTimeMicros")
+    max_wait_micros: Optional[StrictInt] = Field(default=None, alias="maxWaitMicros")
+    pool_size: Optional[StrictInt] = Field(default=None, alias="poolSize")
+    session_time_ms: Optional[StrictInt] = Field(default=None, alias="sessionTimeMs")
+    idle_in_transaction_time_ms: Optional[StrictInt] = Field(default=None, alias="idleInTransactionTimeMs")
+    sessions_abnormal: Optional[StrictInt] = Field(default=None, alias="sessionsAbnormal")
+    backends: Optional[StrictInt] = None
     logical_size_bytes: Optional[StrictInt] = Field(default=None, alias="logicalSizeBytes")
     physical_size_bytes: Optional[StrictInt] = Field(default=None, alias="physicalSizeBytes")
-    __properties: ClassVar[List[str]] = ["timestamp", "activeTimeMs", "xactCommit", "xactRollback", "blksHit", "blksRead", "tupReturned", "tupFetched", "tupInserted", "tupUpdated", "tupDeleted", "tempFiles", "tempBytes", "deadlocks", "stmtTotalExecMs", "stmtCalls", "stmtWalBytes", "stmtTempBlks", "queryCount", "avgQueryTimeMicros", "clientConnections", "serverConnections", "clWaiting", "logicalSizeBytes", "physicalSizeBytes"]
+    __properties: ClassVar[List[str]] = ["timestamp", "intervalMs", "activeTimeMs", "xactCommit", "xactRollback", "blksHit", "blksRead", "tupReturned", "tupFetched", "tupInserted", "tupUpdated", "tupDeleted", "tempFiles", "tempBytes", "deadlocks", "stmtTotalExecMs", "stmtCalls", "stmtWalBytes", "stmtTempBlks", "queryCount", "avgQueryTimeMicros", "clientConnections", "serverConnections", "clWaiting", "pgbQueryTimeMicros", "pgbWaitTimeMicros", "pgbXactCount", "pgbXactTimeMicros", "maxWaitMicros", "poolSize", "sessionTimeMs", "idleInTransactionTimeMs", "sessionsAbnormal", "backends", "logicalSizeBytes", "physicalSizeBytes"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -107,6 +118,7 @@ class ManagedDatabaseMetricPoint(BaseModel):
 
         _obj = cls.model_validate({
             "timestamp": obj.get("timestamp"),
+            "intervalMs": obj.get("intervalMs"),
             "activeTimeMs": obj.get("activeTimeMs"),
             "xactCommit": obj.get("xactCommit"),
             "xactRollback": obj.get("xactRollback"),
@@ -129,6 +141,16 @@ class ManagedDatabaseMetricPoint(BaseModel):
             "clientConnections": obj.get("clientConnections"),
             "serverConnections": obj.get("serverConnections"),
             "clWaiting": obj.get("clWaiting"),
+            "pgbQueryTimeMicros": obj.get("pgbQueryTimeMicros"),
+            "pgbWaitTimeMicros": obj.get("pgbWaitTimeMicros"),
+            "pgbXactCount": obj.get("pgbXactCount"),
+            "pgbXactTimeMicros": obj.get("pgbXactTimeMicros"),
+            "maxWaitMicros": obj.get("maxWaitMicros"),
+            "poolSize": obj.get("poolSize"),
+            "sessionTimeMs": obj.get("sessionTimeMs"),
+            "idleInTransactionTimeMs": obj.get("idleInTransactionTimeMs"),
+            "sessionsAbnormal": obj.get("sessionsAbnormal"),
+            "backends": obj.get("backends"),
             "logicalSizeBytes": obj.get("logicalSizeBytes"),
             "physicalSizeBytes": obj.get("physicalSizeBytes")
         })
