@@ -28,7 +28,7 @@ import {
  */
 export interface RotateManagedDatabaseUserPasswordResponse {
     /**
-     * 
+     *
      * @type {ManagedDatabaseUser}
      * @memberof RotateManagedDatabaseUserPasswordResponse
      */
@@ -39,6 +39,12 @@ export interface RotateManagedDatabaseUserPasswordResponse {
      * @memberof RotateManagedDatabaseUserPasswordResponse
      */
     password: string;
+    /**
+     *
+     * @type {string}
+     * @memberof RotateManagedDatabaseUserPasswordResponse
+     */
+    connectionUri?: string;
 }
 
 /**
@@ -62,6 +68,7 @@ export function RotateManagedDatabaseUserPasswordResponseFromJSONTyped(json: any
         
         'databaseUser': ManagedDatabaseUserFromJSON(json['databaseUser']),
         'password': json['password'],
+        'connectionUri': json['connectionUri'] == null ? undefined : json['connectionUri'],
     };
 }
 
@@ -78,6 +85,6 @@ export function RotateManagedDatabaseUserPasswordResponseToJSONTyped(value?: Rot
         
         'databaseUser': ManagedDatabaseUserToJSON(value['databaseUser']),
         'password': value['password'],
+        'connectionUri': value['connectionUri'],
     };
 }
-

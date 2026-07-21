@@ -35,7 +35,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   RotateManagedDatabaseUserPasswordResponse.JSON_PROPERTY_DATABASE_USER,
-  RotateManagedDatabaseUserPasswordResponse.JSON_PROPERTY_PASSWORD
+  RotateManagedDatabaseUserPasswordResponse.JSON_PROPERTY_PASSWORD,
+  RotateManagedDatabaseUserPasswordResponse.JSON_PROPERTY_CONNECTION_URI
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RotateManagedDatabaseUserPasswordResponse {
@@ -46,6 +47,10 @@ public class RotateManagedDatabaseUserPasswordResponse {
   public static final String JSON_PROPERTY_PASSWORD = "password";
   @javax.annotation.Nonnull
   private String password;
+
+  public static final String JSON_PROPERTY_CONNECTION_URI = "connectionUri";
+  @javax.annotation.Nullable
+  private String connectionUri;
 
   public RotateManagedDatabaseUserPasswordResponse() { 
   }
@@ -98,6 +103,30 @@ public class RotateManagedDatabaseUserPasswordResponse {
   }
 
 
+  public RotateManagedDatabaseUserPasswordResponse connectionUri(@javax.annotation.Nullable String connectionUri) {
+    this.connectionUri = connectionUri;
+    return this;
+  }
+
+  /**
+   * Get connectionUri
+   * @return connectionUri
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONNECTION_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getConnectionUri() {
+    return connectionUri;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONNECTION_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConnectionUri(@javax.annotation.Nullable String connectionUri) {
+    this.connectionUri = connectionUri;
+  }
+
+
   /**
    * Return true if this RotateManagedDatabaseUserPasswordResponse object is equal to o.
    */
@@ -111,12 +140,13 @@ public class RotateManagedDatabaseUserPasswordResponse {
     }
     RotateManagedDatabaseUserPasswordResponse rotateManagedDatabaseUserPasswordResponse = (RotateManagedDatabaseUserPasswordResponse) o;
     return Objects.equals(this.databaseUser, rotateManagedDatabaseUserPasswordResponse.databaseUser) &&
-        Objects.equals(this.password, rotateManagedDatabaseUserPasswordResponse.password);
+        Objects.equals(this.password, rotateManagedDatabaseUserPasswordResponse.password) &&
+        Objects.equals(this.connectionUri, rotateManagedDatabaseUserPasswordResponse.connectionUri);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(databaseUser, password);
+    return Objects.hash(databaseUser, password, connectionUri);
   }
 
   @Override
@@ -125,6 +155,7 @@ public class RotateManagedDatabaseUserPasswordResponse {
     sb.append("class RotateManagedDatabaseUserPasswordResponse {\n");
     sb.append("    databaseUser: ").append(toIndentedString(databaseUser)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    connectionUri: ").append(toIndentedString(connectionUri)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -177,6 +208,11 @@ public class RotateManagedDatabaseUserPasswordResponse {
     // add `password` to the URL query string
     if (getPassword() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
+    }
+
+    // add `connectionUri` to the URL query string
+    if (getConnectionUri() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconnectionUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectionUri()))));
     }
 
     return joiner.toString();

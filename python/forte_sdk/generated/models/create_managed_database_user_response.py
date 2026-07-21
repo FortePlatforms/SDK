@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.managed_database_user import ManagedDatabaseUser
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +30,8 @@ class CreateManagedDatabaseUserResponse(BaseModel):
     """ # noqa: E501
     database_user: ManagedDatabaseUser = Field(alias="databaseUser")
     password: StrictStr
-    __properties: ClassVar[List[str]] = ["databaseUser", "password"]
+    connection_uri: Optional[StrictStr] = Field(default=None, alias="connectionUri")
+    __properties: ClassVar[List[str]] = ["databaseUser", "password", "connectionUri"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,7 +88,8 @@ class CreateManagedDatabaseUserResponse(BaseModel):
 
         _obj = cls.model_validate({
             "databaseUser": ManagedDatabaseUser.from_dict(obj["databaseUser"]) if obj.get("databaseUser") is not None else None,
-            "password": obj.get("password")
+            "password": obj.get("password"),
+            "connectionUri": obj.get("connectionUri")
         })
         return _obj
 

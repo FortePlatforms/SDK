@@ -36,6 +36,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   ManagedDatabaseUser.JSON_PROPERTY_DATABASE_USER_ID,
   ManagedDatabaseUser.JSON_PROPERTY_USERNAME,
+  ManagedDatabaseUser.JSON_PROPERTY_ROLE_NAME,
   ManagedDatabaseUser.JSON_PROPERTY_CREATED_TIMESTAMP,
   ManagedDatabaseUser.JSON_PROPERTY_PASSWORD_LAST_ROTATED_TIMESTAMP
 })
@@ -48,6 +49,10 @@ public class ManagedDatabaseUser {
   public static final String JSON_PROPERTY_USERNAME = "username";
   @javax.annotation.Nonnull
   private String username;
+
+  public static final String JSON_PROPERTY_ROLE_NAME = "roleName";
+  @javax.annotation.Nullable
+  private String roleName;
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nonnull
@@ -105,6 +110,30 @@ public class ManagedDatabaseUser {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUsername(@javax.annotation.Nonnull String username) {
     this.username = username;
+  }
+
+
+  public ManagedDatabaseUser roleName(@javax.annotation.Nullable String roleName) {
+    this.roleName = roleName;
+    return this;
+  }
+
+  /**
+   * Get roleName
+   * @return roleName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ROLE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRoleName() {
+    return roleName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ROLE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRoleName(@javax.annotation.Nullable String roleName) {
+    this.roleName = roleName;
   }
 
 
@@ -170,13 +199,14 @@ public class ManagedDatabaseUser {
     ManagedDatabaseUser managedDatabaseUser = (ManagedDatabaseUser) o;
     return Objects.equals(this.databaseUserId, managedDatabaseUser.databaseUserId) &&
         Objects.equals(this.username, managedDatabaseUser.username) &&
+        Objects.equals(this.roleName, managedDatabaseUser.roleName) &&
         Objects.equals(this.createdTimestamp, managedDatabaseUser.createdTimestamp) &&
         Objects.equals(this.passwordLastRotatedTimestamp, managedDatabaseUser.passwordLastRotatedTimestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(databaseUserId, username, createdTimestamp, passwordLastRotatedTimestamp);
+    return Objects.hash(databaseUserId, username, roleName, createdTimestamp, passwordLastRotatedTimestamp);
   }
 
   @Override
@@ -185,6 +215,7 @@ public class ManagedDatabaseUser {
     sb.append("class ManagedDatabaseUser {\n");
     sb.append("    databaseUserId: ").append(toIndentedString(databaseUserId)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    roleName: ").append(toIndentedString(roleName)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
     sb.append("    passwordLastRotatedTimestamp: ").append(toIndentedString(passwordLastRotatedTimestamp)).append("\n");
     sb.append("}");
@@ -239,6 +270,11 @@ public class ManagedDatabaseUser {
     // add `username` to the URL query string
     if (getUsername() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%susername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsername()))));
+    }
+
+    // add `roleName` to the URL query string
+    if (getRoleName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sroleName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoleName()))));
     }
 
     // add `createdTimestamp` to the URL query string

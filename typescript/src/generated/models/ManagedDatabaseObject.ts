@@ -28,7 +28,7 @@ import {
  */
 export interface ManagedDatabaseObject {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ManagedDatabaseObject
      */
@@ -113,6 +113,12 @@ export interface ManagedDatabaseObject {
     databaseName?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ManagedDatabaseObject
+     */
+    sslMode?: string;
+    /**
+     *
      * @type {boolean}
      * @memberof ManagedDatabaseObject
      */
@@ -215,6 +221,7 @@ export function ManagedDatabaseObjectFromJSONTyped(json: any, ignoreDiscriminato
         'host': json['host'] == null ? undefined : json['host'],
         'port': json['port'] == null ? undefined : json['port'],
         'databaseName': json['databaseName'] == null ? undefined : json['databaseName'],
+        'sslMode': json['sslMode'] == null ? undefined : json['sslMode'],
         'readOnly': json['readOnly'] == null ? undefined : json['readOnly'],
         'cleanupUnlockExpiresAt': json['cleanupUnlockExpiresAt'] == null ? undefined : (new Date(json['cleanupUnlockExpiresAt'])),
         'usageBytes': json['usageBytes'] == null ? undefined : json['usageBytes'],
@@ -248,6 +255,7 @@ export function ManagedDatabaseObjectToJSONTyped(value?: ManagedDatabaseObject |
         'host': value['host'],
         'port': value['port'],
         'databaseName': value['databaseName'],
+        'sslMode': value['sslMode'],
         'readOnly': value['readOnly'],
         'cleanupUnlockExpiresAt': value['cleanupUnlockExpiresAt'] == null ? value['cleanupUnlockExpiresAt'] : value['cleanupUnlockExpiresAt'].toISOString(),
         'usageBytes': value['usageBytes'],
@@ -255,4 +263,3 @@ export function ManagedDatabaseObjectToJSONTyped(value?: ManagedDatabaseObject |
         'usageUpdatedAt': value['usageUpdatedAt'] == null ? value['usageUpdatedAt'] : value['usageUpdatedAt'].toISOString(),
     };
 }
-

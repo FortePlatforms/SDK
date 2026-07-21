@@ -507,6 +507,8 @@ public class ForteApiException {
     
     STATUS_EVENT_NOT_FOUND(String.valueOf("STATUS_EVENT_NOT_FOUND")),
     
+    STATUS_ANNOUNCEMENT_NOT_FOUND(String.valueOf("STATUS_ANNOUNCEMENT_NOT_FOUND")),
+
     INVALID_STATUS_EVENT_WINDOWS(String.valueOf("INVALID_STATUS_EVENT_WINDOWS")),
     
     INVALID_STATUS_EVENT_AVAILABILITY(String.valueOf("INVALID_STATUS_EVENT_AVAILABILITY"));
@@ -716,4 +718,3 @@ public class ForteApiException {
     return joiner.toString();
   }
 }
-

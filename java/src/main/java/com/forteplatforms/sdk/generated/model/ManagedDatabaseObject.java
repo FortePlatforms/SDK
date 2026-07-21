@@ -51,6 +51,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ManagedDatabaseObject.JSON_PROPERTY_HOST,
   ManagedDatabaseObject.JSON_PROPERTY_PORT,
   ManagedDatabaseObject.JSON_PROPERTY_DATABASE_NAME,
+  ManagedDatabaseObject.JSON_PROPERTY_SSL_MODE,
   ManagedDatabaseObject.JSON_PROPERTY_READ_ONLY,
   ManagedDatabaseObject.JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT,
   ManagedDatabaseObject.JSON_PROPERTY_USAGE_BYTES,
@@ -229,6 +230,10 @@ public class ManagedDatabaseObject {
   public static final String JSON_PROPERTY_DATABASE_NAME = "databaseName";
   @javax.annotation.Nullable
   private String databaseName;
+
+  public static final String JSON_PROPERTY_SSL_MODE = "sslMode";
+  @javax.annotation.Nullable
+  private String sslMode;
 
   public static final String JSON_PROPERTY_READ_ONLY = "readOnly";
   @javax.annotation.Nullable
@@ -597,6 +602,30 @@ public class ManagedDatabaseObject {
   }
 
 
+  public ManagedDatabaseObject sslMode(@javax.annotation.Nullable String sslMode) {
+    this.sslMode = sslMode;
+    return this;
+  }
+
+  /**
+   * Get sslMode
+   * @return sslMode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SSL_MODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSslMode() {
+    return sslMode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SSL_MODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSslMode(@javax.annotation.Nullable String sslMode) {
+    this.sslMode = sslMode;
+  }
+
+
   public ManagedDatabaseObject readOnly(@javax.annotation.Nullable Boolean readOnly) {
     this.readOnly = readOnly;
     return this;
@@ -743,6 +772,7 @@ public class ManagedDatabaseObject {
         Objects.equals(this.host, managedDatabaseObject.host) &&
         Objects.equals(this.port, managedDatabaseObject.port) &&
         Objects.equals(this.databaseName, managedDatabaseObject.databaseName) &&
+        Objects.equals(this.sslMode, managedDatabaseObject.sslMode) &&
         Objects.equals(this.readOnly, managedDatabaseObject.readOnly) &&
         Objects.equals(this.cleanupUnlockExpiresAt, managedDatabaseObject.cleanupUnlockExpiresAt) &&
         Objects.equals(this.usageBytes, managedDatabaseObject.usageBytes) &&
@@ -752,7 +782,7 @@ public class ManagedDatabaseObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, cpu, memoryGb, storageGb, status, connections, createdTimestamp, lastModifiedTimestamp, host, port, databaseName, readOnly, cleanupUnlockExpiresAt, usageBytes, physicalUsageBytes, usageUpdatedAt);
+    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, cpu, memoryGb, storageGb, status, connections, createdTimestamp, lastModifiedTimestamp, host, port, databaseName, sslMode, readOnly, cleanupUnlockExpiresAt, usageBytes, physicalUsageBytes, usageUpdatedAt);
   }
 
   @Override
@@ -773,6 +803,7 @@ public class ManagedDatabaseObject {
     sb.append("    host: ").append(toIndentedString(host)).append("\n");
     sb.append("    port: ").append(toIndentedString(port)).append("\n");
     sb.append("    databaseName: ").append(toIndentedString(databaseName)).append("\n");
+    sb.append("    sslMode: ").append(toIndentedString(sslMode)).append("\n");
     sb.append("    readOnly: ").append(toIndentedString(readOnly)).append("\n");
     sb.append("    cleanupUnlockExpiresAt: ").append(toIndentedString(cleanupUnlockExpiresAt)).append("\n");
     sb.append("    usageBytes: ").append(toIndentedString(usageBytes)).append("\n");
@@ -895,6 +926,11 @@ public class ManagedDatabaseObject {
     // add `databaseName` to the URL query string
     if (getDatabaseName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdatabaseName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDatabaseName()))));
+    }
+
+    // add `sslMode` to the URL query string
+    if (getSslMode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssslMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSslMode()))));
     }
 
     // add `readOnly` to the URL query string

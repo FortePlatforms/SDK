@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface ManagedDatabaseUser {
     /**
-     * 
+     *
      * @type {string}
      * @memberof ManagedDatabaseUser
      */
@@ -33,6 +33,12 @@ export interface ManagedDatabaseUser {
     username: string;
     /**
      * 
+     * @type {string}
+     * @memberof ManagedDatabaseUser
+     */
+    roleName?: string;
+    /**
+     *
      * @type {Date}
      * @memberof ManagedDatabaseUser
      */
@@ -67,6 +73,7 @@ export function ManagedDatabaseUserFromJSONTyped(json: any, ignoreDiscriminator:
         
         'databaseUserId': json['databaseUserId'],
         'username': json['username'],
+        'roleName': json['roleName'] == null ? undefined : json['roleName'],
         'createdTimestamp': (new Date(json['createdTimestamp'])),
         'passwordLastRotatedTimestamp': json['passwordLastRotatedTimestamp'] == null ? undefined : (new Date(json['passwordLastRotatedTimestamp'])),
     };
@@ -85,8 +92,8 @@ export function ManagedDatabaseUserToJSONTyped(value?: ManagedDatabaseUser | nul
         
         'databaseUserId': value['databaseUserId'],
         'username': value['username'],
+        'roleName': value['roleName'],
         'createdTimestamp': value['createdTimestamp'].toISOString(),
         'passwordLastRotatedTimestamp': value['passwordLastRotatedTimestamp'] == null ? value['passwordLastRotatedTimestamp'] : value['passwordLastRotatedTimestamp'].toISOString(),
     };
 }
-

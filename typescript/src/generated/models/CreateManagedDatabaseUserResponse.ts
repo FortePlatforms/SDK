@@ -28,7 +28,7 @@ import {
  */
 export interface CreateManagedDatabaseUserResponse {
     /**
-     * 
+     *
      * @type {ManagedDatabaseUser}
      * @memberof CreateManagedDatabaseUserResponse
      */
@@ -39,6 +39,12 @@ export interface CreateManagedDatabaseUserResponse {
      * @memberof CreateManagedDatabaseUserResponse
      */
     password: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CreateManagedDatabaseUserResponse
+     */
+    connectionUri?: string;
 }
 
 /**
@@ -62,6 +68,7 @@ export function CreateManagedDatabaseUserResponseFromJSONTyped(json: any, ignore
         
         'databaseUser': ManagedDatabaseUserFromJSON(json['databaseUser']),
         'password': json['password'],
+        'connectionUri': json['connectionUri'] == null ? undefined : json['connectionUri'],
     };
 }
 
@@ -78,6 +85,6 @@ export function CreateManagedDatabaseUserResponseToJSONTyped(value?: CreateManag
         
         'databaseUser': ManagedDatabaseUserToJSON(value['databaseUser']),
         'password': value['password'],
+        'connectionUri': value['connectionUri'],
     };
 }
-

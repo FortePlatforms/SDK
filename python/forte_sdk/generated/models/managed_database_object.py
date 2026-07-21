@@ -43,12 +43,13 @@ class ManagedDatabaseObject(BaseModel):
     host: Optional[StrictStr] = None
     port: Optional[StrictInt] = None
     database_name: Optional[StrictStr] = Field(default=None, alias="databaseName")
+    ssl_mode: Optional[StrictStr] = Field(default=None, alias="sslMode")
     read_only: Optional[StrictBool] = Field(default=None, alias="readOnly")
     cleanup_unlock_expires_at: Optional[datetime] = Field(default=None, alias="cleanupUnlockExpiresAt")
     usage_bytes: Optional[StrictInt] = Field(default=None, alias="usageBytes")
     physical_usage_bytes: Optional[StrictInt] = Field(default=None, alias="physicalUsageBytes")
     usage_updated_at: Optional[datetime] = Field(default=None, alias="usageUpdatedAt")
-    __properties: ClassVar[List[str]] = ["managedDatabaseId", "managedDatabaseName", "type", "tier", "cpu", "memoryGb", "storageGb", "status", "connections", "createdTimestamp", "lastModifiedTimestamp", "host", "port", "databaseName", "readOnly", "cleanupUnlockExpiresAt", "usageBytes", "physicalUsageBytes", "usageUpdatedAt"]
+    __properties: ClassVar[List[str]] = ["managedDatabaseId", "managedDatabaseName", "type", "tier", "cpu", "memoryGb", "storageGb", "status", "connections", "createdTimestamp", "lastModifiedTimestamp", "host", "port", "databaseName", "sslMode", "readOnly", "cleanupUnlockExpiresAt", "usageBytes", "physicalUsageBytes", "usageUpdatedAt"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -143,6 +144,7 @@ class ManagedDatabaseObject(BaseModel):
             "host": obj.get("host"),
             "port": obj.get("port"),
             "databaseName": obj.get("databaseName"),
+            "sslMode": obj.get("sslMode"),
             "readOnly": obj.get("readOnly"),
             "cleanupUnlockExpiresAt": obj.get("cleanupUnlockExpiresAt"),
             "usageBytes": obj.get("usageBytes"),

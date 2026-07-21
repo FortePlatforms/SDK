@@ -30,9 +30,10 @@ class ManagedDatabaseUser(BaseModel):
     """ # noqa: E501
     database_user_id: StrictStr = Field(alias="databaseUserId")
     username: StrictStr
+    role_name: Optional[StrictStr] = Field(default=None, alias="roleName")
     created_timestamp: datetime = Field(alias="createdTimestamp")
     password_last_rotated_timestamp: Optional[datetime] = Field(default=None, alias="passwordLastRotatedTimestamp")
-    __properties: ClassVar[List[str]] = ["databaseUserId", "username", "createdTimestamp", "passwordLastRotatedTimestamp"]
+    __properties: ClassVar[List[str]] = ["databaseUserId", "username", "roleName", "createdTimestamp", "passwordLastRotatedTimestamp"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,6 +88,7 @@ class ManagedDatabaseUser(BaseModel):
         _obj = cls.model_validate({
             "databaseUserId": obj.get("databaseUserId"),
             "username": obj.get("username"),
+            "roleName": obj.get("roleName"),
             "createdTimestamp": obj.get("createdTimestamp"),
             "passwordLastRotatedTimestamp": obj.get("passwordLastRotatedTimestamp")
         })

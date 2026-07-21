@@ -35,7 +35,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   CreateManagedDatabaseUserResponse.JSON_PROPERTY_DATABASE_USER,
-  CreateManagedDatabaseUserResponse.JSON_PROPERTY_PASSWORD
+  CreateManagedDatabaseUserResponse.JSON_PROPERTY_PASSWORD,
+  CreateManagedDatabaseUserResponse.JSON_PROPERTY_CONNECTION_URI
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateManagedDatabaseUserResponse {
@@ -46,6 +47,10 @@ public class CreateManagedDatabaseUserResponse {
   public static final String JSON_PROPERTY_PASSWORD = "password";
   @javax.annotation.Nonnull
   private String password;
+
+  public static final String JSON_PROPERTY_CONNECTION_URI = "connectionUri";
+  @javax.annotation.Nullable
+  private String connectionUri;
 
   public CreateManagedDatabaseUserResponse() { 
   }
@@ -98,6 +103,30 @@ public class CreateManagedDatabaseUserResponse {
   }
 
 
+  public CreateManagedDatabaseUserResponse connectionUri(@javax.annotation.Nullable String connectionUri) {
+    this.connectionUri = connectionUri;
+    return this;
+  }
+
+  /**
+   * Get connectionUri
+   * @return connectionUri
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONNECTION_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getConnectionUri() {
+    return connectionUri;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONNECTION_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConnectionUri(@javax.annotation.Nullable String connectionUri) {
+    this.connectionUri = connectionUri;
+  }
+
+
   /**
    * Return true if this CreateManagedDatabaseUserResponse object is equal to o.
    */
@@ -111,12 +140,13 @@ public class CreateManagedDatabaseUserResponse {
     }
     CreateManagedDatabaseUserResponse createManagedDatabaseUserResponse = (CreateManagedDatabaseUserResponse) o;
     return Objects.equals(this.databaseUser, createManagedDatabaseUserResponse.databaseUser) &&
-        Objects.equals(this.password, createManagedDatabaseUserResponse.password);
+        Objects.equals(this.password, createManagedDatabaseUserResponse.password) &&
+        Objects.equals(this.connectionUri, createManagedDatabaseUserResponse.connectionUri);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(databaseUser, password);
+    return Objects.hash(databaseUser, password, connectionUri);
   }
 
   @Override
@@ -125,6 +155,7 @@ public class CreateManagedDatabaseUserResponse {
     sb.append("class CreateManagedDatabaseUserResponse {\n");
     sb.append("    databaseUser: ").append(toIndentedString(databaseUser)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    connectionUri: ").append(toIndentedString(connectionUri)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -177,6 +208,11 @@ public class CreateManagedDatabaseUserResponse {
     // add `password` to the URL query string
     if (getPassword() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
+    }
+
+    // add `connectionUri` to the URL query string
+    if (getConnectionUri() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconnectionUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectionUri()))));
     }
 
     return joiner.toString();
