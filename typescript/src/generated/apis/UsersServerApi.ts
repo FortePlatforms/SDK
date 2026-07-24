@@ -204,6 +204,31 @@ import {
     PendingUserInviteObjectToJSON,
 } from '../models/PendingUserInviteObject';
 import {
+    type ReauthenticationChallengeRequest,
+    ReauthenticationChallengeRequestFromJSON,
+    ReauthenticationChallengeRequestToJSON,
+} from '../models/ReauthenticationChallengeRequest';
+import {
+    type ReauthenticationChallengeResponse,
+    ReauthenticationChallengeResponseFromJSON,
+    ReauthenticationChallengeResponseToJSON,
+} from '../models/ReauthenticationChallengeResponse';
+import {
+    type ReauthenticationRequest,
+    ReauthenticationRequestFromJSON,
+    ReauthenticationRequestToJSON,
+} from '../models/ReauthenticationRequest';
+import {
+    type ReauthenticationResponse,
+    ReauthenticationResponseFromJSON,
+    ReauthenticationResponseToJSON,
+} from '../models/ReauthenticationResponse';
+import {
+    type ReauthenticationStatusResponse,
+    ReauthenticationStatusResponseFromJSON,
+    ReauthenticationStatusResponseToJSON,
+} from '../models/ReauthenticationStatusResponse';
+import {
     type RegisterUserRequest,
     RegisterUserRequestFromJSON,
     RegisterUserRequestToJSON,
@@ -294,6 +319,12 @@ export interface CompletePasswordResetOperationRequest {
     completePasswordResetRequest: CompletePasswordResetRequest;
 }
 
+export interface CompleteReauthenticationRequest {
+    projectId: string;
+    reauthenticationRequest: ReauthenticationRequest;
+    authorization?: string;
+}
+
 export interface CreateContactMethodRequest {
     projectId: string;
     addContactMethodRequest: AddContactMethodRequest;
@@ -309,6 +340,12 @@ export interface CreateMfaMethodOperationRequest {
 export interface CreateOtpLoginOperationRequest {
     projectId: string;
     createOtpLoginRequest: CreateOtpLoginRequest;
+}
+
+export interface CreateReauthenticationChallengeRequest {
+    projectId: string;
+    reauthenticationChallengeRequest: ReauthenticationChallengeRequest;
+    authorization?: string;
 }
 
 export interface CreateUserInviteOperationRequest {
@@ -347,6 +384,11 @@ export interface GetBackupCodeStatusRequest {
 export interface GetMySubscriptionRequest {
     projectId: string;
     subscriptionId: string;
+    authorization?: string;
+}
+
+export interface GetReauthenticationStatusRequest {
+    projectId: string;
     authorization?: string;
 }
 
@@ -892,6 +934,63 @@ export class UsersServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for completeReauthentication without sending the request
+     */
+    async completeReauthenticationRequestOpts(requestParameters: CompleteReauthenticationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling completeReauthentication().'
+            );
+        }
+
+        if (requestParameters['reauthenticationRequest'] == null) {
+            throw new runtime.RequiredError(
+                'reauthenticationRequest',
+                'Required parameter "reauthenticationRequest" was null or undefined when calling completeReauthentication().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/reauthentication`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ReauthenticationRequestToJSON(requestParameters['reauthenticationRequest']),
+        };
+    }
+
+    /**
+     */
+    async completeReauthenticationRaw(requestParameters: CompleteReauthenticationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReauthenticationResponse>> {
+        const requestOptions = await this.completeReauthenticationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReauthenticationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async completeReauthentication(requestParameters: CompleteReauthenticationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReauthenticationResponse> {
+        const response = await this.completeReauthenticationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createContactMethod without sending the request
      */
     async createContactMethodRequestOpts(requestParameters: CreateContactMethodRequest): Promise<runtime.RequestOpts> {
@@ -1055,6 +1154,63 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async createOtpLogin(requestParameters: CreateOtpLoginOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateOtpLoginResponse> {
         const response = await this.createOtpLoginRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createReauthenticationChallenge without sending the request
+     */
+    async createReauthenticationChallengeRequestOpts(requestParameters: CreateReauthenticationChallengeRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createReauthenticationChallenge().'
+            );
+        }
+
+        if (requestParameters['reauthenticationChallengeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'reauthenticationChallengeRequest',
+                'Required parameter "reauthenticationChallengeRequest" was null or undefined when calling createReauthenticationChallenge().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/reauthentication/challenge`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ReauthenticationChallengeRequestToJSON(requestParameters['reauthenticationChallengeRequest']),
+        };
+    }
+
+    /**
+     */
+    async createReauthenticationChallengeRaw(requestParameters: CreateReauthenticationChallengeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReauthenticationChallengeResponse>> {
+        const requestOptions = await this.createReauthenticationChallengeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReauthenticationChallengeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createReauthenticationChallenge(requestParameters: CreateReauthenticationChallengeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReauthenticationChallengeResponse> {
+        const response = await this.createReauthenticationChallengeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1416,6 +1572,53 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async getMySubscription(requestParameters: GetMySubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionObject> {
         const response = await this.getMySubscriptionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getReauthenticationStatus without sending the request
+     */
+    async getReauthenticationStatusRequestOpts(requestParameters: GetReauthenticationStatusRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getReauthenticationStatus().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/reauthentication`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getReauthenticationStatusRaw(requestParameters: GetReauthenticationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReauthenticationStatusResponse>> {
+        const requestOptions = await this.getReauthenticationStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReauthenticationStatusResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getReauthenticationStatus(requestParameters: GetReauthenticationStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReauthenticationStatusResponse> {
+        const response = await this.getReauthenticationStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

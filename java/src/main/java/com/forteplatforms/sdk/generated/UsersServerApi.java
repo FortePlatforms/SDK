@@ -57,6 +57,11 @@ import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
 import com.forteplatforms.sdk.generated.model.PasswordLoginRequest;
 import com.forteplatforms.sdk.generated.model.PaymentMethodObject;
 import com.forteplatforms.sdk.generated.model.PendingUserInviteObject;
+import com.forteplatforms.sdk.generated.model.ReauthenticationChallengeRequest;
+import com.forteplatforms.sdk.generated.model.ReauthenticationChallengeResponse;
+import com.forteplatforms.sdk.generated.model.ReauthenticationRequest;
+import com.forteplatforms.sdk.generated.model.ReauthenticationResponse;
+import com.forteplatforms.sdk.generated.model.ReauthenticationStatusResponse;
 import com.forteplatforms.sdk.generated.model.RegisterUserRequest;
 import com.forteplatforms.sdk.generated.model.RegisterUserResponse;
 import com.forteplatforms.sdk.generated.model.RenameMfaMethodRequest;
@@ -888,6 +893,145 @@ public class UsersServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param reauthenticationRequest  (required)
+   * @param authorization  (optional)
+   * @return ReauthenticationResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ReauthenticationResponse completeReauthentication(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationRequest reauthenticationRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return completeReauthentication(projectId, reauthenticationRequest, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param reauthenticationRequest  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ReauthenticationResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ReauthenticationResponse completeReauthentication(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationRequest reauthenticationRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReauthenticationResponse> localVarResponse = completeReauthenticationWithHttpInfo(projectId, reauthenticationRequest, authorization, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param reauthenticationRequest  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;ReauthenticationResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReauthenticationResponse> completeReauthenticationWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationRequest reauthenticationRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return completeReauthenticationWithHttpInfo(projectId, reauthenticationRequest, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param reauthenticationRequest  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReauthenticationResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReauthenticationResponse> completeReauthenticationWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationRequest reauthenticationRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = completeReauthenticationRequestBuilder(projectId, reauthenticationRequest, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("completeReauthentication", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReauthenticationResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReauthenticationResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReauthenticationResponse>() {});
+        
+
+        return new ApiResponse<ReauthenticationResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder completeReauthenticationRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationRequest reauthenticationRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling completeReauthentication");
+    }
+    // verify the required parameter 'reauthenticationRequest' is set
+    if (reauthenticationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'reauthenticationRequest' when calling completeReauthentication");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/reauthentication"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(reauthenticationRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param addContactMethodRequest  (required)
    * @param authorization  (optional)
    * @return ContactMethod
@@ -1279,6 +1423,145 @@ public class UsersServerApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createOtpLoginRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param reauthenticationChallengeRequest  (required)
+   * @param authorization  (optional)
+   * @return ReauthenticationChallengeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ReauthenticationChallengeResponse createReauthenticationChallenge(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationChallengeRequest reauthenticationChallengeRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return createReauthenticationChallenge(projectId, reauthenticationChallengeRequest, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param reauthenticationChallengeRequest  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ReauthenticationChallengeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ReauthenticationChallengeResponse createReauthenticationChallenge(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationChallengeRequest reauthenticationChallengeRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReauthenticationChallengeResponse> localVarResponse = createReauthenticationChallengeWithHttpInfo(projectId, reauthenticationChallengeRequest, authorization, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param reauthenticationChallengeRequest  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;ReauthenticationChallengeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReauthenticationChallengeResponse> createReauthenticationChallengeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationChallengeRequest reauthenticationChallengeRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return createReauthenticationChallengeWithHttpInfo(projectId, reauthenticationChallengeRequest, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param reauthenticationChallengeRequest  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReauthenticationChallengeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReauthenticationChallengeResponse> createReauthenticationChallengeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationChallengeRequest reauthenticationChallengeRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createReauthenticationChallengeRequestBuilder(projectId, reauthenticationChallengeRequest, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createReauthenticationChallenge", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReauthenticationChallengeResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReauthenticationChallengeResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReauthenticationChallengeResponse>() {});
+        
+
+        return new ApiResponse<ReauthenticationChallengeResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createReauthenticationChallengeRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull ReauthenticationChallengeRequest reauthenticationChallengeRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createReauthenticationChallenge");
+    }
+    // verify the required parameter 'reauthenticationChallengeRequest' is set
+    if (reauthenticationChallengeRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'reauthenticationChallengeRequest' when calling createReauthenticationChallenge");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/reauthentication/challenge"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(reauthenticationChallengeRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2162,6 +2445,131 @@ public class UsersServerApi {
     String localVarPath = "/api/v1/{projectId}/users/me/subscriptions/{subscriptionId}"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{subscriptionId}", ApiClient.urlEncode(subscriptionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @return ReauthenticationStatusResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ReauthenticationStatusResponse getReauthenticationStatus(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization) throws ApiException {
+    return getReauthenticationStatus(projectId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ReauthenticationStatusResponse
+   * @throws ApiException if fails to make API call
+   */
+  public ReauthenticationStatusResponse getReauthenticationStatus(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReauthenticationStatusResponse> localVarResponse = getReauthenticationStatusWithHttpInfo(projectId, authorization, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;ReauthenticationStatusResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReauthenticationStatusResponse> getReauthenticationStatusWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization) throws ApiException {
+    return getReauthenticationStatusWithHttpInfo(projectId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReauthenticationStatusResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReauthenticationStatusResponse> getReauthenticationStatusWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getReauthenticationStatusRequestBuilder(projectId, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getReauthenticationStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReauthenticationStatusResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReauthenticationStatusResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReauthenticationStatusResponse>() {});
+        
+
+        return new ApiResponse<ReauthenticationStatusResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getReauthenticationStatusRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getReauthenticationStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/reauthentication"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

@@ -42,7 +42,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RegisterUserResponse.JSON_PROPERTY_USER_OBJECT,
   RegisterUserResponse.JSON_PROPERTY_SESSION_TOKEN,
   RegisterUserResponse.JSON_PROPERTY_MFA_STATUS,
-  RegisterUserResponse.JSON_PROPERTY_AVAILABLE_MFA_METHODS
+  RegisterUserResponse.JSON_PROPERTY_AVAILABLE_MFA_METHODS,
+  RegisterUserResponse.JSON_PROPERTY_PENDING_CONTACT_METHODS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RegisterUserResponse {
@@ -102,6 +103,10 @@ public class RegisterUserResponse {
   public static final String JSON_PROPERTY_AVAILABLE_MFA_METHODS = "availableMfaMethods";
   @javax.annotation.Nullable
   private List<MfaMethodSummary> availableMfaMethods = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_PENDING_CONTACT_METHODS = "pendingContactMethods";
+  @javax.annotation.Nullable
+  private List<MfaMethodSummary> pendingContactMethods = new ArrayList<>();
 
   public RegisterUserResponse() { 
   }
@@ -234,6 +239,38 @@ public class RegisterUserResponse {
   }
 
 
+  public RegisterUserResponse pendingContactMethods(@javax.annotation.Nullable List<MfaMethodSummary> pendingContactMethods) {
+    this.pendingContactMethods = pendingContactMethods;
+    return this;
+  }
+
+  public RegisterUserResponse addPendingContactMethodsItem(MfaMethodSummary pendingContactMethodsItem) {
+    if (this.pendingContactMethods == null) {
+      this.pendingContactMethods = new ArrayList<>();
+    }
+    this.pendingContactMethods.add(pendingContactMethodsItem);
+    return this;
+  }
+
+  /**
+   * Get pendingContactMethods
+   * @return pendingContactMethods
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PENDING_CONTACT_METHODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<MfaMethodSummary> getPendingContactMethods() {
+    return pendingContactMethods;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PENDING_CONTACT_METHODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPendingContactMethods(@javax.annotation.Nullable List<MfaMethodSummary> pendingContactMethods) {
+    this.pendingContactMethods = pendingContactMethods;
+  }
+
+
   /**
    * Return true if this RegisterUserResponse object is equal to o.
    */
@@ -250,12 +287,13 @@ public class RegisterUserResponse {
         Objects.equals(this.userObject, registerUserResponse.userObject) &&
         Objects.equals(this.sessionToken, registerUserResponse.sessionToken) &&
         Objects.equals(this.mfaStatus, registerUserResponse.mfaStatus) &&
-        Objects.equals(this.availableMfaMethods, registerUserResponse.availableMfaMethods);
+        Objects.equals(this.availableMfaMethods, registerUserResponse.availableMfaMethods) &&
+        Objects.equals(this.pendingContactMethods, registerUserResponse.pendingContactMethods);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, userObject, sessionToken, mfaStatus, availableMfaMethods);
+    return Objects.hash(userId, userObject, sessionToken, mfaStatus, availableMfaMethods, pendingContactMethods);
   }
 
   @Override
@@ -267,6 +305,7 @@ public class RegisterUserResponse {
     sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
     sb.append("    mfaStatus: ").append(toIndentedString(mfaStatus)).append("\n");
     sb.append("    availableMfaMethods: ").append(toIndentedString(availableMfaMethods)).append("\n");
+    sb.append("    pendingContactMethods: ").append(toIndentedString(pendingContactMethods)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -336,6 +375,16 @@ public class RegisterUserResponse {
       for (int i = 0; i < getAvailableMfaMethods().size(); i++) {
         if (getAvailableMfaMethods().get(i) != null) {
           joiner.add(getAvailableMfaMethods().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%savailableMfaMethods%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `pendingContactMethods` to the URL query string
+    if (getPendingContactMethods() != null) {
+      for (int i = 0; i < getPendingContactMethods().size(); i++) {
+        if (getPendingContactMethods().get(i) != null) {
+          joiner.add(getPendingContactMethods().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%spendingContactMethods%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

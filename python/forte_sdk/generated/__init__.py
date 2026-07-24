@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.332"
+__version__ = "1.0.334"
 
 # Define package exports
 __all__ = [
@@ -152,6 +152,12 @@ __all__ = [
     "ProductAggregate",
     "ProjectObject",
     "PutSubscriptionItemsRequest",
+    "ReauthenticationChallengeRequest",
+    "ReauthenticationChallengeResponse",
+    "ReauthenticationFactor",
+    "ReauthenticationRequest",
+    "ReauthenticationResponse",
+    "ReauthenticationStatusResponse",
     "RegisterUserRequest",
     "RegisterUserResponse",
     "RenameMfaMethodRequest",
@@ -354,6 +360,12 @@ from forte_sdk.generated.models.pending_user_invite_object import PendingUserInv
 from forte_sdk.generated.models.product_aggregate import ProductAggregate as ProductAggregate
 from forte_sdk.generated.models.project_object import ProjectObject as ProjectObject
 from forte_sdk.generated.models.put_subscription_items_request import PutSubscriptionItemsRequest as PutSubscriptionItemsRequest
+from forte_sdk.generated.models.reauthentication_challenge_request import ReauthenticationChallengeRequest as ReauthenticationChallengeRequest
+from forte_sdk.generated.models.reauthentication_challenge_response import ReauthenticationChallengeResponse as ReauthenticationChallengeResponse
+from forte_sdk.generated.models.reauthentication_factor import ReauthenticationFactor as ReauthenticationFactor
+from forte_sdk.generated.models.reauthentication_request import ReauthenticationRequest as ReauthenticationRequest
+from forte_sdk.generated.models.reauthentication_response import ReauthenticationResponse as ReauthenticationResponse
+from forte_sdk.generated.models.reauthentication_status_response import ReauthenticationStatusResponse as ReauthenticationStatusResponse
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest as RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse as RegisterUserResponse
 from forte_sdk.generated.models.rename_mfa_method_request import RenameMfaMethodRequest as RenameMfaMethodRequest

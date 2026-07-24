@@ -45,6 +45,12 @@ export interface SessionSummary {
     lastActivityAt?: Date;
     /**
      * 
+     * @type {Date}
+     * @memberof SessionSummary
+     */
+    lastReauthenticatedAt?: Date;
+    /**
+     * 
      * @type {string}
      * @memberof SessionSummary
      */
@@ -92,6 +98,7 @@ export function SessionSummaryFromJSONTyped(json: any, ignoreDiscriminator: bool
         'creationTime': (new Date(json['creationTime'])),
         'expirationTime': json['expirationTime'] == null ? undefined : (new Date(json['expirationTime'])),
         'lastActivityAt': json['lastActivityAt'] == null ? undefined : (new Date(json['lastActivityAt'])),
+        'lastReauthenticatedAt': json['lastReauthenticatedAt'] == null ? undefined : (new Date(json['lastReauthenticatedAt'])),
         'sourceIpAddress': json['sourceIpAddress'] == null ? undefined : json['sourceIpAddress'],
         'approximateLocation': json['approximateLocation'] == null ? undefined : json['approximateLocation'],
         'current': json['current'] == null ? undefined : json['current'],
@@ -114,6 +121,7 @@ export function SessionSummaryToJSONTyped(value?: SessionSummary | null, ignoreD
         'creationTime': value['creationTime'].toISOString(),
         'expirationTime': value['expirationTime'] == null ? value['expirationTime'] : value['expirationTime'].toISOString(),
         'lastActivityAt': value['lastActivityAt'] == null ? value['lastActivityAt'] : value['lastActivityAt'].toISOString(),
+        'lastReauthenticatedAt': value['lastReauthenticatedAt'] == null ? value['lastReauthenticatedAt'] : value['lastReauthenticatedAt'].toISOString(),
         'sourceIpAddress': value['sourceIpAddress'],
         'approximateLocation': value['approximateLocation'],
         'current': value['current'],

@@ -28,7 +28,7 @@ import {
  */
 export interface ManagedDatabaseObject {
     /**
-     *
+     * 
      * @type {string}
      * @memberof ManagedDatabaseObject
      */
@@ -118,7 +118,7 @@ export interface ManagedDatabaseObject {
      */
     sslMode?: string;
     /**
-     *
+     * 
      * @type {boolean}
      * @memberof ManagedDatabaseObject
      */
@@ -263,3 +263,4 @@ export function ManagedDatabaseObjectToJSONTyped(value?: ManagedDatabaseObject |
         'usageUpdatedAt': value['usageUpdatedAt'] == null ? value['usageUpdatedAt'] : value['usageUpdatedAt'].toISOString(),
     };
 }
+

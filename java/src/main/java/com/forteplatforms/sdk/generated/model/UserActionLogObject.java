@@ -155,7 +155,13 @@ public class UserActionLogObject {
     
     MFA_BACKUP_CODE_USED(String.valueOf("MFA_BACKUP_CODE_USED")),
     
-    MFA_ADMIN_RESET(String.valueOf("MFA_ADMIN_RESET"));
+    MFA_ADMIN_RESET(String.valueOf("MFA_ADMIN_RESET")),
+    
+    REAUTHENTICATION_CHALLENGE_SENT(String.valueOf("REAUTHENTICATION_CHALLENGE_SENT")),
+    
+    REAUTHENTICATED(String.valueOf("REAUTHENTICATED")),
+    
+    REAUTHENTICATION_FAILED(String.valueOf("REAUTHENTICATION_FAILED"));
 
     private String value;
 

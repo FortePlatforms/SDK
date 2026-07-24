@@ -18,26 +18,18 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class SessionSummary(BaseModel):
+class ReauthenticationResponse(BaseModel):
     """
-    SessionSummary
+    ReauthenticationResponse
     """ # noqa: E501
-    session_id: StrictStr = Field(alias="sessionId")
-    creation_time: datetime = Field(alias="creationTime")
-    expiration_time: Optional[datetime] = Field(default=None, alias="expirationTime")
-    last_activity_at: Optional[datetime] = Field(default=None, alias="lastActivityAt")
-    last_reauthenticated_at: Optional[datetime] = Field(default=None, alias="lastReauthenticatedAt")
-    source_ip_address: Optional[StrictStr] = Field(default=None, alias="sourceIpAddress")
-    approximate_location: Optional[StrictStr] = Field(default=None, alias="approximateLocation")
-    current: Optional[StrictBool] = None
-    impersonation: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["sessionId", "creationTime", "expirationTime", "lastActivityAt", "lastReauthenticatedAt", "sourceIpAddress", "approximateLocation", "current", "impersonation"]
+    reauthenticated_at: datetime = Field(alias="reauthenticatedAt")
+    __properties: ClassVar[List[str]] = ["reauthenticatedAt"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -57,7 +49,7 @@ class SessionSummary(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SessionSummary from a JSON string"""
+        """Create an instance of ReauthenticationResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +74,7 @@ class SessionSummary(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SessionSummary from a dict"""
+        """Create an instance of ReauthenticationResponse from a dict"""
         if obj is None:
             return None
 
@@ -90,15 +82,7 @@ class SessionSummary(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "sessionId": obj.get("sessionId"),
-            "creationTime": obj.get("creationTime"),
-            "expirationTime": obj.get("expirationTime"),
-            "lastActivityAt": obj.get("lastActivityAt"),
-            "lastReauthenticatedAt": obj.get("lastReauthenticatedAt"),
-            "sourceIpAddress": obj.get("sourceIpAddress"),
-            "approximateLocation": obj.get("approximateLocation"),
-            "current": obj.get("current"),
-            "impersonation": obj.get("impersonation")
+            "reauthenticatedAt": obj.get("reauthenticatedAt")
         })
         return _obj
 

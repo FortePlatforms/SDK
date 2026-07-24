@@ -28,7 +28,7 @@ import {
  */
 export interface CreateManagedDatabaseUserResponse {
     /**
-     *
+     * 
      * @type {ManagedDatabaseUser}
      * @memberof CreateManagedDatabaseUserResponse
      */
@@ -40,7 +40,7 @@ export interface CreateManagedDatabaseUserResponse {
      */
     password: string;
     /**
-     *
+     * 
      * @type {string}
      * @memberof CreateManagedDatabaseUserResponse
      */
@@ -88,3 +88,4 @@ export function CreateManagedDatabaseUserResponseToJSONTyped(value?: CreateManag
         'connectionUri': value['connectionUri'],
     };
 }
+

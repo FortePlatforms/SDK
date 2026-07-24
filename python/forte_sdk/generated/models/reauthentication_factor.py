@@ -17,27 +17,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class SessionSummary(BaseModel):
+class ReauthenticationFactor(BaseModel):
     """
-    SessionSummary
+    ReauthenticationFactor
     """ # noqa: E501
-    session_id: StrictStr = Field(alias="sessionId")
-    creation_time: datetime = Field(alias="creationTime")
-    expiration_time: Optional[datetime] = Field(default=None, alias="expirationTime")
-    last_activity_at: Optional[datetime] = Field(default=None, alias="lastActivityAt")
-    last_reauthenticated_at: Optional[datetime] = Field(default=None, alias="lastReauthenticatedAt")
-    source_ip_address: Optional[StrictStr] = Field(default=None, alias="sourceIpAddress")
-    approximate_location: Optional[StrictStr] = Field(default=None, alias="approximateLocation")
-    current: Optional[StrictBool] = None
-    impersonation: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["sessionId", "creationTime", "expirationTime", "lastActivityAt", "lastReauthenticatedAt", "sourceIpAddress", "approximateLocation", "current", "impersonation"]
+    type: StrictStr
+    mfa_method_id: Optional[StrictStr] = Field(default=None, alias="mfaMethodId")
+    contact_method_id: Optional[StrictStr] = Field(default=None, alias="contactMethodId")
+    masked_target: Optional[StrictStr] = Field(default=None, alias="maskedTarget")
+    __properties: ClassVar[List[str]] = ["type", "mfaMethodId", "contactMethodId", "maskedTarget"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['PASSWORD', 'EMAIL_OTP', 'SMS_OTP', 'TOTP', 'BACKUP_CODE']):
+            raise ValueError("must be one of enum values ('PASSWORD', 'EMAIL_OTP', 'SMS_OTP', 'TOTP', 'BACKUP_CODE')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -57,7 +58,7 @@ class SessionSummary(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SessionSummary from a JSON string"""
+        """Create an instance of ReauthenticationFactor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +83,7 @@ class SessionSummary(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SessionSummary from a dict"""
+        """Create an instance of ReauthenticationFactor from a dict"""
         if obj is None:
             return None
 
@@ -90,15 +91,10 @@ class SessionSummary(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "sessionId": obj.get("sessionId"),
-            "creationTime": obj.get("creationTime"),
-            "expirationTime": obj.get("expirationTime"),
-            "lastActivityAt": obj.get("lastActivityAt"),
-            "lastReauthenticatedAt": obj.get("lastReauthenticatedAt"),
-            "sourceIpAddress": obj.get("sourceIpAddress"),
-            "approximateLocation": obj.get("approximateLocation"),
-            "current": obj.get("current"),
-            "impersonation": obj.get("impersonation")
+            "type": obj.get("type"),
+            "mfaMethodId": obj.get("mfaMethodId"),
+            "contactMethodId": obj.get("contactMethodId"),
+            "maskedTarget": obj.get("maskedTarget")
         })
         return _obj
 

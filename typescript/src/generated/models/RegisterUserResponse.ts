@@ -71,6 +71,12 @@ export interface RegisterUserResponse {
      * @memberof RegisterUserResponse
      */
     availableMfaMethods?: Array<MfaMethodSummary>;
+    /**
+     * 
+     * @type {Array<MfaMethodSummary>}
+     * @memberof RegisterUserResponse
+     */
+    pendingContactMethods?: Array<MfaMethodSummary>;
 }
 
 
@@ -109,6 +115,7 @@ export function RegisterUserResponseFromJSONTyped(json: any, ignoreDiscriminator
         'sessionToken': RenewSessionTokenResponseFromJSON(json['sessionToken']),
         'mfaStatus': json['mfaStatus'] == null ? undefined : json['mfaStatus'],
         'availableMfaMethods': json['availableMfaMethods'] == null ? undefined : ((json['availableMfaMethods'] as Array<any>).map(MfaMethodSummaryFromJSON)),
+        'pendingContactMethods': json['pendingContactMethods'] == null ? undefined : ((json['pendingContactMethods'] as Array<any>).map(MfaMethodSummaryFromJSON)),
     };
 }
 
@@ -128,6 +135,7 @@ export function RegisterUserResponseToJSONTyped(value?: RegisterUserResponse | n
         'sessionToken': RenewSessionTokenResponseToJSON(value['sessionToken']),
         'mfaStatus': value['mfaStatus'],
         'availableMfaMethods': value['availableMfaMethods'] == null ? undefined : ((value['availableMfaMethods'] as Array<any>).map(MfaMethodSummaryToJSON)),
+        'pendingContactMethods': value['pendingContactMethods'] == null ? undefined : ((value['pendingContactMethods'] as Array<any>).map(MfaMethodSummaryToJSON)),
     };
 }
 

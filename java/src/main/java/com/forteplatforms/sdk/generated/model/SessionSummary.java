@@ -38,6 +38,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   SessionSummary.JSON_PROPERTY_CREATION_TIME,
   SessionSummary.JSON_PROPERTY_EXPIRATION_TIME,
   SessionSummary.JSON_PROPERTY_LAST_ACTIVITY_AT,
+  SessionSummary.JSON_PROPERTY_LAST_REAUTHENTICATED_AT,
   SessionSummary.JSON_PROPERTY_SOURCE_IP_ADDRESS,
   SessionSummary.JSON_PROPERTY_APPROXIMATE_LOCATION,
   SessionSummary.JSON_PROPERTY_CURRENT,
@@ -60,6 +61,10 @@ public class SessionSummary {
   public static final String JSON_PROPERTY_LAST_ACTIVITY_AT = "lastActivityAt";
   @javax.annotation.Nullable
   private OffsetDateTime lastActivityAt;
+
+  public static final String JSON_PROPERTY_LAST_REAUTHENTICATED_AT = "lastReauthenticatedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime lastReauthenticatedAt;
 
   public static final String JSON_PROPERTY_SOURCE_IP_ADDRESS = "sourceIpAddress";
   @javax.annotation.Nullable
@@ -176,6 +181,30 @@ public class SessionSummary {
   }
 
 
+  public SessionSummary lastReauthenticatedAt(@javax.annotation.Nullable OffsetDateTime lastReauthenticatedAt) {
+    this.lastReauthenticatedAt = lastReauthenticatedAt;
+    return this;
+  }
+
+  /**
+   * Get lastReauthenticatedAt
+   * @return lastReauthenticatedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LAST_REAUTHENTICATED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getLastReauthenticatedAt() {
+    return lastReauthenticatedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LAST_REAUTHENTICATED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLastReauthenticatedAt(@javax.annotation.Nullable OffsetDateTime lastReauthenticatedAt) {
+    this.lastReauthenticatedAt = lastReauthenticatedAt;
+  }
+
+
   public SessionSummary sourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
     this.sourceIpAddress = sourceIpAddress;
     return this;
@@ -288,6 +317,7 @@ public class SessionSummary {
         Objects.equals(this.creationTime, sessionSummary.creationTime) &&
         Objects.equals(this.expirationTime, sessionSummary.expirationTime) &&
         Objects.equals(this.lastActivityAt, sessionSummary.lastActivityAt) &&
+        Objects.equals(this.lastReauthenticatedAt, sessionSummary.lastReauthenticatedAt) &&
         Objects.equals(this.sourceIpAddress, sessionSummary.sourceIpAddress) &&
         Objects.equals(this.approximateLocation, sessionSummary.approximateLocation) &&
         Objects.equals(this.current, sessionSummary.current) &&
@@ -296,7 +326,7 @@ public class SessionSummary {
 
   @Override
   public int hashCode() {
-    return Objects.hash(sessionId, creationTime, expirationTime, lastActivityAt, sourceIpAddress, approximateLocation, current, impersonation);
+    return Objects.hash(sessionId, creationTime, expirationTime, lastActivityAt, lastReauthenticatedAt, sourceIpAddress, approximateLocation, current, impersonation);
   }
 
   @Override
@@ -307,6 +337,7 @@ public class SessionSummary {
     sb.append("    creationTime: ").append(toIndentedString(creationTime)).append("\n");
     sb.append("    expirationTime: ").append(toIndentedString(expirationTime)).append("\n");
     sb.append("    lastActivityAt: ").append(toIndentedString(lastActivityAt)).append("\n");
+    sb.append("    lastReauthenticatedAt: ").append(toIndentedString(lastReauthenticatedAt)).append("\n");
     sb.append("    sourceIpAddress: ").append(toIndentedString(sourceIpAddress)).append("\n");
     sb.append("    approximateLocation: ").append(toIndentedString(approximateLocation)).append("\n");
     sb.append("    current: ").append(toIndentedString(current)).append("\n");
@@ -373,6 +404,11 @@ public class SessionSummary {
     // add `lastActivityAt` to the URL query string
     if (getLastActivityAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slastActivityAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastActivityAt()))));
+    }
+
+    // add `lastReauthenticatedAt` to the URL query string
+    if (getLastReauthenticatedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slastReauthenticatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastReauthenticatedAt()))));
     }
 
     // add `sourceIpAddress` to the URL query string

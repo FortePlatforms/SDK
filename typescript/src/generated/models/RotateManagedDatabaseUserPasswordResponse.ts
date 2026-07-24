@@ -28,7 +28,7 @@ import {
  */
 export interface RotateManagedDatabaseUserPasswordResponse {
     /**
-     *
+     * 
      * @type {ManagedDatabaseUser}
      * @memberof RotateManagedDatabaseUserPasswordResponse
      */
@@ -40,7 +40,7 @@ export interface RotateManagedDatabaseUserPasswordResponse {
      */
     password: string;
     /**
-     *
+     * 
      * @type {string}
      * @memberof RotateManagedDatabaseUserPasswordResponse
      */
@@ -88,3 +88,4 @@ export function RotateManagedDatabaseUserPasswordResponseToJSONTyped(value?: Rot
         'connectionUri': value['connectionUri'],
     };
 }
+

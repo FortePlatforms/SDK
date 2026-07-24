@@ -35,7 +35,8 @@ class RegisterUserResponse(BaseModel):
     session_token: RenewSessionTokenResponse = Field(alias="sessionToken")
     mfa_status: Optional[StrictStr] = Field(default=None, alias="mfaStatus")
     available_mfa_methods: Optional[List[MfaMethodSummary]] = Field(default=None, alias="availableMfaMethods")
-    __properties: ClassVar[List[str]] = ["userId", "userObject", "sessionToken", "mfaStatus", "availableMfaMethods"]
+    pending_contact_methods: Optional[List[MfaMethodSummary]] = Field(default=None, alias="pendingContactMethods")
+    __properties: ClassVar[List[str]] = ["userId", "userObject", "sessionToken", "mfaStatus", "availableMfaMethods", "pendingContactMethods"]
 
     @field_validator('mfa_status')
     def mfa_status_validate_enum(cls, value):
@@ -99,6 +100,13 @@ class RegisterUserResponse(BaseModel):
                 if _item_available_mfa_methods:
                     _items.append(_item_available_mfa_methods.to_dict())
             _dict['availableMfaMethods'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in pending_contact_methods (list)
+        _items = []
+        if self.pending_contact_methods:
+            for _item_pending_contact_methods in self.pending_contact_methods:
+                if _item_pending_contact_methods:
+                    _items.append(_item_pending_contact_methods.to_dict())
+            _dict['pendingContactMethods'] = _items
         return _dict
 
     @classmethod
@@ -115,7 +123,8 @@ class RegisterUserResponse(BaseModel):
             "userObject": UserObject.from_dict(obj["userObject"]) if obj.get("userObject") is not None else None,
             "sessionToken": RenewSessionTokenResponse.from_dict(obj["sessionToken"]) if obj.get("sessionToken") is not None else None,
             "mfaStatus": obj.get("mfaStatus"),
-            "availableMfaMethods": [MfaMethodSummary.from_dict(_item) for _item in obj["availableMfaMethods"]] if obj.get("availableMfaMethods") is not None else None
+            "availableMfaMethods": [MfaMethodSummary.from_dict(_item) for _item in obj["availableMfaMethods"]] if obj.get("availableMfaMethods") is not None else None,
+            "pendingContactMethods": [MfaMethodSummary.from_dict(_item) for _item in obj["pendingContactMethods"]] if obj.get("pendingContactMethods") is not None else None
         })
         return _obj
 

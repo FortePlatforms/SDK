@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface ManagedDatabaseUser {
     /**
-     *
+     * 
      * @type {string}
      * @memberof ManagedDatabaseUser
      */
@@ -38,7 +38,7 @@ export interface ManagedDatabaseUser {
      */
     roleName?: string;
     /**
-     *
+     * 
      * @type {Date}
      * @memberof ManagedDatabaseUser
      */
@@ -97,3 +97,4 @@ export function ManagedDatabaseUserToJSONTyped(value?: ManagedDatabaseUser | nul
         'passwordLastRotatedTimestamp': value['passwordLastRotatedTimestamp'] == null ? value['passwordLastRotatedTimestamp'] : value['passwordLastRotatedTimestamp'].toISOString(),
     };
 }
+
