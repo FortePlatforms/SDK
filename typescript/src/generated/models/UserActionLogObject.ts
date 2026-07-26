@@ -63,6 +63,12 @@ export interface UserActionLogObject {
     sourceIpAddress?: string;
     /**
      * 
+     * @type {string}
+     * @memberof UserActionLogObject
+     */
+    userAgent?: string;
+    /**
+     * 
      * @type {{ [key: string]: string; }}
      * @memberof UserActionLogObject
      */
@@ -157,6 +163,7 @@ export function UserActionLogObjectFromJSONTyped(json: any, ignoreDiscriminator:
         'paymentMethodId': json['paymentMethodId'] == null ? undefined : json['paymentMethodId'],
         'performedByAccountId': json['performedByAccountId'] == null ? undefined : json['performedByAccountId'],
         'sourceIpAddress': json['sourceIpAddress'] == null ? undefined : json['sourceIpAddress'],
+        'userAgent': json['userAgent'] == null ? undefined : json['userAgent'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
     };
 }
@@ -179,6 +186,7 @@ export function UserActionLogObjectToJSONTyped(value?: UserActionLogObject | nul
         'paymentMethodId': value['paymentMethodId'],
         'performedByAccountId': value['performedByAccountId'],
         'sourceIpAddress': value['sourceIpAddress'],
+        'userAgent': value['userAgent'],
         'metadata': value['metadata'],
     };
 }

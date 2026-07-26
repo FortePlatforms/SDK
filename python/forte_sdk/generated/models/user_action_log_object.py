@@ -35,8 +35,9 @@ class UserActionLogObject(BaseModel):
     payment_method_id: Optional[StrictStr] = Field(default=None, alias="paymentMethodId")
     performed_by_account_id: Optional[StrictStr] = Field(default=None, alias="performedByAccountId")
     source_ip_address: Optional[StrictStr] = Field(default=None, alias="sourceIpAddress")
+    user_agent: Optional[StrictStr] = Field(default=None, alias="userAgent")
     metadata: Optional[Dict[str, StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["timestamp", "userId", "actionType", "contactMethodId", "paymentMethodId", "performedByAccountId", "sourceIpAddress", "metadata"]
+    __properties: ClassVar[List[str]] = ["timestamp", "userId", "actionType", "contactMethodId", "paymentMethodId", "performedByAccountId", "sourceIpAddress", "userAgent", "metadata"]
 
     @field_validator('action_type')
     def action_type_validate_enum(cls, value):
@@ -103,6 +104,7 @@ class UserActionLogObject(BaseModel):
             "paymentMethodId": obj.get("paymentMethodId"),
             "performedByAccountId": obj.get("performedByAccountId"),
             "sourceIpAddress": obj.get("sourceIpAddress"),
+            "userAgent": obj.get("userAgent"),
             "metadata": obj.get("metadata")
         })
         return _obj

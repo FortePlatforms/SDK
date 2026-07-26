@@ -35,9 +35,11 @@ class SessionSummary(BaseModel):
     last_reauthenticated_at: Optional[datetime] = Field(default=None, alias="lastReauthenticatedAt")
     source_ip_address: Optional[StrictStr] = Field(default=None, alias="sourceIpAddress")
     approximate_location: Optional[StrictStr] = Field(default=None, alias="approximateLocation")
+    user_agent: Optional[StrictStr] = Field(default=None, alias="userAgent")
+    device_description: Optional[StrictStr] = Field(default=None, alias="deviceDescription")
     current: Optional[StrictBool] = None
     impersonation: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["sessionId", "creationTime", "expirationTime", "lastActivityAt", "lastReauthenticatedAt", "sourceIpAddress", "approximateLocation", "current", "impersonation"]
+    __properties: ClassVar[List[str]] = ["sessionId", "creationTime", "expirationTime", "lastActivityAt", "lastReauthenticatedAt", "sourceIpAddress", "approximateLocation", "userAgent", "deviceDescription", "current", "impersonation"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -97,6 +99,8 @@ class SessionSummary(BaseModel):
             "lastReauthenticatedAt": obj.get("lastReauthenticatedAt"),
             "sourceIpAddress": obj.get("sourceIpAddress"),
             "approximateLocation": obj.get("approximateLocation"),
+            "userAgent": obj.get("userAgent"),
+            "deviceDescription": obj.get("deviceDescription"),
             "current": obj.get("current"),
             "impersonation": obj.get("impersonation")
         })

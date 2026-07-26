@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.body_ref import BodyRef
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta
 from typing import Optional, Set
 from typing_extensions import Self
@@ -39,6 +40,8 @@ class RequestLogObject(BaseModel):
     first_byte_latency_milliseconds: Optional[StrictInt] = Field(default=None, alias="firstByteLatencyMilliseconds")
     request_body: Optional[StrictStr] = Field(default=None, alias="requestBody")
     response_body: Optional[StrictStr] = Field(default=None, alias="responseBody")
+    request_body_ref: Optional[BodyRef] = Field(default=None, alias="requestBodyRef")
+    response_body_ref: Optional[BodyRef] = Field(default=None, alias="responseBodyRef")
     status_code: StrictInt = Field(alias="statusCode")
     request_headers: Dict[str, StrictStr] = Field(alias="requestHeaders")
     response_headers: Dict[str, StrictStr] = Field(alias="responseHeaders")
@@ -48,7 +51,7 @@ class RequestLogObject(BaseModel):
     exception_stack_trace: Optional[StrictStr] = Field(default=None, alias="exceptionStackTrace")
     owner_account_id: Optional[StrictStr] = Field(default=None, alias="ownerAccountId")
     environment: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "sourceIpAddress", "requestLogObjectMeta", "targetLatencyMilliseconds", "integrationLatencyMilliseconds", "totalLatencyMilliseconds", "firstByteLatencyMilliseconds", "requestBody", "responseBody", "statusCode", "requestHeaders", "responseHeaders", "retryCount", "exceptionType", "exceptionMessage", "exceptionStackTrace", "ownerAccountId", "environment"]
+    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "sourceIpAddress", "requestLogObjectMeta", "targetLatencyMilliseconds", "integrationLatencyMilliseconds", "totalLatencyMilliseconds", "firstByteLatencyMilliseconds", "requestBody", "responseBody", "requestBodyRef", "responseBodyRef", "statusCode", "requestHeaders", "responseHeaders", "retryCount", "exceptionType", "exceptionMessage", "exceptionStackTrace", "ownerAccountId", "environment"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -92,6 +95,12 @@ class RequestLogObject(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of request_log_object_meta
         if self.request_log_object_meta:
             _dict['requestLogObjectMeta'] = self.request_log_object_meta.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of request_body_ref
+        if self.request_body_ref:
+            _dict['requestBodyRef'] = self.request_body_ref.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of response_body_ref
+        if self.response_body_ref:
+            _dict['responseBodyRef'] = self.response_body_ref.to_dict()
         return _dict
 
     @classmethod
@@ -114,6 +123,8 @@ class RequestLogObject(BaseModel):
             "firstByteLatencyMilliseconds": obj.get("firstByteLatencyMilliseconds"),
             "requestBody": obj.get("requestBody"),
             "responseBody": obj.get("responseBody"),
+            "requestBodyRef": BodyRef.from_dict(obj["requestBodyRef"]) if obj.get("requestBodyRef") is not None else None,
+            "responseBodyRef": BodyRef.from_dict(obj["responseBodyRef"]) if obj.get("responseBodyRef") is not None else None,
             "statusCode": obj.get("statusCode"),
             "requestHeaders": obj.get("requestHeaders"),
             "responseHeaders": obj.get("responseHeaders"),

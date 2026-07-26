@@ -63,6 +63,18 @@ export interface SessionSummary {
     approximateLocation?: string;
     /**
      * 
+     * @type {string}
+     * @memberof SessionSummary
+     */
+    userAgent?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SessionSummary
+     */
+    deviceDescription?: string;
+    /**
+     * 
      * @type {boolean}
      * @memberof SessionSummary
      */
@@ -101,6 +113,8 @@ export function SessionSummaryFromJSONTyped(json: any, ignoreDiscriminator: bool
         'lastReauthenticatedAt': json['lastReauthenticatedAt'] == null ? undefined : (new Date(json['lastReauthenticatedAt'])),
         'sourceIpAddress': json['sourceIpAddress'] == null ? undefined : json['sourceIpAddress'],
         'approximateLocation': json['approximateLocation'] == null ? undefined : json['approximateLocation'],
+        'userAgent': json['userAgent'] == null ? undefined : json['userAgent'],
+        'deviceDescription': json['deviceDescription'] == null ? undefined : json['deviceDescription'],
         'current': json['current'] == null ? undefined : json['current'],
         'impersonation': json['impersonation'] == null ? undefined : json['impersonation'],
     };
@@ -124,6 +138,8 @@ export function SessionSummaryToJSONTyped(value?: SessionSummary | null, ignoreD
         'lastReauthenticatedAt': value['lastReauthenticatedAt'] == null ? value['lastReauthenticatedAt'] : value['lastReauthenticatedAt'].toISOString(),
         'sourceIpAddress': value['sourceIpAddress'],
         'approximateLocation': value['approximateLocation'],
+        'userAgent': value['userAgent'],
+        'deviceDescription': value['deviceDescription'],
         'current': value['current'],
         'impersonation': value['impersonation'],
     };

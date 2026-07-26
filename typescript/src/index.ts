@@ -3,6 +3,10 @@ import { ProjectsServerApi } from './generated/apis/ProjectsServerApi';
 import { UsersServerApi } from './generated/apis/UsersServerApi';
 import { withRetries } from './transport';
 
+// TODO(auth-sdk): Add a high-level authentication orchestrator/UI-neutral state machine for sign-up, contact
+// verification, MFA challenge/enrollment, recovery, and session renewal. Keep the generated endpoint clients available
+// as the low-level escape hatch.
+
 declare var process: { env: Record<string, string | undefined> } | undefined;
 
 export * from './generated/models';

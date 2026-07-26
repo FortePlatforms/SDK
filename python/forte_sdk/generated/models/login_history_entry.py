@@ -30,7 +30,9 @@ class LoginHistoryEntry(BaseModel):
     """ # noqa: E501
     timestamp: datetime
     source_ip_address: Optional[StrictStr] = Field(default=None, alias="sourceIpAddress")
-    __properties: ClassVar[List[str]] = ["timestamp", "sourceIpAddress"]
+    user_agent: Optional[StrictStr] = Field(default=None, alias="userAgent")
+    device_description: Optional[StrictStr] = Field(default=None, alias="deviceDescription")
+    __properties: ClassVar[List[str]] = ["timestamp", "sourceIpAddress", "userAgent", "deviceDescription"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,7 +86,9 @@ class LoginHistoryEntry(BaseModel):
 
         _obj = cls.model_validate({
             "timestamp": obj.get("timestamp"),
-            "sourceIpAddress": obj.get("sourceIpAddress")
+            "sourceIpAddress": obj.get("sourceIpAddress"),
+            "userAgent": obj.get("userAgent"),
+            "deviceDescription": obj.get("deviceDescription")
         })
         return _obj
 

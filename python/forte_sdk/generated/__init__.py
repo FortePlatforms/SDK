@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.334"
+__version__ = "1.0.338"
 
 # Define package exports
 __all__ = [
@@ -43,6 +43,7 @@ __all__ = [
     "AdminPasswordResetResponse",
     "ApiKeySummary",
     "BackupCodesResponse",
+    "BodyRef",
     "BuildStepLog",
     "ChangePasswordRequest",
     "CompleteOtpLoginRequest",
@@ -93,6 +94,7 @@ __all__ = [
     "DockerfileGenerationResponse",
     "ForteApiException",
     "GetContentDownloadLinkResponse",
+    "GetRequestBodyDownloadLinkResponse",
     "HealthCheckConfig",
     "HealthCheckDetectionError",
     "HealthCheckDetectionOutput",
@@ -134,7 +136,7 @@ __all__ = [
     "PaginatedResponseLogLineObject",
     "PaginatedResponseLoginHistoryEntry",
     "PaginatedResponsePaymentObject",
-    "PaginatedResponseRequestLogObject",
+    "PaginatedResponseRequestLogSummary",
     "PaginatedResponseServiceBuildRequestObject",
     "PaginatedResponseUserActionLogObject",
     "PaginatedResponseUserObject",
@@ -170,6 +172,7 @@ __all__ = [
     "RequestLogSearchRequest",
     "RequestLogSort",
     "RequestLogStatusFilter",
+    "RequestLogSummary",
     "RequestPasswordResetRequest",
     "RequiredUploadHeaders",
     "RotateManagedDatabaseUserPasswordResponse",
@@ -251,6 +254,7 @@ from forte_sdk.generated.models.admin_override_contact_method_request import Adm
 from forte_sdk.generated.models.admin_password_reset_response import AdminPasswordResetResponse as AdminPasswordResetResponse
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary as ApiKeySummary
 from forte_sdk.generated.models.backup_codes_response import BackupCodesResponse as BackupCodesResponse
+from forte_sdk.generated.models.body_ref import BodyRef as BodyRef
 from forte_sdk.generated.models.build_step_log import BuildStepLog as BuildStepLog
 from forte_sdk.generated.models.change_password_request import ChangePasswordRequest as ChangePasswordRequest
 from forte_sdk.generated.models.complete_otp_login_request import CompleteOtpLoginRequest as CompleteOtpLoginRequest
@@ -301,6 +305,7 @@ from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGen
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse as DockerfileGenerationResponse
 from forte_sdk.generated.models.forte_api_exception import ForteApiException as ForteApiException
 from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse as GetContentDownloadLinkResponse
+from forte_sdk.generated.models.get_request_body_download_link_response import GetRequestBodyDownloadLinkResponse as GetRequestBodyDownloadLinkResponse
 from forte_sdk.generated.models.health_check_config import HealthCheckConfig as HealthCheckConfig
 from forte_sdk.generated.models.health_check_detection_error import HealthCheckDetectionError as HealthCheckDetectionError
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput as HealthCheckDetectionOutput
@@ -342,7 +347,7 @@ from forte_sdk.generated.models.paginated_response_action_invocation_object impo
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject as PaginatedResponseLogLineObject
 from forte_sdk.generated.models.paginated_response_login_history_entry import PaginatedResponseLoginHistoryEntry as PaginatedResponseLoginHistoryEntry
 from forte_sdk.generated.models.paginated_response_payment_object import PaginatedResponsePaymentObject as PaginatedResponsePaymentObject
-from forte_sdk.generated.models.paginated_response_request_log_object import PaginatedResponseRequestLogObject as PaginatedResponseRequestLogObject
+from forte_sdk.generated.models.paginated_response_request_log_summary import PaginatedResponseRequestLogSummary as PaginatedResponseRequestLogSummary
 from forte_sdk.generated.models.paginated_response_service_build_request_object import PaginatedResponseServiceBuildRequestObject as PaginatedResponseServiceBuildRequestObject
 from forte_sdk.generated.models.paginated_response_user_action_log_object import PaginatedResponseUserActionLogObject as PaginatedResponseUserActionLogObject
 from forte_sdk.generated.models.paginated_response_user_object import PaginatedResponseUserObject as PaginatedResponseUserObject
@@ -378,6 +383,7 @@ from forte_sdk.generated.models.request_log_path_filter import RequestLogPathFil
 from forte_sdk.generated.models.request_log_search_request import RequestLogSearchRequest as RequestLogSearchRequest
 from forte_sdk.generated.models.request_log_sort import RequestLogSort as RequestLogSort
 from forte_sdk.generated.models.request_log_status_filter import RequestLogStatusFilter as RequestLogStatusFilter
+from forte_sdk.generated.models.request_log_summary import RequestLogSummary as RequestLogSummary
 from forte_sdk.generated.models.request_password_reset_request import RequestPasswordResetRequest as RequestPasswordResetRequest
 from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders as RequiredUploadHeaders
 from forte_sdk.generated.models.rotate_managed_database_user_password_response import RotateManagedDatabaseUserPasswordResponse as RotateManagedDatabaseUserPasswordResponse

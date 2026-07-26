@@ -31,6 +31,18 @@ export interface LoginHistoryEntry {
      * @memberof LoginHistoryEntry
      */
     sourceIpAddress?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginHistoryEntry
+     */
+    userAgent?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginHistoryEntry
+     */
+    deviceDescription?: string;
 }
 
 /**
@@ -53,6 +65,8 @@ export function LoginHistoryEntryFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'timestamp': (new Date(json['timestamp'])),
         'sourceIpAddress': json['sourceIpAddress'] == null ? undefined : json['sourceIpAddress'],
+        'userAgent': json['userAgent'] == null ? undefined : json['userAgent'],
+        'deviceDescription': json['deviceDescription'] == null ? undefined : json['deviceDescription'],
     };
 }
 
@@ -69,6 +83,8 @@ export function LoginHistoryEntryToJSONTyped(value?: LoginHistoryEntry | null, i
         
         'timestamp': value['timestamp'].toISOString(),
         'sourceIpAddress': value['sourceIpAddress'],
+        'userAgent': value['userAgent'],
+        'deviceDescription': value['deviceDescription'],
     };
 }
 

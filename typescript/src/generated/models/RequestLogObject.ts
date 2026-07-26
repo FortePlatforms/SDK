@@ -20,6 +20,13 @@ import {
     RequestLogObjectMetaToJSON,
     RequestLogObjectMetaToJSONTyped,
 } from './RequestLogObjectMeta';
+import type { BodyRef } from './BodyRef';
+import {
+    BodyRefFromJSON,
+    BodyRefFromJSONTyped,
+    BodyRefToJSON,
+    BodyRefToJSONTyped,
+} from './BodyRef';
 
 /**
  * 
@@ -87,6 +94,18 @@ export interface RequestLogObject {
      * @memberof RequestLogObject
      */
     responseBody?: string;
+    /**
+     * 
+     * @type {BodyRef}
+     * @memberof RequestLogObject
+     */
+    requestBodyRef?: BodyRef;
+    /**
+     * 
+     * @type {BodyRef}
+     * @memberof RequestLogObject
+     */
+    responseBodyRef?: BodyRef;
     /**
      * 
      * @type {number}
@@ -178,6 +197,8 @@ export function RequestLogObjectFromJSONTyped(json: any, ignoreDiscriminator: bo
         'firstByteLatencyMilliseconds': json['firstByteLatencyMilliseconds'] == null ? undefined : json['firstByteLatencyMilliseconds'],
         'requestBody': json['requestBody'] == null ? undefined : json['requestBody'],
         'responseBody': json['responseBody'] == null ? undefined : json['responseBody'],
+        'requestBodyRef': json['requestBodyRef'] == null ? undefined : BodyRefFromJSON(json['requestBodyRef']),
+        'responseBodyRef': json['responseBodyRef'] == null ? undefined : BodyRefFromJSON(json['responseBodyRef']),
         'statusCode': json['statusCode'],
         'requestHeaders': json['requestHeaders'],
         'responseHeaders': json['responseHeaders'],
@@ -211,6 +232,8 @@ export function RequestLogObjectToJSONTyped(value?: RequestLogObject | null, ign
         'firstByteLatencyMilliseconds': value['firstByteLatencyMilliseconds'],
         'requestBody': value['requestBody'],
         'responseBody': value['responseBody'],
+        'requestBodyRef': BodyRefToJSON(value['requestBodyRef']),
+        'responseBodyRef': BodyRefToJSON(value['responseBodyRef']),
         'statusCode': value['statusCode'],
         'requestHeaders': value['requestHeaders'],
         'responseHeaders': value['responseHeaders'],

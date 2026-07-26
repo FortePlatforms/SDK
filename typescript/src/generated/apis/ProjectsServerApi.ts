@@ -194,6 +194,11 @@ import {
     GetContentDownloadLinkResponseToJSON,
 } from '../models/GetContentDownloadLinkResponse';
 import {
+    type GetRequestBodyDownloadLinkResponse,
+    GetRequestBodyDownloadLinkResponseFromJSON,
+    GetRequestBodyDownloadLinkResponseToJSON,
+} from '../models/GetRequestBodyDownloadLinkResponse';
+import {
     type ImpersonationTokenResponse,
     ImpersonationTokenResponseFromJSON,
     ImpersonationTokenResponseToJSON,
@@ -264,10 +269,10 @@ import {
     PaginatedResponsePaymentObjectToJSON,
 } from '../models/PaginatedResponsePaymentObject';
 import {
-    type PaginatedResponseRequestLogObject,
-    PaginatedResponseRequestLogObjectFromJSON,
-    PaginatedResponseRequestLogObjectToJSON,
-} from '../models/PaginatedResponseRequestLogObject';
+    type PaginatedResponseRequestLogSummary,
+    PaginatedResponseRequestLogSummaryFromJSON,
+    PaginatedResponseRequestLogSummaryToJSON,
+} from '../models/PaginatedResponseRequestLogSummary';
 import {
     type PaginatedResponseServiceBuildRequestObject,
     PaginatedResponseServiceBuildRequestObjectFromJSON,
@@ -774,6 +779,13 @@ export interface GetPaymentAnalyticsRequest {
 
 export interface GetProjectRequest {
     projectId: string;
+}
+
+export interface GetRequestBodyDownloadLinkRequest {
+    projectId: string;
+    serviceId: string;
+    requestId: string;
+    part: GetRequestBodyDownloadLinkPartType;
 }
 
 export interface GetRequestInvocationLogRequest {
@@ -4019,6 +4031,73 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getProject(requestParameters: GetProjectRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectObject> {
         const response = await this.getProjectRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getRequestBodyDownloadLink without sending the request
+     */
+    async getRequestBodyDownloadLinkRequestOpts(requestParameters: GetRequestBodyDownloadLinkRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getRequestBodyDownloadLink().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling getRequestBodyDownloadLink().'
+            );
+        }
+
+        if (requestParameters['requestId'] == null) {
+            throw new runtime.RequiredError(
+                'requestId',
+                'Required parameter "requestId" was null or undefined when calling getRequestBodyDownloadLink().'
+            );
+        }
+
+        if (requestParameters['part'] == null) {
+            throw new runtime.RequiredError(
+                'part',
+                'Required parameter "part" was null or undefined when calling getRequestBodyDownloadLink().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/requests/{requestId}/bodies/{part}/download-link`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{requestId}', encodeURIComponent(String(requestParameters['requestId'])));
+        urlPath = urlPath.replace('{part}', encodeURIComponent(String(requestParameters['part'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getRequestBodyDownloadLinkRaw(requestParameters: GetRequestBodyDownloadLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetRequestBodyDownloadLinkResponse>> {
+        const requestOptions = await this.getRequestBodyDownloadLinkRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetRequestBodyDownloadLinkResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getRequestBodyDownloadLink(requestParameters: GetRequestBodyDownloadLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetRequestBodyDownloadLinkResponse> {
+        const response = await this.getRequestBodyDownloadLinkRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7724,16 +7803,16 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
-    async searchRequestInvocationLogsRaw(requestParameters: SearchRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseRequestLogObject>> {
+    async searchRequestInvocationLogsRaw(requestParameters: SearchRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseRequestLogSummary>> {
         const requestOptions = await this.searchRequestInvocationLogsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseRequestLogObjectFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseRequestLogSummaryFromJSON(jsonValue));
     }
 
     /**
      */
-    async searchRequestInvocationLogs(requestParameters: SearchRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseRequestLogObject> {
+    async searchRequestInvocationLogs(requestParameters: SearchRequestInvocationLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseRequestLogSummary> {
         const response = await this.searchRequestInvocationLogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -8854,6 +8933,14 @@ export const GetPaymentAnalyticsGranularityType = {
     ONE_HOUR: 'ONE_HOUR'
 } as const;
 export type GetPaymentAnalyticsGranularityType = typeof GetPaymentAnalyticsGranularityType[keyof typeof GetPaymentAnalyticsGranularityType];
+/**
+ * @export
+ */
+export const GetRequestBodyDownloadLinkPartType = {
+    REQUEST: 'REQUEST',
+    RESPONSE: 'RESPONSE'
+} as const;
+export type GetRequestBodyDownloadLinkPartType = typeof GetRequestBodyDownloadLinkPartType[keyof typeof GetRequestBodyDownloadLinkPartType];
 /**
  * @export
  */
