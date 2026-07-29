@@ -31,7 +31,7 @@ class UpdateManagedDatabaseRequest(BaseModel):
     name: Optional[Annotated[str, Field(strict=True)]] = None
     cpu: Optional[StrictStr] = None
     memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
-    storage_gb: Optional[Annotated[int, Field(le=250, strict=True, ge=10)]] = Field(default=None, alias="storageGb")
+    storage_gb: Optional[Annotated[int, Field(strict=True, ge=10)]] = Field(default=None, alias="storageGb")
     __properties: ClassVar[List[str]] = ["name", "cpu", "memoryGb", "storageGb"]
 
     @field_validator('name')

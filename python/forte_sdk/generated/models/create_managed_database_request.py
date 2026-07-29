@@ -33,7 +33,7 @@ class CreateManagedDatabaseRequest(BaseModel):
     tier: StrictStr
     cpu: Optional[StrictStr] = None
     memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
-    storage_gb: Optional[Annotated[int, Field(le=250, strict=True, ge=10)]] = Field(default=None, alias="storageGb")
+    storage_gb: Optional[Annotated[int, Field(strict=True, ge=10)]] = Field(default=None, alias="storageGb")
     __properties: ClassVar[List[str]] = ["name", "type", "tier", "cpu", "memoryGb", "storageGb"]
 
     @field_validator('name')
