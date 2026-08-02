@@ -335,6 +335,8 @@ public class ForteApiException {
     
     PAYMENT_ALREADY_REFUNDED(String.valueOf("PAYMENT_ALREADY_REFUNDED")),
     
+    INVALID_REFUND_AMOUNT(String.valueOf("INVALID_REFUND_AMOUNT")),
+    
     PAYMENT_METHOD_NOT_FOUND(String.valueOf("PAYMENT_METHOD_NOT_FOUND")),
     
     PAYMENT_ACH_REQUIRES_USD(String.valueOf("PAYMENT_ACH_REQUIRES_USD")),

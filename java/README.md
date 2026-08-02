@@ -10,14 +10,14 @@ Official Java SDK for interacting with the Forte Platforms API.
 <dependency>
     <groupId>com.forteplatforms</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.0.339</version>
+    <version>1.0.342</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'com.forteplatforms:sdk:1.0.339'
+implementation 'com.forteplatforms:sdk:1.0.342'
 ```
 
 ## Authentication

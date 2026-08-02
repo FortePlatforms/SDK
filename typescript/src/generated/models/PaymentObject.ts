@@ -41,6 +41,13 @@ import {
     StateHistoryToJSON,
     StateHistoryToJSONTyped,
 } from './StateHistory';
+import type { RefundRecord } from './RefundRecord';
+import {
+    RefundRecordFromJSON,
+    RefundRecordFromJSONTyped,
+    RefundRecordToJSON,
+    RefundRecordToJSONTyped,
+} from './RefundRecord';
 
 /**
  * 
@@ -176,6 +183,12 @@ export interface PaymentObject {
     stateHistory: Array<StateHistory>;
     /**
      * 
+     * @type {Array<RefundRecord>}
+     * @memberof PaymentObject
+     */
+    refundHistory: Array<RefundRecord>;
+    /**
+     * 
      * @type {Date}
      * @memberof PaymentObject
      */
@@ -186,6 +199,12 @@ export interface PaymentObject {
      * @memberof PaymentObject
      */
     updatedAt?: Date;
+    /**
+     * 
+     * @type {number}
+     * @memberof PaymentObject
+     */
+    refundedAmountCents?: number;
 }
 
 
@@ -198,6 +217,7 @@ export const PaymentObjectStateType = {
     COMPLETED: 'COMPLETED',
     CANCELLED: 'CANCELLED',
     FAILED: 'FAILED',
+    PARTIALLY_REFUNDED: 'PARTIALLY_REFUNDED',
     REFUNDED: 'REFUNDED'
 } as const;
 export type PaymentObjectStateType = typeof PaymentObjectStateType[keyof typeof PaymentObjectStateType];
@@ -218,6 +238,7 @@ export function instanceOfPaymentObject(value: object): value is PaymentObject {
     if (!('supportedPaymentMethods' in value) || value['supportedPaymentMethods'] === undefined) return false;
     if (!('stripePaymentIntentId' in value) || value['stripePaymentIntentId'] === undefined) return false;
     if (!('stateHistory' in value) || value['stateHistory'] === undefined) return false;
+    if (!('refundHistory' in value) || value['refundHistory'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     return true;
 }
@@ -253,8 +274,10 @@ export function PaymentObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'subscriptionId': json['subscriptionId'] == null ? undefined : json['subscriptionId'],
         'subscriptionRenewalTime': json['subscriptionRenewalTime'] == null ? undefined : (new Date(json['subscriptionRenewalTime'])),
         'stateHistory': ((json['stateHistory'] as Array<any>).map(StateHistoryFromJSON)),
+        'refundHistory': ((json['refundHistory'] as Array<any>).map(RefundRecordFromJSON)),
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
+        'refundedAmountCents': json['refundedAmountCents'] == null ? undefined : json['refundedAmountCents'],
     };
 }
 
@@ -290,8 +313,10 @@ export function PaymentObjectToJSONTyped(value?: PaymentObject | null, ignoreDis
         'subscriptionId': value['subscriptionId'],
         'subscriptionRenewalTime': value['subscriptionRenewalTime'] == null ? value['subscriptionRenewalTime'] : value['subscriptionRenewalTime'].toISOString(),
         'stateHistory': ((value['stateHistory'] as Array<any>).map(StateHistoryToJSON)),
+        'refundHistory': ((value['refundHistory'] as Array<any>).map(RefundRecordToJSON)),
         'createdAt': value['createdAt'].toISOString(),
         'updatedAt': value['updatedAt'] == null ? value['updatedAt'] : value['updatedAt'].toISOString(),
+        'refundedAmountCents': value['refundedAmountCents'],
     };
 }
 

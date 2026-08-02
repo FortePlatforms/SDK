@@ -14823,11 +14823,12 @@ public class ProjectsServerApi {
    * @param userId  (required)
    * @param paymentId  (required)
    * @param keepSubscriptionActive  (optional, default to false)
+   * @param refundAmountCents  (optional)
    * @return PaymentObject
    * @throws ApiException if fails to make API call
    */
-  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive) throws ApiException {
-    return refundPayment(projectId, userId, paymentId, keepSubscriptionActive, null);
+  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents) throws ApiException {
+    return refundPayment(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, null);
   }
 
   /**
@@ -14837,12 +14838,13 @@ public class ProjectsServerApi {
    * @param userId  (required)
    * @param paymentId  (required)
    * @param keepSubscriptionActive  (optional, default to false)
+   * @param refundAmountCents  (optional)
    * @param headers Optional headers to include in the request
    * @return PaymentObject
    * @throws ApiException if fails to make API call
    */
-  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaymentObject> localVarResponse = refundPaymentWithHttpInfo(projectId, userId, paymentId, keepSubscriptionActive, headers);
+  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentObject> localVarResponse = refundPaymentWithHttpInfo(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, headers);
     return localVarResponse.getData();
   }
 
@@ -14853,11 +14855,12 @@ public class ProjectsServerApi {
    * @param userId  (required)
    * @param paymentId  (required)
    * @param keepSubscriptionActive  (optional, default to false)
+   * @param refundAmountCents  (optional)
    * @return ApiResponse&lt;PaymentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive) throws ApiException {
-    return refundPaymentWithHttpInfo(projectId, userId, paymentId, keepSubscriptionActive, null);
+  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents) throws ApiException {
+    return refundPaymentWithHttpInfo(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, null);
   }
 
   /**
@@ -14867,12 +14870,13 @@ public class ProjectsServerApi {
    * @param userId  (required)
    * @param paymentId  (required)
    * @param keepSubscriptionActive  (optional, default to false)
+   * @param refundAmountCents  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PaymentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = refundPaymentRequestBuilder(projectId, userId, paymentId, keepSubscriptionActive, headers);
+  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = refundPaymentRequestBuilder(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -14919,7 +14923,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder refundPaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder refundPaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling refundPayment");
@@ -14945,6 +14949,8 @@ public class ProjectsServerApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "keepSubscriptionActive";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("keepSubscriptionActive", keepSubscriptionActive));
+    localVarQueryParameterBaseName = "refundAmountCents";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("refundAmountCents", refundAmountCents));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

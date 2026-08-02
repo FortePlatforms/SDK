@@ -144,6 +144,7 @@ from forte_sdk.generated.models.reauthentication_factor import ReauthenticationF
 from forte_sdk.generated.models.reauthentication_request import ReauthenticationRequest
 from forte_sdk.generated.models.reauthentication_response import ReauthenticationResponse
 from forte_sdk.generated.models.reauthentication_status_response import ReauthenticationStatusResponse
+from forte_sdk.generated.models.refund_record import RefundRecord
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse
 from forte_sdk.generated.models.rename_mfa_method_request import RenameMfaMethodRequest

@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.PaymentAddress;
 import com.forteplatforms.sdk.generated.model.PaymentLineItem;
 import com.forteplatforms.sdk.generated.model.PaymentMethodType;
+import com.forteplatforms.sdk.generated.model.RefundRecord;
 import com.forteplatforms.sdk.generated.model.StateHistory;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -63,8 +64,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_ID,
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME,
   PaymentObject.JSON_PROPERTY_STATE_HISTORY,
+  PaymentObject.JSON_PROPERTY_REFUND_HISTORY,
   PaymentObject.JSON_PROPERTY_CREATED_AT,
-  PaymentObject.JSON_PROPERTY_UPDATED_AT
+  PaymentObject.JSON_PROPERTY_UPDATED_AT,
+  PaymentObject.JSON_PROPERTY_REFUNDED_AMOUNT_CENTS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class PaymentObject {
@@ -93,6 +96,8 @@ public class PaymentObject {
     CANCELLED(String.valueOf("CANCELLED")),
     
     FAILED(String.valueOf("FAILED")),
+    
+    PARTIALLY_REFUNDED(String.valueOf("PARTIALLY_REFUNDED")),
     
     REFUNDED(String.valueOf("REFUNDED"));
 
@@ -195,6 +200,10 @@ public class PaymentObject {
   @javax.annotation.Nonnull
   private List<StateHistory> stateHistory = new ArrayList<>();
 
+  public static final String JSON_PROPERTY_REFUND_HISTORY = "refundHistory";
+  @javax.annotation.Nonnull
+  private List<RefundRecord> refundHistory = new ArrayList<>();
+
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nonnull
   private OffsetDateTime createdAt;
@@ -202,6 +211,10 @@ public class PaymentObject {
   public static final String JSON_PROPERTY_UPDATED_AT = "updatedAt";
   @javax.annotation.Nullable
   private OffsetDateTime updatedAt;
+
+  public static final String JSON_PROPERTY_REFUNDED_AMOUNT_CENTS = "refundedAmountCents";
+  @javax.annotation.Nullable
+  private Long refundedAmountCents;
 
   public PaymentObject() { 
   }
@@ -742,6 +755,38 @@ public class PaymentObject {
   }
 
 
+  public PaymentObject refundHistory(@javax.annotation.Nonnull List<RefundRecord> refundHistory) {
+    this.refundHistory = refundHistory;
+    return this;
+  }
+
+  public PaymentObject addRefundHistoryItem(RefundRecord refundHistoryItem) {
+    if (this.refundHistory == null) {
+      this.refundHistory = new ArrayList<>();
+    }
+    this.refundHistory.add(refundHistoryItem);
+    return this;
+  }
+
+  /**
+   * Get refundHistory
+   * @return refundHistory
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_REFUND_HISTORY, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<RefundRecord> getRefundHistory() {
+    return refundHistory;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REFUND_HISTORY, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setRefundHistory(@javax.annotation.Nonnull List<RefundRecord> refundHistory) {
+    this.refundHistory = refundHistory;
+  }
+
+
   public PaymentObject createdAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -790,6 +835,30 @@ public class PaymentObject {
   }
 
 
+  public PaymentObject refundedAmountCents(@javax.annotation.Nullable Long refundedAmountCents) {
+    this.refundedAmountCents = refundedAmountCents;
+    return this;
+  }
+
+  /**
+   * Get refundedAmountCents
+   * @return refundedAmountCents
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REFUNDED_AMOUNT_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getRefundedAmountCents() {
+    return refundedAmountCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REFUNDED_AMOUNT_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRefundedAmountCents(@javax.annotation.Nullable Long refundedAmountCents) {
+    this.refundedAmountCents = refundedAmountCents;
+  }
+
+
   /**
    * Return true if this PaymentObject object is equal to o.
    */
@@ -823,13 +892,15 @@ public class PaymentObject {
         Objects.equals(this.subscriptionId, paymentObject.subscriptionId) &&
         Objects.equals(this.subscriptionRenewalTime, paymentObject.subscriptionRenewalTime) &&
         Objects.equals(this.stateHistory, paymentObject.stateHistory) &&
+        Objects.equals(this.refundHistory, paymentObject.refundHistory) &&
         Objects.equals(this.createdAt, paymentObject.createdAt) &&
-        Objects.equals(this.updatedAt, paymentObject.updatedAt);
+        Objects.equals(this.updatedAt, paymentObject.updatedAt) &&
+        Objects.equals(this.refundedAmountCents, paymentObject.refundedAmountCents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, taxCents, amountCents, currency, description, lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, stripeStatus, stripeTaxCalculationId, stripeTaxTransactionId, subscriptionId, subscriptionRenewalTime, stateHistory, createdAt, updatedAt);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, taxCents, amountCents, currency, description, lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, stripeStatus, stripeTaxCalculationId, stripeTaxTransactionId, subscriptionId, subscriptionRenewalTime, stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
   }
 
   @Override
@@ -857,8 +928,10 @@ public class PaymentObject {
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    subscriptionRenewalTime: ").append(toIndentedString(subscriptionRenewalTime)).append("\n");
     sb.append("    stateHistory: ").append(toIndentedString(stateHistory)).append("\n");
+    sb.append("    refundHistory: ").append(toIndentedString(refundHistory)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    refundedAmountCents: ").append(toIndentedString(refundedAmountCents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1028,6 +1101,16 @@ public class PaymentObject {
       }
     }
 
+    // add `refundHistory` to the URL query string
+    if (getRefundHistory() != null) {
+      for (int i = 0; i < getRefundHistory().size(); i++) {
+        if (getRefundHistory().get(i) != null) {
+          joiner.add(getRefundHistory().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%srefundHistory%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
     // add `createdAt` to the URL query string
     if (getCreatedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%screatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedAt()))));
@@ -1036,6 +1119,11 @@ public class PaymentObject {
     // add `updatedAt` to the URL query string
     if (getUpdatedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%supdatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUpdatedAt()))));
+    }
+
+    // add `refundedAmountCents` to the URL query string
+    if (getRefundedAmountCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srefundedAmountCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRefundedAmountCents()))));
     }
 
     return joiner.toString();

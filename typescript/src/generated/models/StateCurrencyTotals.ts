@@ -55,6 +55,7 @@ export const StateCurrencyTotalsStateType = {
     COMPLETED: 'COMPLETED',
     CANCELLED: 'CANCELLED',
     FAILED: 'FAILED',
+    PARTIALLY_REFUNDED: 'PARTIALLY_REFUNDED',
     REFUNDED: 'REFUNDED'
 } as const;
 export type StateCurrencyTotalsStateType = typeof StateCurrencyTotalsStateType[keyof typeof StateCurrencyTotalsStateType];

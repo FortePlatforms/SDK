@@ -131,6 +131,7 @@ export * from './ReauthenticationFactor';
 export * from './ReauthenticationRequest';
 export * from './ReauthenticationResponse';
 export * from './ReauthenticationStatusResponse';
+export * from './RefundRecord';
 export * from './RegisterUserRequest';
 export * from './RegisterUserResponse';
 export * from './RenameMfaMethodRequest';

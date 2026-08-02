@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.payment_address import PaymentAddress
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem
 from forte_sdk.generated.models.payment_method_type import PaymentMethodType
+from forte_sdk.generated.models.refund_record import RefundRecord
 from forte_sdk.generated.models.state_history import StateHistory
 from typing import Optional, Set
 from typing_extensions import Self
@@ -53,15 +54,17 @@ class PaymentObject(BaseModel):
     subscription_id: Optional[StrictStr] = Field(default=None, alias="subscriptionId")
     subscription_renewal_time: Optional[datetime] = Field(default=None, alias="subscriptionRenewalTime")
     state_history: List[StateHistory] = Field(alias="stateHistory")
+    refund_history: List[RefundRecord] = Field(alias="refundHistory")
     created_at: datetime = Field(alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
-    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionId", "subscriptionRenewalTime", "stateHistory", "createdAt", "updatedAt"]
+    refunded_amount_cents: Optional[StrictInt] = Field(default=None, alias="refundedAmountCents")
+    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionId", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'REFUNDED']):
-            raise ValueError("must be one of enum values ('DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'REFUNDED')")
+        if value not in set(['DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'PARTIALLY_REFUNDED', 'REFUNDED']):
+            raise ValueError("must be one of enum values ('DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'PARTIALLY_REFUNDED', 'REFUNDED')")
         return value
 
     model_config = ConfigDict(
@@ -123,6 +126,13 @@ class PaymentObject(BaseModel):
                 if _item_state_history:
                     _items.append(_item_state_history.to_dict())
             _dict['stateHistory'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in refund_history (list)
+        _items = []
+        if self.refund_history:
+            for _item_refund_history in self.refund_history:
+                if _item_refund_history:
+                    _items.append(_item_refund_history.to_dict())
+            _dict['refundHistory'] = _items
         return _dict
 
     @classmethod
@@ -156,8 +166,10 @@ class PaymentObject(BaseModel):
             "subscriptionId": obj.get("subscriptionId"),
             "subscriptionRenewalTime": obj.get("subscriptionRenewalTime"),
             "stateHistory": [StateHistory.from_dict(_item) for _item in obj["stateHistory"]] if obj.get("stateHistory") is not None else None,
+            "refundHistory": [RefundRecord.from_dict(_item) for _item in obj["refundHistory"]] if obj.get("refundHistory") is not None else None,
             "createdAt": obj.get("createdAt"),
-            "updatedAt": obj.get("updatedAt")
+            "updatedAt": obj.get("updatedAt"),
+            "refundedAmountCents": obj.get("refundedAmountCents")
         })
         return _obj
 

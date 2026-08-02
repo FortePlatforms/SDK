@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.339"
+__version__ = "1.0.342"
 
 # Define package exports
 __all__ = [
@@ -160,6 +160,7 @@ __all__ = [
     "ReauthenticationRequest",
     "ReauthenticationResponse",
     "ReauthenticationStatusResponse",
+    "RefundRecord",
     "RegisterUserRequest",
     "RegisterUserResponse",
     "RenameMfaMethodRequest",
@@ -371,6 +372,7 @@ from forte_sdk.generated.models.reauthentication_factor import ReauthenticationF
 from forte_sdk.generated.models.reauthentication_request import ReauthenticationRequest as ReauthenticationRequest
 from forte_sdk.generated.models.reauthentication_response import ReauthenticationResponse as ReauthenticationResponse
 from forte_sdk.generated.models.reauthentication_status_response import ReauthenticationStatusResponse as ReauthenticationStatusResponse
+from forte_sdk.generated.models.refund_record import RefundRecord as RefundRecord
 from forte_sdk.generated.models.register_user_request import RegisterUserRequest as RegisterUserRequest
 from forte_sdk.generated.models.register_user_response import RegisterUserResponse as RegisterUserResponse
 from forte_sdk.generated.models.rename_mfa_method_request import RenameMfaMethodRequest as RenameMfaMethodRequest

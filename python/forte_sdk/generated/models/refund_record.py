@@ -17,28 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class StateCurrencyTotals(BaseModel):
+class RefundRecord(BaseModel):
     """
-    StateCurrencyTotals
+    RefundRecord
     """ # noqa: E501
-    state: StrictStr
-    currency: StrictStr
-    count: StrictInt
-    amount_cents: StrictInt = Field(alias="amountCents")
-    __properties: ClassVar[List[str]] = ["state", "currency", "count", "amountCents"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'PARTIALLY_REFUNDED', 'REFUNDED']):
-            raise ValueError("must be one of enum values ('DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'PARTIALLY_REFUNDED', 'REFUNDED')")
-        return value
+    amount_cents: Annotated[int, Field(strict=True, ge=1)] = Field(alias="amountCents")
+    timestamp: datetime
+    stripe_refund_id: Optional[StrictStr] = Field(default=None, alias="stripeRefundId")
+    __properties: ClassVar[List[str]] = ["amountCents", "timestamp", "stripeRefundId"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -58,7 +52,7 @@ class StateCurrencyTotals(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of StateCurrencyTotals from a JSON string"""
+        """Create an instance of RefundRecord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,7 +77,7 @@ class StateCurrencyTotals(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of StateCurrencyTotals from a dict"""
+        """Create an instance of RefundRecord from a dict"""
         if obj is None:
             return None
 
@@ -91,10 +85,9 @@ class StateCurrencyTotals(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "state": obj.get("state"),
-            "currency": obj.get("currency"),
-            "count": obj.get("count"),
-            "amountCents": obj.get("amountCents")
+            "amountCents": obj.get("amountCents"),
+            "timestamp": obj.get("timestamp"),
+            "stripeRefundId": obj.get("stripeRefundId")
         })
         return _obj
 

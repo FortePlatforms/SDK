@@ -32,6 +32,7 @@ class ServiceBuildRequestObject(BaseModel):
     ServiceBuildRequestObject
     """ # noqa: E501
     build_id: Optional[StrictStr] = Field(default=None, alias="buildId")
+    container_image_uri: Optional[StrictStr] = Field(default=None, alias="containerImageUri")
     dockerfile_generation_error: Optional[DockerfileGenerationError] = Field(default=None, alias="dockerfileGenerationError")
     health_check_detection_error: Optional[HealthCheckDetectionError] = Field(default=None, alias="healthCheckDetectionError")
     all_build_logs_received: Optional[StrictBool] = Field(default=None, alias="allBuildLogsReceived")
@@ -51,7 +52,7 @@ class ServiceBuildRequestObject(BaseModel):
     triggered_by_account_id: Optional[StrictStr] = Field(default=None, alias="triggeredByAccountId")
     build_tier: Optional[StrictStr] = Field(default=None, alias="buildTier")
     failure_reason: Optional[StrictStr] = Field(default=None, alias="failureReason")
-    __properties: ClassVar[List[str]] = ["buildId", "dockerfileGenerationError", "healthCheckDetectionError", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "originDetail", "triggeredByAccountId", "buildTier", "failureReason"]
+    __properties: ClassVar[List[str]] = ["buildId", "containerImageUri", "dockerfileGenerationError", "healthCheckDetectionError", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "originDetail", "triggeredByAccountId", "buildTier", "failureReason"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -155,6 +156,7 @@ class ServiceBuildRequestObject(BaseModel):
 
         _obj = cls.model_validate({
             "buildId": obj.get("buildId"),
+            "containerImageUri": obj.get("containerImageUri"),
             "dockerfileGenerationError": DockerfileGenerationError.from_dict(obj["dockerfileGenerationError"]) if obj.get("dockerfileGenerationError") is not None else None,
             "healthCheckDetectionError": HealthCheckDetectionError.from_dict(obj["healthCheckDetectionError"]) if obj.get("healthCheckDetectionError") is not None else None,
             "allBuildLogsReceived": obj.get("allBuildLogsReceived"),

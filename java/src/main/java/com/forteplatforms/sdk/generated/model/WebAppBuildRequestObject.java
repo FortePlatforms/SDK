@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.BuildStepLog;
+import com.forteplatforms.sdk.generated.model.DockerfileGenerationError;
 import com.forteplatforms.sdk.generated.model.WebAppDetectionError;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppBuildRequestObject.JSON_PROPERTY_APP_PACKAGE_NAME,
   WebAppBuildRequestObject.JSON_PROPERTY_CONTAINER_IMAGE_URI,
   WebAppBuildRequestObject.JSON_PROPERTY_DOCKERFILE_PATH,
+  WebAppBuildRequestObject.JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR,
   WebAppBuildRequestObject.JSON_PROPERTY_OUTPUT_ZIP_S3_KEY,
   WebAppBuildRequestObject.JSON_PROPERTY_HOSTING_DEPLOYMENT_ID,
   WebAppBuildRequestObject.JSON_PROPERTY_HOSTING_DEPLOYMENT_STATUS,
@@ -169,6 +171,10 @@ public class WebAppBuildRequestObject {
   public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
   @javax.annotation.Nullable
   private String dockerfilePath;
+
+  public static final String JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR = "dockerfileGenerationError";
+  @javax.annotation.Nullable
+  private DockerfileGenerationError dockerfileGenerationError;
 
   public static final String JSON_PROPERTY_OUTPUT_ZIP_S3_KEY = "outputZipS3Key";
   @javax.annotation.Nullable
@@ -795,6 +801,30 @@ public class WebAppBuildRequestObject {
   }
 
 
+  public WebAppBuildRequestObject dockerfileGenerationError(@javax.annotation.Nullable DockerfileGenerationError dockerfileGenerationError) {
+    this.dockerfileGenerationError = dockerfileGenerationError;
+    return this;
+  }
+
+  /**
+   * Get dockerfileGenerationError
+   * @return dockerfileGenerationError
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public DockerfileGenerationError getDockerfileGenerationError() {
+    return dockerfileGenerationError;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDockerfileGenerationError(@javax.annotation.Nullable DockerfileGenerationError dockerfileGenerationError) {
+    this.dockerfileGenerationError = dockerfileGenerationError;
+  }
+
+
   public WebAppBuildRequestObject outputZipS3Key(@javax.annotation.Nullable String outputZipS3Key) {
     this.outputZipS3Key = outputZipS3Key;
     return this;
@@ -1309,6 +1339,7 @@ public class WebAppBuildRequestObject {
         Objects.equals(this.appPackageName, webAppBuildRequestObject.appPackageName) &&
         Objects.equals(this.containerImageUri, webAppBuildRequestObject.containerImageUri) &&
         Objects.equals(this.dockerfilePath, webAppBuildRequestObject.dockerfilePath) &&
+        Objects.equals(this.dockerfileGenerationError, webAppBuildRequestObject.dockerfileGenerationError) &&
         Objects.equals(this.outputZipS3Key, webAppBuildRequestObject.outputZipS3Key) &&
         Objects.equals(this.hostingDeploymentId, webAppBuildRequestObject.hostingDeploymentId) &&
         Objects.equals(this.hostingDeploymentStatus, webAppBuildRequestObject.hostingDeploymentStatus) &&
@@ -1333,7 +1364,7 @@ public class WebAppBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, containerImageUri, dockerfilePath, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, originDetail, triggeredByAccountId, buildTier, failureReason);
+    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, containerImageUri, dockerfilePath, dockerfileGenerationError, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, originDetail, triggeredByAccountId, buildTier, failureReason);
   }
 
   @Override
@@ -1354,6 +1385,7 @@ public class WebAppBuildRequestObject {
     sb.append("    appPackageName: ").append(toIndentedString(appPackageName)).append("\n");
     sb.append("    containerImageUri: ").append(toIndentedString(containerImageUri)).append("\n");
     sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
+    sb.append("    dockerfileGenerationError: ").append(toIndentedString(dockerfileGenerationError)).append("\n");
     sb.append("    outputZipS3Key: ").append(toIndentedString(outputZipS3Key)).append("\n");
     sb.append("    hostingDeploymentId: ").append(toIndentedString(hostingDeploymentId)).append("\n");
     sb.append("    hostingDeploymentStatus: ").append(toIndentedString(hostingDeploymentStatus)).append("\n");
@@ -1486,6 +1518,11 @@ public class WebAppBuildRequestObject {
     // add `dockerfilePath` to the URL query string
     if (getDockerfilePath() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdockerfilePath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDockerfilePath()))));
+    }
+
+    // add `dockerfileGenerationError` to the URL query string
+    if (getDockerfileGenerationError() != null) {
+      joiner.add(getDockerfileGenerationError().toUrlQueryString(prefix + "dockerfileGenerationError" + suffix));
     }
 
     // add `outputZipS3Key` to the URL query string

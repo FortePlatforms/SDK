@@ -1156,6 +1156,7 @@ export interface RefundPaymentRequest {
     userId: string;
     paymentId: string;
     keepSubscriptionActive?: boolean;
+    refundAmountCents?: number;
 }
 
 export interface ResumeServiceRequest {
@@ -7424,6 +7425,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['keepSubscriptionActive'] = requestParameters['keepSubscriptionActive'];
         }
 
+        if (requestParameters['refundAmountCents'] != null) {
+            queryParameters['refundAmountCents'] = requestParameters['refundAmountCents'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
 
@@ -8970,6 +8975,7 @@ export const ListProjectPaymentsStateType = {
     COMPLETED: 'COMPLETED',
     CANCELLED: 'CANCELLED',
     FAILED: 'FAILED',
+    PARTIALLY_REFUNDED: 'PARTIALLY_REFUNDED',
     REFUNDED: 'REFUNDED'
 } as const;
 export type ListProjectPaymentsStateType = typeof ListProjectPaymentsStateType[keyof typeof ListProjectPaymentsStateType];
@@ -9040,6 +9046,7 @@ export const ListUserPaymentsStateType = {
     COMPLETED: 'COMPLETED',
     CANCELLED: 'CANCELLED',
     FAILED: 'FAILED',
+    PARTIALLY_REFUNDED: 'PARTIALLY_REFUNDED',
     REFUNDED: 'REFUNDED'
 } as const;
 export type ListUserPaymentsStateType = typeof ListUserPaymentsStateType[keyof typeof ListUserPaymentsStateType];

@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.build_step_log import BuildStepLog
+from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGenerationError
 from forte_sdk.generated.models.web_app_detection_error import WebAppDetectionError
 from typing import Optional, Set
 from typing_extensions import Self
@@ -44,6 +45,7 @@ class WebAppBuildRequestObject(BaseModel):
     app_package_name: Optional[StrictStr] = Field(default=None, alias="appPackageName")
     container_image_uri: Optional[StrictStr] = Field(default=None, alias="containerImageUri")
     dockerfile_path: Optional[StrictStr] = Field(default=None, alias="dockerfilePath")
+    dockerfile_generation_error: Optional[DockerfileGenerationError] = Field(default=None, alias="dockerfileGenerationError")
     output_zip_s3_key: Optional[StrictStr] = Field(default=None, alias="outputZipS3Key")
     hosting_deployment_id: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentId")
     hosting_deployment_status: Optional[StrictStr] = Field(default=None, alias="hostingDeploymentStatus")
@@ -64,7 +66,7 @@ class WebAppBuildRequestObject(BaseModel):
     triggered_by_account_id: Optional[StrictStr] = Field(default=None, alias="triggeredByAccountId")
     build_tier: Optional[StrictStr] = Field(default=None, alias="buildTier")
     failure_reason: Optional[StrictStr] = Field(default=None, alias="failureReason")
-    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "originDetail", "triggeredByAccountId", "buildTier", "failureReason"]
+    __properties: ClassVar[List[str]] = ["buildId", "detectionError", "packageManager", "nodeVersion", "buildCommand", "buildPath", "detectedFramework", "installCommand", "subdirectory", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "dockerfilePath", "dockerfileGenerationError", "outputZipS3Key", "hostingDeploymentId", "hostingDeploymentStatus", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "originDetail", "triggeredByAccountId", "buildTier", "failureReason"]
 
     @field_validator('monorepo_type')
     def monorepo_type_validate_enum(cls, value):
@@ -155,6 +157,9 @@ class WebAppBuildRequestObject(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of detection_error
         if self.detection_error:
             _dict['detectionError'] = self.detection_error.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of dockerfile_generation_error
+        if self.dockerfile_generation_error:
+            _dict['dockerfileGenerationError'] = self.dockerfile_generation_error.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in build_step_logs (list)
         _items = []
         if self.build_step_logs:
@@ -188,6 +193,7 @@ class WebAppBuildRequestObject(BaseModel):
             "appPackageName": obj.get("appPackageName"),
             "containerImageUri": obj.get("containerImageUri"),
             "dockerfilePath": obj.get("dockerfilePath"),
+            "dockerfileGenerationError": DockerfileGenerationError.from_dict(obj["dockerfileGenerationError"]) if obj.get("dockerfileGenerationError") is not None else None,
             "outputZipS3Key": obj.get("outputZipS3Key"),
             "hostingDeploymentId": obj.get("hostingDeploymentId"),
             "hostingDeploymentStatus": obj.get("hostingDeploymentStatus"),

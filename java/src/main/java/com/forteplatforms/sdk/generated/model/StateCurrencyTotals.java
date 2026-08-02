@@ -54,6 +54,8 @@ public class StateCurrencyTotals {
     
     FAILED(String.valueOf("FAILED")),
     
+    PARTIALLY_REFUNDED(String.valueOf("PARTIALLY_REFUNDED")),
+    
     REFUNDED(String.valueOf("REFUNDED"));
 
     private String value;

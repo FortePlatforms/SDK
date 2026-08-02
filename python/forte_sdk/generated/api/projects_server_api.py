@@ -31463,6 +31463,7 @@ class ProjectsServerApi:
         user_id: StrictStr,
         payment_id: StrictStr,
         keep_subscription_active: Optional[StrictBool] = None,
+        refund_amount_cents: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -31487,6 +31488,8 @@ class ProjectsServerApi:
         :type payment_id: str
         :param keep_subscription_active:
         :type keep_subscription_active: bool
+        :param refund_amount_cents:
+        :type refund_amount_cents: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -31514,6 +31517,7 @@ class ProjectsServerApi:
             user_id=user_id,
             payment_id=payment_id,
             keep_subscription_active=keep_subscription_active,
+            refund_amount_cents=refund_amount_cents,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -31541,6 +31545,7 @@ class ProjectsServerApi:
         user_id: StrictStr,
         payment_id: StrictStr,
         keep_subscription_active: Optional[StrictBool] = None,
+        refund_amount_cents: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -31565,6 +31570,8 @@ class ProjectsServerApi:
         :type payment_id: str
         :param keep_subscription_active:
         :type keep_subscription_active: bool
+        :param refund_amount_cents:
+        :type refund_amount_cents: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -31592,6 +31599,7 @@ class ProjectsServerApi:
             user_id=user_id,
             payment_id=payment_id,
             keep_subscription_active=keep_subscription_active,
+            refund_amount_cents=refund_amount_cents,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -31619,6 +31627,7 @@ class ProjectsServerApi:
         user_id: StrictStr,
         payment_id: StrictStr,
         keep_subscription_active: Optional[StrictBool] = None,
+        refund_amount_cents: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -31643,6 +31652,8 @@ class ProjectsServerApi:
         :type payment_id: str
         :param keep_subscription_active:
         :type keep_subscription_active: bool
+        :param refund_amount_cents:
+        :type refund_amount_cents: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -31670,6 +31681,7 @@ class ProjectsServerApi:
             user_id=user_id,
             payment_id=payment_id,
             keep_subscription_active=keep_subscription_active,
+            refund_amount_cents=refund_amount_cents,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -31692,6 +31704,7 @@ class ProjectsServerApi:
         user_id,
         payment_id,
         keep_subscription_active,
+        refund_amount_cents,
         _request_auth,
         _content_type,
         _headers,
@@ -31723,6 +31736,10 @@ class ProjectsServerApi:
         if keep_subscription_active is not None:
             
             _query_params.append(('keepSubscriptionActive', keep_subscription_active))
+            
+        if refund_amount_cents is not None:
+            
+            _query_params.append(('refundAmountCents', refund_amount_cents))
             
         # process the header parameters
         # process the form parameters

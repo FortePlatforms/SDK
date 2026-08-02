@@ -40,6 +40,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   ServiceBuildRequestObject.JSON_PROPERTY_BUILD_ID,
+  ServiceBuildRequestObject.JSON_PROPERTY_CONTAINER_IMAGE_URI,
   ServiceBuildRequestObject.JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR,
   ServiceBuildRequestObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR,
   ServiceBuildRequestObject.JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED,
@@ -65,6 +66,10 @@ public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
   @javax.annotation.Nullable
   private String buildId;
+
+  public static final String JSON_PROPERTY_CONTAINER_IMAGE_URI = "containerImageUri";
+  @javax.annotation.Nullable
+  private String containerImageUri;
 
   public static final String JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR = "dockerfileGenerationError";
   @javax.annotation.Nullable
@@ -372,6 +377,30 @@ public class ServiceBuildRequestObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBuildId(@javax.annotation.Nullable String buildId) {
     this.buildId = buildId;
+  }
+
+
+  public ServiceBuildRequestObject containerImageUri(@javax.annotation.Nullable String containerImageUri) {
+    this.containerImageUri = containerImageUri;
+    return this;
+  }
+
+  /**
+   * Get containerImageUri
+   * @return containerImageUri
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getContainerImageUri() {
+    return containerImageUri;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContainerImageUri(@javax.annotation.Nullable String containerImageUri) {
+    this.containerImageUri = containerImageUri;
   }
 
 
@@ -852,6 +881,7 @@ public class ServiceBuildRequestObject {
     }
     ServiceBuildRequestObject serviceBuildRequestObject = (ServiceBuildRequestObject) o;
     return Objects.equals(this.buildId, serviceBuildRequestObject.buildId) &&
+        Objects.equals(this.containerImageUri, serviceBuildRequestObject.containerImageUri) &&
         Objects.equals(this.dockerfileGenerationError, serviceBuildRequestObject.dockerfileGenerationError) &&
         Objects.equals(this.healthCheckDetectionError, serviceBuildRequestObject.healthCheckDetectionError) &&
         Objects.equals(this.allBuildLogsReceived, serviceBuildRequestObject.allBuildLogsReceived) &&
@@ -875,7 +905,7 @@ public class ServiceBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, dockerfileGenerationError, healthCheckDetectionError, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, originDetail, triggeredByAccountId, buildTier, failureReason);
+    return Objects.hash(buildId, containerImageUri, dockerfileGenerationError, healthCheckDetectionError, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, originDetail, triggeredByAccountId, buildTier, failureReason);
   }
 
   @Override
@@ -883,6 +913,7 @@ public class ServiceBuildRequestObject {
     StringBuilder sb = new StringBuilder();
     sb.append("class ServiceBuildRequestObject {\n");
     sb.append("    buildId: ").append(toIndentedString(buildId)).append("\n");
+    sb.append("    containerImageUri: ").append(toIndentedString(containerImageUri)).append("\n");
     sb.append("    dockerfileGenerationError: ").append(toIndentedString(dockerfileGenerationError)).append("\n");
     sb.append("    healthCheckDetectionError: ").append(toIndentedString(healthCheckDetectionError)).append("\n");
     sb.append("    allBuildLogsReceived: ").append(toIndentedString(allBuildLogsReceived)).append("\n");
@@ -949,6 +980,11 @@ public class ServiceBuildRequestObject {
     // add `buildId` to the URL query string
     if (getBuildId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbuildId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuildId()))));
+    }
+
+    // add `containerImageUri` to the URL query string
+    if (getContainerImageUri() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontainerImageUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerImageUri()))));
     }
 
     // add `dockerfileGenerationError` to the URL query string

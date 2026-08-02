@@ -27,6 +27,13 @@ import {
     BuildStepLogToJSON,
     BuildStepLogToJSONTyped,
 } from './BuildStepLog';
+import type { DockerfileGenerationError } from './DockerfileGenerationError';
+import {
+    DockerfileGenerationErrorFromJSON,
+    DockerfileGenerationErrorFromJSONTyped,
+    DockerfileGenerationErrorToJSON,
+    DockerfileGenerationErrorToJSONTyped,
+} from './DockerfileGenerationError';
 
 /**
  * 
@@ -118,6 +125,12 @@ export interface WebAppBuildRequestObject {
      * @memberof WebAppBuildRequestObject
      */
     dockerfilePath?: string;
+    /**
+     * 
+     * @type {DockerfileGenerationError}
+     * @memberof WebAppBuildRequestObject
+     */
+    dockerfileGenerationError?: DockerfileGenerationError;
     /**
      * 
      * @type {string}
@@ -356,6 +369,7 @@ export function WebAppBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimin
         'appPackageName': json['appPackageName'] == null ? undefined : json['appPackageName'],
         'containerImageUri': json['containerImageUri'] == null ? undefined : json['containerImageUri'],
         'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
+        'dockerfileGenerationError': json['dockerfileGenerationError'] == null ? undefined : DockerfileGenerationErrorFromJSON(json['dockerfileGenerationError']),
         'outputZipS3Key': json['outputZipS3Key'] == null ? undefined : json['outputZipS3Key'],
         'hostingDeploymentId': json['hostingDeploymentId'] == null ? undefined : json['hostingDeploymentId'],
         'hostingDeploymentStatus': json['hostingDeploymentStatus'] == null ? undefined : json['hostingDeploymentStatus'],
@@ -404,6 +418,7 @@ export function WebAppBuildRequestObjectToJSONTyped(value?: WebAppBuildRequestOb
         'appPackageName': value['appPackageName'],
         'containerImageUri': value['containerImageUri'],
         'dockerfilePath': value['dockerfilePath'],
+        'dockerfileGenerationError': DockerfileGenerationErrorToJSON(value['dockerfileGenerationError']),
         'outputZipS3Key': value['outputZipS3Key'],
         'hostingDeploymentId': value['hostingDeploymentId'],
         'hostingDeploymentStatus': value['hostingDeploymentStatus'],

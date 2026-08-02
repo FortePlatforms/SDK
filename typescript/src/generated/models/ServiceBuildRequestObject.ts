@@ -49,6 +49,12 @@ export interface ServiceBuildRequestObject {
     buildId?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ServiceBuildRequestObject
+     */
+    containerImageUri?: string;
+    /**
+     * 
      * @type {DockerfileGenerationError}
      * @memberof ServiceBuildRequestObject
      */
@@ -255,6 +261,7 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'buildId': json['buildId'] == null ? undefined : json['buildId'],
+        'containerImageUri': json['containerImageUri'] == null ? undefined : json['containerImageUri'],
         'dockerfileGenerationError': json['dockerfileGenerationError'] == null ? undefined : DockerfileGenerationErrorFromJSON(json['dockerfileGenerationError']),
         'healthCheckDetectionError': json['healthCheckDetectionError'] == null ? undefined : HealthCheckDetectionErrorFromJSON(json['healthCheckDetectionError']),
         'allBuildLogsReceived': json['allBuildLogsReceived'] == null ? undefined : json['allBuildLogsReceived'],
@@ -289,6 +296,7 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
     return {
         
         'buildId': value['buildId'],
+        'containerImageUri': value['containerImageUri'],
         'dockerfileGenerationError': DockerfileGenerationErrorToJSON(value['dockerfileGenerationError']),
         'healthCheckDetectionError': HealthCheckDetectionErrorToJSON(value['healthCheckDetectionError']),
         'allBuildLogsReceived': value['allBuildLogsReceived'],
