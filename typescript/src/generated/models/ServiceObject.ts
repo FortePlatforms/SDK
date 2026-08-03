@@ -68,6 +68,18 @@ export interface ServiceObject {
     publicDnsEndpoint?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ServiceObject
+     */
+    liveBuildId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceObject
+     */
+    liveCommitHash?: string;
+    /**
+     * 
      * @type {Date}
      * @memberof ServiceObject
      */
@@ -230,6 +242,8 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'serviceId': json['serviceId'] == null ? undefined : json['serviceId'],
         'serviceName': json['serviceName'],
         'publicDnsEndpoint': json['publicDnsEndpoint'] == null ? undefined : json['publicDnsEndpoint'],
+        'liveBuildId': json['liveBuildId'] == null ? undefined : json['liveBuildId'],
+        'liveCommitHash': json['liveCommitHash'] == null ? undefined : json['liveCommitHash'],
         'pausedAt': json['pausedAt'] == null ? undefined : (new Date(json['pausedAt'])),
         'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'] == null ? undefined : json['requestResponseBodyLoggingEnabled'],
         'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
@@ -268,6 +282,8 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'serviceId': value['serviceId'],
         'serviceName': value['serviceName'],
         'publicDnsEndpoint': value['publicDnsEndpoint'],
+        'liveBuildId': value['liveBuildId'],
+        'liveCommitHash': value['liveCommitHash'],
         'pausedAt': value['pausedAt'] == null ? value['pausedAt'] : value['pausedAt'].toISOString(),
         'requestResponseBodyLoggingEnabled': value['requestResponseBodyLoggingEnabled'],
         'dockerfilePath': value['dockerfilePath'],

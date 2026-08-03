@@ -36,6 +36,8 @@ class ServiceObject(BaseModel):
     service_id: Optional[StrictStr] = Field(default=None, alias="serviceId")
     service_name: StrictStr = Field(alias="serviceName")
     public_dns_endpoint: Optional[StrictStr] = Field(default=None, alias="publicDnsEndpoint")
+    live_build_id: Optional[StrictStr] = Field(default=None, alias="liveBuildId")
+    live_commit_hash: Optional[StrictStr] = Field(default=None, alias="liveCommitHash")
     paused_at: Optional[datetime] = Field(default=None, alias="pausedAt")
     request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
     dockerfile_path: Optional[StrictStr] = Field(default=None, alias="dockerfilePath")
@@ -57,7 +59,7 @@ class ServiceObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "liveBuildId", "liveCommitHash", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('github_build_trigger')
     def github_build_trigger_validate_enum(cls, value):
@@ -136,6 +138,8 @@ class ServiceObject(BaseModel):
             "serviceId": obj.get("serviceId"),
             "serviceName": obj.get("serviceName"),
             "publicDnsEndpoint": obj.get("publicDnsEndpoint"),
+            "liveBuildId": obj.get("liveBuildId"),
+            "liveCommitHash": obj.get("liveCommitHash"),
             "pausedAt": obj.get("pausedAt"),
             "requestResponseBodyLoggingEnabled": obj.get("requestResponseBodyLoggingEnabled"),
             "dockerfilePath": obj.get("dockerfilePath"),

@@ -55,7 +55,35 @@ export interface ManagedDatabaseEnvVarMappings {
      * @memberof ManagedDatabaseEnvVarMappings
      */
     passwordEnvVar?: string;
+    /**
+     * 
+     * @type {ManagedDatabaseEnvVarMappingsConnectionStringFormatType}
+     * @memberof ManagedDatabaseEnvVarMappings
+     */
+    connectionStringFormat?: ManagedDatabaseEnvVarMappingsConnectionStringFormatType;
+    /**
+     * 
+     * @type {string}
+     * @memberof ManagedDatabaseEnvVarMappings
+     */
+    connectionStringTemplate?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ManagedDatabaseEnvVarMappingsConnectionStringFormatType = {
+    URI: 'URI',
+    JDBC: 'JDBC',
+    R2DBC: 'R2DBC',
+    SQLALCHEMY: 'SQLALCHEMY',
+    NPGSQL: 'NPGSQL',
+    PRISMA: 'PRISMA',
+    CUSTOM: 'CUSTOM'
+} as const;
+export type ManagedDatabaseEnvVarMappingsConnectionStringFormatType = typeof ManagedDatabaseEnvVarMappingsConnectionStringFormatType[keyof typeof ManagedDatabaseEnvVarMappingsConnectionStringFormatType];
+
 
 /**
  * Check if a given object implements the ManagedDatabaseEnvVarMappings interface.
@@ -80,6 +108,8 @@ export function ManagedDatabaseEnvVarMappingsFromJSONTyped(json: any, ignoreDisc
         'databaseEnvVar': json['databaseEnvVar'] == null ? undefined : json['databaseEnvVar'],
         'usernameEnvVar': json['usernameEnvVar'] == null ? undefined : json['usernameEnvVar'],
         'passwordEnvVar': json['passwordEnvVar'] == null ? undefined : json['passwordEnvVar'],
+        'connectionStringFormat': json['connectionStringFormat'] == null ? undefined : json['connectionStringFormat'],
+        'connectionStringTemplate': json['connectionStringTemplate'] == null ? undefined : json['connectionStringTemplate'],
     };
 }
 
@@ -100,6 +130,8 @@ export function ManagedDatabaseEnvVarMappingsToJSONTyped(value?: ManagedDatabase
         'databaseEnvVar': value['databaseEnvVar'],
         'usernameEnvVar': value['usernameEnvVar'],
         'passwordEnvVar': value['passwordEnvVar'],
+        'connectionStringFormat': value['connectionStringFormat'],
+        'connectionStringTemplate': value['connectionStringTemplate'],
     };
 }
 

@@ -48,6 +48,8 @@ class WebAppObject(BaseModel):
     workspace_root: Optional[StrictStr] = Field(default=None, alias="workspaceRoot")
     app_package_name: Optional[StrictStr] = Field(default=None, alias="appPackageName")
     container_image_uri: Optional[StrictStr] = Field(default=None, alias="containerImageUri")
+    live_build_id: Optional[StrictStr] = Field(default=None, alias="liveBuildId")
+    live_commit_hash: Optional[StrictStr] = Field(default=None, alias="liveCommitHash")
     detection_response: Optional[WebAppDetectionResponse] = Field(default=None, alias="detectionResponse")
     dockerfile_path: Optional[StrictStr] = Field(default=None, alias="dockerfilePath")
     dockerfile_detection_response: Optional[DockerfileGenerationResponse] = Field(default=None, alias="dockerfileDetectionResponse")
@@ -66,7 +68,7 @@ class WebAppObject(BaseModel):
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     site_password_protection_enabled: Optional[StrictBool] = Field(default=None, alias="sitePasswordProtectionEnabled")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "sitePasswordProtectionEnabled", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "liveBuildId", "liveCommitHash", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "sitePasswordProtectionEnabled", "secretKeys"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -175,6 +177,8 @@ class WebAppObject(BaseModel):
             "workspaceRoot": obj.get("workspaceRoot"),
             "appPackageName": obj.get("appPackageName"),
             "containerImageUri": obj.get("containerImageUri"),
+            "liveBuildId": obj.get("liveBuildId"),
+            "liveCommitHash": obj.get("liveCommitHash"),
             "detectionResponse": WebAppDetectionResponse.from_dict(obj["detectionResponse"]) if obj.get("detectionResponse") is not None else None,
             "dockerfilePath": obj.get("dockerfilePath"),
             "dockerfileDetectionResponse": DockerfileGenerationResponse.from_dict(obj["dockerfileDetectionResponse"]) if obj.get("dockerfileDetectionResponse") is not None else None,

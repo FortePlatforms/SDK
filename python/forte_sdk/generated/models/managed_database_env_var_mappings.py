@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -34,7 +34,9 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
     database_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="databaseEnvVar")
     username_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="usernameEnvVar")
     password_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="passwordEnvVar")
-    __properties: ClassVar[List[str]] = ["connectionStringEnvVar", "hostEnvVar", "portEnvVar", "databaseEnvVar", "usernameEnvVar", "passwordEnvVar"]
+    connection_string_format: Optional[StrictStr] = Field(default=None, alias="connectionStringFormat")
+    connection_string_template: Optional[StrictStr] = Field(default=None, alias="connectionStringTemplate")
+    __properties: ClassVar[List[str]] = ["connectionStringEnvVar", "hostEnvVar", "portEnvVar", "databaseEnvVar", "usernameEnvVar", "passwordEnvVar", "connectionStringFormat", "connectionStringTemplate"]
 
     @field_validator('connection_string_env_var')
     def connection_string_env_var_validate_regular_expression(cls, value):
@@ -114,6 +116,16 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
             raise ValueError(r"must validate the regular expression /^[a-zA-Z][a-zA-Z0-9_]*$/")
         return value
 
+    @field_validator('connection_string_format')
+    def connection_string_format_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['URI', 'JDBC', 'R2DBC', 'SQLALCHEMY', 'NPGSQL', 'PRISMA', 'CUSTOM']):
+            raise ValueError("must be one of enum values ('URI', 'JDBC', 'R2DBC', 'SQLALCHEMY', 'NPGSQL', 'PRISMA', 'CUSTOM')")
+        return value
+
     model_config = ConfigDict(
         validate_by_name=True,
         validate_by_alias=True,
@@ -170,7 +182,9 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
             "portEnvVar": obj.get("portEnvVar"),
             "databaseEnvVar": obj.get("databaseEnvVar"),
             "usernameEnvVar": obj.get("usernameEnvVar"),
-            "passwordEnvVar": obj.get("passwordEnvVar")
+            "passwordEnvVar": obj.get("passwordEnvVar"),
+            "connectionStringFormat": obj.get("connectionStringFormat"),
+            "connectionStringTemplate": obj.get("connectionStringTemplate")
         })
         return _obj
 

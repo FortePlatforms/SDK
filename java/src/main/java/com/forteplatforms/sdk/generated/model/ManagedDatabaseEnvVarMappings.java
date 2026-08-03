@@ -38,7 +38,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ManagedDatabaseEnvVarMappings.JSON_PROPERTY_PORT_ENV_VAR,
   ManagedDatabaseEnvVarMappings.JSON_PROPERTY_DATABASE_ENV_VAR,
   ManagedDatabaseEnvVarMappings.JSON_PROPERTY_USERNAME_ENV_VAR,
-  ManagedDatabaseEnvVarMappings.JSON_PROPERTY_PASSWORD_ENV_VAR
+  ManagedDatabaseEnvVarMappings.JSON_PROPERTY_PASSWORD_ENV_VAR,
+  ManagedDatabaseEnvVarMappings.JSON_PROPERTY_CONNECTION_STRING_FORMAT,
+  ManagedDatabaseEnvVarMappings.JSON_PROPERTY_CONNECTION_STRING_TEMPLATE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseEnvVarMappings {
@@ -65,6 +67,59 @@ public class ManagedDatabaseEnvVarMappings {
   public static final String JSON_PROPERTY_PASSWORD_ENV_VAR = "passwordEnvVar";
   @javax.annotation.Nullable
   private String passwordEnvVar;
+
+  /**
+   * Gets or Sets connectionStringFormat
+   */
+  public enum ConnectionStringFormatEnum {
+    URI(String.valueOf("URI")),
+    
+    JDBC(String.valueOf("JDBC")),
+    
+    R2_DBC(String.valueOf("R2DBC")),
+    
+    SQLALCHEMY(String.valueOf("SQLALCHEMY")),
+    
+    NPGSQL(String.valueOf("NPGSQL")),
+    
+    PRISMA(String.valueOf("PRISMA")),
+    
+    CUSTOM(String.valueOf("CUSTOM"));
+
+    private String value;
+
+    ConnectionStringFormatEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ConnectionStringFormatEnum fromValue(String value) {
+      for (ConnectionStringFormatEnum b : ConnectionStringFormatEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CONNECTION_STRING_FORMAT = "connectionStringFormat";
+  @javax.annotation.Nullable
+  private ConnectionStringFormatEnum connectionStringFormat;
+
+  public static final String JSON_PROPERTY_CONNECTION_STRING_TEMPLATE = "connectionStringTemplate";
+  @javax.annotation.Nullable
+  private String connectionStringTemplate;
 
   public ManagedDatabaseEnvVarMappings() { 
   }
@@ -213,6 +268,54 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
 
+  public ManagedDatabaseEnvVarMappings connectionStringFormat(@javax.annotation.Nullable ConnectionStringFormatEnum connectionStringFormat) {
+    this.connectionStringFormat = connectionStringFormat;
+    return this;
+  }
+
+  /**
+   * Get connectionStringFormat
+   * @return connectionStringFormat
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_FORMAT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ConnectionStringFormatEnum getConnectionStringFormat() {
+    return connectionStringFormat;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_FORMAT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConnectionStringFormat(@javax.annotation.Nullable ConnectionStringFormatEnum connectionStringFormat) {
+    this.connectionStringFormat = connectionStringFormat;
+  }
+
+
+  public ManagedDatabaseEnvVarMappings connectionStringTemplate(@javax.annotation.Nullable String connectionStringTemplate) {
+    this.connectionStringTemplate = connectionStringTemplate;
+    return this;
+  }
+
+  /**
+   * Get connectionStringTemplate
+   * @return connectionStringTemplate
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_TEMPLATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getConnectionStringTemplate() {
+    return connectionStringTemplate;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_TEMPLATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConnectionStringTemplate(@javax.annotation.Nullable String connectionStringTemplate) {
+    this.connectionStringTemplate = connectionStringTemplate;
+  }
+
+
   /**
    * Return true if this ManagedDatabaseEnvVarMappings object is equal to o.
    */
@@ -230,12 +333,14 @@ public class ManagedDatabaseEnvVarMappings {
         Objects.equals(this.portEnvVar, managedDatabaseEnvVarMappings.portEnvVar) &&
         Objects.equals(this.databaseEnvVar, managedDatabaseEnvVarMappings.databaseEnvVar) &&
         Objects.equals(this.usernameEnvVar, managedDatabaseEnvVarMappings.usernameEnvVar) &&
-        Objects.equals(this.passwordEnvVar, managedDatabaseEnvVarMappings.passwordEnvVar);
+        Objects.equals(this.passwordEnvVar, managedDatabaseEnvVarMappings.passwordEnvVar) &&
+        Objects.equals(this.connectionStringFormat, managedDatabaseEnvVarMappings.connectionStringFormat) &&
+        Objects.equals(this.connectionStringTemplate, managedDatabaseEnvVarMappings.connectionStringTemplate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectionStringEnvVar, hostEnvVar, portEnvVar, databaseEnvVar, usernameEnvVar, passwordEnvVar);
+    return Objects.hash(connectionStringEnvVar, hostEnvVar, portEnvVar, databaseEnvVar, usernameEnvVar, passwordEnvVar, connectionStringFormat, connectionStringTemplate);
   }
 
   @Override
@@ -248,6 +353,8 @@ public class ManagedDatabaseEnvVarMappings {
     sb.append("    databaseEnvVar: ").append(toIndentedString(databaseEnvVar)).append("\n");
     sb.append("    usernameEnvVar: ").append(toIndentedString(usernameEnvVar)).append("\n");
     sb.append("    passwordEnvVar: ").append(toIndentedString(passwordEnvVar)).append("\n");
+    sb.append("    connectionStringFormat: ").append(toIndentedString(connectionStringFormat)).append("\n");
+    sb.append("    connectionStringTemplate: ").append(toIndentedString(connectionStringTemplate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -320,6 +427,16 @@ public class ManagedDatabaseEnvVarMappings {
     // add `passwordEnvVar` to the URL query string
     if (getPasswordEnvVar() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spasswordEnvVar%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPasswordEnvVar()))));
+    }
+
+    // add `connectionStringFormat` to the URL query string
+    if (getConnectionStringFormat() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconnectionStringFormat%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectionStringFormat()))));
+    }
+
+    // add `connectionStringTemplate` to the URL query string
+    if (getConnectionStringTemplate() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconnectionStringTemplate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectionStringTemplate()))));
     }
 
     return joiner.toString();

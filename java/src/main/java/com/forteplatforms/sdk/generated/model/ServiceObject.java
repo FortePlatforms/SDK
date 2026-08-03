@@ -48,6 +48,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_SERVICE_ID,
   ServiceObject.JSON_PROPERTY_SERVICE_NAME,
   ServiceObject.JSON_PROPERTY_PUBLIC_DNS_ENDPOINT,
+  ServiceObject.JSON_PROPERTY_LIVE_BUILD_ID,
+  ServiceObject.JSON_PROPERTY_LIVE_COMMIT_HASH,
   ServiceObject.JSON_PROPERTY_PAUSED_AT,
   ServiceObject.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED,
   ServiceObject.JSON_PROPERTY_DOCKERFILE_PATH,
@@ -83,6 +85,14 @@ public class ServiceObject {
   public static final String JSON_PROPERTY_PUBLIC_DNS_ENDPOINT = "publicDnsEndpoint";
   @javax.annotation.Nullable
   private String publicDnsEndpoint;
+
+  public static final String JSON_PROPERTY_LIVE_BUILD_ID = "liveBuildId";
+  @javax.annotation.Nullable
+  private String liveBuildId;
+
+  public static final String JSON_PROPERTY_LIVE_COMMIT_HASH = "liveCommitHash";
+  @javax.annotation.Nullable
+  private String liveCommitHash;
 
   public static final String JSON_PROPERTY_PAUSED_AT = "pausedAt";
   @javax.annotation.Nullable
@@ -275,6 +285,54 @@ public class ServiceObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPublicDnsEndpoint(@javax.annotation.Nullable String publicDnsEndpoint) {
     this.publicDnsEndpoint = publicDnsEndpoint;
+  }
+
+
+  public ServiceObject liveBuildId(@javax.annotation.Nullable String liveBuildId) {
+    this.liveBuildId = liveBuildId;
+    return this;
+  }
+
+  /**
+   * Get liveBuildId
+   * @return liveBuildId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LIVE_BUILD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLiveBuildId() {
+    return liveBuildId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LIVE_BUILD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLiveBuildId(@javax.annotation.Nullable String liveBuildId) {
+    this.liveBuildId = liveBuildId;
+  }
+
+
+  public ServiceObject liveCommitHash(@javax.annotation.Nullable String liveCommitHash) {
+    this.liveCommitHash = liveCommitHash;
+    return this;
+  }
+
+  /**
+   * Get liveCommitHash
+   * @return liveCommitHash
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LIVE_COMMIT_HASH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLiveCommitHash() {
+    return liveCommitHash;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LIVE_COMMIT_HASH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLiveCommitHash(@javax.annotation.Nullable String liveCommitHash) {
+    this.liveCommitHash = liveCommitHash;
   }
 
 
@@ -846,6 +904,8 @@ public class ServiceObject {
     return Objects.equals(this.serviceId, serviceObject.serviceId) &&
         Objects.equals(this.serviceName, serviceObject.serviceName) &&
         Objects.equals(this.publicDnsEndpoint, serviceObject.publicDnsEndpoint) &&
+        Objects.equals(this.liveBuildId, serviceObject.liveBuildId) &&
+        Objects.equals(this.liveCommitHash, serviceObject.liveCommitHash) &&
         Objects.equals(this.pausedAt, serviceObject.pausedAt) &&
         Objects.equals(this.requestResponseBodyLoggingEnabled, serviceObject.requestResponseBodyLoggingEnabled) &&
         Objects.equals(this.dockerfilePath, serviceObject.dockerfilePath) &&
@@ -871,7 +931,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, pausedAt, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, regionReplicas, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, liveBuildId, liveCommitHash, pausedAt, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, regionReplicas, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -881,6 +941,8 @@ public class ServiceObject {
     sb.append("    serviceId: ").append(toIndentedString(serviceId)).append("\n");
     sb.append("    serviceName: ").append(toIndentedString(serviceName)).append("\n");
     sb.append("    publicDnsEndpoint: ").append(toIndentedString(publicDnsEndpoint)).append("\n");
+    sb.append("    liveBuildId: ").append(toIndentedString(liveBuildId)).append("\n");
+    sb.append("    liveCommitHash: ").append(toIndentedString(liveCommitHash)).append("\n");
     sb.append("    pausedAt: ").append(toIndentedString(pausedAt)).append("\n");
     sb.append("    requestResponseBodyLoggingEnabled: ").append(toIndentedString(requestResponseBodyLoggingEnabled)).append("\n");
     sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
@@ -959,6 +1021,16 @@ public class ServiceObject {
     // add `publicDnsEndpoint` to the URL query string
     if (getPublicDnsEndpoint() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spublicDnsEndpoint%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPublicDnsEndpoint()))));
+    }
+
+    // add `liveBuildId` to the URL query string
+    if (getLiveBuildId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sliveBuildId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLiveBuildId()))));
+    }
+
+    // add `liveCommitHash` to the URL query string
+    if (getLiveCommitHash() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sliveCommitHash%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLiveCommitHash()))));
     }
 
     // add `pausedAt` to the URL query string

@@ -139,6 +139,18 @@ export interface WebAppObject {
     containerImageUri?: string;
     /**
      * 
+     * @type {string}
+     * @memberof WebAppObject
+     */
+    liveBuildId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebAppObject
+     */
+    liveCommitHash?: string;
+    /**
+     * 
      * @type {WebAppDetectionResponse}
      * @memberof WebAppObject
      */
@@ -315,6 +327,8 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'workspaceRoot': json['workspaceRoot'] == null ? undefined : json['workspaceRoot'],
         'appPackageName': json['appPackageName'] == null ? undefined : json['appPackageName'],
         'containerImageUri': json['containerImageUri'] == null ? undefined : json['containerImageUri'],
+        'liveBuildId': json['liveBuildId'] == null ? undefined : json['liveBuildId'],
+        'liveCommitHash': json['liveCommitHash'] == null ? undefined : json['liveCommitHash'],
         'detectionResponse': json['detectionResponse'] == null ? undefined : WebAppDetectionResponseFromJSON(json['detectionResponse']),
         'dockerfilePath': json['dockerfilePath'] == null ? undefined : json['dockerfilePath'],
         'dockerfileDetectionResponse': json['dockerfileDetectionResponse'] == null ? undefined : DockerfileGenerationResponseFromJSON(json['dockerfileDetectionResponse']),
@@ -363,6 +377,8 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'workspaceRoot': value['workspaceRoot'],
         'appPackageName': value['appPackageName'],
         'containerImageUri': value['containerImageUri'],
+        'liveBuildId': value['liveBuildId'],
+        'liveCommitHash': value['liveCommitHash'],
         'detectionResponse': WebAppDetectionResponseToJSON(value['detectionResponse']),
         'dockerfilePath': value['dockerfilePath'],
         'dockerfileDetectionResponse': DockerfileGenerationResponseToJSON(value['dockerfileDetectionResponse']),

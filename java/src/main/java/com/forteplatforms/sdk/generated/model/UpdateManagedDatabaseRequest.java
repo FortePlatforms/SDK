@@ -138,7 +138,7 @@ public class UpdateManagedDatabaseRequest {
 
   /**
    * Get storageGb
-   * minimum: 10
+   * minimum: 1
    * @return storageGb
    */
   @javax.annotation.Nullable

@@ -60,6 +60,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_WORKSPACE_ROOT,
   WebAppObject.JSON_PROPERTY_APP_PACKAGE_NAME,
   WebAppObject.JSON_PROPERTY_CONTAINER_IMAGE_URI,
+  WebAppObject.JSON_PROPERTY_LIVE_BUILD_ID,
+  WebAppObject.JSON_PROPERTY_LIVE_COMMIT_HASH,
   WebAppObject.JSON_PROPERTY_DETECTION_RESPONSE,
   WebAppObject.JSON_PROPERTY_DOCKERFILE_PATH,
   WebAppObject.JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE,
@@ -218,6 +220,14 @@ public class WebAppObject {
   public static final String JSON_PROPERTY_CONTAINER_IMAGE_URI = "containerImageUri";
   @javax.annotation.Nullable
   private String containerImageUri;
+
+  public static final String JSON_PROPERTY_LIVE_BUILD_ID = "liveBuildId";
+  @javax.annotation.Nullable
+  private String liveBuildId;
+
+  public static final String JSON_PROPERTY_LIVE_COMMIT_HASH = "liveCommitHash";
+  @javax.annotation.Nullable
+  private String liveCommitHash;
 
   public static final String JSON_PROPERTY_DETECTION_RESPONSE = "detectionResponse";
   @javax.annotation.Nullable
@@ -721,6 +731,54 @@ public class WebAppObject {
   }
 
 
+  public WebAppObject liveBuildId(@javax.annotation.Nullable String liveBuildId) {
+    this.liveBuildId = liveBuildId;
+    return this;
+  }
+
+  /**
+   * Get liveBuildId
+   * @return liveBuildId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LIVE_BUILD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLiveBuildId() {
+    return liveBuildId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LIVE_BUILD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLiveBuildId(@javax.annotation.Nullable String liveBuildId) {
+    this.liveBuildId = liveBuildId;
+  }
+
+
+  public WebAppObject liveCommitHash(@javax.annotation.Nullable String liveCommitHash) {
+    this.liveCommitHash = liveCommitHash;
+    return this;
+  }
+
+  /**
+   * Get liveCommitHash
+   * @return liveCommitHash
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LIVE_COMMIT_HASH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLiveCommitHash() {
+    return liveCommitHash;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LIVE_COMMIT_HASH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLiveCommitHash(@javax.annotation.Nullable String liveCommitHash) {
+    this.liveCommitHash = liveCommitHash;
+  }
+
+
   public WebAppObject detectionResponse(@javax.annotation.Nullable WebAppDetectionResponse detectionResponse) {
     this.detectionResponse = detectionResponse;
     return this;
@@ -1206,6 +1264,8 @@ public class WebAppObject {
         Objects.equals(this.workspaceRoot, webAppObject.workspaceRoot) &&
         Objects.equals(this.appPackageName, webAppObject.appPackageName) &&
         Objects.equals(this.containerImageUri, webAppObject.containerImageUri) &&
+        Objects.equals(this.liveBuildId, webAppObject.liveBuildId) &&
+        Objects.equals(this.liveCommitHash, webAppObject.liveCommitHash) &&
         Objects.equals(this.detectionResponse, webAppObject.detectionResponse) &&
         Objects.equals(this.dockerfilePath, webAppObject.dockerfilePath) &&
         Objects.equals(this.dockerfileDetectionResponse, webAppObject.dockerfileDetectionResponse) &&
@@ -1228,7 +1288,7 @@ public class WebAppObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, containerImageUri, detectionResponse, dockerfilePath, dockerfileDetectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, hostingProviderDomainAvailableAt, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, sitePasswordProtectionEnabled, secretKeys);
+    return Objects.hash(webAppId, webAppName, forteDnsEndpoint, forteDnsEndpointEnabled, customDomains, buildPath, webAppType, packageManager, nodeVersion, installCommand, subdirectory, detectedFramework, monorepoType, workspaceRoot, appPackageName, containerImageUri, liveBuildId, liveCommitHash, detectionResponse, dockerfilePath, dockerfileDetectionResponse, hostingProviderAppId, hostingProviderBranchName, hostingProviderDomainStatus, hostingProviderDomainAvailableAt, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, sitePasswordProtectionEnabled, secretKeys);
   }
 
   @Override
@@ -1251,6 +1311,8 @@ public class WebAppObject {
     sb.append("    workspaceRoot: ").append(toIndentedString(workspaceRoot)).append("\n");
     sb.append("    appPackageName: ").append(toIndentedString(appPackageName)).append("\n");
     sb.append("    containerImageUri: ").append(toIndentedString(containerImageUri)).append("\n");
+    sb.append("    liveBuildId: ").append(toIndentedString(liveBuildId)).append("\n");
+    sb.append("    liveCommitHash: ").append(toIndentedString(liveCommitHash)).append("\n");
     sb.append("    detectionResponse: ").append(toIndentedString(detectionResponse)).append("\n");
     sb.append("    dockerfilePath: ").append(toIndentedString(dockerfilePath)).append("\n");
     sb.append("    dockerfileDetectionResponse: ").append(toIndentedString(dockerfileDetectionResponse)).append("\n");
@@ -1396,6 +1458,16 @@ public class WebAppObject {
     // add `containerImageUri` to the URL query string
     if (getContainerImageUri() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontainerImageUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerImageUri()))));
+    }
+
+    // add `liveBuildId` to the URL query string
+    if (getLiveBuildId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sliveBuildId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLiveBuildId()))));
+    }
+
+    // add `liveCommitHash` to the URL query string
+    if (getLiveCommitHash() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sliveCommitHash%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLiveCommitHash()))));
     }
 
     // add `detectionResponse` to the URL query string
