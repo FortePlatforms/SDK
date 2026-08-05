@@ -84,6 +84,11 @@ import {
     CreateCustomDomainRequestToJSON,
 } from '../models/CreateCustomDomainRequest';
 import {
+    type CreateCustomEmailTemplateRequest,
+    CreateCustomEmailTemplateRequestFromJSON,
+    CreateCustomEmailTemplateRequestToJSON,
+} from '../models/CreateCustomEmailTemplateRequest';
+import {
     type CreateForteServiceRequest,
     CreateForteServiceRequestFromJSON,
     CreateForteServiceRequestToJSON,
@@ -188,6 +193,11 @@ import {
     CustomDomainResponseFromJSON,
     CustomDomainResponseToJSON,
 } from '../models/CustomDomainResponse';
+import {
+    type CustomEmailTemplateObject,
+    CustomEmailTemplateObjectFromJSON,
+    CustomEmailTemplateObjectToJSON,
+} from '../models/CustomEmailTemplateObject';
 import {
     type GetContentDownloadLinkResponse,
     GetContentDownloadLinkResponseFromJSON,
@@ -344,6 +354,11 @@ import {
     SearchUsersRequestToJSON,
 } from '../models/SearchUsersRequest';
 import {
+    type SendUserEmailFromTemplateRequest,
+    SendUserEmailFromTemplateRequestFromJSON,
+    SendUserEmailFromTemplateRequestToJSON,
+} from '../models/SendUserEmailFromTemplateRequest';
+import {
     type SendUserEmailRequest,
     SendUserEmailRequestFromJSON,
     SendUserEmailRequestToJSON,
@@ -413,6 +428,11 @@ import {
     UpdateContentSharesRequestFromJSON,
     UpdateContentSharesRequestToJSON,
 } from '../models/UpdateContentSharesRequest';
+import {
+    type UpdateCustomEmailTemplateRequest,
+    UpdateCustomEmailTemplateRequestFromJSON,
+    UpdateCustomEmailTemplateRequestToJSON,
+} from '../models/UpdateCustomEmailTemplateRequest';
 import {
     type UpdateForteServiceRequest,
     UpdateForteServiceRequestFromJSON,
@@ -598,6 +618,11 @@ export interface CreateCustomDomainOperationRequest {
     createCustomDomainRequest: CreateCustomDomainRequest;
 }
 
+export interface CreateCustomEmailTemplateOperationRequest {
+    projectId: string;
+    createCustomEmailTemplateRequest: CreateCustomEmailTemplateRequest;
+}
+
 export interface CreateManagedDatabaseOperationRequest {
     projectId: string;
     createManagedDatabaseRequest: CreateManagedDatabaseRequest;
@@ -677,6 +702,11 @@ export interface DeleteCustomDomainRequest {
     customDomainId: string;
 }
 
+export interface DeleteCustomEmailTemplateRequest {
+    projectId: string;
+    name: string;
+}
+
 export interface DeleteManagedDatabaseRequest {
     projectId: string;
     databaseId: string;
@@ -750,6 +780,11 @@ export interface GetCustomDomainRequest {
     projectId: string;
     webAppId: string;
     customDomainId: string;
+}
+
+export interface GetCustomEmailTemplateRequest {
+    projectId: string;
+    name: string;
 }
 
 export interface GetManagedDatabaseRequest {
@@ -882,6 +917,10 @@ export interface ListActionsRequest {
 export interface ListCustomDomainsRequest {
     projectId: string;
     webAppId: string;
+}
+
+export interface ListCustomEmailTemplatesRequest {
+    projectId: string;
 }
 
 export interface ListLogLinesRequest {
@@ -1219,6 +1258,12 @@ export interface SendUserEmailOperationRequest {
     sendUserEmailRequest: SendUserEmailRequest;
 }
 
+export interface SendUserEmailFromTemplateOperationRequest {
+    userId: string;
+    projectId: string;
+    sendUserEmailFromTemplateRequest: SendUserEmailFromTemplateRequest;
+}
+
 export interface SendUserSmsOperationRequest {
     userId: string;
     projectId: string;
@@ -1258,6 +1303,12 @@ export interface UpdateActionOperationRequest {
     projectId: string;
     actionId: string;
     updateActionRequest: UpdateActionRequest;
+}
+
+export interface UpdateCustomEmailTemplateOperationRequest {
+    projectId: string;
+    name: string;
+    updateCustomEmailTemplateRequest: UpdateCustomEmailTemplateRequest;
 }
 
 export interface UpdateManagedDatabaseOperationRequest {
@@ -2255,6 +2306,59 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createCustomEmailTemplate without sending the request
+     */
+    async createCustomEmailTemplateRequestOpts(requestParameters: CreateCustomEmailTemplateOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createCustomEmailTemplate().'
+            );
+        }
+
+        if (requestParameters['createCustomEmailTemplateRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCustomEmailTemplateRequest',
+                'Required parameter "createCustomEmailTemplateRequest" was null or undefined when calling createCustomEmailTemplate().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/custom-email-templates`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCustomEmailTemplateRequestToJSON(requestParameters['createCustomEmailTemplateRequest']),
+        };
+    }
+
+    /**
+     */
+    async createCustomEmailTemplateRaw(requestParameters: CreateCustomEmailTemplateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomEmailTemplateObject>> {
+        const requestOptions = await this.createCustomEmailTemplateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomEmailTemplateObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createCustomEmailTemplate(requestParameters: CreateCustomEmailTemplateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomEmailTemplateObject> {
+        const response = await this.createCustomEmailTemplateRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createManagedDatabase without sending the request
      */
     async createManagedDatabaseRequestOpts(requestParameters: CreateManagedDatabaseOperationRequest): Promise<runtime.RequestOpts> {
@@ -3040,6 +3144,56 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for deleteCustomEmailTemplate without sending the request
+     */
+    async deleteCustomEmailTemplateRequestOpts(requestParameters: DeleteCustomEmailTemplateRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteCustomEmailTemplate().'
+            );
+        }
+
+        if (requestParameters['name'] == null) {
+            throw new runtime.RequiredError(
+                'name',
+                'Required parameter "name" was null or undefined when calling deleteCustomEmailTemplate().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/custom-email-templates/{name}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{name}', encodeURIComponent(String(requestParameters['name'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteCustomEmailTemplateRaw(requestParameters: DeleteCustomEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteCustomEmailTemplateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteCustomEmailTemplate(requestParameters: DeleteCustomEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteCustomEmailTemplateRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Creates request options for deleteManagedDatabase without sending the request
      */
     async deleteManagedDatabaseRequestOpts(requestParameters: DeleteManagedDatabaseRequest): Promise<runtime.RequestOpts> {
@@ -3773,6 +3927,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getCustomDomain(requestParameters: GetCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDomainResponse> {
         const response = await this.getCustomDomainRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getCustomEmailTemplate without sending the request
+     */
+    async getCustomEmailTemplateRequestOpts(requestParameters: GetCustomEmailTemplateRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getCustomEmailTemplate().'
+            );
+        }
+
+        if (requestParameters['name'] == null) {
+            throw new runtime.RequiredError(
+                'name',
+                'Required parameter "name" was null or undefined when calling getCustomEmailTemplate().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/custom-email-templates/{name}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{name}', encodeURIComponent(String(requestParameters['name'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getCustomEmailTemplateRaw(requestParameters: GetCustomEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomEmailTemplateObject>> {
+        const requestOptions = await this.getCustomEmailTemplateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomEmailTemplateObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getCustomEmailTemplate(requestParameters: GetCustomEmailTemplateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomEmailTemplateObject> {
+        const response = await this.getCustomEmailTemplateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4991,6 +5196,49 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listCustomDomains(requestParameters: ListCustomDomainsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCustomDomainsResponse> {
         const response = await this.listCustomDomainsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listCustomEmailTemplates without sending the request
+     */
+    async listCustomEmailTemplatesRequestOpts(requestParameters: ListCustomEmailTemplatesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listCustomEmailTemplates().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/custom-email-templates`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listCustomEmailTemplatesRaw(requestParameters: ListCustomEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CustomEmailTemplateObject>>> {
+        const requestOptions = await this.listCustomEmailTemplatesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CustomEmailTemplateObjectFromJSON));
+    }
+
+    /**
+     */
+    async listCustomEmailTemplates(requestParameters: ListCustomEmailTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CustomEmailTemplateObject>> {
+        const response = await this.listCustomEmailTemplatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8019,6 +8267,71 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for sendUserEmailFromTemplate without sending the request
+     */
+    async sendUserEmailFromTemplateRequestOpts(requestParameters: SendUserEmailFromTemplateOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling sendUserEmailFromTemplate().'
+            );
+        }
+
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling sendUserEmailFromTemplate().'
+            );
+        }
+
+        if (requestParameters['sendUserEmailFromTemplateRequest'] == null) {
+            throw new runtime.RequiredError(
+                'sendUserEmailFromTemplateRequest',
+                'Required parameter "sendUserEmailFromTemplateRequest" was null or undefined when calling sendUserEmailFromTemplate().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/email-from-template`;
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SendUserEmailFromTemplateRequestToJSON(requestParameters['sendUserEmailFromTemplateRequest']),
+        };
+    }
+
+    /**
+     */
+    async sendUserEmailFromTemplateRaw(requestParameters: SendUserEmailFromTemplateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
+        const requestOptions = await this.sendUserEmailFromTemplateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     */
+    async sendUserEmailFromTemplate(requestParameters: SendUserEmailFromTemplateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
+        const response = await this.sendUserEmailFromTemplateRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for sendUserSms without sending the request
      */
     async sendUserSmsRequestOpts(requestParameters: SendUserSmsOperationRequest): Promise<runtime.RequestOpts> {
@@ -8426,6 +8739,67 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async updateAction(requestParameters: UpdateActionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionObject> {
         const response = await this.updateActionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for updateCustomEmailTemplate without sending the request
+     */
+    async updateCustomEmailTemplateRequestOpts(requestParameters: UpdateCustomEmailTemplateOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateCustomEmailTemplate().'
+            );
+        }
+
+        if (requestParameters['name'] == null) {
+            throw new runtime.RequiredError(
+                'name',
+                'Required parameter "name" was null or undefined when calling updateCustomEmailTemplate().'
+            );
+        }
+
+        if (requestParameters['updateCustomEmailTemplateRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateCustomEmailTemplateRequest',
+                'Required parameter "updateCustomEmailTemplateRequest" was null or undefined when calling updateCustomEmailTemplate().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/custom-email-templates/{name}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{name}', encodeURIComponent(String(requestParameters['name'])));
+
+        return {
+            path: urlPath,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateCustomEmailTemplateRequestToJSON(requestParameters['updateCustomEmailTemplateRequest']),
+        };
+    }
+
+    /**
+     */
+    async updateCustomEmailTemplateRaw(requestParameters: UpdateCustomEmailTemplateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomEmailTemplateObject>> {
+        const requestOptions = await this.updateCustomEmailTemplateRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomEmailTemplateObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateCustomEmailTemplate(requestParameters: UpdateCustomEmailTemplateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomEmailTemplateObject> {
+        const response = await this.updateCustomEmailTemplateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

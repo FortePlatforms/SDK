@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.344"
+__version__ = "1.0.345"
 
 # Define package exports
 __all__ = [
@@ -56,6 +56,7 @@ __all__ = [
     "CreateContentUploadLinkRequest",
     "CreateContentUploadLinkResponse",
     "CreateCustomDomainRequest",
+    "CreateCustomEmailTemplateRequest",
     "CreateForteServiceRequest",
     "CreateManagedDatabaseConnectionRequest",
     "CreateManagedDatabaseRequest",
@@ -86,6 +87,7 @@ __all__ = [
     "CurrencyVolumeSeries",
     "CustomDomain",
     "CustomDomainResponse",
+    "CustomEmailTemplateObject",
     "DnsRecordCheck",
     "DnsRecordRequirement",
     "DnsValidationResult",
@@ -179,6 +181,7 @@ __all__ = [
     "RotateManagedDatabaseUserPasswordResponse",
     "RouteMetric",
     "SearchUsersRequest",
+    "SendUserEmailFromTemplateRequest",
     "SendUserEmailRequest",
     "SendUserSmsRequest",
     "ServiceBuildRequestObject",
@@ -200,6 +203,7 @@ __all__ = [
     "UpdateActionRequest",
     "UpdateContentOwnerRequest",
     "UpdateContentSharesRequest",
+    "UpdateCustomEmailTemplateRequest",
     "UpdateForteServiceRequest",
     "UpdateForteServiceResponse",
     "UpdateManagedDatabaseConnectionRequest",
@@ -268,6 +272,7 @@ from forte_sdk.generated.models.create_action_request import CreateActionRequest
 from forte_sdk.generated.models.create_content_upload_link_request import CreateContentUploadLinkRequest as CreateContentUploadLinkRequest
 from forte_sdk.generated.models.create_content_upload_link_response import CreateContentUploadLinkResponse as CreateContentUploadLinkResponse
 from forte_sdk.generated.models.create_custom_domain_request import CreateCustomDomainRequest as CreateCustomDomainRequest
+from forte_sdk.generated.models.create_custom_email_template_request import CreateCustomEmailTemplateRequest as CreateCustomEmailTemplateRequest
 from forte_sdk.generated.models.create_forte_service_request import CreateForteServiceRequest as CreateForteServiceRequest
 from forte_sdk.generated.models.create_managed_database_connection_request import CreateManagedDatabaseConnectionRequest as CreateManagedDatabaseConnectionRequest
 from forte_sdk.generated.models.create_managed_database_request import CreateManagedDatabaseRequest as CreateManagedDatabaseRequest
@@ -298,6 +303,7 @@ from forte_sdk.generated.models.currency_totals import CurrencyTotals as Currenc
 from forte_sdk.generated.models.currency_volume_series import CurrencyVolumeSeries as CurrencyVolumeSeries
 from forte_sdk.generated.models.custom_domain import CustomDomain as CustomDomain
 from forte_sdk.generated.models.custom_domain_response import CustomDomainResponse as CustomDomainResponse
+from forte_sdk.generated.models.custom_email_template_object import CustomEmailTemplateObject as CustomEmailTemplateObject
 from forte_sdk.generated.models.dns_record_check import DnsRecordCheck as DnsRecordCheck
 from forte_sdk.generated.models.dns_record_requirement import DnsRecordRequirement as DnsRecordRequirement
 from forte_sdk.generated.models.dns_validation_result import DnsValidationResult as DnsValidationResult
@@ -391,6 +397,7 @@ from forte_sdk.generated.models.required_upload_headers import RequiredUploadHea
 from forte_sdk.generated.models.rotate_managed_database_user_password_response import RotateManagedDatabaseUserPasswordResponse as RotateManagedDatabaseUserPasswordResponse
 from forte_sdk.generated.models.route_metric import RouteMetric as RouteMetric
 from forte_sdk.generated.models.search_users_request import SearchUsersRequest as SearchUsersRequest
+from forte_sdk.generated.models.send_user_email_from_template_request import SendUserEmailFromTemplateRequest as SendUserEmailFromTemplateRequest
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest as SendUserEmailRequest
 from forte_sdk.generated.models.send_user_sms_request import SendUserSmsRequest as SendUserSmsRequest
 from forte_sdk.generated.models.service_build_request_object import ServiceBuildRequestObject as ServiceBuildRequestObject
@@ -412,6 +419,7 @@ from forte_sdk.generated.models.trigger_event import TriggerEvent as TriggerEven
 from forte_sdk.generated.models.update_action_request import UpdateActionRequest as UpdateActionRequest
 from forte_sdk.generated.models.update_content_owner_request import UpdateContentOwnerRequest as UpdateContentOwnerRequest
 from forte_sdk.generated.models.update_content_shares_request import UpdateContentSharesRequest as UpdateContentSharesRequest
+from forte_sdk.generated.models.update_custom_email_template_request import UpdateCustomEmailTemplateRequest as UpdateCustomEmailTemplateRequest
 from forte_sdk.generated.models.update_forte_service_request import UpdateForteServiceRequest as UpdateForteServiceRequest
 from forte_sdk.generated.models.update_forte_service_response import UpdateForteServiceResponse as UpdateForteServiceResponse
 from forte_sdk.generated.models.update_managed_database_connection_request import UpdateManagedDatabaseConnectionRequest as UpdateManagedDatabaseConnectionRequest

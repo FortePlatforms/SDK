@@ -32,6 +32,7 @@ import com.forteplatforms.sdk.generated.model.CreateActionRequest;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkRequest;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkResponse;
 import com.forteplatforms.sdk.generated.model.CreateCustomDomainRequest;
+import com.forteplatforms.sdk.generated.model.CreateCustomEmailTemplateRequest;
 import com.forteplatforms.sdk.generated.model.CreateForteServiceRequest;
 import com.forteplatforms.sdk.generated.model.CreateManagedDatabaseConnectionRequest;
 import com.forteplatforms.sdk.generated.model.CreateManagedDatabaseRequest;
@@ -53,6 +54,7 @@ import com.forteplatforms.sdk.generated.model.CreateSubscriptionRequest;
 import com.forteplatforms.sdk.generated.model.CreateSubscriptionResponse;
 import com.forteplatforms.sdk.generated.model.CreateWebAppRequest;
 import com.forteplatforms.sdk.generated.model.CustomDomainResponse;
+import com.forteplatforms.sdk.generated.model.CustomEmailTemplateObject;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.GetRequestBodyDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.ImpersonationTokenResponse;
@@ -85,6 +87,7 @@ import com.forteplatforms.sdk.generated.model.RequestLogObject;
 import com.forteplatforms.sdk.generated.model.RequestLogSearchRequest;
 import com.forteplatforms.sdk.generated.model.RotateManagedDatabaseUserPasswordResponse;
 import com.forteplatforms.sdk.generated.model.SearchUsersRequest;
+import com.forteplatforms.sdk.generated.model.SendUserEmailFromTemplateRequest;
 import com.forteplatforms.sdk.generated.model.SendUserEmailRequest;
 import com.forteplatforms.sdk.generated.model.SendUserSmsRequest;
 import com.forteplatforms.sdk.generated.model.ServiceBuildRequestObject;
@@ -99,6 +102,7 @@ import com.forteplatforms.sdk.generated.model.TestInvocationResponse;
 import com.forteplatforms.sdk.generated.model.UpdateActionRequest;
 import com.forteplatforms.sdk.generated.model.UpdateContentOwnerRequest;
 import com.forteplatforms.sdk.generated.model.UpdateContentSharesRequest;
+import com.forteplatforms.sdk.generated.model.UpdateCustomEmailTemplateRequest;
 import com.forteplatforms.sdk.generated.model.UpdateForteServiceRequest;
 import com.forteplatforms.sdk.generated.model.UpdateForteServiceResponse;
 import com.forteplatforms.sdk.generated.model.UpdateManagedDatabaseConnectionRequest;
@@ -2438,6 +2442,138 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param createCustomEmailTemplateRequest  (required)
+   * @return CustomEmailTemplateObject
+   * @throws ApiException if fails to make API call
+   */
+  public CustomEmailTemplateObject createCustomEmailTemplate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCustomEmailTemplateRequest createCustomEmailTemplateRequest) throws ApiException {
+    return createCustomEmailTemplate(projectId, createCustomEmailTemplateRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCustomEmailTemplateRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CustomEmailTemplateObject
+   * @throws ApiException if fails to make API call
+   */
+  public CustomEmailTemplateObject createCustomEmailTemplate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCustomEmailTemplateRequest createCustomEmailTemplateRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CustomEmailTemplateObject> localVarResponse = createCustomEmailTemplateWithHttpInfo(projectId, createCustomEmailTemplateRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCustomEmailTemplateRequest  (required)
+   * @return ApiResponse&lt;CustomEmailTemplateObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomEmailTemplateObject> createCustomEmailTemplateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCustomEmailTemplateRequest createCustomEmailTemplateRequest) throws ApiException {
+    return createCustomEmailTemplateWithHttpInfo(projectId, createCustomEmailTemplateRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCustomEmailTemplateRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CustomEmailTemplateObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomEmailTemplateObject> createCustomEmailTemplateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCustomEmailTemplateRequest createCustomEmailTemplateRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createCustomEmailTemplateRequestBuilder(projectId, createCustomEmailTemplateRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createCustomEmailTemplate", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CustomEmailTemplateObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CustomEmailTemplateObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CustomEmailTemplateObject>() {});
+        
+
+        return new ApiResponse<CustomEmailTemplateObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createCustomEmailTemplateRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCustomEmailTemplateRequest createCustomEmailTemplateRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createCustomEmailTemplate");
+    }
+    // verify the required parameter 'createCustomEmailTemplateRequest' is set
+    if (createCustomEmailTemplateRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCustomEmailTemplateRequest' when calling createCustomEmailTemplate");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/custom-email-templates"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCustomEmailTemplateRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param createManagedDatabaseRequest  (required)
    * @return ManagedDatabaseObject
    * @throws ApiException if fails to make API call
@@ -4339,6 +4475,119 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param name  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteCustomEmailTemplate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name) throws ApiException {
+    deleteCustomEmailTemplate(projectId, name, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteCustomEmailTemplate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+    deleteCustomEmailTemplateWithHttpInfo(projectId, name, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteCustomEmailTemplateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name) throws ApiException {
+    return deleteCustomEmailTemplateWithHttpInfo(projectId, name, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteCustomEmailTemplateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteCustomEmailTemplateRequestBuilder(projectId, name, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteCustomEmailTemplate", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteCustomEmailTemplateRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteCustomEmailTemplate");
+    }
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling deleteCustomEmailTemplate");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/custom-email-templates/{name}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param databaseId  (required)
    * @return ManagedDatabaseObject
    * @throws ApiException if fails to make API call
@@ -6022,6 +6271,133 @@ public class ProjectsServerApi {
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()))
         .replace("{customDomainId}", ApiClient.urlEncode(customDomainId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @return CustomEmailTemplateObject
+   * @throws ApiException if fails to make API call
+   */
+  public CustomEmailTemplateObject getCustomEmailTemplate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name) throws ApiException {
+    return getCustomEmailTemplate(projectId, name, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @param headers Optional headers to include in the request
+   * @return CustomEmailTemplateObject
+   * @throws ApiException if fails to make API call
+   */
+  public CustomEmailTemplateObject getCustomEmailTemplate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+    ApiResponse<CustomEmailTemplateObject> localVarResponse = getCustomEmailTemplateWithHttpInfo(projectId, name, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @return ApiResponse&lt;CustomEmailTemplateObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomEmailTemplateObject> getCustomEmailTemplateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name) throws ApiException {
+    return getCustomEmailTemplateWithHttpInfo(projectId, name, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CustomEmailTemplateObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomEmailTemplateObject> getCustomEmailTemplateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getCustomEmailTemplateRequestBuilder(projectId, name, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getCustomEmailTemplate", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CustomEmailTemplateObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CustomEmailTemplateObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CustomEmailTemplateObject>() {});
+        
+
+        return new ApiResponse<CustomEmailTemplateObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getCustomEmailTemplateRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getCustomEmailTemplate");
+    }
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling getCustomEmailTemplate");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/custom-email-templates/{name}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -9045,6 +9421,124 @@ public class ProjectsServerApi {
     String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/custom-domains"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return List&lt;CustomEmailTemplateObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<CustomEmailTemplateObject> listCustomEmailTemplates(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listCustomEmailTemplates(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return List&lt;CustomEmailTemplateObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<CustomEmailTemplateObject> listCustomEmailTemplates(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<List<CustomEmailTemplateObject>> localVarResponse = listCustomEmailTemplatesWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;List&lt;CustomEmailTemplateObject&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<CustomEmailTemplateObject>> listCustomEmailTemplatesWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listCustomEmailTemplatesWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;List&lt;CustomEmailTemplateObject&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<CustomEmailTemplateObject>> listCustomEmailTemplatesWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listCustomEmailTemplatesRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listCustomEmailTemplates", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<List<CustomEmailTemplateObject>>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        List<CustomEmailTemplateObject> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<CustomEmailTemplateObject>>() {});
+        
+
+        return new ApiResponse<List<CustomEmailTemplateObject>>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listCustomEmailTemplatesRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listCustomEmailTemplates");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/custom-email-templates"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -16248,6 +16742,147 @@ public class ProjectsServerApi {
    * 
    * @param userId  (required)
    * @param projectId  (required)
+   * @param sendUserEmailFromTemplateRequest  (required)
+   * @return Object
+   * @throws ApiException if fails to make API call
+   */
+  public Object sendUserEmailFromTemplate(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailFromTemplateRequest sendUserEmailFromTemplateRequest) throws ApiException {
+    return sendUserEmailFromTemplate(userId, projectId, sendUserEmailFromTemplateRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserEmailFromTemplateRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return Object
+   * @throws ApiException if fails to make API call
+   */
+  public Object sendUserEmailFromTemplate(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailFromTemplateRequest sendUserEmailFromTemplateRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<Object> localVarResponse = sendUserEmailFromTemplateWithHttpInfo(userId, projectId, sendUserEmailFromTemplateRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserEmailFromTemplateRequest  (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> sendUserEmailFromTemplateWithHttpInfo(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailFromTemplateRequest sendUserEmailFromTemplateRequest) throws ApiException {
+    return sendUserEmailFromTemplateWithHttpInfo(userId, projectId, sendUserEmailFromTemplateRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
+   * @param sendUserEmailFromTemplateRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> sendUserEmailFromTemplateWithHttpInfo(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailFromTemplateRequest sendUserEmailFromTemplateRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = sendUserEmailFromTemplateRequestBuilder(userId, projectId, sendUserEmailFromTemplateRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("sendUserEmailFromTemplate", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<Object>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        Object responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Object>() {});
+        
+
+        return new ApiResponse<Object>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder sendUserEmailFromTemplateRequestBuilder(@javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull SendUserEmailFromTemplateRequest sendUserEmailFromTemplateRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling sendUserEmailFromTemplate");
+    }
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling sendUserEmailFromTemplate");
+    }
+    // verify the required parameter 'sendUserEmailFromTemplateRequest' is set
+    if (sendUserEmailFromTemplateRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'sendUserEmailFromTemplateRequest' when calling sendUserEmailFromTemplate");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/email-from-template"
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendUserEmailFromTemplateRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param userId  (required)
+   * @param projectId  (required)
    * @param sendUserSmsRequest  (required)
    * @return Object
    * @throws ApiException if fails to make API call
@@ -17197,6 +17832,147 @@ public class ProjectsServerApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateActionRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @param updateCustomEmailTemplateRequest  (required)
+   * @return CustomEmailTemplateObject
+   * @throws ApiException if fails to make API call
+   */
+  public CustomEmailTemplateObject updateCustomEmailTemplate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, @javax.annotation.Nonnull UpdateCustomEmailTemplateRequest updateCustomEmailTemplateRequest) throws ApiException {
+    return updateCustomEmailTemplate(projectId, name, updateCustomEmailTemplateRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @param updateCustomEmailTemplateRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CustomEmailTemplateObject
+   * @throws ApiException if fails to make API call
+   */
+  public CustomEmailTemplateObject updateCustomEmailTemplate(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, @javax.annotation.Nonnull UpdateCustomEmailTemplateRequest updateCustomEmailTemplateRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CustomEmailTemplateObject> localVarResponse = updateCustomEmailTemplateWithHttpInfo(projectId, name, updateCustomEmailTemplateRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @param updateCustomEmailTemplateRequest  (required)
+   * @return ApiResponse&lt;CustomEmailTemplateObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomEmailTemplateObject> updateCustomEmailTemplateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, @javax.annotation.Nonnull UpdateCustomEmailTemplateRequest updateCustomEmailTemplateRequest) throws ApiException {
+    return updateCustomEmailTemplateWithHttpInfo(projectId, name, updateCustomEmailTemplateRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param name  (required)
+   * @param updateCustomEmailTemplateRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CustomEmailTemplateObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CustomEmailTemplateObject> updateCustomEmailTemplateWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, @javax.annotation.Nonnull UpdateCustomEmailTemplateRequest updateCustomEmailTemplateRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateCustomEmailTemplateRequestBuilder(projectId, name, updateCustomEmailTemplateRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateCustomEmailTemplate", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CustomEmailTemplateObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CustomEmailTemplateObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CustomEmailTemplateObject>() {});
+        
+
+        return new ApiResponse<CustomEmailTemplateObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateCustomEmailTemplateRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String name, @javax.annotation.Nonnull UpdateCustomEmailTemplateRequest updateCustomEmailTemplateRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling updateCustomEmailTemplate");
+    }
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling updateCustomEmailTemplate");
+    }
+    // verify the required parameter 'updateCustomEmailTemplateRequest' is set
+    if (updateCustomEmailTemplateRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateCustomEmailTemplateRequest' when calling updateCustomEmailTemplate");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/custom-email-templates/{name}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateCustomEmailTemplateRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }
