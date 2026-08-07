@@ -131,10 +131,13 @@ from forte_sdk.generated.models.password_config import PasswordConfig
 from forte_sdk.generated.models.password_login_request import PasswordLoginRequest
 from forte_sdk.generated.models.payment_address import PaymentAddress
 from forte_sdk.generated.models.payment_analytics_response import PaymentAnalyticsResponse
+from forte_sdk.generated.models.payment_filter import PaymentFilter
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem
 from forte_sdk.generated.models.payment_method_object import PaymentMethodObject
 from forte_sdk.generated.models.payment_method_type import PaymentMethodType
 from forte_sdk.generated.models.payment_object import PaymentObject
+from forte_sdk.generated.models.payment_search_request import PaymentSearchRequest
+from forte_sdk.generated.models.payment_sort import PaymentSort
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig
 from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject
 from forte_sdk.generated.models.product_aggregate import ProductAggregate

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.345"
+__version__ = "1.0.346"
 
 # Define package exports
 __all__ = [
@@ -147,10 +147,13 @@ __all__ = [
     "PasswordLoginRequest",
     "PaymentAddress",
     "PaymentAnalyticsResponse",
+    "PaymentFilter",
     "PaymentLineItem",
     "PaymentMethodObject",
     "PaymentMethodType",
     "PaymentObject",
+    "PaymentSearchRequest",
+    "PaymentSort",
     "PaymentTriggerConfig",
     "PendingUserInviteObject",
     "ProductAggregate",
@@ -363,10 +366,13 @@ from forte_sdk.generated.models.password_config import PasswordConfig as Passwor
 from forte_sdk.generated.models.password_login_request import PasswordLoginRequest as PasswordLoginRequest
 from forte_sdk.generated.models.payment_address import PaymentAddress as PaymentAddress
 from forte_sdk.generated.models.payment_analytics_response import PaymentAnalyticsResponse as PaymentAnalyticsResponse
+from forte_sdk.generated.models.payment_filter import PaymentFilter as PaymentFilter
 from forte_sdk.generated.models.payment_line_item import PaymentLineItem as PaymentLineItem
 from forte_sdk.generated.models.payment_method_object import PaymentMethodObject as PaymentMethodObject
 from forte_sdk.generated.models.payment_method_type import PaymentMethodType as PaymentMethodType
 from forte_sdk.generated.models.payment_object import PaymentObject as PaymentObject
+from forte_sdk.generated.models.payment_search_request import PaymentSearchRequest as PaymentSearchRequest
+from forte_sdk.generated.models.payment_sort import PaymentSort as PaymentSort
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig as PaymentTriggerConfig
 from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject as PendingUserInviteObject
 from forte_sdk.generated.models.product_aggregate import ProductAggregate as ProductAggregate

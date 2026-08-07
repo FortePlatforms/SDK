@@ -80,6 +80,7 @@ import com.forteplatforms.sdk.generated.model.PaginatedResponseWebAppBuildReques
 import com.forteplatforms.sdk.generated.model.PaymentAnalyticsResponse;
 import com.forteplatforms.sdk.generated.model.PaymentMethodObject;
 import com.forteplatforms.sdk.generated.model.PaymentObject;
+import com.forteplatforms.sdk.generated.model.PaymentSearchRequest;
 import com.forteplatforms.sdk.generated.model.PaymentTriggerConfig;
 import com.forteplatforms.sdk.generated.model.ProjectObject;
 import com.forteplatforms.sdk.generated.model.PutSubscriptionItemsRequest;
@@ -6789,6 +6790,133 @@ public class ProjectsServerApi {
 
     String localVarPath = "/api/v1/projects/{projectId}/notification-templates"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentId  (required)
+   * @return PaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentObject getPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId) throws ApiException {
+    return getPayment(projectId, paymentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return PaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentObject getPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentObject> localVarResponse = getPaymentWithHttpInfo(projectId, paymentId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentId  (required)
+   * @return ApiResponse&lt;PaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentObject> getPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId) throws ApiException {
+    return getPaymentWithHttpInfo(projectId, paymentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentObject> getPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPaymentRequestBuilder(projectId, paymentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getPayment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaymentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaymentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaymentObject>() {});
+        
+
+        return new ApiResponse<PaymentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getPaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getPayment");
+    }
+    // verify the required parameter 'paymentId' is set
+    if (paymentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'paymentId' when calling getPayment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/payments/{paymentId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{paymentId}", ApiClient.urlEncode(paymentId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -16138,6 +16266,138 @@ public class ProjectsServerApi {
     localVarRequestBuilder.header("Accept", "*/*");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentSearchRequest  (required)
+   * @return PaginatedResponsePaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponsePaymentObject searchPayments(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PaymentSearchRequest paymentSearchRequest) throws ApiException {
+    return searchPayments(projectId, paymentSearchRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentSearchRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponsePaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponsePaymentObject searchPayments(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PaymentSearchRequest paymentSearchRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponsePaymentObject> localVarResponse = searchPaymentsWithHttpInfo(projectId, paymentSearchRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentSearchRequest  (required)
+   * @return ApiResponse&lt;PaginatedResponsePaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponsePaymentObject> searchPaymentsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PaymentSearchRequest paymentSearchRequest) throws ApiException {
+    return searchPaymentsWithHttpInfo(projectId, paymentSearchRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentSearchRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponsePaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponsePaymentObject> searchPaymentsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PaymentSearchRequest paymentSearchRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchPaymentsRequestBuilder(projectId, paymentSearchRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchPayments", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponsePaymentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponsePaymentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponsePaymentObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponsePaymentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchPaymentsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull PaymentSearchRequest paymentSearchRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling searchPayments");
+    }
+    // verify the required parameter 'paymentSearchRequest' is set
+    if (paymentSearchRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'paymentSearchRequest' when calling searchPayments");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/payments/search"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(paymentSearchRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

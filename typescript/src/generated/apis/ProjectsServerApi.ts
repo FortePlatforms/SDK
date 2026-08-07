@@ -319,6 +319,11 @@ import {
     PaymentObjectToJSON,
 } from '../models/PaymentObject';
 import {
+    type PaymentSearchRequest,
+    PaymentSearchRequestFromJSON,
+    PaymentSearchRequestToJSON,
+} from '../models/PaymentSearchRequest';
+import {
     type PaymentTriggerConfig,
     PaymentTriggerConfigFromJSON,
     PaymentTriggerConfigToJSON,
@@ -802,6 +807,11 @@ export interface GetNotificationTemplatesRequest {
     projectId: string;
 }
 
+export interface GetPaymentRequest {
+    projectId: string;
+    paymentId: string;
+}
+
 export interface GetPaymentAnalyticsRequest {
     projectId: string;
     minTime?: Date;
@@ -1229,6 +1239,11 @@ export interface SearchLogLinesRequest {
     requestId?: string;
     level?: string;
     nextToken?: string;
+}
+
+export interface SearchPaymentsRequest {
+    projectId: string;
+    paymentSearchRequest: PaymentSearchRequest;
 }
 
 export interface SearchRequestInvocationLogsRequest {
@@ -4127,6 +4142,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getNotificationTemplates(requestParameters: GetNotificationTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotificationTemplatesResponse> {
         const response = await this.getNotificationTemplatesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getPayment without sending the request
+     */
+    async getPaymentRequestOpts(requestParameters: GetPaymentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getPayment().'
+            );
+        }
+
+        if (requestParameters['paymentId'] == null) {
+            throw new runtime.RequiredError(
+                'paymentId',
+                'Required parameter "paymentId" was null or undefined when calling getPayment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payments/{paymentId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{paymentId}', encodeURIComponent(String(requestParameters['paymentId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getPaymentRaw(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentObject>> {
+        const requestOptions = await this.getPaymentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getPayment(requestParameters: GetPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentObject> {
+        const response = await this.getPaymentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8006,6 +8072,59 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async searchLogLines(requestParameters: SearchLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
         const response = await this.searchLogLinesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for searchPayments without sending the request
+     */
+    async searchPaymentsRequestOpts(requestParameters: SearchPaymentsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling searchPayments().'
+            );
+        }
+
+        if (requestParameters['paymentSearchRequest'] == null) {
+            throw new runtime.RequiredError(
+                'paymentSearchRequest',
+                'Required parameter "paymentSearchRequest" was null or undefined when calling searchPayments().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payments/search`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PaymentSearchRequestToJSON(requestParameters['paymentSearchRequest']),
+        };
+    }
+
+    /**
+     */
+    async searchPaymentsRaw(requestParameters: SearchPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponsePaymentObject>> {
+        const requestOptions = await this.searchPaymentsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponsePaymentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async searchPayments(requestParameters: SearchPaymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponsePaymentObject> {
+        const response = await this.searchPaymentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
