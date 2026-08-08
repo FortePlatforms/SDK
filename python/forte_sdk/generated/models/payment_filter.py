@@ -36,7 +36,10 @@ class PaymentFilter(BaseModel):
     user_id: Optional[StrictStr] = Field(default=None, alias="userId")
     ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = None
     not_ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="notIds")
-    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "states", "notStates", "userId", "ids", "notIds"]
+    product_group_by: Optional[StrictStr] = Field(default=None, alias="productGroupBy")
+    product_key: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=512)]] = Field(default=None, alias="productKey")
+    product_metadata_key: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=256)]] = Field(default=None, alias="productMetadataKey")
+    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "states", "notStates", "userId", "ids", "notIds", "productGroupBy", "productKey", "productMetadataKey"]
 
     @field_validator('states')
     def states_validate_enum(cls, value):
@@ -58,6 +61,16 @@ class PaymentFilter(BaseModel):
         for i in value:
             if i not in set(['DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'PARTIALLY_REFUNDED', 'REFUNDED']):
                 raise ValueError("each list item must be one of ('DRAFT', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'FAILED', 'PARTIALLY_REFUNDED', 'REFUNDED')")
+        return value
+
+    @field_validator('product_group_by')
+    def product_group_by_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['LINE_ITEM_DESCRIPTION', 'PAYMENT_DESCRIPTION', 'METADATA']):
+            raise ValueError("must be one of enum values ('LINE_ITEM_DESCRIPTION', 'PAYMENT_DESCRIPTION', 'METADATA')")
         return value
 
     model_config = ConfigDict(
@@ -117,7 +130,10 @@ class PaymentFilter(BaseModel):
             "notStates": obj.get("notStates"),
             "userId": obj.get("userId"),
             "ids": obj.get("ids"),
-            "notIds": obj.get("notIds")
+            "notIds": obj.get("notIds"),
+            "productGroupBy": obj.get("productGroupBy"),
+            "productKey": obj.get("productKey"),
+            "productMetadataKey": obj.get("productMetadataKey")
         })
         return _obj
 

@@ -61,6 +61,24 @@ export interface PaymentFilter {
      * @memberof PaymentFilter
      */
     notIds?: Array<string>;
+    /**
+     * 
+     * @type {PaymentFilterProductGroupByType}
+     * @memberof PaymentFilter
+     */
+    productGroupBy?: PaymentFilterProductGroupByType;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentFilter
+     */
+    productKey?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentFilter
+     */
+    productMetadataKey?: string;
 }
 
 
@@ -92,6 +110,16 @@ export const PaymentFilterNotStatesType = {
 } as const;
 export type PaymentFilterNotStatesType = typeof PaymentFilterNotStatesType[keyof typeof PaymentFilterNotStatesType];
 
+/**
+ * @export
+ */
+export const PaymentFilterProductGroupByType = {
+    LINE_ITEM_DESCRIPTION: 'LINE_ITEM_DESCRIPTION',
+    PAYMENT_DESCRIPTION: 'PAYMENT_DESCRIPTION',
+    METADATA: 'METADATA'
+} as const;
+export type PaymentFilterProductGroupByType = typeof PaymentFilterProductGroupByType[keyof typeof PaymentFilterProductGroupByType];
+
 
 /**
  * Check if a given object implements the PaymentFilter interface.
@@ -117,6 +145,9 @@ export function PaymentFilterFromJSONTyped(json: any, ignoreDiscriminator: boole
         'userId': json['userId'] == null ? undefined : json['userId'],
         'ids': json['ids'] == null ? undefined : json['ids'],
         'notIds': json['notIds'] == null ? undefined : json['notIds'],
+        'productGroupBy': json['productGroupBy'] == null ? undefined : json['productGroupBy'],
+        'productKey': json['productKey'] == null ? undefined : json['productKey'],
+        'productMetadataKey': json['productMetadataKey'] == null ? undefined : json['productMetadataKey'],
     };
 }
 
@@ -138,6 +169,9 @@ export function PaymentFilterToJSONTyped(value?: PaymentFilter | null, ignoreDis
         'userId': value['userId'],
         'ids': value['ids'],
         'notIds': value['notIds'],
+        'productGroupBy': value['productGroupBy'],
+        'productKey': value['productKey'],
+        'productMetadataKey': value['productMetadataKey'],
     };
 }
 

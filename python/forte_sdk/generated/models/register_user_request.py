@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,7 +33,8 @@ class RegisterUserRequest(BaseModel):
     custom_metadata_attributes: Optional[Dict[str, Any]] = Field(default=None, alias="customMetadataAttributes")
     recaptcha_token: Optional[StrictStr] = Field(default=None, alias="recaptchaToken")
     password: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["fullName", "email", "phoneNumber", "customMetadataAttributes", "recaptchaToken", "password"]
+    send_welcome_message: Optional[StrictBool] = Field(default=None, alias="sendWelcomeMessage")
+    __properties: ClassVar[List[str]] = ["fullName", "email", "phoneNumber", "customMetadataAttributes", "recaptchaToken", "password", "sendWelcomeMessage"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -91,7 +92,8 @@ class RegisterUserRequest(BaseModel):
             "phoneNumber": obj.get("phoneNumber"),
             "customMetadataAttributes": obj.get("customMetadataAttributes"),
             "recaptchaToken": obj.get("recaptchaToken"),
-            "password": obj.get("password")
+            "password": obj.get("password"),
+            "sendWelcomeMessage": obj.get("sendWelcomeMessage")
         })
         return _obj
 

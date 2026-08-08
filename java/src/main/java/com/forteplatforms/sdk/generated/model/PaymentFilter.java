@@ -42,7 +42,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentFilter.JSON_PROPERTY_NOT_STATES,
   PaymentFilter.JSON_PROPERTY_USER_ID,
   PaymentFilter.JSON_PROPERTY_IDS,
-  PaymentFilter.JSON_PROPERTY_NOT_IDS
+  PaymentFilter.JSON_PROPERTY_NOT_IDS,
+  PaymentFilter.JSON_PROPERTY_PRODUCT_GROUP_BY,
+  PaymentFilter.JSON_PROPERTY_PRODUCT_KEY,
+  PaymentFilter.JSON_PROPERTY_PRODUCT_METADATA_KEY
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class PaymentFilter {
@@ -163,6 +166,55 @@ public class PaymentFilter {
   public static final String JSON_PROPERTY_NOT_IDS = "notIds";
   @javax.annotation.Nullable
   private List<String> notIds = new ArrayList<>();
+
+  /**
+   * Gets or Sets productGroupBy
+   */
+  public enum ProductGroupByEnum {
+    LINE_ITEM_DESCRIPTION(String.valueOf("LINE_ITEM_DESCRIPTION")),
+    
+    PAYMENT_DESCRIPTION(String.valueOf("PAYMENT_DESCRIPTION")),
+    
+    METADATA(String.valueOf("METADATA"));
+
+    private String value;
+
+    ProductGroupByEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ProductGroupByEnum fromValue(String value) {
+      for (ProductGroupByEnum b : ProductGroupByEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PRODUCT_GROUP_BY = "productGroupBy";
+  @javax.annotation.Nullable
+  private ProductGroupByEnum productGroupBy;
+
+  public static final String JSON_PROPERTY_PRODUCT_KEY = "productKey";
+  @javax.annotation.Nullable
+  private String productKey;
+
+  public static final String JSON_PROPERTY_PRODUCT_METADATA_KEY = "productMetadataKey";
+  @javax.annotation.Nullable
+  private String productMetadataKey;
 
   public PaymentFilter() { 
   }
@@ -367,6 +419,78 @@ public class PaymentFilter {
   }
 
 
+  public PaymentFilter productGroupBy(@javax.annotation.Nullable ProductGroupByEnum productGroupBy) {
+    this.productGroupBy = productGroupBy;
+    return this;
+  }
+
+  /**
+   * Get productGroupBy
+   * @return productGroupBy
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRODUCT_GROUP_BY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ProductGroupByEnum getProductGroupBy() {
+    return productGroupBy;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRODUCT_GROUP_BY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProductGroupBy(@javax.annotation.Nullable ProductGroupByEnum productGroupBy) {
+    this.productGroupBy = productGroupBy;
+  }
+
+
+  public PaymentFilter productKey(@javax.annotation.Nullable String productKey) {
+    this.productKey = productKey;
+    return this;
+  }
+
+  /**
+   * Get productKey
+   * @return productKey
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRODUCT_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getProductKey() {
+    return productKey;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRODUCT_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProductKey(@javax.annotation.Nullable String productKey) {
+    this.productKey = productKey;
+  }
+
+
+  public PaymentFilter productMetadataKey(@javax.annotation.Nullable String productMetadataKey) {
+    this.productMetadataKey = productMetadataKey;
+    return this;
+  }
+
+  /**
+   * Get productMetadataKey
+   * @return productMetadataKey
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRODUCT_METADATA_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getProductMetadataKey() {
+    return productMetadataKey;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRODUCT_METADATA_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProductMetadataKey(@javax.annotation.Nullable String productMetadataKey) {
+    this.productMetadataKey = productMetadataKey;
+  }
+
+
   /**
    * Return true if this PaymentFilter object is equal to o.
    */
@@ -385,12 +509,15 @@ public class PaymentFilter {
         Objects.equals(this.notStates, paymentFilter.notStates) &&
         Objects.equals(this.userId, paymentFilter.userId) &&
         Objects.equals(this.ids, paymentFilter.ids) &&
-        Objects.equals(this.notIds, paymentFilter.notIds);
+        Objects.equals(this.notIds, paymentFilter.notIds) &&
+        Objects.equals(this.productGroupBy, paymentFilter.productGroupBy) &&
+        Objects.equals(this.productKey, paymentFilter.productKey) &&
+        Objects.equals(this.productMetadataKey, paymentFilter.productMetadataKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(minTime, maxTime, states, notStates, userId, ids, notIds);
+    return Objects.hash(minTime, maxTime, states, notStates, userId, ids, notIds, productGroupBy, productKey, productMetadataKey);
   }
 
   @Override
@@ -404,6 +531,9 @@ public class PaymentFilter {
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    ids: ").append(toIndentedString(ids)).append("\n");
     sb.append("    notIds: ").append(toIndentedString(notIds)).append("\n");
+    sb.append("    productGroupBy: ").append(toIndentedString(productGroupBy)).append("\n");
+    sb.append("    productKey: ").append(toIndentedString(productKey)).append("\n");
+    sb.append("    productMetadataKey: ").append(toIndentedString(productMetadataKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -497,6 +627,21 @@ public class PaymentFilter {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getNotIds().get(i)))));
       }
+    }
+
+    // add `productGroupBy` to the URL query string
+    if (getProductGroupBy() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproductGroupBy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProductGroupBy()))));
+    }
+
+    // add `productKey` to the URL query string
+    if (getProductKey() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproductKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProductKey()))));
+    }
+
+    // add `productMetadataKey` to the URL query string
+    if (getProductMetadataKey() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproductMetadataKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProductMetadataKey()))));
     }
 
     return joiner.toString();

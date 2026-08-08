@@ -55,6 +55,12 @@ export interface RegisterUserRequest {
      * @memberof RegisterUserRequest
      */
     password?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RegisterUserRequest
+     */
+    sendWelcomeMessage?: boolean;
 }
 
 /**
@@ -80,6 +86,7 @@ export function RegisterUserRequestFromJSONTyped(json: any, ignoreDiscriminator:
         'customMetadataAttributes': json['customMetadataAttributes'] == null ? undefined : json['customMetadataAttributes'],
         'recaptchaToken': json['recaptchaToken'] == null ? undefined : json['recaptchaToken'],
         'password': json['password'] == null ? undefined : json['password'],
+        'sendWelcomeMessage': json['sendWelcomeMessage'] == null ? undefined : json['sendWelcomeMessage'],
     };
 }
 
@@ -100,6 +107,7 @@ export function RegisterUserRequestToJSONTyped(value?: RegisterUserRequest | nul
         'customMetadataAttributes': value['customMetadataAttributes'],
         'recaptchaToken': value['recaptchaToken'],
         'password': value['password'],
+        'sendWelcomeMessage': value['sendWelcomeMessage'],
     };
 }
 

@@ -40,7 +40,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RegisterUserRequest.JSON_PROPERTY_PHONE_NUMBER,
   RegisterUserRequest.JSON_PROPERTY_CUSTOM_METADATA_ATTRIBUTES,
   RegisterUserRequest.JSON_PROPERTY_RECAPTCHA_TOKEN,
-  RegisterUserRequest.JSON_PROPERTY_PASSWORD
+  RegisterUserRequest.JSON_PROPERTY_PASSWORD,
+  RegisterUserRequest.JSON_PROPERTY_SEND_WELCOME_MESSAGE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RegisterUserRequest {
@@ -67,6 +68,10 @@ public class RegisterUserRequest {
   public static final String JSON_PROPERTY_PASSWORD = "password";
   @javax.annotation.Nullable
   private String password;
+
+  public static final String JSON_PROPERTY_SEND_WELCOME_MESSAGE = "sendWelcomeMessage";
+  @javax.annotation.Nullable
+  private Boolean sendWelcomeMessage;
 
   public RegisterUserRequest() { 
   }
@@ -223,6 +228,30 @@ public class RegisterUserRequest {
   }
 
 
+  public RegisterUserRequest sendWelcomeMessage(@javax.annotation.Nullable Boolean sendWelcomeMessage) {
+    this.sendWelcomeMessage = sendWelcomeMessage;
+    return this;
+  }
+
+  /**
+   * Get sendWelcomeMessage
+   * @return sendWelcomeMessage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SEND_WELCOME_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getSendWelcomeMessage() {
+    return sendWelcomeMessage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SEND_WELCOME_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSendWelcomeMessage(@javax.annotation.Nullable Boolean sendWelcomeMessage) {
+    this.sendWelcomeMessage = sendWelcomeMessage;
+  }
+
+
   /**
    * Return true if this RegisterUserRequest object is equal to o.
    */
@@ -240,12 +269,13 @@ public class RegisterUserRequest {
         Objects.equals(this.phoneNumber, registerUserRequest.phoneNumber) &&
         Objects.equals(this.customMetadataAttributes, registerUserRequest.customMetadataAttributes) &&
         Objects.equals(this.recaptchaToken, registerUserRequest.recaptchaToken) &&
-        Objects.equals(this.password, registerUserRequest.password);
+        Objects.equals(this.password, registerUserRequest.password) &&
+        Objects.equals(this.sendWelcomeMessage, registerUserRequest.sendWelcomeMessage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fullName, email, phoneNumber, customMetadataAttributes, recaptchaToken, password);
+    return Objects.hash(fullName, email, phoneNumber, customMetadataAttributes, recaptchaToken, password, sendWelcomeMessage);
   }
 
   @Override
@@ -258,6 +288,7 @@ public class RegisterUserRequest {
     sb.append("    customMetadataAttributes: ").append(toIndentedString(customMetadataAttributes)).append("\n");
     sb.append("    recaptchaToken: ").append(toIndentedString(recaptchaToken)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    sendWelcomeMessage: ").append(toIndentedString(sendWelcomeMessage)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -334,6 +365,11 @@ public class RegisterUserRequest {
     // add `password` to the URL query string
     if (getPassword() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
+    }
+
+    // add `sendWelcomeMessage` to the URL query string
+    if (getSendWelcomeMessage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssendWelcomeMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSendWelcomeMessage()))));
     }
 
     return joiner.toString();
