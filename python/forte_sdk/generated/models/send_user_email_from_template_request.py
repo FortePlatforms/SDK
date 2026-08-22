@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -29,7 +29,7 @@ class SendUserEmailFromTemplateRequest(BaseModel):
     SendUserEmailFromTemplateRequest
     """ # noqa: E501
     template_name: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="templateName")
-    template_params: Optional[Dict[str, StrictStr]] = Field(default=None, alias="templateParams")
+    template_params: Optional[Dict[str, Any]] = Field(default=None, alias="templateParams")
     __properties: ClassVar[List[str]] = ["templateName", "templateParams"]
 
     @field_validator('template_name')

@@ -27,10 +27,10 @@ export interface SendUserEmailFromTemplateRequest {
     templateName: string;
     /**
      * 
-     * @type {{ [key: string]: string; }}
+     * @type {{ [key: string]: any; }}
      * @memberof SendUserEmailFromTemplateRequest
      */
-    templateParams?: { [key: string]: string; };
+    templateParams?: { [key: string]: any; };
 }
 
 /**

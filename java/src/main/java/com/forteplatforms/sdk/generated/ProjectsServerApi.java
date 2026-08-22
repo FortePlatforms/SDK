@@ -95,6 +95,7 @@ import com.forteplatforms.sdk.generated.model.ServiceBuildRequestObject;
 import com.forteplatforms.sdk.generated.model.ServiceMetricsResponse;
 import com.forteplatforms.sdk.generated.model.ServiceObject;
 import com.forteplatforms.sdk.generated.model.ServiceRouteMetricsResponse;
+import java.util.Set;
 import com.forteplatforms.sdk.generated.model.SubscriptionObject;
 import com.forteplatforms.sdk.generated.model.SuggestDatabaseEnvVarsResponse;
 import com.forteplatforms.sdk.generated.model.SyncCustomDomainResponse;
@@ -7907,11 +7908,12 @@ public class ProjectsServerApi {
    * @param minTime  (optional)
    * @param maxTime  (optional)
    * @param granularity  (optional, default to FIVE_MINUTES)
+   * @param dimensions  (optional)
    * @return ServiceMetricsResponse
    * @throws ApiException if fails to make API call
    */
-  public ServiceMetricsResponse getServiceMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity) throws ApiException {
-    return getServiceMetrics(projectId, serviceId, minTime, maxTime, granularity, null);
+  public ServiceMetricsResponse getServiceMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable Set<String> dimensions) throws ApiException {
+    return getServiceMetrics(projectId, serviceId, minTime, maxTime, granularity, dimensions, null);
   }
 
   /**
@@ -7922,12 +7924,13 @@ public class ProjectsServerApi {
    * @param minTime  (optional)
    * @param maxTime  (optional)
    * @param granularity  (optional, default to FIVE_MINUTES)
+   * @param dimensions  (optional)
    * @param headers Optional headers to include in the request
    * @return ServiceMetricsResponse
    * @throws ApiException if fails to make API call
    */
-  public ServiceMetricsResponse getServiceMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
-    ApiResponse<ServiceMetricsResponse> localVarResponse = getServiceMetricsWithHttpInfo(projectId, serviceId, minTime, maxTime, granularity, headers);
+  public ServiceMetricsResponse getServiceMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable Set<String> dimensions, Map<String, String> headers) throws ApiException {
+    ApiResponse<ServiceMetricsResponse> localVarResponse = getServiceMetricsWithHttpInfo(projectId, serviceId, minTime, maxTime, granularity, dimensions, headers);
     return localVarResponse.getData();
   }
 
@@ -7939,11 +7942,12 @@ public class ProjectsServerApi {
    * @param minTime  (optional)
    * @param maxTime  (optional)
    * @param granularity  (optional, default to FIVE_MINUTES)
+   * @param dimensions  (optional)
    * @return ApiResponse&lt;ServiceMetricsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ServiceMetricsResponse> getServiceMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity) throws ApiException {
-    return getServiceMetricsWithHttpInfo(projectId, serviceId, minTime, maxTime, granularity, null);
+  public ApiResponse<ServiceMetricsResponse> getServiceMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable Set<String> dimensions) throws ApiException {
+    return getServiceMetricsWithHttpInfo(projectId, serviceId, minTime, maxTime, granularity, dimensions, null);
   }
 
   /**
@@ -7954,12 +7958,13 @@ public class ProjectsServerApi {
    * @param minTime  (optional)
    * @param maxTime  (optional)
    * @param granularity  (optional, default to FIVE_MINUTES)
+   * @param dimensions  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ServiceMetricsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ServiceMetricsResponse> getServiceMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getServiceMetricsRequestBuilder(projectId, serviceId, minTime, maxTime, granularity, headers);
+  public ApiResponse<ServiceMetricsResponse> getServiceMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable Set<String> dimensions, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getServiceMetricsRequestBuilder(projectId, serviceId, minTime, maxTime, granularity, dimensions, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -8006,7 +8011,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder getServiceMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getServiceMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable Set<String> dimensions, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling getServiceMetrics");
@@ -8031,6 +8036,8 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
     localVarQueryParameterBaseName = "granularity";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
+    localVarQueryParameterBaseName = "dimensions";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("multi", "dimensions", dimensions));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

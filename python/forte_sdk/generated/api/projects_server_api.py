@@ -16657,6 +16657,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         granularity: Optional[StrictStr] = None,
+        dimensions: Optional[List[StrictStr]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16683,6 +16684,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param granularity:
         :type granularity: str
+        :param dimensions:
+        :type dimensions: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16711,6 +16714,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             granularity=granularity,
+            dimensions=dimensions,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -16739,6 +16743,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         granularity: Optional[StrictStr] = None,
+        dimensions: Optional[List[StrictStr]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16765,6 +16770,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param granularity:
         :type granularity: str
+        :param dimensions:
+        :type dimensions: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16793,6 +16800,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             granularity=granularity,
+            dimensions=dimensions,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -16821,6 +16829,7 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         granularity: Optional[StrictStr] = None,
+        dimensions: Optional[List[StrictStr]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16847,6 +16856,8 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param granularity:
         :type granularity: str
+        :param dimensions:
+        :type dimensions: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -16875,6 +16886,7 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             granularity=granularity,
+            dimensions=dimensions,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -16898,6 +16910,7 @@ class ProjectsServerApi:
         min_time,
         max_time,
         granularity,
+        dimensions,
         _request_auth,
         _content_type,
         _headers,
@@ -16907,6 +16920,7 @@ class ProjectsServerApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'dimensions': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -16953,6 +16967,10 @@ class ProjectsServerApi:
         if granularity is not None:
             
             _query_params.append(('granularity', granularity))
+            
+        if dimensions is not None:
+            
+            _query_params.append(('dimensions', dimensions))
             
         # process the header parameters
         # process the form parameters

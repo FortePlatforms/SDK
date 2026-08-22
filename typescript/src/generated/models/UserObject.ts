@@ -138,16 +138,16 @@ export interface UserObject {
     backupCodesGeneratedAt?: Date;
     /**
      * 
-     * @type {number}
-     * @memberof UserObject
-     */
-    remainingBackupCodeCount?: number;
-    /**
-     * 
      * @type {boolean}
      * @memberof UserObject
      */
     hasPassword?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserObject
+     */
+    remainingBackupCodeCount?: number;
 }
 
 
@@ -202,8 +202,8 @@ export function UserObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'passwordResetLastRequestedAt': json['passwordResetLastRequestedAt'] == null ? undefined : (new Date(json['passwordResetLastRequestedAt'])),
         'mfaMethods': json['mfaMethods'] == null ? undefined : ((json['mfaMethods'] as Array<any>).map(MfaMethodFromJSON)),
         'backupCodesGeneratedAt': json['backupCodesGeneratedAt'] == null ? undefined : (new Date(json['backupCodesGeneratedAt'])),
-        'remainingBackupCodeCount': json['remainingBackupCodeCount'] == null ? undefined : json['remainingBackupCodeCount'],
         'hasPassword': json['hasPassword'] == null ? undefined : json['hasPassword'],
+        'remainingBackupCodeCount': json['remainingBackupCodeCount'] == null ? undefined : json['remainingBackupCodeCount'],
     };
 }
 
@@ -235,8 +235,8 @@ export function UserObjectToJSONTyped(value?: UserObject | null, ignoreDiscrimin
         'passwordResetLastRequestedAt': value['passwordResetLastRequestedAt'] == null ? value['passwordResetLastRequestedAt'] : value['passwordResetLastRequestedAt'].toISOString(),
         'mfaMethods': value['mfaMethods'] == null ? undefined : ((value['mfaMethods'] as Array<any>).map(MfaMethodToJSON)),
         'backupCodesGeneratedAt': value['backupCodesGeneratedAt'] == null ? value['backupCodesGeneratedAt'] : value['backupCodesGeneratedAt'].toISOString(),
-        'remainingBackupCodeCount': value['remainingBackupCodeCount'],
         'hasPassword': value['hasPassword'],
+        'remainingBackupCodeCount': value['remainingBackupCodeCount'],
     };
 }
 

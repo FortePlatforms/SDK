@@ -862,6 +862,7 @@ export interface GetServiceMetricsRequest {
     minTime?: Date;
     maxTime?: Date;
     granularity?: GetServiceMetricsGranularityType;
+    dimensions?: Set<GetServiceMetricsDimensionsType>;
 }
 
 export interface GetServiceRouteMetricsRequest {
@@ -4631,6 +4632,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['granularity'] != null) {
             queryParameters['granularity'] = requestParameters['granularity'];
+        }
+
+        if (requestParameters['dimensions'] != null) {
+            queryParameters['dimensions'] = requestParameters['dimensions'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -9449,6 +9454,16 @@ export const GetServiceMetricsGranularityType = {
     ONE_HOUR: 'ONE_HOUR'
 } as const;
 export type GetServiceMetricsGranularityType = typeof GetServiceMetricsGranularityType[keyof typeof GetServiceMetricsGranularityType];
+/**
+ * @export
+ */
+export const GetServiceMetricsDimensionsType = {
+    INVOCATIONS: 'INVOCATIONS',
+    STATUS_CODES: 'STATUS_CODES',
+    LATENCY: 'LATENCY',
+    COMPUTE: 'COMPUTE'
+} as const;
+export type GetServiceMetricsDimensionsType = typeof GetServiceMetricsDimensionsType[keyof typeof GetServiceMetricsDimensionsType];
 /**
  * @export
  */

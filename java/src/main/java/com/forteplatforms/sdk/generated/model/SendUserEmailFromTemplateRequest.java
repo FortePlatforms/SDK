@@ -46,7 +46,7 @@ public class SendUserEmailFromTemplateRequest {
 
   public static final String JSON_PROPERTY_TEMPLATE_PARAMS = "templateParams";
   @javax.annotation.Nullable
-  private Map<String, String> templateParams = new HashMap<>();
+  private Map<String, Object> templateParams = new HashMap<>();
 
   public SendUserEmailFromTemplateRequest() { 
   }
@@ -75,12 +75,12 @@ public class SendUserEmailFromTemplateRequest {
   }
 
 
-  public SendUserEmailFromTemplateRequest templateParams(@javax.annotation.Nullable Map<String, String> templateParams) {
+  public SendUserEmailFromTemplateRequest templateParams(@javax.annotation.Nullable Map<String, Object> templateParams) {
     this.templateParams = templateParams;
     return this;
   }
 
-  public SendUserEmailFromTemplateRequest putTemplateParamsItem(String key, String templateParamsItem) {
+  public SendUserEmailFromTemplateRequest putTemplateParamsItem(String key, Object templateParamsItem) {
     if (this.templateParams == null) {
       this.templateParams = new HashMap<>();
     }
@@ -94,15 +94,15 @@ public class SendUserEmailFromTemplateRequest {
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_TEMPLATE_PARAMS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getTemplateParams() {
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getTemplateParams() {
     return templateParams;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_TEMPLATE_PARAMS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTemplateParams(@javax.annotation.Nullable Map<String, String> templateParams) {
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemplateParams(@javax.annotation.Nullable Map<String, Object> templateParams) {
     this.templateParams = templateParams;
   }
 
