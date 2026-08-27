@@ -41,8 +41,8 @@ class DnsRecordRequirement(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['A', 'AAAA', 'ALIAS', 'CNAME', 'MX', 'TXT']):
-            raise ValueError("must be one of enum values ('A', 'AAAA', 'ALIAS', 'CNAME', 'MX', 'TXT')")
+        if value not in set(['A', 'AAAA', 'ALIAS', 'CNAME', 'MX', 'TXT', 'NS', 'CAA', 'SRV']):
+            raise ValueError("must be one of enum values ('A', 'AAAA', 'ALIAS', 'CNAME', 'MX', 'TXT', 'NS', 'CAA', 'SRV')")
         return value
 
     @field_validator('purpose')

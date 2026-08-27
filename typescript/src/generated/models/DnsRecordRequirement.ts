@@ -67,7 +67,10 @@ export const DnsRecordRequirementTypeType = {
     ALIAS: 'ALIAS',
     CNAME: 'CNAME',
     MX: 'MX',
-    TXT: 'TXT'
+    TXT: 'TXT',
+    NS: 'NS',
+    CAA: 'CAA',
+    SRV: 'SRV'
 } as const;
 export type DnsRecordRequirementTypeType = typeof DnsRecordRequirementTypeType[keyof typeof DnsRecordRequirementTypeType];
 

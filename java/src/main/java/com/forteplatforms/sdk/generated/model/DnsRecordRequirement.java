@@ -56,7 +56,13 @@ public class DnsRecordRequirement {
     
     MX(String.valueOf("MX")),
     
-    TXT(String.valueOf("TXT"));
+    TXT(String.valueOf("TXT")),
+    
+    NS(String.valueOf("NS")),
+    
+    CAA(String.valueOf("CAA")),
+    
+    SRV(String.valueOf("SRV"));
 
     private String value;
 
