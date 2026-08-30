@@ -264,6 +264,11 @@ import {
     NotificationTemplatesResponseToJSON,
 } from '../models/NotificationTemplatesResponse';
 import {
+    type PaginatedResponseAccountActionLogObject,
+    PaginatedResponseAccountActionLogObjectFromJSON,
+    PaginatedResponseAccountActionLogObjectToJSON,
+} from '../models/PaginatedResponseAccountActionLogObject';
+import {
     type PaginatedResponseActionInvocationObject,
     PaginatedResponseActionInvocationObjectFromJSON,
     PaginatedResponseActionInvocationObjectToJSON,
@@ -348,6 +353,21 @@ import {
     RequestLogSearchRequestFromJSON,
     RequestLogSearchRequestToJSON,
 } from '../models/RequestLogSearchRequest';
+import {
+    type RevertManagedDatabaseChangeResponse,
+    RevertManagedDatabaseChangeResponseFromJSON,
+    RevertManagedDatabaseChangeResponseToJSON,
+} from '../models/RevertManagedDatabaseChangeResponse';
+import {
+    type RevertServiceChangeResponse,
+    RevertServiceChangeResponseFromJSON,
+    RevertServiceChangeResponseToJSON,
+} from '../models/RevertServiceChangeResponse';
+import {
+    type RevertWebAppChangeResponse,
+    RevertWebAppChangeResponseFromJSON,
+    RevertWebAppChangeResponseToJSON,
+} from '../models/RevertWebAppChangeResponse';
 import {
     type RotateManagedDatabaseUserPasswordResponse,
     RotateManagedDatabaseUserPasswordResponseFromJSON,
@@ -945,6 +965,14 @@ export interface ListLogLinesRequest {
     nextToken?: string;
 }
 
+export interface ListManagedDatabaseHistoryRequest {
+    projectId: string;
+    databaseId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    nextToken?: string;
+}
+
 export interface ListManagedDatabaseSlowQueriesRequest {
     projectId: string;
     databaseId: string;
@@ -990,6 +1018,14 @@ export interface ListServiceCustomDomainsRequest {
 }
 
 export interface ListServiceDeploymentsRequest {
+    projectId: string;
+    serviceId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    nextToken?: string;
+}
+
+export interface ListServiceHistoryRequest {
     projectId: string;
     serviceId: string;
     minTime?: Date;
@@ -1052,6 +1088,14 @@ export interface ListWebAppBuildLogLinesRequest {
 }
 
 export interface ListWebAppDeploymentsRequest {
+    projectId: string;
+    webAppId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    nextToken?: string;
+}
+
+export interface ListWebAppHistoryRequest {
     projectId: string;
     webAppId: string;
     minTime?: Date;
@@ -1212,6 +1256,24 @@ export interface RefundPaymentRequest {
 export interface ResumeServiceRequest {
     projectId: string;
     serviceId: string;
+}
+
+export interface RevertManagedDatabaseChangeRequest {
+    projectId: string;
+    databaseId: string;
+    logId: string;
+}
+
+export interface RevertServiceChangeRequest {
+    projectId: string;
+    serviceId: string;
+    logId: string;
+}
+
+export interface RevertWebAppChangeRequest {
+    projectId: string;
+    webAppId: string;
+    logId: string;
 }
 
 export interface RevokeAllUserSessionsRequest {
@@ -5389,6 +5451,69 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listManagedDatabaseHistory without sending the request
+     */
+    async listManagedDatabaseHistoryRequestOpts(requestParameters: ListManagedDatabaseHistoryRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listManagedDatabaseHistory().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling listManagedDatabaseHistory().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/history`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listManagedDatabaseHistoryRaw(requestParameters: ListManagedDatabaseHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseAccountActionLogObject>> {
+        const requestOptions = await this.listManagedDatabaseHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseAccountActionLogObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listManagedDatabaseHistory(requestParameters: ListManagedDatabaseHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseAccountActionLogObject> {
+        const response = await this.listManagedDatabaseHistoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listManagedDatabaseSlowQueries without sending the request
      */
     async listManagedDatabaseSlowQueriesRequestOpts(requestParameters: ListManagedDatabaseSlowQueriesRequest): Promise<runtime.RequestOpts> {
@@ -5864,6 +5989,69 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listServiceHistory without sending the request
+     */
+    async listServiceHistoryRequestOpts(requestParameters: ListServiceHistoryRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listServiceHistory().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling listServiceHistory().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/history`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listServiceHistoryRaw(requestParameters: ListServiceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseAccountActionLogObject>> {
+        const requestOptions = await this.listServiceHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseAccountActionLogObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listServiceHistory(requestParameters: ListServiceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseAccountActionLogObject> {
+        const response = await this.listServiceHistoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listUserActionLogs without sending the request
      */
     async listUserActionLogsRequestOpts(requestParameters: ListUserActionLogsRequest): Promise<runtime.RequestOpts> {
@@ -6325,6 +6513,69 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listWebAppDeployments(requestParameters: ListWebAppDeploymentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseWebAppBuildRequestObject> {
         const response = await this.listWebAppDeploymentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listWebAppHistory without sending the request
+     */
+    async listWebAppHistoryRequestOpts(requestParameters: ListWebAppHistoryRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listWebAppHistory().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling listWebAppHistory().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/history`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listWebAppHistoryRaw(requestParameters: ListWebAppHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseAccountActionLogObject>> {
+        const requestOptions = await this.listWebAppHistoryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseAccountActionLogObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listWebAppHistory(requestParameters: ListWebAppHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseAccountActionLogObject> {
+        const response = await this.listWebAppHistoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7828,6 +8079,183 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async resumeService(requestParameters: ResumeServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceObject> {
         const response = await this.resumeServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for revertManagedDatabaseChange without sending the request
+     */
+    async revertManagedDatabaseChangeRequestOpts(requestParameters: RevertManagedDatabaseChangeRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling revertManagedDatabaseChange().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling revertManagedDatabaseChange().'
+            );
+        }
+
+        if (requestParameters['logId'] == null) {
+            throw new runtime.RequiredError(
+                'logId',
+                'Required parameter "logId" was null or undefined when calling revertManagedDatabaseChange().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/history/{logId}/revert`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+        urlPath = urlPath.replace('{logId}', encodeURIComponent(String(requestParameters['logId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async revertManagedDatabaseChangeRaw(requestParameters: RevertManagedDatabaseChangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RevertManagedDatabaseChangeResponse>> {
+        const requestOptions = await this.revertManagedDatabaseChangeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RevertManagedDatabaseChangeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async revertManagedDatabaseChange(requestParameters: RevertManagedDatabaseChangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RevertManagedDatabaseChangeResponse> {
+        const response = await this.revertManagedDatabaseChangeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for revertServiceChange without sending the request
+     */
+    async revertServiceChangeRequestOpts(requestParameters: RevertServiceChangeRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling revertServiceChange().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling revertServiceChange().'
+            );
+        }
+
+        if (requestParameters['logId'] == null) {
+            throw new runtime.RequiredError(
+                'logId',
+                'Required parameter "logId" was null or undefined when calling revertServiceChange().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/history/{logId}/revert`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{logId}', encodeURIComponent(String(requestParameters['logId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async revertServiceChangeRaw(requestParameters: RevertServiceChangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RevertServiceChangeResponse>> {
+        const requestOptions = await this.revertServiceChangeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RevertServiceChangeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async revertServiceChange(requestParameters: RevertServiceChangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RevertServiceChangeResponse> {
+        const response = await this.revertServiceChangeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for revertWebAppChange without sending the request
+     */
+    async revertWebAppChangeRequestOpts(requestParameters: RevertWebAppChangeRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling revertWebAppChange().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling revertWebAppChange().'
+            );
+        }
+
+        if (requestParameters['logId'] == null) {
+            throw new runtime.RequiredError(
+                'logId',
+                'Required parameter "logId" was null or undefined when calling revertWebAppChange().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/history/{logId}/revert`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{logId}', encodeURIComponent(String(requestParameters['logId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async revertWebAppChangeRaw(requestParameters: RevertWebAppChangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RevertWebAppChangeResponse>> {
+        const requestOptions = await this.revertWebAppChangeRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RevertWebAppChangeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async revertWebAppChange(requestParameters: RevertWebAppChangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RevertWebAppChangeResponse> {
+        const response = await this.revertWebAppChangeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

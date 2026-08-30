@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './AccountActionLogObject';
 export * from './ActionInvocationObject';
 export * from './ActionInvocationStatus';
 export * from './ActionInvocationTrigger';
@@ -65,6 +66,7 @@ export * from './DnsValidationResult';
 export * from './DockerfileDetectionOutput';
 export * from './DockerfileGenerationError';
 export * from './DockerfileGenerationResponse';
+export * from './FieldChange';
 export * from './ForteApiException';
 export * from './GetContentDownloadLinkResponse';
 export * from './GetRequestBodyDownloadLinkResponse';
@@ -105,6 +107,7 @@ export * from './MfaMethodSummary';
 export * from './MfaVerifyRequest';
 export * from './NotificationTemplatesConfig';
 export * from './NotificationTemplatesResponse';
+export * from './PaginatedResponseAccountActionLogObject';
 export * from './PaginatedResponseActionInvocationObject';
 export * from './PaginatedResponseLogLineObject';
 export * from './PaginatedResponseLoginHistoryEntry';
@@ -152,6 +155,9 @@ export * from './RequestLogStatusFilter';
 export * from './RequestLogSummary';
 export * from './RequestPasswordResetRequest';
 export * from './RequiredUploadHeaders';
+export * from './RevertManagedDatabaseChangeResponse';
+export * from './RevertServiceChangeResponse';
+export * from './RevertWebAppChangeResponse';
 export * from './RotateManagedDatabaseUserPasswordResponse';
 export * from './RouteMetric';
 export * from './SearchUsersRequest';

@@ -57,6 +57,8 @@ public class ForteApiException {
     
     RECAPTCHA_VALIDATION_FAILED(String.valueOf("RECAPTCHA_VALIDATION_FAILED")),
     
+    CHANGE_NOT_REVERTIBLE(String.valueOf("CHANGE_NOT_REVERTIBLE")),
+    
     SERVICE_NAME_TAKEN_IN_PROJECT(String.valueOf("SERVICE_NAME_TAKEN_IN_PROJECT")),
     
     SERVICE_PAUSED(String.valueOf("SERVICE_PAUSED")),
@@ -564,6 +566,8 @@ public class ForteApiException {
     DNS_ZONE_NOT_FOUND(String.valueOf("DNS_ZONE_NOT_FOUND")),
     
     DNS_ZONE_ALREADY_EXISTS(String.valueOf("DNS_ZONE_ALREADY_EXISTS")),
+    
+    DNS_ZONE_OVERLAPS_EXISTING(String.valueOf("DNS_ZONE_OVERLAPS_EXISTING")),
     
     DNS_ZONE_INVALID_DOMAIN(String.valueOf("DNS_ZONE_INVALID_DOMAIN")),
     

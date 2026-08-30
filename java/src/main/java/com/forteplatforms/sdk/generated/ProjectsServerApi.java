@@ -69,6 +69,7 @@ import com.forteplatforms.sdk.generated.model.ManagedDatabaseMetricsResponse;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseObject;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesResponse;
 import java.time.OffsetDateTime;
+import com.forteplatforms.sdk.generated.model.PaginatedResponseAccountActionLogObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseActionInvocationObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseLogLineObject;
 import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
@@ -86,6 +87,9 @@ import com.forteplatforms.sdk.generated.model.ProjectObject;
 import com.forteplatforms.sdk.generated.model.PutSubscriptionItemsRequest;
 import com.forteplatforms.sdk.generated.model.RequestLogObject;
 import com.forteplatforms.sdk.generated.model.RequestLogSearchRequest;
+import com.forteplatforms.sdk.generated.model.RevertManagedDatabaseChangeResponse;
+import com.forteplatforms.sdk.generated.model.RevertServiceChangeResponse;
+import com.forteplatforms.sdk.generated.model.RevertWebAppChangeResponse;
 import com.forteplatforms.sdk.generated.model.RotateManagedDatabaseUserPasswordResponse;
 import com.forteplatforms.sdk.generated.model.SearchUsersRequest;
 import com.forteplatforms.sdk.generated.model.SendUserEmailFromTemplateRequest;
@@ -9872,6 +9876,164 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param databaseId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return PaginatedResponseAccountActionLogObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseAccountActionLogObject listManagedDatabaseHistory(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listManagedDatabaseHistory(projectId, databaseId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponseAccountActionLogObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseAccountActionLogObject listManagedDatabaseHistory(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseAccountActionLogObject> localVarResponse = listManagedDatabaseHistoryWithHttpInfo(projectId, databaseId, minTime, maxTime, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponseAccountActionLogObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseAccountActionLogObject> listManagedDatabaseHistoryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listManagedDatabaseHistoryWithHttpInfo(projectId, databaseId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponseAccountActionLogObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseAccountActionLogObject> listManagedDatabaseHistoryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listManagedDatabaseHistoryRequestBuilder(projectId, databaseId, minTime, maxTime, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listManagedDatabaseHistory", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponseAccountActionLogObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponseAccountActionLogObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseAccountActionLogObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponseAccountActionLogObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listManagedDatabaseHistoryRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listManagedDatabaseHistory");
+    }
+    // verify the required parameter 'databaseId' is set
+    if (databaseId == null) {
+      throw new ApiException(400, "Missing the required parameter 'databaseId' when calling listManagedDatabaseHistory");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/databases/{databaseId}/history"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{databaseId}", ApiClient.urlEncode(databaseId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
    * @param page  (optional, default to 0)
    * @param pageSize  (optional, default to 50)
    * @return ListManagedDatabaseSlowQueriesResponse
@@ -11121,6 +11283,164 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return PaginatedResponseAccountActionLogObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseAccountActionLogObject listServiceHistory(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listServiceHistory(projectId, serviceId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponseAccountActionLogObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseAccountActionLogObject listServiceHistory(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseAccountActionLogObject> localVarResponse = listServiceHistoryWithHttpInfo(projectId, serviceId, minTime, maxTime, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponseAccountActionLogObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseAccountActionLogObject> listServiceHistoryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listServiceHistoryWithHttpInfo(projectId, serviceId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponseAccountActionLogObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseAccountActionLogObject> listServiceHistoryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listServiceHistoryRequestBuilder(projectId, serviceId, minTime, maxTime, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listServiceHistory", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponseAccountActionLogObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponseAccountActionLogObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseAccountActionLogObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponseAccountActionLogObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listServiceHistoryRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listServiceHistory");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling listServiceHistory");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/history"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param userId  (required)
    * @param actionType  (optional)
    * @param minTime  (optional)
@@ -12208,6 +12528,164 @@ public class ProjectsServerApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return PaginatedResponseAccountActionLogObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseAccountActionLogObject listWebAppHistory(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listWebAppHistory(projectId, webAppId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponseAccountActionLogObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseAccountActionLogObject listWebAppHistory(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseAccountActionLogObject> localVarResponse = listWebAppHistoryWithHttpInfo(projectId, webAppId, minTime, maxTime, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponseAccountActionLogObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseAccountActionLogObject> listWebAppHistoryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listWebAppHistoryWithHttpInfo(projectId, webAppId, minTime, maxTime, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponseAccountActionLogObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseAccountActionLogObject> listWebAppHistoryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWebAppHistoryRequestBuilder(projectId, webAppId, minTime, maxTime, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWebAppHistory", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponseAccountActionLogObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponseAccountActionLogObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseAccountActionLogObject>() {});
+        
+
+        return new ApiResponse<PaginatedResponseAccountActionLogObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWebAppHistoryRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listWebAppHistory");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling listWebAppHistory");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/history"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
 
@@ -15716,6 +16194,414 @@ public class ProjectsServerApi {
     String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/resume"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param logId  (required)
+   * @return RevertManagedDatabaseChangeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public RevertManagedDatabaseChangeResponse revertManagedDatabaseChange(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String logId) throws ApiException {
+    return revertManagedDatabaseChange(projectId, databaseId, logId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param logId  (required)
+   * @param headers Optional headers to include in the request
+   * @return RevertManagedDatabaseChangeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public RevertManagedDatabaseChangeResponse revertManagedDatabaseChange(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    ApiResponse<RevertManagedDatabaseChangeResponse> localVarResponse = revertManagedDatabaseChangeWithHttpInfo(projectId, databaseId, logId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param logId  (required)
+   * @return ApiResponse&lt;RevertManagedDatabaseChangeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RevertManagedDatabaseChangeResponse> revertManagedDatabaseChangeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String logId) throws ApiException {
+    return revertManagedDatabaseChangeWithHttpInfo(projectId, databaseId, logId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param logId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RevertManagedDatabaseChangeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RevertManagedDatabaseChangeResponse> revertManagedDatabaseChangeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = revertManagedDatabaseChangeRequestBuilder(projectId, databaseId, logId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("revertManagedDatabaseChange", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RevertManagedDatabaseChangeResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RevertManagedDatabaseChangeResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RevertManagedDatabaseChangeResponse>() {});
+        
+
+        return new ApiResponse<RevertManagedDatabaseChangeResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder revertManagedDatabaseChangeRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling revertManagedDatabaseChange");
+    }
+    // verify the required parameter 'databaseId' is set
+    if (databaseId == null) {
+      throw new ApiException(400, "Missing the required parameter 'databaseId' when calling revertManagedDatabaseChange");
+    }
+    // verify the required parameter 'logId' is set
+    if (logId == null) {
+      throw new ApiException(400, "Missing the required parameter 'logId' when calling revertManagedDatabaseChange");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/databases/{databaseId}/history/{logId}/revert"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{databaseId}", ApiClient.urlEncode(databaseId.toString()))
+        .replace("{logId}", ApiClient.urlEncode(logId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param logId  (required)
+   * @return RevertServiceChangeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public RevertServiceChangeResponse revertServiceChange(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String logId) throws ApiException {
+    return revertServiceChange(projectId, serviceId, logId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param logId  (required)
+   * @param headers Optional headers to include in the request
+   * @return RevertServiceChangeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public RevertServiceChangeResponse revertServiceChange(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    ApiResponse<RevertServiceChangeResponse> localVarResponse = revertServiceChangeWithHttpInfo(projectId, serviceId, logId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param logId  (required)
+   * @return ApiResponse&lt;RevertServiceChangeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RevertServiceChangeResponse> revertServiceChangeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String logId) throws ApiException {
+    return revertServiceChangeWithHttpInfo(projectId, serviceId, logId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param logId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RevertServiceChangeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RevertServiceChangeResponse> revertServiceChangeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = revertServiceChangeRequestBuilder(projectId, serviceId, logId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("revertServiceChange", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RevertServiceChangeResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RevertServiceChangeResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RevertServiceChangeResponse>() {});
+        
+
+        return new ApiResponse<RevertServiceChangeResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder revertServiceChangeRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling revertServiceChange");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling revertServiceChange");
+    }
+    // verify the required parameter 'logId' is set
+    if (logId == null) {
+      throw new ApiException(400, "Missing the required parameter 'logId' when calling revertServiceChange");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/history/{logId}/revert"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
+        .replace("{logId}", ApiClient.urlEncode(logId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param logId  (required)
+   * @return RevertWebAppChangeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public RevertWebAppChangeResponse revertWebAppChange(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String logId) throws ApiException {
+    return revertWebAppChange(projectId, webAppId, logId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param logId  (required)
+   * @param headers Optional headers to include in the request
+   * @return RevertWebAppChangeResponse
+   * @throws ApiException if fails to make API call
+   */
+  public RevertWebAppChangeResponse revertWebAppChange(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    ApiResponse<RevertWebAppChangeResponse> localVarResponse = revertWebAppChangeWithHttpInfo(projectId, webAppId, logId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param logId  (required)
+   * @return ApiResponse&lt;RevertWebAppChangeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RevertWebAppChangeResponse> revertWebAppChangeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String logId) throws ApiException {
+    return revertWebAppChangeWithHttpInfo(projectId, webAppId, logId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param logId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RevertWebAppChangeResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RevertWebAppChangeResponse> revertWebAppChangeWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = revertWebAppChangeRequestBuilder(projectId, webAppId, logId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("revertWebAppChange", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RevertWebAppChangeResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RevertWebAppChangeResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RevertWebAppChangeResponse>() {});
+        
+
+        return new ApiResponse<RevertWebAppChangeResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder revertWebAppChangeRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String logId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling revertWebAppChange");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling revertWebAppChange");
+    }
+    // verify the required parameter 'logId' is set
+    if (logId == null) {
+      throw new ApiException(400, "Missing the required parameter 'logId' when calling revertWebAppChange");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/history/{logId}/revert"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()))
+        .replace("{logId}", ApiClient.urlEncode(logId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

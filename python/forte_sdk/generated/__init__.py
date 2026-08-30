@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.359"
+__version__ = "1.0.363"
 
 # Define package exports
 __all__ = [
@@ -29,6 +29,7 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "AccountActionLogObject",
     "ActionInvocationObject",
     "ActionInvocationStatus",
     "ActionInvocationTrigger",
@@ -94,6 +95,7 @@ __all__ = [
     "DockerfileDetectionOutput",
     "DockerfileGenerationError",
     "DockerfileGenerationResponse",
+    "FieldChange",
     "ForteApiException",
     "GetContentDownloadLinkResponse",
     "GetRequestBodyDownloadLinkResponse",
@@ -134,6 +136,7 @@ __all__ = [
     "MfaVerifyRequest",
     "NotificationTemplatesConfig",
     "NotificationTemplatesResponse",
+    "PaginatedResponseAccountActionLogObject",
     "PaginatedResponseActionInvocationObject",
     "PaginatedResponseLogLineObject",
     "PaginatedResponseLoginHistoryEntry",
@@ -181,6 +184,9 @@ __all__ = [
     "RequestLogSummary",
     "RequestPasswordResetRequest",
     "RequiredUploadHeaders",
+    "RevertManagedDatabaseChangeResponse",
+    "RevertServiceChangeResponse",
+    "RevertWebAppChangeResponse",
     "RotateManagedDatabaseUserPasswordResponse",
     "RouteMetric",
     "SearchUsersRequest",
@@ -248,6 +254,7 @@ from forte_sdk.generated.exceptions import ApiAttributeError as ApiAttributeErro
 from forte_sdk.generated.exceptions import ApiException as ApiException
 
 # import models into sdk package
+from forte_sdk.generated.models.account_action_log_object import AccountActionLogObject as AccountActionLogObject
 from forte_sdk.generated.models.action_invocation_object import ActionInvocationObject as ActionInvocationObject
 from forte_sdk.generated.models.action_invocation_status import ActionInvocationStatus as ActionInvocationStatus
 from forte_sdk.generated.models.action_invocation_trigger import ActionInvocationTrigger as ActionInvocationTrigger
@@ -313,6 +320,7 @@ from forte_sdk.generated.models.dns_validation_result import DnsValidationResult
 from forte_sdk.generated.models.dockerfile_detection_output import DockerfileDetectionOutput as DockerfileDetectionOutput
 from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGenerationError as DockerfileGenerationError
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse as DockerfileGenerationResponse
+from forte_sdk.generated.models.field_change import FieldChange as FieldChange
 from forte_sdk.generated.models.forte_api_exception import ForteApiException as ForteApiException
 from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse as GetContentDownloadLinkResponse
 from forte_sdk.generated.models.get_request_body_download_link_response import GetRequestBodyDownloadLinkResponse as GetRequestBodyDownloadLinkResponse
@@ -353,6 +361,7 @@ from forte_sdk.generated.models.mfa_method_summary import MfaMethodSummary as Mf
 from forte_sdk.generated.models.mfa_verify_request import MfaVerifyRequest as MfaVerifyRequest
 from forte_sdk.generated.models.notification_templates_config import NotificationTemplatesConfig as NotificationTemplatesConfig
 from forte_sdk.generated.models.notification_templates_response import NotificationTemplatesResponse as NotificationTemplatesResponse
+from forte_sdk.generated.models.paginated_response_account_action_log_object import PaginatedResponseAccountActionLogObject as PaginatedResponseAccountActionLogObject
 from forte_sdk.generated.models.paginated_response_action_invocation_object import PaginatedResponseActionInvocationObject as PaginatedResponseActionInvocationObject
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject as PaginatedResponseLogLineObject
 from forte_sdk.generated.models.paginated_response_login_history_entry import PaginatedResponseLoginHistoryEntry as PaginatedResponseLoginHistoryEntry
@@ -400,6 +409,9 @@ from forte_sdk.generated.models.request_log_status_filter import RequestLogStatu
 from forte_sdk.generated.models.request_log_summary import RequestLogSummary as RequestLogSummary
 from forte_sdk.generated.models.request_password_reset_request import RequestPasswordResetRequest as RequestPasswordResetRequest
 from forte_sdk.generated.models.required_upload_headers import RequiredUploadHeaders as RequiredUploadHeaders
+from forte_sdk.generated.models.revert_managed_database_change_response import RevertManagedDatabaseChangeResponse as RevertManagedDatabaseChangeResponse
+from forte_sdk.generated.models.revert_service_change_response import RevertServiceChangeResponse as RevertServiceChangeResponse
+from forte_sdk.generated.models.revert_web_app_change_response import RevertWebAppChangeResponse as RevertWebAppChangeResponse
 from forte_sdk.generated.models.rotate_managed_database_user_password_response import RotateManagedDatabaseUserPasswordResponse as RotateManagedDatabaseUserPasswordResponse
 from forte_sdk.generated.models.route_metric import RouteMetric as RouteMetric
 from forte_sdk.generated.models.search_users_request import SearchUsersRequest as SearchUsersRequest
