@@ -215,6 +215,8 @@ public class ForteApiException {
     
     BILLING_NOTIFICATION_EMAIL_LIMIT_REACHED(String.valueOf("BILLING_NOTIFICATION_EMAIL_LIMIT_REACHED")),
     
+    INVALID_BILLING_PERIOD(String.valueOf("INVALID_BILLING_PERIOD")),
+    
     INVALID_UNSUBSCRIBE_TOKEN(String.valueOf("INVALID_UNSUBSCRIBE_TOKEN")),
     
     SERVICE_QUOTA_EXCEEDED(String.valueOf("SERVICE_QUOTA_EXCEEDED")),
@@ -583,7 +585,11 @@ public class ForteApiException {
     
     DNS_RECORD_APEX_CNAME_NOT_ALLOWED(String.valueOf("DNS_RECORD_APEX_CNAME_NOT_ALLOWED")),
     
-    DNS_ZONE_QUOTA_EXCEEDED(String.valueOf("DNS_ZONE_QUOTA_EXCEEDED"));
+    DNS_ZONE_QUOTA_EXCEEDED(String.valueOf("DNS_ZONE_QUOTA_EXCEEDED")),
+    
+    DNS_SCAN_NOT_FOUND(String.valueOf("DNS_SCAN_NOT_FOUND")),
+    
+    DNS_SCAN_THROTTLED(String.valueOf("DNS_SCAN_THROTTLED"));
 
     private String value;
 
