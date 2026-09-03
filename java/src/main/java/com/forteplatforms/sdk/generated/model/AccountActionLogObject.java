@@ -176,6 +176,8 @@ public class AccountActionLogObject {
     
     DNS_ZONE_DELETED(String.valueOf("DNS_ZONE_DELETED")),
     
+    DNS_ZONE_MERGED(String.valueOf("DNS_ZONE_MERGED")),
+    
     DNS_ZONE_RECORD_CREATED(String.valueOf("DNS_ZONE_RECORD_CREATED")),
     
     DNS_ZONE_RECORD_UPDATED(String.valueOf("DNS_ZONE_RECORD_UPDATED")),
@@ -195,6 +197,8 @@ public class AccountActionLogObject {
     SMS_CONFIGURATION_VERIFIED(String.valueOf("SMS_CONFIGURATION_VERIFIED")),
     
     ADMIN_IMPERSONATION_STARTED(String.valueOf("ADMIN_IMPERSONATION_STARTED")),
+    
+    OPS_SUGGESTION_STATUS_CHANGED(String.valueOf("OPS_SUGGESTION_STATUS_CHANGED")),
     
     ADMIN_ACCOUNT_SUSPENDED(String.valueOf("ADMIN_ACCOUNT_SUSPENDED")),
     
