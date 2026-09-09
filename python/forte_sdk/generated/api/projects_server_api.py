@@ -10,6 +10,7 @@
 """  # noqa: E501
 
 
+import uuid
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -421,6 +422,10 @@ class ProjectsServerApi:
             )
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -4178,6 +4183,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -4449,6 +4458,10 @@ class ProjectsServerApi:
                 ]
             )
 
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -4750,6 +4763,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -5035,6 +5052,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -5319,6 +5340,10 @@ class ProjectsServerApi:
             )
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -5620,6 +5645,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -5920,6 +5949,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -6205,6 +6238,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -6480,6 +6517,10 @@ class ProjectsServerApi:
                 ]
             )
 
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -6766,6 +6807,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -7050,6 +7095,10 @@ class ProjectsServerApi:
             )
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -7350,6 +7399,10 @@ class ProjectsServerApi:
             )
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -7656,6 +7709,10 @@ class ProjectsServerApi:
                 ]
             )
 
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -8242,6 +8299,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -8547,6 +8608,10 @@ class ProjectsServerApi:
                 ]
             )
 
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -28817,6 +28882,10 @@ class ProjectsServerApi:
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
 
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
         # authentication setting
         _auth_settings: List[str] = [
         ]
@@ -29088,6 +29157,10 @@ class ProjectsServerApi:
                 ]
             )
 
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -29688,6 +29761,10 @@ class ProjectsServerApi:
             )
             if _default_content_type is not None:
                 _header_params['Content-Type'] = _default_content_type
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -34155,6 +34232,10 @@ class ProjectsServerApi:
                 ]
             )
 
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
 
         # authentication setting
         _auth_settings: List[str] = [

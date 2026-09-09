@@ -60,63 +60,55 @@ export interface ServiceMetricsResponse {
      * @type {Array<TimeSeriesDataPoint>}
      * @memberof ServiceMetricsResponse
      */
-    invocations: Array<TimeSeriesDataPoint>;
+    invocations?: Array<TimeSeriesDataPoint>;
     /**
      * 
      * @type {{ [key: string]: Array<TimeSeriesDataPoint>; }}
      * @memberof ServiceMetricsResponse
      */
-    statusCodeCounts: { [key: string]: Array<TimeSeriesDataPoint>; };
+    statusCodeCounts?: { [key: string]: Array<TimeSeriesDataPoint>; };
     /**
      * 
      * @type {{ [key: string]: Array<TimeSeriesDataPoint>; }}
      * @memberof ServiceMetricsResponse
      */
-    statusCodeGroupCounts: { [key: string]: Array<TimeSeriesDataPoint>; };
+    statusCodeGroupCounts?: { [key: string]: Array<TimeSeriesDataPoint>; };
     /**
      * 
      * @type {LatencyMetrics}
      * @memberof ServiceMetricsResponse
      */
-    latencyMetrics: LatencyMetrics;
+    latencyMetrics?: LatencyMetrics;
     /**
      * 
      * @type {LatencyPercentileSeries}
      * @memberof ServiceMetricsResponse
      */
-    totalLatencySeries: LatencyPercentileSeries;
+    totalLatencySeries?: LatencyPercentileSeries;
     /**
      * 
      * @type {InstanceCountSeries}
      * @memberof ServiceMetricsResponse
      */
-    concurrentInstances: InstanceCountSeries;
+    concurrentInstances?: InstanceCountSeries;
     /**
      * 
      * @type {UtilizationSeries}
      * @memberof ServiceMetricsResponse
      */
-    cpuUtilization: UtilizationSeries;
+    cpuUtilization?: UtilizationSeries;
     /**
      * 
      * @type {UtilizationSeries}
      * @memberof ServiceMetricsResponse
      */
-    memoryUtilization: UtilizationSeries;
+    memoryUtilization?: UtilizationSeries;
 }
 
 /**
  * Check if a given object implements the ServiceMetricsResponse interface.
  */
 export function instanceOfServiceMetricsResponse(value: object): value is ServiceMetricsResponse {
-    if (!('invocations' in value) || value['invocations'] === undefined) return false;
-    if (!('statusCodeCounts' in value) || value['statusCodeCounts'] === undefined) return false;
-    if (!('statusCodeGroupCounts' in value) || value['statusCodeGroupCounts'] === undefined) return false;
-    if (!('latencyMetrics' in value) || value['latencyMetrics'] === undefined) return false;
-    if (!('totalLatencySeries' in value) || value['totalLatencySeries'] === undefined) return false;
-    if (!('concurrentInstances' in value) || value['concurrentInstances'] === undefined) return false;
-    if (!('cpuUtilization' in value) || value['cpuUtilization'] === undefined) return false;
-    if (!('memoryUtilization' in value) || value['memoryUtilization'] === undefined) return false;
     return true;
 }
 
@@ -130,14 +122,14 @@ export function ServiceMetricsResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'invocations': ((json['invocations'] as Array<any>).map(TimeSeriesDataPointFromJSON)),
-        'statusCodeCounts': json['statusCodeCounts'],
-        'statusCodeGroupCounts': json['statusCodeGroupCounts'],
-        'latencyMetrics': LatencyMetricsFromJSON(json['latencyMetrics']),
-        'totalLatencySeries': LatencyPercentileSeriesFromJSON(json['totalLatencySeries']),
-        'concurrentInstances': InstanceCountSeriesFromJSON(json['concurrentInstances']),
-        'cpuUtilization': UtilizationSeriesFromJSON(json['cpuUtilization']),
-        'memoryUtilization': UtilizationSeriesFromJSON(json['memoryUtilization']),
+        'invocations': json['invocations'] == null ? undefined : ((json['invocations'] as Array<any>).map(TimeSeriesDataPointFromJSON)),
+        'statusCodeCounts': json['statusCodeCounts'] == null ? undefined : json['statusCodeCounts'],
+        'statusCodeGroupCounts': json['statusCodeGroupCounts'] == null ? undefined : json['statusCodeGroupCounts'],
+        'latencyMetrics': json['latencyMetrics'] == null ? undefined : LatencyMetricsFromJSON(json['latencyMetrics']),
+        'totalLatencySeries': json['totalLatencySeries'] == null ? undefined : LatencyPercentileSeriesFromJSON(json['totalLatencySeries']),
+        'concurrentInstances': json['concurrentInstances'] == null ? undefined : InstanceCountSeriesFromJSON(json['concurrentInstances']),
+        'cpuUtilization': json['cpuUtilization'] == null ? undefined : UtilizationSeriesFromJSON(json['cpuUtilization']),
+        'memoryUtilization': json['memoryUtilization'] == null ? undefined : UtilizationSeriesFromJSON(json['memoryUtilization']),
     };
 }
 
@@ -152,7 +144,7 @@ export function ServiceMetricsResponseToJSONTyped(value?: ServiceMetricsResponse
 
     return {
         
-        'invocations': ((value['invocations'] as Array<any>).map(TimeSeriesDataPointToJSON)),
+        'invocations': value['invocations'] == null ? undefined : ((value['invocations'] as Array<any>).map(TimeSeriesDataPointToJSON)),
         'statusCodeCounts': value['statusCodeCounts'],
         'statusCodeGroupCounts': value['statusCodeGroupCounts'],
         'latencyMetrics': LatencyMetricsToJSON(value['latencyMetrics']),

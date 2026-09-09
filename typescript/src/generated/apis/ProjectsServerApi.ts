@@ -549,6 +549,22 @@ import {
     WebAppRuntimeMetricsResponseToJSON,
 } from '../models/WebAppRuntimeMetricsResponse';
 
+/**
+ * Generates a unique Idempotency-Key for an idempotent operation. Prefers the platform crypto UUID
+ * and falls back to a random token when crypto.randomUUID is unavailable. The key is generated once
+ * per logical call and reused across automatic retries so the server can safely deduplicate.
+ */
+function forteIdempotencyKey(): string {
+    const c: any = (typeof globalThis !== 'undefined') ? (globalThis as any).crypto : undefined;
+    if (c && typeof c.randomUUID === 'function') {
+        return c.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (ch) => {
+        const r = (Math.random() * 16) | 0;
+        return (ch === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    });
+}
+
 export interface AdminAddUserContactMethodRequest {
     projectId: string;
     userId: string;
@@ -1473,6 +1489,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/contact-methods`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2242,6 +2262,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/actions`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2292,6 +2316,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/actions/{actionId}/invocations`;
@@ -2353,6 +2381,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/custom-domains`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2407,6 +2439,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/custom-email-templates`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2459,6 +2495,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/databases`;
@@ -2519,6 +2559,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/connections`;
@@ -2581,6 +2625,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/users`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2635,6 +2683,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/payment-triggers`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2687,6 +2739,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects`;
 
@@ -2737,6 +2793,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/api-keys`;
@@ -2790,6 +2850,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/services`;
@@ -2851,6 +2915,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/custom-domains`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2910,6 +2978,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/deployments`;
@@ -3025,6 +3097,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -3083,6 +3159,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/deployments`;
@@ -6901,6 +6981,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -6952,6 +7036,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payment-methods`;
@@ -7073,6 +7161,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/subscriptions`;
@@ -8000,6 +8092,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
 
 
         let urlPath = `/api/v1/projects/{projectId}/users/{userId}/payments/{paymentId}/refund`;

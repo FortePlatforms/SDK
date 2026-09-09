@@ -289,6 +289,22 @@ import {
     UserObjectToJSON,
 } from '../models/UserObject';
 
+/**
+ * Generates a unique Idempotency-Key for an idempotent operation. Prefers the platform crypto UUID
+ * and falls back to a random token when crypto.randomUUID is unavailable. The key is generated once
+ * per logical call and reused across automatic retries so the server can safely deduplicate.
+ */
+function forteIdempotencyKey(): string {
+    const c: any = (typeof globalThis !== 'undefined') ? (globalThis as any).crypto : undefined;
+    if (c && typeof c.randomUUID === 'function') {
+        return c.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (ch) => {
+        const r = (Math.random() * 16) | 0;
+        return (ch === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    });
+}
+
 export interface ActivateMfaMethodOperationRequest {
     projectId: string;
     mfaMethodId: string;
@@ -1018,6 +1034,10 @@ export class UsersServerApi extends runtime.BaseAPI {
             headerParameters['Authorization'] = String(requestParameters['authorization']);
         }
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/contact-methods`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -1073,6 +1093,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         if (requestParameters['authorization'] != null) {
             headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
         }
 
 
@@ -1242,6 +1266,10 @@ export class UsersServerApi extends runtime.BaseAPI {
             headerParameters['Authorization'] = String(requestParameters['authorization']);
         }
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/invites`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -1396,6 +1424,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         if (requestParameters['authorization'] != null) {
             headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
         }
 
 
@@ -2879,6 +2911,10 @@ export class UsersServerApi extends runtime.BaseAPI {
             headerParameters['Authorization'] = String(requestParameters['authorization']);
         }
 
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
 
         let urlPath = `/api/v1/{projectId}/users/me/payments`;
         urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
@@ -2925,6 +2961,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         if (requestParameters['authorization'] != null) {
             headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
         }
 
 
@@ -3038,6 +3078,10 @@ export class UsersServerApi extends runtime.BaseAPI {
 
         if (requestParameters['authorization'] != null) {
             headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
         }
 
 

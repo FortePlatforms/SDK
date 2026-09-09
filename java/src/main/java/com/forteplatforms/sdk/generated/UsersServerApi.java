@@ -1161,6 +1161,10 @@ public class UsersServerApi {
     }
     // Add custom headers if provided
     localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1300,6 +1304,10 @@ public class UsersServerApi {
     }
     // Add custom headers if provided
     localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1710,6 +1718,10 @@ public class UsersServerApi {
     }
     // Add custom headers if provided
     localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2075,6 +2087,10 @@ public class UsersServerApi {
     }
     // Add custom headers if provided
     localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5696,6 +5712,10 @@ public class UsersServerApi {
     }
     // Add custom headers if provided
     localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5821,6 +5841,10 @@ public class UsersServerApi {
     }
     // Add custom headers if provided
     localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -6099,6 +6123,10 @@ public class UsersServerApi {
     }
     // Add custom headers if provided
     localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

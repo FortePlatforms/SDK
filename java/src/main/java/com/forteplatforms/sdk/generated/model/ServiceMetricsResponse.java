@@ -54,41 +54,41 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ServiceMetricsResponse {
   public static final String JSON_PROPERTY_INVOCATIONS = "invocations";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private List<TimeSeriesDataPoint> invocations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_STATUS_CODE_COUNTS = "statusCodeCounts";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private Map<String, List<TimeSeriesDataPoint>> statusCodeCounts = new HashMap<>();
 
   public static final String JSON_PROPERTY_STATUS_CODE_GROUP_COUNTS = "statusCodeGroupCounts";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private Map<String, List<TimeSeriesDataPoint>> statusCodeGroupCounts = new HashMap<>();
 
   public static final String JSON_PROPERTY_LATENCY_METRICS = "latencyMetrics";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private LatencyMetrics latencyMetrics;
 
   public static final String JSON_PROPERTY_TOTAL_LATENCY_SERIES = "totalLatencySeries";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private LatencyPercentileSeries totalLatencySeries;
 
   public static final String JSON_PROPERTY_CONCURRENT_INSTANCES = "concurrentInstances";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private InstanceCountSeries concurrentInstances;
 
   public static final String JSON_PROPERTY_CPU_UTILIZATION = "cpuUtilization";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private UtilizationSeries cpuUtilization;
 
   public static final String JSON_PROPERTY_MEMORY_UTILIZATION = "memoryUtilization";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private UtilizationSeries memoryUtilization;
 
   public ServiceMetricsResponse() { 
   }
 
-  public ServiceMetricsResponse invocations(@javax.annotation.Nonnull List<TimeSeriesDataPoint> invocations) {
+  public ServiceMetricsResponse invocations(@javax.annotation.Nullable List<TimeSeriesDataPoint> invocations) {
     this.invocations = invocations;
     return this;
   }
@@ -105,22 +105,22 @@ public class ServiceMetricsResponse {
    * Get invocations
    * @return invocations
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_INVOCATIONS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INVOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<TimeSeriesDataPoint> getInvocations() {
     return invocations;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_INVOCATIONS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setInvocations(@javax.annotation.Nonnull List<TimeSeriesDataPoint> invocations) {
+  @JsonProperty(value = JSON_PROPERTY_INVOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInvocations(@javax.annotation.Nullable List<TimeSeriesDataPoint> invocations) {
     this.invocations = invocations;
   }
 
 
-  public ServiceMetricsResponse statusCodeCounts(@javax.annotation.Nonnull Map<String, List<TimeSeriesDataPoint>> statusCodeCounts) {
+  public ServiceMetricsResponse statusCodeCounts(@javax.annotation.Nullable Map<String, List<TimeSeriesDataPoint>> statusCodeCounts) {
     this.statusCodeCounts = statusCodeCounts;
     return this;
   }
@@ -137,22 +137,22 @@ public class ServiceMetricsResponse {
    * Get statusCodeCounts
    * @return statusCodeCounts
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_STATUS_CODE_COUNTS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS_CODE_COUNTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<TimeSeriesDataPoint>> getStatusCodeCounts() {
     return statusCodeCounts;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_STATUS_CODE_COUNTS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatusCodeCounts(@javax.annotation.Nonnull Map<String, List<TimeSeriesDataPoint>> statusCodeCounts) {
+  @JsonProperty(value = JSON_PROPERTY_STATUS_CODE_COUNTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatusCodeCounts(@javax.annotation.Nullable Map<String, List<TimeSeriesDataPoint>> statusCodeCounts) {
     this.statusCodeCounts = statusCodeCounts;
   }
 
 
-  public ServiceMetricsResponse statusCodeGroupCounts(@javax.annotation.Nonnull Map<String, List<TimeSeriesDataPoint>> statusCodeGroupCounts) {
+  public ServiceMetricsResponse statusCodeGroupCounts(@javax.annotation.Nullable Map<String, List<TimeSeriesDataPoint>> statusCodeGroupCounts) {
     this.statusCodeGroupCounts = statusCodeGroupCounts;
     return this;
   }
@@ -169,22 +169,22 @@ public class ServiceMetricsResponse {
    * Get statusCodeGroupCounts
    * @return statusCodeGroupCounts
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_STATUS_CODE_GROUP_COUNTS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS_CODE_GROUP_COUNTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<TimeSeriesDataPoint>> getStatusCodeGroupCounts() {
     return statusCodeGroupCounts;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_STATUS_CODE_GROUP_COUNTS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatusCodeGroupCounts(@javax.annotation.Nonnull Map<String, List<TimeSeriesDataPoint>> statusCodeGroupCounts) {
+  @JsonProperty(value = JSON_PROPERTY_STATUS_CODE_GROUP_COUNTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatusCodeGroupCounts(@javax.annotation.Nullable Map<String, List<TimeSeriesDataPoint>> statusCodeGroupCounts) {
     this.statusCodeGroupCounts = statusCodeGroupCounts;
   }
 
 
-  public ServiceMetricsResponse latencyMetrics(@javax.annotation.Nonnull LatencyMetrics latencyMetrics) {
+  public ServiceMetricsResponse latencyMetrics(@javax.annotation.Nullable LatencyMetrics latencyMetrics) {
     this.latencyMetrics = latencyMetrics;
     return this;
   }
@@ -193,22 +193,22 @@ public class ServiceMetricsResponse {
    * Get latencyMetrics
    * @return latencyMetrics
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_LATENCY_METRICS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LATENCY_METRICS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public LatencyMetrics getLatencyMetrics() {
     return latencyMetrics;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_LATENCY_METRICS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLatencyMetrics(@javax.annotation.Nonnull LatencyMetrics latencyMetrics) {
+  @JsonProperty(value = JSON_PROPERTY_LATENCY_METRICS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLatencyMetrics(@javax.annotation.Nullable LatencyMetrics latencyMetrics) {
     this.latencyMetrics = latencyMetrics;
   }
 
 
-  public ServiceMetricsResponse totalLatencySeries(@javax.annotation.Nonnull LatencyPercentileSeries totalLatencySeries) {
+  public ServiceMetricsResponse totalLatencySeries(@javax.annotation.Nullable LatencyPercentileSeries totalLatencySeries) {
     this.totalLatencySeries = totalLatencySeries;
     return this;
   }
@@ -217,22 +217,22 @@ public class ServiceMetricsResponse {
    * Get totalLatencySeries
    * @return totalLatencySeries
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TOTAL_LATENCY_SERIES, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TOTAL_LATENCY_SERIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public LatencyPercentileSeries getTotalLatencySeries() {
     return totalLatencySeries;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TOTAL_LATENCY_SERIES, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTotalLatencySeries(@javax.annotation.Nonnull LatencyPercentileSeries totalLatencySeries) {
+  @JsonProperty(value = JSON_PROPERTY_TOTAL_LATENCY_SERIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTotalLatencySeries(@javax.annotation.Nullable LatencyPercentileSeries totalLatencySeries) {
     this.totalLatencySeries = totalLatencySeries;
   }
 
 
-  public ServiceMetricsResponse concurrentInstances(@javax.annotation.Nonnull InstanceCountSeries concurrentInstances) {
+  public ServiceMetricsResponse concurrentInstances(@javax.annotation.Nullable InstanceCountSeries concurrentInstances) {
     this.concurrentInstances = concurrentInstances;
     return this;
   }
@@ -241,22 +241,22 @@ public class ServiceMetricsResponse {
    * Get concurrentInstances
    * @return concurrentInstances
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CONCURRENT_INSTANCES, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONCURRENT_INSTANCES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public InstanceCountSeries getConcurrentInstances() {
     return concurrentInstances;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CONCURRENT_INSTANCES, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setConcurrentInstances(@javax.annotation.Nonnull InstanceCountSeries concurrentInstances) {
+  @JsonProperty(value = JSON_PROPERTY_CONCURRENT_INSTANCES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConcurrentInstances(@javax.annotation.Nullable InstanceCountSeries concurrentInstances) {
     this.concurrentInstances = concurrentInstances;
   }
 
 
-  public ServiceMetricsResponse cpuUtilization(@javax.annotation.Nonnull UtilizationSeries cpuUtilization) {
+  public ServiceMetricsResponse cpuUtilization(@javax.annotation.Nullable UtilizationSeries cpuUtilization) {
     this.cpuUtilization = cpuUtilization;
     return this;
   }
@@ -265,22 +265,22 @@ public class ServiceMetricsResponse {
    * Get cpuUtilization
    * @return cpuUtilization
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CPU_UTILIZATION, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CPU_UTILIZATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UtilizationSeries getCpuUtilization() {
     return cpuUtilization;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CPU_UTILIZATION, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCpuUtilization(@javax.annotation.Nonnull UtilizationSeries cpuUtilization) {
+  @JsonProperty(value = JSON_PROPERTY_CPU_UTILIZATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCpuUtilization(@javax.annotation.Nullable UtilizationSeries cpuUtilization) {
     this.cpuUtilization = cpuUtilization;
   }
 
 
-  public ServiceMetricsResponse memoryUtilization(@javax.annotation.Nonnull UtilizationSeries memoryUtilization) {
+  public ServiceMetricsResponse memoryUtilization(@javax.annotation.Nullable UtilizationSeries memoryUtilization) {
     this.memoryUtilization = memoryUtilization;
     return this;
   }
@@ -289,17 +289,17 @@ public class ServiceMetricsResponse {
    * Get memoryUtilization
    * @return memoryUtilization
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_MEMORY_UTILIZATION, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_UTILIZATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UtilizationSeries getMemoryUtilization() {
     return memoryUtilization;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MEMORY_UTILIZATION, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setMemoryUtilization(@javax.annotation.Nonnull UtilizationSeries memoryUtilization) {
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_UTILIZATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMemoryUtilization(@javax.annotation.Nullable UtilizationSeries memoryUtilization) {
     this.memoryUtilization = memoryUtilization;
   }
 

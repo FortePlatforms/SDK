@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.instance_count_series import InstanceCountSeries
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics
 from forte_sdk.generated.models.latency_percentile_series import LatencyPercentileSeries
@@ -32,14 +32,14 @@ class ServiceMetricsResponse(BaseModel):
     """
     ServiceMetricsResponse
     """ # noqa: E501
-    invocations: List[TimeSeriesDataPoint]
-    status_code_counts: Dict[str, List[TimeSeriesDataPoint]] = Field(alias="statusCodeCounts")
-    status_code_group_counts: Dict[str, List[TimeSeriesDataPoint]] = Field(alias="statusCodeGroupCounts")
-    latency_metrics: LatencyMetrics = Field(alias="latencyMetrics")
-    total_latency_series: LatencyPercentileSeries = Field(alias="totalLatencySeries")
-    concurrent_instances: InstanceCountSeries = Field(alias="concurrentInstances")
-    cpu_utilization: UtilizationSeries = Field(alias="cpuUtilization")
-    memory_utilization: UtilizationSeries = Field(alias="memoryUtilization")
+    invocations: Optional[List[TimeSeriesDataPoint]] = None
+    status_code_counts: Optional[Dict[str, List[TimeSeriesDataPoint]]] = Field(default=None, alias="statusCodeCounts")
+    status_code_group_counts: Optional[Dict[str, List[TimeSeriesDataPoint]]] = Field(default=None, alias="statusCodeGroupCounts")
+    latency_metrics: Optional[LatencyMetrics] = Field(default=None, alias="latencyMetrics")
+    total_latency_series: Optional[LatencyPercentileSeries] = Field(default=None, alias="totalLatencySeries")
+    concurrent_instances: Optional[InstanceCountSeries] = Field(default=None, alias="concurrentInstances")
+    cpu_utilization: Optional[UtilizationSeries] = Field(default=None, alias="cpuUtilization")
+    memory_utilization: Optional[UtilizationSeries] = Field(default=None, alias="memoryUtilization")
     __properties: ClassVar[List[str]] = ["invocations", "statusCodeCounts", "statusCodeGroupCounts", "latencyMetrics", "totalLatencySeries", "concurrentInstances", "cpuUtilization", "memoryUtilization"]
 
     model_config = ConfigDict(
