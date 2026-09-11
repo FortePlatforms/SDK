@@ -220,6 +220,8 @@ public class AccountActionLogObject {
     
     QUOTA_OVERRIDDEN(String.valueOf("QUOTA_OVERRIDDEN")),
     
+    GRANDFATHER_FLAG_CHANGED(String.valueOf("GRANDFATHER_FLAG_CHANGED")),
+    
     BUILD_BILLING_FAST_FAILED(String.valueOf("BUILD_BILLING_FAST_FAILED")),
     
     BUILD_CANCELLED(String.valueOf("BUILD_CANCELLED")),
