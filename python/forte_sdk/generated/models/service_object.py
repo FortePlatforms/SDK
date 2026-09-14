@@ -45,6 +45,7 @@ class ServiceObject(BaseModel):
     dockerfile_detection_response: Optional[DockerfileGenerationResponse] = Field(default=None, alias="dockerfileDetectionResponse")
     health_check_detection_response: Optional[HealthCheckDetectionResponse] = Field(default=None, alias="healthCheckDetectionResponse")
     auth_path_exclusions: Optional[List[StrictStr]] = Field(default=None, alias="authPathExclusions")
+    blocked_paths: Optional[List[StrictStr]] = Field(default=None, alias="blockedPaths")
     base_instances: StrictInt = Field(alias="baseInstances")
     region_replicas: Optional[Dict[str, StrictInt]] = Field(default=None, alias="regionReplicas")
     container_cpu: StrictStr = Field(alias="containerCpu")
@@ -59,7 +60,7 @@ class ServiceObject(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "liveBuildId", "liveCommitHash", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "liveBuildId", "liveCommitHash", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "blockedPaths", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
 
     @field_validator('github_build_trigger')
     def github_build_trigger_validate_enum(cls, value):
@@ -147,6 +148,7 @@ class ServiceObject(BaseModel):
             "dockerfileDetectionResponse": DockerfileGenerationResponse.from_dict(obj["dockerfileDetectionResponse"]) if obj.get("dockerfileDetectionResponse") is not None else None,
             "healthCheckDetectionResponse": HealthCheckDetectionResponse.from_dict(obj["healthCheckDetectionResponse"]) if obj.get("healthCheckDetectionResponse") is not None else None,
             "authPathExclusions": obj.get("authPathExclusions"),
+            "blockedPaths": obj.get("blockedPaths"),
             "baseInstances": obj.get("baseInstances"),
             "regionReplicas": obj.get("regionReplicas"),
             "containerCpu": obj.get("containerCpu"),

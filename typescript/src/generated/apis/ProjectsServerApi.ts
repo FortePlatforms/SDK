@@ -209,6 +209,11 @@ import {
     GetRequestBodyDownloadLinkResponseToJSON,
 } from '../models/GetRequestBodyDownloadLinkResponse';
 import {
+    type GetServiceRouteTimeMetricsResponse,
+    GetServiceRouteTimeMetricsResponseFromJSON,
+    GetServiceRouteTimeMetricsResponseToJSON,
+} from '../models/GetServiceRouteTimeMetricsResponse';
+import {
     type ImpersonationTokenResponse,
     ImpersonationTokenResponseFromJSON,
     ImpersonationTokenResponseToJSON,
@@ -906,6 +911,14 @@ export interface GetServiceRouteMetricsRequest {
     serviceId: string;
     minTime?: Date;
     maxTime?: Date;
+}
+
+export interface GetServiceRouteTimeMetricsRequest {
+    projectId: string;
+    serviceId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    granularity?: GetServiceRouteTimeMetricsGranularityType;
 }
 
 export interface GetUserRequest {
@@ -4867,6 +4880,69 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getServiceRouteMetrics(requestParameters: GetServiceRouteMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceRouteMetricsResponse> {
         const response = await this.getServiceRouteMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getServiceRouteTimeMetrics without sending the request
+     */
+    async getServiceRouteTimeMetricsRequestOpts(requestParameters: GetServiceRouteTimeMetricsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getServiceRouteTimeMetrics().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling getServiceRouteTimeMetrics().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['granularity'] != null) {
+            queryParameters['granularity'] = requestParameters['granularity'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/route-time-metrics`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getServiceRouteTimeMetricsRaw(requestParameters: GetServiceRouteTimeMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetServiceRouteTimeMetricsResponse>> {
+        const requestOptions = await this.getServiceRouteTimeMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetServiceRouteTimeMetricsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getServiceRouteTimeMetrics(requestParameters: GetServiceRouteTimeMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetServiceRouteTimeMetricsResponse> {
+        const response = await this.getServiceRouteTimeMetricsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -9985,9 +10061,20 @@ export const GetServiceMetricsDimensionsType = {
     INVOCATIONS: 'INVOCATIONS',
     STATUS_CODES: 'STATUS_CODES',
     LATENCY: 'LATENCY',
-    COMPUTE: 'COMPUTE'
+    COMPUTE: 'COMPUTE',
+    UNIQUE_CLIENTS: 'UNIQUE_CLIENTS'
 } as const;
 export type GetServiceMetricsDimensionsType = typeof GetServiceMetricsDimensionsType[keyof typeof GetServiceMetricsDimensionsType];
+/**
+ * @export
+ */
+export const GetServiceRouteTimeMetricsGranularityType = {
+    ONE_MINUTE: 'ONE_MINUTE',
+    FIVE_MINUTES: 'FIVE_MINUTES',
+    FIFTEEN_MINUTES: 'FIFTEEN_MINUTES',
+    ONE_HOUR: 'ONE_HOUR'
+} as const;
+export type GetServiceRouteTimeMetricsGranularityType = typeof GetServiceRouteTimeMetricsGranularityType[keyof typeof GetServiceRouteTimeMetricsGranularityType];
 /**
  * @export
  */

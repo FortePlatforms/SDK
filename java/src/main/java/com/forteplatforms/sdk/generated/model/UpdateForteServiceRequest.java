@@ -50,6 +50,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateForteServiceRequest.JSON_PROPERTY_SECRETS_TO_UPSERT,
   UpdateForteServiceRequest.JSON_PROPERTY_SECRET_KEYS_TO_DELETE,
   UpdateForteServiceRequest.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
+  UpdateForteServiceRequest.JSON_PROPERTY_BLOCKED_PATHS,
   UpdateForteServiceRequest.JSON_PROPERTY_BASE_INSTANCES,
   UpdateForteServiceRequest.JSON_PROPERTY_REGION_REPLICAS,
   UpdateForteServiceRequest.JSON_PROPERTY_CONTAINER_CPU,
@@ -133,6 +134,10 @@ public class UpdateForteServiceRequest {
   public static final String JSON_PROPERTY_AUTH_PATH_EXCLUSIONS = "authPathExclusions";
   @javax.annotation.Nullable
   private List<String> authPathExclusions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BLOCKED_PATHS = "blockedPaths";
+  @javax.annotation.Nullable
+  private List<String> blockedPaths = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
   @javax.annotation.Nullable
@@ -434,6 +439,38 @@ public class UpdateForteServiceRequest {
   }
 
 
+  public UpdateForteServiceRequest blockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+    this.blockedPaths = blockedPaths;
+    return this;
+  }
+
+  public UpdateForteServiceRequest addBlockedPathsItem(String blockedPathsItem) {
+    if (this.blockedPaths == null) {
+      this.blockedPaths = new ArrayList<>();
+    }
+    this.blockedPaths.add(blockedPathsItem);
+    return this;
+  }
+
+  /**
+   * Get blockedPaths
+   * @return blockedPaths
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getBlockedPaths() {
+    return blockedPaths;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBlockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+    this.blockedPaths = blockedPaths;
+  }
+
+
   public UpdateForteServiceRequest baseInstances(@javax.annotation.Nullable Integer baseInstances) {
     this.baseInstances = baseInstances;
     return this;
@@ -612,6 +649,7 @@ public class UpdateForteServiceRequest {
         Objects.equals(this.secretsToUpsert, updateForteServiceRequest.secretsToUpsert) &&
         Objects.equals(this.secretKeysToDelete, updateForteServiceRequest.secretKeysToDelete) &&
         Objects.equals(this.authPathExclusions, updateForteServiceRequest.authPathExclusions) &&
+        Objects.equals(this.blockedPaths, updateForteServiceRequest.blockedPaths) &&
         Objects.equals(this.baseInstances, updateForteServiceRequest.baseInstances) &&
         Objects.equals(this.regionReplicas, updateForteServiceRequest.regionReplicas) &&
         Objects.equals(this.containerCpu, updateForteServiceRequest.containerCpu) &&
@@ -622,7 +660,7 @@ public class UpdateForteServiceRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(resetDockerfile, resetHealthCheckConfig, githubBuildTrigger, githubBranch, baseDirectory, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, baseInstances, regionReplicas, containerCpu, healthCheckPort, healthCheckPath, requestResponseBodyLoggingEnabled);
+    return Objects.hash(resetDockerfile, resetHealthCheckConfig, githubBuildTrigger, githubBranch, baseDirectory, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, blockedPaths, baseInstances, regionReplicas, containerCpu, healthCheckPort, healthCheckPath, requestResponseBodyLoggingEnabled);
   }
 
   @Override
@@ -639,6 +677,7 @@ public class UpdateForteServiceRequest {
     sb.append("    secretsToUpsert: ").append(toIndentedString(secretsToUpsert)).append("\n");
     sb.append("    secretKeysToDelete: ").append(toIndentedString(secretKeysToDelete)).append("\n");
     sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
+    sb.append("    blockedPaths: ").append(toIndentedString(blockedPaths)).append("\n");
     sb.append("    baseInstances: ").append(toIndentedString(baseInstances)).append("\n");
     sb.append("    regionReplicas: ").append(toIndentedString(regionReplicas)).append("\n");
     sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
@@ -754,6 +793,15 @@ public class UpdateForteServiceRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%sauthPathExclusions%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAuthPathExclusions().get(i)))));
+      }
+    }
+
+    // add `blockedPaths` to the URL query string
+    if (getBlockedPaths() != null) {
+      for (int i = 0; i < getBlockedPaths().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sblockedPaths%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getBlockedPaths().get(i)))));
       }
     }
 

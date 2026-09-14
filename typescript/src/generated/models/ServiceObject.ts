@@ -122,6 +122,12 @@ export interface ServiceObject {
     authPathExclusions?: Array<string>;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ServiceObject
+     */
+    blockedPaths?: Array<string>;
+    /**
+     * 
      * @type {number}
      * @memberof ServiceObject
      */
@@ -251,6 +257,7 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'dockerfileDetectionResponse': json['dockerfileDetectionResponse'] == null ? undefined : DockerfileGenerationResponseFromJSON(json['dockerfileDetectionResponse']),
         'healthCheckDetectionResponse': json['healthCheckDetectionResponse'] == null ? undefined : HealthCheckDetectionResponseFromJSON(json['healthCheckDetectionResponse']),
         'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
+        'blockedPaths': json['blockedPaths'] == null ? undefined : json['blockedPaths'],
         'baseInstances': json['baseInstances'],
         'regionReplicas': json['regionReplicas'] == null ? undefined : json['regionReplicas'],
         'containerCpu': json['containerCpu'],
@@ -291,6 +298,7 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'dockerfileDetectionResponse': DockerfileGenerationResponseToJSON(value['dockerfileDetectionResponse']),
         'healthCheckDetectionResponse': HealthCheckDetectionResponseToJSON(value['healthCheckDetectionResponse']),
         'authPathExclusions': value['authPathExclusions'],
+        'blockedPaths': value['blockedPaths'],
         'baseInstances': value['baseInstances'],
         'regionReplicas': value['regionReplicas'],
         'containerCpu': value['containerCpu'],

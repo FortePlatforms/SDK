@@ -57,6 +57,7 @@ import com.forteplatforms.sdk.generated.model.CustomDomainResponse;
 import com.forteplatforms.sdk.generated.model.CustomEmailTemplateObject;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.GetRequestBodyDownloadLinkResponse;
+import com.forteplatforms.sdk.generated.model.GetServiceRouteTimeMetricsResponse;
 import com.forteplatforms.sdk.generated.model.ImpersonationTokenResponse;
 import com.forteplatforms.sdk.generated.model.ListContentResponse;
 import com.forteplatforms.sdk.generated.model.ListCustomDomainsResponse;
@@ -8258,6 +8259,164 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
     localVarQueryParameterBaseName = "maxTime";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param granularity  (optional, default to FIVE_MINUTES)
+   * @return GetServiceRouteTimeMetricsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetServiceRouteTimeMetricsResponse getServiceRouteTimeMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity) throws ApiException {
+    return getServiceRouteTimeMetrics(projectId, serviceId, minTime, maxTime, granularity, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param granularity  (optional, default to FIVE_MINUTES)
+   * @param headers Optional headers to include in the request
+   * @return GetServiceRouteTimeMetricsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetServiceRouteTimeMetricsResponse getServiceRouteTimeMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetServiceRouteTimeMetricsResponse> localVarResponse = getServiceRouteTimeMetricsWithHttpInfo(projectId, serviceId, minTime, maxTime, granularity, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param granularity  (optional, default to FIVE_MINUTES)
+   * @return ApiResponse&lt;GetServiceRouteTimeMetricsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetServiceRouteTimeMetricsResponse> getServiceRouteTimeMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity) throws ApiException {
+    return getServiceRouteTimeMetricsWithHttpInfo(projectId, serviceId, minTime, maxTime, granularity, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param minTime  (optional)
+   * @param maxTime  (optional)
+   * @param granularity  (optional, default to FIVE_MINUTES)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetServiceRouteTimeMetricsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetServiceRouteTimeMetricsResponse> getServiceRouteTimeMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getServiceRouteTimeMetricsRequestBuilder(projectId, serviceId, minTime, maxTime, granularity, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getServiceRouteTimeMetrics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetServiceRouteTimeMetricsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetServiceRouteTimeMetricsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetServiceRouteTimeMetricsResponse>() {});
+        
+
+        return new ApiResponse<GetServiceRouteTimeMetricsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getServiceRouteTimeMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getServiceRouteTimeMetrics");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling getServiceRouteTimeMetrics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/route-time-metrics"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "minTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
+    localVarQueryParameterBaseName = "maxTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "granularity";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

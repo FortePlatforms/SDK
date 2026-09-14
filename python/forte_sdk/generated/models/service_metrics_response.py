@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.instance_count_series import InstanceCountSeries
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics
@@ -40,7 +40,9 @@ class ServiceMetricsResponse(BaseModel):
     concurrent_instances: Optional[InstanceCountSeries] = Field(default=None, alias="concurrentInstances")
     cpu_utilization: Optional[UtilizationSeries] = Field(default=None, alias="cpuUtilization")
     memory_utilization: Optional[UtilizationSeries] = Field(default=None, alias="memoryUtilization")
-    __properties: ClassVar[List[str]] = ["invocations", "statusCodeCounts", "statusCodeGroupCounts", "latencyMetrics", "totalLatencySeries", "concurrentInstances", "cpuUtilization", "memoryUtilization"]
+    unique_clients: Optional[List[TimeSeriesDataPoint]] = Field(default=None, alias="uniqueClients")
+    unique_client_count: Optional[StrictInt] = Field(default=None, alias="uniqueClientCount")
+    __properties: ClassVar[List[str]] = ["invocations", "statusCodeCounts", "statusCodeGroupCounts", "latencyMetrics", "totalLatencySeries", "concurrentInstances", "cpuUtilization", "memoryUtilization", "uniqueClients", "uniqueClientCount"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -121,6 +123,13 @@ class ServiceMetricsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of memory_utilization
         if self.memory_utilization:
             _dict['memoryUtilization'] = self.memory_utilization.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in unique_clients (list)
+        _items = []
+        if self.unique_clients:
+            for _item_unique_clients in self.unique_clients:
+                if _item_unique_clients:
+                    _items.append(_item_unique_clients.to_dict())
+            _dict['uniqueClients'] = _items
         return _dict
 
     @classmethod
@@ -150,7 +159,9 @@ class ServiceMetricsResponse(BaseModel):
             "totalLatencySeries": LatencyPercentileSeries.from_dict(obj["totalLatencySeries"]) if obj.get("totalLatencySeries") is not None else None,
             "concurrentInstances": InstanceCountSeries.from_dict(obj["concurrentInstances"]) if obj.get("concurrentInstances") is not None else None,
             "cpuUtilization": UtilizationSeries.from_dict(obj["cpuUtilization"]) if obj.get("cpuUtilization") is not None else None,
-            "memoryUtilization": UtilizationSeries.from_dict(obj["memoryUtilization"]) if obj.get("memoryUtilization") is not None else None
+            "memoryUtilization": UtilizationSeries.from_dict(obj["memoryUtilization"]) if obj.get("memoryUtilization") is not None else None,
+            "uniqueClients": [TimeSeriesDataPoint.from_dict(_item) for _item in obj["uniqueClients"]] if obj.get("uniqueClients") is not None else None,
+            "uniqueClientCount": obj.get("uniqueClientCount")
         })
         return _obj
 

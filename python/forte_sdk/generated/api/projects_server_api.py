@@ -58,6 +58,7 @@ from forte_sdk.generated.models.custom_domain_response import CustomDomainRespon
 from forte_sdk.generated.models.custom_email_template_object import CustomEmailTemplateObject
 from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse
 from forte_sdk.generated.models.get_request_body_download_link_response import GetRequestBodyDownloadLinkResponse
+from forte_sdk.generated.models.get_service_route_time_metrics_response import GetServiceRouteTimeMetricsResponse
 from forte_sdk.generated.models.impersonation_token_response import ImpersonationTokenResponse
 from forte_sdk.generated.models.list_content_response import ListContentResponse
 from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse
@@ -17386,6 +17387,347 @@ class ProjectsServerApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/api/v1/projects/{projectId}/services/{serviceId}/route-metrics',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_service_route_time_metrics(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        min_time: Optional[datetime] = None,
+        max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetServiceRouteTimeMetricsResponse:
+        """get_service_route_time_metrics
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param min_time:
+        :type min_time: datetime
+        :param max_time:
+        :type max_time: datetime
+        :param granularity:
+        :type granularity: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_service_route_time_metrics_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            min_time=min_time,
+            max_time=max_time,
+            granularity=granularity,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetServiceRouteTimeMetricsResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_service_route_time_metrics_with_http_info(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        min_time: Optional[datetime] = None,
+        max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetServiceRouteTimeMetricsResponse]:
+        """get_service_route_time_metrics
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param min_time:
+        :type min_time: datetime
+        :param max_time:
+        :type max_time: datetime
+        :param granularity:
+        :type granularity: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_service_route_time_metrics_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            min_time=min_time,
+            max_time=max_time,
+            granularity=granularity,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetServiceRouteTimeMetricsResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_service_route_time_metrics_without_preload_content(
+        self,
+        project_id: StrictStr,
+        service_id: StrictStr,
+        min_time: Optional[datetime] = None,
+        max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_service_route_time_metrics
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param service_id: (required)
+        :type service_id: str
+        :param min_time:
+        :type min_time: datetime
+        :param max_time:
+        :type max_time: datetime
+        :param granularity:
+        :type granularity: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_service_route_time_metrics_serialize(
+            project_id=project_id,
+            service_id=service_id,
+            min_time=min_time,
+            max_time=max_time,
+            granularity=granularity,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetServiceRouteTimeMetricsResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_service_route_time_metrics_serialize(
+        self,
+        project_id,
+        service_id,
+        min_time,
+        max_time,
+        granularity,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if service_id is not None:
+            _path_params['serviceId'] = service_id
+        # process the query parameters
+        if min_time is not None:
+            if isinstance(min_time, datetime):
+                _query_params.append(
+                    (
+                        'minTime',
+                        min_time.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('minTime', min_time))
+            
+        if max_time is not None:
+            if isinstance(max_time, datetime):
+                _query_params.append(
+                    (
+                        'maxTime',
+                        max_time.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('maxTime', max_time))
+            
+        if granularity is not None:
+            
+            _query_params.append(('granularity', granularity))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/v1/projects/{projectId}/services/{serviceId}/route-time-metrics',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

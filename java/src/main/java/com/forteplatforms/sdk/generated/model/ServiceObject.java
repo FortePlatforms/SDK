@@ -57,6 +57,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_DOCKERFILE_DETECTION_RESPONSE,
   ServiceObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_RESPONSE,
   ServiceObject.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
+  ServiceObject.JSON_PROPERTY_BLOCKED_PATHS,
   ServiceObject.JSON_PROPERTY_BASE_INSTANCES,
   ServiceObject.JSON_PROPERTY_REGION_REPLICAS,
   ServiceObject.JSON_PROPERTY_CONTAINER_CPU,
@@ -121,6 +122,10 @@ public class ServiceObject {
   public static final String JSON_PROPERTY_AUTH_PATH_EXCLUSIONS = "authPathExclusions";
   @javax.annotation.Nullable
   private List<String> authPathExclusions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BLOCKED_PATHS = "blockedPaths";
+  @javax.annotation.Nullable
+  private List<String> blockedPaths = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
   @javax.annotation.Nonnull
@@ -509,6 +514,38 @@ public class ServiceObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAuthPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
     this.authPathExclusions = authPathExclusions;
+  }
+
+
+  public ServiceObject blockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+    this.blockedPaths = blockedPaths;
+    return this;
+  }
+
+  public ServiceObject addBlockedPathsItem(String blockedPathsItem) {
+    if (this.blockedPaths == null) {
+      this.blockedPaths = new ArrayList<>();
+    }
+    this.blockedPaths.add(blockedPathsItem);
+    return this;
+  }
+
+  /**
+   * Get blockedPaths
+   * @return blockedPaths
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getBlockedPaths() {
+    return blockedPaths;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBlockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+    this.blockedPaths = blockedPaths;
   }
 
 
@@ -913,6 +950,7 @@ public class ServiceObject {
         Objects.equals(this.dockerfileDetectionResponse, serviceObject.dockerfileDetectionResponse) &&
         Objects.equals(this.healthCheckDetectionResponse, serviceObject.healthCheckDetectionResponse) &&
         Objects.equals(this.authPathExclusions, serviceObject.authPathExclusions) &&
+        Objects.equals(this.blockedPaths, serviceObject.blockedPaths) &&
         Objects.equals(this.baseInstances, serviceObject.baseInstances) &&
         Objects.equals(this.regionReplicas, serviceObject.regionReplicas) &&
         Objects.equals(this.containerCpu, serviceObject.containerCpu) &&
@@ -931,7 +969,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, liveBuildId, liveCommitHash, pausedAt, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, baseInstances, regionReplicas, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, liveBuildId, liveCommitHash, pausedAt, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, blockedPaths, baseInstances, regionReplicas, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
   }
 
   @Override
@@ -950,6 +988,7 @@ public class ServiceObject {
     sb.append("    dockerfileDetectionResponse: ").append(toIndentedString(dockerfileDetectionResponse)).append("\n");
     sb.append("    healthCheckDetectionResponse: ").append(toIndentedString(healthCheckDetectionResponse)).append("\n");
     sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
+    sb.append("    blockedPaths: ").append(toIndentedString(blockedPaths)).append("\n");
     sb.append("    baseInstances: ").append(toIndentedString(baseInstances)).append("\n");
     sb.append("    regionReplicas: ").append(toIndentedString(regionReplicas)).append("\n");
     sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
@@ -1069,6 +1108,15 @@ public class ServiceObject {
         joiner.add(String.format(java.util.Locale.ROOT, "%sauthPathExclusions%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAuthPathExclusions().get(i)))));
+      }
+    }
+
+    // add `blockedPaths` to the URL query string
+    if (getBlockedPaths() != null) {
+      for (int i = 0; i < getBlockedPaths().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sblockedPaths%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getBlockedPaths().get(i)))));
       }
     }
 

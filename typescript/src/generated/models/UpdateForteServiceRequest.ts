@@ -81,6 +81,12 @@ export interface UpdateForteServiceRequest {
     authPathExclusions?: Array<string>;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof UpdateForteServiceRequest
+     */
+    blockedPaths?: Array<string>;
+    /**
+     * 
      * @type {number}
      * @memberof UpdateForteServiceRequest
      */
@@ -155,6 +161,7 @@ export function UpdateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'secretsToUpsert': json['secretsToUpsert'] == null ? undefined : json['secretsToUpsert'],
         'secretKeysToDelete': json['secretKeysToDelete'] == null ? undefined : new Set(json['secretKeysToDelete']),
         'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
+        'blockedPaths': json['blockedPaths'] == null ? undefined : json['blockedPaths'],
         'baseInstances': json['baseInstances'] == null ? undefined : json['baseInstances'],
         'regionReplicas': json['regionReplicas'] == null ? undefined : json['regionReplicas'],
         'containerCpu': json['containerCpu'] == null ? undefined : json['containerCpu'],
@@ -185,6 +192,7 @@ export function UpdateForteServiceRequestToJSONTyped(value?: UpdateForteServiceR
         'secretsToUpsert': value['secretsToUpsert'],
         'secretKeysToDelete': value['secretKeysToDelete'] == null ? undefined : Array.from(value['secretKeysToDelete'] as Set<any>),
         'authPathExclusions': value['authPathExclusions'],
+        'blockedPaths': value['blockedPaths'],
         'baseInstances': value['baseInstances'],
         'regionReplicas': value['regionReplicas'],
         'containerCpu': value['containerCpu'],

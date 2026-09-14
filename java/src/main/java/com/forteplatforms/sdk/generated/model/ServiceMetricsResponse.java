@@ -49,7 +49,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceMetricsResponse.JSON_PROPERTY_TOTAL_LATENCY_SERIES,
   ServiceMetricsResponse.JSON_PROPERTY_CONCURRENT_INSTANCES,
   ServiceMetricsResponse.JSON_PROPERTY_CPU_UTILIZATION,
-  ServiceMetricsResponse.JSON_PROPERTY_MEMORY_UTILIZATION
+  ServiceMetricsResponse.JSON_PROPERTY_MEMORY_UTILIZATION,
+  ServiceMetricsResponse.JSON_PROPERTY_UNIQUE_CLIENTS,
+  ServiceMetricsResponse.JSON_PROPERTY_UNIQUE_CLIENT_COUNT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ServiceMetricsResponse {
@@ -84,6 +86,14 @@ public class ServiceMetricsResponse {
   public static final String JSON_PROPERTY_MEMORY_UTILIZATION = "memoryUtilization";
   @javax.annotation.Nullable
   private UtilizationSeries memoryUtilization;
+
+  public static final String JSON_PROPERTY_UNIQUE_CLIENTS = "uniqueClients";
+  @javax.annotation.Nullable
+  private List<TimeSeriesDataPoint> uniqueClients = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_UNIQUE_CLIENT_COUNT = "uniqueClientCount";
+  @javax.annotation.Nullable
+  private Long uniqueClientCount;
 
   public ServiceMetricsResponse() { 
   }
@@ -304,6 +314,62 @@ public class ServiceMetricsResponse {
   }
 
 
+  public ServiceMetricsResponse uniqueClients(@javax.annotation.Nullable List<TimeSeriesDataPoint> uniqueClients) {
+    this.uniqueClients = uniqueClients;
+    return this;
+  }
+
+  public ServiceMetricsResponse addUniqueClientsItem(TimeSeriesDataPoint uniqueClientsItem) {
+    if (this.uniqueClients == null) {
+      this.uniqueClients = new ArrayList<>();
+    }
+    this.uniqueClients.add(uniqueClientsItem);
+    return this;
+  }
+
+  /**
+   * Get uniqueClients
+   * @return uniqueClients
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CLIENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<TimeSeriesDataPoint> getUniqueClients() {
+    return uniqueClients;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CLIENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUniqueClients(@javax.annotation.Nullable List<TimeSeriesDataPoint> uniqueClients) {
+    this.uniqueClients = uniqueClients;
+  }
+
+
+  public ServiceMetricsResponse uniqueClientCount(@javax.annotation.Nullable Long uniqueClientCount) {
+    this.uniqueClientCount = uniqueClientCount;
+    return this;
+  }
+
+  /**
+   * Get uniqueClientCount
+   * @return uniqueClientCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CLIENT_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getUniqueClientCount() {
+    return uniqueClientCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CLIENT_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUniqueClientCount(@javax.annotation.Nullable Long uniqueClientCount) {
+    this.uniqueClientCount = uniqueClientCount;
+  }
+
+
   /**
    * Return true if this ServiceMetricsResponse object is equal to o.
    */
@@ -323,12 +389,14 @@ public class ServiceMetricsResponse {
         Objects.equals(this.totalLatencySeries, serviceMetricsResponse.totalLatencySeries) &&
         Objects.equals(this.concurrentInstances, serviceMetricsResponse.concurrentInstances) &&
         Objects.equals(this.cpuUtilization, serviceMetricsResponse.cpuUtilization) &&
-        Objects.equals(this.memoryUtilization, serviceMetricsResponse.memoryUtilization);
+        Objects.equals(this.memoryUtilization, serviceMetricsResponse.memoryUtilization) &&
+        Objects.equals(this.uniqueClients, serviceMetricsResponse.uniqueClients) &&
+        Objects.equals(this.uniqueClientCount, serviceMetricsResponse.uniqueClientCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invocations, statusCodeCounts, statusCodeGroupCounts, latencyMetrics, totalLatencySeries, concurrentInstances, cpuUtilization, memoryUtilization);
+    return Objects.hash(invocations, statusCodeCounts, statusCodeGroupCounts, latencyMetrics, totalLatencySeries, concurrentInstances, cpuUtilization, memoryUtilization, uniqueClients, uniqueClientCount);
   }
 
   @Override
@@ -343,6 +411,8 @@ public class ServiceMetricsResponse {
     sb.append("    concurrentInstances: ").append(toIndentedString(concurrentInstances)).append("\n");
     sb.append("    cpuUtilization: ").append(toIndentedString(cpuUtilization)).append("\n");
     sb.append("    memoryUtilization: ").append(toIndentedString(memoryUtilization)).append("\n");
+    sb.append("    uniqueClients: ").append(toIndentedString(uniqueClients)).append("\n");
+    sb.append("    uniqueClientCount: ").append(toIndentedString(uniqueClientCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -438,6 +508,21 @@ public class ServiceMetricsResponse {
     // add `memoryUtilization` to the URL query string
     if (getMemoryUtilization() != null) {
       joiner.add(getMemoryUtilization().toUrlQueryString(prefix + "memoryUtilization" + suffix));
+    }
+
+    // add `uniqueClients` to the URL query string
+    if (getUniqueClients() != null) {
+      for (int i = 0; i < getUniqueClients().size(); i++) {
+        if (getUniqueClients().get(i) != null) {
+          joiner.add(getUniqueClients().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%suniqueClients%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `uniqueClientCount` to the URL query string
+    if (getUniqueClientCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suniqueClientCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUniqueClientCount()))));
     }
 
     return joiner.toString();

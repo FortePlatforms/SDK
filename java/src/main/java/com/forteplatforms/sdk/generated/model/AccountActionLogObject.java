@@ -208,6 +208,8 @@ public class AccountActionLogObject {
     
     ADMIN_ACCOUNT_RESUMED(String.valueOf("ADMIN_ACCOUNT_RESUMED")),
     
+    ADMIN_ACCOUNT_MERGED(String.valueOf("ADMIN_ACCOUNT_MERGED")),
+    
     ADMIN_INVOICE_ITEM_ADDED(String.valueOf("ADMIN_INVOICE_ITEM_ADDED")),
     
     ADMIN_INVOICE_ITEM_UPDATED(String.valueOf("ADMIN_INVOICE_ITEM_UPDATED")),

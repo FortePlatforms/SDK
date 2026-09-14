@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.385"
+__version__ = "1.0.391"
 
 # Define package exports
 __all__ = [
@@ -99,6 +99,7 @@ __all__ = [
     "ForteApiException",
     "GetContentDownloadLinkResponse",
     "GetRequestBodyDownloadLinkResponse",
+    "GetServiceRouteTimeMetricsResponse",
     "HealthCheckConfig",
     "HealthCheckDetectionError",
     "HealthCheckDetectionOutput",
@@ -189,6 +190,8 @@ __all__ = [
     "RevertWebAppChangeResponse",
     "RotateManagedDatabaseUserPasswordResponse",
     "RouteMetric",
+    "RouteTimeBucket",
+    "RouteTimeSeries",
     "SearchUsersRequest",
     "SendUserEmailFromTemplateRequest",
     "SendUserEmailRequest",
@@ -324,6 +327,7 @@ from forte_sdk.generated.models.field_change import FieldChange as FieldChange
 from forte_sdk.generated.models.forte_api_exception import ForteApiException as ForteApiException
 from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse as GetContentDownloadLinkResponse
 from forte_sdk.generated.models.get_request_body_download_link_response import GetRequestBodyDownloadLinkResponse as GetRequestBodyDownloadLinkResponse
+from forte_sdk.generated.models.get_service_route_time_metrics_response import GetServiceRouteTimeMetricsResponse as GetServiceRouteTimeMetricsResponse
 from forte_sdk.generated.models.health_check_config import HealthCheckConfig as HealthCheckConfig
 from forte_sdk.generated.models.health_check_detection_error import HealthCheckDetectionError as HealthCheckDetectionError
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput as HealthCheckDetectionOutput
@@ -414,6 +418,8 @@ from forte_sdk.generated.models.revert_service_change_response import RevertServ
 from forte_sdk.generated.models.revert_web_app_change_response import RevertWebAppChangeResponse as RevertWebAppChangeResponse
 from forte_sdk.generated.models.rotate_managed_database_user_password_response import RotateManagedDatabaseUserPasswordResponse as RotateManagedDatabaseUserPasswordResponse
 from forte_sdk.generated.models.route_metric import RouteMetric as RouteMetric
+from forte_sdk.generated.models.route_time_bucket import RouteTimeBucket as RouteTimeBucket
+from forte_sdk.generated.models.route_time_series import RouteTimeSeries as RouteTimeSeries
 from forte_sdk.generated.models.search_users_request import SearchUsersRequest as SearchUsersRequest
 from forte_sdk.generated.models.send_user_email_from_template_request import SendUserEmailFromTemplateRequest as SendUserEmailFromTemplateRequest
 from forte_sdk.generated.models.send_user_email_request import SendUserEmailRequest as SendUserEmailRequest

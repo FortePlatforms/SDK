@@ -103,6 +103,18 @@ export interface ServiceMetricsResponse {
      * @memberof ServiceMetricsResponse
      */
     memoryUtilization?: UtilizationSeries;
+    /**
+     * 
+     * @type {Array<TimeSeriesDataPoint>}
+     * @memberof ServiceMetricsResponse
+     */
+    uniqueClients?: Array<TimeSeriesDataPoint>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ServiceMetricsResponse
+     */
+    uniqueClientCount?: number;
 }
 
 /**
@@ -130,6 +142,8 @@ export function ServiceMetricsResponseFromJSONTyped(json: any, ignoreDiscriminat
         'concurrentInstances': json['concurrentInstances'] == null ? undefined : InstanceCountSeriesFromJSON(json['concurrentInstances']),
         'cpuUtilization': json['cpuUtilization'] == null ? undefined : UtilizationSeriesFromJSON(json['cpuUtilization']),
         'memoryUtilization': json['memoryUtilization'] == null ? undefined : UtilizationSeriesFromJSON(json['memoryUtilization']),
+        'uniqueClients': json['uniqueClients'] == null ? undefined : ((json['uniqueClients'] as Array<any>).map(TimeSeriesDataPointFromJSON)),
+        'uniqueClientCount': json['uniqueClientCount'] == null ? undefined : json['uniqueClientCount'],
     };
 }
 
@@ -152,6 +166,8 @@ export function ServiceMetricsResponseToJSONTyped(value?: ServiceMetricsResponse
         'concurrentInstances': InstanceCountSeriesToJSON(value['concurrentInstances']),
         'cpuUtilization': UtilizationSeriesToJSON(value['cpuUtilization']),
         'memoryUtilization': UtilizationSeriesToJSON(value['memoryUtilization']),
+        'uniqueClients': value['uniqueClients'] == null ? undefined : ((value['uniqueClients'] as Array<any>).map(TimeSeriesDataPointToJSON)),
+        'uniqueClientCount': value['uniqueClientCount'],
     };
 }
 
