@@ -12286,6 +12286,7 @@ public class ProjectsServerApi {
    * @param email  (optional)
    * @param phone  (optional)
    * @param fullName  (optional)
+   * @param fullNameLike  (optional)
    * @param metadataKey  (optional)
    * @param metadataValue  (optional)
    * @param minTime  (optional)
@@ -12294,8 +12295,8 @@ public class ProjectsServerApi {
    * @return PaginatedResponseUserObject
    * @throws ApiException if fails to make API call
    */
-  public PaginatedResponseUserObject listUsers(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
-    return listUsers(projectId, email, phone, fullName, metadataKey, metadataValue, minTime, maxTime, nextToken, null);
+  public PaginatedResponseUserObject listUsers(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String fullNameLike, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listUsers(projectId, email, phone, fullName, fullNameLike, metadataKey, metadataValue, minTime, maxTime, nextToken, null);
   }
 
   /**
@@ -12305,6 +12306,7 @@ public class ProjectsServerApi {
    * @param email  (optional)
    * @param phone  (optional)
    * @param fullName  (optional)
+   * @param fullNameLike  (optional)
    * @param metadataKey  (optional)
    * @param metadataValue  (optional)
    * @param minTime  (optional)
@@ -12314,8 +12316,8 @@ public class ProjectsServerApi {
    * @return PaginatedResponseUserObject
    * @throws ApiException if fails to make API call
    */
-  public PaginatedResponseUserObject listUsers(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaginatedResponseUserObject> localVarResponse = listUsersWithHttpInfo(projectId, email, phone, fullName, metadataKey, metadataValue, minTime, maxTime, nextToken, headers);
+  public PaginatedResponseUserObject listUsers(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String fullNameLike, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseUserObject> localVarResponse = listUsersWithHttpInfo(projectId, email, phone, fullName, fullNameLike, metadataKey, metadataValue, minTime, maxTime, nextToken, headers);
     return localVarResponse.getData();
   }
 
@@ -12326,6 +12328,7 @@ public class ProjectsServerApi {
    * @param email  (optional)
    * @param phone  (optional)
    * @param fullName  (optional)
+   * @param fullNameLike  (optional)
    * @param metadataKey  (optional)
    * @param metadataValue  (optional)
    * @param minTime  (optional)
@@ -12334,8 +12337,8 @@ public class ProjectsServerApi {
    * @return ApiResponse&lt;PaginatedResponseUserObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaginatedResponseUserObject> listUsersWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
-    return listUsersWithHttpInfo(projectId, email, phone, fullName, metadataKey, metadataValue, minTime, maxTime, nextToken, null);
+  public ApiResponse<PaginatedResponseUserObject> listUsersWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String fullNameLike, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listUsersWithHttpInfo(projectId, email, phone, fullName, fullNameLike, metadataKey, metadataValue, minTime, maxTime, nextToken, null);
   }
 
   /**
@@ -12345,6 +12348,7 @@ public class ProjectsServerApi {
    * @param email  (optional)
    * @param phone  (optional)
    * @param fullName  (optional)
+   * @param fullNameLike  (optional)
    * @param metadataKey  (optional)
    * @param metadataValue  (optional)
    * @param minTime  (optional)
@@ -12354,8 +12358,8 @@ public class ProjectsServerApi {
    * @return ApiResponse&lt;PaginatedResponseUserObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaginatedResponseUserObject> listUsersWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listUsersRequestBuilder(projectId, email, phone, fullName, metadataKey, metadataValue, minTime, maxTime, nextToken, headers);
+  public ApiResponse<PaginatedResponseUserObject> listUsersWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String fullNameLike, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listUsersRequestBuilder(projectId, email, phone, fullName, fullNameLike, metadataKey, metadataValue, minTime, maxTime, nextToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -12402,7 +12406,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder listUsersRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listUsersRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable String email, @javax.annotation.Nullable String phone, @javax.annotation.Nullable String fullName, @javax.annotation.Nullable String fullNameLike, @javax.annotation.Nullable String metadataKey, @javax.annotation.Nullable String metadataValue, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling listUsers");
@@ -12422,6 +12426,8 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("phone", phone));
     localVarQueryParameterBaseName = "fullName";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fullName", fullName));
+    localVarQueryParameterBaseName = "fullNameLike";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fullNameLike", fullNameLike));
     localVarQueryParameterBaseName = "metadataKey";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("metadataKey", metadataKey));
     localVarQueryParameterBaseName = "metadataValue";

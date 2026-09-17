@@ -25985,6 +25985,7 @@ class ProjectsServerApi:
         email: Optional[StrictStr] = None,
         phone: Optional[StrictStr] = None,
         full_name: Optional[StrictStr] = None,
+        full_name_like: Optional[StrictStr] = None,
         metadata_key: Optional[StrictStr] = None,
         metadata_value: Optional[StrictStr] = None,
         min_time: Optional[datetime] = None,
@@ -26014,6 +26015,8 @@ class ProjectsServerApi:
         :type phone: str
         :param full_name:
         :type full_name: str
+        :param full_name_like:
+        :type full_name_like: str
         :param metadata_key:
         :type metadata_key: str
         :param metadata_value:
@@ -26051,6 +26054,7 @@ class ProjectsServerApi:
             email=email,
             phone=phone,
             full_name=full_name,
+            full_name_like=full_name_like,
             metadata_key=metadata_key,
             metadata_value=metadata_value,
             min_time=min_time,
@@ -26083,6 +26087,7 @@ class ProjectsServerApi:
         email: Optional[StrictStr] = None,
         phone: Optional[StrictStr] = None,
         full_name: Optional[StrictStr] = None,
+        full_name_like: Optional[StrictStr] = None,
         metadata_key: Optional[StrictStr] = None,
         metadata_value: Optional[StrictStr] = None,
         min_time: Optional[datetime] = None,
@@ -26112,6 +26117,8 @@ class ProjectsServerApi:
         :type phone: str
         :param full_name:
         :type full_name: str
+        :param full_name_like:
+        :type full_name_like: str
         :param metadata_key:
         :type metadata_key: str
         :param metadata_value:
@@ -26149,6 +26156,7 @@ class ProjectsServerApi:
             email=email,
             phone=phone,
             full_name=full_name,
+            full_name_like=full_name_like,
             metadata_key=metadata_key,
             metadata_value=metadata_value,
             min_time=min_time,
@@ -26181,6 +26189,7 @@ class ProjectsServerApi:
         email: Optional[StrictStr] = None,
         phone: Optional[StrictStr] = None,
         full_name: Optional[StrictStr] = None,
+        full_name_like: Optional[StrictStr] = None,
         metadata_key: Optional[StrictStr] = None,
         metadata_value: Optional[StrictStr] = None,
         min_time: Optional[datetime] = None,
@@ -26210,6 +26219,8 @@ class ProjectsServerApi:
         :type phone: str
         :param full_name:
         :type full_name: str
+        :param full_name_like:
+        :type full_name_like: str
         :param metadata_key:
         :type metadata_key: str
         :param metadata_value:
@@ -26247,6 +26258,7 @@ class ProjectsServerApi:
             email=email,
             phone=phone,
             full_name=full_name,
+            full_name_like=full_name_like,
             metadata_key=metadata_key,
             metadata_value=metadata_value,
             min_time=min_time,
@@ -26274,6 +26286,7 @@ class ProjectsServerApi:
         email,
         phone,
         full_name,
+        full_name_like,
         metadata_key,
         metadata_value,
         min_time,
@@ -26314,6 +26327,10 @@ class ProjectsServerApi:
         if full_name is not None:
             
             _query_params.append(('fullName', full_name))
+            
+        if full_name_like is not None:
+            
+            _query_params.append(('fullNameLike', full_name_like))
             
         if metadata_key is not None:
             

@@ -1099,6 +1099,7 @@ export interface ListUsersRequest {
     email?: string;
     phone?: string;
     fullName?: string;
+    fullNameLike?: string;
     metadataKey?: string;
     metadataValue?: string;
     minTime?: Date;
@@ -6482,6 +6483,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['fullName'] != null) {
             queryParameters['fullName'] = requestParameters['fullName'];
+        }
+
+        if (requestParameters['fullNameLike'] != null) {
+            queryParameters['fullNameLike'] = requestParameters['fullNameLike'];
         }
 
         if (requestParameters['metadataKey'] != null) {
