@@ -1022,6 +1022,12 @@ export interface ListManagedDatabasesRequest {
     pageSize?: number;
 }
 
+export interface ListPaymentTriggerInvocationsRequest {
+    projectId: string;
+    triggerId: string;
+    nextToken?: string;
+}
+
 export interface ListPaymentTriggersRequest {
     projectId: string;
 }
@@ -5836,6 +5842,61 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listManagedDatabases(requestParameters: ListManagedDatabasesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListManagedDatabasesResponse> {
         const response = await this.listManagedDatabasesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listPaymentTriggerInvocations without sending the request
+     */
+    async listPaymentTriggerInvocationsRequestOpts(requestParameters: ListPaymentTriggerInvocationsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listPaymentTriggerInvocations().'
+            );
+        }
+
+        if (requestParameters['triggerId'] == null) {
+            throw new runtime.RequiredError(
+                'triggerId',
+                'Required parameter "triggerId" was null or undefined when calling listPaymentTriggerInvocations().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payment-triggers/{triggerId}/invocations`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{triggerId}', encodeURIComponent(String(requestParameters['triggerId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listPaymentTriggerInvocationsRaw(requestParameters: ListPaymentTriggerInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseRequestLogSummary>> {
+        const requestOptions = await this.listPaymentTriggerInvocationsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseRequestLogSummaryFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listPaymentTriggerInvocations(requestParameters: ListPaymentTriggerInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseRequestLogSummary> {
+        const response = await this.listPaymentTriggerInvocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

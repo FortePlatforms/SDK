@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.BodyRef;
+import com.forteplatforms.sdk.generated.model.InternalSource;
 import com.forteplatforms.sdk.generated.model.RequestLogObjectMeta;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -54,6 +55,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RequestLogObject.JSON_PROPERTY_REQUEST_HEADERS,
   RequestLogObject.JSON_PROPERTY_RESPONSE_HEADERS,
   RequestLogObject.JSON_PROPERTY_RETRY_COUNT,
+  RequestLogObject.JSON_PROPERTY_INTERNAL_SOURCE,
   RequestLogObject.JSON_PROPERTY_EXCEPTION_TYPE,
   RequestLogObject.JSON_PROPERTY_EXCEPTION_MESSAGE,
   RequestLogObject.JSON_PROPERTY_EXCEPTION_STACK_TRACE,
@@ -125,6 +127,10 @@ public class RequestLogObject {
   public static final String JSON_PROPERTY_RETRY_COUNT = "retryCount";
   @javax.annotation.Nullable
   private Integer retryCount;
+
+  public static final String JSON_PROPERTY_INTERNAL_SOURCE = "internalSource";
+  @javax.annotation.Nullable
+  private InternalSource internalSource;
 
   public static final String JSON_PROPERTY_EXCEPTION_TYPE = "exceptionType";
   @javax.annotation.Nullable
@@ -549,6 +555,30 @@ public class RequestLogObject {
   }
 
 
+  public RequestLogObject internalSource(@javax.annotation.Nullable InternalSource internalSource) {
+    this.internalSource = internalSource;
+    return this;
+  }
+
+  /**
+   * Get internalSource
+   * @return internalSource
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INTERNAL_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public InternalSource getInternalSource() {
+    return internalSource;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INTERNAL_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInternalSource(@javax.annotation.Nullable InternalSource internalSource) {
+    this.internalSource = internalSource;
+  }
+
+
   public RequestLogObject exceptionType(@javax.annotation.Nullable String exceptionType) {
     this.exceptionType = exceptionType;
     return this;
@@ -697,6 +727,7 @@ public class RequestLogObject {
         Objects.equals(this.requestHeaders, requestLogObject.requestHeaders) &&
         Objects.equals(this.responseHeaders, requestLogObject.responseHeaders) &&
         Objects.equals(this.retryCount, requestLogObject.retryCount) &&
+        Objects.equals(this.internalSource, requestLogObject.internalSource) &&
         Objects.equals(this.exceptionType, requestLogObject.exceptionType) &&
         Objects.equals(this.exceptionMessage, requestLogObject.exceptionMessage) &&
         Objects.equals(this.exceptionStackTrace, requestLogObject.exceptionStackTrace) &&
@@ -706,7 +737,7 @@ public class RequestLogObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, timestamp, sourceIpAddress, requestLogObjectMeta, targetLatencyMilliseconds, integrationLatencyMilliseconds, totalLatencyMilliseconds, firstByteLatencyMilliseconds, requestBody, responseBody, requestBodyRef, responseBodyRef, statusCode, requestHeaders, responseHeaders, retryCount, exceptionType, exceptionMessage, exceptionStackTrace, ownerAccountId, environment);
+    return Objects.hash(requestId, timestamp, sourceIpAddress, requestLogObjectMeta, targetLatencyMilliseconds, integrationLatencyMilliseconds, totalLatencyMilliseconds, firstByteLatencyMilliseconds, requestBody, responseBody, requestBodyRef, responseBodyRef, statusCode, requestHeaders, responseHeaders, retryCount, internalSource, exceptionType, exceptionMessage, exceptionStackTrace, ownerAccountId, environment);
   }
 
   @Override
@@ -729,6 +760,7 @@ public class RequestLogObject {
     sb.append("    requestHeaders: ").append(toIndentedString(requestHeaders)).append("\n");
     sb.append("    responseHeaders: ").append(toIndentedString(responseHeaders)).append("\n");
     sb.append("    retryCount: ").append(toIndentedString(retryCount)).append("\n");
+    sb.append("    internalSource: ").append(toIndentedString(internalSource)).append("\n");
     sb.append("    exceptionType: ").append(toIndentedString(exceptionType)).append("\n");
     sb.append("    exceptionMessage: ").append(toIndentedString(exceptionMessage)).append("\n");
     sb.append("    exceptionStackTrace: ").append(toIndentedString(exceptionStackTrace)).append("\n");
@@ -864,6 +896,11 @@ public class RequestLogObject {
     // add `retryCount` to the URL query string
     if (getRetryCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sretryCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetryCount()))));
+    }
+
+    // add `internalSource` to the URL query string
+    if (getInternalSource() != null) {
+      joiner.add(getInternalSource().toUrlQueryString(prefix + "internalSource" + suffix));
     }
 
     // add `exceptionType` to the URL query string

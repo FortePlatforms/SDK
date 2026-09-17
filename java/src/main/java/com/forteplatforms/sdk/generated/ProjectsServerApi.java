@@ -10703,6 +10703,152 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param triggerId  (required)
+   * @param nextToken  (optional)
+   * @return PaginatedResponseRequestLogSummary
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseRequestLogSummary listPaymentTriggerInvocations(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listPaymentTriggerInvocations(projectId, triggerId, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param triggerId  (required)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaginatedResponseRequestLogSummary
+   * @throws ApiException if fails to make API call
+   */
+  public PaginatedResponseRequestLogSummary listPaymentTriggerInvocations(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseRequestLogSummary> localVarResponse = listPaymentTriggerInvocationsWithHttpInfo(projectId, triggerId, nextToken, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param triggerId  (required)
+   * @param nextToken  (optional)
+   * @return ApiResponse&lt;PaginatedResponseRequestLogSummary&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseRequestLogSummary> listPaymentTriggerInvocationsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listPaymentTriggerInvocationsWithHttpInfo(projectId, triggerId, nextToken, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param triggerId  (required)
+   * @param nextToken  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaginatedResponseRequestLogSummary&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaginatedResponseRequestLogSummary> listPaymentTriggerInvocationsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listPaymentTriggerInvocationsRequestBuilder(projectId, triggerId, nextToken, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listPaymentTriggerInvocations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaginatedResponseRequestLogSummary>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaginatedResponseRequestLogSummary responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaginatedResponseRequestLogSummary>() {});
+        
+
+        return new ApiResponse<PaginatedResponseRequestLogSummary>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listPaymentTriggerInvocationsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String triggerId, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listPaymentTriggerInvocations");
+    }
+    // verify the required parameter 'triggerId' is set
+    if (triggerId == null) {
+      throw new ApiException(400, "Missing the required parameter 'triggerId' when calling listPaymentTriggerInvocations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/payment-triggers/{triggerId}/invocations"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{triggerId}", ApiClient.urlEncode(triggerId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "nextToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @return List&lt;PaymentTriggerConfig&gt;
    * @throws ApiException if fails to make API call
    */

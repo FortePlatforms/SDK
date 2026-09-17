@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.395"
+__version__ = "1.0.396"
 
 # Define package exports
 __all__ = [
@@ -106,6 +106,7 @@ __all__ = [
     "HealthCheckDetectionResponse",
     "ImpersonationTokenResponse",
     "InstanceCountSeries",
+    "InternalSource",
     "LatencyMetrics",
     "LatencyPercentileSeries",
     "LatencyStats",
@@ -334,6 +335,7 @@ from forte_sdk.generated.models.health_check_detection_output import HealthCheck
 from forte_sdk.generated.models.health_check_detection_response import HealthCheckDetectionResponse as HealthCheckDetectionResponse
 from forte_sdk.generated.models.impersonation_token_response import ImpersonationTokenResponse as ImpersonationTokenResponse
 from forte_sdk.generated.models.instance_count_series import InstanceCountSeries as InstanceCountSeries
+from forte_sdk.generated.models.internal_source import InternalSource as InternalSource
 from forte_sdk.generated.models.latency_metrics import LatencyMetrics as LatencyMetrics
 from forte_sdk.generated.models.latency_percentile_series import LatencyPercentileSeries as LatencyPercentileSeries
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats

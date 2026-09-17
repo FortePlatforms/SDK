@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.body_ref import BodyRef
+from forte_sdk.generated.models.internal_source import InternalSource
 from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta
 from typing import Optional, Set
 from typing_extensions import Self
@@ -46,12 +47,13 @@ class RequestLogObject(BaseModel):
     request_headers: Dict[str, StrictStr] = Field(alias="requestHeaders")
     response_headers: Dict[str, StrictStr] = Field(alias="responseHeaders")
     retry_count: Optional[StrictInt] = Field(default=None, alias="retryCount")
+    internal_source: Optional[InternalSource] = Field(default=None, alias="internalSource")
     exception_type: Optional[StrictStr] = Field(default=None, alias="exceptionType")
     exception_message: Optional[StrictStr] = Field(default=None, alias="exceptionMessage")
     exception_stack_trace: Optional[StrictStr] = Field(default=None, alias="exceptionStackTrace")
     owner_account_id: Optional[StrictStr] = Field(default=None, alias="ownerAccountId")
     environment: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "sourceIpAddress", "requestLogObjectMeta", "targetLatencyMilliseconds", "integrationLatencyMilliseconds", "totalLatencyMilliseconds", "firstByteLatencyMilliseconds", "requestBody", "responseBody", "requestBodyRef", "responseBodyRef", "statusCode", "requestHeaders", "responseHeaders", "retryCount", "exceptionType", "exceptionMessage", "exceptionStackTrace", "ownerAccountId", "environment"]
+    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "sourceIpAddress", "requestLogObjectMeta", "targetLatencyMilliseconds", "integrationLatencyMilliseconds", "totalLatencyMilliseconds", "firstByteLatencyMilliseconds", "requestBody", "responseBody", "requestBodyRef", "responseBodyRef", "statusCode", "requestHeaders", "responseHeaders", "retryCount", "internalSource", "exceptionType", "exceptionMessage", "exceptionStackTrace", "ownerAccountId", "environment"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -101,6 +103,9 @@ class RequestLogObject(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of response_body_ref
         if self.response_body_ref:
             _dict['responseBodyRef'] = self.response_body_ref.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of internal_source
+        if self.internal_source:
+            _dict['internalSource'] = self.internal_source.to_dict()
         return _dict
 
     @classmethod
@@ -129,6 +134,7 @@ class RequestLogObject(BaseModel):
             "requestHeaders": obj.get("requestHeaders"),
             "responseHeaders": obj.get("responseHeaders"),
             "retryCount": obj.get("retryCount"),
+            "internalSource": InternalSource.from_dict(obj["internalSource"]) if obj.get("internalSource") is not None else None,
             "exceptionType": obj.get("exceptionType"),
             "exceptionMessage": obj.get("exceptionMessage"),
             "exceptionStackTrace": obj.get("exceptionStackTrace"),

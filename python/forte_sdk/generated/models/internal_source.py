@@ -17,27 +17,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from forte_sdk.generated.models.internal_source import InternalSource
-from forte_sdk.generated.models.request_log_object_meta import RequestLogObjectMeta
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class RequestLogSummary(BaseModel):
+class InternalSource(BaseModel):
     """
-    RequestLogSummary
+    InternalSource
     """ # noqa: E501
-    request_id: StrictStr = Field(alias="requestId")
-    timestamp: datetime
-    request_log_object_meta: RequestLogObjectMeta = Field(alias="requestLogObjectMeta")
-    status_code: StrictInt = Field(alias="statusCode")
-    total_latency_milliseconds: StrictInt = Field(alias="totalLatencyMilliseconds")
-    exception_type: Optional[StrictStr] = Field(default=None, alias="exceptionType")
-    internal_source: Optional[InternalSource] = Field(default=None, alias="internalSource")
-    __properties: ClassVar[List[str]] = ["requestId", "timestamp", "requestLogObjectMeta", "statusCode", "totalLatencyMilliseconds", "exceptionType", "internalSource"]
+    type: StrictStr
+    id: StrictStr
+    subject_id: Optional[StrictStr] = Field(default=None, alias="subjectId")
+    __properties: ClassVar[List[str]] = ["type", "id", "subjectId"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['PAYMENT_TRIGGER', 'ACTION']):
+            raise ValueError("must be one of enum values ('PAYMENT_TRIGGER', 'ACTION')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -57,7 +57,7 @@ class RequestLogSummary(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RequestLogSummary from a JSON string"""
+        """Create an instance of InternalSource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,17 +78,11 @@ class RequestLogSummary(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of request_log_object_meta
-        if self.request_log_object_meta:
-            _dict['requestLogObjectMeta'] = self.request_log_object_meta.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of internal_source
-        if self.internal_source:
-            _dict['internalSource'] = self.internal_source.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RequestLogSummary from a dict"""
+        """Create an instance of InternalSource from a dict"""
         if obj is None:
             return None
 
@@ -96,13 +90,9 @@ class RequestLogSummary(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "requestId": obj.get("requestId"),
-            "timestamp": obj.get("timestamp"),
-            "requestLogObjectMeta": RequestLogObjectMeta.from_dict(obj["requestLogObjectMeta"]) if obj.get("requestLogObjectMeta") is not None else None,
-            "statusCode": obj.get("statusCode"),
-            "totalLatencyMilliseconds": obj.get("totalLatencyMilliseconds"),
-            "exceptionType": obj.get("exceptionType"),
-            "internalSource": InternalSource.from_dict(obj["internalSource"]) if obj.get("internalSource") is not None else None
+            "type": obj.get("type"),
+            "id": obj.get("id"),
+            "subjectId": obj.get("subjectId")
         })
         return _obj
 

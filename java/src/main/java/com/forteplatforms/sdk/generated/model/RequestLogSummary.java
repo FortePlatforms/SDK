@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.InternalSource;
 import com.forteplatforms.sdk.generated.model.RequestLogObjectMeta;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -40,7 +41,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RequestLogSummary.JSON_PROPERTY_REQUEST_LOG_OBJECT_META,
   RequestLogSummary.JSON_PROPERTY_STATUS_CODE,
   RequestLogSummary.JSON_PROPERTY_TOTAL_LATENCY_MILLISECONDS,
-  RequestLogSummary.JSON_PROPERTY_EXCEPTION_TYPE
+  RequestLogSummary.JSON_PROPERTY_EXCEPTION_TYPE,
+  RequestLogSummary.JSON_PROPERTY_INTERNAL_SOURCE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RequestLogSummary {
@@ -67,6 +69,10 @@ public class RequestLogSummary {
   public static final String JSON_PROPERTY_EXCEPTION_TYPE = "exceptionType";
   @javax.annotation.Nullable
   private String exceptionType;
+
+  public static final String JSON_PROPERTY_INTERNAL_SOURCE = "internalSource";
+  @javax.annotation.Nullable
+  private InternalSource internalSource;
 
   public RequestLogSummary() { 
   }
@@ -215,6 +221,30 @@ public class RequestLogSummary {
   }
 
 
+  public RequestLogSummary internalSource(@javax.annotation.Nullable InternalSource internalSource) {
+    this.internalSource = internalSource;
+    return this;
+  }
+
+  /**
+   * Get internalSource
+   * @return internalSource
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INTERNAL_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public InternalSource getInternalSource() {
+    return internalSource;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INTERNAL_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInternalSource(@javax.annotation.Nullable InternalSource internalSource) {
+    this.internalSource = internalSource;
+  }
+
+
   /**
    * Return true if this RequestLogSummary object is equal to o.
    */
@@ -232,12 +262,13 @@ public class RequestLogSummary {
         Objects.equals(this.requestLogObjectMeta, requestLogSummary.requestLogObjectMeta) &&
         Objects.equals(this.statusCode, requestLogSummary.statusCode) &&
         Objects.equals(this.totalLatencyMilliseconds, requestLogSummary.totalLatencyMilliseconds) &&
-        Objects.equals(this.exceptionType, requestLogSummary.exceptionType);
+        Objects.equals(this.exceptionType, requestLogSummary.exceptionType) &&
+        Objects.equals(this.internalSource, requestLogSummary.internalSource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, timestamp, requestLogObjectMeta, statusCode, totalLatencyMilliseconds, exceptionType);
+    return Objects.hash(requestId, timestamp, requestLogObjectMeta, statusCode, totalLatencyMilliseconds, exceptionType, internalSource);
   }
 
   @Override
@@ -250,6 +281,7 @@ public class RequestLogSummary {
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
     sb.append("    totalLatencyMilliseconds: ").append(toIndentedString(totalLatencyMilliseconds)).append("\n");
     sb.append("    exceptionType: ").append(toIndentedString(exceptionType)).append("\n");
+    sb.append("    internalSource: ").append(toIndentedString(internalSource)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -322,6 +354,11 @@ public class RequestLogSummary {
     // add `exceptionType` to the URL query string
     if (getExceptionType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sexceptionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExceptionType()))));
+    }
+
+    // add `internalSource` to the URL query string
+    if (getInternalSource() != null) {
+      joiner.add(getInternalSource().toUrlQueryString(prefix + "internalSource" + suffix));
     }
 
     return joiner.toString();

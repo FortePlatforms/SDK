@@ -20,6 +20,13 @@ import {
     RequestLogObjectMetaToJSON,
     RequestLogObjectMetaToJSONTyped,
 } from './RequestLogObjectMeta';
+import type { InternalSource } from './InternalSource';
+import {
+    InternalSourceFromJSON,
+    InternalSourceFromJSONTyped,
+    InternalSourceToJSON,
+    InternalSourceToJSONTyped,
+} from './InternalSource';
 
 /**
  * 
@@ -63,6 +70,12 @@ export interface RequestLogSummary {
      * @memberof RequestLogSummary
      */
     exceptionType?: string;
+    /**
+     * 
+     * @type {InternalSource}
+     * @memberof RequestLogSummary
+     */
+    internalSource?: InternalSource;
 }
 
 /**
@@ -93,6 +106,7 @@ export function RequestLogSummaryFromJSONTyped(json: any, ignoreDiscriminator: b
         'statusCode': json['statusCode'],
         'totalLatencyMilliseconds': json['totalLatencyMilliseconds'],
         'exceptionType': json['exceptionType'] == null ? undefined : json['exceptionType'],
+        'internalSource': json['internalSource'] == null ? undefined : InternalSourceFromJSON(json['internalSource']),
     };
 }
 
@@ -113,6 +127,7 @@ export function RequestLogSummaryToJSONTyped(value?: RequestLogSummary | null, i
         'statusCode': value['statusCode'],
         'totalLatencyMilliseconds': value['totalLatencyMilliseconds'],
         'exceptionType': value['exceptionType'],
+        'internalSource': InternalSourceToJSON(value['internalSource']),
     };
 }
 

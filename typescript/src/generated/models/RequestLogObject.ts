@@ -20,6 +20,13 @@ import {
     RequestLogObjectMetaToJSON,
     RequestLogObjectMetaToJSONTyped,
 } from './RequestLogObjectMeta';
+import type { InternalSource } from './InternalSource';
+import {
+    InternalSourceFromJSON,
+    InternalSourceFromJSONTyped,
+    InternalSourceToJSON,
+    InternalSourceToJSONTyped,
+} from './InternalSource';
 import type { BodyRef } from './BodyRef';
 import {
     BodyRefFromJSON,
@@ -132,6 +139,12 @@ export interface RequestLogObject {
     retryCount?: number;
     /**
      * 
+     * @type {InternalSource}
+     * @memberof RequestLogObject
+     */
+    internalSource?: InternalSource;
+    /**
+     * 
      * @type {string}
      * @memberof RequestLogObject
      */
@@ -203,6 +216,7 @@ export function RequestLogObjectFromJSONTyped(json: any, ignoreDiscriminator: bo
         'requestHeaders': json['requestHeaders'],
         'responseHeaders': json['responseHeaders'],
         'retryCount': json['retryCount'] == null ? undefined : json['retryCount'],
+        'internalSource': json['internalSource'] == null ? undefined : InternalSourceFromJSON(json['internalSource']),
         'exceptionType': json['exceptionType'] == null ? undefined : json['exceptionType'],
         'exceptionMessage': json['exceptionMessage'] == null ? undefined : json['exceptionMessage'],
         'exceptionStackTrace': json['exceptionStackTrace'] == null ? undefined : json['exceptionStackTrace'],
@@ -238,6 +252,7 @@ export function RequestLogObjectToJSONTyped(value?: RequestLogObject | null, ign
         'requestHeaders': value['requestHeaders'],
         'responseHeaders': value['responseHeaders'],
         'retryCount': value['retryCount'],
+        'internalSource': InternalSourceToJSON(value['internalSource']),
         'exceptionType': value['exceptionType'],
         'exceptionMessage': value['exceptionMessage'],
         'exceptionStackTrace': value['exceptionStackTrace'],
