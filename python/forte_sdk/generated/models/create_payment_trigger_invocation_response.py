@@ -17,28 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class InternalSource(BaseModel):
+class CreatePaymentTriggerInvocationResponse(BaseModel):
     """
-    InternalSource
+    CreatePaymentTriggerInvocationResponse
     """ # noqa: E501
-    type: StrictStr
-    id: StrictStr
-    subject_id: Optional[StrictStr] = Field(default=None, alias="subjectId")
-    replay: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["type", "id", "subjectId", "replay"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['PAYMENT_TRIGGER', 'ACTION']):
-            raise ValueError("must be one of enum values ('PAYMENT_TRIGGER', 'ACTION')")
-        return value
+    invocation_id: StrictStr = Field(alias="invocationId")
+    request_id: Optional[StrictStr] = Field(default=None, alias="requestId")
+    status_code: StrictInt = Field(alias="statusCode")
+    __properties: ClassVar[List[str]] = ["invocationId", "requestId", "statusCode"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -58,7 +50,7 @@ class InternalSource(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InternalSource from a JSON string"""
+        """Create an instance of CreatePaymentTriggerInvocationResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,7 +75,7 @@ class InternalSource(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InternalSource from a dict"""
+        """Create an instance of CreatePaymentTriggerInvocationResponse from a dict"""
         if obj is None:
             return None
 
@@ -91,10 +83,9 @@ class InternalSource(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "type": obj.get("type"),
-            "id": obj.get("id"),
-            "subjectId": obj.get("subjectId"),
-            "replay": obj.get("replay")
+            "invocationId": obj.get("invocationId"),
+            "requestId": obj.get("requestId"),
+            "statusCode": obj.get("statusCode")
         })
         return _obj
 

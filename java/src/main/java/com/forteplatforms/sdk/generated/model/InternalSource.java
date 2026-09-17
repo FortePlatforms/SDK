@@ -35,7 +35,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   InternalSource.JSON_PROPERTY_TYPE,
   InternalSource.JSON_PROPERTY_ID,
-  InternalSource.JSON_PROPERTY_SUBJECT_ID
+  InternalSource.JSON_PROPERTY_SUBJECT_ID,
+  InternalSource.JSON_PROPERTY_REPLAY
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class InternalSource {
@@ -85,6 +86,10 @@ public class InternalSource {
   public static final String JSON_PROPERTY_SUBJECT_ID = "subjectId";
   @javax.annotation.Nullable
   private String subjectId;
+
+  public static final String JSON_PROPERTY_REPLAY = "replay";
+  @javax.annotation.Nullable
+  private Boolean replay;
 
   public InternalSource() { 
   }
@@ -161,6 +166,30 @@ public class InternalSource {
   }
 
 
+  public InternalSource replay(@javax.annotation.Nullable Boolean replay) {
+    this.replay = replay;
+    return this;
+  }
+
+  /**
+   * Get replay
+   * @return replay
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REPLAY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getReplay() {
+    return replay;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REPLAY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReplay(@javax.annotation.Nullable Boolean replay) {
+    this.replay = replay;
+  }
+
+
   /**
    * Return true if this InternalSource object is equal to o.
    */
@@ -175,12 +204,13 @@ public class InternalSource {
     InternalSource internalSource = (InternalSource) o;
     return Objects.equals(this.type, internalSource.type) &&
         Objects.equals(this.id, internalSource.id) &&
-        Objects.equals(this.subjectId, internalSource.subjectId);
+        Objects.equals(this.subjectId, internalSource.subjectId) &&
+        Objects.equals(this.replay, internalSource.replay);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, subjectId);
+    return Objects.hash(type, id, subjectId, replay);
   }
 
   @Override
@@ -190,6 +220,7 @@ public class InternalSource {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    subjectId: ").append(toIndentedString(subjectId)).append("\n");
+    sb.append("    replay: ").append(toIndentedString(replay)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -247,6 +278,11 @@ public class InternalSource {
     // add `subjectId` to the URL query string
     if (getSubjectId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssubjectId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubjectId()))));
+    }
+
+    // add `replay` to the URL query string
+    if (getReplay() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreplay%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReplay()))));
     }
 
     return joiner.toString();

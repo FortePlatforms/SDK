@@ -17,28 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.payment_trigger_invocation import PaymentTriggerInvocation
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class InternalSource(BaseModel):
+class PaginatedResponsePaymentTriggerInvocation(BaseModel):
     """
-    InternalSource
+    PaginatedResponsePaymentTriggerInvocation
     """ # noqa: E501
-    type: StrictStr
-    id: StrictStr
-    subject_id: Optional[StrictStr] = Field(default=None, alias="subjectId")
-    replay: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["type", "id", "subjectId", "replay"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['PAYMENT_TRIGGER', 'ACTION']):
-            raise ValueError("must be one of enum values ('PAYMENT_TRIGGER', 'ACTION')")
-        return value
+    items: List[PaymentTriggerInvocation]
+    has_next_page: StrictBool = Field(alias="hasNextPage")
+    next_page_token: Optional[StrictStr] = Field(default=None, alias="nextPageToken")
+    __properties: ClassVar[List[str]] = ["items", "hasNextPage", "nextPageToken"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -58,7 +51,7 @@ class InternalSource(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InternalSource from a JSON string"""
+        """Create an instance of PaginatedResponsePaymentTriggerInvocation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,11 +72,18 @@ class InternalSource(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item_items in self.items:
+                if _item_items:
+                    _items.append(_item_items.to_dict())
+            _dict['items'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InternalSource from a dict"""
+        """Create an instance of PaginatedResponsePaymentTriggerInvocation from a dict"""
         if obj is None:
             return None
 
@@ -91,10 +91,9 @@ class InternalSource(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "type": obj.get("type"),
-            "id": obj.get("id"),
-            "subjectId": obj.get("subjectId"),
-            "replay": obj.get("replay")
+            "items": [PaymentTriggerInvocation.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None,
+            "hasNextPage": obj.get("hasNextPage"),
+            "nextPageToken": obj.get("nextPageToken")
         })
         return _obj
 

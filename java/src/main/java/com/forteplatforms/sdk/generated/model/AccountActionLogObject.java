@@ -86,6 +86,8 @@ public class AccountActionLogObject {
     
     PROJECT_DELETED(String.valueOf("PROJECT_DELETED")),
     
+    PAYMENT_TRIGGER_INVOCATION_REPLAYED(String.valueOf("PAYMENT_TRIGGER_INVOCATION_REPLAYED")),
+    
     SERVICE_CREATED(String.valueOf("SERVICE_CREATED")),
     
     SERVICE_UPDATED(String.valueOf("SERVICE_UPDATED")),

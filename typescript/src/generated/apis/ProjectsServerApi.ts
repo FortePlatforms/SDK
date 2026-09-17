@@ -139,6 +139,16 @@ import {
     CreatePaymentResponseToJSON,
 } from '../models/CreatePaymentResponse';
 import {
+    type CreatePaymentTriggerInvocationRequest,
+    CreatePaymentTriggerInvocationRequestFromJSON,
+    CreatePaymentTriggerInvocationRequestToJSON,
+} from '../models/CreatePaymentTriggerInvocationRequest';
+import {
+    type CreatePaymentTriggerInvocationResponse,
+    CreatePaymentTriggerInvocationResponseFromJSON,
+    CreatePaymentTriggerInvocationResponseToJSON,
+} from '../models/CreatePaymentTriggerInvocationResponse';
+import {
     type CreatePaymentTriggerRequest,
     CreatePaymentTriggerRequestFromJSON,
     CreatePaymentTriggerRequestToJSON,
@@ -289,6 +299,11 @@ import {
     PaginatedResponsePaymentObjectToJSON,
 } from '../models/PaginatedResponsePaymentObject';
 import {
+    type PaginatedResponsePaymentTriggerInvocation,
+    PaginatedResponsePaymentTriggerInvocationFromJSON,
+    PaginatedResponsePaymentTriggerInvocationToJSON,
+} from '../models/PaginatedResponsePaymentTriggerInvocation';
+import {
     type PaginatedResponseRequestLogSummary,
     PaginatedResponseRequestLogSummaryFromJSON,
     PaginatedResponseRequestLogSummaryToJSON,
@@ -338,6 +353,11 @@ import {
     PaymentTriggerConfigFromJSON,
     PaymentTriggerConfigToJSON,
 } from '../models/PaymentTriggerConfig';
+import {
+    type PaymentTriggerInvocation,
+    PaymentTriggerInvocationFromJSON,
+    PaymentTriggerInvocationToJSON,
+} from '../models/PaymentTriggerInvocation';
 import {
     type ProjectObject,
     ProjectObjectFromJSON,
@@ -691,6 +711,12 @@ export interface CreatePaymentTriggerOperationRequest {
     createPaymentTriggerRequest: CreatePaymentTriggerRequest;
 }
 
+export interface CreatePaymentTriggerInvocationOperationRequest {
+    projectId: string;
+    triggerId: string;
+    createPaymentTriggerInvocationRequest: CreatePaymentTriggerInvocationRequest;
+}
+
 export interface CreateProjectRequest {
     projectName: string;
     sandboxMode?: boolean;
@@ -861,6 +887,12 @@ export interface GetPaymentAnalyticsRequest {
     metadataKey?: string;
     topN?: number;
     granularity?: GetPaymentAnalyticsGranularityType;
+}
+
+export interface GetPaymentTriggerInvocationRequest {
+    projectId: string;
+    triggerId: string;
+    invocationId: string;
 }
 
 export interface GetProjectRequest {
@@ -2737,6 +2769,71 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createPaymentTriggerInvocation without sending the request
+     */
+    async createPaymentTriggerInvocationRequestOpts(requestParameters: CreatePaymentTriggerInvocationOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createPaymentTriggerInvocation().'
+            );
+        }
+
+        if (requestParameters['triggerId'] == null) {
+            throw new runtime.RequiredError(
+                'triggerId',
+                'Required parameter "triggerId" was null or undefined when calling createPaymentTriggerInvocation().'
+            );
+        }
+
+        if (requestParameters['createPaymentTriggerInvocationRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createPaymentTriggerInvocationRequest',
+                'Required parameter "createPaymentTriggerInvocationRequest" was null or undefined when calling createPaymentTriggerInvocation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payment-triggers/{triggerId}/invocations`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{triggerId}', encodeURIComponent(String(requestParameters['triggerId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreatePaymentTriggerInvocationRequestToJSON(requestParameters['createPaymentTriggerInvocationRequest']),
+        };
+    }
+
+    /**
+     */
+    async createPaymentTriggerInvocationRaw(requestParameters: CreatePaymentTriggerInvocationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePaymentTriggerInvocationResponse>> {
+        const requestOptions = await this.createPaymentTriggerInvocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePaymentTriggerInvocationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createPaymentTriggerInvocation(requestParameters: CreatePaymentTriggerInvocationOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePaymentTriggerInvocationResponse> {
+        const response = await this.createPaymentTriggerInvocationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createProject without sending the request
      */
     async createProjectRequestOpts(requestParameters: CreateProjectRequest): Promise<runtime.RequestOpts> {
@@ -4427,6 +4524,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getPaymentTriggerInvocation without sending the request
+     */
+    async getPaymentTriggerInvocationRequestOpts(requestParameters: GetPaymentTriggerInvocationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getPaymentTriggerInvocation().'
+            );
+        }
+
+        if (requestParameters['triggerId'] == null) {
+            throw new runtime.RequiredError(
+                'triggerId',
+                'Required parameter "triggerId" was null or undefined when calling getPaymentTriggerInvocation().'
+            );
+        }
+
+        if (requestParameters['invocationId'] == null) {
+            throw new runtime.RequiredError(
+                'invocationId',
+                'Required parameter "invocationId" was null or undefined when calling getPaymentTriggerInvocation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payment-triggers/{triggerId}/invocations/{invocationId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{triggerId}', encodeURIComponent(String(requestParameters['triggerId'])));
+        urlPath = urlPath.replace('{invocationId}', encodeURIComponent(String(requestParameters['invocationId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getPaymentTriggerInvocationRaw(requestParameters: GetPaymentTriggerInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentTriggerInvocation>> {
+        const requestOptions = await this.getPaymentTriggerInvocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentTriggerInvocationFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getPaymentTriggerInvocation(requestParameters: GetPaymentTriggerInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentTriggerInvocation> {
+        const response = await this.getPaymentTriggerInvocationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getProject without sending the request
      */
     async getProjectRequestOpts(requestParameters: GetProjectRequest): Promise<runtime.RequestOpts> {
@@ -5886,16 +6042,16 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
     /**
      */
-    async listPaymentTriggerInvocationsRaw(requestParameters: ListPaymentTriggerInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseRequestLogSummary>> {
+    async listPaymentTriggerInvocationsRaw(requestParameters: ListPaymentTriggerInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponsePaymentTriggerInvocation>> {
         const requestOptions = await this.listPaymentTriggerInvocationsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseRequestLogSummaryFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponsePaymentTriggerInvocationFromJSON(jsonValue));
     }
 
     /**
      */
-    async listPaymentTriggerInvocations(requestParameters: ListPaymentTriggerInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseRequestLogSummary> {
+    async listPaymentTriggerInvocations(requestParameters: ListPaymentTriggerInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponsePaymentTriggerInvocation> {
         const response = await this.listPaymentTriggerInvocationsRaw(requestParameters, initOverrides);
         return await response.value();
     }

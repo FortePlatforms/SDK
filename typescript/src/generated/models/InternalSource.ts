@@ -37,6 +37,12 @@ export interface InternalSource {
      * @memberof InternalSource
      */
     subjectId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InternalSource
+     */
+    replay?: boolean;
 }
 
 
@@ -72,6 +78,7 @@ export function InternalSourceFromJSONTyped(json: any, ignoreDiscriminator: bool
         'type': json['type'],
         'id': json['id'],
         'subjectId': json['subjectId'] == null ? undefined : json['subjectId'],
+        'replay': json['replay'] == null ? undefined : json['replay'],
     };
 }
 
@@ -89,6 +96,7 @@ export function InternalSourceToJSONTyped(value?: InternalSource | null, ignoreD
         'type': value['type'],
         'id': value['id'],
         'subjectId': value['subjectId'],
+        'replay': value['replay'],
     };
 }
 

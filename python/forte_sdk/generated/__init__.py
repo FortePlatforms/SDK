@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.396"
+__version__ = "1.0.398"
 
 # Define package exports
 __all__ = [
@@ -72,6 +72,8 @@ __all__ = [
     "CreatePaymentPreviewResponse",
     "CreatePaymentRequest",
     "CreatePaymentResponse",
+    "CreatePaymentTriggerInvocationRequest",
+    "CreatePaymentTriggerInvocationResponse",
     "CreatePaymentTriggerRequest",
     "CreateProjectApiKeyRequest",
     "CreateProjectApiKeyResponse",
@@ -143,6 +145,7 @@ __all__ = [
     "PaginatedResponseLogLineObject",
     "PaginatedResponseLoginHistoryEntry",
     "PaginatedResponsePaymentObject",
+    "PaginatedResponsePaymentTriggerInvocation",
     "PaginatedResponseRequestLogSummary",
     "PaginatedResponseServiceBuildRequestObject",
     "PaginatedResponseUserActionLogObject",
@@ -160,6 +163,7 @@ __all__ = [
     "PaymentSearchRequest",
     "PaymentSort",
     "PaymentTriggerConfig",
+    "PaymentTriggerInvocation",
     "PendingUserInviteObject",
     "ProductAggregate",
     "ProjectObject",
@@ -301,6 +305,8 @@ from forte_sdk.generated.models.create_payment_preview_request import CreatePaym
 from forte_sdk.generated.models.create_payment_preview_response import CreatePaymentPreviewResponse as CreatePaymentPreviewResponse
 from forte_sdk.generated.models.create_payment_request import CreatePaymentRequest as CreatePaymentRequest
 from forte_sdk.generated.models.create_payment_response import CreatePaymentResponse as CreatePaymentResponse
+from forte_sdk.generated.models.create_payment_trigger_invocation_request import CreatePaymentTriggerInvocationRequest as CreatePaymentTriggerInvocationRequest
+from forte_sdk.generated.models.create_payment_trigger_invocation_response import CreatePaymentTriggerInvocationResponse as CreatePaymentTriggerInvocationResponse
 from forte_sdk.generated.models.create_payment_trigger_request import CreatePaymentTriggerRequest as CreatePaymentTriggerRequest
 from forte_sdk.generated.models.create_project_api_key_request import CreateProjectApiKeyRequest as CreateProjectApiKeyRequest
 from forte_sdk.generated.models.create_project_api_key_response import CreateProjectApiKeyResponse as CreateProjectApiKeyResponse
@@ -372,6 +378,7 @@ from forte_sdk.generated.models.paginated_response_action_invocation_object impo
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject as PaginatedResponseLogLineObject
 from forte_sdk.generated.models.paginated_response_login_history_entry import PaginatedResponseLoginHistoryEntry as PaginatedResponseLoginHistoryEntry
 from forte_sdk.generated.models.paginated_response_payment_object import PaginatedResponsePaymentObject as PaginatedResponsePaymentObject
+from forte_sdk.generated.models.paginated_response_payment_trigger_invocation import PaginatedResponsePaymentTriggerInvocation as PaginatedResponsePaymentTriggerInvocation
 from forte_sdk.generated.models.paginated_response_request_log_summary import PaginatedResponseRequestLogSummary as PaginatedResponseRequestLogSummary
 from forte_sdk.generated.models.paginated_response_service_build_request_object import PaginatedResponseServiceBuildRequestObject as PaginatedResponseServiceBuildRequestObject
 from forte_sdk.generated.models.paginated_response_user_action_log_object import PaginatedResponseUserActionLogObject as PaginatedResponseUserActionLogObject
@@ -389,6 +396,7 @@ from forte_sdk.generated.models.payment_object import PaymentObject as PaymentOb
 from forte_sdk.generated.models.payment_search_request import PaymentSearchRequest as PaymentSearchRequest
 from forte_sdk.generated.models.payment_sort import PaymentSort as PaymentSort
 from forte_sdk.generated.models.payment_trigger_config import PaymentTriggerConfig as PaymentTriggerConfig
+from forte_sdk.generated.models.payment_trigger_invocation import PaymentTriggerInvocation as PaymentTriggerInvocation
 from forte_sdk.generated.models.pending_user_invite_object import PendingUserInviteObject as PendingUserInviteObject
 from forte_sdk.generated.models.product_aggregate import ProductAggregate as ProductAggregate
 from forte_sdk.generated.models.project_object import ProjectObject as ProjectObject
