@@ -629,6 +629,8 @@ public class ForteApiException {
     
     ADMIN_SOCIAL_EXCEPTION(String.valueOf("ADMIN_SOCIAL_EXCEPTION")),
     
+    ADMIN_CRM_EXCEPTION(String.valueOf("ADMIN_CRM_EXCEPTION")),
+    
     ADMIN_SMS_EXCEPTION(String.valueOf("ADMIN_SMS_EXCEPTION")),
     
     IDEMPOTENCY_KEY_INVALID(String.valueOf("IDEMPOTENCY_KEY_INVALID")),
