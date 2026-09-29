@@ -39,7 +39,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ManagedDatabaseSlowQuery.JSON_PROPERTY_DURATION_MS,
   ManagedDatabaseSlowQuery.JSON_PROPERTY_KIND,
   ManagedDatabaseSlowQuery.JSON_PROPERTY_QUERY_TEXT,
-  ManagedDatabaseSlowQuery.JSON_PROPERTY_USER_NAME
+  ManagedDatabaseSlowQuery.JSON_PROPERTY_USER_NAME,
+  ManagedDatabaseSlowQuery.JSON_PROPERTY_QUERY_LANGUAGE,
+  ManagedDatabaseSlowQuery.JSON_PROPERTY_OPERATION,
+  ManagedDatabaseSlowQuery.JSON_PROPERTY_COLLECTION,
+  ManagedDatabaseSlowQuery.JSON_PROPERTY_QUERY_TEXT_TRUNCATED
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseSlowQuery {
@@ -103,6 +107,57 @@ public class ManagedDatabaseSlowQuery {
   public static final String JSON_PROPERTY_USER_NAME = "userName";
   @javax.annotation.Nullable
   private String userName;
+
+  /**
+   * Gets or Sets queryLanguage
+   */
+  public enum QueryLanguageEnum {
+    SQL(String.valueOf("SQL")),
+    
+    MONGODB_COMMAND(String.valueOf("MONGODB_COMMAND"));
+
+    private String value;
+
+    QueryLanguageEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static QueryLanguageEnum fromValue(String value) {
+      for (QueryLanguageEnum b : QueryLanguageEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_QUERY_LANGUAGE = "queryLanguage";
+  @javax.annotation.Nullable
+  private QueryLanguageEnum queryLanguage;
+
+  public static final String JSON_PROPERTY_OPERATION = "operation";
+  @javax.annotation.Nullable
+  private String operation;
+
+  public static final String JSON_PROPERTY_COLLECTION = "collection";
+  @javax.annotation.Nullable
+  private String collection;
+
+  public static final String JSON_PROPERTY_QUERY_TEXT_TRUNCATED = "queryTextTruncated";
+  @javax.annotation.Nullable
+  private Boolean queryTextTruncated;
 
   public ManagedDatabaseSlowQuery() { 
   }
@@ -251,6 +306,102 @@ public class ManagedDatabaseSlowQuery {
   }
 
 
+  public ManagedDatabaseSlowQuery queryLanguage(@javax.annotation.Nullable QueryLanguageEnum queryLanguage) {
+    this.queryLanguage = queryLanguage;
+    return this;
+  }
+
+  /**
+   * Get queryLanguage
+   * @return queryLanguage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUERY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public QueryLanguageEnum getQueryLanguage() {
+    return queryLanguage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUERY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQueryLanguage(@javax.annotation.Nullable QueryLanguageEnum queryLanguage) {
+    this.queryLanguage = queryLanguage;
+  }
+
+
+  public ManagedDatabaseSlowQuery operation(@javax.annotation.Nullable String operation) {
+    this.operation = operation;
+    return this;
+  }
+
+  /**
+   * Get operation
+   * @return operation
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OPERATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOperation() {
+    return operation;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OPERATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOperation(@javax.annotation.Nullable String operation) {
+    this.operation = operation;
+  }
+
+
+  public ManagedDatabaseSlowQuery collection(@javax.annotation.Nullable String collection) {
+    this.collection = collection;
+    return this;
+  }
+
+  /**
+   * Get collection
+   * @return collection
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COLLECTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCollection() {
+    return collection;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COLLECTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCollection(@javax.annotation.Nullable String collection) {
+    this.collection = collection;
+  }
+
+
+  public ManagedDatabaseSlowQuery queryTextTruncated(@javax.annotation.Nullable Boolean queryTextTruncated) {
+    this.queryTextTruncated = queryTextTruncated;
+    return this;
+  }
+
+  /**
+   * Get queryTextTruncated
+   * @return queryTextTruncated
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUERY_TEXT_TRUNCATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getQueryTextTruncated() {
+    return queryTextTruncated;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUERY_TEXT_TRUNCATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQueryTextTruncated(@javax.annotation.Nullable Boolean queryTextTruncated) {
+    this.queryTextTruncated = queryTextTruncated;
+  }
+
+
   /**
    * Return true if this ManagedDatabaseSlowQuery object is equal to o.
    */
@@ -268,12 +419,16 @@ public class ManagedDatabaseSlowQuery {
         Objects.equals(this.durationMs, managedDatabaseSlowQuery.durationMs) &&
         Objects.equals(this.kind, managedDatabaseSlowQuery.kind) &&
         Objects.equals(this.queryText, managedDatabaseSlowQuery.queryText) &&
-        Objects.equals(this.userName, managedDatabaseSlowQuery.userName);
+        Objects.equals(this.userName, managedDatabaseSlowQuery.userName) &&
+        Objects.equals(this.queryLanguage, managedDatabaseSlowQuery.queryLanguage) &&
+        Objects.equals(this.operation, managedDatabaseSlowQuery.operation) &&
+        Objects.equals(this.collection, managedDatabaseSlowQuery.collection) &&
+        Objects.equals(this.queryTextTruncated, managedDatabaseSlowQuery.queryTextTruncated);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(slowQueryId, timestamp, durationMs, kind, queryText, userName);
+    return Objects.hash(slowQueryId, timestamp, durationMs, kind, queryText, userName, queryLanguage, operation, collection, queryTextTruncated);
   }
 
   @Override
@@ -286,6 +441,10 @@ public class ManagedDatabaseSlowQuery {
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    queryText: ").append(toIndentedString(queryText)).append("\n");
     sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
+    sb.append("    queryLanguage: ").append(toIndentedString(queryLanguage)).append("\n");
+    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
+    sb.append("    collection: ").append(toIndentedString(collection)).append("\n");
+    sb.append("    queryTextTruncated: ").append(toIndentedString(queryTextTruncated)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -358,6 +517,26 @@ public class ManagedDatabaseSlowQuery {
     // add `userName` to the URL query string
     if (getUserName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%suserName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserName()))));
+    }
+
+    // add `queryLanguage` to the URL query string
+    if (getQueryLanguage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squeryLanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQueryLanguage()))));
+    }
+
+    // add `operation` to the URL query string
+    if (getOperation() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soperation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOperation()))));
+    }
+
+    // add `collection` to the URL query string
+    if (getCollection() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scollection%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCollection()))));
+    }
+
+    // add `queryTextTruncated` to the URL query string
+    if (getQueryTextTruncated() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squeryTextTruncated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQueryTextTruncated()))));
     }
 
     return joiner.toString();

@@ -20,6 +20,13 @@ import {
     ActionsMetricsBucketToJSON,
     ActionsMetricsBucketToJSONTyped,
 } from './ActionsMetricsBucket';
+import type { LatencyPercentileSeries } from './LatencyPercentileSeries';
+import {
+    LatencyPercentileSeriesFromJSON,
+    LatencyPercentileSeriesFromJSONTyped,
+    LatencyPercentileSeriesToJSON,
+    LatencyPercentileSeriesToJSONTyped,
+} from './LatencyPercentileSeries';
 
 /**
  * 
@@ -87,6 +94,12 @@ export interface ActionsMetricsResponse {
      * @memberof ActionsMetricsResponse
      */
     invocationSeries?: Array<ActionsMetricsBucket>;
+    /**
+     * 
+     * @type {LatencyPercentileSeries}
+     * @memberof ActionsMetricsResponse
+     */
+    latencySeries?: LatencyPercentileSeries;
 }
 
 /**
@@ -116,6 +129,7 @@ export function ActionsMetricsResponseFromJSONTyped(json: any, ignoreDiscriminat
         'pendingInvocations': json['pendingInvocations'] == null ? undefined : json['pendingInvocations'],
         'successRate': json['successRate'] == null ? undefined : json['successRate'],
         'invocationSeries': json['invocationSeries'] == null ? undefined : ((json['invocationSeries'] as Array<any>).map(ActionsMetricsBucketFromJSON)),
+        'latencySeries': json['latencySeries'] == null ? undefined : LatencyPercentileSeriesFromJSON(json['latencySeries']),
     };
 }
 
@@ -140,6 +154,7 @@ export function ActionsMetricsResponseToJSONTyped(value?: ActionsMetricsResponse
         'pendingInvocations': value['pendingInvocations'],
         'successRate': value['successRate'],
         'invocationSeries': value['invocationSeries'] == null ? undefined : ((value['invocationSeries'] as Array<any>).map(ActionsMetricsBucketToJSON)),
+        'latencySeries': LatencyPercentileSeriesToJSON(value['latencySeries']),
     };
 }
 

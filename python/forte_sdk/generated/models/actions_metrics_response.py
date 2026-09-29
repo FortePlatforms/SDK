@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from forte_sdk.generated.models.actions_metrics_bucket import ActionsMetricsBucket
+from forte_sdk.generated.models.latency_percentile_series import LatencyPercentileSeries
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -38,7 +39,8 @@ class ActionsMetricsResponse(BaseModel):
     pending_invocations: Optional[StrictInt] = Field(default=None, alias="pendingInvocations")
     success_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="successRate")
     invocation_series: Optional[List[ActionsMetricsBucket]] = Field(default=None, alias="invocationSeries")
-    __properties: ClassVar[List[str]] = ["totalActions", "recurringCount", "oneTimeCount", "enabledCount", "totalInvocations", "succeededInvocations", "failedInvocations", "pendingInvocations", "successRate", "invocationSeries"]
+    latency_series: Optional[LatencyPercentileSeries] = Field(default=None, alias="latencySeries")
+    __properties: ClassVar[List[str]] = ["totalActions", "recurringCount", "oneTimeCount", "enabledCount", "totalInvocations", "succeededInvocations", "failedInvocations", "pendingInvocations", "successRate", "invocationSeries", "latencySeries"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +88,9 @@ class ActionsMetricsResponse(BaseModel):
                 if _item_invocation_series:
                     _items.append(_item_invocation_series.to_dict())
             _dict['invocationSeries'] = _items
+        # override the default output from pydantic by calling `to_dict()` of latency_series
+        if self.latency_series:
+            _dict['latencySeries'] = self.latency_series.to_dict()
         return _dict
 
     @classmethod
@@ -107,7 +112,8 @@ class ActionsMetricsResponse(BaseModel):
             "failedInvocations": obj.get("failedInvocations"),
             "pendingInvocations": obj.get("pendingInvocations"),
             "successRate": obj.get("successRate"),
-            "invocationSeries": [ActionsMetricsBucket.from_dict(_item) for _item in obj["invocationSeries"]] if obj.get("invocationSeries") is not None else None
+            "invocationSeries": [ActionsMetricsBucket.from_dict(_item) for _item in obj["invocationSeries"]] if obj.get("invocationSeries") is not None else None,
+            "latencySeries": LatencyPercentileSeries.from_dict(obj["latencySeries"]) if obj.get("latencySeries") is not None else None
         })
         return _obj
 

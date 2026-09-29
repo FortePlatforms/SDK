@@ -13006,6 +13006,8 @@ class ProjectsServerApi:
         project_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
+        action_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13028,6 +13030,10 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param granularity:
+        :type granularity: str
+        :param action_id:
+        :type action_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13054,6 +13060,8 @@ class ProjectsServerApi:
             project_id=project_id,
             min_time=min_time,
             max_time=max_time,
+            granularity=granularity,
+            action_id=action_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13080,6 +13088,8 @@ class ProjectsServerApi:
         project_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
+        action_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13102,6 +13112,10 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param granularity:
+        :type granularity: str
+        :param action_id:
+        :type action_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13128,6 +13142,8 @@ class ProjectsServerApi:
             project_id=project_id,
             min_time=min_time,
             max_time=max_time,
+            granularity=granularity,
+            action_id=action_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13154,6 +13170,8 @@ class ProjectsServerApi:
         project_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
+        action_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13176,6 +13194,10 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param granularity:
+        :type granularity: str
+        :param action_id:
+        :type action_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -13202,6 +13224,8 @@ class ProjectsServerApi:
             project_id=project_id,
             min_time=min_time,
             max_time=max_time,
+            granularity=granularity,
+            action_id=action_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -13223,6 +13247,8 @@ class ProjectsServerApi:
         project_id,
         min_time,
         max_time,
+        granularity,
+        action_id,
         _request_auth,
         _content_type,
         _headers,
@@ -13272,6 +13298,14 @@ class ProjectsServerApi:
                 )
             else:
                 _query_params.append(('maxTime', max_time))
+            
+        if granularity is not None:
+            
+            _query_params.append(('granularity', granularity))
+            
+        if action_id is not None:
+            
+            _query_params.append(('actionId', action_id))
             
         # process the header parameters
         # process the form parameters
@@ -14146,6 +14180,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         database_id: StrictStr,
         range_hours: Optional[StrictInt] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14168,6 +14203,8 @@ class ProjectsServerApi:
         :type database_id: str
         :param range_hours:
         :type range_hours: int
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14194,6 +14231,7 @@ class ProjectsServerApi:
             project_id=project_id,
             database_id=database_id,
             range_hours=range_hours,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14220,6 +14258,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         database_id: StrictStr,
         range_hours: Optional[StrictInt] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14242,6 +14281,8 @@ class ProjectsServerApi:
         :type database_id: str
         :param range_hours:
         :type range_hours: int
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14268,6 +14309,7 @@ class ProjectsServerApi:
             project_id=project_id,
             database_id=database_id,
             range_hours=range_hours,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14294,6 +14336,7 @@ class ProjectsServerApi:
         project_id: StrictStr,
         database_id: StrictStr,
         range_hours: Optional[StrictInt] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14316,6 +14359,8 @@ class ProjectsServerApi:
         :type database_id: str
         :param range_hours:
         :type range_hours: int
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -14342,6 +14387,7 @@ class ProjectsServerApi:
             project_id=project_id,
             database_id=database_id,
             range_hours=range_hours,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -14363,6 +14409,7 @@ class ProjectsServerApi:
         project_id,
         database_id,
         range_hours,
+        granularity,
         _request_auth,
         _content_type,
         _headers,
@@ -14392,6 +14439,10 @@ class ProjectsServerApi:
         if range_hours is not None:
             
             _query_params.append(('rangeHours', range_hours))
+            
+        if granularity is not None:
+            
+            _query_params.append(('granularity', granularity))
             
         # process the header parameters
         # process the form parameters

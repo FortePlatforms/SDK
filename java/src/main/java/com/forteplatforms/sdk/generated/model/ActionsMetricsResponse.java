@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.ActionsMetricsBucket;
+import com.forteplatforms.sdk.generated.model.LatencyPercentileSeries;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +46,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ActionsMetricsResponse.JSON_PROPERTY_FAILED_INVOCATIONS,
   ActionsMetricsResponse.JSON_PROPERTY_PENDING_INVOCATIONS,
   ActionsMetricsResponse.JSON_PROPERTY_SUCCESS_RATE,
-  ActionsMetricsResponse.JSON_PROPERTY_INVOCATION_SERIES
+  ActionsMetricsResponse.JSON_PROPERTY_INVOCATION_SERIES,
+  ActionsMetricsResponse.JSON_PROPERTY_LATENCY_SERIES
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ActionsMetricsResponse {
@@ -88,6 +90,10 @@ public class ActionsMetricsResponse {
   public static final String JSON_PROPERTY_INVOCATION_SERIES = "invocationSeries";
   @javax.annotation.Nullable
   private List<ActionsMetricsBucket> invocationSeries = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_LATENCY_SERIES = "latencySeries";
+  @javax.annotation.Nullable
+  private LatencyPercentileSeries latencySeries;
 
   public ActionsMetricsResponse() { 
   }
@@ -340,6 +346,30 @@ public class ActionsMetricsResponse {
   }
 
 
+  public ActionsMetricsResponse latencySeries(@javax.annotation.Nullable LatencyPercentileSeries latencySeries) {
+    this.latencySeries = latencySeries;
+    return this;
+  }
+
+  /**
+   * Get latencySeries
+   * @return latencySeries
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LATENCY_SERIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LatencyPercentileSeries getLatencySeries() {
+    return latencySeries;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LATENCY_SERIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLatencySeries(@javax.annotation.Nullable LatencyPercentileSeries latencySeries) {
+    this.latencySeries = latencySeries;
+  }
+
+
   /**
    * Return true if this ActionsMetricsResponse object is equal to o.
    */
@@ -361,12 +391,13 @@ public class ActionsMetricsResponse {
         Objects.equals(this.failedInvocations, actionsMetricsResponse.failedInvocations) &&
         Objects.equals(this.pendingInvocations, actionsMetricsResponse.pendingInvocations) &&
         Objects.equals(this.successRate, actionsMetricsResponse.successRate) &&
-        Objects.equals(this.invocationSeries, actionsMetricsResponse.invocationSeries);
+        Objects.equals(this.invocationSeries, actionsMetricsResponse.invocationSeries) &&
+        Objects.equals(this.latencySeries, actionsMetricsResponse.latencySeries);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalActions, recurringCount, oneTimeCount, enabledCount, totalInvocations, succeededInvocations, failedInvocations, pendingInvocations, successRate, invocationSeries);
+    return Objects.hash(totalActions, recurringCount, oneTimeCount, enabledCount, totalInvocations, succeededInvocations, failedInvocations, pendingInvocations, successRate, invocationSeries, latencySeries);
   }
 
   @Override
@@ -383,6 +414,7 @@ public class ActionsMetricsResponse {
     sb.append("    pendingInvocations: ").append(toIndentedString(pendingInvocations)).append("\n");
     sb.append("    successRate: ").append(toIndentedString(successRate)).append("\n");
     sb.append("    invocationSeries: ").append(toIndentedString(invocationSeries)).append("\n");
+    sb.append("    latencySeries: ").append(toIndentedString(latencySeries)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -480,6 +512,11 @@ public class ActionsMetricsResponse {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `latencySeries` to the URL query string
+    if (getLatencySeries() != null) {
+      joiner.add(getLatencySeries().toUrlQueryString(prefix + "latencySeries" + suffix));
     }
 
     return joiner.toString();

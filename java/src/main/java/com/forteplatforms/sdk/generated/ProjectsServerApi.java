@@ -6235,11 +6235,13 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param minTime  (optional)
    * @param maxTime  (optional)
+   * @param granularity  (optional, default to ONE_HOUR)
+   * @param actionId  (optional)
    * @return ActionsMetricsResponse
    * @throws ApiException if fails to make API call
    */
-  public ActionsMetricsResponse getActionsMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime) throws ApiException {
-    return getActionsMetrics(projectId, minTime, maxTime, null);
+  public ActionsMetricsResponse getActionsMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable String actionId) throws ApiException {
+    return getActionsMetrics(projectId, minTime, maxTime, granularity, actionId, null);
   }
 
   /**
@@ -6248,12 +6250,14 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param minTime  (optional)
    * @param maxTime  (optional)
+   * @param granularity  (optional, default to ONE_HOUR)
+   * @param actionId  (optional)
    * @param headers Optional headers to include in the request
    * @return ActionsMetricsResponse
    * @throws ApiException if fails to make API call
    */
-  public ActionsMetricsResponse getActionsMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
-    ApiResponse<ActionsMetricsResponse> localVarResponse = getActionsMetricsWithHttpInfo(projectId, minTime, maxTime, headers);
+  public ActionsMetricsResponse getActionsMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable String actionId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ActionsMetricsResponse> localVarResponse = getActionsMetricsWithHttpInfo(projectId, minTime, maxTime, granularity, actionId, headers);
     return localVarResponse.getData();
   }
 
@@ -6263,11 +6267,13 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param minTime  (optional)
    * @param maxTime  (optional)
+   * @param granularity  (optional, default to ONE_HOUR)
+   * @param actionId  (optional)
    * @return ApiResponse&lt;ActionsMetricsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ActionsMetricsResponse> getActionsMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime) throws ApiException {
-    return getActionsMetricsWithHttpInfo(projectId, minTime, maxTime, null);
+  public ApiResponse<ActionsMetricsResponse> getActionsMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable String actionId) throws ApiException {
+    return getActionsMetricsWithHttpInfo(projectId, minTime, maxTime, granularity, actionId, null);
   }
 
   /**
@@ -6276,12 +6282,14 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param minTime  (optional)
    * @param maxTime  (optional)
+   * @param granularity  (optional, default to ONE_HOUR)
+   * @param actionId  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ActionsMetricsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ActionsMetricsResponse> getActionsMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getActionsMetricsRequestBuilder(projectId, minTime, maxTime, headers);
+  public ApiResponse<ActionsMetricsResponse> getActionsMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable String actionId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getActionsMetricsRequestBuilder(projectId, minTime, maxTime, granularity, actionId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -6328,7 +6336,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder getActionsMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getActionsMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable String granularity, @javax.annotation.Nullable String actionId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling getActionsMetrics");
@@ -6346,6 +6354,10 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("minTime", minTime));
     localVarQueryParameterBaseName = "maxTime";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
+    localVarQueryParameterBaseName = "granularity";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
+    localVarQueryParameterBaseName = "actionId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("actionId", actionId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -6768,11 +6780,12 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param databaseId  (required)
    * @param rangeHours  (optional, default to 24)
+   * @param granularity  (optional)
    * @return ManagedDatabaseMetricsResponse
    * @throws ApiException if fails to make API call
    */
-  public ManagedDatabaseMetricsResponse getManagedDatabaseMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours) throws ApiException {
-    return getManagedDatabaseMetrics(projectId, databaseId, rangeHours, null);
+  public ManagedDatabaseMetricsResponse getManagedDatabaseMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, @javax.annotation.Nullable String granularity) throws ApiException {
+    return getManagedDatabaseMetrics(projectId, databaseId, rangeHours, granularity, null);
   }
 
   /**
@@ -6781,12 +6794,13 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param databaseId  (required)
    * @param rangeHours  (optional, default to 24)
+   * @param granularity  (optional)
    * @param headers Optional headers to include in the request
    * @return ManagedDatabaseMetricsResponse
    * @throws ApiException if fails to make API call
    */
-  public ManagedDatabaseMetricsResponse getManagedDatabaseMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, Map<String, String> headers) throws ApiException {
-    ApiResponse<ManagedDatabaseMetricsResponse> localVarResponse = getManagedDatabaseMetricsWithHttpInfo(projectId, databaseId, rangeHours, headers);
+  public ManagedDatabaseMetricsResponse getManagedDatabaseMetrics(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<ManagedDatabaseMetricsResponse> localVarResponse = getManagedDatabaseMetricsWithHttpInfo(projectId, databaseId, rangeHours, granularity, headers);
     return localVarResponse.getData();
   }
 
@@ -6796,11 +6810,12 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param databaseId  (required)
    * @param rangeHours  (optional, default to 24)
+   * @param granularity  (optional)
    * @return ApiResponse&lt;ManagedDatabaseMetricsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ManagedDatabaseMetricsResponse> getManagedDatabaseMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours) throws ApiException {
-    return getManagedDatabaseMetricsWithHttpInfo(projectId, databaseId, rangeHours, null);
+  public ApiResponse<ManagedDatabaseMetricsResponse> getManagedDatabaseMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, @javax.annotation.Nullable String granularity) throws ApiException {
+    return getManagedDatabaseMetricsWithHttpInfo(projectId, databaseId, rangeHours, granularity, null);
   }
 
   /**
@@ -6809,12 +6824,13 @@ public class ProjectsServerApi {
    * @param projectId  (required)
    * @param databaseId  (required)
    * @param rangeHours  (optional, default to 24)
+   * @param granularity  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ManagedDatabaseMetricsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ManagedDatabaseMetricsResponse> getManagedDatabaseMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getManagedDatabaseMetricsRequestBuilder(projectId, databaseId, rangeHours, headers);
+  public ApiResponse<ManagedDatabaseMetricsResponse> getManagedDatabaseMetricsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getManagedDatabaseMetricsRequestBuilder(projectId, databaseId, rangeHours, granularity, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -6861,7 +6877,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder getManagedDatabaseMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getManagedDatabaseMetricsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nullable Integer rangeHours, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling getManagedDatabaseMetrics");
@@ -6882,6 +6898,8 @@ public class ProjectsServerApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "rangeHours";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("rangeHours", rangeHours));
+    localVarQueryParameterBaseName = "granularity";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

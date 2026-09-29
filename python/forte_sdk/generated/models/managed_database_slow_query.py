@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,13 +34,27 @@ class ManagedDatabaseSlowQuery(BaseModel):
     kind: StrictStr
     query_text: Optional[StrictStr] = Field(default=None, alias="queryText")
     user_name: Optional[StrictStr] = Field(default=None, alias="userName")
-    __properties: ClassVar[List[str]] = ["slowQueryId", "timestamp", "durationMs", "kind", "queryText", "userName"]
+    query_language: Optional[StrictStr] = Field(default=None, alias="queryLanguage")
+    operation: Optional[StrictStr] = None
+    collection: Optional[StrictStr] = None
+    query_text_truncated: Optional[StrictBool] = Field(default=None, alias="queryTextTruncated")
+    __properties: ClassVar[List[str]] = ["slowQueryId", "timestamp", "durationMs", "kind", "queryText", "userName", "queryLanguage", "operation", "collection", "queryTextTruncated"]
 
     @field_validator('kind')
     def kind_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['SLOW', 'TEMP_FILE', 'LOCK_WAIT']):
             raise ValueError("must be one of enum values ('SLOW', 'TEMP_FILE', 'LOCK_WAIT')")
+        return value
+
+    @field_validator('query_language')
+    def query_language_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['SQL', 'MONGODB_COMMAND']):
+            raise ValueError("must be one of enum values ('SQL', 'MONGODB_COMMAND')")
         return value
 
     model_config = ConfigDict(
@@ -99,7 +113,11 @@ class ManagedDatabaseSlowQuery(BaseModel):
             "durationMs": obj.get("durationMs"),
             "kind": obj.get("kind"),
             "queryText": obj.get("queryText"),
-            "userName": obj.get("userName")
+            "userName": obj.get("userName"),
+            "queryLanguage": obj.get("queryLanguage"),
+            "operation": obj.get("operation"),
+            "collection": obj.get("collection"),
+            "queryTextTruncated": obj.get("queryTextTruncated")
         })
         return _obj
 

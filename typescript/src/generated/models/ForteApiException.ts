@@ -30,13 +30,13 @@ export interface ForteApiException {
      * @type {string}
      * @memberof ForteApiException
      */
-    message?: string;
+    forteExceptionType?: string;
     /**
      * 
      * @type {string}
      * @memberof ForteApiException
      */
-    forteExceptionType?: string;
+    message?: string;
 }
 
 
@@ -212,6 +212,7 @@ export const ForteApiExceptionErrorCodeType = {
     INVOICE_COLLECTION_METHOD_IMMUTABLE: 'INVOICE_COLLECTION_METHOD_IMMUTABLE',
     INVOICE_NOT_COLLECTABLE: 'INVOICE_NOT_COLLECTABLE',
     INVOICE_DAYS_UNTIL_DUE_REQUIRED: 'INVOICE_DAYS_UNTIL_DUE_REQUIRED',
+    INVOICE_NOT_PAYABLE: 'INVOICE_NOT_PAYABLE',
     SUBSCRIPTION_NOT_FOUND: 'SUBSCRIPTION_NOT_FOUND',
     SUBSCRIPTION_NOT_ACTIVE: 'SUBSCRIPTION_NOT_ACTIVE',
     SUBSCRIPTION_INTERVAL_INVALID: 'SUBSCRIPTION_INTERVAL_INVALID',
@@ -349,6 +350,7 @@ export const ForteApiExceptionErrorCodeType = {
     DOMAIN_ALREADY_BEING_REGISTERED: 'DOMAIN_ALREADY_BEING_REGISTERED',
     DOMAIN_PAYMENT_SETUP_FAILED: 'DOMAIN_PAYMENT_SETUP_FAILED',
     DOMAIN_SEARCH_RATE_LIMITED: 'DOMAIN_SEARCH_RATE_LIMITED',
+    DOMAIN_SEARCH_UNAVAILABLE: 'DOMAIN_SEARCH_UNAVAILABLE',
     OPS_SUGGESTION_NOT_FOUND: 'OPS_SUGGESTION_NOT_FOUND',
     OPS_SUGGESTION_INVALID_STATUS_TRANSITION: 'OPS_SUGGESTION_INVALID_STATUS_TRANSITION',
     ADMIN_SOCIAL_EXCEPTION: 'ADMIN_SOCIAL_EXCEPTION',
@@ -380,8 +382,8 @@ export function ForteApiExceptionFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'errorCode': json['errorCode'] == null ? undefined : json['errorCode'],
-        'message': json['message'] == null ? undefined : json['message'],
         'forteExceptionType': json['forteExceptionType'] == null ? undefined : json['forteExceptionType'],
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 
@@ -397,8 +399,8 @@ export function ForteApiExceptionToJSONTyped(value?: ForteApiException | null, i
     return {
         
         'errorCode': value['errorCode'],
-        'message': value['message'],
         'forteExceptionType': value['forteExceptionType'],
+        'message': value['message'],
     };
 }
 

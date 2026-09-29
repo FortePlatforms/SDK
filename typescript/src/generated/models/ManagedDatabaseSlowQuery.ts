@@ -55,6 +55,30 @@ export interface ManagedDatabaseSlowQuery {
      * @memberof ManagedDatabaseSlowQuery
      */
     userName?: string;
+    /**
+     * 
+     * @type {ManagedDatabaseSlowQueryQueryLanguageType}
+     * @memberof ManagedDatabaseSlowQuery
+     */
+    queryLanguage?: ManagedDatabaseSlowQueryQueryLanguageType;
+    /**
+     * 
+     * @type {string}
+     * @memberof ManagedDatabaseSlowQuery
+     */
+    operation?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ManagedDatabaseSlowQuery
+     */
+    collection?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ManagedDatabaseSlowQuery
+     */
+    queryTextTruncated?: boolean;
 }
 
 
@@ -67,6 +91,15 @@ export const ManagedDatabaseSlowQueryKindType = {
     LOCK_WAIT: 'LOCK_WAIT'
 } as const;
 export type ManagedDatabaseSlowQueryKindType = typeof ManagedDatabaseSlowQueryKindType[keyof typeof ManagedDatabaseSlowQueryKindType];
+
+/**
+ * @export
+ */
+export const ManagedDatabaseSlowQueryQueryLanguageType = {
+    SQL: 'SQL',
+    MONGODB_COMMAND: 'MONGODB_COMMAND'
+} as const;
+export type ManagedDatabaseSlowQueryQueryLanguageType = typeof ManagedDatabaseSlowQueryQueryLanguageType[keyof typeof ManagedDatabaseSlowQueryQueryLanguageType];
 
 
 /**
@@ -95,6 +128,10 @@ export function ManagedDatabaseSlowQueryFromJSONTyped(json: any, ignoreDiscrimin
         'kind': json['kind'],
         'queryText': json['queryText'] == null ? undefined : json['queryText'],
         'userName': json['userName'] == null ? undefined : json['userName'],
+        'queryLanguage': json['queryLanguage'] == null ? undefined : json['queryLanguage'],
+        'operation': json['operation'] == null ? undefined : json['operation'],
+        'collection': json['collection'] == null ? undefined : json['collection'],
+        'queryTextTruncated': json['queryTextTruncated'] == null ? undefined : json['queryTextTruncated'],
     };
 }
 
@@ -115,6 +152,10 @@ export function ManagedDatabaseSlowQueryToJSONTyped(value?: ManagedDatabaseSlowQ
         'kind': value['kind'],
         'queryText': value['queryText'],
         'userName': value['userName'],
+        'queryLanguage': value['queryLanguage'],
+        'operation': value['operation'],
+        'collection': value['collection'],
+        'queryTextTruncated': value['queryTextTruncated'],
     };
 }
 

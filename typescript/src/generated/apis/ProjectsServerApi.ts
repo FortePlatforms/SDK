@@ -846,6 +846,8 @@ export interface GetActionsMetricsRequest {
     projectId: string;
     minTime?: Date;
     maxTime?: Date;
+    granularity?: GetActionsMetricsGranularityType;
+    actionId?: string;
 }
 
 export interface GetCustomDomainRequest {
@@ -868,6 +870,7 @@ export interface GetManagedDatabaseMetricsRequest {
     projectId: string;
     databaseId: string;
     rangeHours?: number;
+    granularity?: GetManagedDatabaseMetricsGranularityType;
 }
 
 export interface GetNotificationTemplatesRequest {
@@ -4116,6 +4119,14 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
         }
 
+        if (requestParameters['granularity'] != null) {
+            queryParameters['granularity'] = requestParameters['granularity'];
+        }
+
+        if (requestParameters['actionId'] != null) {
+            queryParameters['actionId'] = requestParameters['actionId'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
 
@@ -4329,6 +4340,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['rangeHours'] != null) {
             queryParameters['rangeHours'] = requestParameters['rangeHours'];
+        }
+
+        if (requestParameters['granularity'] != null) {
+            queryParameters['granularity'] = requestParameters['granularity'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -10239,6 +10254,26 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
 }
 
+/**
+ * @export
+ */
+export const GetActionsMetricsGranularityType = {
+    ONE_MINUTE: 'ONE_MINUTE',
+    FIVE_MINUTES: 'FIVE_MINUTES',
+    FIFTEEN_MINUTES: 'FIFTEEN_MINUTES',
+    ONE_HOUR: 'ONE_HOUR'
+} as const;
+export type GetActionsMetricsGranularityType = typeof GetActionsMetricsGranularityType[keyof typeof GetActionsMetricsGranularityType];
+/**
+ * @export
+ */
+export const GetManagedDatabaseMetricsGranularityType = {
+    ONE_MINUTE: 'ONE_MINUTE',
+    FIVE_MINUTES: 'FIVE_MINUTES',
+    FIFTEEN_MINUTES: 'FIFTEEN_MINUTES',
+    ONE_HOUR: 'ONE_HOUR'
+} as const;
+export type GetManagedDatabaseMetricsGranularityType = typeof GetManagedDatabaseMetricsGranularityType[keyof typeof GetManagedDatabaseMetricsGranularityType];
 /**
  * @export
  */
