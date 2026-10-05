@@ -105,6 +105,18 @@ export interface PaymentAnalyticsResponse {
     topSpenders: Array<SpenderAggregate>;
     /**
      * 
+     * @type {Array<CurrencyTotals>}
+     * @memberof PaymentAnalyticsResponse
+     */
+    refundedByCurrency?: Array<CurrencyTotals>;
+    /**
+     * 
+     * @type {number}
+     * @memberof PaymentAnalyticsResponse
+     */
+    refundedUserCount?: number;
+    /**
+     * 
      * @type {PaymentAnalyticsResponseGroupByType}
      * @memberof PaymentAnalyticsResponse
      */
@@ -157,6 +169,8 @@ export function PaymentAnalyticsResponseFromJSONTyped(json: any, ignoreDiscrimin
         'byState': ((json['byState'] as Array<any>).map(StateCurrencyTotalsFromJSON)),
         'topProducts': ((json['topProducts'] as Array<any>).map(ProductAggregateFromJSON)),
         'topSpenders': ((json['topSpenders'] as Array<any>).map(SpenderAggregateFromJSON)),
+        'refundedByCurrency': json['refundedByCurrency'] == null ? undefined : ((json['refundedByCurrency'] as Array<any>).map(CurrencyTotalsFromJSON)),
+        'refundedUserCount': json['refundedUserCount'] == null ? undefined : json['refundedUserCount'],
         'groupBy': json['groupBy'],
     };
 }
@@ -180,6 +194,8 @@ export function PaymentAnalyticsResponseToJSONTyped(value?: PaymentAnalyticsResp
         'byState': ((value['byState'] as Array<any>).map(StateCurrencyTotalsToJSON)),
         'topProducts': ((value['topProducts'] as Array<any>).map(ProductAggregateToJSON)),
         'topSpenders': ((value['topSpenders'] as Array<any>).map(SpenderAggregateToJSON)),
+        'refundedByCurrency': value['refundedByCurrency'] == null ? undefined : ((value['refundedByCurrency'] as Array<any>).map(CurrencyTotalsToJSON)),
+        'refundedUserCount': value['refundedUserCount'],
         'groupBy': value['groupBy'],
     };
 }

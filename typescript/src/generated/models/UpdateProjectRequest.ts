@@ -82,7 +82,24 @@ export interface UpdateProjectRequest {
      * @memberof UpdateProjectRequest
      */
     mfaConfig?: MfaConfig;
+    /**
+     * 
+     * @type {UpdateProjectRequestEmailSenderType}
+     * @memberof UpdateProjectRequest
+     */
+    emailSender?: UpdateProjectRequestEmailSenderType;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateProjectRequestEmailSenderType = {
+    FORTE_SANDBOX: 'FORTE_SANDBOX',
+    ACCOUNT_DOMAIN: 'ACCOUNT_DOMAIN'
+} as const;
+export type UpdateProjectRequestEmailSenderType = typeof UpdateProjectRequestEmailSenderType[keyof typeof UpdateProjectRequestEmailSenderType];
+
 
 /**
  * Check if a given object implements the UpdateProjectRequest interface.
@@ -109,6 +126,7 @@ export function UpdateProjectRequestFromJSONTyped(json: any, ignoreDiscriminator
         'passwordLoginEnabled': json['passwordLoginEnabled'] == null ? undefined : json['passwordLoginEnabled'],
         'passwordConfig': json['passwordConfig'] == null ? undefined : PasswordConfigFromJSON(json['passwordConfig']),
         'mfaConfig': json['mfaConfig'] == null ? undefined : MfaConfigFromJSON(json['mfaConfig']),
+        'emailSender': json['emailSender'] == null ? undefined : json['emailSender'],
     };
 }
 
@@ -131,6 +149,7 @@ export function UpdateProjectRequestToJSONTyped(value?: UpdateProjectRequest | n
         'passwordLoginEnabled': value['passwordLoginEnabled'],
         'passwordConfig': PasswordConfigToJSON(value['passwordConfig']),
         'mfaConfig': MfaConfigToJSON(value['mfaConfig']),
+        'emailSender': value['emailSender'],
     };
 }
 

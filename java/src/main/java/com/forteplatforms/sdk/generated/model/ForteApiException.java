@@ -34,8 +34,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   ForteApiException.JSON_PROPERTY_ERROR_CODE,
-  ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE,
-  ForteApiException.JSON_PROPERTY_MESSAGE
+  ForteApiException.JSON_PROPERTY_MESSAGE,
+  ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ForteApiException {
@@ -218,6 +218,8 @@ public class ForteApiException {
     SANDBOX_MODE_REQUIRED(String.valueOf("SANDBOX_MODE_REQUIRED")),
     
     BILLING_NOT_CONFIGURED(String.valueOf("BILLING_NOT_CONFIGURED")),
+    
+    COUNTRY_NOT_SUPPORTED(String.valueOf("COUNTRY_NOT_SUPPORTED")),
     
     BILLING_NOTIFICATION_EMAIL_NOT_AUTHORIZED(String.valueOf("BILLING_NOTIFICATION_EMAIL_NOT_AUTHORIZED")),
     
@@ -430,6 +432,10 @@ public class ForteApiException {
     ACTIONS_ACCESS_REQUIRED(String.valueOf("ACTIONS_ACCESS_REQUIRED")),
     
     EMAIL_CONFIGURATION_INVALID(String.valueOf("EMAIL_CONFIGURATION_INVALID")),
+    
+    SANDBOX_EMAIL_RECIPIENT_UNVERIFIED(String.valueOf("SANDBOX_EMAIL_RECIPIENT_UNVERIFIED")),
+    
+    SANDBOX_EMAIL_QUOTA_EXCEEDED(String.valueOf("SANDBOX_EMAIL_QUOTA_EXCEEDED")),
     
     EMAIL_BODY_REQUIRED(String.valueOf("EMAIL_BODY_REQUIRED")),
     
@@ -655,6 +661,14 @@ public class ForteApiException {
     
     DOMAIN_SEARCH_RATE_LIMITED(String.valueOf("DOMAIN_SEARCH_RATE_LIMITED")),
     
+    DOMAIN_NOT_TRANSFERABLE(String.valueOf("DOMAIN_NOT_TRANSFERABLE")),
+    
+    DOMAIN_TRANSFER_IN_PROGRESS(String.valueOf("DOMAIN_TRANSFER_IN_PROGRESS")),
+    
+    DOMAIN_TRANSFER_ZONE_INVALID(String.valueOf("DOMAIN_TRANSFER_ZONE_INVALID")),
+    
+    DOMAIN_TRANSFER_QUOTE_RATE_LIMITED(String.valueOf("DOMAIN_TRANSFER_QUOTE_RATE_LIMITED")),
+    
     DOMAIN_SEARCH_UNAVAILABLE(String.valueOf("DOMAIN_SEARCH_UNAVAILABLE")),
     
     OPS_SUGGESTION_NOT_FOUND(String.valueOf("OPS_SUGGESTION_NOT_FOUND")),
@@ -668,6 +682,8 @@ public class ForteApiException {
     ADMIN_DOMAIN_REGISTRATION_EXCEPTION(String.valueOf("ADMIN_DOMAIN_REGISTRATION_EXCEPTION")),
     
     ADMIN_SMS_EXCEPTION(String.valueOf("ADMIN_SMS_EXCEPTION")),
+    
+    ADMIN_SUPPORT_EXCEPTION(String.valueOf("ADMIN_SUPPORT_EXCEPTION")),
     
     IDEMPOTENCY_KEY_INVALID(String.valueOf("IDEMPOTENCY_KEY_INVALID")),
     
@@ -706,13 +722,13 @@ public class ForteApiException {
   @javax.annotation.Nullable
   private ErrorCodeEnum errorCode;
 
-  public static final String JSON_PROPERTY_FORTE_EXCEPTION_TYPE = "forteExceptionType";
-  @javax.annotation.Nullable
-  private String forteExceptionType;
-
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
   private String message;
+
+  public static final String JSON_PROPERTY_FORTE_EXCEPTION_TYPE = "forteExceptionType";
+  @javax.annotation.Nullable
+  private String forteExceptionType;
 
   public ForteApiException() { 
   }
@@ -741,30 +757,6 @@ public class ForteApiException {
   }
 
 
-  public ForteApiException forteExceptionType(@javax.annotation.Nullable String forteExceptionType) {
-    this.forteExceptionType = forteExceptionType;
-    return this;
-  }
-
-  /**
-   * Get forteExceptionType
-   * @return forteExceptionType
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FORTE_EXCEPTION_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getForteExceptionType() {
-    return forteExceptionType;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_FORTE_EXCEPTION_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setForteExceptionType(@javax.annotation.Nullable String forteExceptionType) {
-    this.forteExceptionType = forteExceptionType;
-  }
-
-
   public ForteApiException message(@javax.annotation.Nullable String message) {
     this.message = message;
     return this;
@@ -789,6 +781,30 @@ public class ForteApiException {
   }
 
 
+  public ForteApiException forteExceptionType(@javax.annotation.Nullable String forteExceptionType) {
+    this.forteExceptionType = forteExceptionType;
+    return this;
+  }
+
+  /**
+   * Get forteExceptionType
+   * @return forteExceptionType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FORTE_EXCEPTION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getForteExceptionType() {
+    return forteExceptionType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FORTE_EXCEPTION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setForteExceptionType(@javax.annotation.Nullable String forteExceptionType) {
+    this.forteExceptionType = forteExceptionType;
+  }
+
+
   /**
    * Return true if this ForteApiException object is equal to o.
    */
@@ -802,13 +818,13 @@ public class ForteApiException {
     }
     ForteApiException forteApiException = (ForteApiException) o;
     return Objects.equals(this.errorCode, forteApiException.errorCode) &&
-        Objects.equals(this.forteExceptionType, forteApiException.forteExceptionType) &&
-        Objects.equals(this.message, forteApiException.message);
+        Objects.equals(this.message, forteApiException.message) &&
+        Objects.equals(this.forteExceptionType, forteApiException.forteExceptionType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorCode, forteExceptionType, message);
+    return Objects.hash(errorCode, message, forteExceptionType);
   }
 
   @Override
@@ -816,8 +832,8 @@ public class ForteApiException {
     StringBuilder sb = new StringBuilder();
     sb.append("class ForteApiException {\n");
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
-    sb.append("    forteExceptionType: ").append(toIndentedString(forteExceptionType)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    forteExceptionType: ").append(toIndentedString(forteExceptionType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -867,14 +883,14 @@ public class ForteApiException {
       joiner.add(String.format(java.util.Locale.ROOT, "%serrorCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getErrorCode()))));
     }
 
-    // add `forteExceptionType` to the URL query string
-    if (getForteExceptionType() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sforteExceptionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForteExceptionType()))));
-    }
-
     // add `message` to the URL query string
     if (getMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    }
+
+    // add `forteExceptionType` to the URL query string
+    if (getForteExceptionType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sforteExceptionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForteExceptionType()))));
     }
 
     return joiner.toString();

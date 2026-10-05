@@ -37,7 +37,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CurrencyTotals.JSON_PROPERTY_COUNT,
   CurrencyTotals.JSON_PROPERTY_VOLUME_CENTS,
   CurrencyTotals.JSON_PROPERTY_SUBTOTAL_CENTS,
-  CurrencyTotals.JSON_PROPERTY_TAX_CENTS
+  CurrencyTotals.JSON_PROPERTY_TAX_CENTS,
+  CurrencyTotals.JSON_PROPERTY_SUBSCRIPTION_VOLUME_CENTS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CurrencyTotals {
@@ -60,6 +61,10 @@ public class CurrencyTotals {
   public static final String JSON_PROPERTY_TAX_CENTS = "taxCents";
   @javax.annotation.Nonnull
   private Long taxCents;
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_VOLUME_CENTS = "subscriptionVolumeCents";
+  @javax.annotation.Nullable
+  private Long subscriptionVolumeCents;
 
   public CurrencyTotals() { 
   }
@@ -184,6 +189,30 @@ public class CurrencyTotals {
   }
 
 
+  public CurrencyTotals subscriptionVolumeCents(@javax.annotation.Nullable Long subscriptionVolumeCents) {
+    this.subscriptionVolumeCents = subscriptionVolumeCents;
+    return this;
+  }
+
+  /**
+   * Get subscriptionVolumeCents
+   * @return subscriptionVolumeCents
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_VOLUME_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getSubscriptionVolumeCents() {
+    return subscriptionVolumeCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_VOLUME_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubscriptionVolumeCents(@javax.annotation.Nullable Long subscriptionVolumeCents) {
+    this.subscriptionVolumeCents = subscriptionVolumeCents;
+  }
+
+
   /**
    * Return true if this CurrencyTotals object is equal to o.
    */
@@ -200,12 +229,13 @@ public class CurrencyTotals {
         Objects.equals(this.count, currencyTotals.count) &&
         Objects.equals(this.volumeCents, currencyTotals.volumeCents) &&
         Objects.equals(this.subtotalCents, currencyTotals.subtotalCents) &&
-        Objects.equals(this.taxCents, currencyTotals.taxCents);
+        Objects.equals(this.taxCents, currencyTotals.taxCents) &&
+        Objects.equals(this.subscriptionVolumeCents, currencyTotals.subscriptionVolumeCents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, count, volumeCents, subtotalCents, taxCents);
+    return Objects.hash(currency, count, volumeCents, subtotalCents, taxCents, subscriptionVolumeCents);
   }
 
   @Override
@@ -217,6 +247,7 @@ public class CurrencyTotals {
     sb.append("    volumeCents: ").append(toIndentedString(volumeCents)).append("\n");
     sb.append("    subtotalCents: ").append(toIndentedString(subtotalCents)).append("\n");
     sb.append("    taxCents: ").append(toIndentedString(taxCents)).append("\n");
+    sb.append("    subscriptionVolumeCents: ").append(toIndentedString(subscriptionVolumeCents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -284,6 +315,11 @@ public class CurrencyTotals {
     // add `taxCents` to the URL query string
     if (getTaxCents() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%staxCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxCents()))));
+    }
+
+    // add `subscriptionVolumeCents` to the URL query string
+    if (getSubscriptionVolumeCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionVolumeCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionVolumeCents()))));
     }
 
     return joiner.toString();

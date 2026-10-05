@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.managed_database_object import ManagedDatabaseObject
 from forte_sdk.generated.models.mfa_config import MfaConfig
@@ -56,8 +56,19 @@ class ProjectObject(BaseModel):
     sandbox_mode: Optional[StrictBool] = Field(default=None, alias="sandboxMode")
     notification_templates_config: Optional[NotificationTemplatesConfig] = Field(default=None, alias="notificationTemplatesConfig")
     payment_triggers: Optional[List[PaymentTriggerConfig]] = Field(default=None, alias="paymentTriggers")
+    email_sender: Optional[StrictStr] = Field(default=None, alias="emailSender")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "hasRecaptchaSecretKey"]
+
+    @field_validator('email_sender')
+    def email_sender_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['FORTE_SANDBOX', 'ACCOUNT_DOMAIN']):
+            raise ValueError("must be one of enum values ('FORTE_SANDBOX', 'ACCOUNT_DOMAIN')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -168,6 +179,7 @@ class ProjectObject(BaseModel):
             "sandboxMode": obj.get("sandboxMode"),
             "notificationTemplatesConfig": NotificationTemplatesConfig.from_dict(obj["notificationTemplatesConfig"]) if obj.get("notificationTemplatesConfig") is not None else None,
             "paymentTriggers": [PaymentTriggerConfig.from_dict(_item) for _item in obj["paymentTriggers"]] if obj.get("paymentTriggers") is not None else None,
+            "emailSender": obj.get("emailSender"),
             "hasRecaptchaSecretKey": obj.get("hasRecaptchaSecretKey")
         })
         return _obj

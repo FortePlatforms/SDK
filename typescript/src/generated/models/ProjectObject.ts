@@ -197,11 +197,28 @@ export interface ProjectObject {
     paymentTriggers?: Array<PaymentTriggerConfig>;
     /**
      * 
+     * @type {ProjectObjectEmailSenderType}
+     * @memberof ProjectObject
+     */
+    emailSender?: ProjectObjectEmailSenderType;
+    /**
+     * 
      * @type {boolean}
      * @memberof ProjectObject
      */
     hasRecaptchaSecretKey?: boolean;
 }
+
+
+/**
+ * @export
+ */
+export const ProjectObjectEmailSenderType = {
+    FORTE_SANDBOX: 'FORTE_SANDBOX',
+    ACCOUNT_DOMAIN: 'ACCOUNT_DOMAIN'
+} as const;
+export type ProjectObjectEmailSenderType = typeof ProjectObjectEmailSenderType[keyof typeof ProjectObjectEmailSenderType];
+
 
 /**
  * Check if a given object implements the ProjectObject interface.
@@ -248,6 +265,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'sandboxMode': json['sandboxMode'] == null ? undefined : json['sandboxMode'],
         'notificationTemplatesConfig': json['notificationTemplatesConfig'] == null ? undefined : NotificationTemplatesConfigFromJSON(json['notificationTemplatesConfig']),
         'paymentTriggers': json['paymentTriggers'] == null ? undefined : ((json['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigFromJSON)),
+        'emailSender': json['emailSender'] == null ? undefined : json['emailSender'],
         'hasRecaptchaSecretKey': json['hasRecaptchaSecretKey'] == null ? undefined : json['hasRecaptchaSecretKey'],
     };
 }
@@ -284,6 +302,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'sandboxMode': value['sandboxMode'],
         'notificationTemplatesConfig': NotificationTemplatesConfigToJSON(value['notificationTemplatesConfig']),
         'paymentTriggers': value['paymentTriggers'] == null ? undefined : ((value['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigToJSON)),
+        'emailSender': value['emailSender'],
         'hasRecaptchaSecretKey': value['hasRecaptchaSecretKey'],
     };
 }

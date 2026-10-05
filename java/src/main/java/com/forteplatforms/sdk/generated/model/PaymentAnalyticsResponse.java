@@ -49,6 +49,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentAnalyticsResponse.JSON_PROPERTY_BY_STATE,
   PaymentAnalyticsResponse.JSON_PROPERTY_TOP_PRODUCTS,
   PaymentAnalyticsResponse.JSON_PROPERTY_TOP_SPENDERS,
+  PaymentAnalyticsResponse.JSON_PROPERTY_REFUNDED_BY_CURRENCY,
+  PaymentAnalyticsResponse.JSON_PROPERTY_REFUNDED_USER_COUNT,
   PaymentAnalyticsResponse.JSON_PROPERTY_GROUP_BY
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -84,6 +86,14 @@ public class PaymentAnalyticsResponse {
   public static final String JSON_PROPERTY_TOP_SPENDERS = "topSpenders";
   @javax.annotation.Nonnull
   private List<SpenderAggregate> topSpenders = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REFUNDED_BY_CURRENCY = "refundedByCurrency";
+  @javax.annotation.Nullable
+  private List<CurrencyTotals> refundedByCurrency = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REFUNDED_USER_COUNT = "refundedUserCount";
+  @javax.annotation.Nullable
+  private Long refundedUserCount;
 
   /**
    * Gets or Sets groupBy
@@ -361,6 +371,62 @@ public class PaymentAnalyticsResponse {
   }
 
 
+  public PaymentAnalyticsResponse refundedByCurrency(@javax.annotation.Nullable List<CurrencyTotals> refundedByCurrency) {
+    this.refundedByCurrency = refundedByCurrency;
+    return this;
+  }
+
+  public PaymentAnalyticsResponse addRefundedByCurrencyItem(CurrencyTotals refundedByCurrencyItem) {
+    if (this.refundedByCurrency == null) {
+      this.refundedByCurrency = new ArrayList<>();
+    }
+    this.refundedByCurrency.add(refundedByCurrencyItem);
+    return this;
+  }
+
+  /**
+   * Get refundedByCurrency
+   * @return refundedByCurrency
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REFUNDED_BY_CURRENCY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CurrencyTotals> getRefundedByCurrency() {
+    return refundedByCurrency;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REFUNDED_BY_CURRENCY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRefundedByCurrency(@javax.annotation.Nullable List<CurrencyTotals> refundedByCurrency) {
+    this.refundedByCurrency = refundedByCurrency;
+  }
+
+
+  public PaymentAnalyticsResponse refundedUserCount(@javax.annotation.Nullable Long refundedUserCount) {
+    this.refundedUserCount = refundedUserCount;
+    return this;
+  }
+
+  /**
+   * Get refundedUserCount
+   * @return refundedUserCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REFUNDED_USER_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Long getRefundedUserCount() {
+    return refundedUserCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REFUNDED_USER_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRefundedUserCount(@javax.annotation.Nullable Long refundedUserCount) {
+    this.refundedUserCount = refundedUserCount;
+  }
+
+
   public PaymentAnalyticsResponse groupBy(@javax.annotation.Nonnull GroupByEnum groupBy) {
     this.groupBy = groupBy;
     return this;
@@ -405,12 +471,14 @@ public class PaymentAnalyticsResponse {
         Objects.equals(this.byState, paymentAnalyticsResponse.byState) &&
         Objects.equals(this.topProducts, paymentAnalyticsResponse.topProducts) &&
         Objects.equals(this.topSpenders, paymentAnalyticsResponse.topSpenders) &&
+        Objects.equals(this.refundedByCurrency, paymentAnalyticsResponse.refundedByCurrency) &&
+        Objects.equals(this.refundedUserCount, paymentAnalyticsResponse.refundedUserCount) &&
         Objects.equals(this.groupBy, paymentAnalyticsResponse.groupBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(minTime, maxTime, totalPaymentCount, volumeByCurrency, volumeOverTime, byState, topProducts, topSpenders, groupBy);
+    return Objects.hash(minTime, maxTime, totalPaymentCount, volumeByCurrency, volumeOverTime, byState, topProducts, topSpenders, refundedByCurrency, refundedUserCount, groupBy);
   }
 
   @Override
@@ -425,6 +493,8 @@ public class PaymentAnalyticsResponse {
     sb.append("    byState: ").append(toIndentedString(byState)).append("\n");
     sb.append("    topProducts: ").append(toIndentedString(topProducts)).append("\n");
     sb.append("    topSpenders: ").append(toIndentedString(topSpenders)).append("\n");
+    sb.append("    refundedByCurrency: ").append(toIndentedString(refundedByCurrency)).append("\n");
+    sb.append("    refundedUserCount: ").append(toIndentedString(refundedUserCount)).append("\n");
     sb.append("    groupBy: ").append(toIndentedString(groupBy)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -533,6 +603,21 @@ public class PaymentAnalyticsResponse {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `refundedByCurrency` to the URL query string
+    if (getRefundedByCurrency() != null) {
+      for (int i = 0; i < getRefundedByCurrency().size(); i++) {
+        if (getRefundedByCurrency().get(i) != null) {
+          joiner.add(getRefundedByCurrency().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%srefundedByCurrency%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `refundedUserCount` to the URL query string
+    if (getRefundedUserCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srefundedUserCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRefundedUserCount()))));
     }
 
     // add `groupBy` to the URL query string

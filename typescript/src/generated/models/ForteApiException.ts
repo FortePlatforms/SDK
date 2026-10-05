@@ -30,13 +30,13 @@ export interface ForteApiException {
      * @type {string}
      * @memberof ForteApiException
      */
-    forteExceptionType?: string;
+    message?: string;
     /**
      * 
      * @type {string}
      * @memberof ForteApiException
      */
-    message?: string;
+    forteExceptionType?: string;
 }
 
 
@@ -132,6 +132,7 @@ export const ForteApiExceptionErrorCodeType = {
     TOO_MANY_ENVIRONMENT_VARIABLES: 'TOO_MANY_ENVIRONMENT_VARIABLES',
     SANDBOX_MODE_REQUIRED: 'SANDBOX_MODE_REQUIRED',
     BILLING_NOT_CONFIGURED: 'BILLING_NOT_CONFIGURED',
+    COUNTRY_NOT_SUPPORTED: 'COUNTRY_NOT_SUPPORTED',
     BILLING_NOTIFICATION_EMAIL_NOT_AUTHORIZED: 'BILLING_NOTIFICATION_EMAIL_NOT_AUTHORIZED',
     BILLING_NOTIFICATION_EMAIL_IS_OWNER: 'BILLING_NOTIFICATION_EMAIL_IS_OWNER',
     BILLING_NOTIFICATION_EMAIL_LIMIT_REACHED: 'BILLING_NOTIFICATION_EMAIL_LIMIT_REACHED',
@@ -238,6 +239,8 @@ export const ForteApiExceptionErrorCodeType = {
     ACTION_NOT_ENABLED: 'ACTION_NOT_ENABLED',
     ACTIONS_ACCESS_REQUIRED: 'ACTIONS_ACCESS_REQUIRED',
     EMAIL_CONFIGURATION_INVALID: 'EMAIL_CONFIGURATION_INVALID',
+    SANDBOX_EMAIL_RECIPIENT_UNVERIFIED: 'SANDBOX_EMAIL_RECIPIENT_UNVERIFIED',
+    SANDBOX_EMAIL_QUOTA_EXCEEDED: 'SANDBOX_EMAIL_QUOTA_EXCEEDED',
     EMAIL_BODY_REQUIRED: 'EMAIL_BODY_REQUIRED',
     SES_TENANT_NOT_PROVISIONED: 'SES_TENANT_NOT_PROVISIONED',
     EMAIL_RECIPIENT_SUPPRESSED: 'EMAIL_RECIPIENT_SUPPRESSED',
@@ -350,6 +353,10 @@ export const ForteApiExceptionErrorCodeType = {
     DOMAIN_ALREADY_BEING_REGISTERED: 'DOMAIN_ALREADY_BEING_REGISTERED',
     DOMAIN_PAYMENT_SETUP_FAILED: 'DOMAIN_PAYMENT_SETUP_FAILED',
     DOMAIN_SEARCH_RATE_LIMITED: 'DOMAIN_SEARCH_RATE_LIMITED',
+    DOMAIN_NOT_TRANSFERABLE: 'DOMAIN_NOT_TRANSFERABLE',
+    DOMAIN_TRANSFER_IN_PROGRESS: 'DOMAIN_TRANSFER_IN_PROGRESS',
+    DOMAIN_TRANSFER_ZONE_INVALID: 'DOMAIN_TRANSFER_ZONE_INVALID',
+    DOMAIN_TRANSFER_QUOTE_RATE_LIMITED: 'DOMAIN_TRANSFER_QUOTE_RATE_LIMITED',
     DOMAIN_SEARCH_UNAVAILABLE: 'DOMAIN_SEARCH_UNAVAILABLE',
     OPS_SUGGESTION_NOT_FOUND: 'OPS_SUGGESTION_NOT_FOUND',
     OPS_SUGGESTION_INVALID_STATUS_TRANSITION: 'OPS_SUGGESTION_INVALID_STATUS_TRANSITION',
@@ -357,6 +364,7 @@ export const ForteApiExceptionErrorCodeType = {
     ADMIN_CRM_EXCEPTION: 'ADMIN_CRM_EXCEPTION',
     ADMIN_DOMAIN_REGISTRATION_EXCEPTION: 'ADMIN_DOMAIN_REGISTRATION_EXCEPTION',
     ADMIN_SMS_EXCEPTION: 'ADMIN_SMS_EXCEPTION',
+    ADMIN_SUPPORT_EXCEPTION: 'ADMIN_SUPPORT_EXCEPTION',
     IDEMPOTENCY_KEY_INVALID: 'IDEMPOTENCY_KEY_INVALID',
     IDEMPOTENCY_KEY_REUSED: 'IDEMPOTENCY_KEY_REUSED',
     IDEMPOTENT_REQUEST_IN_PROGRESS: 'IDEMPOTENT_REQUEST_IN_PROGRESS'
@@ -382,8 +390,8 @@ export function ForteApiExceptionFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'errorCode': json['errorCode'] == null ? undefined : json['errorCode'],
-        'forteExceptionType': json['forteExceptionType'] == null ? undefined : json['forteExceptionType'],
         'message': json['message'] == null ? undefined : json['message'],
+        'forteExceptionType': json['forteExceptionType'] == null ? undefined : json['forteExceptionType'],
     };
 }
 
@@ -399,8 +407,8 @@ export function ForteApiExceptionToJSONTyped(value?: ForteApiException | null, i
     return {
         
         'errorCode': value['errorCode'],
-        'forteExceptionType': value['forteExceptionType'],
         'message': value['message'],
+        'forteExceptionType': value['forteExceptionType'],
     };
 }
 

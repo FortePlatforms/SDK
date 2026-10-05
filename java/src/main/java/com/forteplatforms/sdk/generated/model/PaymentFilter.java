@@ -43,6 +43,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentFilter.JSON_PROPERTY_USER_ID,
   PaymentFilter.JSON_PROPERTY_IDS,
   PaymentFilter.JSON_PROPERTY_NOT_IDS,
+  PaymentFilter.JSON_PROPERTY_SUBSCRIPTION,
+  PaymentFilter.JSON_PROPERTY_LINE_ITEM_DESCRIPTION,
   PaymentFilter.JSON_PROPERTY_PRODUCT_GROUP_BY,
   PaymentFilter.JSON_PROPERTY_PRODUCT_KEY,
   PaymentFilter.JSON_PROPERTY_PRODUCT_METADATA_KEY
@@ -166,6 +168,14 @@ public class PaymentFilter {
   public static final String JSON_PROPERTY_NOT_IDS = "notIds";
   @javax.annotation.Nullable
   private List<String> notIds = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION = "subscription";
+  @javax.annotation.Nullable
+  private Boolean subscription;
+
+  public static final String JSON_PROPERTY_LINE_ITEM_DESCRIPTION = "lineItemDescription";
+  @javax.annotation.Nullable
+  private String lineItemDescription;
 
   /**
    * Gets or Sets productGroupBy
@@ -419,6 +429,54 @@ public class PaymentFilter {
   }
 
 
+  public PaymentFilter subscription(@javax.annotation.Nullable Boolean subscription) {
+    this.subscription = subscription;
+    return this;
+  }
+
+  /**
+   * Get subscription
+   * @return subscription
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getSubscription() {
+    return subscription;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubscription(@javax.annotation.Nullable Boolean subscription) {
+    this.subscription = subscription;
+  }
+
+
+  public PaymentFilter lineItemDescription(@javax.annotation.Nullable String lineItemDescription) {
+    this.lineItemDescription = lineItemDescription;
+    return this;
+  }
+
+  /**
+   * Get lineItemDescription
+   * @return lineItemDescription
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINE_ITEM_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLineItemDescription() {
+    return lineItemDescription;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINE_ITEM_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLineItemDescription(@javax.annotation.Nullable String lineItemDescription) {
+    this.lineItemDescription = lineItemDescription;
+  }
+
+
   public PaymentFilter productGroupBy(@javax.annotation.Nullable ProductGroupByEnum productGroupBy) {
     this.productGroupBy = productGroupBy;
     return this;
@@ -510,6 +568,8 @@ public class PaymentFilter {
         Objects.equals(this.userId, paymentFilter.userId) &&
         Objects.equals(this.ids, paymentFilter.ids) &&
         Objects.equals(this.notIds, paymentFilter.notIds) &&
+        Objects.equals(this.subscription, paymentFilter.subscription) &&
+        Objects.equals(this.lineItemDescription, paymentFilter.lineItemDescription) &&
         Objects.equals(this.productGroupBy, paymentFilter.productGroupBy) &&
         Objects.equals(this.productKey, paymentFilter.productKey) &&
         Objects.equals(this.productMetadataKey, paymentFilter.productMetadataKey);
@@ -517,7 +577,7 @@ public class PaymentFilter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(minTime, maxTime, states, notStates, userId, ids, notIds, productGroupBy, productKey, productMetadataKey);
+    return Objects.hash(minTime, maxTime, states, notStates, userId, ids, notIds, subscription, lineItemDescription, productGroupBy, productKey, productMetadataKey);
   }
 
   @Override
@@ -531,6 +591,8 @@ public class PaymentFilter {
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    ids: ").append(toIndentedString(ids)).append("\n");
     sb.append("    notIds: ").append(toIndentedString(notIds)).append("\n");
+    sb.append("    subscription: ").append(toIndentedString(subscription)).append("\n");
+    sb.append("    lineItemDescription: ").append(toIndentedString(lineItemDescription)).append("\n");
     sb.append("    productGroupBy: ").append(toIndentedString(productGroupBy)).append("\n");
     sb.append("    productKey: ").append(toIndentedString(productKey)).append("\n");
     sb.append("    productMetadataKey: ").append(toIndentedString(productMetadataKey)).append("\n");
@@ -627,6 +689,16 @@ public class PaymentFilter {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getNotIds().get(i)))));
       }
+    }
+
+    // add `subscription` to the URL query string
+    if (getSubscription() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubscription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscription()))));
+    }
+
+    // add `lineItemDescription` to the URL query string
+    if (getLineItemDescription() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slineItemDescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLineItemDescription()))));
     }
 
     // add `productGroupBy` to the URL query string

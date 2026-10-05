@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.mfa_config import MfaConfig
 from forte_sdk.generated.models.password_config import PasswordConfig
@@ -37,7 +37,18 @@ class UpdateProjectRequest(BaseModel):
     password_login_enabled: Optional[StrictBool] = Field(default=None, alias="passwordLoginEnabled")
     password_config: Optional[PasswordConfig] = Field(default=None, alias="passwordConfig")
     mfa_config: Optional[MfaConfig] = Field(default=None, alias="mfaConfig")
-    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig"]
+    email_sender: Optional[StrictStr] = Field(default=None, alias="emailSender")
+    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "emailSender"]
+
+    @field_validator('email_sender')
+    def email_sender_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['FORTE_SANDBOX', 'ACCOUNT_DOMAIN']):
+            raise ValueError("must be one of enum values ('FORTE_SANDBOX', 'ACCOUNT_DOMAIN')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -103,7 +114,8 @@ class UpdateProjectRequest(BaseModel):
             "googleLoginEnabled": obj.get("googleLoginEnabled"),
             "passwordLoginEnabled": obj.get("passwordLoginEnabled"),
             "passwordConfig": PasswordConfig.from_dict(obj["passwordConfig"]) if obj.get("passwordConfig") is not None else None,
-            "mfaConfig": MfaConfig.from_dict(obj["mfaConfig"]) if obj.get("mfaConfig") is not None else None
+            "mfaConfig": MfaConfig.from_dict(obj["mfaConfig"]) if obj.get("mfaConfig") is not None else None,
+            "emailSender": obj.get("emailSender")
         })
         return _obj
 

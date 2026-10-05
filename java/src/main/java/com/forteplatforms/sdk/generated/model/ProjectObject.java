@@ -64,6 +64,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_SANDBOX_MODE,
   ProjectObject.JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG,
   ProjectObject.JSON_PROPERTY_PAYMENT_TRIGGERS,
+  ProjectObject.JSON_PROPERTY_EMAIL_SENDER,
   ProjectObject.JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -151,6 +152,45 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_PAYMENT_TRIGGERS = "paymentTriggers";
   @javax.annotation.Nullable
   private List<PaymentTriggerConfig> paymentTriggers = new ArrayList<>();
+
+  /**
+   * Gets or Sets emailSender
+   */
+  public enum EmailSenderEnum {
+    FORTE_SANDBOX(String.valueOf("FORTE_SANDBOX")),
+    
+    ACCOUNT_DOMAIN(String.valueOf("ACCOUNT_DOMAIN"));
+
+    private String value;
+
+    EmailSenderEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static EmailSenderEnum fromValue(String value) {
+      for (EmailSenderEnum b : EmailSenderEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_EMAIL_SENDER = "emailSender";
+  @javax.annotation.Nullable
+  private EmailSenderEnum emailSender;
 
   public static final String JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY = "hasRecaptchaSecretKey";
   @javax.annotation.Nullable
@@ -695,6 +735,30 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject emailSender(@javax.annotation.Nullable EmailSenderEnum emailSender) {
+    this.emailSender = emailSender;
+    return this;
+  }
+
+  /**
+   * Get emailSender
+   * @return emailSender
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_SENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public EmailSenderEnum getEmailSender() {
+    return emailSender;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_SENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEmailSender(@javax.annotation.Nullable EmailSenderEnum emailSender) {
+    this.emailSender = emailSender;
+  }
+
+
   public ProjectObject hasRecaptchaSecretKey(@javax.annotation.Nullable Boolean hasRecaptchaSecretKey) {
     this.hasRecaptchaSecretKey = hasRecaptchaSecretKey;
     return this;
@@ -752,12 +816,13 @@ public class ProjectObject {
         Objects.equals(this.sandboxMode, projectObject.sandboxMode) &&
         Objects.equals(this.notificationTemplatesConfig, projectObject.notificationTemplatesConfig) &&
         Objects.equals(this.paymentTriggers, projectObject.paymentTriggers) &&
+        Objects.equals(this.emailSender, projectObject.emailSender) &&
         Objects.equals(this.hasRecaptchaSecretKey, projectObject.hasRecaptchaSecretKey);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig, sandboxMode, notificationTemplatesConfig, paymentTriggers, hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, cachedUserCount, googleOAuthClientId, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig, sandboxMode, notificationTemplatesConfig, paymentTriggers, emailSender, hasRecaptchaSecretKey);
   }
 
   @Override
@@ -785,6 +850,7 @@ public class ProjectObject {
     sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
     sb.append("    notificationTemplatesConfig: ").append(toIndentedString(notificationTemplatesConfig)).append("\n");
     sb.append("    paymentTriggers: ").append(toIndentedString(paymentTriggers)).append("\n");
+    sb.append("    emailSender: ").append(toIndentedString(emailSender)).append("\n");
     sb.append("    hasRecaptchaSecretKey: ").append(toIndentedString(hasRecaptchaSecretKey)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -953,6 +1019,11 @@ public class ProjectObject {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `emailSender` to the URL query string
+    if (getEmailSender() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%semailSender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailSender()))));
     }
 
     // add `hasRecaptchaSecretKey` to the URL query string

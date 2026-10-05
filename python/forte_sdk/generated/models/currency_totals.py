@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,7 +32,8 @@ class CurrencyTotals(BaseModel):
     volume_cents: StrictInt = Field(alias="volumeCents")
     subtotal_cents: StrictInt = Field(alias="subtotalCents")
     tax_cents: StrictInt = Field(alias="taxCents")
-    __properties: ClassVar[List[str]] = ["currency", "count", "volumeCents", "subtotalCents", "taxCents"]
+    subscription_volume_cents: Optional[StrictInt] = Field(default=None, alias="subscriptionVolumeCents")
+    __properties: ClassVar[List[str]] = ["currency", "count", "volumeCents", "subtotalCents", "taxCents", "subscriptionVolumeCents"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -89,7 +90,8 @@ class CurrencyTotals(BaseModel):
             "count": obj.get("count"),
             "volumeCents": obj.get("volumeCents"),
             "subtotalCents": obj.get("subtotalCents"),
-            "taxCents": obj.get("taxCents")
+            "taxCents": obj.get("taxCents"),
+            "subscriptionVolumeCents": obj.get("subscriptionVolumeCents")
         })
         return _obj
 

@@ -42,7 +42,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateProjectRequest.JSON_PROPERTY_GOOGLE_LOGIN_ENABLED,
   UpdateProjectRequest.JSON_PROPERTY_PASSWORD_LOGIN_ENABLED,
   UpdateProjectRequest.JSON_PROPERTY_PASSWORD_CONFIG,
-  UpdateProjectRequest.JSON_PROPERTY_MFA_CONFIG
+  UpdateProjectRequest.JSON_PROPERTY_MFA_CONFIG,
+  UpdateProjectRequest.JSON_PROPERTY_EMAIL_SENDER
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateProjectRequest {
@@ -77,6 +78,45 @@ public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_MFA_CONFIG = "mfaConfig";
   @javax.annotation.Nullable
   private MfaConfig mfaConfig;
+
+  /**
+   * Gets or Sets emailSender
+   */
+  public enum EmailSenderEnum {
+    FORTE_SANDBOX(String.valueOf("FORTE_SANDBOX")),
+    
+    ACCOUNT_DOMAIN(String.valueOf("ACCOUNT_DOMAIN"));
+
+    private String value;
+
+    EmailSenderEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static EmailSenderEnum fromValue(String value) {
+      for (EmailSenderEnum b : EmailSenderEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_EMAIL_SENDER = "emailSender";
+  @javax.annotation.Nullable
+  private EmailSenderEnum emailSender;
 
   public UpdateProjectRequest() { 
   }
@@ -273,6 +313,30 @@ public class UpdateProjectRequest {
   }
 
 
+  public UpdateProjectRequest emailSender(@javax.annotation.Nullable EmailSenderEnum emailSender) {
+    this.emailSender = emailSender;
+    return this;
+  }
+
+  /**
+   * Get emailSender
+   * @return emailSender
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_SENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public EmailSenderEnum getEmailSender() {
+    return emailSender;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_SENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEmailSender(@javax.annotation.Nullable EmailSenderEnum emailSender) {
+    this.emailSender = emailSender;
+  }
+
+
   /**
    * Return true if this UpdateProjectRequest object is equal to o.
    */
@@ -292,12 +356,13 @@ public class UpdateProjectRequest {
         Objects.equals(this.googleLoginEnabled, updateProjectRequest.googleLoginEnabled) &&
         Objects.equals(this.passwordLoginEnabled, updateProjectRequest.passwordLoginEnabled) &&
         Objects.equals(this.passwordConfig, updateProjectRequest.passwordConfig) &&
-        Objects.equals(this.mfaConfig, updateProjectRequest.mfaConfig);
+        Objects.equals(this.mfaConfig, updateProjectRequest.mfaConfig) &&
+        Objects.equals(this.emailSender, updateProjectRequest.emailSender);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(googleOAuthClientId, recaptchaSecretKey, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig);
+    return Objects.hash(googleOAuthClientId, recaptchaSecretKey, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig, emailSender);
   }
 
   @Override
@@ -312,6 +377,7 @@ public class UpdateProjectRequest {
     sb.append("    passwordLoginEnabled: ").append(toIndentedString(passwordLoginEnabled)).append("\n");
     sb.append("    passwordConfig: ").append(toIndentedString(passwordConfig)).append("\n");
     sb.append("    mfaConfig: ").append(toIndentedString(mfaConfig)).append("\n");
+    sb.append("    emailSender: ").append(toIndentedString(emailSender)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -394,6 +460,11 @@ public class UpdateProjectRequest {
     // add `mfaConfig` to the URL query string
     if (getMfaConfig() != null) {
       joiner.add(getMfaConfig().toUrlQueryString(prefix + "mfaConfig" + suffix));
+    }
+
+    // add `emailSender` to the URL query string
+    if (getEmailSender() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%semailSender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailSender()))));
     }
 
     return joiner.toString();

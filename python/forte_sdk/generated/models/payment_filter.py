@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -36,10 +36,12 @@ class PaymentFilter(BaseModel):
     user_id: Optional[StrictStr] = Field(default=None, alias="userId")
     ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = None
     not_ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="notIds")
+    subscription: Optional[StrictBool] = None
+    line_item_description: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=512)]] = Field(default=None, alias="lineItemDescription")
     product_group_by: Optional[StrictStr] = Field(default=None, alias="productGroupBy")
     product_key: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=512)]] = Field(default=None, alias="productKey")
     product_metadata_key: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=256)]] = Field(default=None, alias="productMetadataKey")
-    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "states", "notStates", "userId", "ids", "notIds", "productGroupBy", "productKey", "productMetadataKey"]
+    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "states", "notStates", "userId", "ids", "notIds", "subscription", "lineItemDescription", "productGroupBy", "productKey", "productMetadataKey"]
 
     @field_validator('states')
     def states_validate_enum(cls, value):
@@ -131,6 +133,8 @@ class PaymentFilter(BaseModel):
             "userId": obj.get("userId"),
             "ids": obj.get("ids"),
             "notIds": obj.get("notIds"),
+            "subscription": obj.get("subscription"),
+            "lineItemDescription": obj.get("lineItemDescription"),
             "productGroupBy": obj.get("productGroupBy"),
             "productKey": obj.get("productKey"),
             "productMetadataKey": obj.get("productMetadataKey")

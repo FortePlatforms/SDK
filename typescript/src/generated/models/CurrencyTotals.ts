@@ -49,6 +49,12 @@ export interface CurrencyTotals {
      * @memberof CurrencyTotals
      */
     taxCents: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CurrencyTotals
+     */
+    subscriptionVolumeCents?: number;
 }
 
 /**
@@ -78,6 +84,7 @@ export function CurrencyTotalsFromJSONTyped(json: any, ignoreDiscriminator: bool
         'volumeCents': json['volumeCents'],
         'subtotalCents': json['subtotalCents'],
         'taxCents': json['taxCents'],
+        'subscriptionVolumeCents': json['subscriptionVolumeCents'] == null ? undefined : json['subscriptionVolumeCents'],
     };
 }
 
@@ -97,6 +104,7 @@ export function CurrencyTotalsToJSONTyped(value?: CurrencyTotals | null, ignoreD
         'volumeCents': value['volumeCents'],
         'subtotalCents': value['subtotalCents'],
         'taxCents': value['taxCents'],
+        'subscriptionVolumeCents': value['subscriptionVolumeCents'],
     };
 }
 

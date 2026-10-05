@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.currency_totals import CurrencyTotals
 from forte_sdk.generated.models.currency_volume_series import CurrencyVolumeSeries
 from forte_sdk.generated.models.product_aggregate import ProductAggregate
@@ -41,8 +41,10 @@ class PaymentAnalyticsResponse(BaseModel):
     by_state: List[StateCurrencyTotals] = Field(alias="byState")
     top_products: List[ProductAggregate] = Field(alias="topProducts")
     top_spenders: List[SpenderAggregate] = Field(alias="topSpenders")
+    refunded_by_currency: Optional[List[CurrencyTotals]] = Field(default=None, alias="refundedByCurrency")
+    refunded_user_count: Optional[StrictInt] = Field(default=None, alias="refundedUserCount")
     group_by: StrictStr = Field(alias="groupBy")
-    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "totalPaymentCount", "volumeByCurrency", "volumeOverTime", "byState", "topProducts", "topSpenders", "groupBy"]
+    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "totalPaymentCount", "volumeByCurrency", "volumeOverTime", "byState", "topProducts", "topSpenders", "refundedByCurrency", "refundedUserCount", "groupBy"]
 
     @field_validator('group_by')
     def group_by_validate_enum(cls, value):
@@ -125,6 +127,13 @@ class PaymentAnalyticsResponse(BaseModel):
                 if _item_top_spenders:
                     _items.append(_item_top_spenders.to_dict())
             _dict['topSpenders'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in refunded_by_currency (list)
+        _items = []
+        if self.refunded_by_currency:
+            for _item_refunded_by_currency in self.refunded_by_currency:
+                if _item_refunded_by_currency:
+                    _items.append(_item_refunded_by_currency.to_dict())
+            _dict['refundedByCurrency'] = _items
         return _dict
 
     @classmethod
@@ -145,6 +154,8 @@ class PaymentAnalyticsResponse(BaseModel):
             "byState": [StateCurrencyTotals.from_dict(_item) for _item in obj["byState"]] if obj.get("byState") is not None else None,
             "topProducts": [ProductAggregate.from_dict(_item) for _item in obj["topProducts"]] if obj.get("topProducts") is not None else None,
             "topSpenders": [SpenderAggregate.from_dict(_item) for _item in obj["topSpenders"]] if obj.get("topSpenders") is not None else None,
+            "refundedByCurrency": [CurrencyTotals.from_dict(_item) for _item in obj["refundedByCurrency"]] if obj.get("refundedByCurrency") is not None else None,
+            "refundedUserCount": obj.get("refundedUserCount"),
             "groupBy": obj.get("groupBy")
         })
         return _obj
