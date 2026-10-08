@@ -274,6 +274,11 @@ import {
     ManagedDatabaseObjectToJSON,
 } from '../models/ManagedDatabaseObject';
 import {
+    type ManagedDatabaseSlowQuery,
+    ManagedDatabaseSlowQueryFromJSON,
+    ManagedDatabaseSlowQueryToJSON,
+} from '../models/ManagedDatabaseSlowQuery';
+import {
     type NotificationTemplatesResponse,
     NotificationTemplatesResponseFromJSON,
     NotificationTemplatesResponseToJSON,
@@ -871,6 +876,12 @@ export interface GetManagedDatabaseMetricsRequest {
     databaseId: string;
     rangeHours?: number;
     granularity?: GetManagedDatabaseMetricsGranularityType;
+}
+
+export interface GetManagedDatabaseSlowQueryRequest {
+    projectId: string;
+    databaseId: string;
+    slowQueryId: string;
 }
 
 export interface GetNotificationTemplatesRequest {
@@ -4374,6 +4385,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getManagedDatabaseMetrics(requestParameters: GetManagedDatabaseMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseMetricsResponse> {
         const response = await this.getManagedDatabaseMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getManagedDatabaseSlowQuery without sending the request
+     */
+    async getManagedDatabaseSlowQueryRequestOpts(requestParameters: GetManagedDatabaseSlowQueryRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getManagedDatabaseSlowQuery().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling getManagedDatabaseSlowQuery().'
+            );
+        }
+
+        if (requestParameters['slowQueryId'] == null) {
+            throw new runtime.RequiredError(
+                'slowQueryId',
+                'Required parameter "slowQueryId" was null or undefined when calling getManagedDatabaseSlowQuery().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/slow-queries/{slowQueryId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+        urlPath = urlPath.replace('{slowQueryId}', encodeURIComponent(String(requestParameters['slowQueryId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getManagedDatabaseSlowQueryRaw(requestParameters: GetManagedDatabaseSlowQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ManagedDatabaseSlowQuery>> {
+        const requestOptions = await this.getManagedDatabaseSlowQueryRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ManagedDatabaseSlowQueryFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getManagedDatabaseSlowQuery(requestParameters: GetManagedDatabaseSlowQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ManagedDatabaseSlowQuery> {
+        const response = await this.getManagedDatabaseSlowQueryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

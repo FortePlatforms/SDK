@@ -32,7 +32,7 @@ class CustomDomain(BaseModel):
     """ # noqa: E501
     custom_domain_id: StrictStr = Field(alias="customDomainId")
     domain: StrictStr
-    apex: Optional[StrictBool] = None
+    apex: StrictBool
     status: StrictStr
     created_timestamp: datetime = Field(alias="createdTimestamp")
     last_modified_timestamp: datetime = Field(alias="lastModifiedTimestamp")

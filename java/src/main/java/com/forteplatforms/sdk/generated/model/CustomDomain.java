@@ -62,7 +62,7 @@ public class CustomDomain {
   private String domain;
 
   public static final String JSON_PROPERTY_APEX = "apex";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private Boolean apex;
 
   /**
@@ -195,7 +195,7 @@ public class CustomDomain {
   }
 
 
-  public CustomDomain apex(@javax.annotation.Nullable Boolean apex) {
+  public CustomDomain apex(@javax.annotation.Nonnull Boolean apex) {
     this.apex = apex;
     return this;
   }
@@ -204,17 +204,17 @@ public class CustomDomain {
    * Get apex
    * @return apex
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_APEX, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_APEX, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getApex() {
     return apex;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_APEX, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApex(@javax.annotation.Nullable Boolean apex) {
+  @JsonProperty(value = JSON_PROPERTY_APEX, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setApex(@javax.annotation.Nonnull Boolean apex) {
     this.apex = apex;
   }
 

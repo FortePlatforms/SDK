@@ -51,7 +51,7 @@ export interface CustomDomain {
      * @type {boolean}
      * @memberof CustomDomain
      */
-    apex?: boolean;
+    apex: boolean;
     /**
      * 
      * @type {CustomDomainStatusType}
@@ -129,6 +129,7 @@ export type CustomDomainStatusType = typeof CustomDomainStatusType[keyof typeof 
 export function instanceOfCustomDomain(value: object): value is CustomDomain {
     if (!('customDomainId' in value) || value['customDomainId'] === undefined) return false;
     if (!('domain' in value) || value['domain'] === undefined) return false;
+    if (!('apex' in value) || value['apex'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('createdTimestamp' in value) || value['createdTimestamp'] === undefined) return false;
     if (!('lastModifiedTimestamp' in value) || value['lastModifiedTimestamp'] === undefined) return false;
@@ -147,7 +148,7 @@ export function CustomDomainFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'customDomainId': json['customDomainId'],
         'domain': json['domain'],
-        'apex': json['apex'] == null ? undefined : json['apex'],
+        'apex': json['apex'],
         'status': json['status'],
         'createdTimestamp': (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': (new Date(json['lastModifiedTimestamp'])),

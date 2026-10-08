@@ -70,6 +70,7 @@ import com.forteplatforms.sdk.generated.model.ListSessionsResponse;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseConnection;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseMetricsResponse;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseObject;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseSlowQuery;
 import com.forteplatforms.sdk.generated.model.NotificationTemplatesResponse;
 import java.time.OffsetDateTime;
 import com.forteplatforms.sdk.generated.model.PaginatedResponseAccountActionLogObject;
@@ -6911,6 +6912,142 @@ public class ProjectsServerApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param slowQueryId  (required)
+   * @return ManagedDatabaseSlowQuery
+   * @throws ApiException if fails to make API call
+   */
+  public ManagedDatabaseSlowQuery getManagedDatabaseSlowQuery(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String slowQueryId) throws ApiException {
+    return getManagedDatabaseSlowQuery(projectId, databaseId, slowQueryId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param slowQueryId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ManagedDatabaseSlowQuery
+   * @throws ApiException if fails to make API call
+   */
+  public ManagedDatabaseSlowQuery getManagedDatabaseSlowQuery(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String slowQueryId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ManagedDatabaseSlowQuery> localVarResponse = getManagedDatabaseSlowQueryWithHttpInfo(projectId, databaseId, slowQueryId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param slowQueryId  (required)
+   * @return ApiResponse&lt;ManagedDatabaseSlowQuery&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ManagedDatabaseSlowQuery> getManagedDatabaseSlowQueryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String slowQueryId) throws ApiException {
+    return getManagedDatabaseSlowQueryWithHttpInfo(projectId, databaseId, slowQueryId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param databaseId  (required)
+   * @param slowQueryId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ManagedDatabaseSlowQuery&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ManagedDatabaseSlowQuery> getManagedDatabaseSlowQueryWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String slowQueryId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getManagedDatabaseSlowQueryRequestBuilder(projectId, databaseId, slowQueryId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getManagedDatabaseSlowQuery", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ManagedDatabaseSlowQuery>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ManagedDatabaseSlowQuery responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ManagedDatabaseSlowQuery>() {});
+        
+
+        return new ApiResponse<ManagedDatabaseSlowQuery>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getManagedDatabaseSlowQueryRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String databaseId, @javax.annotation.Nonnull String slowQueryId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getManagedDatabaseSlowQuery");
+    }
+    // verify the required parameter 'databaseId' is set
+    if (databaseId == null) {
+      throw new ApiException(400, "Missing the required parameter 'databaseId' when calling getManagedDatabaseSlowQuery");
+    }
+    // verify the required parameter 'slowQueryId' is set
+    if (slowQueryId == null) {
+      throw new ApiException(400, "Missing the required parameter 'slowQueryId' when calling getManagedDatabaseSlowQuery");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/databases/{databaseId}/slow-queries/{slowQueryId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{databaseId}", ApiClient.urlEncode(databaseId.toString()))
+        .replace("{slowQueryId}", ApiClient.urlEncode(slowQueryId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
 
