@@ -32,6 +32,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -100,8 +104,7 @@ public class CreateSubscriptionRequest {
   private IntervalEnum interval;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
@@ -112,16 +115,13 @@ public class CreateSubscriptionRequest {
   private PaymentAddress customerAddress;
 
   public static final String JSON_PROPERTY_START_TIME = "startTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime startTime;
+  private JsonNullable<OffsetDateTime> startTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_END_TIME = "endTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime endTime;
+  private JsonNullable<OffsetDateTime> endTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_PAYMENT_METHOD_ID = "paymentMethodId";
-  @javax.annotation.Nullable
-  private String paymentMethodId;
+  private JsonNullable<String> paymentMethodId = JsonNullable.<String>undefined();
 
   public CreateSubscriptionRequest() { 
   }
@@ -207,7 +207,7 @@ public class CreateSubscriptionRequest {
 
 
   public CreateSubscriptionRequest description(@javax.annotation.Nullable String description) {
-    this.description = description;
+    this.description = JsonNullable.<String>of(description);
     return this;
   }
 
@@ -216,17 +216,25 @@ public class CreateSubscriptionRequest {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
@@ -287,7 +295,7 @@ public class CreateSubscriptionRequest {
 
 
   public CreateSubscriptionRequest startTime(@javax.annotation.Nullable OffsetDateTime startTime) {
-    this.startTime = startTime;
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
     return this;
   }
 
@@ -296,22 +304,30 @@ public class CreateSubscriptionRequest {
    * @return startTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getStartTime() {
-    return startTime;
+        return startTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+
+  public JsonNullable<OffsetDateTime> getStartTime_JsonNullable() {
+    return startTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_START_TIME)
+  public void setStartTime_JsonNullable(JsonNullable<OffsetDateTime> startTime) {
     this.startTime = startTime;
+  }
+
+  public void setStartTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
   }
 
 
   public CreateSubscriptionRequest endTime(@javax.annotation.Nullable OffsetDateTime endTime) {
-    this.endTime = endTime;
+    this.endTime = JsonNullable.<OffsetDateTime>of(endTime);
     return this;
   }
 
@@ -320,22 +336,30 @@ public class CreateSubscriptionRequest {
    * @return endTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_END_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getEndTime() {
-    return endTime;
+        return endTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_END_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndTime(@javax.annotation.Nullable OffsetDateTime endTime) {
+
+  public JsonNullable<OffsetDateTime> getEndTime_JsonNullable() {
+    return endTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_END_TIME)
+  public void setEndTime_JsonNullable(JsonNullable<OffsetDateTime> endTime) {
     this.endTime = endTime;
+  }
+
+  public void setEndTime(@javax.annotation.Nullable OffsetDateTime endTime) {
+    this.endTime = JsonNullable.<OffsetDateTime>of(endTime);
   }
 
 
   public CreateSubscriptionRequest paymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
-    this.paymentMethodId = paymentMethodId;
+    this.paymentMethodId = JsonNullable.<String>of(paymentMethodId);
     return this;
   }
 
@@ -344,17 +368,25 @@ public class CreateSubscriptionRequest {
    * @return paymentMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPaymentMethodId() {
-    return paymentMethodId;
+        return paymentMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+
+  public JsonNullable<String> getPaymentMethodId_JsonNullable() {
+    return paymentMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAYMENT_METHOD_ID)
+  public void setPaymentMethodId_JsonNullable(JsonNullable<String> paymentMethodId) {
     this.paymentMethodId = paymentMethodId;
+  }
+
+  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+    this.paymentMethodId = JsonNullable.<String>of(paymentMethodId);
   }
 
 
@@ -373,17 +405,28 @@ public class CreateSubscriptionRequest {
     return Objects.equals(this.currency, createSubscriptionRequest.currency) &&
         Objects.equals(this.lineItems, createSubscriptionRequest.lineItems) &&
         Objects.equals(this.interval, createSubscriptionRequest.interval) &&
-        Objects.equals(this.description, createSubscriptionRequest.description) &&
+        equalsNullable(this.description, createSubscriptionRequest.description) &&
         Objects.equals(this.metadata, createSubscriptionRequest.metadata) &&
         Objects.equals(this.customerAddress, createSubscriptionRequest.customerAddress) &&
-        Objects.equals(this.startTime, createSubscriptionRequest.startTime) &&
-        Objects.equals(this.endTime, createSubscriptionRequest.endTime) &&
-        Objects.equals(this.paymentMethodId, createSubscriptionRequest.paymentMethodId);
+        equalsNullable(this.startTime, createSubscriptionRequest.startTime) &&
+        equalsNullable(this.endTime, createSubscriptionRequest.endTime) &&
+        equalsNullable(this.paymentMethodId, createSubscriptionRequest.paymentMethodId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, lineItems, interval, description, metadata, customerAddress, startTime, endTime, paymentMethodId);
+    return Objects.hash(currency, lineItems, interval, hashCodeNullable(description), metadata, customerAddress, hashCodeNullable(startTime), hashCodeNullable(endTime), hashCodeNullable(paymentMethodId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

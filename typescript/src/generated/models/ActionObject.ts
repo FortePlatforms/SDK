@@ -62,7 +62,7 @@ export interface ActionObject {
      * @type {string}
      * @memberof ActionObject
      */
-    requestBody?: string;
+    requestBody?: string | null;
     /**
      * 
      * @type {ActionScheduleType}
@@ -74,31 +74,31 @@ export interface ActionObject {
      * @type {string}
      * @memberof ActionObject
      */
-    cronExpression?: string;
+    cronExpression?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ActionObject
      */
-    timezone?: string;
+    timezone?: string | null;
     /**
      * 
      * @type {Date}
      * @memberof ActionObject
      */
-    windowStart?: Date;
+    windowStart?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof ActionObject
      */
-    windowEnd?: Date;
+    windowEnd?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof ActionObject
      */
-    scheduledAt?: Date;
+    scheduledAt?: Date | null;
     /**
      * 
      * @type {boolean}
@@ -116,13 +116,13 @@ export interface ActionObject {
      * @type {Date}
      * @memberof ActionObject
      */
-    nextInvocationAt?: Date;
+    nextInvocationAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof ActionObject
      */
-    lastInvocationAt?: Date;
+    lastInvocationAt?: Date | null;
     /**
      * 
      * @type {number}
@@ -146,7 +146,7 @@ export interface ActionObject {
      * @type {Date}
      * @memberof ActionObject
      */
-    lastModifiedTimestamp?: Date;
+    lastModifiedTimestamp?: Date | null;
 }
 
 

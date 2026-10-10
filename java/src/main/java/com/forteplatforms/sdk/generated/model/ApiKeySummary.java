@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -54,8 +58,7 @@ public class ApiKeySummary {
   private OffsetDateTime creationTime;
 
   public static final String JSON_PROPERTY_EXPIRATION_TIME = "expirationTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime expirationTime;
+  private JsonNullable<OffsetDateTime> expirationTime = JsonNullable.<OffsetDateTime>undefined();
 
   public ApiKeySummary() { 
   }
@@ -133,7 +136,7 @@ public class ApiKeySummary {
 
 
   public ApiKeySummary expirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
-    this.expirationTime = expirationTime;
+    this.expirationTime = JsonNullable.<OffsetDateTime>of(expirationTime);
     return this;
   }
 
@@ -142,17 +145,25 @@ public class ApiKeySummary {
    * @return expirationTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPIRATION_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getExpirationTime() {
-    return expirationTime;
+        return expirationTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXPIRATION_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
+
+  public JsonNullable<OffsetDateTime> getExpirationTime_JsonNullable() {
+    return expirationTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPIRATION_TIME)
+  public void setExpirationTime_JsonNullable(JsonNullable<OffsetDateTime> expirationTime) {
     this.expirationTime = expirationTime;
+  }
+
+  public void setExpirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
+    this.expirationTime = JsonNullable.<OffsetDateTime>of(expirationTime);
   }
 
 
@@ -171,12 +182,23 @@ public class ApiKeySummary {
     return Objects.equals(this.id, apiKeySummary.id) &&
         Objects.equals(this.keyName, apiKeySummary.keyName) &&
         Objects.equals(this.creationTime, apiKeySummary.creationTime) &&
-        Objects.equals(this.expirationTime, apiKeySummary.expirationTime);
+        equalsNullable(this.expirationTime, apiKeySummary.expirationTime);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, keyName, creationTime, expirationTime);
+    return Objects.hash(id, keyName, creationTime, hashCodeNullable(expirationTime));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -36,19 +36,19 @@ export interface MfaMethod {
      * @type {string}
      * @memberof MfaMethod
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof MfaMethod
      */
-    verified?: boolean;
+    verified?: boolean | null;
     /**
      * 
      * @type {Date}
      * @memberof MfaMethod
      */
-    activatedAt?: Date;
+    activatedAt?: Date | null;
     /**
      * 
      * @type {Date}
@@ -60,7 +60,7 @@ export interface MfaMethod {
      * @type {Date}
      * @memberof MfaMethod
      */
-    lastUsedAt?: Date;
+    lastUsedAt?: Date | null;
 }
 
 

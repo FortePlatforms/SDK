@@ -84,6 +84,36 @@ class HealthCheckDetectionError(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if error_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_type is None and "error_type" in self.model_fields_set:
+            _dict['errorType'] = None
+
+        # set to None if error_message (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_message is None and "error_message" in self.model_fields_set:
+            _dict['errorMessage'] = None
+
+        # set to None if exposed_port (nullable) is None
+        # and model_fields_set contains the field
+        if self.exposed_port is None and "exposed_port" in self.model_fields_set:
+            _dict['exposedPort'] = None
+
+        # set to None if detected_framework (nullable) is None
+        # and model_fields_set contains the field
+        if self.detected_framework is None and "detected_framework" in self.model_fields_set:
+            _dict['detectedFramework'] = None
+
+        # set to None if searched_paths (nullable) is None
+        # and model_fields_set contains the field
+        if self.searched_paths is None and "searched_paths" in self.model_fields_set:
+            _dict['searchedPaths'] = None
+
+        # set to None if suggestions (nullable) is None
+        # and model_fields_set contains the field
+        if self.suggestions is None and "suggestions" in self.model_fields_set:
+            _dict['suggestions'] = None
+
         return _dict
 
     @classmethod

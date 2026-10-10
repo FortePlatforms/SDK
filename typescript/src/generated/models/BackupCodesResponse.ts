@@ -24,13 +24,13 @@ export interface BackupCodesResponse {
      * @type {Array<string>}
      * @memberof BackupCodesResponse
      */
-    codes?: Array<string>;
+    codes?: Array<string> | null;
     /**
      * 
      * @type {Date}
      * @memberof BackupCodesResponse
      */
-    generatedAt?: Date;
+    generatedAt?: Date | null;
     /**
      * 
      * @type {number}

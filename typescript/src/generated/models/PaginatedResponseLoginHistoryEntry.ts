@@ -44,7 +44,7 @@ export interface PaginatedResponseLoginHistoryEntry {
      * @type {string}
      * @memberof PaginatedResponseLoginHistoryEntry
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
 }
 
 /**

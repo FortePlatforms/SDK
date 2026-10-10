@@ -24,25 +24,25 @@ export interface RequestLogPathFilter {
      * @type {Array<string>}
      * @memberof RequestLogPathFilter
      */
-    equalTo?: Array<string>;
+    equalTo?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof RequestLogPathFilter
      */
-    notEqualTo?: Array<string>;
+    notEqualTo?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof RequestLogPathFilter
      */
-    startsWith?: Array<string>;
+    startsWith?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof RequestLogPathFilter
      */
-    contains?: Array<string>;
+    contains?: Array<string> | null;
 }
 
 /**

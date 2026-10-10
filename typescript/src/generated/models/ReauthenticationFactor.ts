@@ -30,19 +30,19 @@ export interface ReauthenticationFactor {
      * @type {string}
      * @memberof ReauthenticationFactor
      */
-    mfaMethodId?: string;
+    mfaMethodId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ReauthenticationFactor
      */
-    contactMethodId?: string;
+    contactMethodId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ReauthenticationFactor
      */
-    maskedTarget?: string;
+    maskedTarget?: string | null;
 }
 
 

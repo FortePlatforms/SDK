@@ -42,31 +42,31 @@ export interface UserActionLogObject {
      * @type {string}
      * @memberof UserActionLogObject
      */
-    contactMethodId?: string;
+    contactMethodId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UserActionLogObject
      */
-    paymentMethodId?: string;
+    paymentMethodId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UserActionLogObject
      */
-    performedByAccountId?: string;
+    performedByAccountId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UserActionLogObject
      */
-    sourceIpAddress?: string;
+    sourceIpAddress?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UserActionLogObject
      */
-    userAgent?: string;
+    userAgent?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}

@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.PaymentAddress;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,12 +45,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateSubscriptionRequest {
   public static final String JSON_PROPERTY_PAYMENT_METHOD_ID = "paymentMethodId";
-  @javax.annotation.Nullable
-  private String paymentMethodId;
+  private JsonNullable<String> paymentMethodId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CANCEL_AT_PERIOD_END = "cancelAtPeriodEnd";
-  @javax.annotation.Nullable
-  private Boolean cancelAtPeriodEnd;
+  private JsonNullable<Boolean> cancelAtPeriodEnd = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_CUSTOMER_ADDRESS = "customerAddress";
   @javax.annotation.Nullable
@@ -56,7 +58,7 @@ public class UpdateSubscriptionRequest {
   }
 
   public UpdateSubscriptionRequest paymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
-    this.paymentMethodId = paymentMethodId;
+    this.paymentMethodId = JsonNullable.<String>of(paymentMethodId);
     return this;
   }
 
@@ -65,22 +67,30 @@ public class UpdateSubscriptionRequest {
    * @return paymentMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPaymentMethodId() {
-    return paymentMethodId;
+        return paymentMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+
+  public JsonNullable<String> getPaymentMethodId_JsonNullable() {
+    return paymentMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAYMENT_METHOD_ID)
+  public void setPaymentMethodId_JsonNullable(JsonNullable<String> paymentMethodId) {
     this.paymentMethodId = paymentMethodId;
+  }
+
+  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+    this.paymentMethodId = JsonNullable.<String>of(paymentMethodId);
   }
 
 
   public UpdateSubscriptionRequest cancelAtPeriodEnd(@javax.annotation.Nullable Boolean cancelAtPeriodEnd) {
-    this.cancelAtPeriodEnd = cancelAtPeriodEnd;
+    this.cancelAtPeriodEnd = JsonNullable.<Boolean>of(cancelAtPeriodEnd);
     return this;
   }
 
@@ -89,17 +99,25 @@ public class UpdateSubscriptionRequest {
    * @return cancelAtPeriodEnd
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CANCEL_AT_PERIOD_END, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getCancelAtPeriodEnd() {
-    return cancelAtPeriodEnd;
+        return cancelAtPeriodEnd.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CANCEL_AT_PERIOD_END, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCancelAtPeriodEnd(@javax.annotation.Nullable Boolean cancelAtPeriodEnd) {
+
+  public JsonNullable<Boolean> getCancelAtPeriodEnd_JsonNullable() {
+    return cancelAtPeriodEnd;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CANCEL_AT_PERIOD_END)
+  public void setCancelAtPeriodEnd_JsonNullable(JsonNullable<Boolean> cancelAtPeriodEnd) {
     this.cancelAtPeriodEnd = cancelAtPeriodEnd;
+  }
+
+  public void setCancelAtPeriodEnd(@javax.annotation.Nullable Boolean cancelAtPeriodEnd) {
+    this.cancelAtPeriodEnd = JsonNullable.<Boolean>of(cancelAtPeriodEnd);
   }
 
 
@@ -139,14 +157,25 @@ public class UpdateSubscriptionRequest {
       return false;
     }
     UpdateSubscriptionRequest updateSubscriptionRequest = (UpdateSubscriptionRequest) o;
-    return Objects.equals(this.paymentMethodId, updateSubscriptionRequest.paymentMethodId) &&
-        Objects.equals(this.cancelAtPeriodEnd, updateSubscriptionRequest.cancelAtPeriodEnd) &&
+    return equalsNullable(this.paymentMethodId, updateSubscriptionRequest.paymentMethodId) &&
+        equalsNullable(this.cancelAtPeriodEnd, updateSubscriptionRequest.cancelAtPeriodEnd) &&
         Objects.equals(this.customerAddress, updateSubscriptionRequest.customerAddress);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentMethodId, cancelAtPeriodEnd, customerAddress);
+    return Objects.hash(hashCodeNullable(paymentMethodId), hashCodeNullable(cancelAtPeriodEnd), customerAddress);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

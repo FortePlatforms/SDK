@@ -85,6 +85,91 @@ class UpdateNotificationTemplatesRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if email_verification_subject (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_verification_subject is None and "email_verification_subject" in self.model_fields_set:
+            _dict['emailVerificationSubject'] = None
+
+        # set to None if email_verification_html_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_verification_html_body is None and "email_verification_html_body" in self.model_fields_set:
+            _dict['emailVerificationHtmlBody'] = None
+
+        # set to None if sms_verification_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.sms_verification_body is None and "sms_verification_body" in self.model_fields_set:
+            _dict['smsVerificationBody'] = None
+
+        # set to None if welcome_on_google_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.welcome_on_google_enabled is None and "welcome_on_google_enabled" in self.model_fields_set:
+            _dict['welcomeOnGoogleEnabled'] = None
+
+        # set to None if welcome_on_email_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.welcome_on_email_enabled is None and "welcome_on_email_enabled" in self.model_fields_set:
+            _dict['welcomeOnEmailEnabled'] = None
+
+        # set to None if welcome_on_sms_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.welcome_on_sms_enabled is None and "welcome_on_sms_enabled" in self.model_fields_set:
+            _dict['welcomeOnSmsEnabled'] = None
+
+        # set to None if welcome_email_subject (nullable) is None
+        # and model_fields_set contains the field
+        if self.welcome_email_subject is None and "welcome_email_subject" in self.model_fields_set:
+            _dict['welcomeEmailSubject'] = None
+
+        # set to None if welcome_email_html_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.welcome_email_html_body is None and "welcome_email_html_body" in self.model_fields_set:
+            _dict['welcomeEmailHtmlBody'] = None
+
+        # set to None if welcome_sms_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.welcome_sms_body is None and "welcome_sms_body" in self.model_fields_set:
+            _dict['welcomeSmsBody'] = None
+
+        # set to None if login_otp_email_subject (nullable) is None
+        # and model_fields_set contains the field
+        if self.login_otp_email_subject is None and "login_otp_email_subject" in self.model_fields_set:
+            _dict['loginOtpEmailSubject'] = None
+
+        # set to None if login_otp_email_html_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.login_otp_email_html_body is None and "login_otp_email_html_body" in self.model_fields_set:
+            _dict['loginOtpEmailHtmlBody'] = None
+
+        # set to None if login_otp_sms_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.login_otp_sms_body is None and "login_otp_sms_body" in self.model_fields_set:
+            _dict['loginOtpSmsBody'] = None
+
+        # set to None if invite_email_subject (nullable) is None
+        # and model_fields_set contains the field
+        if self.invite_email_subject is None and "invite_email_subject" in self.model_fields_set:
+            _dict['inviteEmailSubject'] = None
+
+        # set to None if invite_email_html_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.invite_email_html_body is None and "invite_email_html_body" in self.model_fields_set:
+            _dict['inviteEmailHtmlBody'] = None
+
+        # set to None if password_reset_email_subject (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_reset_email_subject is None and "password_reset_email_subject" in self.model_fields_set:
+            _dict['passwordResetEmailSubject'] = None
+
+        # set to None if password_reset_email_html_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_reset_email_html_body is None and "password_reset_email_html_body" in self.model_fields_set:
+            _dict['passwordResetEmailHtmlBody'] = None
+
+        # set to None if password_reset_sms_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_reset_sms_body is None and "password_reset_sms_body" in self.model_fields_set:
+            _dict['passwordResetSmsBody'] = None
+
         return _dict
 
     @classmethod

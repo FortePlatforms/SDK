@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,18 +43,16 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ActivateMfaMethodRequest {
   public static final String JSON_PROPERTY_CODE = "code";
-  @javax.annotation.Nullable
-  private String code;
+  private JsonNullable<String> code = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_WEB_AUTHN_ATTESTATION = "webAuthnAttestation";
-  @javax.annotation.Nullable
-  private String webAuthnAttestation;
+  private JsonNullable<String> webAuthnAttestation = JsonNullable.<String>undefined();
 
   public ActivateMfaMethodRequest() { 
   }
 
   public ActivateMfaMethodRequest code(@javax.annotation.Nullable String code) {
-    this.code = code;
+    this.code = JsonNullable.<String>of(code);
     return this;
   }
 
@@ -59,22 +61,30 @@ public class ActivateMfaMethodRequest {
    * @return code
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCode() {
-    return code;
+        return code.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCode(@javax.annotation.Nullable String code) {
+
+  public JsonNullable<String> getCode_JsonNullable() {
+    return code;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODE)
+  public void setCode_JsonNullable(JsonNullable<String> code) {
     this.code = code;
+  }
+
+  public void setCode(@javax.annotation.Nullable String code) {
+    this.code = JsonNullable.<String>of(code);
   }
 
 
   public ActivateMfaMethodRequest webAuthnAttestation(@javax.annotation.Nullable String webAuthnAttestation) {
-    this.webAuthnAttestation = webAuthnAttestation;
+    this.webAuthnAttestation = JsonNullable.<String>of(webAuthnAttestation);
     return this;
   }
 
@@ -83,17 +93,25 @@ public class ActivateMfaMethodRequest {
    * @return webAuthnAttestation
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEB_AUTHN_ATTESTATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWebAuthnAttestation() {
-    return webAuthnAttestation;
+        return webAuthnAttestation.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WEB_AUTHN_ATTESTATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebAuthnAttestation(@javax.annotation.Nullable String webAuthnAttestation) {
+
+  public JsonNullable<String> getWebAuthnAttestation_JsonNullable() {
+    return webAuthnAttestation;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WEB_AUTHN_ATTESTATION)
+  public void setWebAuthnAttestation_JsonNullable(JsonNullable<String> webAuthnAttestation) {
     this.webAuthnAttestation = webAuthnAttestation;
+  }
+
+  public void setWebAuthnAttestation(@javax.annotation.Nullable String webAuthnAttestation) {
+    this.webAuthnAttestation = JsonNullable.<String>of(webAuthnAttestation);
   }
 
 
@@ -109,13 +127,24 @@ public class ActivateMfaMethodRequest {
       return false;
     }
     ActivateMfaMethodRequest activateMfaMethodRequest = (ActivateMfaMethodRequest) o;
-    return Objects.equals(this.code, activateMfaMethodRequest.code) &&
-        Objects.equals(this.webAuthnAttestation, activateMfaMethodRequest.webAuthnAttestation);
+    return equalsNullable(this.code, activateMfaMethodRequest.code) &&
+        equalsNullable(this.webAuthnAttestation, activateMfaMethodRequest.webAuthnAttestation);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, webAuthnAttestation);
+    return Objects.hash(hashCodeNullable(code), hashCodeNullable(webAuthnAttestation));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

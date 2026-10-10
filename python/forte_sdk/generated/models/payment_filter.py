@@ -114,6 +114,66 @@ class PaymentFilter(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if min_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.min_time is None and "min_time" in self.model_fields_set:
+            _dict['minTime'] = None
+
+        # set to None if max_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_time is None and "max_time" in self.model_fields_set:
+            _dict['maxTime'] = None
+
+        # set to None if states (nullable) is None
+        # and model_fields_set contains the field
+        if self.states is None and "states" in self.model_fields_set:
+            _dict['states'] = None
+
+        # set to None if not_states (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_states is None and "not_states" in self.model_fields_set:
+            _dict['notStates'] = None
+
+        # set to None if user_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_id is None and "user_id" in self.model_fields_set:
+            _dict['userId'] = None
+
+        # set to None if ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.ids is None and "ids" in self.model_fields_set:
+            _dict['ids'] = None
+
+        # set to None if not_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_ids is None and "not_ids" in self.model_fields_set:
+            _dict['notIds'] = None
+
+        # set to None if subscription (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscription is None and "subscription" in self.model_fields_set:
+            _dict['subscription'] = None
+
+        # set to None if line_item_description (nullable) is None
+        # and model_fields_set contains the field
+        if self.line_item_description is None and "line_item_description" in self.model_fields_set:
+            _dict['lineItemDescription'] = None
+
+        # set to None if product_group_by (nullable) is None
+        # and model_fields_set contains the field
+        if self.product_group_by is None and "product_group_by" in self.model_fields_set:
+            _dict['productGroupBy'] = None
+
+        # set to None if product_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.product_key is None and "product_key" in self.model_fields_set:
+            _dict['productKey'] = None
+
+        # set to None if product_metadata_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.product_metadata_key is None and "product_metadata_key" in self.model_fields_set:
+            _dict['productMetadataKey'] = None
+
         return _dict
 
     @classmethod

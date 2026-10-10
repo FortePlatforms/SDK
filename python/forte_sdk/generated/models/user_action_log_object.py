@@ -85,6 +85,31 @@ class UserActionLogObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if contact_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.contact_method_id is None and "contact_method_id" in self.model_fields_set:
+            _dict['contactMethodId'] = None
+
+        # set to None if payment_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_method_id is None and "payment_method_id" in self.model_fields_set:
+            _dict['paymentMethodId'] = None
+
+        # set to None if performed_by_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.performed_by_account_id is None and "performed_by_account_id" in self.model_fields_set:
+            _dict['performedByAccountId'] = None
+
+        # set to None if source_ip_address (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_ip_address is None and "source_ip_address" in self.model_fields_set:
+            _dict['sourceIpAddress'] = None
+
+        # set to None if user_agent (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_agent is None and "user_agent" in self.model_fields_set:
+            _dict['userAgent'] = None
+
         return _dict
 
     @classmethod

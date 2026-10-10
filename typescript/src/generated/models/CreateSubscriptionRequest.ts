@@ -57,7 +57,7 @@ export interface CreateSubscriptionRequest {
      * @type {string}
      * @memberof CreateSubscriptionRequest
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -75,19 +75,19 @@ export interface CreateSubscriptionRequest {
      * @type {Date}
      * @memberof CreateSubscriptionRequest
      */
-    startTime?: Date;
+    startTime?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof CreateSubscriptionRequest
      */
-    endTime?: Date;
+    endTime?: Date | null;
     /**
      * 
      * @type {string}
      * @memberof CreateSubscriptionRequest
      */
-    paymentMethodId?: string;
+    paymentMethodId?: string | null;
 }
 
 

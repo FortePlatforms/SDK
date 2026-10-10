@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -136,13 +140,12 @@ public class BuildStepLog {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_PREVIOUS_STATUS = "previousStatus";
-  @javax.annotation.Nullable
-  private PreviousStatusEnum previousStatus;
+  private JsonNullable<PreviousStatusEnum> previousStatus = JsonNullable.<PreviousStatusEnum>undefined();
 
   /**
    * Gets or Sets newStatus
@@ -231,13 +234,12 @@ public class BuildStepLog {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_NEW_STATUS = "newStatus";
-  @javax.annotation.Nullable
-  private NewStatusEnum newStatus;
+  private JsonNullable<NewStatusEnum> newStatus = JsonNullable.<NewStatusEnum>undefined();
 
   public BuildStepLog() { 
   }
@@ -291,7 +293,7 @@ public class BuildStepLog {
 
 
   public BuildStepLog previousStatus(@javax.annotation.Nullable PreviousStatusEnum previousStatus) {
-    this.previousStatus = previousStatus;
+    this.previousStatus = JsonNullable.<PreviousStatusEnum>of(previousStatus);
     return this;
   }
 
@@ -300,22 +302,30 @@ public class BuildStepLog {
    * @return previousStatus
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PREVIOUS_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public PreviousStatusEnum getPreviousStatus() {
-    return previousStatus;
+        return previousStatus.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PREVIOUS_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPreviousStatus(@javax.annotation.Nullable PreviousStatusEnum previousStatus) {
+
+  public JsonNullable<PreviousStatusEnum> getPreviousStatus_JsonNullable() {
+    return previousStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PREVIOUS_STATUS)
+  public void setPreviousStatus_JsonNullable(JsonNullable<PreviousStatusEnum> previousStatus) {
     this.previousStatus = previousStatus;
+  }
+
+  public void setPreviousStatus(@javax.annotation.Nullable PreviousStatusEnum previousStatus) {
+    this.previousStatus = JsonNullable.<PreviousStatusEnum>of(previousStatus);
   }
 
 
   public BuildStepLog newStatus(@javax.annotation.Nullable NewStatusEnum newStatus) {
-    this.newStatus = newStatus;
+    this.newStatus = JsonNullable.<NewStatusEnum>of(newStatus);
     return this;
   }
 
@@ -324,17 +334,25 @@ public class BuildStepLog {
    * @return newStatus
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEW_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public NewStatusEnum getNewStatus() {
-    return newStatus;
+        return newStatus.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEW_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNewStatus(@javax.annotation.Nullable NewStatusEnum newStatus) {
+
+  public JsonNullable<NewStatusEnum> getNewStatus_JsonNullable() {
+    return newStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEW_STATUS)
+  public void setNewStatus_JsonNullable(JsonNullable<NewStatusEnum> newStatus) {
     this.newStatus = newStatus;
+  }
+
+  public void setNewStatus(@javax.annotation.Nullable NewStatusEnum newStatus) {
+    this.newStatus = JsonNullable.<NewStatusEnum>of(newStatus);
   }
 
 
@@ -352,13 +370,24 @@ public class BuildStepLog {
     BuildStepLog buildStepLog = (BuildStepLog) o;
     return Objects.equals(this.timestamp, buildStepLog.timestamp) &&
         Objects.equals(this.message, buildStepLog.message) &&
-        Objects.equals(this.previousStatus, buildStepLog.previousStatus) &&
-        Objects.equals(this.newStatus, buildStepLog.newStatus);
+        equalsNullable(this.previousStatus, buildStepLog.previousStatus) &&
+        equalsNullable(this.newStatus, buildStepLog.newStatus);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, message, previousStatus, newStatus);
+    return Objects.hash(timestamp, message, hashCodeNullable(previousStatus), hashCodeNullable(newStatus));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

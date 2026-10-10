@@ -147,6 +147,101 @@ class SubscriptionObject(BaseModel):
                 if _item_state_history:
                     _items.append(_item_state_history.to_dict())
             _dict['stateHistory'] = _items
+        # set to None if tax_cents (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_cents is None and "tax_cents" in self.model_fields_set:
+            _dict['taxCents'] = None
+
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
+
+        # set to None if start_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_time is None and "start_time" in self.model_fields_set:
+            _dict['startTime'] = None
+
+        # set to None if end_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.end_time is None and "end_time" in self.model_fields_set:
+            _dict['endTime'] = None
+
+        # set to None if stripe_payment_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_payment_method_id is None and "stripe_payment_method_id" in self.model_fields_set:
+            _dict['stripePaymentMethodId'] = None
+
+        # set to None if card_brand (nullable) is None
+        # and model_fields_set contains the field
+        if self.card_brand is None and "card_brand" in self.model_fields_set:
+            _dict['cardBrand'] = None
+
+        # set to None if card_last4 (nullable) is None
+        # and model_fields_set contains the field
+        if self.card_last4 is None and "card_last4" in self.model_fields_set:
+            _dict['cardLast4'] = None
+
+        # set to None if card_exp_month (nullable) is None
+        # and model_fields_set contains the field
+        if self.card_exp_month is None and "card_exp_month" in self.model_fields_set:
+            _dict['cardExpMonth'] = None
+
+        # set to None if card_exp_year (nullable) is None
+        # and model_fields_set contains the field
+        if self.card_exp_year is None and "card_exp_year" in self.model_fields_set:
+            _dict['cardExpYear'] = None
+
+        # set to None if current_period_start (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_period_start is None and "current_period_start" in self.model_fields_set:
+            _dict['currentPeriodStart'] = None
+
+        # set to None if current_period_end (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_period_end is None and "current_period_end" in self.model_fields_set:
+            _dict['currentPeriodEnd'] = None
+
+        # set to None if next_renewal_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_renewal_at is None and "next_renewal_at" in self.model_fields_set:
+            _dict['nextRenewalAt'] = None
+
+        # set to None if pending_line_items (nullable) is None
+        # and model_fields_set contains the field
+        if self.pending_line_items is None and "pending_line_items" in self.model_fields_set:
+            _dict['pendingLineItems'] = None
+
+        # set to None if pending_subtotal_cents (nullable) is None
+        # and model_fields_set contains the field
+        if self.pending_subtotal_cents is None and "pending_subtotal_cents" in self.model_fields_set:
+            _dict['pendingSubtotalCents'] = None
+
+        # set to None if pending_amount_cents (nullable) is None
+        # and model_fields_set contains the field
+        if self.pending_amount_cents is None and "pending_amount_cents" in self.model_fields_set:
+            _dict['pendingAmountCents'] = None
+
+        # set to None if canceled_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.canceled_at is None and "canceled_at" in self.model_fields_set:
+            _dict['canceledAt'] = None
+
+        # set to None if past_due_since (nullable) is None
+        # and model_fields_set contains the field
+        if self.past_due_since is None and "past_due_since" in self.model_fields_set:
+            _dict['pastDueSince'] = None
+
+        # set to None if activation_payment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.activation_payment_id is None and "activation_payment_id" in self.model_fields_set:
+            _dict['activationPaymentId'] = None
+
+        # set to None if last_payment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_payment_id is None and "last_payment_id" in self.model_fields_set:
+            _dict['lastPaymentId'] = None
+
         return _dict
 
     @classmethod

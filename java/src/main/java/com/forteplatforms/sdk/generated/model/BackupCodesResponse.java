@@ -28,6 +28,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -43,12 +47,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class BackupCodesResponse {
   public static final String JSON_PROPERTY_CODES = "codes";
-  @javax.annotation.Nullable
-  private List<String> codes = new ArrayList<>();
+  private JsonNullable<List<String>> codes = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_GENERATED_AT = "generatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime generatedAt;
+  private JsonNullable<OffsetDateTime> generatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_REMAINING_COUNT = "remainingCount";
   @javax.annotation.Nullable
@@ -58,15 +60,19 @@ public class BackupCodesResponse {
   }
 
   public BackupCodesResponse codes(@javax.annotation.Nullable List<String> codes) {
-    this.codes = codes;
+    this.codes = JsonNullable.<List<String>>of(codes);
     return this;
   }
 
   public BackupCodesResponse addCodesItem(String codesItem) {
-    if (this.codes == null) {
-      this.codes = new ArrayList<>();
+    if (this.codes == null || !this.codes.isPresent()) {
+      this.codes = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.codes.add(codesItem);
+    try {
+      this.codes.get().add(codesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -75,22 +81,30 @@ public class BackupCodesResponse {
    * @return codes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CODES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getCodes() {
-    return codes;
+        return codes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CODES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCodes(@javax.annotation.Nullable List<String> codes) {
+
+  public JsonNullable<List<String>> getCodes_JsonNullable() {
+    return codes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODES)
+  public void setCodes_JsonNullable(JsonNullable<List<String>> codes) {
     this.codes = codes;
+  }
+
+  public void setCodes(@javax.annotation.Nullable List<String> codes) {
+    this.codes = JsonNullable.<List<String>>of(codes);
   }
 
 
   public BackupCodesResponse generatedAt(@javax.annotation.Nullable OffsetDateTime generatedAt) {
-    this.generatedAt = generatedAt;
+    this.generatedAt = JsonNullable.<OffsetDateTime>of(generatedAt);
     return this;
   }
 
@@ -99,17 +113,25 @@ public class BackupCodesResponse {
    * @return generatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GENERATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getGeneratedAt() {
-    return generatedAt;
+        return generatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GENERATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGeneratedAt(@javax.annotation.Nullable OffsetDateTime generatedAt) {
+
+  public JsonNullable<OffsetDateTime> getGeneratedAt_JsonNullable() {
+    return generatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GENERATED_AT)
+  public void setGeneratedAt_JsonNullable(JsonNullable<OffsetDateTime> generatedAt) {
     this.generatedAt = generatedAt;
+  }
+
+  public void setGeneratedAt(@javax.annotation.Nullable OffsetDateTime generatedAt) {
+    this.generatedAt = JsonNullable.<OffsetDateTime>of(generatedAt);
   }
 
 
@@ -149,14 +171,25 @@ public class BackupCodesResponse {
       return false;
     }
     BackupCodesResponse backupCodesResponse = (BackupCodesResponse) o;
-    return Objects.equals(this.codes, backupCodesResponse.codes) &&
-        Objects.equals(this.generatedAt, backupCodesResponse.generatedAt) &&
+    return equalsNullable(this.codes, backupCodesResponse.codes) &&
+        equalsNullable(this.generatedAt, backupCodesResponse.generatedAt) &&
         Objects.equals(this.remainingCount, backupCodesResponse.remainingCount);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codes, generatedAt, remainingCount);
+    return Objects.hash(hashCodeNullable(codes), hashCodeNullable(generatedAt), remainingCount);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

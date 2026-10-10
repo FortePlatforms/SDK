@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -88,24 +92,20 @@ public class MfaMethod {
   private TypeEnum type;
 
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
-  @javax.annotation.Nullable
-  private String displayName;
+  private JsonNullable<String> displayName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_VERIFIED = "verified";
-  @javax.annotation.Nullable
-  private Boolean verified;
+  private JsonNullable<Boolean> verified = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_ACTIVATED_AT = "activatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime activatedAt;
+  private JsonNullable<OffsetDateTime> activatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nonnull
   private OffsetDateTime createdAt;
 
   public static final String JSON_PROPERTY_LAST_USED_AT = "lastUsedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastUsedAt;
+  private JsonNullable<OffsetDateTime> lastUsedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public MfaMethod() { 
   }
@@ -159,7 +159,7 @@ public class MfaMethod {
 
 
   public MfaMethod displayName(@javax.annotation.Nullable String displayName) {
-    this.displayName = displayName;
+    this.displayName = JsonNullable.<String>of(displayName);
     return this;
   }
 
@@ -168,22 +168,30 @@ public class MfaMethod {
    * @return displayName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DISPLAY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDisplayName() {
-    return displayName;
+        return displayName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DISPLAY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDisplayName(@javax.annotation.Nullable String displayName) {
+
+  public JsonNullable<String> getDisplayName_JsonNullable() {
+    return displayName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
+  public void setDisplayName_JsonNullable(JsonNullable<String> displayName) {
     this.displayName = displayName;
+  }
+
+  public void setDisplayName(@javax.annotation.Nullable String displayName) {
+    this.displayName = JsonNullable.<String>of(displayName);
   }
 
 
   public MfaMethod verified(@javax.annotation.Nullable Boolean verified) {
-    this.verified = verified;
+    this.verified = JsonNullable.<Boolean>of(verified);
     return this;
   }
 
@@ -192,22 +200,30 @@ public class MfaMethod {
    * @return verified
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_VERIFIED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getVerified() {
-    return verified;
+        return verified.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_VERIFIED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVerified(@javax.annotation.Nullable Boolean verified) {
+
+  public JsonNullable<Boolean> getVerified_JsonNullable() {
+    return verified;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VERIFIED)
+  public void setVerified_JsonNullable(JsonNullable<Boolean> verified) {
     this.verified = verified;
+  }
+
+  public void setVerified(@javax.annotation.Nullable Boolean verified) {
+    this.verified = JsonNullable.<Boolean>of(verified);
   }
 
 
   public MfaMethod activatedAt(@javax.annotation.Nullable OffsetDateTime activatedAt) {
-    this.activatedAt = activatedAt;
+    this.activatedAt = JsonNullable.<OffsetDateTime>of(activatedAt);
     return this;
   }
 
@@ -216,17 +232,25 @@ public class MfaMethod {
    * @return activatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACTIVATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getActivatedAt() {
-    return activatedAt;
+        return activatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACTIVATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActivatedAt(@javax.annotation.Nullable OffsetDateTime activatedAt) {
+
+  public JsonNullable<OffsetDateTime> getActivatedAt_JsonNullable() {
+    return activatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACTIVATED_AT)
+  public void setActivatedAt_JsonNullable(JsonNullable<OffsetDateTime> activatedAt) {
     this.activatedAt = activatedAt;
+  }
+
+  public void setActivatedAt(@javax.annotation.Nullable OffsetDateTime activatedAt) {
+    this.activatedAt = JsonNullable.<OffsetDateTime>of(activatedAt);
   }
 
 
@@ -255,7 +279,7 @@ public class MfaMethod {
 
 
   public MfaMethod lastUsedAt(@javax.annotation.Nullable OffsetDateTime lastUsedAt) {
-    this.lastUsedAt = lastUsedAt;
+    this.lastUsedAt = JsonNullable.<OffsetDateTime>of(lastUsedAt);
     return this;
   }
 
@@ -264,17 +288,25 @@ public class MfaMethod {
    * @return lastUsedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_USED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastUsedAt() {
-    return lastUsedAt;
+        return lastUsedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_USED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastUsedAt(@javax.annotation.Nullable OffsetDateTime lastUsedAt) {
+
+  public JsonNullable<OffsetDateTime> getLastUsedAt_JsonNullable() {
+    return lastUsedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_USED_AT)
+  public void setLastUsedAt_JsonNullable(JsonNullable<OffsetDateTime> lastUsedAt) {
     this.lastUsedAt = lastUsedAt;
+  }
+
+  public void setLastUsedAt(@javax.annotation.Nullable OffsetDateTime lastUsedAt) {
+    this.lastUsedAt = JsonNullable.<OffsetDateTime>of(lastUsedAt);
   }
 
 
@@ -292,16 +324,27 @@ public class MfaMethod {
     MfaMethod mfaMethod = (MfaMethod) o;
     return Objects.equals(this.mfaMethodId, mfaMethod.mfaMethodId) &&
         Objects.equals(this.type, mfaMethod.type) &&
-        Objects.equals(this.displayName, mfaMethod.displayName) &&
-        Objects.equals(this.verified, mfaMethod.verified) &&
-        Objects.equals(this.activatedAt, mfaMethod.activatedAt) &&
+        equalsNullable(this.displayName, mfaMethod.displayName) &&
+        equalsNullable(this.verified, mfaMethod.verified) &&
+        equalsNullable(this.activatedAt, mfaMethod.activatedAt) &&
         Objects.equals(this.createdAt, mfaMethod.createdAt) &&
-        Objects.equals(this.lastUsedAt, mfaMethod.lastUsedAt);
+        equalsNullable(this.lastUsedAt, mfaMethod.lastUsedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mfaMethodId, type, displayName, verified, activatedAt, createdAt, lastUsedAt);
+    return Objects.hash(mfaMethodId, type, hashCodeNullable(displayName), hashCodeNullable(verified), hashCodeNullable(activatedAt), createdAt, hashCodeNullable(lastUsedAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -30,7 +30,7 @@ export interface PaymentAddress {
      * @type {string}
      * @memberof PaymentAddress
      */
-    line2?: string;
+    line2?: string | null;
     /**
      * 
      * @type {string}
@@ -42,7 +42,7 @@ export interface PaymentAddress {
      * @type {string}
      * @memberof PaymentAddress
      */
-    state?: string;
+    state?: string | null;
     /**
      * 
      * @type {string}

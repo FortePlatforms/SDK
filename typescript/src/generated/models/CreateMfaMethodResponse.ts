@@ -30,19 +30,19 @@ export interface CreateMfaMethodResponse {
      * @type {string}
      * @memberof CreateMfaMethodResponse
      */
-    secret?: string;
+    secret?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateMfaMethodResponse
      */
-    otpauthUri?: string;
+    otpauthUri?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateMfaMethodResponse
      */
-    webAuthnCreationOptions?: string;
+    webAuthnCreationOptions?: string | null;
 }
 
 /**

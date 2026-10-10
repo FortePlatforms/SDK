@@ -78,6 +78,41 @@ class PaymentMethodObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if brand (nullable) is None
+        # and model_fields_set contains the field
+        if self.brand is None and "brand" in self.model_fields_set:
+            _dict['brand'] = None
+
+        # set to None if last4 (nullable) is None
+        # and model_fields_set contains the field
+        if self.last4 is None and "last4" in self.model_fields_set:
+            _dict['last4'] = None
+
+        # set to None if exp_month (nullable) is None
+        # and model_fields_set contains the field
+        if self.exp_month is None and "exp_month" in self.model_fields_set:
+            _dict['expMonth'] = None
+
+        # set to None if exp_year (nullable) is None
+        # and model_fields_set contains the field
+        if self.exp_year is None and "exp_year" in self.model_fields_set:
+            _dict['expYear'] = None
+
+        # set to None if funding (nullable) is None
+        # and model_fields_set contains the field
+        if self.funding is None and "funding" in self.model_fields_set:
+            _dict['funding'] = None
+
+        # set to None if bank_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.bank_name is None and "bank_name" in self.model_fields_set:
+            _dict['bankName'] = None
+
+        # set to None if account_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.account_type is None and "account_type" in self.model_fields_set:
+            _dict['accountType'] = None
+
         return _dict
 
     @classmethod

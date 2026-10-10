@@ -87,6 +87,16 @@ class DnsRecordCheck(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of requirement
         if self.requirement:
             _dict['requirement'] = self.requirement.to_dict()
+        # set to None if error_detail (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_detail is None and "error_detail" in self.model_fields_set:
+            _dict['errorDetail'] = None
+
+        # set to None if recommended_value (nullable) is None
+        # and model_fields_set contains the field
+        if self.recommended_value is None and "recommended_value" in self.model_fields_set:
+            _dict['recommendedValue'] = None
+
         return _dict
 
     @classmethod

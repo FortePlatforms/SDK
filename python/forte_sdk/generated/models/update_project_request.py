@@ -95,6 +95,41 @@ class UpdateProjectRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of mfa_config
         if self.mfa_config:
             _dict['mfaConfig'] = self.mfa_config.to_dict()
+        # set to None if google_o_auth_client_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.google_o_auth_client_id is None and "google_o_auth_client_id" in self.model_fields_set:
+            _dict['googleOAuthClientId'] = None
+
+        # set to None if recaptcha_secret_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.recaptcha_secret_key is None and "recaptcha_secret_key" in self.model_fields_set:
+            _dict['recaptchaSecretKey'] = None
+
+        # set to None if phone_login_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.phone_login_enabled is None and "phone_login_enabled" in self.model_fields_set:
+            _dict['phoneLoginEnabled'] = None
+
+        # set to None if email_login_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_login_enabled is None and "email_login_enabled" in self.model_fields_set:
+            _dict['emailLoginEnabled'] = None
+
+        # set to None if google_login_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.google_login_enabled is None and "google_login_enabled" in self.model_fields_set:
+            _dict['googleLoginEnabled'] = None
+
+        # set to None if password_login_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_login_enabled is None and "password_login_enabled" in self.model_fields_set:
+            _dict['passwordLoginEnabled'] = None
+
+        # set to None if email_sender (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_sender is None and "email_sender" in self.model_fields_set:
+            _dict['emailSender'] = None
+
         return _dict
 
     @classmethod

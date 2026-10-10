@@ -70,6 +70,11 @@ class RequestPasswordResetRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if recaptcha_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.recaptcha_token is None and "recaptcha_token" in self.model_fields_set:
+            _dict['recaptchaToken'] = None
+
         return _dict
 
     @classmethod

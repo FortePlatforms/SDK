@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,14 +42,13 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RenameMfaMethodRequest {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
-  @javax.annotation.Nullable
-  private String displayName;
+  private JsonNullable<String> displayName = JsonNullable.<String>undefined();
 
   public RenameMfaMethodRequest() { 
   }
 
   public RenameMfaMethodRequest displayName(@javax.annotation.Nullable String displayName) {
-    this.displayName = displayName;
+    this.displayName = JsonNullable.<String>of(displayName);
     return this;
   }
 
@@ -54,17 +57,25 @@ public class RenameMfaMethodRequest {
    * @return displayName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DISPLAY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDisplayName() {
-    return displayName;
+        return displayName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DISPLAY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDisplayName(@javax.annotation.Nullable String displayName) {
+
+  public JsonNullable<String> getDisplayName_JsonNullable() {
+    return displayName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
+  public void setDisplayName_JsonNullable(JsonNullable<String> displayName) {
     this.displayName = displayName;
+  }
+
+  public void setDisplayName(@javax.annotation.Nullable String displayName) {
+    this.displayName = JsonNullable.<String>of(displayName);
   }
 
 
@@ -80,12 +91,23 @@ public class RenameMfaMethodRequest {
       return false;
     }
     RenameMfaMethodRequest renameMfaMethodRequest = (RenameMfaMethodRequest) o;
-    return Objects.equals(this.displayName, renameMfaMethodRequest.displayName);
+    return equalsNullable(this.displayName, renameMfaMethodRequest.displayName);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName);
+    return Objects.hash(hashCodeNullable(displayName));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

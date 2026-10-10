@@ -51,13 +51,13 @@ export interface RequestLogSearchRequest {
      * @type {string}
      * @memberof RequestLogSearchRequest
      */
-    nextToken?: string;
+    nextToken?: string | null;
     /**
      * 
      * @type {number}
      * @memberof RequestLogSearchRequest
      */
-    pageSize?: number;
+    pageSize?: number | null;
 }
 
 /**

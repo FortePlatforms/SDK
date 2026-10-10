@@ -165,6 +165,46 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if connection_string_env_var (nullable) is None
+        # and model_fields_set contains the field
+        if self.connection_string_env_var is None and "connection_string_env_var" in self.model_fields_set:
+            _dict['connectionStringEnvVar'] = None
+
+        # set to None if host_env_var (nullable) is None
+        # and model_fields_set contains the field
+        if self.host_env_var is None and "host_env_var" in self.model_fields_set:
+            _dict['hostEnvVar'] = None
+
+        # set to None if port_env_var (nullable) is None
+        # and model_fields_set contains the field
+        if self.port_env_var is None and "port_env_var" in self.model_fields_set:
+            _dict['portEnvVar'] = None
+
+        # set to None if database_env_var (nullable) is None
+        # and model_fields_set contains the field
+        if self.database_env_var is None and "database_env_var" in self.model_fields_set:
+            _dict['databaseEnvVar'] = None
+
+        # set to None if username_env_var (nullable) is None
+        # and model_fields_set contains the field
+        if self.username_env_var is None and "username_env_var" in self.model_fields_set:
+            _dict['usernameEnvVar'] = None
+
+        # set to None if password_env_var (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_env_var is None and "password_env_var" in self.model_fields_set:
+            _dict['passwordEnvVar'] = None
+
+        # set to None if connection_string_format (nullable) is None
+        # and model_fields_set contains the field
+        if self.connection_string_format is None and "connection_string_format" in self.model_fields_set:
+            _dict['connectionStringFormat'] = None
+
+        # set to None if connection_string_template (nullable) is None
+        # and model_fields_set contains the field
+        if self.connection_string_template is None and "connection_string_template" in self.model_fields_set:
+            _dict['connectionStringTemplate'] = None
+
         return _dict
 
     @classmethod

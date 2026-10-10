@@ -36,7 +36,7 @@ export interface CreateContentUploadLinkRequest {
      * @type {string}
      * @memberof CreateContentUploadLinkRequest
      */
-    fileName?: string;
+    fileName?: string | null;
     /**
      * 
      * @type {{ [key: string]: any; }}

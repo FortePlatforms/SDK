@@ -77,6 +77,11 @@ class ReauthenticationChallengeRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if target_contact_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_contact_method_id is None and "target_contact_method_id" in self.model_fields_set:
+            _dict['targetContactMethodId'] = None
+
         return _dict
 
     @classmethod

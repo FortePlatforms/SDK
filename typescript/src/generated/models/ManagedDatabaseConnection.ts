@@ -62,7 +62,7 @@ export interface ManagedDatabaseConnection {
      * @type {Date}
      * @memberof ManagedDatabaseConnection
      */
-    lastModifiedTimestamp?: Date;
+    lastModifiedTimestamp?: Date | null;
 }
 
 /**

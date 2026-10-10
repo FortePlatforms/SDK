@@ -36,7 +36,7 @@ export interface StateHistory {
      * @type {string}
      * @memberof StateHistory
      */
-    message?: string;
+    message?: string | null;
 }
 
 

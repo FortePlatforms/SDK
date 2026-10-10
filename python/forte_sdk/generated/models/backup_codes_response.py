@@ -72,6 +72,16 @@ class BackupCodesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if codes (nullable) is None
+        # and model_fields_set contains the field
+        if self.codes is None and "codes" in self.model_fields_set:
+            _dict['codes'] = None
+
+        # set to None if generated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.generated_at is None and "generated_at" in self.model_fields_set:
+            _dict['generatedAt'] = None
+
         return _dict
 
     @classmethod

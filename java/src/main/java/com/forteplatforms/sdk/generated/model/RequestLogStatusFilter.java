@@ -28,6 +28,10 @@ import com.forteplatforms.sdk.generated.model.StatusRange;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,34 +48,34 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RequestLogStatusFilter {
   public static final String JSON_PROPERTY_CODES = "codes";
-  @javax.annotation.Nullable
-  private List<Integer> codes = new ArrayList<>();
+  private JsonNullable<List<Integer>> codes = JsonNullable.<List<Integer>>undefined();
 
   public static final String JSON_PROPERTY_RANGES = "ranges";
-  @javax.annotation.Nullable
-  private List<StatusRange> ranges = new ArrayList<>();
+  private JsonNullable<List<StatusRange>> ranges = JsonNullable.<List<StatusRange>>undefined();
 
   public static final String JSON_PROPERTY_NOT_CODES = "notCodes";
-  @javax.annotation.Nullable
-  private List<Integer> notCodes = new ArrayList<>();
+  private JsonNullable<List<Integer>> notCodes = JsonNullable.<List<Integer>>undefined();
 
   public static final String JSON_PROPERTY_NOT_RANGES = "notRanges";
-  @javax.annotation.Nullable
-  private List<StatusRange> notRanges = new ArrayList<>();
+  private JsonNullable<List<StatusRange>> notRanges = JsonNullable.<List<StatusRange>>undefined();
 
   public RequestLogStatusFilter() { 
   }
 
   public RequestLogStatusFilter codes(@javax.annotation.Nullable List<Integer> codes) {
-    this.codes = codes;
+    this.codes = JsonNullable.<List<Integer>>of(codes);
     return this;
   }
 
   public RequestLogStatusFilter addCodesItem(Integer codesItem) {
-    if (this.codes == null) {
-      this.codes = new ArrayList<>();
+    if (this.codes == null || !this.codes.isPresent()) {
+      this.codes = JsonNullable.<List<Integer>>of(new ArrayList<>());
     }
-    this.codes.add(codesItem);
+    try {
+      this.codes.get().add(codesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -80,30 +84,42 @@ public class RequestLogStatusFilter {
    * @return codes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CODES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<Integer> getCodes() {
-    return codes;
+        return codes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CODES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCodes(@javax.annotation.Nullable List<Integer> codes) {
+
+  public JsonNullable<List<Integer>> getCodes_JsonNullable() {
+    return codes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODES)
+  public void setCodes_JsonNullable(JsonNullable<List<Integer>> codes) {
     this.codes = codes;
+  }
+
+  public void setCodes(@javax.annotation.Nullable List<Integer> codes) {
+    this.codes = JsonNullable.<List<Integer>>of(codes);
   }
 
 
   public RequestLogStatusFilter ranges(@javax.annotation.Nullable List<StatusRange> ranges) {
-    this.ranges = ranges;
+    this.ranges = JsonNullable.<List<StatusRange>>of(ranges);
     return this;
   }
 
   public RequestLogStatusFilter addRangesItem(StatusRange rangesItem) {
-    if (this.ranges == null) {
-      this.ranges = new ArrayList<>();
+    if (this.ranges == null || !this.ranges.isPresent()) {
+      this.ranges = JsonNullable.<List<StatusRange>>of(new ArrayList<>());
     }
-    this.ranges.add(rangesItem);
+    try {
+      this.ranges.get().add(rangesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -112,30 +128,42 @@ public class RequestLogStatusFilter {
    * @return ranges
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RANGES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<StatusRange> getRanges() {
-    return ranges;
+        return ranges.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RANGES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRanges(@javax.annotation.Nullable List<StatusRange> ranges) {
+
+  public JsonNullable<List<StatusRange>> getRanges_JsonNullable() {
+    return ranges;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RANGES)
+  public void setRanges_JsonNullable(JsonNullable<List<StatusRange>> ranges) {
     this.ranges = ranges;
+  }
+
+  public void setRanges(@javax.annotation.Nullable List<StatusRange> ranges) {
+    this.ranges = JsonNullable.<List<StatusRange>>of(ranges);
   }
 
 
   public RequestLogStatusFilter notCodes(@javax.annotation.Nullable List<Integer> notCodes) {
-    this.notCodes = notCodes;
+    this.notCodes = JsonNullable.<List<Integer>>of(notCodes);
     return this;
   }
 
   public RequestLogStatusFilter addNotCodesItem(Integer notCodesItem) {
-    if (this.notCodes == null) {
-      this.notCodes = new ArrayList<>();
+    if (this.notCodes == null || !this.notCodes.isPresent()) {
+      this.notCodes = JsonNullable.<List<Integer>>of(new ArrayList<>());
     }
-    this.notCodes.add(notCodesItem);
+    try {
+      this.notCodes.get().add(notCodesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -144,30 +172,42 @@ public class RequestLogStatusFilter {
    * @return notCodes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NOT_CODES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<Integer> getNotCodes() {
-    return notCodes;
+        return notCodes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NOT_CODES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotCodes(@javax.annotation.Nullable List<Integer> notCodes) {
+
+  public JsonNullable<List<Integer>> getNotCodes_JsonNullable() {
+    return notCodes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_CODES)
+  public void setNotCodes_JsonNullable(JsonNullable<List<Integer>> notCodes) {
     this.notCodes = notCodes;
+  }
+
+  public void setNotCodes(@javax.annotation.Nullable List<Integer> notCodes) {
+    this.notCodes = JsonNullable.<List<Integer>>of(notCodes);
   }
 
 
   public RequestLogStatusFilter notRanges(@javax.annotation.Nullable List<StatusRange> notRanges) {
-    this.notRanges = notRanges;
+    this.notRanges = JsonNullable.<List<StatusRange>>of(notRanges);
     return this;
   }
 
   public RequestLogStatusFilter addNotRangesItem(StatusRange notRangesItem) {
-    if (this.notRanges == null) {
-      this.notRanges = new ArrayList<>();
+    if (this.notRanges == null || !this.notRanges.isPresent()) {
+      this.notRanges = JsonNullable.<List<StatusRange>>of(new ArrayList<>());
     }
-    this.notRanges.add(notRangesItem);
+    try {
+      this.notRanges.get().add(notRangesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -176,17 +216,25 @@ public class RequestLogStatusFilter {
    * @return notRanges
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NOT_RANGES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<StatusRange> getNotRanges() {
-    return notRanges;
+        return notRanges.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NOT_RANGES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotRanges(@javax.annotation.Nullable List<StatusRange> notRanges) {
+
+  public JsonNullable<List<StatusRange>> getNotRanges_JsonNullable() {
+    return notRanges;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_RANGES)
+  public void setNotRanges_JsonNullable(JsonNullable<List<StatusRange>> notRanges) {
     this.notRanges = notRanges;
+  }
+
+  public void setNotRanges(@javax.annotation.Nullable List<StatusRange> notRanges) {
+    this.notRanges = JsonNullable.<List<StatusRange>>of(notRanges);
   }
 
 
@@ -202,15 +250,26 @@ public class RequestLogStatusFilter {
       return false;
     }
     RequestLogStatusFilter requestLogStatusFilter = (RequestLogStatusFilter) o;
-    return Objects.equals(this.codes, requestLogStatusFilter.codes) &&
-        Objects.equals(this.ranges, requestLogStatusFilter.ranges) &&
-        Objects.equals(this.notCodes, requestLogStatusFilter.notCodes) &&
-        Objects.equals(this.notRanges, requestLogStatusFilter.notRanges);
+    return equalsNullable(this.codes, requestLogStatusFilter.codes) &&
+        equalsNullable(this.ranges, requestLogStatusFilter.ranges) &&
+        equalsNullable(this.notCodes, requestLogStatusFilter.notCodes) &&
+        equalsNullable(this.notRanges, requestLogStatusFilter.notRanges);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codes, ranges, notCodes, notRanges);
+    return Objects.hash(hashCodeNullable(codes), hashCodeNullable(ranges), hashCodeNullable(notCodes), hashCodeNullable(notRanges));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

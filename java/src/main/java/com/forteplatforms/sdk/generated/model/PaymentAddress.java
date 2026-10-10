@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -47,16 +51,14 @@ public class PaymentAddress {
   private String line1;
 
   public static final String JSON_PROPERTY_LINE2 = "line2";
-  @javax.annotation.Nullable
-  private String line2;
+  private JsonNullable<String> line2 = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CITY = "city";
   @javax.annotation.Nonnull
   private String city;
 
   public static final String JSON_PROPERTY_STATE = "state";
-  @javax.annotation.Nullable
-  private String state;
+  private JsonNullable<String> state = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_POSTAL_CODE = "postalCode";
   @javax.annotation.Nonnull
@@ -94,7 +96,7 @@ public class PaymentAddress {
 
 
   public PaymentAddress line2(@javax.annotation.Nullable String line2) {
-    this.line2 = line2;
+    this.line2 = JsonNullable.<String>of(line2);
     return this;
   }
 
@@ -103,17 +105,25 @@ public class PaymentAddress {
    * @return line2
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LINE2, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLine2() {
-    return line2;
+        return line2.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LINE2, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLine2(@javax.annotation.Nullable String line2) {
+
+  public JsonNullable<String> getLine2_JsonNullable() {
+    return line2;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LINE2)
+  public void setLine2_JsonNullable(JsonNullable<String> line2) {
     this.line2 = line2;
+  }
+
+  public void setLine2(@javax.annotation.Nullable String line2) {
+    this.line2 = JsonNullable.<String>of(line2);
   }
 
 
@@ -142,7 +152,7 @@ public class PaymentAddress {
 
 
   public PaymentAddress state(@javax.annotation.Nullable String state) {
-    this.state = state;
+    this.state = JsonNullable.<String>of(state);
     return this;
   }
 
@@ -151,17 +161,25 @@ public class PaymentAddress {
    * @return state
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getState() {
-    return state;
+        return state.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setState(@javax.annotation.Nullable String state) {
+
+  public JsonNullable<String> getState_JsonNullable() {
+    return state;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STATE)
+  public void setState_JsonNullable(JsonNullable<String> state) {
     this.state = state;
+  }
+
+  public void setState(@javax.annotation.Nullable String state) {
+    this.state = JsonNullable.<String>of(state);
   }
 
 
@@ -226,16 +244,27 @@ public class PaymentAddress {
     }
     PaymentAddress paymentAddress = (PaymentAddress) o;
     return Objects.equals(this.line1, paymentAddress.line1) &&
-        Objects.equals(this.line2, paymentAddress.line2) &&
+        equalsNullable(this.line2, paymentAddress.line2) &&
         Objects.equals(this.city, paymentAddress.city) &&
-        Objects.equals(this.state, paymentAddress.state) &&
+        equalsNullable(this.state, paymentAddress.state) &&
         Objects.equals(this.postalCode, paymentAddress.postalCode) &&
         Objects.equals(this.country, paymentAddress.country);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(line1, line2, city, state, postalCode, country);
+    return Objects.hash(line1, hashCodeNullable(line2), city, hashCodeNullable(state), postalCode, country);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

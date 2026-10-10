@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,22 +44,25 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RepositoryAnalysis {
   public static final String JSON_PROPERTY_DETECTED_FRAMEWORKS = "detectedFrameworks";
-  @javax.annotation.Nullable
-  private List<String> detectedFrameworks = new ArrayList<>();
+  private JsonNullable<List<String>> detectedFrameworks = JsonNullable.<List<String>>undefined();
 
   public RepositoryAnalysis() { 
   }
 
   public RepositoryAnalysis detectedFrameworks(@javax.annotation.Nullable List<String> detectedFrameworks) {
-    this.detectedFrameworks = detectedFrameworks;
+    this.detectedFrameworks = JsonNullable.<List<String>>of(detectedFrameworks);
     return this;
   }
 
   public RepositoryAnalysis addDetectedFrameworksItem(String detectedFrameworksItem) {
-    if (this.detectedFrameworks == null) {
-      this.detectedFrameworks = new ArrayList<>();
+    if (this.detectedFrameworks == null || !this.detectedFrameworks.isPresent()) {
+      this.detectedFrameworks = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.detectedFrameworks.add(detectedFrameworksItem);
+    try {
+      this.detectedFrameworks.get().add(detectedFrameworksItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -64,17 +71,25 @@ public class RepositoryAnalysis {
    * @return detectedFrameworks
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DETECTED_FRAMEWORKS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getDetectedFrameworks() {
-    return detectedFrameworks;
+        return detectedFrameworks.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DETECTED_FRAMEWORKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetectedFrameworks(@javax.annotation.Nullable List<String> detectedFrameworks) {
+
+  public JsonNullable<List<String>> getDetectedFrameworks_JsonNullable() {
+    return detectedFrameworks;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DETECTED_FRAMEWORKS)
+  public void setDetectedFrameworks_JsonNullable(JsonNullable<List<String>> detectedFrameworks) {
     this.detectedFrameworks = detectedFrameworks;
+  }
+
+  public void setDetectedFrameworks(@javax.annotation.Nullable List<String> detectedFrameworks) {
+    this.detectedFrameworks = JsonNullable.<List<String>>of(detectedFrameworks);
   }
 
 
@@ -90,12 +105,23 @@ public class RepositoryAnalysis {
       return false;
     }
     RepositoryAnalysis repositoryAnalysis = (RepositoryAnalysis) o;
-    return Objects.equals(this.detectedFrameworks, repositoryAnalysis.detectedFrameworks);
+    return equalsNullable(this.detectedFrameworks, repositoryAnalysis.detectedFrameworks);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detectedFrameworks);
+    return Objects.hash(hashCodeNullable(detectedFrameworks));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -36,43 +36,43 @@ export interface PaymentMethodObject {
      * @type {string}
      * @memberof PaymentMethodObject
      */
-    brand?: string;
+    brand?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentMethodObject
      */
-    last4?: string;
+    last4?: string | null;
     /**
      * 
      * @type {number}
      * @memberof PaymentMethodObject
      */
-    expMonth?: number;
+    expMonth?: number | null;
     /**
      * 
      * @type {number}
      * @memberof PaymentMethodObject
      */
-    expYear?: number;
+    expYear?: number | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentMethodObject
      */
-    funding?: string;
+    funding?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentMethodObject
      */
-    bankName?: string;
+    bankName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentMethodObject
      */
-    accountType?: string;
+    accountType?: string | null;
     /**
      * 
      * @type {boolean}

@@ -56,7 +56,7 @@ export interface CreatePaymentTriggerRequest {
      * @type {boolean}
      * @memberof CreatePaymentTriggerRequest
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
 }
 
 /**

@@ -106,6 +106,56 @@ class RequestLogObject(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of internal_source
         if self.internal_source:
             _dict['internalSource'] = self.internal_source.to_dict()
+        # set to None if source_ip_address (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_ip_address is None and "source_ip_address" in self.model_fields_set:
+            _dict['sourceIpAddress'] = None
+
+        # set to None if first_byte_latency_milliseconds (nullable) is None
+        # and model_fields_set contains the field
+        if self.first_byte_latency_milliseconds is None and "first_byte_latency_milliseconds" in self.model_fields_set:
+            _dict['firstByteLatencyMilliseconds'] = None
+
+        # set to None if request_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.request_body is None and "request_body" in self.model_fields_set:
+            _dict['requestBody'] = None
+
+        # set to None if response_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.response_body is None and "response_body" in self.model_fields_set:
+            _dict['responseBody'] = None
+
+        # set to None if retry_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.retry_count is None and "retry_count" in self.model_fields_set:
+            _dict['retryCount'] = None
+
+        # set to None if exception_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.exception_type is None and "exception_type" in self.model_fields_set:
+            _dict['exceptionType'] = None
+
+        # set to None if exception_message (nullable) is None
+        # and model_fields_set contains the field
+        if self.exception_message is None and "exception_message" in self.model_fields_set:
+            _dict['exceptionMessage'] = None
+
+        # set to None if exception_stack_trace (nullable) is None
+        # and model_fields_set contains the field
+        if self.exception_stack_trace is None and "exception_stack_trace" in self.model_fields_set:
+            _dict['exceptionStackTrace'] = None
+
+        # set to None if owner_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.owner_account_id is None and "owner_account_id" in self.model_fields_set:
+            _dict['ownerAccountId'] = None
+
+        # set to None if environment (nullable) is None
+        # and model_fields_set contains the field
+        if self.environment is None and "environment" in self.model_fields_set:
+            _dict['environment'] = None
+
         return _dict
 
     @classmethod

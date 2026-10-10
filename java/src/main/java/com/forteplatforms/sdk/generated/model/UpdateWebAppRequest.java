@@ -24,12 +24,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -57,8 +60,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateWebAppRequest {
   public static final String JSON_PROPERTY_WEB_APP_NAME = "webAppName";
-  @javax.annotation.Nullable
-  private String webAppName;
+  private JsonNullable<String> webAppName = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets githubBuildTrigger
@@ -91,41 +93,33 @@ public class UpdateWebAppRequest {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_GITHUB_BUILD_TRIGGER = "githubBuildTrigger";
-  @javax.annotation.Nullable
-  private GithubBuildTriggerEnum githubBuildTrigger;
+  private JsonNullable<GithubBuildTriggerEnum> githubBuildTrigger = JsonNullable.<GithubBuildTriggerEnum>undefined();
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
-  @javax.annotation.Nullable
-  private String githubBranch;
+  private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBDIRECTORY = "subdirectory";
-  @javax.annotation.Nullable
-  private String subdirectory;
+  private JsonNullable<String> subdirectory = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_COMMAND = "buildCommand";
-  @javax.annotation.Nullable
-  private String buildCommand;
+  private JsonNullable<String> buildCommand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_PATH = "buildPath";
-  @javax.annotation.Nullable
-  private String buildPath;
+  private JsonNullable<String> buildPath = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PACKAGE_MANAGER = "packageManager";
-  @javax.annotation.Nullable
-  private String packageManager;
+  private JsonNullable<String> packageManager = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NODE_VERSION = "nodeVersion";
-  @javax.annotation.Nullable
-  private String nodeVersion;
+  private JsonNullable<String> nodeVersion = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTALL_COMMAND = "installCommand";
-  @javax.annotation.Nullable
-  private String installCommand;
+  private JsonNullable<String> installCommand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ENVIRONMENT_VARIABLES = "environmentVariables";
   @javax.annotation.Nullable
@@ -136,26 +130,22 @@ public class UpdateWebAppRequest {
   private Map<String, String> secretsToUpsert = new HashMap<>();
 
   public static final String JSON_PROPERTY_SECRET_KEYS_TO_DELETE = "secretKeysToDelete";
-  @javax.annotation.Nullable
-  private Set<String> secretKeysToDelete = new LinkedHashSet<>();
+  private JsonNullable<Set<String>> secretKeysToDelete = JsonNullable.<Set<String>>undefined();
 
   public static final String JSON_PROPERTY_RESET_DETECTED_CONFIG = "resetDetectedConfig";
-  @javax.annotation.Nullable
-  private Boolean resetDetectedConfig;
+  private JsonNullable<Boolean> resetDetectedConfig = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_SITE_PASSWORD = "sitePassword";
-  @javax.annotation.Nullable
-  private String sitePassword;
+  private JsonNullable<String> sitePassword = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REMOVE_SITE_PASSWORD = "removeSitePassword";
-  @javax.annotation.Nullable
-  private Boolean removeSitePassword;
+  private JsonNullable<Boolean> removeSitePassword = JsonNullable.<Boolean>undefined();
 
   public UpdateWebAppRequest() { 
   }
 
   public UpdateWebAppRequest webAppName(@javax.annotation.Nullable String webAppName) {
-    this.webAppName = webAppName;
+    this.webAppName = JsonNullable.<String>of(webAppName);
     return this;
   }
 
@@ -164,22 +154,30 @@ public class UpdateWebAppRequest {
    * @return webAppName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEB_APP_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWebAppName() {
-    return webAppName;
+        return webAppName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WEB_APP_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebAppName(@javax.annotation.Nullable String webAppName) {
+
+  public JsonNullable<String> getWebAppName_JsonNullable() {
+    return webAppName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WEB_APP_NAME)
+  public void setWebAppName_JsonNullable(JsonNullable<String> webAppName) {
     this.webAppName = webAppName;
+  }
+
+  public void setWebAppName(@javax.annotation.Nullable String webAppName) {
+    this.webAppName = JsonNullable.<String>of(webAppName);
   }
 
 
   public UpdateWebAppRequest githubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
-    this.githubBuildTrigger = githubBuildTrigger;
+    this.githubBuildTrigger = JsonNullable.<GithubBuildTriggerEnum>of(githubBuildTrigger);
     return this;
   }
 
@@ -188,22 +186,30 @@ public class UpdateWebAppRequest {
    * @return githubBuildTrigger
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public GithubBuildTriggerEnum getGithubBuildTrigger() {
-    return githubBuildTrigger;
+        return githubBuildTrigger.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGithubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
+
+  public JsonNullable<GithubBuildTriggerEnum> getGithubBuildTrigger_JsonNullable() {
+    return githubBuildTrigger;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_BUILD_TRIGGER)
+  public void setGithubBuildTrigger_JsonNullable(JsonNullable<GithubBuildTriggerEnum> githubBuildTrigger) {
     this.githubBuildTrigger = githubBuildTrigger;
+  }
+
+  public void setGithubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
+    this.githubBuildTrigger = JsonNullable.<GithubBuildTriggerEnum>of(githubBuildTrigger);
   }
 
 
   public UpdateWebAppRequest githubBranch(@javax.annotation.Nullable String githubBranch) {
-    this.githubBranch = githubBranch;
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
     return this;
   }
 
@@ -212,22 +218,30 @@ public class UpdateWebAppRequest {
    * @return githubBranch
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGithubBranch() {
-    return githubBranch;
+        return githubBranch.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+
+  public JsonNullable<String> getGithubBranch_JsonNullable() {
+    return githubBranch;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_BRANCH)
+  public void setGithubBranch_JsonNullable(JsonNullable<String> githubBranch) {
     this.githubBranch = githubBranch;
+  }
+
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
   }
 
 
   public UpdateWebAppRequest subdirectory(@javax.annotation.Nullable String subdirectory) {
-    this.subdirectory = subdirectory;
+    this.subdirectory = JsonNullable.<String>of(subdirectory);
     return this;
   }
 
@@ -236,22 +250,30 @@ public class UpdateWebAppRequest {
    * @return subdirectory
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubdirectory() {
-    return subdirectory;
+        return subdirectory.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+
+  public JsonNullable<String> getSubdirectory_JsonNullable() {
+    return subdirectory;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBDIRECTORY)
+  public void setSubdirectory_JsonNullable(JsonNullable<String> subdirectory) {
     this.subdirectory = subdirectory;
+  }
+
+  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+    this.subdirectory = JsonNullable.<String>of(subdirectory);
   }
 
 
   public UpdateWebAppRequest buildCommand(@javax.annotation.Nullable String buildCommand) {
-    this.buildCommand = buildCommand;
+    this.buildCommand = JsonNullable.<String>of(buildCommand);
     return this;
   }
 
@@ -260,22 +282,30 @@ public class UpdateWebAppRequest {
    * @return buildCommand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_COMMAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildCommand() {
-    return buildCommand;
+        return buildCommand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_COMMAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildCommand(@javax.annotation.Nullable String buildCommand) {
+
+  public JsonNullable<String> getBuildCommand_JsonNullable() {
+    return buildCommand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_COMMAND)
+  public void setBuildCommand_JsonNullable(JsonNullable<String> buildCommand) {
     this.buildCommand = buildCommand;
+  }
+
+  public void setBuildCommand(@javax.annotation.Nullable String buildCommand) {
+    this.buildCommand = JsonNullable.<String>of(buildCommand);
   }
 
 
   public UpdateWebAppRequest buildPath(@javax.annotation.Nullable String buildPath) {
-    this.buildPath = buildPath;
+    this.buildPath = JsonNullable.<String>of(buildPath);
     return this;
   }
 
@@ -284,22 +314,30 @@ public class UpdateWebAppRequest {
    * @return buildPath
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildPath() {
-    return buildPath;
+        return buildPath.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_PATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildPath(@javax.annotation.Nullable String buildPath) {
+
+  public JsonNullable<String> getBuildPath_JsonNullable() {
+    return buildPath;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_PATH)
+  public void setBuildPath_JsonNullable(JsonNullable<String> buildPath) {
     this.buildPath = buildPath;
+  }
+
+  public void setBuildPath(@javax.annotation.Nullable String buildPath) {
+    this.buildPath = JsonNullable.<String>of(buildPath);
   }
 
 
   public UpdateWebAppRequest packageManager(@javax.annotation.Nullable String packageManager) {
-    this.packageManager = packageManager;
+    this.packageManager = JsonNullable.<String>of(packageManager);
     return this;
   }
 
@@ -308,22 +346,30 @@ public class UpdateWebAppRequest {
    * @return packageManager
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PACKAGE_MANAGER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPackageManager() {
-    return packageManager;
+        return packageManager.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PACKAGE_MANAGER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPackageManager(@javax.annotation.Nullable String packageManager) {
+
+  public JsonNullable<String> getPackageManager_JsonNullable() {
+    return packageManager;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PACKAGE_MANAGER)
+  public void setPackageManager_JsonNullable(JsonNullable<String> packageManager) {
     this.packageManager = packageManager;
+  }
+
+  public void setPackageManager(@javax.annotation.Nullable String packageManager) {
+    this.packageManager = JsonNullable.<String>of(packageManager);
   }
 
 
   public UpdateWebAppRequest nodeVersion(@javax.annotation.Nullable String nodeVersion) {
-    this.nodeVersion = nodeVersion;
+    this.nodeVersion = JsonNullable.<String>of(nodeVersion);
     return this;
   }
 
@@ -332,22 +378,30 @@ public class UpdateWebAppRequest {
    * @return nodeVersion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NODE_VERSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNodeVersion() {
-    return nodeVersion;
+        return nodeVersion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NODE_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNodeVersion(@javax.annotation.Nullable String nodeVersion) {
+
+  public JsonNullable<String> getNodeVersion_JsonNullable() {
+    return nodeVersion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NODE_VERSION)
+  public void setNodeVersion_JsonNullable(JsonNullable<String> nodeVersion) {
     this.nodeVersion = nodeVersion;
+  }
+
+  public void setNodeVersion(@javax.annotation.Nullable String nodeVersion) {
+    this.nodeVersion = JsonNullable.<String>of(nodeVersion);
   }
 
 
   public UpdateWebAppRequest installCommand(@javax.annotation.Nullable String installCommand) {
-    this.installCommand = installCommand;
+    this.installCommand = JsonNullable.<String>of(installCommand);
     return this;
   }
 
@@ -356,17 +410,25 @@ public class UpdateWebAppRequest {
    * @return installCommand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInstallCommand() {
-    return installCommand;
+        return installCommand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+
+  public JsonNullable<String> getInstallCommand_JsonNullable() {
+    return installCommand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTALL_COMMAND)
+  public void setInstallCommand_JsonNullable(JsonNullable<String> installCommand) {
     this.installCommand = installCommand;
+  }
+
+  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+    this.installCommand = JsonNullable.<String>of(installCommand);
   }
 
 
@@ -435,15 +497,19 @@ public class UpdateWebAppRequest {
 
 
   public UpdateWebAppRequest secretKeysToDelete(@javax.annotation.Nullable Set<String> secretKeysToDelete) {
-    this.secretKeysToDelete = secretKeysToDelete;
+    this.secretKeysToDelete = JsonNullable.<Set<String>>of(secretKeysToDelete);
     return this;
   }
 
   public UpdateWebAppRequest addSecretKeysToDeleteItem(String secretKeysToDeleteItem) {
-    if (this.secretKeysToDelete == null) {
-      this.secretKeysToDelete = new LinkedHashSet<>();
+    if (this.secretKeysToDelete == null || !this.secretKeysToDelete.isPresent()) {
+      this.secretKeysToDelete = JsonNullable.<Set<String>>of(new LinkedHashSet<>());
     }
-    this.secretKeysToDelete.add(secretKeysToDeleteItem);
+    try {
+      this.secretKeysToDelete.get().add(secretKeysToDeleteItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -452,23 +518,30 @@ public class UpdateWebAppRequest {
    * @return secretKeysToDelete
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SECRET_KEYS_TO_DELETE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Set<String> getSecretKeysToDelete() {
-    return secretKeysToDelete;
+        return secretKeysToDelete.orElse(null);
   }
 
-
-  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(value = JSON_PROPERTY_SECRET_KEYS_TO_DELETE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecretKeysToDelete(@javax.annotation.Nullable Set<String> secretKeysToDelete) {
+
+  public JsonNullable<Set<String>> getSecretKeysToDelete_JsonNullable() {
+    return secretKeysToDelete;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SECRET_KEYS_TO_DELETE)
+  public void setSecretKeysToDelete_JsonNullable(JsonNullable<Set<String>> secretKeysToDelete) {
     this.secretKeysToDelete = secretKeysToDelete;
+  }
+
+  public void setSecretKeysToDelete(@javax.annotation.Nullable Set<String> secretKeysToDelete) {
+    this.secretKeysToDelete = JsonNullable.<Set<String>>of(secretKeysToDelete);
   }
 
 
   public UpdateWebAppRequest resetDetectedConfig(@javax.annotation.Nullable Boolean resetDetectedConfig) {
-    this.resetDetectedConfig = resetDetectedConfig;
+    this.resetDetectedConfig = JsonNullable.<Boolean>of(resetDetectedConfig);
     return this;
   }
 
@@ -477,22 +550,30 @@ public class UpdateWebAppRequest {
    * @return resetDetectedConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESET_DETECTED_CONFIG, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getResetDetectedConfig() {
-    return resetDetectedConfig;
+        return resetDetectedConfig.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESET_DETECTED_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResetDetectedConfig(@javax.annotation.Nullable Boolean resetDetectedConfig) {
+
+  public JsonNullable<Boolean> getResetDetectedConfig_JsonNullable() {
+    return resetDetectedConfig;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESET_DETECTED_CONFIG)
+  public void setResetDetectedConfig_JsonNullable(JsonNullable<Boolean> resetDetectedConfig) {
     this.resetDetectedConfig = resetDetectedConfig;
+  }
+
+  public void setResetDetectedConfig(@javax.annotation.Nullable Boolean resetDetectedConfig) {
+    this.resetDetectedConfig = JsonNullable.<Boolean>of(resetDetectedConfig);
   }
 
 
   public UpdateWebAppRequest sitePassword(@javax.annotation.Nullable String sitePassword) {
-    this.sitePassword = sitePassword;
+    this.sitePassword = JsonNullable.<String>of(sitePassword);
     return this;
   }
 
@@ -501,22 +582,30 @@ public class UpdateWebAppRequest {
    * @return sitePassword
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SITE_PASSWORD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSitePassword() {
-    return sitePassword;
+        return sitePassword.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SITE_PASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSitePassword(@javax.annotation.Nullable String sitePassword) {
+
+  public JsonNullable<String> getSitePassword_JsonNullable() {
+    return sitePassword;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SITE_PASSWORD)
+  public void setSitePassword_JsonNullable(JsonNullable<String> sitePassword) {
     this.sitePassword = sitePassword;
+  }
+
+  public void setSitePassword(@javax.annotation.Nullable String sitePassword) {
+    this.sitePassword = JsonNullable.<String>of(sitePassword);
   }
 
 
   public UpdateWebAppRequest removeSitePassword(@javax.annotation.Nullable Boolean removeSitePassword) {
-    this.removeSitePassword = removeSitePassword;
+    this.removeSitePassword = JsonNullable.<Boolean>of(removeSitePassword);
     return this;
   }
 
@@ -525,17 +614,25 @@ public class UpdateWebAppRequest {
    * @return removeSitePassword
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REMOVE_SITE_PASSWORD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRemoveSitePassword() {
-    return removeSitePassword;
+        return removeSitePassword.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REMOVE_SITE_PASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemoveSitePassword(@javax.annotation.Nullable Boolean removeSitePassword) {
+
+  public JsonNullable<Boolean> getRemoveSitePassword_JsonNullable() {
+    return removeSitePassword;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REMOVE_SITE_PASSWORD)
+  public void setRemoveSitePassword_JsonNullable(JsonNullable<Boolean> removeSitePassword) {
     this.removeSitePassword = removeSitePassword;
+  }
+
+  public void setRemoveSitePassword(@javax.annotation.Nullable Boolean removeSitePassword) {
+    this.removeSitePassword = JsonNullable.<Boolean>of(removeSitePassword);
   }
 
 
@@ -551,26 +648,37 @@ public class UpdateWebAppRequest {
       return false;
     }
     UpdateWebAppRequest updateWebAppRequest = (UpdateWebAppRequest) o;
-    return Objects.equals(this.webAppName, updateWebAppRequest.webAppName) &&
-        Objects.equals(this.githubBuildTrigger, updateWebAppRequest.githubBuildTrigger) &&
-        Objects.equals(this.githubBranch, updateWebAppRequest.githubBranch) &&
-        Objects.equals(this.subdirectory, updateWebAppRequest.subdirectory) &&
-        Objects.equals(this.buildCommand, updateWebAppRequest.buildCommand) &&
-        Objects.equals(this.buildPath, updateWebAppRequest.buildPath) &&
-        Objects.equals(this.packageManager, updateWebAppRequest.packageManager) &&
-        Objects.equals(this.nodeVersion, updateWebAppRequest.nodeVersion) &&
-        Objects.equals(this.installCommand, updateWebAppRequest.installCommand) &&
+    return equalsNullable(this.webAppName, updateWebAppRequest.webAppName) &&
+        equalsNullable(this.githubBuildTrigger, updateWebAppRequest.githubBuildTrigger) &&
+        equalsNullable(this.githubBranch, updateWebAppRequest.githubBranch) &&
+        equalsNullable(this.subdirectory, updateWebAppRequest.subdirectory) &&
+        equalsNullable(this.buildCommand, updateWebAppRequest.buildCommand) &&
+        equalsNullable(this.buildPath, updateWebAppRequest.buildPath) &&
+        equalsNullable(this.packageManager, updateWebAppRequest.packageManager) &&
+        equalsNullable(this.nodeVersion, updateWebAppRequest.nodeVersion) &&
+        equalsNullable(this.installCommand, updateWebAppRequest.installCommand) &&
         Objects.equals(this.environmentVariables, updateWebAppRequest.environmentVariables) &&
         Objects.equals(this.secretsToUpsert, updateWebAppRequest.secretsToUpsert) &&
-        Objects.equals(this.secretKeysToDelete, updateWebAppRequest.secretKeysToDelete) &&
-        Objects.equals(this.resetDetectedConfig, updateWebAppRequest.resetDetectedConfig) &&
-        Objects.equals(this.sitePassword, updateWebAppRequest.sitePassword) &&
-        Objects.equals(this.removeSitePassword, updateWebAppRequest.removeSitePassword);
+        equalsNullable(this.secretKeysToDelete, updateWebAppRequest.secretKeysToDelete) &&
+        equalsNullable(this.resetDetectedConfig, updateWebAppRequest.resetDetectedConfig) &&
+        equalsNullable(this.sitePassword, updateWebAppRequest.sitePassword) &&
+        equalsNullable(this.removeSitePassword, updateWebAppRequest.removeSitePassword);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppName, githubBuildTrigger, githubBranch, subdirectory, buildCommand, buildPath, packageManager, nodeVersion, installCommand, environmentVariables, secretsToUpsert, secretKeysToDelete, resetDetectedConfig, sitePassword, removeSitePassword);
+    return Objects.hash(hashCodeNullable(webAppName), hashCodeNullable(githubBuildTrigger), hashCodeNullable(githubBranch), hashCodeNullable(subdirectory), hashCodeNullable(buildCommand), hashCodeNullable(buildPath), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), environmentVariables, secretsToUpsert, hashCodeNullable(secretKeysToDelete), hashCodeNullable(resetDetectedConfig), hashCodeNullable(sitePassword), hashCodeNullable(removeSitePassword));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -75,6 +75,11 @@ class RotateManagedDatabaseUserPasswordResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of database_user
         if self.database_user:
             _dict['databaseUser'] = self.database_user.to_dict()
+        # set to None if connection_uri (nullable) is None
+        # and model_fields_set contains the field
+        if self.connection_uri is None and "connection_uri" in self.model_fields_set:
+            _dict['connectionUri'] = None
+
         return _dict
 
     @classmethod

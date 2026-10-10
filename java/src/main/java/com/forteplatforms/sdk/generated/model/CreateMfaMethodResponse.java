@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,16 +49,13 @@ public class CreateMfaMethodResponse {
   private String mfaMethodId;
 
   public static final String JSON_PROPERTY_SECRET = "secret";
-  @javax.annotation.Nullable
-  private String secret;
+  private JsonNullable<String> secret = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OTPAUTH_URI = "otpauthUri";
-  @javax.annotation.Nullable
-  private String otpauthUri;
+  private JsonNullable<String> otpauthUri = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_WEB_AUTHN_CREATION_OPTIONS = "webAuthnCreationOptions";
-  @javax.annotation.Nullable
-  private String webAuthnCreationOptions;
+  private JsonNullable<String> webAuthnCreationOptions = JsonNullable.<String>undefined();
 
   public CreateMfaMethodResponse() { 
   }
@@ -84,7 +85,7 @@ public class CreateMfaMethodResponse {
 
 
   public CreateMfaMethodResponse secret(@javax.annotation.Nullable String secret) {
-    this.secret = secret;
+    this.secret = JsonNullable.<String>of(secret);
     return this;
   }
 
@@ -93,22 +94,30 @@ public class CreateMfaMethodResponse {
    * @return secret
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SECRET, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSecret() {
-    return secret;
+        return secret.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SECRET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecret(@javax.annotation.Nullable String secret) {
+
+  public JsonNullable<String> getSecret_JsonNullable() {
+    return secret;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SECRET)
+  public void setSecret_JsonNullable(JsonNullable<String> secret) {
     this.secret = secret;
+  }
+
+  public void setSecret(@javax.annotation.Nullable String secret) {
+    this.secret = JsonNullable.<String>of(secret);
   }
 
 
   public CreateMfaMethodResponse otpauthUri(@javax.annotation.Nullable String otpauthUri) {
-    this.otpauthUri = otpauthUri;
+    this.otpauthUri = JsonNullable.<String>of(otpauthUri);
     return this;
   }
 
@@ -117,22 +126,30 @@ public class CreateMfaMethodResponse {
    * @return otpauthUri
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OTPAUTH_URI, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOtpauthUri() {
-    return otpauthUri;
+        return otpauthUri.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OTPAUTH_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOtpauthUri(@javax.annotation.Nullable String otpauthUri) {
+
+  public JsonNullable<String> getOtpauthUri_JsonNullable() {
+    return otpauthUri;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OTPAUTH_URI)
+  public void setOtpauthUri_JsonNullable(JsonNullable<String> otpauthUri) {
     this.otpauthUri = otpauthUri;
+  }
+
+  public void setOtpauthUri(@javax.annotation.Nullable String otpauthUri) {
+    this.otpauthUri = JsonNullable.<String>of(otpauthUri);
   }
 
 
   public CreateMfaMethodResponse webAuthnCreationOptions(@javax.annotation.Nullable String webAuthnCreationOptions) {
-    this.webAuthnCreationOptions = webAuthnCreationOptions;
+    this.webAuthnCreationOptions = JsonNullable.<String>of(webAuthnCreationOptions);
     return this;
   }
 
@@ -141,17 +158,25 @@ public class CreateMfaMethodResponse {
    * @return webAuthnCreationOptions
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEB_AUTHN_CREATION_OPTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWebAuthnCreationOptions() {
-    return webAuthnCreationOptions;
+        return webAuthnCreationOptions.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WEB_AUTHN_CREATION_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebAuthnCreationOptions(@javax.annotation.Nullable String webAuthnCreationOptions) {
+
+  public JsonNullable<String> getWebAuthnCreationOptions_JsonNullable() {
+    return webAuthnCreationOptions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WEB_AUTHN_CREATION_OPTIONS)
+  public void setWebAuthnCreationOptions_JsonNullable(JsonNullable<String> webAuthnCreationOptions) {
     this.webAuthnCreationOptions = webAuthnCreationOptions;
+  }
+
+  public void setWebAuthnCreationOptions(@javax.annotation.Nullable String webAuthnCreationOptions) {
+    this.webAuthnCreationOptions = JsonNullable.<String>of(webAuthnCreationOptions);
   }
 
 
@@ -168,14 +193,25 @@ public class CreateMfaMethodResponse {
     }
     CreateMfaMethodResponse createMfaMethodResponse = (CreateMfaMethodResponse) o;
     return Objects.equals(this.mfaMethodId, createMfaMethodResponse.mfaMethodId) &&
-        Objects.equals(this.secret, createMfaMethodResponse.secret) &&
-        Objects.equals(this.otpauthUri, createMfaMethodResponse.otpauthUri) &&
-        Objects.equals(this.webAuthnCreationOptions, createMfaMethodResponse.webAuthnCreationOptions);
+        equalsNullable(this.secret, createMfaMethodResponse.secret) &&
+        equalsNullable(this.otpauthUri, createMfaMethodResponse.otpauthUri) &&
+        equalsNullable(this.webAuthnCreationOptions, createMfaMethodResponse.webAuthnCreationOptions);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mfaMethodId, secret, otpauthUri, webAuthnCreationOptions);
+    return Objects.hash(mfaMethodId, hashCodeNullable(secret), hashCodeNullable(otpauthUri), hashCodeNullable(webAuthnCreationOptions));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

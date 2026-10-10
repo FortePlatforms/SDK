@@ -42,7 +42,7 @@ export interface GetRequestBodyDownloadLinkResponse {
      * @type {string}
      * @memberof GetRequestBodyDownloadLinkResponse
      */
-    contentType?: string;
+    contentType?: string | null;
 }
 
 /**

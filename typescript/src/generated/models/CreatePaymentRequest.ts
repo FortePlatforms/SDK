@@ -58,7 +58,7 @@ export interface CreatePaymentRequest {
      * @type {string}
      * @memberof CreatePaymentRequest
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -82,19 +82,19 @@ export interface CreatePaymentRequest {
      * @type {string}
      * @memberof CreatePaymentRequest
      */
-    paymentMethodId?: string;
+    paymentMethodId?: string | null;
     /**
      * 
      * @type {Array<PaymentMethodType>}
      * @memberof CreatePaymentRequest
      */
-    supportedPaymentMethods?: Array<PaymentMethodType>;
+    supportedPaymentMethods?: Array<PaymentMethodType> | null;
     /**
      * 
      * @type {boolean}
      * @memberof CreatePaymentRequest
      */
-    offSession?: boolean;
+    offSession?: boolean | null;
 }
 
 /**

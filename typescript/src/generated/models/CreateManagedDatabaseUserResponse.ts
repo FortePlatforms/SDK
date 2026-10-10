@@ -44,7 +44,7 @@ export interface CreateManagedDatabaseUserResponse {
      * @type {string}
      * @memberof CreateManagedDatabaseUserResponse
      */
-    connectionUri?: string;
+    connectionUri?: string | null;
 }
 
 /**

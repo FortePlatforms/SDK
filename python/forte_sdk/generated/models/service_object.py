@@ -124,6 +124,71 @@ class ServiceObject(BaseModel):
                 if _item_custom_domains:
                     _items.append(_item_custom_domains.to_dict())
             _dict['customDomains'] = _items
+        # set to None if public_dns_endpoint (nullable) is None
+        # and model_fields_set contains the field
+        if self.public_dns_endpoint is None and "public_dns_endpoint" in self.model_fields_set:
+            _dict['publicDnsEndpoint'] = None
+
+        # set to None if live_build_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.live_build_id is None and "live_build_id" in self.model_fields_set:
+            _dict['liveBuildId'] = None
+
+        # set to None if live_commit_hash (nullable) is None
+        # and model_fields_set contains the field
+        if self.live_commit_hash is None and "live_commit_hash" in self.model_fields_set:
+            _dict['liveCommitHash'] = None
+
+        # set to None if paused_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.paused_at is None and "paused_at" in self.model_fields_set:
+            _dict['pausedAt'] = None
+
+        # set to None if request_response_body_logging_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.request_response_body_logging_enabled is None and "request_response_body_logging_enabled" in self.model_fields_set:
+            _dict['requestResponseBodyLoggingEnabled'] = None
+
+        # set to None if dockerfile_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.dockerfile_path is None and "dockerfile_path" in self.model_fields_set:
+            _dict['dockerfilePath'] = None
+
+        # set to None if auth_path_exclusions (nullable) is None
+        # and model_fields_set contains the field
+        if self.auth_path_exclusions is None and "auth_path_exclusions" in self.model_fields_set:
+            _dict['authPathExclusions'] = None
+
+        # set to None if blocked_paths (nullable) is None
+        # and model_fields_set contains the field
+        if self.blocked_paths is None and "blocked_paths" in self.model_fields_set:
+            _dict['blockedPaths'] = None
+
+        # set to None if custom_domains (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_domains is None and "custom_domains" in self.model_fields_set:
+            _dict['customDomains'] = None
+
+        # set to None if github_branch (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_branch is None and "github_branch" in self.model_fields_set:
+            _dict['githubBranch'] = None
+
+        # set to None if current_build_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_build_id is None and "current_build_id" in self.model_fields_set:
+            _dict['currentBuildId'] = None
+
+        # set to None if enqueued_build_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.enqueued_build_ids is None and "enqueued_build_ids" in self.model_fields_set:
+            _dict['enqueuedBuildIds'] = None
+
+        # set to None if base_directory (nullable) is None
+        # and model_fields_set contains the field
+        if self.base_directory is None and "base_directory" in self.model_fields_set:
+            _dict['baseDirectory'] = None
+
         return _dict
 
     @classmethod

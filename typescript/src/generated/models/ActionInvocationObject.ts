@@ -57,7 +57,7 @@ export interface ActionInvocationObject {
      * @type {string}
      * @memberof ActionInvocationObject
      */
-    idempotencyKey?: string;
+    idempotencyKey?: string | null;
     /**
      * 
      * @type {ActionInvocationStatus}
@@ -75,25 +75,25 @@ export interface ActionInvocationObject {
      * @type {Date}
      * @memberof ActionInvocationObject
      */
-    scheduledAt?: Date;
+    scheduledAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof ActionInvocationObject
      */
-    startedAt?: Date;
+    startedAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof ActionInvocationObject
      */
-    completedAt?: Date;
+    completedAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof ActionInvocationObject
      */
-    nextAttemptAt?: Date;
+    nextAttemptAt?: Date | null;
     /**
      * 
      * @type {number}
@@ -105,13 +105,13 @@ export interface ActionInvocationObject {
      * @type {number}
      * @memberof ActionInvocationObject
      */
-    responseStatusCode?: number;
+    responseStatusCode?: number | null;
     /**
      * 
      * @type {string}
      * @memberof ActionInvocationObject
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * 
      * @type {Date}

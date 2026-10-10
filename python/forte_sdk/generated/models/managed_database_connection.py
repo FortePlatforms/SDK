@@ -79,6 +79,11 @@ class ManagedDatabaseConnection(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of environment_variable_mappings
         if self.environment_variable_mappings:
             _dict['environmentVariableMappings'] = self.environment_variable_mappings.to_dict()
+        # set to None if last_modified_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_modified_timestamp is None and "last_modified_timestamp" in self.model_fields_set:
+            _dict['lastModifiedTimestamp'] = None
+
         return _dict
 
     @classmethod

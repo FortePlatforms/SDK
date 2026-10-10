@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,12 +48,10 @@ public class FieldChange {
   private String field;
 
   public static final String JSON_PROPERTY_BEFORE = "before";
-  @javax.annotation.Nullable
-  private String before;
+  private JsonNullable<String> before = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_AFTER = "after";
-  @javax.annotation.Nullable
-  private String after;
+  private JsonNullable<String> after = JsonNullable.<String>undefined();
 
   public FieldChange() { 
   }
@@ -79,7 +81,7 @@ public class FieldChange {
 
 
   public FieldChange before(@javax.annotation.Nullable String before) {
-    this.before = before;
+    this.before = JsonNullable.<String>of(before);
     return this;
   }
 
@@ -88,22 +90,30 @@ public class FieldChange {
    * @return before
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BEFORE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBefore() {
-    return before;
+        return before.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BEFORE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBefore(@javax.annotation.Nullable String before) {
+
+  public JsonNullable<String> getBefore_JsonNullable() {
+    return before;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BEFORE)
+  public void setBefore_JsonNullable(JsonNullable<String> before) {
     this.before = before;
+  }
+
+  public void setBefore(@javax.annotation.Nullable String before) {
+    this.before = JsonNullable.<String>of(before);
   }
 
 
   public FieldChange after(@javax.annotation.Nullable String after) {
-    this.after = after;
+    this.after = JsonNullable.<String>of(after);
     return this;
   }
 
@@ -112,17 +122,25 @@ public class FieldChange {
    * @return after
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AFTER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAfter() {
-    return after;
+        return after.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AFTER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAfter(@javax.annotation.Nullable String after) {
+
+  public JsonNullable<String> getAfter_JsonNullable() {
+    return after;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AFTER)
+  public void setAfter_JsonNullable(JsonNullable<String> after) {
     this.after = after;
+  }
+
+  public void setAfter(@javax.annotation.Nullable String after) {
+    this.after = JsonNullable.<String>of(after);
   }
 
 
@@ -139,13 +157,24 @@ public class FieldChange {
     }
     FieldChange fieldChange = (FieldChange) o;
     return Objects.equals(this.field, fieldChange.field) &&
-        Objects.equals(this.before, fieldChange.before) &&
-        Objects.equals(this.after, fieldChange.after);
+        equalsNullable(this.before, fieldChange.before) &&
+        equalsNullable(this.after, fieldChange.after);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, before, after);
+    return Objects.hash(field, hashCodeNullable(before), hashCodeNullable(after));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

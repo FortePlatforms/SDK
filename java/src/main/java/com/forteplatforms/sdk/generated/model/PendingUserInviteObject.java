@@ -28,6 +28,10 @@ import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -66,8 +70,7 @@ public class PendingUserInviteObject {
   private String inviterUserId;
 
   public static final String JSON_PROPERTY_INVITER_FULL_NAME = "inviterFullName";
-  @javax.annotation.Nullable
-  private String inviterFullName;
+  private JsonNullable<String> inviterFullName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -78,12 +81,10 @@ public class PendingUserInviteObject {
   private OffsetDateTime expiresAt;
 
   public static final String JSON_PROPERTY_CONSUMED_AT = "consumedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime consumedAt;
+  private JsonNullable<OffsetDateTime> consumedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CONSUMED_BY_USER_ID = "consumedByUserId";
-  @javax.annotation.Nullable
-  private String consumedByUserId;
+  private JsonNullable<String> consumedByUserId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CUSTOM_ATTRIBUTES = "customAttributes";
   @javax.annotation.Nullable
@@ -189,7 +190,7 @@ public class PendingUserInviteObject {
 
 
   public PendingUserInviteObject inviterFullName(@javax.annotation.Nullable String inviterFullName) {
-    this.inviterFullName = inviterFullName;
+    this.inviterFullName = JsonNullable.<String>of(inviterFullName);
     return this;
   }
 
@@ -198,17 +199,25 @@ public class PendingUserInviteObject {
    * @return inviterFullName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INVITER_FULL_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInviterFullName() {
-    return inviterFullName;
+        return inviterFullName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INVITER_FULL_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInviterFullName(@javax.annotation.Nullable String inviterFullName) {
+
+  public JsonNullable<String> getInviterFullName_JsonNullable() {
+    return inviterFullName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INVITER_FULL_NAME)
+  public void setInviterFullName_JsonNullable(JsonNullable<String> inviterFullName) {
     this.inviterFullName = inviterFullName;
+  }
+
+  public void setInviterFullName(@javax.annotation.Nullable String inviterFullName) {
+    this.inviterFullName = JsonNullable.<String>of(inviterFullName);
   }
 
 
@@ -261,7 +270,7 @@ public class PendingUserInviteObject {
 
 
   public PendingUserInviteObject consumedAt(@javax.annotation.Nullable OffsetDateTime consumedAt) {
-    this.consumedAt = consumedAt;
+    this.consumedAt = JsonNullable.<OffsetDateTime>of(consumedAt);
     return this;
   }
 
@@ -270,22 +279,30 @@ public class PendingUserInviteObject {
    * @return consumedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONSUMED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getConsumedAt() {
-    return consumedAt;
+        return consumedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONSUMED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConsumedAt(@javax.annotation.Nullable OffsetDateTime consumedAt) {
+
+  public JsonNullable<OffsetDateTime> getConsumedAt_JsonNullable() {
+    return consumedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONSUMED_AT)
+  public void setConsumedAt_JsonNullable(JsonNullable<OffsetDateTime> consumedAt) {
     this.consumedAt = consumedAt;
+  }
+
+  public void setConsumedAt(@javax.annotation.Nullable OffsetDateTime consumedAt) {
+    this.consumedAt = JsonNullable.<OffsetDateTime>of(consumedAt);
   }
 
 
   public PendingUserInviteObject consumedByUserId(@javax.annotation.Nullable String consumedByUserId) {
-    this.consumedByUserId = consumedByUserId;
+    this.consumedByUserId = JsonNullable.<String>of(consumedByUserId);
     return this;
   }
 
@@ -294,17 +311,25 @@ public class PendingUserInviteObject {
    * @return consumedByUserId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONSUMED_BY_USER_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getConsumedByUserId() {
-    return consumedByUserId;
+        return consumedByUserId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONSUMED_BY_USER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConsumedByUserId(@javax.annotation.Nullable String consumedByUserId) {
+
+  public JsonNullable<String> getConsumedByUserId_JsonNullable() {
+    return consumedByUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONSUMED_BY_USER_ID)
+  public void setConsumedByUserId_JsonNullable(JsonNullable<String> consumedByUserId) {
     this.consumedByUserId = consumedByUserId;
+  }
+
+  public void setConsumedByUserId(@javax.annotation.Nullable String consumedByUserId) {
+    this.consumedByUserId = JsonNullable.<String>of(consumedByUserId);
   }
 
 
@@ -356,17 +381,28 @@ public class PendingUserInviteObject {
         Objects.equals(this.projectId, pendingUserInviteObject.projectId) &&
         Objects.equals(this.inviteeEmail, pendingUserInviteObject.inviteeEmail) &&
         Objects.equals(this.inviterUserId, pendingUserInviteObject.inviterUserId) &&
-        Objects.equals(this.inviterFullName, pendingUserInviteObject.inviterFullName) &&
+        equalsNullable(this.inviterFullName, pendingUserInviteObject.inviterFullName) &&
         Objects.equals(this.createdAt, pendingUserInviteObject.createdAt) &&
         Objects.equals(this.expiresAt, pendingUserInviteObject.expiresAt) &&
-        Objects.equals(this.consumedAt, pendingUserInviteObject.consumedAt) &&
-        Objects.equals(this.consumedByUserId, pendingUserInviteObject.consumedByUserId) &&
+        equalsNullable(this.consumedAt, pendingUserInviteObject.consumedAt) &&
+        equalsNullable(this.consumedByUserId, pendingUserInviteObject.consumedByUserId) &&
         Objects.equals(this.customAttributes, pendingUserInviteObject.customAttributes);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(inviteId, projectId, inviteeEmail, inviterUserId, inviterFullName, createdAt, expiresAt, consumedAt, consumedByUserId, customAttributes);
+    return Objects.hash(inviteId, projectId, inviteeEmail, inviterUserId, hashCodeNullable(inviterFullName), createdAt, expiresAt, hashCodeNullable(consumedAt), hashCodeNullable(consumedByUserId), customAttributes);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -24,31 +24,31 @@ export interface ManagedDatabaseMetricLimits {
      * @type {number}
      * @memberof ManagedDatabaseMetricLimits
      */
-    poolSize?: number;
+    poolSize?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricLimits
      */
-    maxClientConnections?: number;
+    maxClientConnections?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricLimits
      */
-    queryWaitTimeoutSeconds?: number;
+    queryWaitTimeoutSeconds?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricLimits
      */
-    perUserConnectionLimit?: number;
+    perUserConnectionLimit?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricLimits
      */
-    userCount?: number;
+    userCount?: number | null;
     /**
      * 
      * @type {number}

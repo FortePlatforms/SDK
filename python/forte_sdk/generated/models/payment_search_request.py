@@ -81,6 +81,16 @@ class PaymentSearchRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of sort
         if self.sort:
             _dict['sort'] = self.sort.to_dict()
+        # set to None if next_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_token is None and "next_token" in self.model_fields_set:
+            _dict['nextToken'] = None
+
+        # set to None if page_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.page_size is None and "page_size" in self.model_fields_set:
+            _dict['pageSize'] = None
+
         return _dict
 
     @classmethod

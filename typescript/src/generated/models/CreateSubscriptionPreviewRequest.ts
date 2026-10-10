@@ -63,13 +63,13 @@ export interface CreateSubscriptionPreviewRequest {
      * @type {Date}
      * @memberof CreateSubscriptionPreviewRequest
      */
-    startTime?: Date;
+    startTime?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof CreateSubscriptionPreviewRequest
      */
-    endTime?: Date;
+    endTime?: Date | null;
 }
 
 

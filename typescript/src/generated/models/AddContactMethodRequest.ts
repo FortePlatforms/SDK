@@ -24,13 +24,13 @@ export interface AddContactMethodRequest {
      * @type {string}
      * @memberof AddContactMethodRequest
      */
-    email?: string;
+    email?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AddContactMethodRequest
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
 }
 
 /**

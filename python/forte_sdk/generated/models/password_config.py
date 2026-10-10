@@ -85,6 +85,41 @@ class PasswordConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if min_length (nullable) is None
+        # and model_fields_set contains the field
+        if self.min_length is None and "min_length" in self.model_fields_set:
+            _dict['minLength'] = None
+
+        # set to None if require_uppercase (nullable) is None
+        # and model_fields_set contains the field
+        if self.require_uppercase is None and "require_uppercase" in self.model_fields_set:
+            _dict['requireUppercase'] = None
+
+        # set to None if require_lowercase (nullable) is None
+        # and model_fields_set contains the field
+        if self.require_lowercase is None and "require_lowercase" in self.model_fields_set:
+            _dict['requireLowercase'] = None
+
+        # set to None if require_digit (nullable) is None
+        # and model_fields_set contains the field
+        if self.require_digit is None and "require_digit" in self.model_fields_set:
+            _dict['requireDigit'] = None
+
+        # set to None if require_symbol (nullable) is None
+        # and model_fields_set contains the field
+        if self.require_symbol is None and "require_symbol" in self.model_fields_set:
+            _dict['requireSymbol'] = None
+
+        # set to None if reset_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_mode is None and "reset_mode" in self.model_fields_set:
+            _dict['resetMode'] = None
+
+        # set to None if reset_link_target_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_link_target_url is None and "reset_link_target_url" in self.model_fields_set:
+            _dict['resetLinkTargetUrl'] = None
+
         return _dict
 
     @classmethod

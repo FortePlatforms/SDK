@@ -36,7 +36,7 @@ export interface RefundRecord {
      * @type {string}
      * @memberof RefundRecord
      */
-    stripeRefundId?: string;
+    stripeRefundId?: string | null;
 }
 
 /**

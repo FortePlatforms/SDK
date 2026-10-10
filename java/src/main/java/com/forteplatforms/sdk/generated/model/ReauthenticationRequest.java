@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -84,8 +88,7 @@ public class ReauthenticationRequest {
   private MethodEnum method;
 
   public static final String JSON_PROPERTY_CREDENTIAL = "credential";
-  @javax.annotation.Nullable
-  private String credential;
+  private JsonNullable<String> credential = JsonNullable.<String>undefined();
 
   public ReauthenticationRequest() { 
   }
@@ -115,7 +118,7 @@ public class ReauthenticationRequest {
 
 
   public ReauthenticationRequest credential(@javax.annotation.Nullable String credential) {
-    this.credential = credential;
+    this.credential = JsonNullable.<String>of(credential);
     return this;
   }
 
@@ -124,17 +127,25 @@ public class ReauthenticationRequest {
    * @return credential
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREDENTIAL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCredential() {
-    return credential;
+        return credential.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREDENTIAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCredential(@javax.annotation.Nullable String credential) {
+
+  public JsonNullable<String> getCredential_JsonNullable() {
+    return credential;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREDENTIAL)
+  public void setCredential_JsonNullable(JsonNullable<String> credential) {
     this.credential = credential;
+  }
+
+  public void setCredential(@javax.annotation.Nullable String credential) {
+    this.credential = JsonNullable.<String>of(credential);
   }
 
 
@@ -151,12 +162,23 @@ public class ReauthenticationRequest {
     }
     ReauthenticationRequest reauthenticationRequest = (ReauthenticationRequest) o;
     return Objects.equals(this.method, reauthenticationRequest.method) &&
-        Objects.equals(this.credential, reauthenticationRequest.credential);
+        equalsNullable(this.credential, reauthenticationRequest.credential);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, credential);
+    return Objects.hash(method, hashCodeNullable(credential));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

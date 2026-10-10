@@ -65,37 +65,37 @@ export interface ServiceObject {
      * @type {string}
      * @memberof ServiceObject
      */
-    publicDnsEndpoint?: string;
+    publicDnsEndpoint?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceObject
      */
-    liveBuildId?: string;
+    liveBuildId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceObject
      */
-    liveCommitHash?: string;
+    liveCommitHash?: string | null;
     /**
      * 
      * @type {Date}
      * @memberof ServiceObject
      */
-    pausedAt?: Date;
+    pausedAt?: Date | null;
     /**
      * 
      * @type {boolean}
      * @memberof ServiceObject
      */
-    requestResponseBodyLoggingEnabled?: boolean;
+    requestResponseBodyLoggingEnabled?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceObject
      */
-    dockerfilePath?: string;
+    dockerfilePath?: string | null;
     /**
      * 
      * @type {HealthCheckDetectionOutput}
@@ -119,13 +119,13 @@ export interface ServiceObject {
      * @type {Array<string>}
      * @memberof ServiceObject
      */
-    authPathExclusions?: Array<string>;
+    authPathExclusions?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ServiceObject
      */
-    blockedPaths?: Array<string>;
+    blockedPaths?: Array<string> | null;
     /**
      * 
      * @type {number}
@@ -149,7 +149,7 @@ export interface ServiceObject {
      * @type {Array<CustomDomain>}
      * @memberof ServiceObject
      */
-    customDomains?: Array<CustomDomain>;
+    customDomains?: Array<CustomDomain> | null;
     /**
      * 
      * @type {Date}
@@ -179,19 +179,19 @@ export interface ServiceObject {
      * @type {string}
      * @memberof ServiceObject
      */
-    githubBranch?: string;
+    githubBranch?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceObject
      */
-    currentBuildId?: string;
+    currentBuildId?: string | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ServiceObject
      */
-    enqueuedBuildIds?: Array<string>;
+    enqueuedBuildIds?: Array<string> | null;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -203,7 +203,7 @@ export interface ServiceObject {
      * @type {string}
      * @memberof ServiceObject
      */
-    baseDirectory?: string;
+    baseDirectory?: string | null;
     /**
      * 
      * @type {Set<string>}

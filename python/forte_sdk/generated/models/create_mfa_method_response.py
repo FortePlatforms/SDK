@@ -72,6 +72,21 @@ class CreateMfaMethodResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if secret (nullable) is None
+        # and model_fields_set contains the field
+        if self.secret is None and "secret" in self.model_fields_set:
+            _dict['secret'] = None
+
+        # set to None if otpauth_uri (nullable) is None
+        # and model_fields_set contains the field
+        if self.otpauth_uri is None and "otpauth_uri" in self.model_fields_set:
+            _dict['otpauthUri'] = None
+
+        # set to None if web_authn_creation_options (nullable) is None
+        # and model_fields_set contains the field
+        if self.web_authn_creation_options is None and "web_authn_creation_options" in self.model_fields_set:
+            _dict['webAuthnCreationOptions'] = None
+
         return _dict
 
     @classmethod

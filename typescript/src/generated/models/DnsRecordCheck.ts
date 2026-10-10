@@ -50,13 +50,13 @@ export interface DnsRecordCheck {
      * @type {string}
      * @memberof DnsRecordCheck
      */
-    errorDetail?: string;
+    errorDetail?: string | null;
     /**
      * 
      * @type {string}
      * @memberof DnsRecordCheck
      */
-    recommendedValue?: string;
+    recommendedValue?: string | null;
 }
 
 

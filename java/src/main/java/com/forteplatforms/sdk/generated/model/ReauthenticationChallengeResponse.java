@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,14 +43,13 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ReauthenticationChallengeResponse {
   public static final String JSON_PROPERTY_CODE_EXPIRATION_TIME = "codeExpirationTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime codeExpirationTime;
+  private JsonNullable<OffsetDateTime> codeExpirationTime = JsonNullable.<OffsetDateTime>undefined();
 
   public ReauthenticationChallengeResponse() { 
   }
 
   public ReauthenticationChallengeResponse codeExpirationTime(@javax.annotation.Nullable OffsetDateTime codeExpirationTime) {
-    this.codeExpirationTime = codeExpirationTime;
+    this.codeExpirationTime = JsonNullable.<OffsetDateTime>of(codeExpirationTime);
     return this;
   }
 
@@ -55,17 +58,25 @@ public class ReauthenticationChallengeResponse {
    * @return codeExpirationTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CODE_EXPIRATION_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCodeExpirationTime() {
-    return codeExpirationTime;
+        return codeExpirationTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CODE_EXPIRATION_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCodeExpirationTime(@javax.annotation.Nullable OffsetDateTime codeExpirationTime) {
+
+  public JsonNullable<OffsetDateTime> getCodeExpirationTime_JsonNullable() {
+    return codeExpirationTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODE_EXPIRATION_TIME)
+  public void setCodeExpirationTime_JsonNullable(JsonNullable<OffsetDateTime> codeExpirationTime) {
     this.codeExpirationTime = codeExpirationTime;
+  }
+
+  public void setCodeExpirationTime(@javax.annotation.Nullable OffsetDateTime codeExpirationTime) {
+    this.codeExpirationTime = JsonNullable.<OffsetDateTime>of(codeExpirationTime);
   }
 
 
@@ -81,12 +92,23 @@ public class ReauthenticationChallengeResponse {
       return false;
     }
     ReauthenticationChallengeResponse reauthenticationChallengeResponse = (ReauthenticationChallengeResponse) o;
-    return Objects.equals(this.codeExpirationTime, reauthenticationChallengeResponse.codeExpirationTime);
+    return equalsNullable(this.codeExpirationTime, reauthenticationChallengeResponse.codeExpirationTime);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codeExpirationTime);
+    return Objects.hash(hashCodeNullable(codeExpirationTime));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

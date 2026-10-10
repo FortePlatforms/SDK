@@ -97,6 +97,16 @@ class CreateSubscriptionPreviewResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of customer_address
         if self.customer_address:
             _dict['customerAddress'] = self.customer_address.to_dict()
+        # set to None if tax_cents (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_cents is None and "tax_cents" in self.model_fields_set:
+            _dict['taxCents'] = None
+
+        # set to None if stripe_tax_calculation_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_tax_calculation_id is None and "stripe_tax_calculation_id" in self.model_fields_set:
+            _dict['stripeTaxCalculationId'] = None
+
         return _dict
 
     @classmethod

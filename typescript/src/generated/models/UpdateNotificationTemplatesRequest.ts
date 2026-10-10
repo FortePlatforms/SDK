@@ -24,103 +24,103 @@ export interface UpdateNotificationTemplatesRequest {
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    emailVerificationSubject?: string;
+    emailVerificationSubject?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    emailVerificationHtmlBody?: string;
+    emailVerificationHtmlBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    smsVerificationBody?: string;
+    smsVerificationBody?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    welcomeOnGoogleEnabled?: boolean;
+    welcomeOnGoogleEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    welcomeOnEmailEnabled?: boolean;
+    welcomeOnEmailEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    welcomeOnSmsEnabled?: boolean;
+    welcomeOnSmsEnabled?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    welcomeEmailSubject?: string;
+    welcomeEmailSubject?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    welcomeEmailHtmlBody?: string;
+    welcomeEmailHtmlBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    welcomeSmsBody?: string;
+    welcomeSmsBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    loginOtpEmailSubject?: string;
+    loginOtpEmailSubject?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    loginOtpEmailHtmlBody?: string;
+    loginOtpEmailHtmlBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    loginOtpSmsBody?: string;
+    loginOtpSmsBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    inviteEmailSubject?: string;
+    inviteEmailSubject?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    inviteEmailHtmlBody?: string;
+    inviteEmailHtmlBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    passwordResetEmailSubject?: string;
+    passwordResetEmailSubject?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    passwordResetEmailHtmlBody?: string;
+    passwordResetEmailHtmlBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateNotificationTemplatesRequest
      */
-    passwordResetSmsBody?: string;
+    passwordResetSmsBody?: string | null;
 }
 
 /**

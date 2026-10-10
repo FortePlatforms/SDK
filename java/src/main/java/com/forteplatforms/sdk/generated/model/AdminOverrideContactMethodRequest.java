@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,30 +46,25 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class AdminOverrideContactMethodRequest {
   public static final String JSON_PROPERTY_EMAIL = "email";
-  @javax.annotation.Nullable
-  private String email;
+  private JsonNullable<String> email = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
-  @javax.annotation.Nullable
-  private String phoneNumber;
+  private JsonNullable<String> phoneNumber = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_VERIFIED = "verified";
-  @javax.annotation.Nullable
-  private Boolean verified;
+  private JsonNullable<Boolean> verified = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_FIXED_VERIFICATION_CODE = "fixedVerificationCode";
-  @javax.annotation.Nullable
-  private String fixedVerificationCode;
+  private JsonNullable<String> fixedVerificationCode = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REMOVE_FIXED_VERIFICATION_CODE = "removeFixedVerificationCode";
-  @javax.annotation.Nullable
-  private Boolean removeFixedVerificationCode;
+  private JsonNullable<Boolean> removeFixedVerificationCode = JsonNullable.<Boolean>undefined();
 
   public AdminOverrideContactMethodRequest() { 
   }
 
   public AdminOverrideContactMethodRequest email(@javax.annotation.Nullable String email) {
-    this.email = email;
+    this.email = JsonNullable.<String>of(email);
     return this;
   }
 
@@ -74,22 +73,30 @@ public class AdminOverrideContactMethodRequest {
    * @return email
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEmail() {
-    return email;
+        return email.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmail(@javax.annotation.Nullable String email) {
+
+  public JsonNullable<String> getEmail_JsonNullable() {
+    return email;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  public void setEmail_JsonNullable(JsonNullable<String> email) {
     this.email = email;
+  }
+
+  public void setEmail(@javax.annotation.Nullable String email) {
+    this.email = JsonNullable.<String>of(email);
   }
 
 
   public AdminOverrideContactMethodRequest phoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
     return this;
   }
 
@@ -98,22 +105,30 @@ public class AdminOverrideContactMethodRequest {
    * @return phoneNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPhoneNumber() {
-    return phoneNumber;
+        return phoneNumber.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+
+  public JsonNullable<String> getPhoneNumber_JsonNullable() {
+    return phoneNumber;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
+  public void setPhoneNumber_JsonNullable(JsonNullable<String> phoneNumber) {
     this.phoneNumber = phoneNumber;
+  }
+
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
   }
 
 
   public AdminOverrideContactMethodRequest verified(@javax.annotation.Nullable Boolean verified) {
-    this.verified = verified;
+    this.verified = JsonNullable.<Boolean>of(verified);
     return this;
   }
 
@@ -122,22 +137,30 @@ public class AdminOverrideContactMethodRequest {
    * @return verified
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_VERIFIED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getVerified() {
-    return verified;
+        return verified.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_VERIFIED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVerified(@javax.annotation.Nullable Boolean verified) {
+
+  public JsonNullable<Boolean> getVerified_JsonNullable() {
+    return verified;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VERIFIED)
+  public void setVerified_JsonNullable(JsonNullable<Boolean> verified) {
     this.verified = verified;
+  }
+
+  public void setVerified(@javax.annotation.Nullable Boolean verified) {
+    this.verified = JsonNullable.<Boolean>of(verified);
   }
 
 
   public AdminOverrideContactMethodRequest fixedVerificationCode(@javax.annotation.Nullable String fixedVerificationCode) {
-    this.fixedVerificationCode = fixedVerificationCode;
+    this.fixedVerificationCode = JsonNullable.<String>of(fixedVerificationCode);
     return this;
   }
 
@@ -146,22 +169,30 @@ public class AdminOverrideContactMethodRequest {
    * @return fixedVerificationCode
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FIXED_VERIFICATION_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFixedVerificationCode() {
-    return fixedVerificationCode;
+        return fixedVerificationCode.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FIXED_VERIFICATION_CODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFixedVerificationCode(@javax.annotation.Nullable String fixedVerificationCode) {
+
+  public JsonNullable<String> getFixedVerificationCode_JsonNullable() {
+    return fixedVerificationCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FIXED_VERIFICATION_CODE)
+  public void setFixedVerificationCode_JsonNullable(JsonNullable<String> fixedVerificationCode) {
     this.fixedVerificationCode = fixedVerificationCode;
+  }
+
+  public void setFixedVerificationCode(@javax.annotation.Nullable String fixedVerificationCode) {
+    this.fixedVerificationCode = JsonNullable.<String>of(fixedVerificationCode);
   }
 
 
   public AdminOverrideContactMethodRequest removeFixedVerificationCode(@javax.annotation.Nullable Boolean removeFixedVerificationCode) {
-    this.removeFixedVerificationCode = removeFixedVerificationCode;
+    this.removeFixedVerificationCode = JsonNullable.<Boolean>of(removeFixedVerificationCode);
     return this;
   }
 
@@ -170,17 +201,25 @@ public class AdminOverrideContactMethodRequest {
    * @return removeFixedVerificationCode
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REMOVE_FIXED_VERIFICATION_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRemoveFixedVerificationCode() {
-    return removeFixedVerificationCode;
+        return removeFixedVerificationCode.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REMOVE_FIXED_VERIFICATION_CODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemoveFixedVerificationCode(@javax.annotation.Nullable Boolean removeFixedVerificationCode) {
+
+  public JsonNullable<Boolean> getRemoveFixedVerificationCode_JsonNullable() {
+    return removeFixedVerificationCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REMOVE_FIXED_VERIFICATION_CODE)
+  public void setRemoveFixedVerificationCode_JsonNullable(JsonNullable<Boolean> removeFixedVerificationCode) {
     this.removeFixedVerificationCode = removeFixedVerificationCode;
+  }
+
+  public void setRemoveFixedVerificationCode(@javax.annotation.Nullable Boolean removeFixedVerificationCode) {
+    this.removeFixedVerificationCode = JsonNullable.<Boolean>of(removeFixedVerificationCode);
   }
 
 
@@ -196,16 +235,27 @@ public class AdminOverrideContactMethodRequest {
       return false;
     }
     AdminOverrideContactMethodRequest adminOverrideContactMethodRequest = (AdminOverrideContactMethodRequest) o;
-    return Objects.equals(this.email, adminOverrideContactMethodRequest.email) &&
-        Objects.equals(this.phoneNumber, adminOverrideContactMethodRequest.phoneNumber) &&
-        Objects.equals(this.verified, adminOverrideContactMethodRequest.verified) &&
-        Objects.equals(this.fixedVerificationCode, adminOverrideContactMethodRequest.fixedVerificationCode) &&
-        Objects.equals(this.removeFixedVerificationCode, adminOverrideContactMethodRequest.removeFixedVerificationCode);
+    return equalsNullable(this.email, adminOverrideContactMethodRequest.email) &&
+        equalsNullable(this.phoneNumber, adminOverrideContactMethodRequest.phoneNumber) &&
+        equalsNullable(this.verified, adminOverrideContactMethodRequest.verified) &&
+        equalsNullable(this.fixedVerificationCode, adminOverrideContactMethodRequest.fixedVerificationCode) &&
+        equalsNullable(this.removeFixedVerificationCode, adminOverrideContactMethodRequest.removeFixedVerificationCode);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, phoneNumber, verified, fixedVerificationCode, removeFixedVerificationCode);
+    return Objects.hash(hashCodeNullable(email), hashCodeNullable(phoneNumber), hashCodeNullable(verified), hashCodeNullable(fixedVerificationCode), hashCodeNullable(removeFixedVerificationCode));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

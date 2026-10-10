@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -59,8 +63,7 @@ public class CreateWebAppRequest {
   private String githubRepositoryUrl;
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
-  @javax.annotation.Nullable
-  private String githubBranch;
+  private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets buildTrigger
@@ -102,28 +105,22 @@ public class CreateWebAppRequest {
   private BuildTriggerEnum buildTrigger;
 
   public static final String JSON_PROPERTY_BUILD_COMMAND = "buildCommand";
-  @javax.annotation.Nullable
-  private String buildCommand;
+  private JsonNullable<String> buildCommand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_PATH = "buildPath";
-  @javax.annotation.Nullable
-  private String buildPath;
+  private JsonNullable<String> buildPath = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PACKAGE_MANAGER = "packageManager";
-  @javax.annotation.Nullable
-  private String packageManager;
+  private JsonNullable<String> packageManager = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NODE_VERSION = "nodeVersion";
-  @javax.annotation.Nullable
-  private String nodeVersion;
+  private JsonNullable<String> nodeVersion = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTALL_COMMAND = "installCommand";
-  @javax.annotation.Nullable
-  private String installCommand;
+  private JsonNullable<String> installCommand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBDIRECTORY = "subdirectory";
-  @javax.annotation.Nullable
-  private String subdirectory;
+  private JsonNullable<String> subdirectory = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ENVIRONMENT_VARIABLES = "environmentVariables";
   @javax.annotation.Nullable
@@ -185,7 +182,7 @@ public class CreateWebAppRequest {
 
 
   public CreateWebAppRequest githubBranch(@javax.annotation.Nullable String githubBranch) {
-    this.githubBranch = githubBranch;
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
     return this;
   }
 
@@ -194,17 +191,25 @@ public class CreateWebAppRequest {
    * @return githubBranch
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGithubBranch() {
-    return githubBranch;
+        return githubBranch.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+
+  public JsonNullable<String> getGithubBranch_JsonNullable() {
+    return githubBranch;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_BRANCH)
+  public void setGithubBranch_JsonNullable(JsonNullable<String> githubBranch) {
     this.githubBranch = githubBranch;
+  }
+
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
   }
 
 
@@ -233,7 +238,7 @@ public class CreateWebAppRequest {
 
 
   public CreateWebAppRequest buildCommand(@javax.annotation.Nullable String buildCommand) {
-    this.buildCommand = buildCommand;
+    this.buildCommand = JsonNullable.<String>of(buildCommand);
     return this;
   }
 
@@ -242,22 +247,30 @@ public class CreateWebAppRequest {
    * @return buildCommand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_COMMAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildCommand() {
-    return buildCommand;
+        return buildCommand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_COMMAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildCommand(@javax.annotation.Nullable String buildCommand) {
+
+  public JsonNullable<String> getBuildCommand_JsonNullable() {
+    return buildCommand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_COMMAND)
+  public void setBuildCommand_JsonNullable(JsonNullable<String> buildCommand) {
     this.buildCommand = buildCommand;
+  }
+
+  public void setBuildCommand(@javax.annotation.Nullable String buildCommand) {
+    this.buildCommand = JsonNullable.<String>of(buildCommand);
   }
 
 
   public CreateWebAppRequest buildPath(@javax.annotation.Nullable String buildPath) {
-    this.buildPath = buildPath;
+    this.buildPath = JsonNullable.<String>of(buildPath);
     return this;
   }
 
@@ -266,22 +279,30 @@ public class CreateWebAppRequest {
    * @return buildPath
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildPath() {
-    return buildPath;
+        return buildPath.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_PATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildPath(@javax.annotation.Nullable String buildPath) {
+
+  public JsonNullable<String> getBuildPath_JsonNullable() {
+    return buildPath;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_PATH)
+  public void setBuildPath_JsonNullable(JsonNullable<String> buildPath) {
     this.buildPath = buildPath;
+  }
+
+  public void setBuildPath(@javax.annotation.Nullable String buildPath) {
+    this.buildPath = JsonNullable.<String>of(buildPath);
   }
 
 
   public CreateWebAppRequest packageManager(@javax.annotation.Nullable String packageManager) {
-    this.packageManager = packageManager;
+    this.packageManager = JsonNullable.<String>of(packageManager);
     return this;
   }
 
@@ -290,22 +311,30 @@ public class CreateWebAppRequest {
    * @return packageManager
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PACKAGE_MANAGER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPackageManager() {
-    return packageManager;
+        return packageManager.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PACKAGE_MANAGER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPackageManager(@javax.annotation.Nullable String packageManager) {
+
+  public JsonNullable<String> getPackageManager_JsonNullable() {
+    return packageManager;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PACKAGE_MANAGER)
+  public void setPackageManager_JsonNullable(JsonNullable<String> packageManager) {
     this.packageManager = packageManager;
+  }
+
+  public void setPackageManager(@javax.annotation.Nullable String packageManager) {
+    this.packageManager = JsonNullable.<String>of(packageManager);
   }
 
 
   public CreateWebAppRequest nodeVersion(@javax.annotation.Nullable String nodeVersion) {
-    this.nodeVersion = nodeVersion;
+    this.nodeVersion = JsonNullable.<String>of(nodeVersion);
     return this;
   }
 
@@ -314,22 +343,30 @@ public class CreateWebAppRequest {
    * @return nodeVersion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NODE_VERSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNodeVersion() {
-    return nodeVersion;
+        return nodeVersion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NODE_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNodeVersion(@javax.annotation.Nullable String nodeVersion) {
+
+  public JsonNullable<String> getNodeVersion_JsonNullable() {
+    return nodeVersion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NODE_VERSION)
+  public void setNodeVersion_JsonNullable(JsonNullable<String> nodeVersion) {
     this.nodeVersion = nodeVersion;
+  }
+
+  public void setNodeVersion(@javax.annotation.Nullable String nodeVersion) {
+    this.nodeVersion = JsonNullable.<String>of(nodeVersion);
   }
 
 
   public CreateWebAppRequest installCommand(@javax.annotation.Nullable String installCommand) {
-    this.installCommand = installCommand;
+    this.installCommand = JsonNullable.<String>of(installCommand);
     return this;
   }
 
@@ -338,22 +375,30 @@ public class CreateWebAppRequest {
    * @return installCommand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInstallCommand() {
-    return installCommand;
+        return installCommand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+
+  public JsonNullable<String> getInstallCommand_JsonNullable() {
+    return installCommand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTALL_COMMAND)
+  public void setInstallCommand_JsonNullable(JsonNullable<String> installCommand) {
     this.installCommand = installCommand;
+  }
+
+  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+    this.installCommand = JsonNullable.<String>of(installCommand);
   }
 
 
   public CreateWebAppRequest subdirectory(@javax.annotation.Nullable String subdirectory) {
-    this.subdirectory = subdirectory;
+    this.subdirectory = JsonNullable.<String>of(subdirectory);
     return this;
   }
 
@@ -362,17 +407,25 @@ public class CreateWebAppRequest {
    * @return subdirectory
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubdirectory() {
-    return subdirectory;
+        return subdirectory.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+
+  public JsonNullable<String> getSubdirectory_JsonNullable() {
+    return subdirectory;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBDIRECTORY)
+  public void setSubdirectory_JsonNullable(JsonNullable<String> subdirectory) {
     this.subdirectory = subdirectory;
+  }
+
+  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+    this.subdirectory = JsonNullable.<String>of(subdirectory);
   }
 
 
@@ -454,21 +507,32 @@ public class CreateWebAppRequest {
     CreateWebAppRequest createWebAppRequest = (CreateWebAppRequest) o;
     return Objects.equals(this.webAppName, createWebAppRequest.webAppName) &&
         Objects.equals(this.githubRepositoryUrl, createWebAppRequest.githubRepositoryUrl) &&
-        Objects.equals(this.githubBranch, createWebAppRequest.githubBranch) &&
+        equalsNullable(this.githubBranch, createWebAppRequest.githubBranch) &&
         Objects.equals(this.buildTrigger, createWebAppRequest.buildTrigger) &&
-        Objects.equals(this.buildCommand, createWebAppRequest.buildCommand) &&
-        Objects.equals(this.buildPath, createWebAppRequest.buildPath) &&
-        Objects.equals(this.packageManager, createWebAppRequest.packageManager) &&
-        Objects.equals(this.nodeVersion, createWebAppRequest.nodeVersion) &&
-        Objects.equals(this.installCommand, createWebAppRequest.installCommand) &&
-        Objects.equals(this.subdirectory, createWebAppRequest.subdirectory) &&
+        equalsNullable(this.buildCommand, createWebAppRequest.buildCommand) &&
+        equalsNullable(this.buildPath, createWebAppRequest.buildPath) &&
+        equalsNullable(this.packageManager, createWebAppRequest.packageManager) &&
+        equalsNullable(this.nodeVersion, createWebAppRequest.nodeVersion) &&
+        equalsNullable(this.installCommand, createWebAppRequest.installCommand) &&
+        equalsNullable(this.subdirectory, createWebAppRequest.subdirectory) &&
         Objects.equals(this.environmentVariables, createWebAppRequest.environmentVariables) &&
         Objects.equals(this.secrets, createWebAppRequest.secrets);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(webAppName, githubRepositoryUrl, githubBranch, buildTrigger, buildCommand, buildPath, packageManager, nodeVersion, installCommand, subdirectory, environmentVariables, secrets);
+    return Objects.hash(webAppName, githubRepositoryUrl, hashCodeNullable(githubBranch), buildTrigger, hashCodeNullable(buildCommand), hashCodeNullable(buildPath), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), environmentVariables, secrets);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

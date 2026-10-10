@@ -52,7 +52,7 @@ export interface ServiceBuildRequestObject {
      * @type {string}
      * @memberof ServiceBuildRequestObject
      */
-    containerImageUri?: string;
+    containerImageUri?: string | null;
     /**
      * 
      * @type {DockerfileGenerationError}
@@ -70,13 +70,13 @@ export interface ServiceBuildRequestObject {
      * @type {boolean}
      * @memberof ServiceBuildRequestObject
      */
-    allBuildLogsReceived?: boolean;
+    allBuildLogsReceived?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof ServiceBuildRequestObject
      */
-    cancellationRequested?: boolean;
+    cancellationRequested?: boolean | null;
     /**
      * 
      * @type {Date}
@@ -118,13 +118,13 @@ export interface ServiceBuildRequestObject {
      * @type {string}
      * @memberof ServiceBuildRequestObject
      */
-    gitRef?: string;
+    gitRef?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBuildRequestObject
      */
-    releaseTagName?: string;
+    releaseTagName?: string | null;
     /**
      * 
      * @type {Array<BuildStepLog>}
@@ -142,31 +142,31 @@ export interface ServiceBuildRequestObject {
      * @type {ServiceBuildRequestObjectOriginType}
      * @memberof ServiceBuildRequestObject
      */
-    origin?: ServiceBuildRequestObjectOriginType;
+    origin?: ServiceBuildRequestObjectOriginType | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBuildRequestObject
      */
-    originDetail?: string;
+    originDetail?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ServiceBuildRequestObject
      */
-    triggeredByAccountId?: string;
+    triggeredByAccountId?: string | null;
     /**
      * 
      * @type {ServiceBuildRequestObjectBuildTierType}
      * @memberof ServiceBuildRequestObject
      */
-    buildTier?: ServiceBuildRequestObjectBuildTierType;
+    buildTier?: ServiceBuildRequestObjectBuildTierType | null;
     /**
      * 
      * @type {ServiceBuildRequestObjectFailureReasonType}
      * @memberof ServiceBuildRequestObject
      */
-    failureReason?: ServiceBuildRequestObjectFailureReasonType;
+    failureReason?: ServiceBuildRequestObjectFailureReasonType | null;
 }
 
 

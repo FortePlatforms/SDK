@@ -24,7 +24,7 @@ export interface RenameMfaMethodRequest {
      * @type {string}
      * @memberof RenameMfaMethodRequest
      */
-    displayName?: string;
+    displayName?: string | null;
 }
 
 /**

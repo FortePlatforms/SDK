@@ -24,13 +24,13 @@ export interface MfaChallengeResponse {
      * @type {Date}
      * @memberof MfaChallengeResponse
      */
-    codeExpirationTime?: Date;
+    codeExpirationTime?: Date | null;
     /**
      * 
      * @type {string}
      * @memberof MfaChallengeResponse
      */
-    webAuthnRequestOptions?: string;
+    webAuthnRequestOptions?: string | null;
 }
 
 /**

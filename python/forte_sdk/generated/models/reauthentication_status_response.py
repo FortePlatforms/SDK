@@ -79,6 +79,11 @@ class ReauthenticationStatusResponse(BaseModel):
                 if _item_available_factors:
                     _items.append(_item_available_factors.to_dict())
             _dict['availableFactors'] = _items
+        # set to None if last_reauthenticated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_reauthenticated_at is None and "last_reauthenticated_at" in self.model_fields_set:
+            _dict['lastReauthenticatedAt'] = None
+
         return _dict
 
     @classmethod

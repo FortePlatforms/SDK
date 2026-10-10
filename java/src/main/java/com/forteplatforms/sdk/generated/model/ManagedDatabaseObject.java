@@ -29,6 +29,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -147,12 +151,10 @@ public class ManagedDatabaseObject {
   private TierEnum tier;
 
   public static final String JSON_PROPERTY_CPU = "cpu";
-  @javax.annotation.Nullable
-  private String cpu;
+  private JsonNullable<String> cpu = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MEMORY_GB = "memoryGb";
-  @javax.annotation.Nullable
-  private Integer memoryGb;
+  private JsonNullable<Integer> memoryGb = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_STORAGE_GB = "storageGb";
   @javax.annotation.Nonnull
@@ -216,44 +218,34 @@ public class ManagedDatabaseObject {
   private OffsetDateTime createdTimestamp;
 
   public static final String JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP = "lastModifiedTimestamp";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastModifiedTimestamp;
+  private JsonNullable<OffsetDateTime> lastModifiedTimestamp = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_HOST = "host";
-  @javax.annotation.Nullable
-  private String host;
+  private JsonNullable<String> host = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PORT = "port";
-  @javax.annotation.Nullable
-  private Integer port;
+  private JsonNullable<Integer> port = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_DATABASE_NAME = "databaseName";
-  @javax.annotation.Nullable
-  private String databaseName;
+  private JsonNullable<String> databaseName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SSL_MODE = "sslMode";
-  @javax.annotation.Nullable
-  private String sslMode;
+  private JsonNullable<String> sslMode = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_READ_ONLY = "readOnly";
-  @javax.annotation.Nullable
-  private Boolean readOnly;
+  private JsonNullable<Boolean> readOnly = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT = "cleanupUnlockExpiresAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime cleanupUnlockExpiresAt;
+  private JsonNullable<OffsetDateTime> cleanupUnlockExpiresAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_USAGE_BYTES = "usageBytes";
-  @javax.annotation.Nullable
-  private Long usageBytes;
+  private JsonNullable<Long> usageBytes = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_PHYSICAL_USAGE_BYTES = "physicalUsageBytes";
-  @javax.annotation.Nullable
-  private Long physicalUsageBytes;
+  private JsonNullable<Long> physicalUsageBytes = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_USAGE_UPDATED_AT = "usageUpdatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime usageUpdatedAt;
+  private JsonNullable<OffsetDateTime> usageUpdatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public ManagedDatabaseObject() { 
   }
@@ -355,7 +347,7 @@ public class ManagedDatabaseObject {
 
 
   public ManagedDatabaseObject cpu(@javax.annotation.Nullable String cpu) {
-    this.cpu = cpu;
+    this.cpu = JsonNullable.<String>of(cpu);
     return this;
   }
 
@@ -364,22 +356,30 @@ public class ManagedDatabaseObject {
    * @return cpu
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CPU, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCpu() {
-    return cpu;
+        return cpu.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CPU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpu(@javax.annotation.Nullable String cpu) {
+
+  public JsonNullable<String> getCpu_JsonNullable() {
+    return cpu;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CPU)
+  public void setCpu_JsonNullable(JsonNullable<String> cpu) {
     this.cpu = cpu;
+  }
+
+  public void setCpu(@javax.annotation.Nullable String cpu) {
+    this.cpu = JsonNullable.<String>of(cpu);
   }
 
 
   public ManagedDatabaseObject memoryGb(@javax.annotation.Nullable Integer memoryGb) {
-    this.memoryGb = memoryGb;
+    this.memoryGb = JsonNullable.<Integer>of(memoryGb);
     return this;
   }
 
@@ -388,17 +388,25 @@ public class ManagedDatabaseObject {
    * @return memoryGb
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MEMORY_GB, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getMemoryGb() {
-    return memoryGb;
+        return memoryGb.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MEMORY_GB, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemoryGb(@javax.annotation.Nullable Integer memoryGb) {
+
+  public JsonNullable<Integer> getMemoryGb_JsonNullable() {
+    return memoryGb;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MEMORY_GB)
+  public void setMemoryGb_JsonNullable(JsonNullable<Integer> memoryGb) {
     this.memoryGb = memoryGb;
+  }
+
+  public void setMemoryGb(@javax.annotation.Nullable Integer memoryGb) {
+    this.memoryGb = JsonNullable.<Integer>of(memoryGb);
   }
 
 
@@ -507,7 +515,7 @@ public class ManagedDatabaseObject {
 
 
   public ManagedDatabaseObject lastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
-    this.lastModifiedTimestamp = lastModifiedTimestamp;
+    this.lastModifiedTimestamp = JsonNullable.<OffsetDateTime>of(lastModifiedTimestamp);
     return this;
   }
 
@@ -516,22 +524,30 @@ public class ManagedDatabaseObject {
    * @return lastModifiedTimestamp
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastModifiedTimestamp() {
-    return lastModifiedTimestamp;
+        return lastModifiedTimestamp.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
+
+  public JsonNullable<OffsetDateTime> getLastModifiedTimestamp_JsonNullable() {
+    return lastModifiedTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP)
+  public void setLastModifiedTimestamp_JsonNullable(JsonNullable<OffsetDateTime> lastModifiedTimestamp) {
     this.lastModifiedTimestamp = lastModifiedTimestamp;
+  }
+
+  public void setLastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
+    this.lastModifiedTimestamp = JsonNullable.<OffsetDateTime>of(lastModifiedTimestamp);
   }
 
 
   public ManagedDatabaseObject host(@javax.annotation.Nullable String host) {
-    this.host = host;
+    this.host = JsonNullable.<String>of(host);
     return this;
   }
 
@@ -540,22 +556,30 @@ public class ManagedDatabaseObject {
    * @return host
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HOST, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getHost() {
-    return host;
+        return host.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HOST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHost(@javax.annotation.Nullable String host) {
+
+  public JsonNullable<String> getHost_JsonNullable() {
+    return host;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HOST)
+  public void setHost_JsonNullable(JsonNullable<String> host) {
     this.host = host;
+  }
+
+  public void setHost(@javax.annotation.Nullable String host) {
+    this.host = JsonNullable.<String>of(host);
   }
 
 
   public ManagedDatabaseObject port(@javax.annotation.Nullable Integer port) {
-    this.port = port;
+    this.port = JsonNullable.<Integer>of(port);
     return this;
   }
 
@@ -564,22 +588,30 @@ public class ManagedDatabaseObject {
    * @return port
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PORT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getPort() {
-    return port;
+        return port.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPort(@javax.annotation.Nullable Integer port) {
+
+  public JsonNullable<Integer> getPort_JsonNullable() {
+    return port;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PORT)
+  public void setPort_JsonNullable(JsonNullable<Integer> port) {
     this.port = port;
+  }
+
+  public void setPort(@javax.annotation.Nullable Integer port) {
+    this.port = JsonNullable.<Integer>of(port);
   }
 
 
   public ManagedDatabaseObject databaseName(@javax.annotation.Nullable String databaseName) {
-    this.databaseName = databaseName;
+    this.databaseName = JsonNullable.<String>of(databaseName);
     return this;
   }
 
@@ -588,22 +620,30 @@ public class ManagedDatabaseObject {
    * @return databaseName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DATABASE_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDatabaseName() {
-    return databaseName;
+        return databaseName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DATABASE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDatabaseName(@javax.annotation.Nullable String databaseName) {
+
+  public JsonNullable<String> getDatabaseName_JsonNullable() {
+    return databaseName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DATABASE_NAME)
+  public void setDatabaseName_JsonNullable(JsonNullable<String> databaseName) {
     this.databaseName = databaseName;
+  }
+
+  public void setDatabaseName(@javax.annotation.Nullable String databaseName) {
+    this.databaseName = JsonNullable.<String>of(databaseName);
   }
 
 
   public ManagedDatabaseObject sslMode(@javax.annotation.Nullable String sslMode) {
-    this.sslMode = sslMode;
+    this.sslMode = JsonNullable.<String>of(sslMode);
     return this;
   }
 
@@ -612,22 +652,30 @@ public class ManagedDatabaseObject {
    * @return sslMode
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SSL_MODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSslMode() {
-    return sslMode;
+        return sslMode.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SSL_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSslMode(@javax.annotation.Nullable String sslMode) {
+
+  public JsonNullable<String> getSslMode_JsonNullable() {
+    return sslMode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SSL_MODE)
+  public void setSslMode_JsonNullable(JsonNullable<String> sslMode) {
     this.sslMode = sslMode;
+  }
+
+  public void setSslMode(@javax.annotation.Nullable String sslMode) {
+    this.sslMode = JsonNullable.<String>of(sslMode);
   }
 
 
   public ManagedDatabaseObject readOnly(@javax.annotation.Nullable Boolean readOnly) {
-    this.readOnly = readOnly;
+    this.readOnly = JsonNullable.<Boolean>of(readOnly);
     return this;
   }
 
@@ -636,22 +684,30 @@ public class ManagedDatabaseObject {
    * @return readOnly
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getReadOnly() {
-    return readOnly;
+        return readOnly.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadOnly(@javax.annotation.Nullable Boolean readOnly) {
+
+  public JsonNullable<Boolean> getReadOnly_JsonNullable() {
+    return readOnly;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  public void setReadOnly_JsonNullable(JsonNullable<Boolean> readOnly) {
     this.readOnly = readOnly;
+  }
+
+  public void setReadOnly(@javax.annotation.Nullable Boolean readOnly) {
+    this.readOnly = JsonNullable.<Boolean>of(readOnly);
   }
 
 
   public ManagedDatabaseObject cleanupUnlockExpiresAt(@javax.annotation.Nullable OffsetDateTime cleanupUnlockExpiresAt) {
-    this.cleanupUnlockExpiresAt = cleanupUnlockExpiresAt;
+    this.cleanupUnlockExpiresAt = JsonNullable.<OffsetDateTime>of(cleanupUnlockExpiresAt);
     return this;
   }
 
@@ -660,22 +716,30 @@ public class ManagedDatabaseObject {
    * @return cleanupUnlockExpiresAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCleanupUnlockExpiresAt() {
-    return cleanupUnlockExpiresAt;
+        return cleanupUnlockExpiresAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCleanupUnlockExpiresAt(@javax.annotation.Nullable OffsetDateTime cleanupUnlockExpiresAt) {
+
+  public JsonNullable<OffsetDateTime> getCleanupUnlockExpiresAt_JsonNullable() {
+    return cleanupUnlockExpiresAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT)
+  public void setCleanupUnlockExpiresAt_JsonNullable(JsonNullable<OffsetDateTime> cleanupUnlockExpiresAt) {
     this.cleanupUnlockExpiresAt = cleanupUnlockExpiresAt;
+  }
+
+  public void setCleanupUnlockExpiresAt(@javax.annotation.Nullable OffsetDateTime cleanupUnlockExpiresAt) {
+    this.cleanupUnlockExpiresAt = JsonNullable.<OffsetDateTime>of(cleanupUnlockExpiresAt);
   }
 
 
   public ManagedDatabaseObject usageBytes(@javax.annotation.Nullable Long usageBytes) {
-    this.usageBytes = usageBytes;
+    this.usageBytes = JsonNullable.<Long>of(usageBytes);
     return this;
   }
 
@@ -684,22 +748,30 @@ public class ManagedDatabaseObject {
    * @return usageBytes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USAGE_BYTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getUsageBytes() {
-    return usageBytes;
+        return usageBytes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USAGE_BYTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsageBytes(@javax.annotation.Nullable Long usageBytes) {
+
+  public JsonNullable<Long> getUsageBytes_JsonNullable() {
+    return usageBytes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USAGE_BYTES)
+  public void setUsageBytes_JsonNullable(JsonNullable<Long> usageBytes) {
     this.usageBytes = usageBytes;
+  }
+
+  public void setUsageBytes(@javax.annotation.Nullable Long usageBytes) {
+    this.usageBytes = JsonNullable.<Long>of(usageBytes);
   }
 
 
   public ManagedDatabaseObject physicalUsageBytes(@javax.annotation.Nullable Long physicalUsageBytes) {
-    this.physicalUsageBytes = physicalUsageBytes;
+    this.physicalUsageBytes = JsonNullable.<Long>of(physicalUsageBytes);
     return this;
   }
 
@@ -708,22 +780,30 @@ public class ManagedDatabaseObject {
    * @return physicalUsageBytes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE_BYTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPhysicalUsageBytes() {
-    return physicalUsageBytes;
+        return physicalUsageBytes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE_BYTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhysicalUsageBytes(@javax.annotation.Nullable Long physicalUsageBytes) {
+
+  public JsonNullable<Long> getPhysicalUsageBytes_JsonNullable() {
+    return physicalUsageBytes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHYSICAL_USAGE_BYTES)
+  public void setPhysicalUsageBytes_JsonNullable(JsonNullable<Long> physicalUsageBytes) {
     this.physicalUsageBytes = physicalUsageBytes;
+  }
+
+  public void setPhysicalUsageBytes(@javax.annotation.Nullable Long physicalUsageBytes) {
+    this.physicalUsageBytes = JsonNullable.<Long>of(physicalUsageBytes);
   }
 
 
   public ManagedDatabaseObject usageUpdatedAt(@javax.annotation.Nullable OffsetDateTime usageUpdatedAt) {
-    this.usageUpdatedAt = usageUpdatedAt;
+    this.usageUpdatedAt = JsonNullable.<OffsetDateTime>of(usageUpdatedAt);
     return this;
   }
 
@@ -732,17 +812,25 @@ public class ManagedDatabaseObject {
    * @return usageUpdatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USAGE_UPDATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getUsageUpdatedAt() {
-    return usageUpdatedAt;
+        return usageUpdatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USAGE_UPDATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsageUpdatedAt(@javax.annotation.Nullable OffsetDateTime usageUpdatedAt) {
+
+  public JsonNullable<OffsetDateTime> getUsageUpdatedAt_JsonNullable() {
+    return usageUpdatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USAGE_UPDATED_AT)
+  public void setUsageUpdatedAt_JsonNullable(JsonNullable<OffsetDateTime> usageUpdatedAt) {
     this.usageUpdatedAt = usageUpdatedAt;
+  }
+
+  public void setUsageUpdatedAt(@javax.annotation.Nullable OffsetDateTime usageUpdatedAt) {
+    this.usageUpdatedAt = JsonNullable.<OffsetDateTime>of(usageUpdatedAt);
   }
 
 
@@ -762,27 +850,38 @@ public class ManagedDatabaseObject {
         Objects.equals(this.managedDatabaseName, managedDatabaseObject.managedDatabaseName) &&
         Objects.equals(this.type, managedDatabaseObject.type) &&
         Objects.equals(this.tier, managedDatabaseObject.tier) &&
-        Objects.equals(this.cpu, managedDatabaseObject.cpu) &&
-        Objects.equals(this.memoryGb, managedDatabaseObject.memoryGb) &&
+        equalsNullable(this.cpu, managedDatabaseObject.cpu) &&
+        equalsNullable(this.memoryGb, managedDatabaseObject.memoryGb) &&
         Objects.equals(this.storageGb, managedDatabaseObject.storageGb) &&
         Objects.equals(this.status, managedDatabaseObject.status) &&
         Objects.equals(this.connections, managedDatabaseObject.connections) &&
         Objects.equals(this.createdTimestamp, managedDatabaseObject.createdTimestamp) &&
-        Objects.equals(this.lastModifiedTimestamp, managedDatabaseObject.lastModifiedTimestamp) &&
-        Objects.equals(this.host, managedDatabaseObject.host) &&
-        Objects.equals(this.port, managedDatabaseObject.port) &&
-        Objects.equals(this.databaseName, managedDatabaseObject.databaseName) &&
-        Objects.equals(this.sslMode, managedDatabaseObject.sslMode) &&
-        Objects.equals(this.readOnly, managedDatabaseObject.readOnly) &&
-        Objects.equals(this.cleanupUnlockExpiresAt, managedDatabaseObject.cleanupUnlockExpiresAt) &&
-        Objects.equals(this.usageBytes, managedDatabaseObject.usageBytes) &&
-        Objects.equals(this.physicalUsageBytes, managedDatabaseObject.physicalUsageBytes) &&
-        Objects.equals(this.usageUpdatedAt, managedDatabaseObject.usageUpdatedAt);
+        equalsNullable(this.lastModifiedTimestamp, managedDatabaseObject.lastModifiedTimestamp) &&
+        equalsNullable(this.host, managedDatabaseObject.host) &&
+        equalsNullable(this.port, managedDatabaseObject.port) &&
+        equalsNullable(this.databaseName, managedDatabaseObject.databaseName) &&
+        equalsNullable(this.sslMode, managedDatabaseObject.sslMode) &&
+        equalsNullable(this.readOnly, managedDatabaseObject.readOnly) &&
+        equalsNullable(this.cleanupUnlockExpiresAt, managedDatabaseObject.cleanupUnlockExpiresAt) &&
+        equalsNullable(this.usageBytes, managedDatabaseObject.usageBytes) &&
+        equalsNullable(this.physicalUsageBytes, managedDatabaseObject.physicalUsageBytes) &&
+        equalsNullable(this.usageUpdatedAt, managedDatabaseObject.usageUpdatedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, cpu, memoryGb, storageGb, status, connections, createdTimestamp, lastModifiedTimestamp, host, port, databaseName, sslMode, readOnly, cleanupUnlockExpiresAt, usageBytes, physicalUsageBytes, usageUpdatedAt);
+    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, hashCodeNullable(cpu), hashCodeNullable(memoryGb), storageGb, status, connections, createdTimestamp, hashCodeNullable(lastModifiedTimestamp), hashCodeNullable(host), hashCodeNullable(port), hashCodeNullable(databaseName), hashCodeNullable(sslMode), hashCodeNullable(readOnly), hashCodeNullable(cleanupUnlockExpiresAt), hashCodeNullable(usageBytes), hashCodeNullable(physicalUsageBytes), hashCodeNullable(usageUpdatedAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

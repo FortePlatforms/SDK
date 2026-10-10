@@ -24,7 +24,7 @@ export interface ForteApiException {
      * @type {ForteApiExceptionErrorCodeType}
      * @memberof ForteApiException
      */
-    errorCode?: ForteApiExceptionErrorCodeType;
+    errorCode?: ForteApiExceptionErrorCodeType | null;
     /**
      * 
      * @type {string}

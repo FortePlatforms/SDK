@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -84,8 +88,7 @@ public class ReauthenticationChallengeRequest {
   private MethodEnum method;
 
   public static final String JSON_PROPERTY_TARGET_CONTACT_METHOD_ID = "targetContactMethodId";
-  @javax.annotation.Nullable
-  private String targetContactMethodId;
+  private JsonNullable<String> targetContactMethodId = JsonNullable.<String>undefined();
 
   public ReauthenticationChallengeRequest() { 
   }
@@ -115,7 +118,7 @@ public class ReauthenticationChallengeRequest {
 
 
   public ReauthenticationChallengeRequest targetContactMethodId(@javax.annotation.Nullable String targetContactMethodId) {
-    this.targetContactMethodId = targetContactMethodId;
+    this.targetContactMethodId = JsonNullable.<String>of(targetContactMethodId);
     return this;
   }
 
@@ -124,17 +127,25 @@ public class ReauthenticationChallengeRequest {
    * @return targetContactMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TARGET_CONTACT_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTargetContactMethodId() {
-    return targetContactMethodId;
+        return targetContactMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TARGET_CONTACT_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTargetContactMethodId(@javax.annotation.Nullable String targetContactMethodId) {
+
+  public JsonNullable<String> getTargetContactMethodId_JsonNullable() {
+    return targetContactMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TARGET_CONTACT_METHOD_ID)
+  public void setTargetContactMethodId_JsonNullable(JsonNullable<String> targetContactMethodId) {
     this.targetContactMethodId = targetContactMethodId;
+  }
+
+  public void setTargetContactMethodId(@javax.annotation.Nullable String targetContactMethodId) {
+    this.targetContactMethodId = JsonNullable.<String>of(targetContactMethodId);
   }
 
 
@@ -151,12 +162,23 @@ public class ReauthenticationChallengeRequest {
     }
     ReauthenticationChallengeRequest reauthenticationChallengeRequest = (ReauthenticationChallengeRequest) o;
     return Objects.equals(this.method, reauthenticationChallengeRequest.method) &&
-        Objects.equals(this.targetContactMethodId, reauthenticationChallengeRequest.targetContactMethodId);
+        equalsNullable(this.targetContactMethodId, reauthenticationChallengeRequest.targetContactMethodId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, targetContactMethodId);
+    return Objects.hash(method, hashCodeNullable(targetContactMethodId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

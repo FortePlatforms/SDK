@@ -30,211 +30,211 @@ export interface ManagedDatabaseMetricPoint {
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    intervalMs?: number;
+    intervalMs?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    activeTimeMs?: number;
+    activeTimeMs?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    xactCommit?: number;
+    xactCommit?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    xactRollback?: number;
+    xactRollback?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    blksHit?: number;
+    blksHit?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    blksRead?: number;
+    blksRead?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    tupReturned?: number;
+    tupReturned?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    tupFetched?: number;
+    tupFetched?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    tupInserted?: number;
+    tupInserted?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    tupUpdated?: number;
+    tupUpdated?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    tupDeleted?: number;
+    tupDeleted?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    tempFiles?: number;
+    tempFiles?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    tempBytes?: number;
+    tempBytes?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    deadlocks?: number;
+    deadlocks?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    stmtTotalExecMs?: number;
+    stmtTotalExecMs?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    stmtCalls?: number;
+    stmtCalls?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    stmtWalBytes?: number;
+    stmtWalBytes?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    stmtTempBlks?: number;
+    stmtTempBlks?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    queryCount?: number;
+    queryCount?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    avgQueryTimeMicros?: number;
+    avgQueryTimeMicros?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    clientConnections?: number;
+    clientConnections?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    serverConnections?: number;
+    serverConnections?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    clWaiting?: number;
+    clWaiting?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    pgbQueryTimeMicros?: number;
+    pgbQueryTimeMicros?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    pgbWaitTimeMicros?: number;
+    pgbWaitTimeMicros?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    pgbXactCount?: number;
+    pgbXactCount?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    pgbXactTimeMicros?: number;
+    pgbXactTimeMicros?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    maxWaitMicros?: number;
+    maxWaitMicros?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    poolSize?: number;
+    poolSize?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    sessionTimeMs?: number;
+    sessionTimeMs?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    idleInTransactionTimeMs?: number;
+    idleInTransactionTimeMs?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    sessionsAbnormal?: number;
+    sessionsAbnormal?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    backends?: number;
+    backends?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    logicalSizeBytes?: number;
+    logicalSizeBytes?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseMetricPoint
      */
-    physicalSizeBytes?: number;
+    physicalSizeBytes?: number | null;
 }
 
 /**

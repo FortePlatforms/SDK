@@ -30,7 +30,7 @@ export interface RequestPasswordResetRequest {
      * @type {string}
      * @memberof RequestPasswordResetRequest
      */
-    recaptchaToken?: string;
+    recaptchaToken?: string | null;
 }
 
 /**

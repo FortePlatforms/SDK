@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -55,32 +59,25 @@ public class PaymentMethodObject {
   private String type;
 
   public static final String JSON_PROPERTY_BRAND = "brand";
-  @javax.annotation.Nullable
-  private String brand;
+  private JsonNullable<String> brand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LAST4 = "last4";
-  @javax.annotation.Nullable
-  private String last4;
+  private JsonNullable<String> last4 = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EXP_MONTH = "expMonth";
-  @javax.annotation.Nullable
-  private Long expMonth;
+  private JsonNullable<Long> expMonth = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_EXP_YEAR = "expYear";
-  @javax.annotation.Nullable
-  private Long expYear;
+  private JsonNullable<Long> expYear = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_FUNDING = "funding";
-  @javax.annotation.Nullable
-  private String funding;
+  private JsonNullable<String> funding = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BANK_NAME = "bankName";
-  @javax.annotation.Nullable
-  private String bankName;
+  private JsonNullable<String> bankName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ACCOUNT_TYPE = "accountType";
-  @javax.annotation.Nullable
-  private String accountType;
+  private JsonNullable<String> accountType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_DEFAULT = "isDefault";
   @javax.annotation.Nonnull
@@ -138,7 +135,7 @@ public class PaymentMethodObject {
 
 
   public PaymentMethodObject brand(@javax.annotation.Nullable String brand) {
-    this.brand = brand;
+    this.brand = JsonNullable.<String>of(brand);
     return this;
   }
 
@@ -147,22 +144,30 @@ public class PaymentMethodObject {
    * @return brand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BRAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBrand() {
-    return brand;
+        return brand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BRAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBrand(@javax.annotation.Nullable String brand) {
+
+  public JsonNullable<String> getBrand_JsonNullable() {
+    return brand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BRAND)
+  public void setBrand_JsonNullable(JsonNullable<String> brand) {
     this.brand = brand;
+  }
+
+  public void setBrand(@javax.annotation.Nullable String brand) {
+    this.brand = JsonNullable.<String>of(brand);
   }
 
 
   public PaymentMethodObject last4(@javax.annotation.Nullable String last4) {
-    this.last4 = last4;
+    this.last4 = JsonNullable.<String>of(last4);
     return this;
   }
 
@@ -171,22 +176,30 @@ public class PaymentMethodObject {
    * @return last4
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST4, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLast4() {
-    return last4;
+        return last4.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST4, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLast4(@javax.annotation.Nullable String last4) {
+
+  public JsonNullable<String> getLast4_JsonNullable() {
+    return last4;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST4)
+  public void setLast4_JsonNullable(JsonNullable<String> last4) {
     this.last4 = last4;
+  }
+
+  public void setLast4(@javax.annotation.Nullable String last4) {
+    this.last4 = JsonNullable.<String>of(last4);
   }
 
 
   public PaymentMethodObject expMonth(@javax.annotation.Nullable Long expMonth) {
-    this.expMonth = expMonth;
+    this.expMonth = JsonNullable.<Long>of(expMonth);
     return this;
   }
 
@@ -195,22 +208,30 @@ public class PaymentMethodObject {
    * @return expMonth
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXP_MONTH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getExpMonth() {
-    return expMonth;
+        return expMonth.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXP_MONTH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpMonth(@javax.annotation.Nullable Long expMonth) {
+
+  public JsonNullable<Long> getExpMonth_JsonNullable() {
+    return expMonth;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXP_MONTH)
+  public void setExpMonth_JsonNullable(JsonNullable<Long> expMonth) {
     this.expMonth = expMonth;
+  }
+
+  public void setExpMonth(@javax.annotation.Nullable Long expMonth) {
+    this.expMonth = JsonNullable.<Long>of(expMonth);
   }
 
 
   public PaymentMethodObject expYear(@javax.annotation.Nullable Long expYear) {
-    this.expYear = expYear;
+    this.expYear = JsonNullable.<Long>of(expYear);
     return this;
   }
 
@@ -219,22 +240,30 @@ public class PaymentMethodObject {
    * @return expYear
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXP_YEAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getExpYear() {
-    return expYear;
+        return expYear.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXP_YEAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpYear(@javax.annotation.Nullable Long expYear) {
+
+  public JsonNullable<Long> getExpYear_JsonNullable() {
+    return expYear;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXP_YEAR)
+  public void setExpYear_JsonNullable(JsonNullable<Long> expYear) {
     this.expYear = expYear;
+  }
+
+  public void setExpYear(@javax.annotation.Nullable Long expYear) {
+    this.expYear = JsonNullable.<Long>of(expYear);
   }
 
 
   public PaymentMethodObject funding(@javax.annotation.Nullable String funding) {
-    this.funding = funding;
+    this.funding = JsonNullable.<String>of(funding);
     return this;
   }
 
@@ -243,22 +272,30 @@ public class PaymentMethodObject {
    * @return funding
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FUNDING, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFunding() {
-    return funding;
+        return funding.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FUNDING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFunding(@javax.annotation.Nullable String funding) {
+
+  public JsonNullable<String> getFunding_JsonNullable() {
+    return funding;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FUNDING)
+  public void setFunding_JsonNullable(JsonNullable<String> funding) {
     this.funding = funding;
+  }
+
+  public void setFunding(@javax.annotation.Nullable String funding) {
+    this.funding = JsonNullable.<String>of(funding);
   }
 
 
   public PaymentMethodObject bankName(@javax.annotation.Nullable String bankName) {
-    this.bankName = bankName;
+    this.bankName = JsonNullable.<String>of(bankName);
     return this;
   }
 
@@ -267,22 +304,30 @@ public class PaymentMethodObject {
    * @return bankName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BANK_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBankName() {
-    return bankName;
+        return bankName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BANK_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBankName(@javax.annotation.Nullable String bankName) {
+
+  public JsonNullable<String> getBankName_JsonNullable() {
+    return bankName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BANK_NAME)
+  public void setBankName_JsonNullable(JsonNullable<String> bankName) {
     this.bankName = bankName;
+  }
+
+  public void setBankName(@javax.annotation.Nullable String bankName) {
+    this.bankName = JsonNullable.<String>of(bankName);
   }
 
 
   public PaymentMethodObject accountType(@javax.annotation.Nullable String accountType) {
-    this.accountType = accountType;
+    this.accountType = JsonNullable.<String>of(accountType);
     return this;
   }
 
@@ -291,17 +336,25 @@ public class PaymentMethodObject {
    * @return accountType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAccountType() {
-    return accountType;
+        return accountType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACCOUNT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountType(@javax.annotation.Nullable String accountType) {
+
+  public JsonNullable<String> getAccountType_JsonNullable() {
+    return accountType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACCOUNT_TYPE)
+  public void setAccountType_JsonNullable(JsonNullable<String> accountType) {
     this.accountType = accountType;
+  }
+
+  public void setAccountType(@javax.annotation.Nullable String accountType) {
+    this.accountType = JsonNullable.<String>of(accountType);
   }
 
 
@@ -343,19 +396,30 @@ public class PaymentMethodObject {
     PaymentMethodObject paymentMethodObject = (PaymentMethodObject) o;
     return Objects.equals(this.id, paymentMethodObject.id) &&
         Objects.equals(this.type, paymentMethodObject.type) &&
-        Objects.equals(this.brand, paymentMethodObject.brand) &&
-        Objects.equals(this.last4, paymentMethodObject.last4) &&
-        Objects.equals(this.expMonth, paymentMethodObject.expMonth) &&
-        Objects.equals(this.expYear, paymentMethodObject.expYear) &&
-        Objects.equals(this.funding, paymentMethodObject.funding) &&
-        Objects.equals(this.bankName, paymentMethodObject.bankName) &&
-        Objects.equals(this.accountType, paymentMethodObject.accountType) &&
+        equalsNullable(this.brand, paymentMethodObject.brand) &&
+        equalsNullable(this.last4, paymentMethodObject.last4) &&
+        equalsNullable(this.expMonth, paymentMethodObject.expMonth) &&
+        equalsNullable(this.expYear, paymentMethodObject.expYear) &&
+        equalsNullable(this.funding, paymentMethodObject.funding) &&
+        equalsNullable(this.bankName, paymentMethodObject.bankName) &&
+        equalsNullable(this.accountType, paymentMethodObject.accountType) &&
         Objects.equals(this.isDefault, paymentMethodObject.isDefault);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, brand, last4, expMonth, expYear, funding, bankName, accountType, isDefault);
+    return Objects.hash(id, type, hashCodeNullable(brand), hashCodeNullable(last4), hashCodeNullable(expMonth), hashCodeNullable(expYear), hashCodeNullable(funding), hashCodeNullable(bankName), hashCodeNullable(accountType), isDefault);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

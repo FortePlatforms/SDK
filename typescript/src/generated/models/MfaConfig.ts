@@ -24,37 +24,37 @@ export interface MfaConfig {
      * @type {MfaConfigEnforcementType}
      * @memberof MfaConfig
      */
-    enforcement?: MfaConfigEnforcementType;
+    enforcement?: MfaConfigEnforcementType | null;
     /**
      * 
      * @type {boolean}
      * @memberof MfaConfig
      */
-    totpEnabled?: boolean;
+    totpEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof MfaConfig
      */
-    emailOtpEnabled?: boolean;
+    emailOtpEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof MfaConfig
      */
-    smsOtpEnabled?: boolean;
+    smsOtpEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof MfaConfig
      */
-    webAuthnEnabled?: boolean;
+    webAuthnEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof MfaConfig
      */
-    blockOtpFirstFactor?: boolean;
+    blockOtpFirstFactor?: boolean | null;
 }
 
 

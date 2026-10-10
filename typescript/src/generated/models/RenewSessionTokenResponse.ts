@@ -30,7 +30,7 @@ export interface RenewSessionTokenResponse {
      * @type {Date}
      * @memberof RenewSessionTokenResponse
      */
-    expirationTime?: Date;
+    expirationTime?: Date | null;
 }
 
 /**

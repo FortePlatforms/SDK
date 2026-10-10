@@ -24,13 +24,13 @@ export interface ManagedDatabaseUsage {
      * @type {number}
      * @memberof ManagedDatabaseUsage
      */
-    usageBytes?: number;
+    usageBytes?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseUsage
      */
-    physicalUsageBytes?: number;
+    physicalUsageBytes?: number | null;
     /**
      * 
      * @type {number}
@@ -42,7 +42,7 @@ export interface ManagedDatabaseUsage {
      * @type {Date}
      * @memberof ManagedDatabaseUsage
      */
-    usageUpdatedAt?: Date;
+    usageUpdatedAt?: Date | null;
     /**
      * 
      * @type {boolean}

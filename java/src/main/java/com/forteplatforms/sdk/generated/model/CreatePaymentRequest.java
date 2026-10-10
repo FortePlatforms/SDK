@@ -32,6 +32,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -61,8 +65,7 @@ public class CreatePaymentRequest {
   private List<PaymentLineItem> lineItems = new ArrayList<>();
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
@@ -77,16 +80,13 @@ public class CreatePaymentRequest {
   private PaymentAddress shippingAddress;
 
   public static final String JSON_PROPERTY_PAYMENT_METHOD_ID = "paymentMethodId";
-  @javax.annotation.Nullable
-  private String paymentMethodId;
+  private JsonNullable<String> paymentMethodId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS = "supportedPaymentMethods";
-  @javax.annotation.Nullable
-  private List<PaymentMethodType> supportedPaymentMethods = new ArrayList<>();
+  private JsonNullable<List<PaymentMethodType>> supportedPaymentMethods = JsonNullable.<List<PaymentMethodType>>undefined();
 
   public static final String JSON_PROPERTY_OFF_SESSION = "offSession";
-  @javax.annotation.Nullable
-  private Boolean offSession;
+  private JsonNullable<Boolean> offSession = JsonNullable.<Boolean>undefined();
 
   public CreatePaymentRequest() { 
   }
@@ -148,7 +148,7 @@ public class CreatePaymentRequest {
 
 
   public CreatePaymentRequest description(@javax.annotation.Nullable String description) {
-    this.description = description;
+    this.description = JsonNullable.<String>of(description);
     return this;
   }
 
@@ -157,17 +157,25 @@ public class CreatePaymentRequest {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
@@ -252,7 +260,7 @@ public class CreatePaymentRequest {
 
 
   public CreatePaymentRequest paymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
-    this.paymentMethodId = paymentMethodId;
+    this.paymentMethodId = JsonNullable.<String>of(paymentMethodId);
     return this;
   }
 
@@ -261,30 +269,42 @@ public class CreatePaymentRequest {
    * @return paymentMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPaymentMethodId() {
-    return paymentMethodId;
+        return paymentMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+
+  public JsonNullable<String> getPaymentMethodId_JsonNullable() {
+    return paymentMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAYMENT_METHOD_ID)
+  public void setPaymentMethodId_JsonNullable(JsonNullable<String> paymentMethodId) {
     this.paymentMethodId = paymentMethodId;
+  }
+
+  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+    this.paymentMethodId = JsonNullable.<String>of(paymentMethodId);
   }
 
 
   public CreatePaymentRequest supportedPaymentMethods(@javax.annotation.Nullable List<PaymentMethodType> supportedPaymentMethods) {
-    this.supportedPaymentMethods = supportedPaymentMethods;
+    this.supportedPaymentMethods = JsonNullable.<List<PaymentMethodType>>of(supportedPaymentMethods);
     return this;
   }
 
   public CreatePaymentRequest addSupportedPaymentMethodsItem(PaymentMethodType supportedPaymentMethodsItem) {
-    if (this.supportedPaymentMethods == null) {
-      this.supportedPaymentMethods = new ArrayList<>();
+    if (this.supportedPaymentMethods == null || !this.supportedPaymentMethods.isPresent()) {
+      this.supportedPaymentMethods = JsonNullable.<List<PaymentMethodType>>of(new ArrayList<>());
     }
-    this.supportedPaymentMethods.add(supportedPaymentMethodsItem);
+    try {
+      this.supportedPaymentMethods.get().add(supportedPaymentMethodsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -293,22 +313,30 @@ public class CreatePaymentRequest {
    * @return supportedPaymentMethods
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<PaymentMethodType> getSupportedPaymentMethods() {
-    return supportedPaymentMethods;
+        return supportedPaymentMethods.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSupportedPaymentMethods(@javax.annotation.Nullable List<PaymentMethodType> supportedPaymentMethods) {
+
+  public JsonNullable<List<PaymentMethodType>> getSupportedPaymentMethods_JsonNullable() {
+    return supportedPaymentMethods;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS)
+  public void setSupportedPaymentMethods_JsonNullable(JsonNullable<List<PaymentMethodType>> supportedPaymentMethods) {
     this.supportedPaymentMethods = supportedPaymentMethods;
+  }
+
+  public void setSupportedPaymentMethods(@javax.annotation.Nullable List<PaymentMethodType> supportedPaymentMethods) {
+    this.supportedPaymentMethods = JsonNullable.<List<PaymentMethodType>>of(supportedPaymentMethods);
   }
 
 
   public CreatePaymentRequest offSession(@javax.annotation.Nullable Boolean offSession) {
-    this.offSession = offSession;
+    this.offSession = JsonNullable.<Boolean>of(offSession);
     return this;
   }
 
@@ -317,17 +345,25 @@ public class CreatePaymentRequest {
    * @return offSession
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OFF_SESSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getOffSession() {
-    return offSession;
+        return offSession.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OFF_SESSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOffSession(@javax.annotation.Nullable Boolean offSession) {
+
+  public JsonNullable<Boolean> getOffSession_JsonNullable() {
+    return offSession;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OFF_SESSION)
+  public void setOffSession_JsonNullable(JsonNullable<Boolean> offSession) {
     this.offSession = offSession;
+  }
+
+  public void setOffSession(@javax.annotation.Nullable Boolean offSession) {
+    this.offSession = JsonNullable.<Boolean>of(offSession);
   }
 
 
@@ -345,18 +381,29 @@ public class CreatePaymentRequest {
     CreatePaymentRequest createPaymentRequest = (CreatePaymentRequest) o;
     return Objects.equals(this.currency, createPaymentRequest.currency) &&
         Objects.equals(this.lineItems, createPaymentRequest.lineItems) &&
-        Objects.equals(this.description, createPaymentRequest.description) &&
+        equalsNullable(this.description, createPaymentRequest.description) &&
         Objects.equals(this.metadata, createPaymentRequest.metadata) &&
         Objects.equals(this.customerAddress, createPaymentRequest.customerAddress) &&
         Objects.equals(this.shippingAddress, createPaymentRequest.shippingAddress) &&
-        Objects.equals(this.paymentMethodId, createPaymentRequest.paymentMethodId) &&
-        Objects.equals(this.supportedPaymentMethods, createPaymentRequest.supportedPaymentMethods) &&
-        Objects.equals(this.offSession, createPaymentRequest.offSession);
+        equalsNullable(this.paymentMethodId, createPaymentRequest.paymentMethodId) &&
+        equalsNullable(this.supportedPaymentMethods, createPaymentRequest.supportedPaymentMethods) &&
+        equalsNullable(this.offSession, createPaymentRequest.offSession);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, lineItems, description, metadata, customerAddress, shippingAddress, paymentMethodId, supportedPaymentMethods, offSession);
+    return Objects.hash(currency, lineItems, hashCodeNullable(description), metadata, customerAddress, shippingAddress, hashCodeNullable(paymentMethodId), hashCodeNullable(supportedPaymentMethods), hashCodeNullable(offSession));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

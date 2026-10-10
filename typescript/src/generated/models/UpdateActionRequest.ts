@@ -32,25 +32,25 @@ export interface UpdateActionRequest {
      * @type {string}
      * @memberof UpdateActionRequest
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateActionRequest
      */
-    targetServiceId?: string;
+    targetServiceId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateActionRequest
      */
-    targetPath?: string;
+    targetPath?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateActionRequest
      */
-    requestBody?: string;
+    requestBody?: string | null;
     /**
      * 
      * @type {ActionScheduleType}
@@ -62,43 +62,43 @@ export interface UpdateActionRequest {
      * @type {string}
      * @memberof UpdateActionRequest
      */
-    cronExpression?: string;
+    cronExpression?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateActionRequest
      */
-    timezone?: string;
+    timezone?: string | null;
     /**
      * 
      * @type {Date}
      * @memberof UpdateActionRequest
      */
-    windowStart?: Date;
+    windowStart?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof UpdateActionRequest
      */
-    windowEnd?: Date;
+    windowEnd?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof UpdateActionRequest
      */
-    scheduledAt?: Date;
+    scheduledAt?: Date | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateActionRequest
      */
-    retryable?: boolean;
+    retryable?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateActionRequest
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
 }
 
 

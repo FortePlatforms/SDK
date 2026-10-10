@@ -36,13 +36,13 @@ export interface BuildStepLog {
      * @type {BuildStepLogPreviousStatusType}
      * @memberof BuildStepLog
      */
-    previousStatus?: BuildStepLogPreviousStatusType;
+    previousStatus?: BuildStepLogPreviousStatusType | null;
     /**
      * 
      * @type {BuildStepLogNewStatusType}
      * @memberof BuildStepLog
      */
-    newStatus?: BuildStepLogNewStatusType;
+    newStatus?: BuildStepLogNewStatusType | null;
 }
 
 

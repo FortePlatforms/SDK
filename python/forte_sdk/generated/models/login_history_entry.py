@@ -73,6 +73,21 @@ class LoginHistoryEntry(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if source_ip_address (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_ip_address is None and "source_ip_address" in self.model_fields_set:
+            _dict['sourceIpAddress'] = None
+
+        # set to None if user_agent (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_agent is None and "user_agent" in self.model_fields_set:
+            _dict['userAgent'] = None
+
+        # set to None if device_description (nullable) is None
+        # and model_fields_set contains the field
+        if self.device_description is None and "device_description" in self.model_fields_set:
+            _dict['deviceDescription'] = None
+
         return _dict
 
     @classmethod

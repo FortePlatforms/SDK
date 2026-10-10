@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -78,144 +82,109 @@ public class ManagedDatabaseMetricPoint {
   private OffsetDateTime timestamp;
 
   public static final String JSON_PROPERTY_INTERVAL_MS = "intervalMs";
-  @javax.annotation.Nullable
-  private Long intervalMs;
+  private JsonNullable<Long> intervalMs = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_ACTIVE_TIME_MS = "activeTimeMs";
-  @javax.annotation.Nullable
-  private Long activeTimeMs;
+  private JsonNullable<Long> activeTimeMs = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_XACT_COMMIT = "xactCommit";
-  @javax.annotation.Nullable
-  private Long xactCommit;
+  private JsonNullable<Long> xactCommit = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_XACT_ROLLBACK = "xactRollback";
-  @javax.annotation.Nullable
-  private Long xactRollback;
+  private JsonNullable<Long> xactRollback = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_BLKS_HIT = "blksHit";
-  @javax.annotation.Nullable
-  private Long blksHit;
+  private JsonNullable<Long> blksHit = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_BLKS_READ = "blksRead";
-  @javax.annotation.Nullable
-  private Long blksRead;
+  private JsonNullable<Long> blksRead = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_TUP_RETURNED = "tupReturned";
-  @javax.annotation.Nullable
-  private Long tupReturned;
+  private JsonNullable<Long> tupReturned = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_TUP_FETCHED = "tupFetched";
-  @javax.annotation.Nullable
-  private Long tupFetched;
+  private JsonNullable<Long> tupFetched = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_TUP_INSERTED = "tupInserted";
-  @javax.annotation.Nullable
-  private Long tupInserted;
+  private JsonNullable<Long> tupInserted = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_TUP_UPDATED = "tupUpdated";
-  @javax.annotation.Nullable
-  private Long tupUpdated;
+  private JsonNullable<Long> tupUpdated = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_TUP_DELETED = "tupDeleted";
-  @javax.annotation.Nullable
-  private Long tupDeleted;
+  private JsonNullable<Long> tupDeleted = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_TEMP_FILES = "tempFiles";
-  @javax.annotation.Nullable
-  private Long tempFiles;
+  private JsonNullable<Long> tempFiles = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_TEMP_BYTES = "tempBytes";
-  @javax.annotation.Nullable
-  private Long tempBytes;
+  private JsonNullable<Long> tempBytes = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_DEADLOCKS = "deadlocks";
-  @javax.annotation.Nullable
-  private Long deadlocks;
+  private JsonNullable<Long> deadlocks = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_STMT_TOTAL_EXEC_MS = "stmtTotalExecMs";
-  @javax.annotation.Nullable
-  private Long stmtTotalExecMs;
+  private JsonNullable<Long> stmtTotalExecMs = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_STMT_CALLS = "stmtCalls";
-  @javax.annotation.Nullable
-  private Long stmtCalls;
+  private JsonNullable<Long> stmtCalls = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_STMT_WAL_BYTES = "stmtWalBytes";
-  @javax.annotation.Nullable
-  private Long stmtWalBytes;
+  private JsonNullable<Long> stmtWalBytes = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_STMT_TEMP_BLKS = "stmtTempBlks";
-  @javax.annotation.Nullable
-  private Long stmtTempBlks;
+  private JsonNullable<Long> stmtTempBlks = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_QUERY_COUNT = "queryCount";
-  @javax.annotation.Nullable
-  private Long queryCount;
+  private JsonNullable<Long> queryCount = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_AVG_QUERY_TIME_MICROS = "avgQueryTimeMicros";
-  @javax.annotation.Nullable
-  private Long avgQueryTimeMicros;
+  private JsonNullable<Long> avgQueryTimeMicros = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_CLIENT_CONNECTIONS = "clientConnections";
-  @javax.annotation.Nullable
-  private Long clientConnections;
+  private JsonNullable<Long> clientConnections = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_SERVER_CONNECTIONS = "serverConnections";
-  @javax.annotation.Nullable
-  private Long serverConnections;
+  private JsonNullable<Long> serverConnections = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_CL_WAITING = "clWaiting";
-  @javax.annotation.Nullable
-  private Long clWaiting;
+  private JsonNullable<Long> clWaiting = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_PGB_QUERY_TIME_MICROS = "pgbQueryTimeMicros";
-  @javax.annotation.Nullable
-  private Long pgbQueryTimeMicros;
+  private JsonNullable<Long> pgbQueryTimeMicros = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_PGB_WAIT_TIME_MICROS = "pgbWaitTimeMicros";
-  @javax.annotation.Nullable
-  private Long pgbWaitTimeMicros;
+  private JsonNullable<Long> pgbWaitTimeMicros = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_PGB_XACT_COUNT = "pgbXactCount";
-  @javax.annotation.Nullable
-  private Long pgbXactCount;
+  private JsonNullable<Long> pgbXactCount = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_PGB_XACT_TIME_MICROS = "pgbXactTimeMicros";
-  @javax.annotation.Nullable
-  private Long pgbXactTimeMicros;
+  private JsonNullable<Long> pgbXactTimeMicros = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_MAX_WAIT_MICROS = "maxWaitMicros";
-  @javax.annotation.Nullable
-  private Long maxWaitMicros;
+  private JsonNullable<Long> maxWaitMicros = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_POOL_SIZE = "poolSize";
-  @javax.annotation.Nullable
-  private Long poolSize;
+  private JsonNullable<Long> poolSize = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_SESSION_TIME_MS = "sessionTimeMs";
-  @javax.annotation.Nullable
-  private Long sessionTimeMs;
+  private JsonNullable<Long> sessionTimeMs = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_IDLE_IN_TRANSACTION_TIME_MS = "idleInTransactionTimeMs";
-  @javax.annotation.Nullable
-  private Long idleInTransactionTimeMs;
+  private JsonNullable<Long> idleInTransactionTimeMs = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_SESSIONS_ABNORMAL = "sessionsAbnormal";
-  @javax.annotation.Nullable
-  private Long sessionsAbnormal;
+  private JsonNullable<Long> sessionsAbnormal = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_BACKENDS = "backends";
-  @javax.annotation.Nullable
-  private Long backends;
+  private JsonNullable<Long> backends = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_LOGICAL_SIZE_BYTES = "logicalSizeBytes";
-  @javax.annotation.Nullable
-  private Long logicalSizeBytes;
+  private JsonNullable<Long> logicalSizeBytes = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_PHYSICAL_SIZE_BYTES = "physicalSizeBytes";
-  @javax.annotation.Nullable
-  private Long physicalSizeBytes;
+  private JsonNullable<Long> physicalSizeBytes = JsonNullable.<Long>undefined();
 
   public ManagedDatabaseMetricPoint() { 
   }
@@ -245,7 +214,7 @@ public class ManagedDatabaseMetricPoint {
 
 
   public ManagedDatabaseMetricPoint intervalMs(@javax.annotation.Nullable Long intervalMs) {
-    this.intervalMs = intervalMs;
+    this.intervalMs = JsonNullable.<Long>of(intervalMs);
     return this;
   }
 
@@ -254,22 +223,30 @@ public class ManagedDatabaseMetricPoint {
    * @return intervalMs
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INTERVAL_MS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getIntervalMs() {
-    return intervalMs;
+        return intervalMs.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INTERVAL_MS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIntervalMs(@javax.annotation.Nullable Long intervalMs) {
+
+  public JsonNullable<Long> getIntervalMs_JsonNullable() {
+    return intervalMs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INTERVAL_MS)
+  public void setIntervalMs_JsonNullable(JsonNullable<Long> intervalMs) {
     this.intervalMs = intervalMs;
+  }
+
+  public void setIntervalMs(@javax.annotation.Nullable Long intervalMs) {
+    this.intervalMs = JsonNullable.<Long>of(intervalMs);
   }
 
 
   public ManagedDatabaseMetricPoint activeTimeMs(@javax.annotation.Nullable Long activeTimeMs) {
-    this.activeTimeMs = activeTimeMs;
+    this.activeTimeMs = JsonNullable.<Long>of(activeTimeMs);
     return this;
   }
 
@@ -278,22 +255,30 @@ public class ManagedDatabaseMetricPoint {
    * @return activeTimeMs
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACTIVE_TIME_MS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getActiveTimeMs() {
-    return activeTimeMs;
+        return activeTimeMs.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACTIVE_TIME_MS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActiveTimeMs(@javax.annotation.Nullable Long activeTimeMs) {
+
+  public JsonNullable<Long> getActiveTimeMs_JsonNullable() {
+    return activeTimeMs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACTIVE_TIME_MS)
+  public void setActiveTimeMs_JsonNullable(JsonNullable<Long> activeTimeMs) {
     this.activeTimeMs = activeTimeMs;
+  }
+
+  public void setActiveTimeMs(@javax.annotation.Nullable Long activeTimeMs) {
+    this.activeTimeMs = JsonNullable.<Long>of(activeTimeMs);
   }
 
 
   public ManagedDatabaseMetricPoint xactCommit(@javax.annotation.Nullable Long xactCommit) {
-    this.xactCommit = xactCommit;
+    this.xactCommit = JsonNullable.<Long>of(xactCommit);
     return this;
   }
 
@@ -302,22 +287,30 @@ public class ManagedDatabaseMetricPoint {
    * @return xactCommit
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_XACT_COMMIT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getXactCommit() {
-    return xactCommit;
+        return xactCommit.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_XACT_COMMIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setXactCommit(@javax.annotation.Nullable Long xactCommit) {
+
+  public JsonNullable<Long> getXactCommit_JsonNullable() {
+    return xactCommit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_XACT_COMMIT)
+  public void setXactCommit_JsonNullable(JsonNullable<Long> xactCommit) {
     this.xactCommit = xactCommit;
+  }
+
+  public void setXactCommit(@javax.annotation.Nullable Long xactCommit) {
+    this.xactCommit = JsonNullable.<Long>of(xactCommit);
   }
 
 
   public ManagedDatabaseMetricPoint xactRollback(@javax.annotation.Nullable Long xactRollback) {
-    this.xactRollback = xactRollback;
+    this.xactRollback = JsonNullable.<Long>of(xactRollback);
     return this;
   }
 
@@ -326,22 +319,30 @@ public class ManagedDatabaseMetricPoint {
    * @return xactRollback
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_XACT_ROLLBACK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getXactRollback() {
-    return xactRollback;
+        return xactRollback.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_XACT_ROLLBACK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setXactRollback(@javax.annotation.Nullable Long xactRollback) {
+
+  public JsonNullable<Long> getXactRollback_JsonNullable() {
+    return xactRollback;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_XACT_ROLLBACK)
+  public void setXactRollback_JsonNullable(JsonNullable<Long> xactRollback) {
     this.xactRollback = xactRollback;
+  }
+
+  public void setXactRollback(@javax.annotation.Nullable Long xactRollback) {
+    this.xactRollback = JsonNullable.<Long>of(xactRollback);
   }
 
 
   public ManagedDatabaseMetricPoint blksHit(@javax.annotation.Nullable Long blksHit) {
-    this.blksHit = blksHit;
+    this.blksHit = JsonNullable.<Long>of(blksHit);
     return this;
   }
 
@@ -350,22 +351,30 @@ public class ManagedDatabaseMetricPoint {
    * @return blksHit
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BLKS_HIT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getBlksHit() {
-    return blksHit;
+        return blksHit.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BLKS_HIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlksHit(@javax.annotation.Nullable Long blksHit) {
+
+  public JsonNullable<Long> getBlksHit_JsonNullable() {
+    return blksHit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BLKS_HIT)
+  public void setBlksHit_JsonNullable(JsonNullable<Long> blksHit) {
     this.blksHit = blksHit;
+  }
+
+  public void setBlksHit(@javax.annotation.Nullable Long blksHit) {
+    this.blksHit = JsonNullable.<Long>of(blksHit);
   }
 
 
   public ManagedDatabaseMetricPoint blksRead(@javax.annotation.Nullable Long blksRead) {
-    this.blksRead = blksRead;
+    this.blksRead = JsonNullable.<Long>of(blksRead);
     return this;
   }
 
@@ -374,22 +383,30 @@ public class ManagedDatabaseMetricPoint {
    * @return blksRead
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BLKS_READ, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getBlksRead() {
-    return blksRead;
+        return blksRead.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BLKS_READ, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlksRead(@javax.annotation.Nullable Long blksRead) {
+
+  public JsonNullable<Long> getBlksRead_JsonNullable() {
+    return blksRead;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BLKS_READ)
+  public void setBlksRead_JsonNullable(JsonNullable<Long> blksRead) {
     this.blksRead = blksRead;
+  }
+
+  public void setBlksRead(@javax.annotation.Nullable Long blksRead) {
+    this.blksRead = JsonNullable.<Long>of(blksRead);
   }
 
 
   public ManagedDatabaseMetricPoint tupReturned(@javax.annotation.Nullable Long tupReturned) {
-    this.tupReturned = tupReturned;
+    this.tupReturned = JsonNullable.<Long>of(tupReturned);
     return this;
   }
 
@@ -398,22 +415,30 @@ public class ManagedDatabaseMetricPoint {
    * @return tupReturned
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TUP_RETURNED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTupReturned() {
-    return tupReturned;
+        return tupReturned.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TUP_RETURNED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTupReturned(@javax.annotation.Nullable Long tupReturned) {
+
+  public JsonNullable<Long> getTupReturned_JsonNullable() {
+    return tupReturned;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TUP_RETURNED)
+  public void setTupReturned_JsonNullable(JsonNullable<Long> tupReturned) {
     this.tupReturned = tupReturned;
+  }
+
+  public void setTupReturned(@javax.annotation.Nullable Long tupReturned) {
+    this.tupReturned = JsonNullable.<Long>of(tupReturned);
   }
 
 
   public ManagedDatabaseMetricPoint tupFetched(@javax.annotation.Nullable Long tupFetched) {
-    this.tupFetched = tupFetched;
+    this.tupFetched = JsonNullable.<Long>of(tupFetched);
     return this;
   }
 
@@ -422,22 +447,30 @@ public class ManagedDatabaseMetricPoint {
    * @return tupFetched
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TUP_FETCHED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTupFetched() {
-    return tupFetched;
+        return tupFetched.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TUP_FETCHED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTupFetched(@javax.annotation.Nullable Long tupFetched) {
+
+  public JsonNullable<Long> getTupFetched_JsonNullable() {
+    return tupFetched;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TUP_FETCHED)
+  public void setTupFetched_JsonNullable(JsonNullable<Long> tupFetched) {
     this.tupFetched = tupFetched;
+  }
+
+  public void setTupFetched(@javax.annotation.Nullable Long tupFetched) {
+    this.tupFetched = JsonNullable.<Long>of(tupFetched);
   }
 
 
   public ManagedDatabaseMetricPoint tupInserted(@javax.annotation.Nullable Long tupInserted) {
-    this.tupInserted = tupInserted;
+    this.tupInserted = JsonNullable.<Long>of(tupInserted);
     return this;
   }
 
@@ -446,22 +479,30 @@ public class ManagedDatabaseMetricPoint {
    * @return tupInserted
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TUP_INSERTED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTupInserted() {
-    return tupInserted;
+        return tupInserted.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TUP_INSERTED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTupInserted(@javax.annotation.Nullable Long tupInserted) {
+
+  public JsonNullable<Long> getTupInserted_JsonNullable() {
+    return tupInserted;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TUP_INSERTED)
+  public void setTupInserted_JsonNullable(JsonNullable<Long> tupInserted) {
     this.tupInserted = tupInserted;
+  }
+
+  public void setTupInserted(@javax.annotation.Nullable Long tupInserted) {
+    this.tupInserted = JsonNullable.<Long>of(tupInserted);
   }
 
 
   public ManagedDatabaseMetricPoint tupUpdated(@javax.annotation.Nullable Long tupUpdated) {
-    this.tupUpdated = tupUpdated;
+    this.tupUpdated = JsonNullable.<Long>of(tupUpdated);
     return this;
   }
 
@@ -470,22 +511,30 @@ public class ManagedDatabaseMetricPoint {
    * @return tupUpdated
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TUP_UPDATED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTupUpdated() {
-    return tupUpdated;
+        return tupUpdated.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TUP_UPDATED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTupUpdated(@javax.annotation.Nullable Long tupUpdated) {
+
+  public JsonNullable<Long> getTupUpdated_JsonNullable() {
+    return tupUpdated;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TUP_UPDATED)
+  public void setTupUpdated_JsonNullable(JsonNullable<Long> tupUpdated) {
     this.tupUpdated = tupUpdated;
+  }
+
+  public void setTupUpdated(@javax.annotation.Nullable Long tupUpdated) {
+    this.tupUpdated = JsonNullable.<Long>of(tupUpdated);
   }
 
 
   public ManagedDatabaseMetricPoint tupDeleted(@javax.annotation.Nullable Long tupDeleted) {
-    this.tupDeleted = tupDeleted;
+    this.tupDeleted = JsonNullable.<Long>of(tupDeleted);
     return this;
   }
 
@@ -494,22 +543,30 @@ public class ManagedDatabaseMetricPoint {
    * @return tupDeleted
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TUP_DELETED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTupDeleted() {
-    return tupDeleted;
+        return tupDeleted.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TUP_DELETED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTupDeleted(@javax.annotation.Nullable Long tupDeleted) {
+
+  public JsonNullable<Long> getTupDeleted_JsonNullable() {
+    return tupDeleted;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TUP_DELETED)
+  public void setTupDeleted_JsonNullable(JsonNullable<Long> tupDeleted) {
     this.tupDeleted = tupDeleted;
+  }
+
+  public void setTupDeleted(@javax.annotation.Nullable Long tupDeleted) {
+    this.tupDeleted = JsonNullable.<Long>of(tupDeleted);
   }
 
 
   public ManagedDatabaseMetricPoint tempFiles(@javax.annotation.Nullable Long tempFiles) {
-    this.tempFiles = tempFiles;
+    this.tempFiles = JsonNullable.<Long>of(tempFiles);
     return this;
   }
 
@@ -518,22 +575,30 @@ public class ManagedDatabaseMetricPoint {
    * @return tempFiles
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TEMP_FILES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTempFiles() {
-    return tempFiles;
+        return tempFiles.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TEMP_FILES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTempFiles(@javax.annotation.Nullable Long tempFiles) {
+
+  public JsonNullable<Long> getTempFiles_JsonNullable() {
+    return tempFiles;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TEMP_FILES)
+  public void setTempFiles_JsonNullable(JsonNullable<Long> tempFiles) {
     this.tempFiles = tempFiles;
+  }
+
+  public void setTempFiles(@javax.annotation.Nullable Long tempFiles) {
+    this.tempFiles = JsonNullable.<Long>of(tempFiles);
   }
 
 
   public ManagedDatabaseMetricPoint tempBytes(@javax.annotation.Nullable Long tempBytes) {
-    this.tempBytes = tempBytes;
+    this.tempBytes = JsonNullable.<Long>of(tempBytes);
     return this;
   }
 
@@ -542,22 +607,30 @@ public class ManagedDatabaseMetricPoint {
    * @return tempBytes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TEMP_BYTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTempBytes() {
-    return tempBytes;
+        return tempBytes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TEMP_BYTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTempBytes(@javax.annotation.Nullable Long tempBytes) {
+
+  public JsonNullable<Long> getTempBytes_JsonNullable() {
+    return tempBytes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TEMP_BYTES)
+  public void setTempBytes_JsonNullable(JsonNullable<Long> tempBytes) {
     this.tempBytes = tempBytes;
+  }
+
+  public void setTempBytes(@javax.annotation.Nullable Long tempBytes) {
+    this.tempBytes = JsonNullable.<Long>of(tempBytes);
   }
 
 
   public ManagedDatabaseMetricPoint deadlocks(@javax.annotation.Nullable Long deadlocks) {
-    this.deadlocks = deadlocks;
+    this.deadlocks = JsonNullable.<Long>of(deadlocks);
     return this;
   }
 
@@ -566,22 +639,30 @@ public class ManagedDatabaseMetricPoint {
    * @return deadlocks
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DEADLOCKS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getDeadlocks() {
-    return deadlocks;
+        return deadlocks.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DEADLOCKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeadlocks(@javax.annotation.Nullable Long deadlocks) {
+
+  public JsonNullable<Long> getDeadlocks_JsonNullable() {
+    return deadlocks;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DEADLOCKS)
+  public void setDeadlocks_JsonNullable(JsonNullable<Long> deadlocks) {
     this.deadlocks = deadlocks;
+  }
+
+  public void setDeadlocks(@javax.annotation.Nullable Long deadlocks) {
+    this.deadlocks = JsonNullable.<Long>of(deadlocks);
   }
 
 
   public ManagedDatabaseMetricPoint stmtTotalExecMs(@javax.annotation.Nullable Long stmtTotalExecMs) {
-    this.stmtTotalExecMs = stmtTotalExecMs;
+    this.stmtTotalExecMs = JsonNullable.<Long>of(stmtTotalExecMs);
     return this;
   }
 
@@ -590,22 +671,30 @@ public class ManagedDatabaseMetricPoint {
    * @return stmtTotalExecMs
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STMT_TOTAL_EXEC_MS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getStmtTotalExecMs() {
-    return stmtTotalExecMs;
+        return stmtTotalExecMs.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STMT_TOTAL_EXEC_MS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStmtTotalExecMs(@javax.annotation.Nullable Long stmtTotalExecMs) {
+
+  public JsonNullable<Long> getStmtTotalExecMs_JsonNullable() {
+    return stmtTotalExecMs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STMT_TOTAL_EXEC_MS)
+  public void setStmtTotalExecMs_JsonNullable(JsonNullable<Long> stmtTotalExecMs) {
     this.stmtTotalExecMs = stmtTotalExecMs;
+  }
+
+  public void setStmtTotalExecMs(@javax.annotation.Nullable Long stmtTotalExecMs) {
+    this.stmtTotalExecMs = JsonNullable.<Long>of(stmtTotalExecMs);
   }
 
 
   public ManagedDatabaseMetricPoint stmtCalls(@javax.annotation.Nullable Long stmtCalls) {
-    this.stmtCalls = stmtCalls;
+    this.stmtCalls = JsonNullable.<Long>of(stmtCalls);
     return this;
   }
 
@@ -614,22 +703,30 @@ public class ManagedDatabaseMetricPoint {
    * @return stmtCalls
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STMT_CALLS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getStmtCalls() {
-    return stmtCalls;
+        return stmtCalls.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STMT_CALLS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStmtCalls(@javax.annotation.Nullable Long stmtCalls) {
+
+  public JsonNullable<Long> getStmtCalls_JsonNullable() {
+    return stmtCalls;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STMT_CALLS)
+  public void setStmtCalls_JsonNullable(JsonNullable<Long> stmtCalls) {
     this.stmtCalls = stmtCalls;
+  }
+
+  public void setStmtCalls(@javax.annotation.Nullable Long stmtCalls) {
+    this.stmtCalls = JsonNullable.<Long>of(stmtCalls);
   }
 
 
   public ManagedDatabaseMetricPoint stmtWalBytes(@javax.annotation.Nullable Long stmtWalBytes) {
-    this.stmtWalBytes = stmtWalBytes;
+    this.stmtWalBytes = JsonNullable.<Long>of(stmtWalBytes);
     return this;
   }
 
@@ -638,22 +735,30 @@ public class ManagedDatabaseMetricPoint {
    * @return stmtWalBytes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STMT_WAL_BYTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getStmtWalBytes() {
-    return stmtWalBytes;
+        return stmtWalBytes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STMT_WAL_BYTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStmtWalBytes(@javax.annotation.Nullable Long stmtWalBytes) {
+
+  public JsonNullable<Long> getStmtWalBytes_JsonNullable() {
+    return stmtWalBytes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STMT_WAL_BYTES)
+  public void setStmtWalBytes_JsonNullable(JsonNullable<Long> stmtWalBytes) {
     this.stmtWalBytes = stmtWalBytes;
+  }
+
+  public void setStmtWalBytes(@javax.annotation.Nullable Long stmtWalBytes) {
+    this.stmtWalBytes = JsonNullable.<Long>of(stmtWalBytes);
   }
 
 
   public ManagedDatabaseMetricPoint stmtTempBlks(@javax.annotation.Nullable Long stmtTempBlks) {
-    this.stmtTempBlks = stmtTempBlks;
+    this.stmtTempBlks = JsonNullable.<Long>of(stmtTempBlks);
     return this;
   }
 
@@ -662,22 +767,30 @@ public class ManagedDatabaseMetricPoint {
    * @return stmtTempBlks
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STMT_TEMP_BLKS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getStmtTempBlks() {
-    return stmtTempBlks;
+        return stmtTempBlks.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STMT_TEMP_BLKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStmtTempBlks(@javax.annotation.Nullable Long stmtTempBlks) {
+
+  public JsonNullable<Long> getStmtTempBlks_JsonNullable() {
+    return stmtTempBlks;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STMT_TEMP_BLKS)
+  public void setStmtTempBlks_JsonNullable(JsonNullable<Long> stmtTempBlks) {
     this.stmtTempBlks = stmtTempBlks;
+  }
+
+  public void setStmtTempBlks(@javax.annotation.Nullable Long stmtTempBlks) {
+    this.stmtTempBlks = JsonNullable.<Long>of(stmtTempBlks);
   }
 
 
   public ManagedDatabaseMetricPoint queryCount(@javax.annotation.Nullable Long queryCount) {
-    this.queryCount = queryCount;
+    this.queryCount = JsonNullable.<Long>of(queryCount);
     return this;
   }
 
@@ -686,22 +799,30 @@ public class ManagedDatabaseMetricPoint {
    * @return queryCount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_QUERY_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getQueryCount() {
-    return queryCount;
+        return queryCount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_QUERY_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQueryCount(@javax.annotation.Nullable Long queryCount) {
+
+  public JsonNullable<Long> getQueryCount_JsonNullable() {
+    return queryCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_QUERY_COUNT)
+  public void setQueryCount_JsonNullable(JsonNullable<Long> queryCount) {
     this.queryCount = queryCount;
+  }
+
+  public void setQueryCount(@javax.annotation.Nullable Long queryCount) {
+    this.queryCount = JsonNullable.<Long>of(queryCount);
   }
 
 
   public ManagedDatabaseMetricPoint avgQueryTimeMicros(@javax.annotation.Nullable Long avgQueryTimeMicros) {
-    this.avgQueryTimeMicros = avgQueryTimeMicros;
+    this.avgQueryTimeMicros = JsonNullable.<Long>of(avgQueryTimeMicros);
     return this;
   }
 
@@ -710,22 +831,30 @@ public class ManagedDatabaseMetricPoint {
    * @return avgQueryTimeMicros
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AVG_QUERY_TIME_MICROS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getAvgQueryTimeMicros() {
-    return avgQueryTimeMicros;
+        return avgQueryTimeMicros.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AVG_QUERY_TIME_MICROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvgQueryTimeMicros(@javax.annotation.Nullable Long avgQueryTimeMicros) {
+
+  public JsonNullable<Long> getAvgQueryTimeMicros_JsonNullable() {
+    return avgQueryTimeMicros;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AVG_QUERY_TIME_MICROS)
+  public void setAvgQueryTimeMicros_JsonNullable(JsonNullable<Long> avgQueryTimeMicros) {
     this.avgQueryTimeMicros = avgQueryTimeMicros;
+  }
+
+  public void setAvgQueryTimeMicros(@javax.annotation.Nullable Long avgQueryTimeMicros) {
+    this.avgQueryTimeMicros = JsonNullable.<Long>of(avgQueryTimeMicros);
   }
 
 
   public ManagedDatabaseMetricPoint clientConnections(@javax.annotation.Nullable Long clientConnections) {
-    this.clientConnections = clientConnections;
+    this.clientConnections = JsonNullable.<Long>of(clientConnections);
     return this;
   }
 
@@ -734,22 +863,30 @@ public class ManagedDatabaseMetricPoint {
    * @return clientConnections
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CLIENT_CONNECTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getClientConnections() {
-    return clientConnections;
+        return clientConnections.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CLIENT_CONNECTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClientConnections(@javax.annotation.Nullable Long clientConnections) {
+
+  public JsonNullable<Long> getClientConnections_JsonNullable() {
+    return clientConnections;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLIENT_CONNECTIONS)
+  public void setClientConnections_JsonNullable(JsonNullable<Long> clientConnections) {
     this.clientConnections = clientConnections;
+  }
+
+  public void setClientConnections(@javax.annotation.Nullable Long clientConnections) {
+    this.clientConnections = JsonNullable.<Long>of(clientConnections);
   }
 
 
   public ManagedDatabaseMetricPoint serverConnections(@javax.annotation.Nullable Long serverConnections) {
-    this.serverConnections = serverConnections;
+    this.serverConnections = JsonNullable.<Long>of(serverConnections);
     return this;
   }
 
@@ -758,22 +895,30 @@ public class ManagedDatabaseMetricPoint {
    * @return serverConnections
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SERVER_CONNECTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getServerConnections() {
-    return serverConnections;
+        return serverConnections.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SERVER_CONNECTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setServerConnections(@javax.annotation.Nullable Long serverConnections) {
+
+  public JsonNullable<Long> getServerConnections_JsonNullable() {
+    return serverConnections;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SERVER_CONNECTIONS)
+  public void setServerConnections_JsonNullable(JsonNullable<Long> serverConnections) {
     this.serverConnections = serverConnections;
+  }
+
+  public void setServerConnections(@javax.annotation.Nullable Long serverConnections) {
+    this.serverConnections = JsonNullable.<Long>of(serverConnections);
   }
 
 
   public ManagedDatabaseMetricPoint clWaiting(@javax.annotation.Nullable Long clWaiting) {
-    this.clWaiting = clWaiting;
+    this.clWaiting = JsonNullable.<Long>of(clWaiting);
     return this;
   }
 
@@ -782,22 +927,30 @@ public class ManagedDatabaseMetricPoint {
    * @return clWaiting
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CL_WAITING, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getClWaiting() {
-    return clWaiting;
+        return clWaiting.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CL_WAITING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClWaiting(@javax.annotation.Nullable Long clWaiting) {
+
+  public JsonNullable<Long> getClWaiting_JsonNullable() {
+    return clWaiting;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CL_WAITING)
+  public void setClWaiting_JsonNullable(JsonNullable<Long> clWaiting) {
     this.clWaiting = clWaiting;
+  }
+
+  public void setClWaiting(@javax.annotation.Nullable Long clWaiting) {
+    this.clWaiting = JsonNullable.<Long>of(clWaiting);
   }
 
 
   public ManagedDatabaseMetricPoint pgbQueryTimeMicros(@javax.annotation.Nullable Long pgbQueryTimeMicros) {
-    this.pgbQueryTimeMicros = pgbQueryTimeMicros;
+    this.pgbQueryTimeMicros = JsonNullable.<Long>of(pgbQueryTimeMicros);
     return this;
   }
 
@@ -806,22 +959,30 @@ public class ManagedDatabaseMetricPoint {
    * @return pgbQueryTimeMicros
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PGB_QUERY_TIME_MICROS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPgbQueryTimeMicros() {
-    return pgbQueryTimeMicros;
+        return pgbQueryTimeMicros.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PGB_QUERY_TIME_MICROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPgbQueryTimeMicros(@javax.annotation.Nullable Long pgbQueryTimeMicros) {
+
+  public JsonNullable<Long> getPgbQueryTimeMicros_JsonNullable() {
+    return pgbQueryTimeMicros;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PGB_QUERY_TIME_MICROS)
+  public void setPgbQueryTimeMicros_JsonNullable(JsonNullable<Long> pgbQueryTimeMicros) {
     this.pgbQueryTimeMicros = pgbQueryTimeMicros;
+  }
+
+  public void setPgbQueryTimeMicros(@javax.annotation.Nullable Long pgbQueryTimeMicros) {
+    this.pgbQueryTimeMicros = JsonNullable.<Long>of(pgbQueryTimeMicros);
   }
 
 
   public ManagedDatabaseMetricPoint pgbWaitTimeMicros(@javax.annotation.Nullable Long pgbWaitTimeMicros) {
-    this.pgbWaitTimeMicros = pgbWaitTimeMicros;
+    this.pgbWaitTimeMicros = JsonNullable.<Long>of(pgbWaitTimeMicros);
     return this;
   }
 
@@ -830,22 +991,30 @@ public class ManagedDatabaseMetricPoint {
    * @return pgbWaitTimeMicros
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PGB_WAIT_TIME_MICROS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPgbWaitTimeMicros() {
-    return pgbWaitTimeMicros;
+        return pgbWaitTimeMicros.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PGB_WAIT_TIME_MICROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPgbWaitTimeMicros(@javax.annotation.Nullable Long pgbWaitTimeMicros) {
+
+  public JsonNullable<Long> getPgbWaitTimeMicros_JsonNullable() {
+    return pgbWaitTimeMicros;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PGB_WAIT_TIME_MICROS)
+  public void setPgbWaitTimeMicros_JsonNullable(JsonNullable<Long> pgbWaitTimeMicros) {
     this.pgbWaitTimeMicros = pgbWaitTimeMicros;
+  }
+
+  public void setPgbWaitTimeMicros(@javax.annotation.Nullable Long pgbWaitTimeMicros) {
+    this.pgbWaitTimeMicros = JsonNullable.<Long>of(pgbWaitTimeMicros);
   }
 
 
   public ManagedDatabaseMetricPoint pgbXactCount(@javax.annotation.Nullable Long pgbXactCount) {
-    this.pgbXactCount = pgbXactCount;
+    this.pgbXactCount = JsonNullable.<Long>of(pgbXactCount);
     return this;
   }
 
@@ -854,22 +1023,30 @@ public class ManagedDatabaseMetricPoint {
    * @return pgbXactCount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PGB_XACT_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPgbXactCount() {
-    return pgbXactCount;
+        return pgbXactCount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PGB_XACT_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPgbXactCount(@javax.annotation.Nullable Long pgbXactCount) {
+
+  public JsonNullable<Long> getPgbXactCount_JsonNullable() {
+    return pgbXactCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PGB_XACT_COUNT)
+  public void setPgbXactCount_JsonNullable(JsonNullable<Long> pgbXactCount) {
     this.pgbXactCount = pgbXactCount;
+  }
+
+  public void setPgbXactCount(@javax.annotation.Nullable Long pgbXactCount) {
+    this.pgbXactCount = JsonNullable.<Long>of(pgbXactCount);
   }
 
 
   public ManagedDatabaseMetricPoint pgbXactTimeMicros(@javax.annotation.Nullable Long pgbXactTimeMicros) {
-    this.pgbXactTimeMicros = pgbXactTimeMicros;
+    this.pgbXactTimeMicros = JsonNullable.<Long>of(pgbXactTimeMicros);
     return this;
   }
 
@@ -878,22 +1055,30 @@ public class ManagedDatabaseMetricPoint {
    * @return pgbXactTimeMicros
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PGB_XACT_TIME_MICROS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPgbXactTimeMicros() {
-    return pgbXactTimeMicros;
+        return pgbXactTimeMicros.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PGB_XACT_TIME_MICROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPgbXactTimeMicros(@javax.annotation.Nullable Long pgbXactTimeMicros) {
+
+  public JsonNullable<Long> getPgbXactTimeMicros_JsonNullable() {
+    return pgbXactTimeMicros;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PGB_XACT_TIME_MICROS)
+  public void setPgbXactTimeMicros_JsonNullable(JsonNullable<Long> pgbXactTimeMicros) {
     this.pgbXactTimeMicros = pgbXactTimeMicros;
+  }
+
+  public void setPgbXactTimeMicros(@javax.annotation.Nullable Long pgbXactTimeMicros) {
+    this.pgbXactTimeMicros = JsonNullable.<Long>of(pgbXactTimeMicros);
   }
 
 
   public ManagedDatabaseMetricPoint maxWaitMicros(@javax.annotation.Nullable Long maxWaitMicros) {
-    this.maxWaitMicros = maxWaitMicros;
+    this.maxWaitMicros = JsonNullable.<Long>of(maxWaitMicros);
     return this;
   }
 
@@ -902,22 +1087,30 @@ public class ManagedDatabaseMetricPoint {
    * @return maxWaitMicros
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAX_WAIT_MICROS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getMaxWaitMicros() {
-    return maxWaitMicros;
+        return maxWaitMicros.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MAX_WAIT_MICROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxWaitMicros(@javax.annotation.Nullable Long maxWaitMicros) {
+
+  public JsonNullable<Long> getMaxWaitMicros_JsonNullable() {
+    return maxWaitMicros;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAX_WAIT_MICROS)
+  public void setMaxWaitMicros_JsonNullable(JsonNullable<Long> maxWaitMicros) {
     this.maxWaitMicros = maxWaitMicros;
+  }
+
+  public void setMaxWaitMicros(@javax.annotation.Nullable Long maxWaitMicros) {
+    this.maxWaitMicros = JsonNullable.<Long>of(maxWaitMicros);
   }
 
 
   public ManagedDatabaseMetricPoint poolSize(@javax.annotation.Nullable Long poolSize) {
-    this.poolSize = poolSize;
+    this.poolSize = JsonNullable.<Long>of(poolSize);
     return this;
   }
 
@@ -926,22 +1119,30 @@ public class ManagedDatabaseMetricPoint {
    * @return poolSize
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_POOL_SIZE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPoolSize() {
-    return poolSize;
+        return poolSize.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_POOL_SIZE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPoolSize(@javax.annotation.Nullable Long poolSize) {
+
+  public JsonNullable<Long> getPoolSize_JsonNullable() {
+    return poolSize;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_POOL_SIZE)
+  public void setPoolSize_JsonNullable(JsonNullable<Long> poolSize) {
     this.poolSize = poolSize;
+  }
+
+  public void setPoolSize(@javax.annotation.Nullable Long poolSize) {
+    this.poolSize = JsonNullable.<Long>of(poolSize);
   }
 
 
   public ManagedDatabaseMetricPoint sessionTimeMs(@javax.annotation.Nullable Long sessionTimeMs) {
-    this.sessionTimeMs = sessionTimeMs;
+    this.sessionTimeMs = JsonNullable.<Long>of(sessionTimeMs);
     return this;
   }
 
@@ -950,22 +1151,30 @@ public class ManagedDatabaseMetricPoint {
    * @return sessionTimeMs
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SESSION_TIME_MS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getSessionTimeMs() {
-    return sessionTimeMs;
+        return sessionTimeMs.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SESSION_TIME_MS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSessionTimeMs(@javax.annotation.Nullable Long sessionTimeMs) {
+
+  public JsonNullable<Long> getSessionTimeMs_JsonNullable() {
+    return sessionTimeMs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SESSION_TIME_MS)
+  public void setSessionTimeMs_JsonNullable(JsonNullable<Long> sessionTimeMs) {
     this.sessionTimeMs = sessionTimeMs;
+  }
+
+  public void setSessionTimeMs(@javax.annotation.Nullable Long sessionTimeMs) {
+    this.sessionTimeMs = JsonNullable.<Long>of(sessionTimeMs);
   }
 
 
   public ManagedDatabaseMetricPoint idleInTransactionTimeMs(@javax.annotation.Nullable Long idleInTransactionTimeMs) {
-    this.idleInTransactionTimeMs = idleInTransactionTimeMs;
+    this.idleInTransactionTimeMs = JsonNullable.<Long>of(idleInTransactionTimeMs);
     return this;
   }
 
@@ -974,22 +1183,30 @@ public class ManagedDatabaseMetricPoint {
    * @return idleInTransactionTimeMs
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IDLE_IN_TRANSACTION_TIME_MS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getIdleInTransactionTimeMs() {
-    return idleInTransactionTimeMs;
+        return idleInTransactionTimeMs.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IDLE_IN_TRANSACTION_TIME_MS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdleInTransactionTimeMs(@javax.annotation.Nullable Long idleInTransactionTimeMs) {
+
+  public JsonNullable<Long> getIdleInTransactionTimeMs_JsonNullable() {
+    return idleInTransactionTimeMs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IDLE_IN_TRANSACTION_TIME_MS)
+  public void setIdleInTransactionTimeMs_JsonNullable(JsonNullable<Long> idleInTransactionTimeMs) {
     this.idleInTransactionTimeMs = idleInTransactionTimeMs;
+  }
+
+  public void setIdleInTransactionTimeMs(@javax.annotation.Nullable Long idleInTransactionTimeMs) {
+    this.idleInTransactionTimeMs = JsonNullable.<Long>of(idleInTransactionTimeMs);
   }
 
 
   public ManagedDatabaseMetricPoint sessionsAbnormal(@javax.annotation.Nullable Long sessionsAbnormal) {
-    this.sessionsAbnormal = sessionsAbnormal;
+    this.sessionsAbnormal = JsonNullable.<Long>of(sessionsAbnormal);
     return this;
   }
 
@@ -998,22 +1215,30 @@ public class ManagedDatabaseMetricPoint {
    * @return sessionsAbnormal
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SESSIONS_ABNORMAL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getSessionsAbnormal() {
-    return sessionsAbnormal;
+        return sessionsAbnormal.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SESSIONS_ABNORMAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSessionsAbnormal(@javax.annotation.Nullable Long sessionsAbnormal) {
+
+  public JsonNullable<Long> getSessionsAbnormal_JsonNullable() {
+    return sessionsAbnormal;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SESSIONS_ABNORMAL)
+  public void setSessionsAbnormal_JsonNullable(JsonNullable<Long> sessionsAbnormal) {
     this.sessionsAbnormal = sessionsAbnormal;
+  }
+
+  public void setSessionsAbnormal(@javax.annotation.Nullable Long sessionsAbnormal) {
+    this.sessionsAbnormal = JsonNullable.<Long>of(sessionsAbnormal);
   }
 
 
   public ManagedDatabaseMetricPoint backends(@javax.annotation.Nullable Long backends) {
-    this.backends = backends;
+    this.backends = JsonNullable.<Long>of(backends);
     return this;
   }
 
@@ -1022,22 +1247,30 @@ public class ManagedDatabaseMetricPoint {
    * @return backends
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BACKENDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getBackends() {
-    return backends;
+        return backends.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BACKENDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBackends(@javax.annotation.Nullable Long backends) {
+
+  public JsonNullable<Long> getBackends_JsonNullable() {
+    return backends;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BACKENDS)
+  public void setBackends_JsonNullable(JsonNullable<Long> backends) {
     this.backends = backends;
+  }
+
+  public void setBackends(@javax.annotation.Nullable Long backends) {
+    this.backends = JsonNullable.<Long>of(backends);
   }
 
 
   public ManagedDatabaseMetricPoint logicalSizeBytes(@javax.annotation.Nullable Long logicalSizeBytes) {
-    this.logicalSizeBytes = logicalSizeBytes;
+    this.logicalSizeBytes = JsonNullable.<Long>of(logicalSizeBytes);
     return this;
   }
 
@@ -1046,22 +1279,30 @@ public class ManagedDatabaseMetricPoint {
    * @return logicalSizeBytes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LOGICAL_SIZE_BYTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getLogicalSizeBytes() {
-    return logicalSizeBytes;
+        return logicalSizeBytes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LOGICAL_SIZE_BYTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLogicalSizeBytes(@javax.annotation.Nullable Long logicalSizeBytes) {
+
+  public JsonNullable<Long> getLogicalSizeBytes_JsonNullable() {
+    return logicalSizeBytes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOGICAL_SIZE_BYTES)
+  public void setLogicalSizeBytes_JsonNullable(JsonNullable<Long> logicalSizeBytes) {
     this.logicalSizeBytes = logicalSizeBytes;
+  }
+
+  public void setLogicalSizeBytes(@javax.annotation.Nullable Long logicalSizeBytes) {
+    this.logicalSizeBytes = JsonNullable.<Long>of(logicalSizeBytes);
   }
 
 
   public ManagedDatabaseMetricPoint physicalSizeBytes(@javax.annotation.Nullable Long physicalSizeBytes) {
-    this.physicalSizeBytes = physicalSizeBytes;
+    this.physicalSizeBytes = JsonNullable.<Long>of(physicalSizeBytes);
     return this;
   }
 
@@ -1070,17 +1311,25 @@ public class ManagedDatabaseMetricPoint {
    * @return physicalSizeBytes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_SIZE_BYTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPhysicalSizeBytes() {
-    return physicalSizeBytes;
+        return physicalSizeBytes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHYSICAL_SIZE_BYTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhysicalSizeBytes(@javax.annotation.Nullable Long physicalSizeBytes) {
+
+  public JsonNullable<Long> getPhysicalSizeBytes_JsonNullable() {
+    return physicalSizeBytes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHYSICAL_SIZE_BYTES)
+  public void setPhysicalSizeBytes_JsonNullable(JsonNullable<Long> physicalSizeBytes) {
     this.physicalSizeBytes = physicalSizeBytes;
+  }
+
+  public void setPhysicalSizeBytes(@javax.annotation.Nullable Long physicalSizeBytes) {
+    this.physicalSizeBytes = JsonNullable.<Long>of(physicalSizeBytes);
   }
 
 
@@ -1097,46 +1346,57 @@ public class ManagedDatabaseMetricPoint {
     }
     ManagedDatabaseMetricPoint managedDatabaseMetricPoint = (ManagedDatabaseMetricPoint) o;
     return Objects.equals(this.timestamp, managedDatabaseMetricPoint.timestamp) &&
-        Objects.equals(this.intervalMs, managedDatabaseMetricPoint.intervalMs) &&
-        Objects.equals(this.activeTimeMs, managedDatabaseMetricPoint.activeTimeMs) &&
-        Objects.equals(this.xactCommit, managedDatabaseMetricPoint.xactCommit) &&
-        Objects.equals(this.xactRollback, managedDatabaseMetricPoint.xactRollback) &&
-        Objects.equals(this.blksHit, managedDatabaseMetricPoint.blksHit) &&
-        Objects.equals(this.blksRead, managedDatabaseMetricPoint.blksRead) &&
-        Objects.equals(this.tupReturned, managedDatabaseMetricPoint.tupReturned) &&
-        Objects.equals(this.tupFetched, managedDatabaseMetricPoint.tupFetched) &&
-        Objects.equals(this.tupInserted, managedDatabaseMetricPoint.tupInserted) &&
-        Objects.equals(this.tupUpdated, managedDatabaseMetricPoint.tupUpdated) &&
-        Objects.equals(this.tupDeleted, managedDatabaseMetricPoint.tupDeleted) &&
-        Objects.equals(this.tempFiles, managedDatabaseMetricPoint.tempFiles) &&
-        Objects.equals(this.tempBytes, managedDatabaseMetricPoint.tempBytes) &&
-        Objects.equals(this.deadlocks, managedDatabaseMetricPoint.deadlocks) &&
-        Objects.equals(this.stmtTotalExecMs, managedDatabaseMetricPoint.stmtTotalExecMs) &&
-        Objects.equals(this.stmtCalls, managedDatabaseMetricPoint.stmtCalls) &&
-        Objects.equals(this.stmtWalBytes, managedDatabaseMetricPoint.stmtWalBytes) &&
-        Objects.equals(this.stmtTempBlks, managedDatabaseMetricPoint.stmtTempBlks) &&
-        Objects.equals(this.queryCount, managedDatabaseMetricPoint.queryCount) &&
-        Objects.equals(this.avgQueryTimeMicros, managedDatabaseMetricPoint.avgQueryTimeMicros) &&
-        Objects.equals(this.clientConnections, managedDatabaseMetricPoint.clientConnections) &&
-        Objects.equals(this.serverConnections, managedDatabaseMetricPoint.serverConnections) &&
-        Objects.equals(this.clWaiting, managedDatabaseMetricPoint.clWaiting) &&
-        Objects.equals(this.pgbQueryTimeMicros, managedDatabaseMetricPoint.pgbQueryTimeMicros) &&
-        Objects.equals(this.pgbWaitTimeMicros, managedDatabaseMetricPoint.pgbWaitTimeMicros) &&
-        Objects.equals(this.pgbXactCount, managedDatabaseMetricPoint.pgbXactCount) &&
-        Objects.equals(this.pgbXactTimeMicros, managedDatabaseMetricPoint.pgbXactTimeMicros) &&
-        Objects.equals(this.maxWaitMicros, managedDatabaseMetricPoint.maxWaitMicros) &&
-        Objects.equals(this.poolSize, managedDatabaseMetricPoint.poolSize) &&
-        Objects.equals(this.sessionTimeMs, managedDatabaseMetricPoint.sessionTimeMs) &&
-        Objects.equals(this.idleInTransactionTimeMs, managedDatabaseMetricPoint.idleInTransactionTimeMs) &&
-        Objects.equals(this.sessionsAbnormal, managedDatabaseMetricPoint.sessionsAbnormal) &&
-        Objects.equals(this.backends, managedDatabaseMetricPoint.backends) &&
-        Objects.equals(this.logicalSizeBytes, managedDatabaseMetricPoint.logicalSizeBytes) &&
-        Objects.equals(this.physicalSizeBytes, managedDatabaseMetricPoint.physicalSizeBytes);
+        equalsNullable(this.intervalMs, managedDatabaseMetricPoint.intervalMs) &&
+        equalsNullable(this.activeTimeMs, managedDatabaseMetricPoint.activeTimeMs) &&
+        equalsNullable(this.xactCommit, managedDatabaseMetricPoint.xactCommit) &&
+        equalsNullable(this.xactRollback, managedDatabaseMetricPoint.xactRollback) &&
+        equalsNullable(this.blksHit, managedDatabaseMetricPoint.blksHit) &&
+        equalsNullable(this.blksRead, managedDatabaseMetricPoint.blksRead) &&
+        equalsNullable(this.tupReturned, managedDatabaseMetricPoint.tupReturned) &&
+        equalsNullable(this.tupFetched, managedDatabaseMetricPoint.tupFetched) &&
+        equalsNullable(this.tupInserted, managedDatabaseMetricPoint.tupInserted) &&
+        equalsNullable(this.tupUpdated, managedDatabaseMetricPoint.tupUpdated) &&
+        equalsNullable(this.tupDeleted, managedDatabaseMetricPoint.tupDeleted) &&
+        equalsNullable(this.tempFiles, managedDatabaseMetricPoint.tempFiles) &&
+        equalsNullable(this.tempBytes, managedDatabaseMetricPoint.tempBytes) &&
+        equalsNullable(this.deadlocks, managedDatabaseMetricPoint.deadlocks) &&
+        equalsNullable(this.stmtTotalExecMs, managedDatabaseMetricPoint.stmtTotalExecMs) &&
+        equalsNullable(this.stmtCalls, managedDatabaseMetricPoint.stmtCalls) &&
+        equalsNullable(this.stmtWalBytes, managedDatabaseMetricPoint.stmtWalBytes) &&
+        equalsNullable(this.stmtTempBlks, managedDatabaseMetricPoint.stmtTempBlks) &&
+        equalsNullable(this.queryCount, managedDatabaseMetricPoint.queryCount) &&
+        equalsNullable(this.avgQueryTimeMicros, managedDatabaseMetricPoint.avgQueryTimeMicros) &&
+        equalsNullable(this.clientConnections, managedDatabaseMetricPoint.clientConnections) &&
+        equalsNullable(this.serverConnections, managedDatabaseMetricPoint.serverConnections) &&
+        equalsNullable(this.clWaiting, managedDatabaseMetricPoint.clWaiting) &&
+        equalsNullable(this.pgbQueryTimeMicros, managedDatabaseMetricPoint.pgbQueryTimeMicros) &&
+        equalsNullable(this.pgbWaitTimeMicros, managedDatabaseMetricPoint.pgbWaitTimeMicros) &&
+        equalsNullable(this.pgbXactCount, managedDatabaseMetricPoint.pgbXactCount) &&
+        equalsNullable(this.pgbXactTimeMicros, managedDatabaseMetricPoint.pgbXactTimeMicros) &&
+        equalsNullable(this.maxWaitMicros, managedDatabaseMetricPoint.maxWaitMicros) &&
+        equalsNullable(this.poolSize, managedDatabaseMetricPoint.poolSize) &&
+        equalsNullable(this.sessionTimeMs, managedDatabaseMetricPoint.sessionTimeMs) &&
+        equalsNullable(this.idleInTransactionTimeMs, managedDatabaseMetricPoint.idleInTransactionTimeMs) &&
+        equalsNullable(this.sessionsAbnormal, managedDatabaseMetricPoint.sessionsAbnormal) &&
+        equalsNullable(this.backends, managedDatabaseMetricPoint.backends) &&
+        equalsNullable(this.logicalSizeBytes, managedDatabaseMetricPoint.logicalSizeBytes) &&
+        equalsNullable(this.physicalSizeBytes, managedDatabaseMetricPoint.physicalSizeBytes);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, intervalMs, activeTimeMs, xactCommit, xactRollback, blksHit, blksRead, tupReturned, tupFetched, tupInserted, tupUpdated, tupDeleted, tempFiles, tempBytes, deadlocks, stmtTotalExecMs, stmtCalls, stmtWalBytes, stmtTempBlks, queryCount, avgQueryTimeMicros, clientConnections, serverConnections, clWaiting, pgbQueryTimeMicros, pgbWaitTimeMicros, pgbXactCount, pgbXactTimeMicros, maxWaitMicros, poolSize, sessionTimeMs, idleInTransactionTimeMs, sessionsAbnormal, backends, logicalSizeBytes, physicalSizeBytes);
+    return Objects.hash(timestamp, hashCodeNullable(intervalMs), hashCodeNullable(activeTimeMs), hashCodeNullable(xactCommit), hashCodeNullable(xactRollback), hashCodeNullable(blksHit), hashCodeNullable(blksRead), hashCodeNullable(tupReturned), hashCodeNullable(tupFetched), hashCodeNullable(tupInserted), hashCodeNullable(tupUpdated), hashCodeNullable(tupDeleted), hashCodeNullable(tempFiles), hashCodeNullable(tempBytes), hashCodeNullable(deadlocks), hashCodeNullable(stmtTotalExecMs), hashCodeNullable(stmtCalls), hashCodeNullable(stmtWalBytes), hashCodeNullable(stmtTempBlks), hashCodeNullable(queryCount), hashCodeNullable(avgQueryTimeMicros), hashCodeNullable(clientConnections), hashCodeNullable(serverConnections), hashCodeNullable(clWaiting), hashCodeNullable(pgbQueryTimeMicros), hashCodeNullable(pgbWaitTimeMicros), hashCodeNullable(pgbXactCount), hashCodeNullable(pgbXactTimeMicros), hashCodeNullable(maxWaitMicros), hashCodeNullable(poolSize), hashCodeNullable(sessionTimeMs), hashCodeNullable(idleInTransactionTimeMs), hashCodeNullable(sessionsAbnormal), hashCodeNullable(backends), hashCodeNullable(logicalSizeBytes), hashCodeNullable(physicalSizeBytes));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

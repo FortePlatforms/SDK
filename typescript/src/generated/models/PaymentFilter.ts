@@ -24,73 +24,73 @@ export interface PaymentFilter {
      * @type {Date}
      * @memberof PaymentFilter
      */
-    minTime?: Date;
+    minTime?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof PaymentFilter
      */
-    maxTime?: Date;
+    maxTime?: Date | null;
     /**
      * 
      * @type {Array<PaymentFilterStatesType>}
      * @memberof PaymentFilter
      */
-    states?: Array<PaymentFilterStatesType>;
+    states?: Array<PaymentFilterStatesType> | null;
     /**
      * 
      * @type {Array<PaymentFilterNotStatesType>}
      * @memberof PaymentFilter
      */
-    notStates?: Array<PaymentFilterNotStatesType>;
+    notStates?: Array<PaymentFilterNotStatesType> | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentFilter
      */
-    userId?: string;
+    userId?: string | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof PaymentFilter
      */
-    ids?: Array<string>;
+    ids?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof PaymentFilter
      */
-    notIds?: Array<string>;
+    notIds?: Array<string> | null;
     /**
      * 
      * @type {boolean}
      * @memberof PaymentFilter
      */
-    subscription?: boolean;
+    subscription?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentFilter
      */
-    lineItemDescription?: string;
+    lineItemDescription?: string | null;
     /**
      * 
      * @type {PaymentFilterProductGroupByType}
      * @memberof PaymentFilter
      */
-    productGroupBy?: PaymentFilterProductGroupByType;
+    productGroupBy?: PaymentFilterProductGroupByType | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentFilter
      */
-    productKey?: string;
+    productKey?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentFilter
      */
-    productMetadataKey?: string;
+    productMetadataKey?: string | null;
 }
 
 

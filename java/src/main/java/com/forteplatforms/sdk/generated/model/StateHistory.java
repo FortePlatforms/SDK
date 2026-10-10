@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -88,8 +92,7 @@ public class StateHistory {
   private StateEnum state;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
-  @javax.annotation.Nullable
-  private String message;
+  private JsonNullable<String> message = JsonNullable.<String>undefined();
 
   public StateHistory() { 
   }
@@ -143,7 +146,7 @@ public class StateHistory {
 
 
   public StateHistory message(@javax.annotation.Nullable String message) {
-    this.message = message;
+    this.message = JsonNullable.<String>of(message);
     return this;
   }
 
@@ -152,17 +155,25 @@ public class StateHistory {
    * @return message
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMessage() {
-    return message;
+        return message.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(@javax.annotation.Nullable String message) {
+
+  public JsonNullable<String> getMessage_JsonNullable() {
+    return message;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  public void setMessage_JsonNullable(JsonNullable<String> message) {
     this.message = message;
+  }
+
+  public void setMessage(@javax.annotation.Nullable String message) {
+    this.message = JsonNullable.<String>of(message);
   }
 
 
@@ -180,12 +191,23 @@ public class StateHistory {
     StateHistory stateHistory = (StateHistory) o;
     return Objects.equals(this.timestamp, stateHistory.timestamp) &&
         Objects.equals(this.state, stateHistory.state) &&
-        Objects.equals(this.message, stateHistory.message);
+        equalsNullable(this.message, stateHistory.message);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, state, message);
+    return Objects.hash(timestamp, state, hashCodeNullable(message));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

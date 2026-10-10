@@ -30,6 +30,10 @@ import com.forteplatforms.sdk.generated.model.UserObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -92,21 +96,18 @@ public class RegisterUserResponse {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_MFA_STATUS = "mfaStatus";
-  @javax.annotation.Nullable
-  private MfaStatusEnum mfaStatus;
+  private JsonNullable<MfaStatusEnum> mfaStatus = JsonNullable.<MfaStatusEnum>undefined();
 
   public static final String JSON_PROPERTY_AVAILABLE_MFA_METHODS = "availableMfaMethods";
-  @javax.annotation.Nullable
-  private List<MfaMethodSummary> availableMfaMethods = new ArrayList<>();
+  private JsonNullable<List<MfaMethodSummary>> availableMfaMethods = JsonNullable.<List<MfaMethodSummary>>undefined();
 
   public static final String JSON_PROPERTY_PENDING_CONTACT_METHODS = "pendingContactMethods";
-  @javax.annotation.Nullable
-  private List<MfaMethodSummary> pendingContactMethods = new ArrayList<>();
+  private JsonNullable<List<MfaMethodSummary>> pendingContactMethods = JsonNullable.<List<MfaMethodSummary>>undefined();
 
   public RegisterUserResponse() { 
   }
@@ -184,7 +185,7 @@ public class RegisterUserResponse {
 
 
   public RegisterUserResponse mfaStatus(@javax.annotation.Nullable MfaStatusEnum mfaStatus) {
-    this.mfaStatus = mfaStatus;
+    this.mfaStatus = JsonNullable.<MfaStatusEnum>of(mfaStatus);
     return this;
   }
 
@@ -193,30 +194,42 @@ public class RegisterUserResponse {
    * @return mfaStatus
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MFA_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public MfaStatusEnum getMfaStatus() {
-    return mfaStatus;
+        return mfaStatus.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MFA_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMfaStatus(@javax.annotation.Nullable MfaStatusEnum mfaStatus) {
+
+  public JsonNullable<MfaStatusEnum> getMfaStatus_JsonNullable() {
+    return mfaStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MFA_STATUS)
+  public void setMfaStatus_JsonNullable(JsonNullable<MfaStatusEnum> mfaStatus) {
     this.mfaStatus = mfaStatus;
+  }
+
+  public void setMfaStatus(@javax.annotation.Nullable MfaStatusEnum mfaStatus) {
+    this.mfaStatus = JsonNullable.<MfaStatusEnum>of(mfaStatus);
   }
 
 
   public RegisterUserResponse availableMfaMethods(@javax.annotation.Nullable List<MfaMethodSummary> availableMfaMethods) {
-    this.availableMfaMethods = availableMfaMethods;
+    this.availableMfaMethods = JsonNullable.<List<MfaMethodSummary>>of(availableMfaMethods);
     return this;
   }
 
   public RegisterUserResponse addAvailableMfaMethodsItem(MfaMethodSummary availableMfaMethodsItem) {
-    if (this.availableMfaMethods == null) {
-      this.availableMfaMethods = new ArrayList<>();
+    if (this.availableMfaMethods == null || !this.availableMfaMethods.isPresent()) {
+      this.availableMfaMethods = JsonNullable.<List<MfaMethodSummary>>of(new ArrayList<>());
     }
-    this.availableMfaMethods.add(availableMfaMethodsItem);
+    try {
+      this.availableMfaMethods.get().add(availableMfaMethodsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -225,30 +238,42 @@ public class RegisterUserResponse {
    * @return availableMfaMethods
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AVAILABLE_MFA_METHODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<MfaMethodSummary> getAvailableMfaMethods() {
-    return availableMfaMethods;
+        return availableMfaMethods.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AVAILABLE_MFA_METHODS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvailableMfaMethods(@javax.annotation.Nullable List<MfaMethodSummary> availableMfaMethods) {
+
+  public JsonNullable<List<MfaMethodSummary>> getAvailableMfaMethods_JsonNullable() {
+    return availableMfaMethods;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AVAILABLE_MFA_METHODS)
+  public void setAvailableMfaMethods_JsonNullable(JsonNullable<List<MfaMethodSummary>> availableMfaMethods) {
     this.availableMfaMethods = availableMfaMethods;
+  }
+
+  public void setAvailableMfaMethods(@javax.annotation.Nullable List<MfaMethodSummary> availableMfaMethods) {
+    this.availableMfaMethods = JsonNullable.<List<MfaMethodSummary>>of(availableMfaMethods);
   }
 
 
   public RegisterUserResponse pendingContactMethods(@javax.annotation.Nullable List<MfaMethodSummary> pendingContactMethods) {
-    this.pendingContactMethods = pendingContactMethods;
+    this.pendingContactMethods = JsonNullable.<List<MfaMethodSummary>>of(pendingContactMethods);
     return this;
   }
 
   public RegisterUserResponse addPendingContactMethodsItem(MfaMethodSummary pendingContactMethodsItem) {
-    if (this.pendingContactMethods == null) {
-      this.pendingContactMethods = new ArrayList<>();
+    if (this.pendingContactMethods == null || !this.pendingContactMethods.isPresent()) {
+      this.pendingContactMethods = JsonNullable.<List<MfaMethodSummary>>of(new ArrayList<>());
     }
-    this.pendingContactMethods.add(pendingContactMethodsItem);
+    try {
+      this.pendingContactMethods.get().add(pendingContactMethodsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -257,17 +282,25 @@ public class RegisterUserResponse {
    * @return pendingContactMethods
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PENDING_CONTACT_METHODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<MfaMethodSummary> getPendingContactMethods() {
-    return pendingContactMethods;
+        return pendingContactMethods.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PENDING_CONTACT_METHODS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPendingContactMethods(@javax.annotation.Nullable List<MfaMethodSummary> pendingContactMethods) {
+
+  public JsonNullable<List<MfaMethodSummary>> getPendingContactMethods_JsonNullable() {
+    return pendingContactMethods;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PENDING_CONTACT_METHODS)
+  public void setPendingContactMethods_JsonNullable(JsonNullable<List<MfaMethodSummary>> pendingContactMethods) {
     this.pendingContactMethods = pendingContactMethods;
+  }
+
+  public void setPendingContactMethods(@javax.annotation.Nullable List<MfaMethodSummary> pendingContactMethods) {
+    this.pendingContactMethods = JsonNullable.<List<MfaMethodSummary>>of(pendingContactMethods);
   }
 
 
@@ -286,14 +319,25 @@ public class RegisterUserResponse {
     return Objects.equals(this.userId, registerUserResponse.userId) &&
         Objects.equals(this.userObject, registerUserResponse.userObject) &&
         Objects.equals(this.sessionToken, registerUserResponse.sessionToken) &&
-        Objects.equals(this.mfaStatus, registerUserResponse.mfaStatus) &&
-        Objects.equals(this.availableMfaMethods, registerUserResponse.availableMfaMethods) &&
-        Objects.equals(this.pendingContactMethods, registerUserResponse.pendingContactMethods);
+        equalsNullable(this.mfaStatus, registerUserResponse.mfaStatus) &&
+        equalsNullable(this.availableMfaMethods, registerUserResponse.availableMfaMethods) &&
+        equalsNullable(this.pendingContactMethods, registerUserResponse.pendingContactMethods);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, userObject, sessionToken, mfaStatus, availableMfaMethods, pendingContactMethods);
+    return Objects.hash(userId, userObject, sessionToken, hashCodeNullable(mfaStatus), hashCodeNullable(availableMfaMethods), hashCodeNullable(pendingContactMethods));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

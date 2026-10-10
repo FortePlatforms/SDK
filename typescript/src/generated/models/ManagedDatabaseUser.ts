@@ -36,7 +36,7 @@ export interface ManagedDatabaseUser {
      * @type {string}
      * @memberof ManagedDatabaseUser
      */
-    roleName?: string;
+    roleName?: string | null;
     /**
      * 
      * @type {Date}
@@ -48,7 +48,7 @@ export interface ManagedDatabaseUser {
      * @type {Date}
      * @memberof ManagedDatabaseUser
      */
-    passwordLastRotatedTimestamp?: Date;
+    passwordLastRotatedTimestamp?: Date | null;
 }
 
 /**

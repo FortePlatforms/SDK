@@ -30,7 +30,7 @@ export interface ReauthenticationRequest {
      * @type {string}
      * @memberof ReauthenticationRequest
      */
-    credential?: string;
+    credential?: string | null;
 }
 
 

@@ -76,7 +76,7 @@ export interface SubscriptionObject {
      * @type {number}
      * @memberof SubscriptionObject
      */
-    taxCents?: number;
+    taxCents?: number | null;
     /**
      * 
      * @type {number}
@@ -94,7 +94,7 @@ export interface SubscriptionObject {
      * @type {string}
      * @memberof SubscriptionObject
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -124,61 +124,61 @@ export interface SubscriptionObject {
      * @type {Date}
      * @memberof SubscriptionObject
      */
-    startTime?: Date;
+    startTime?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof SubscriptionObject
      */
-    endTime?: Date;
+    endTime?: Date | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionObject
      */
-    stripePaymentMethodId?: string;
+    stripePaymentMethodId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionObject
      */
-    cardBrand?: string;
+    cardBrand?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionObject
      */
-    cardLast4?: string;
+    cardLast4?: string | null;
     /**
      * 
      * @type {number}
      * @memberof SubscriptionObject
      */
-    cardExpMonth?: number;
+    cardExpMonth?: number | null;
     /**
      * 
      * @type {number}
      * @memberof SubscriptionObject
      */
-    cardExpYear?: number;
+    cardExpYear?: number | null;
     /**
      * 
      * @type {Date}
      * @memberof SubscriptionObject
      */
-    currentPeriodStart?: Date;
+    currentPeriodStart?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof SubscriptionObject
      */
-    currentPeriodEnd?: Date;
+    currentPeriodEnd?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof SubscriptionObject
      */
-    nextRenewalAt?: Date;
+    nextRenewalAt?: Date | null;
     /**
      * 
      * @type {number}
@@ -196,19 +196,19 @@ export interface SubscriptionObject {
      * @type {Array<PaymentLineItem>}
      * @memberof SubscriptionObject
      */
-    pendingLineItems?: Array<PaymentLineItem>;
+    pendingLineItems?: Array<PaymentLineItem> | null;
     /**
      * 
      * @type {number}
      * @memberof SubscriptionObject
      */
-    pendingSubtotalCents?: number;
+    pendingSubtotalCents?: number | null;
     /**
      * 
      * @type {number}
      * @memberof SubscriptionObject
      */
-    pendingAmountCents?: number;
+    pendingAmountCents?: number | null;
     /**
      * 
      * @type {boolean}
@@ -220,25 +220,25 @@ export interface SubscriptionObject {
      * @type {Date}
      * @memberof SubscriptionObject
      */
-    canceledAt?: Date;
+    canceledAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof SubscriptionObject
      */
-    pastDueSince?: Date;
+    pastDueSince?: Date | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionObject
      */
-    activationPaymentId?: string;
+    activationPaymentId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SubscriptionObject
      */
-    lastPaymentId?: string;
+    lastPaymentId?: string | null;
     /**
      * 
      * @type {Array<StateHistory>}

@@ -51,13 +51,13 @@ export interface PaymentSearchRequest {
      * @type {string}
      * @memberof PaymentSearchRequest
      */
-    nextToken?: string;
+    nextToken?: string | null;
     /**
      * 
      * @type {number}
      * @memberof PaymentSearchRequest
      */
-    pageSize?: number;
+    pageSize?: number | null;
 }
 
 /**

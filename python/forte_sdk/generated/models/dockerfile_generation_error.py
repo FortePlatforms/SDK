@@ -81,6 +81,21 @@ class DockerfileGenerationError(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if error_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_type is None and "error_type" in self.model_fields_set:
+            _dict['errorType'] = None
+
+        # set to None if error_message (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_message is None and "error_message" in self.model_fields_set:
+            _dict['errorMessage'] = None
+
+        # set to None if suggestions (nullable) is None
+        # and model_fields_set contains the field
+        if self.suggestions is None and "suggestions" in self.model_fields_set:
+            _dict['suggestions'] = None
+
         return _dict
 
     @classmethod

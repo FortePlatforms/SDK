@@ -74,6 +74,16 @@ class ManagedDatabaseUser(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if role_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.role_name is None and "role_name" in self.model_fields_set:
+            _dict['roleName'] = None
+
+        # set to None if password_last_rotated_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_last_rotated_timestamp is None and "password_last_rotated_timestamp" in self.model_fields_set:
+            _dict['passwordLastRotatedTimestamp'] = None
+
         return _dict
 
     @classmethod

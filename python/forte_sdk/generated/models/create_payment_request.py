@@ -117,6 +117,26 @@ class CreatePaymentRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of shipping_address
         if self.shipping_address:
             _dict['shippingAddress'] = self.shipping_address.to_dict()
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
+
+        # set to None if payment_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_method_id is None and "payment_method_id" in self.model_fields_set:
+            _dict['paymentMethodId'] = None
+
+        # set to None if supported_payment_methods (nullable) is None
+        # and model_fields_set contains the field
+        if self.supported_payment_methods is None and "supported_payment_methods" in self.model_fields_set:
+            _dict['supportedPaymentMethods'] = None
+
+        # set to None if off_session (nullable) is None
+        # and model_fields_set contains the field
+        if self.off_session is None and "off_session" in self.model_fields_set:
+            _dict['offSession'] = None
+
         return _dict
 
     @classmethod

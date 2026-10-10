@@ -42,13 +42,13 @@ export interface RequestLogObjectMeta {
      * @type {string}
      * @memberof RequestLogObjectMeta
      */
-    requestPathId?: string;
+    requestPathId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RequestLogObjectMeta
      */
-    userId?: string;
+    userId?: string | null;
 }
 
 /**

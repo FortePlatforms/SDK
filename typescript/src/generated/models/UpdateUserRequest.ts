@@ -24,7 +24,7 @@ export interface UpdateUserRequest {
      * @type {string}
      * @memberof UpdateUserRequest
      */
-    fullName?: string;
+    fullName?: string | null;
 }
 
 /**

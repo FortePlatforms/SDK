@@ -30,7 +30,7 @@ export interface MfaChallengeRequest {
      * @type {string}
      * @memberof MfaChallengeRequest
      */
-    targetContactMethodId?: string;
+    targetContactMethodId?: string | null;
 }
 
 

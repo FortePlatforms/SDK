@@ -88,6 +88,26 @@ class RequestLogStatusFilter(BaseModel):
                 if _item_not_ranges:
                     _items.append(_item_not_ranges.to_dict())
             _dict['notRanges'] = _items
+        # set to None if codes (nullable) is None
+        # and model_fields_set contains the field
+        if self.codes is None and "codes" in self.model_fields_set:
+            _dict['codes'] = None
+
+        # set to None if ranges (nullable) is None
+        # and model_fields_set contains the field
+        if self.ranges is None and "ranges" in self.model_fields_set:
+            _dict['ranges'] = None
+
+        # set to None if not_codes (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_codes is None and "not_codes" in self.model_fields_set:
+            _dict['notCodes'] = None
+
+        # set to None if not_ranges (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_ranges is None and "not_ranges" in self.model_fields_set:
+            _dict['notRanges'] = None
+
         return _dict
 
     @classmethod

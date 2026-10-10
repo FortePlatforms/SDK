@@ -80,6 +80,41 @@ class SessionSummary(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if expiration_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.expiration_time is None and "expiration_time" in self.model_fields_set:
+            _dict['expirationTime'] = None
+
+        # set to None if last_activity_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_activity_at is None and "last_activity_at" in self.model_fields_set:
+            _dict['lastActivityAt'] = None
+
+        # set to None if last_reauthenticated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_reauthenticated_at is None and "last_reauthenticated_at" in self.model_fields_set:
+            _dict['lastReauthenticatedAt'] = None
+
+        # set to None if source_ip_address (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_ip_address is None and "source_ip_address" in self.model_fields_set:
+            _dict['sourceIpAddress'] = None
+
+        # set to None if approximate_location (nullable) is None
+        # and model_fields_set contains the field
+        if self.approximate_location is None and "approximate_location" in self.model_fields_set:
+            _dict['approximateLocation'] = None
+
+        # set to None if user_agent (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_agent is None and "user_agent" in self.model_fields_set:
+            _dict['userAgent'] = None
+
+        # set to None if device_description (nullable) is None
+        # and model_fields_set contains the field
+        if self.device_description is None and "device_description" in self.model_fields_set:
+            _dict['deviceDescription'] = None
+
         return _dict
 
     @classmethod

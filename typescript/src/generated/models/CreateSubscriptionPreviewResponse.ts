@@ -45,7 +45,7 @@ export interface CreateSubscriptionPreviewResponse {
      * @type {number}
      * @memberof CreateSubscriptionPreviewResponse
      */
-    taxCents?: number;
+    taxCents?: number | null;
     /**
      * 
      * @type {number}
@@ -87,7 +87,7 @@ export interface CreateSubscriptionPreviewResponse {
      * @type {string}
      * @memberof CreateSubscriptionPreviewResponse
      */
-    stripeTaxCalculationId?: string;
+    stripeTaxCalculationId?: string | null;
 }
 
 

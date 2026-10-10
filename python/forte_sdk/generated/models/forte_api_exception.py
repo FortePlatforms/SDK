@@ -81,6 +81,11 @@ class ForteApiException(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if error_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_code is None and "error_code" in self.model_fields_set:
+            _dict['errorCode'] = None
+
         return _dict
 
     @classmethod

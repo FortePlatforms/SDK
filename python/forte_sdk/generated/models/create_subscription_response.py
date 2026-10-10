@@ -76,6 +76,11 @@ class CreateSubscriptionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of subscription
         if self.subscription:
             _dict['subscription'] = self.subscription.to_dict()
+        # set to None if stripe_client_secret (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_client_secret is None and "stripe_client_secret" in self.model_fields_set:
+            _dict['stripeClientSecret'] = None
+
         return _dict
 
     @classmethod

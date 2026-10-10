@@ -90,7 +90,7 @@ export interface PaymentObject {
      * @type {number}
      * @memberof PaymentObject
      */
-    taxCents?: number;
+    taxCents?: number | null;
     /**
      * 
      * @type {number}
@@ -108,7 +108,7 @@ export interface PaymentObject {
      * @type {string}
      * @memberof PaymentObject
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {Array<PaymentLineItem>}
@@ -150,31 +150,31 @@ export interface PaymentObject {
      * @type {string}
      * @memberof PaymentObject
      */
-    stripeStatus?: string;
+    stripeStatus?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentObject
      */
-    stripeTaxCalculationId?: string;
+    stripeTaxCalculationId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentObject
      */
-    stripeTaxTransactionId?: string;
+    stripeTaxTransactionId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaymentObject
      */
-    subscriptionId?: string;
+    subscriptionId?: string | null;
     /**
      * 
      * @type {Date}
      * @memberof PaymentObject
      */
-    subscriptionRenewalTime?: Date;
+    subscriptionRenewalTime?: Date | null;
     /**
      * 
      * @type {Array<StateHistory>}

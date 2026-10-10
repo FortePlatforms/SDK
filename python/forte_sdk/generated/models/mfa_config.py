@@ -84,6 +84,36 @@ class MfaConfig(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if enforcement (nullable) is None
+        # and model_fields_set contains the field
+        if self.enforcement is None and "enforcement" in self.model_fields_set:
+            _dict['enforcement'] = None
+
+        # set to None if totp_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.totp_enabled is None and "totp_enabled" in self.model_fields_set:
+            _dict['totpEnabled'] = None
+
+        # set to None if email_otp_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_otp_enabled is None and "email_otp_enabled" in self.model_fields_set:
+            _dict['emailOtpEnabled'] = None
+
+        # set to None if sms_otp_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.sms_otp_enabled is None and "sms_otp_enabled" in self.model_fields_set:
+            _dict['smsOtpEnabled'] = None
+
+        # set to None if web_authn_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.web_authn_enabled is None and "web_authn_enabled" in self.model_fields_set:
+            _dict['webAuthnEnabled'] = None
+
+        # set to None if block_otp_first_factor (nullable) is None
+        # and model_fields_set contains the field
+        if self.block_otp_first_factor is None and "block_otp_first_factor" in self.model_fields_set:
+            _dict['blockOtpFirstFactor'] = None
+
         return _dict
 
     @classmethod

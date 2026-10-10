@@ -78,6 +78,16 @@ class MfaVerifyRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if code (nullable) is None
+        # and model_fields_set contains the field
+        if self.code is None and "code" in self.model_fields_set:
+            _dict['code'] = None
+
+        # set to None if web_authn_assertion (nullable) is None
+        # and model_fields_set contains the field
+        if self.web_authn_assertion is None and "web_authn_assertion" in self.model_fields_set:
+            _dict['webAuthnAssertion'] = None
+
         return _dict
 
     @classmethod

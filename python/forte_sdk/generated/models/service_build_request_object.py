@@ -143,6 +143,56 @@ class ServiceBuildRequestObject(BaseModel):
                 if _item_build_step_logs:
                     _items.append(_item_build_step_logs.to_dict())
             _dict['buildStepLogs'] = _items
+        # set to None if container_image_uri (nullable) is None
+        # and model_fields_set contains the field
+        if self.container_image_uri is None and "container_image_uri" in self.model_fields_set:
+            _dict['containerImageUri'] = None
+
+        # set to None if all_build_logs_received (nullable) is None
+        # and model_fields_set contains the field
+        if self.all_build_logs_received is None and "all_build_logs_received" in self.model_fields_set:
+            _dict['allBuildLogsReceived'] = None
+
+        # set to None if cancellation_requested (nullable) is None
+        # and model_fields_set contains the field
+        if self.cancellation_requested is None and "cancellation_requested" in self.model_fields_set:
+            _dict['cancellationRequested'] = None
+
+        # set to None if git_ref (nullable) is None
+        # and model_fields_set contains the field
+        if self.git_ref is None and "git_ref" in self.model_fields_set:
+            _dict['gitRef'] = None
+
+        # set to None if release_tag_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.release_tag_name is None and "release_tag_name" in self.model_fields_set:
+            _dict['releaseTagName'] = None
+
+        # set to None if origin (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin is None and "origin" in self.model_fields_set:
+            _dict['origin'] = None
+
+        # set to None if origin_detail (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin_detail is None and "origin_detail" in self.model_fields_set:
+            _dict['originDetail'] = None
+
+        # set to None if triggered_by_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.triggered_by_account_id is None and "triggered_by_account_id" in self.model_fields_set:
+            _dict['triggeredByAccountId'] = None
+
+        # set to None if build_tier (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_tier is None and "build_tier" in self.model_fields_set:
+            _dict['buildTier'] = None
+
+        # set to None if failure_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.failure_reason is None and "failure_reason" in self.model_fields_set:
+            _dict['failureReason'] = None
+
         return _dict
 
     @classmethod

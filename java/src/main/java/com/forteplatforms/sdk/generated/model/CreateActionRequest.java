@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.ActionScheduleType;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -63,40 +67,32 @@ public class CreateActionRequest {
   private String targetPath;
 
   public static final String JSON_PROPERTY_REQUEST_BODY = "requestBody";
-  @javax.annotation.Nullable
-  private String requestBody;
+  private JsonNullable<String> requestBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SCHEDULE_TYPE = "scheduleType";
   @javax.annotation.Nonnull
   private ActionScheduleType scheduleType;
 
   public static final String JSON_PROPERTY_CRON_EXPRESSION = "cronExpression";
-  @javax.annotation.Nullable
-  private String cronExpression;
+  private JsonNullable<String> cronExpression = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TIMEZONE = "timezone";
-  @javax.annotation.Nullable
-  private String timezone;
+  private JsonNullable<String> timezone = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_WINDOW_START = "windowStart";
-  @javax.annotation.Nullable
-  private OffsetDateTime windowStart;
+  private JsonNullable<OffsetDateTime> windowStart = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_WINDOW_END = "windowEnd";
-  @javax.annotation.Nullable
-  private OffsetDateTime windowEnd;
+  private JsonNullable<OffsetDateTime> windowEnd = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_SCHEDULED_AT = "scheduledAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime scheduledAt;
+  private JsonNullable<OffsetDateTime> scheduledAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_RETRYABLE = "retryable";
-  @javax.annotation.Nullable
-  private Boolean retryable;
+  private JsonNullable<Boolean> retryable = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_ENABLED = "enabled";
-  @javax.annotation.Nullable
-  private Boolean enabled;
+  private JsonNullable<Boolean> enabled = JsonNullable.<Boolean>undefined();
 
   public CreateActionRequest() { 
   }
@@ -174,7 +170,7 @@ public class CreateActionRequest {
 
 
   public CreateActionRequest requestBody(@javax.annotation.Nullable String requestBody) {
-    this.requestBody = requestBody;
+    this.requestBody = JsonNullable.<String>of(requestBody);
     return this;
   }
 
@@ -183,17 +179,25 @@ public class CreateActionRequest {
    * @return requestBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUEST_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRequestBody() {
-    return requestBody;
+        return requestBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUEST_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestBody(@javax.annotation.Nullable String requestBody) {
+
+  public JsonNullable<String> getRequestBody_JsonNullable() {
+    return requestBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUEST_BODY)
+  public void setRequestBody_JsonNullable(JsonNullable<String> requestBody) {
     this.requestBody = requestBody;
+  }
+
+  public void setRequestBody(@javax.annotation.Nullable String requestBody) {
+    this.requestBody = JsonNullable.<String>of(requestBody);
   }
 
 
@@ -222,7 +226,7 @@ public class CreateActionRequest {
 
 
   public CreateActionRequest cronExpression(@javax.annotation.Nullable String cronExpression) {
-    this.cronExpression = cronExpression;
+    this.cronExpression = JsonNullable.<String>of(cronExpression);
     return this;
   }
 
@@ -231,22 +235,30 @@ public class CreateActionRequest {
    * @return cronExpression
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CRON_EXPRESSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCronExpression() {
-    return cronExpression;
+        return cronExpression.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CRON_EXPRESSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCronExpression(@javax.annotation.Nullable String cronExpression) {
+
+  public JsonNullable<String> getCronExpression_JsonNullable() {
+    return cronExpression;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CRON_EXPRESSION)
+  public void setCronExpression_JsonNullable(JsonNullable<String> cronExpression) {
     this.cronExpression = cronExpression;
+  }
+
+  public void setCronExpression(@javax.annotation.Nullable String cronExpression) {
+    this.cronExpression = JsonNullable.<String>of(cronExpression);
   }
 
 
   public CreateActionRequest timezone(@javax.annotation.Nullable String timezone) {
-    this.timezone = timezone;
+    this.timezone = JsonNullable.<String>of(timezone);
     return this;
   }
 
@@ -255,22 +267,30 @@ public class CreateActionRequest {
    * @return timezone
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TIMEZONE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTimezone() {
-    return timezone;
+        return timezone.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TIMEZONE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimezone(@javax.annotation.Nullable String timezone) {
+
+  public JsonNullable<String> getTimezone_JsonNullable() {
+    return timezone;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TIMEZONE)
+  public void setTimezone_JsonNullable(JsonNullable<String> timezone) {
     this.timezone = timezone;
+  }
+
+  public void setTimezone(@javax.annotation.Nullable String timezone) {
+    this.timezone = JsonNullable.<String>of(timezone);
   }
 
 
   public CreateActionRequest windowStart(@javax.annotation.Nullable OffsetDateTime windowStart) {
-    this.windowStart = windowStart;
+    this.windowStart = JsonNullable.<OffsetDateTime>of(windowStart);
     return this;
   }
 
@@ -279,22 +299,30 @@ public class CreateActionRequest {
    * @return windowStart
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WINDOW_START, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getWindowStart() {
-    return windowStart;
+        return windowStart.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WINDOW_START, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWindowStart(@javax.annotation.Nullable OffsetDateTime windowStart) {
+
+  public JsonNullable<OffsetDateTime> getWindowStart_JsonNullable() {
+    return windowStart;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WINDOW_START)
+  public void setWindowStart_JsonNullable(JsonNullable<OffsetDateTime> windowStart) {
     this.windowStart = windowStart;
+  }
+
+  public void setWindowStart(@javax.annotation.Nullable OffsetDateTime windowStart) {
+    this.windowStart = JsonNullable.<OffsetDateTime>of(windowStart);
   }
 
 
   public CreateActionRequest windowEnd(@javax.annotation.Nullable OffsetDateTime windowEnd) {
-    this.windowEnd = windowEnd;
+    this.windowEnd = JsonNullable.<OffsetDateTime>of(windowEnd);
     return this;
   }
 
@@ -303,22 +331,30 @@ public class CreateActionRequest {
    * @return windowEnd
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WINDOW_END, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getWindowEnd() {
-    return windowEnd;
+        return windowEnd.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WINDOW_END, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWindowEnd(@javax.annotation.Nullable OffsetDateTime windowEnd) {
+
+  public JsonNullable<OffsetDateTime> getWindowEnd_JsonNullable() {
+    return windowEnd;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WINDOW_END)
+  public void setWindowEnd_JsonNullable(JsonNullable<OffsetDateTime> windowEnd) {
     this.windowEnd = windowEnd;
+  }
+
+  public void setWindowEnd(@javax.annotation.Nullable OffsetDateTime windowEnd) {
+    this.windowEnd = JsonNullable.<OffsetDateTime>of(windowEnd);
   }
 
 
   public CreateActionRequest scheduledAt(@javax.annotation.Nullable OffsetDateTime scheduledAt) {
-    this.scheduledAt = scheduledAt;
+    this.scheduledAt = JsonNullable.<OffsetDateTime>of(scheduledAt);
     return this;
   }
 
@@ -327,22 +363,30 @@ public class CreateActionRequest {
    * @return scheduledAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SCHEDULED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getScheduledAt() {
-    return scheduledAt;
+        return scheduledAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SCHEDULED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setScheduledAt(@javax.annotation.Nullable OffsetDateTime scheduledAt) {
+
+  public JsonNullable<OffsetDateTime> getScheduledAt_JsonNullable() {
+    return scheduledAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SCHEDULED_AT)
+  public void setScheduledAt_JsonNullable(JsonNullable<OffsetDateTime> scheduledAt) {
     this.scheduledAt = scheduledAt;
+  }
+
+  public void setScheduledAt(@javax.annotation.Nullable OffsetDateTime scheduledAt) {
+    this.scheduledAt = JsonNullable.<OffsetDateTime>of(scheduledAt);
   }
 
 
   public CreateActionRequest retryable(@javax.annotation.Nullable Boolean retryable) {
-    this.retryable = retryable;
+    this.retryable = JsonNullable.<Boolean>of(retryable);
     return this;
   }
 
@@ -351,22 +395,30 @@ public class CreateActionRequest {
    * @return retryable
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RETRYABLE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRetryable() {
-    return retryable;
+        return retryable.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RETRYABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRetryable(@javax.annotation.Nullable Boolean retryable) {
+
+  public JsonNullable<Boolean> getRetryable_JsonNullable() {
+    return retryable;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RETRYABLE)
+  public void setRetryable_JsonNullable(JsonNullable<Boolean> retryable) {
     this.retryable = retryable;
+  }
+
+  public void setRetryable(@javax.annotation.Nullable Boolean retryable) {
+    this.retryable = JsonNullable.<Boolean>of(retryable);
   }
 
 
   public CreateActionRequest enabled(@javax.annotation.Nullable Boolean enabled) {
-    this.enabled = enabled;
+    this.enabled = JsonNullable.<Boolean>of(enabled);
     return this;
   }
 
@@ -375,17 +427,25 @@ public class CreateActionRequest {
    * @return enabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getEnabled() {
-    return enabled;
+        return enabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnabled(@javax.annotation.Nullable Boolean enabled) {
+
+  public JsonNullable<Boolean> getEnabled_JsonNullable() {
+    return enabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENABLED)
+  public void setEnabled_JsonNullable(JsonNullable<Boolean> enabled) {
     this.enabled = enabled;
+  }
+
+  public void setEnabled(@javax.annotation.Nullable Boolean enabled) {
+    this.enabled = JsonNullable.<Boolean>of(enabled);
   }
 
 
@@ -404,20 +464,31 @@ public class CreateActionRequest {
     return Objects.equals(this.name, createActionRequest.name) &&
         Objects.equals(this.targetServiceId, createActionRequest.targetServiceId) &&
         Objects.equals(this.targetPath, createActionRequest.targetPath) &&
-        Objects.equals(this.requestBody, createActionRequest.requestBody) &&
+        equalsNullable(this.requestBody, createActionRequest.requestBody) &&
         Objects.equals(this.scheduleType, createActionRequest.scheduleType) &&
-        Objects.equals(this.cronExpression, createActionRequest.cronExpression) &&
-        Objects.equals(this.timezone, createActionRequest.timezone) &&
-        Objects.equals(this.windowStart, createActionRequest.windowStart) &&
-        Objects.equals(this.windowEnd, createActionRequest.windowEnd) &&
-        Objects.equals(this.scheduledAt, createActionRequest.scheduledAt) &&
-        Objects.equals(this.retryable, createActionRequest.retryable) &&
-        Objects.equals(this.enabled, createActionRequest.enabled);
+        equalsNullable(this.cronExpression, createActionRequest.cronExpression) &&
+        equalsNullable(this.timezone, createActionRequest.timezone) &&
+        equalsNullable(this.windowStart, createActionRequest.windowStart) &&
+        equalsNullable(this.windowEnd, createActionRequest.windowEnd) &&
+        equalsNullable(this.scheduledAt, createActionRequest.scheduledAt) &&
+        equalsNullable(this.retryable, createActionRequest.retryable) &&
+        equalsNullable(this.enabled, createActionRequest.enabled);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, targetServiceId, targetPath, requestBody, scheduleType, cronExpression, timezone, windowStart, windowEnd, scheduledAt, retryable, enabled);
+    return Objects.hash(name, targetServiceId, targetPath, hashCodeNullable(requestBody), scheduleType, hashCodeNullable(cronExpression), hashCodeNullable(timezone), hashCodeNullable(windowStart), hashCodeNullable(windowEnd), hashCodeNullable(scheduledAt), hashCodeNullable(retryable), hashCodeNullable(enabled));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

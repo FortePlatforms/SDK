@@ -73,6 +73,11 @@ class RefundRecord(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if stripe_refund_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_refund_id is None and "stripe_refund_id" in self.model_fields_set:
+            _dict['stripeRefundId'] = None
+
         return _dict
 
     @classmethod

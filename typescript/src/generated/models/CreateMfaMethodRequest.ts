@@ -30,7 +30,7 @@ export interface CreateMfaMethodRequest {
      * @type {string}
      * @memberof CreateMfaMethodRequest
      */
-    displayName?: string;
+    displayName?: string | null;
 }
 
 

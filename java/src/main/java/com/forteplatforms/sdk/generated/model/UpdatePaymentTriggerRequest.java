@@ -29,6 +29,10 @@ import com.forteplatforms.sdk.generated.model.TriggerEvent;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -62,8 +66,7 @@ public class UpdatePaymentTriggerRequest {
   private Set<TriggerEvent> events = new LinkedHashSet<>();
 
   public static final String JSON_PROPERTY_ENABLED = "enabled";
-  @javax.annotation.Nullable
-  private Boolean enabled;
+  private JsonNullable<Boolean> enabled = JsonNullable.<Boolean>undefined();
 
   public UpdatePaymentTriggerRequest() { 
   }
@@ -174,7 +177,7 @@ public class UpdatePaymentTriggerRequest {
 
 
   public UpdatePaymentTriggerRequest enabled(@javax.annotation.Nullable Boolean enabled) {
-    this.enabled = enabled;
+    this.enabled = JsonNullable.<Boolean>of(enabled);
     return this;
   }
 
@@ -183,17 +186,25 @@ public class UpdatePaymentTriggerRequest {
    * @return enabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getEnabled() {
-    return enabled;
+        return enabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnabled(@javax.annotation.Nullable Boolean enabled) {
+
+  public JsonNullable<Boolean> getEnabled_JsonNullable() {
+    return enabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENABLED)
+  public void setEnabled_JsonNullable(JsonNullable<Boolean> enabled) {
     this.enabled = enabled;
+  }
+
+  public void setEnabled(@javax.annotation.Nullable Boolean enabled) {
+    this.enabled = JsonNullable.<Boolean>of(enabled);
   }
 
 
@@ -213,12 +224,23 @@ public class UpdatePaymentTriggerRequest {
         Objects.equals(this.targetServiceId, updatePaymentTriggerRequest.targetServiceId) &&
         Objects.equals(this.targetPath, updatePaymentTriggerRequest.targetPath) &&
         Objects.equals(this.events, updatePaymentTriggerRequest.events) &&
-        Objects.equals(this.enabled, updatePaymentTriggerRequest.enabled);
+        equalsNullable(this.enabled, updatePaymentTriggerRequest.enabled);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, targetServiceId, targetPath, events, enabled);
+    return Objects.hash(displayName, targetServiceId, targetPath, events, hashCodeNullable(enabled));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

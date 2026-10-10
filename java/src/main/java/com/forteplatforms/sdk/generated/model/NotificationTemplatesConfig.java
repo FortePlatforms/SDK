@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -54,78 +58,61 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class NotificationTemplatesConfig {
   public static final String JSON_PROPERTY_EMAIL_VERIFICATION_SUBJECT = "emailVerificationSubject";
-  @javax.annotation.Nullable
-  private String emailVerificationSubject;
+  private JsonNullable<String> emailVerificationSubject = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EMAIL_VERIFICATION_HTML_BODY = "emailVerificationHtmlBody";
-  @javax.annotation.Nullable
-  private String emailVerificationHtmlBody;
+  private JsonNullable<String> emailVerificationHtmlBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SMS_VERIFICATION_BODY = "smsVerificationBody";
-  @javax.annotation.Nullable
-  private String smsVerificationBody;
+  private JsonNullable<String> smsVerificationBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_WELCOME_ON_GOOGLE_ENABLED = "welcomeOnGoogleEnabled";
-  @javax.annotation.Nullable
-  private Boolean welcomeOnGoogleEnabled;
+  private JsonNullable<Boolean> welcomeOnGoogleEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_WELCOME_ON_EMAIL_ENABLED = "welcomeOnEmailEnabled";
-  @javax.annotation.Nullable
-  private Boolean welcomeOnEmailEnabled;
+  private JsonNullable<Boolean> welcomeOnEmailEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_WELCOME_ON_SMS_ENABLED = "welcomeOnSmsEnabled";
-  @javax.annotation.Nullable
-  private Boolean welcomeOnSmsEnabled;
+  private JsonNullable<Boolean> welcomeOnSmsEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_WELCOME_EMAIL_SUBJECT = "welcomeEmailSubject";
-  @javax.annotation.Nullable
-  private String welcomeEmailSubject;
+  private JsonNullable<String> welcomeEmailSubject = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_WELCOME_EMAIL_HTML_BODY = "welcomeEmailHtmlBody";
-  @javax.annotation.Nullable
-  private String welcomeEmailHtmlBody;
+  private JsonNullable<String> welcomeEmailHtmlBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_WELCOME_SMS_BODY = "welcomeSmsBody";
-  @javax.annotation.Nullable
-  private String welcomeSmsBody;
+  private JsonNullable<String> welcomeSmsBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT = "loginOtpEmailSubject";
-  @javax.annotation.Nullable
-  private String loginOtpEmailSubject;
+  private JsonNullable<String> loginOtpEmailSubject = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY = "loginOtpEmailHtmlBody";
-  @javax.annotation.Nullable
-  private String loginOtpEmailHtmlBody;
+  private JsonNullable<String> loginOtpEmailHtmlBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LOGIN_OTP_SMS_BODY = "loginOtpSmsBody";
-  @javax.annotation.Nullable
-  private String loginOtpSmsBody;
+  private JsonNullable<String> loginOtpSmsBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INVITE_EMAIL_SUBJECT = "inviteEmailSubject";
-  @javax.annotation.Nullable
-  private String inviteEmailSubject;
+  private JsonNullable<String> inviteEmailSubject = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INVITE_EMAIL_HTML_BODY = "inviteEmailHtmlBody";
-  @javax.annotation.Nullable
-  private String inviteEmailHtmlBody;
+  private JsonNullable<String> inviteEmailHtmlBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_RESET_EMAIL_SUBJECT = "passwordResetEmailSubject";
-  @javax.annotation.Nullable
-  private String passwordResetEmailSubject;
+  private JsonNullable<String> passwordResetEmailSubject = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_RESET_EMAIL_HTML_BODY = "passwordResetEmailHtmlBody";
-  @javax.annotation.Nullable
-  private String passwordResetEmailHtmlBody;
+  private JsonNullable<String> passwordResetEmailHtmlBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_RESET_SMS_BODY = "passwordResetSmsBody";
-  @javax.annotation.Nullable
-  private String passwordResetSmsBody;
+  private JsonNullable<String> passwordResetSmsBody = JsonNullable.<String>undefined();
 
   public NotificationTemplatesConfig() { 
   }
 
   public NotificationTemplatesConfig emailVerificationSubject(@javax.annotation.Nullable String emailVerificationSubject) {
-    this.emailVerificationSubject = emailVerificationSubject;
+    this.emailVerificationSubject = JsonNullable.<String>of(emailVerificationSubject);
     return this;
   }
 
@@ -134,22 +121,30 @@ public class NotificationTemplatesConfig {
    * @return emailVerificationSubject
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL_VERIFICATION_SUBJECT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEmailVerificationSubject() {
-    return emailVerificationSubject;
+        return emailVerificationSubject.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EMAIL_VERIFICATION_SUBJECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmailVerificationSubject(@javax.annotation.Nullable String emailVerificationSubject) {
+
+  public JsonNullable<String> getEmailVerificationSubject_JsonNullable() {
+    return emailVerificationSubject;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL_VERIFICATION_SUBJECT)
+  public void setEmailVerificationSubject_JsonNullable(JsonNullable<String> emailVerificationSubject) {
     this.emailVerificationSubject = emailVerificationSubject;
+  }
+
+  public void setEmailVerificationSubject(@javax.annotation.Nullable String emailVerificationSubject) {
+    this.emailVerificationSubject = JsonNullable.<String>of(emailVerificationSubject);
   }
 
 
   public NotificationTemplatesConfig emailVerificationHtmlBody(@javax.annotation.Nullable String emailVerificationHtmlBody) {
-    this.emailVerificationHtmlBody = emailVerificationHtmlBody;
+    this.emailVerificationHtmlBody = JsonNullable.<String>of(emailVerificationHtmlBody);
     return this;
   }
 
@@ -158,22 +153,30 @@ public class NotificationTemplatesConfig {
    * @return emailVerificationHtmlBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL_VERIFICATION_HTML_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEmailVerificationHtmlBody() {
-    return emailVerificationHtmlBody;
+        return emailVerificationHtmlBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EMAIL_VERIFICATION_HTML_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmailVerificationHtmlBody(@javax.annotation.Nullable String emailVerificationHtmlBody) {
+
+  public JsonNullable<String> getEmailVerificationHtmlBody_JsonNullable() {
+    return emailVerificationHtmlBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL_VERIFICATION_HTML_BODY)
+  public void setEmailVerificationHtmlBody_JsonNullable(JsonNullable<String> emailVerificationHtmlBody) {
     this.emailVerificationHtmlBody = emailVerificationHtmlBody;
+  }
+
+  public void setEmailVerificationHtmlBody(@javax.annotation.Nullable String emailVerificationHtmlBody) {
+    this.emailVerificationHtmlBody = JsonNullable.<String>of(emailVerificationHtmlBody);
   }
 
 
   public NotificationTemplatesConfig smsVerificationBody(@javax.annotation.Nullable String smsVerificationBody) {
-    this.smsVerificationBody = smsVerificationBody;
+    this.smsVerificationBody = JsonNullable.<String>of(smsVerificationBody);
     return this;
   }
 
@@ -182,22 +185,30 @@ public class NotificationTemplatesConfig {
    * @return smsVerificationBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SMS_VERIFICATION_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSmsVerificationBody() {
-    return smsVerificationBody;
+        return smsVerificationBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SMS_VERIFICATION_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSmsVerificationBody(@javax.annotation.Nullable String smsVerificationBody) {
+
+  public JsonNullable<String> getSmsVerificationBody_JsonNullable() {
+    return smsVerificationBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SMS_VERIFICATION_BODY)
+  public void setSmsVerificationBody_JsonNullable(JsonNullable<String> smsVerificationBody) {
     this.smsVerificationBody = smsVerificationBody;
+  }
+
+  public void setSmsVerificationBody(@javax.annotation.Nullable String smsVerificationBody) {
+    this.smsVerificationBody = JsonNullable.<String>of(smsVerificationBody);
   }
 
 
   public NotificationTemplatesConfig welcomeOnGoogleEnabled(@javax.annotation.Nullable Boolean welcomeOnGoogleEnabled) {
-    this.welcomeOnGoogleEnabled = welcomeOnGoogleEnabled;
+    this.welcomeOnGoogleEnabled = JsonNullable.<Boolean>of(welcomeOnGoogleEnabled);
     return this;
   }
 
@@ -206,22 +217,30 @@ public class NotificationTemplatesConfig {
    * @return welcomeOnGoogleEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WELCOME_ON_GOOGLE_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getWelcomeOnGoogleEnabled() {
-    return welcomeOnGoogleEnabled;
+        return welcomeOnGoogleEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WELCOME_ON_GOOGLE_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWelcomeOnGoogleEnabled(@javax.annotation.Nullable Boolean welcomeOnGoogleEnabled) {
+
+  public JsonNullable<Boolean> getWelcomeOnGoogleEnabled_JsonNullable() {
+    return welcomeOnGoogleEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WELCOME_ON_GOOGLE_ENABLED)
+  public void setWelcomeOnGoogleEnabled_JsonNullable(JsonNullable<Boolean> welcomeOnGoogleEnabled) {
     this.welcomeOnGoogleEnabled = welcomeOnGoogleEnabled;
+  }
+
+  public void setWelcomeOnGoogleEnabled(@javax.annotation.Nullable Boolean welcomeOnGoogleEnabled) {
+    this.welcomeOnGoogleEnabled = JsonNullable.<Boolean>of(welcomeOnGoogleEnabled);
   }
 
 
   public NotificationTemplatesConfig welcomeOnEmailEnabled(@javax.annotation.Nullable Boolean welcomeOnEmailEnabled) {
-    this.welcomeOnEmailEnabled = welcomeOnEmailEnabled;
+    this.welcomeOnEmailEnabled = JsonNullable.<Boolean>of(welcomeOnEmailEnabled);
     return this;
   }
 
@@ -230,22 +249,30 @@ public class NotificationTemplatesConfig {
    * @return welcomeOnEmailEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WELCOME_ON_EMAIL_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getWelcomeOnEmailEnabled() {
-    return welcomeOnEmailEnabled;
+        return welcomeOnEmailEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WELCOME_ON_EMAIL_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWelcomeOnEmailEnabled(@javax.annotation.Nullable Boolean welcomeOnEmailEnabled) {
+
+  public JsonNullable<Boolean> getWelcomeOnEmailEnabled_JsonNullable() {
+    return welcomeOnEmailEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WELCOME_ON_EMAIL_ENABLED)
+  public void setWelcomeOnEmailEnabled_JsonNullable(JsonNullable<Boolean> welcomeOnEmailEnabled) {
     this.welcomeOnEmailEnabled = welcomeOnEmailEnabled;
+  }
+
+  public void setWelcomeOnEmailEnabled(@javax.annotation.Nullable Boolean welcomeOnEmailEnabled) {
+    this.welcomeOnEmailEnabled = JsonNullable.<Boolean>of(welcomeOnEmailEnabled);
   }
 
 
   public NotificationTemplatesConfig welcomeOnSmsEnabled(@javax.annotation.Nullable Boolean welcomeOnSmsEnabled) {
-    this.welcomeOnSmsEnabled = welcomeOnSmsEnabled;
+    this.welcomeOnSmsEnabled = JsonNullable.<Boolean>of(welcomeOnSmsEnabled);
     return this;
   }
 
@@ -254,22 +281,30 @@ public class NotificationTemplatesConfig {
    * @return welcomeOnSmsEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WELCOME_ON_SMS_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getWelcomeOnSmsEnabled() {
-    return welcomeOnSmsEnabled;
+        return welcomeOnSmsEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WELCOME_ON_SMS_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWelcomeOnSmsEnabled(@javax.annotation.Nullable Boolean welcomeOnSmsEnabled) {
+
+  public JsonNullable<Boolean> getWelcomeOnSmsEnabled_JsonNullable() {
+    return welcomeOnSmsEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WELCOME_ON_SMS_ENABLED)
+  public void setWelcomeOnSmsEnabled_JsonNullable(JsonNullable<Boolean> welcomeOnSmsEnabled) {
     this.welcomeOnSmsEnabled = welcomeOnSmsEnabled;
+  }
+
+  public void setWelcomeOnSmsEnabled(@javax.annotation.Nullable Boolean welcomeOnSmsEnabled) {
+    this.welcomeOnSmsEnabled = JsonNullable.<Boolean>of(welcomeOnSmsEnabled);
   }
 
 
   public NotificationTemplatesConfig welcomeEmailSubject(@javax.annotation.Nullable String welcomeEmailSubject) {
-    this.welcomeEmailSubject = welcomeEmailSubject;
+    this.welcomeEmailSubject = JsonNullable.<String>of(welcomeEmailSubject);
     return this;
   }
 
@@ -278,22 +313,30 @@ public class NotificationTemplatesConfig {
    * @return welcomeEmailSubject
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WELCOME_EMAIL_SUBJECT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWelcomeEmailSubject() {
-    return welcomeEmailSubject;
+        return welcomeEmailSubject.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WELCOME_EMAIL_SUBJECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWelcomeEmailSubject(@javax.annotation.Nullable String welcomeEmailSubject) {
+
+  public JsonNullable<String> getWelcomeEmailSubject_JsonNullable() {
+    return welcomeEmailSubject;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WELCOME_EMAIL_SUBJECT)
+  public void setWelcomeEmailSubject_JsonNullable(JsonNullable<String> welcomeEmailSubject) {
     this.welcomeEmailSubject = welcomeEmailSubject;
+  }
+
+  public void setWelcomeEmailSubject(@javax.annotation.Nullable String welcomeEmailSubject) {
+    this.welcomeEmailSubject = JsonNullable.<String>of(welcomeEmailSubject);
   }
 
 
   public NotificationTemplatesConfig welcomeEmailHtmlBody(@javax.annotation.Nullable String welcomeEmailHtmlBody) {
-    this.welcomeEmailHtmlBody = welcomeEmailHtmlBody;
+    this.welcomeEmailHtmlBody = JsonNullable.<String>of(welcomeEmailHtmlBody);
     return this;
   }
 
@@ -302,22 +345,30 @@ public class NotificationTemplatesConfig {
    * @return welcomeEmailHtmlBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WELCOME_EMAIL_HTML_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWelcomeEmailHtmlBody() {
-    return welcomeEmailHtmlBody;
+        return welcomeEmailHtmlBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WELCOME_EMAIL_HTML_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWelcomeEmailHtmlBody(@javax.annotation.Nullable String welcomeEmailHtmlBody) {
+
+  public JsonNullable<String> getWelcomeEmailHtmlBody_JsonNullable() {
+    return welcomeEmailHtmlBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WELCOME_EMAIL_HTML_BODY)
+  public void setWelcomeEmailHtmlBody_JsonNullable(JsonNullable<String> welcomeEmailHtmlBody) {
     this.welcomeEmailHtmlBody = welcomeEmailHtmlBody;
+  }
+
+  public void setWelcomeEmailHtmlBody(@javax.annotation.Nullable String welcomeEmailHtmlBody) {
+    this.welcomeEmailHtmlBody = JsonNullable.<String>of(welcomeEmailHtmlBody);
   }
 
 
   public NotificationTemplatesConfig welcomeSmsBody(@javax.annotation.Nullable String welcomeSmsBody) {
-    this.welcomeSmsBody = welcomeSmsBody;
+    this.welcomeSmsBody = JsonNullable.<String>of(welcomeSmsBody);
     return this;
   }
 
@@ -326,22 +377,30 @@ public class NotificationTemplatesConfig {
    * @return welcomeSmsBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WELCOME_SMS_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWelcomeSmsBody() {
-    return welcomeSmsBody;
+        return welcomeSmsBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WELCOME_SMS_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWelcomeSmsBody(@javax.annotation.Nullable String welcomeSmsBody) {
+
+  public JsonNullable<String> getWelcomeSmsBody_JsonNullable() {
+    return welcomeSmsBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WELCOME_SMS_BODY)
+  public void setWelcomeSmsBody_JsonNullable(JsonNullable<String> welcomeSmsBody) {
     this.welcomeSmsBody = welcomeSmsBody;
+  }
+
+  public void setWelcomeSmsBody(@javax.annotation.Nullable String welcomeSmsBody) {
+    this.welcomeSmsBody = JsonNullable.<String>of(welcomeSmsBody);
   }
 
 
   public NotificationTemplatesConfig loginOtpEmailSubject(@javax.annotation.Nullable String loginOtpEmailSubject) {
-    this.loginOtpEmailSubject = loginOtpEmailSubject;
+    this.loginOtpEmailSubject = JsonNullable.<String>of(loginOtpEmailSubject);
     return this;
   }
 
@@ -350,22 +409,30 @@ public class NotificationTemplatesConfig {
    * @return loginOtpEmailSubject
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLoginOtpEmailSubject() {
-    return loginOtpEmailSubject;
+        return loginOtpEmailSubject.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLoginOtpEmailSubject(@javax.annotation.Nullable String loginOtpEmailSubject) {
+
+  public JsonNullable<String> getLoginOtpEmailSubject_JsonNullable() {
+    return loginOtpEmailSubject;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOGIN_OTP_EMAIL_SUBJECT)
+  public void setLoginOtpEmailSubject_JsonNullable(JsonNullable<String> loginOtpEmailSubject) {
     this.loginOtpEmailSubject = loginOtpEmailSubject;
+  }
+
+  public void setLoginOtpEmailSubject(@javax.annotation.Nullable String loginOtpEmailSubject) {
+    this.loginOtpEmailSubject = JsonNullable.<String>of(loginOtpEmailSubject);
   }
 
 
   public NotificationTemplatesConfig loginOtpEmailHtmlBody(@javax.annotation.Nullable String loginOtpEmailHtmlBody) {
-    this.loginOtpEmailHtmlBody = loginOtpEmailHtmlBody;
+    this.loginOtpEmailHtmlBody = JsonNullable.<String>of(loginOtpEmailHtmlBody);
     return this;
   }
 
@@ -374,22 +441,30 @@ public class NotificationTemplatesConfig {
    * @return loginOtpEmailHtmlBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLoginOtpEmailHtmlBody() {
-    return loginOtpEmailHtmlBody;
+        return loginOtpEmailHtmlBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLoginOtpEmailHtmlBody(@javax.annotation.Nullable String loginOtpEmailHtmlBody) {
+
+  public JsonNullable<String> getLoginOtpEmailHtmlBody_JsonNullable() {
+    return loginOtpEmailHtmlBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOGIN_OTP_EMAIL_HTML_BODY)
+  public void setLoginOtpEmailHtmlBody_JsonNullable(JsonNullable<String> loginOtpEmailHtmlBody) {
     this.loginOtpEmailHtmlBody = loginOtpEmailHtmlBody;
+  }
+
+  public void setLoginOtpEmailHtmlBody(@javax.annotation.Nullable String loginOtpEmailHtmlBody) {
+    this.loginOtpEmailHtmlBody = JsonNullable.<String>of(loginOtpEmailHtmlBody);
   }
 
 
   public NotificationTemplatesConfig loginOtpSmsBody(@javax.annotation.Nullable String loginOtpSmsBody) {
-    this.loginOtpSmsBody = loginOtpSmsBody;
+    this.loginOtpSmsBody = JsonNullable.<String>of(loginOtpSmsBody);
     return this;
   }
 
@@ -398,22 +473,30 @@ public class NotificationTemplatesConfig {
    * @return loginOtpSmsBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_SMS_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLoginOtpSmsBody() {
-    return loginOtpSmsBody;
+        return loginOtpSmsBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LOGIN_OTP_SMS_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLoginOtpSmsBody(@javax.annotation.Nullable String loginOtpSmsBody) {
+
+  public JsonNullable<String> getLoginOtpSmsBody_JsonNullable() {
+    return loginOtpSmsBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOGIN_OTP_SMS_BODY)
+  public void setLoginOtpSmsBody_JsonNullable(JsonNullable<String> loginOtpSmsBody) {
     this.loginOtpSmsBody = loginOtpSmsBody;
+  }
+
+  public void setLoginOtpSmsBody(@javax.annotation.Nullable String loginOtpSmsBody) {
+    this.loginOtpSmsBody = JsonNullable.<String>of(loginOtpSmsBody);
   }
 
 
   public NotificationTemplatesConfig inviteEmailSubject(@javax.annotation.Nullable String inviteEmailSubject) {
-    this.inviteEmailSubject = inviteEmailSubject;
+    this.inviteEmailSubject = JsonNullable.<String>of(inviteEmailSubject);
     return this;
   }
 
@@ -422,22 +505,30 @@ public class NotificationTemplatesConfig {
    * @return inviteEmailSubject
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INVITE_EMAIL_SUBJECT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInviteEmailSubject() {
-    return inviteEmailSubject;
+        return inviteEmailSubject.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INVITE_EMAIL_SUBJECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInviteEmailSubject(@javax.annotation.Nullable String inviteEmailSubject) {
+
+  public JsonNullable<String> getInviteEmailSubject_JsonNullable() {
+    return inviteEmailSubject;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INVITE_EMAIL_SUBJECT)
+  public void setInviteEmailSubject_JsonNullable(JsonNullable<String> inviteEmailSubject) {
     this.inviteEmailSubject = inviteEmailSubject;
+  }
+
+  public void setInviteEmailSubject(@javax.annotation.Nullable String inviteEmailSubject) {
+    this.inviteEmailSubject = JsonNullable.<String>of(inviteEmailSubject);
   }
 
 
   public NotificationTemplatesConfig inviteEmailHtmlBody(@javax.annotation.Nullable String inviteEmailHtmlBody) {
-    this.inviteEmailHtmlBody = inviteEmailHtmlBody;
+    this.inviteEmailHtmlBody = JsonNullable.<String>of(inviteEmailHtmlBody);
     return this;
   }
 
@@ -446,22 +537,30 @@ public class NotificationTemplatesConfig {
    * @return inviteEmailHtmlBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INVITE_EMAIL_HTML_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInviteEmailHtmlBody() {
-    return inviteEmailHtmlBody;
+        return inviteEmailHtmlBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INVITE_EMAIL_HTML_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInviteEmailHtmlBody(@javax.annotation.Nullable String inviteEmailHtmlBody) {
+
+  public JsonNullable<String> getInviteEmailHtmlBody_JsonNullable() {
+    return inviteEmailHtmlBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INVITE_EMAIL_HTML_BODY)
+  public void setInviteEmailHtmlBody_JsonNullable(JsonNullable<String> inviteEmailHtmlBody) {
     this.inviteEmailHtmlBody = inviteEmailHtmlBody;
+  }
+
+  public void setInviteEmailHtmlBody(@javax.annotation.Nullable String inviteEmailHtmlBody) {
+    this.inviteEmailHtmlBody = JsonNullable.<String>of(inviteEmailHtmlBody);
   }
 
 
   public NotificationTemplatesConfig passwordResetEmailSubject(@javax.annotation.Nullable String passwordResetEmailSubject) {
-    this.passwordResetEmailSubject = passwordResetEmailSubject;
+    this.passwordResetEmailSubject = JsonNullable.<String>of(passwordResetEmailSubject);
     return this;
   }
 
@@ -470,22 +569,30 @@ public class NotificationTemplatesConfig {
    * @return passwordResetEmailSubject
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_EMAIL_SUBJECT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPasswordResetEmailSubject() {
-    return passwordResetEmailSubject;
+        return passwordResetEmailSubject.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_EMAIL_SUBJECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordResetEmailSubject(@javax.annotation.Nullable String passwordResetEmailSubject) {
+
+  public JsonNullable<String> getPasswordResetEmailSubject_JsonNullable() {
+    return passwordResetEmailSubject;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_RESET_EMAIL_SUBJECT)
+  public void setPasswordResetEmailSubject_JsonNullable(JsonNullable<String> passwordResetEmailSubject) {
     this.passwordResetEmailSubject = passwordResetEmailSubject;
+  }
+
+  public void setPasswordResetEmailSubject(@javax.annotation.Nullable String passwordResetEmailSubject) {
+    this.passwordResetEmailSubject = JsonNullable.<String>of(passwordResetEmailSubject);
   }
 
 
   public NotificationTemplatesConfig passwordResetEmailHtmlBody(@javax.annotation.Nullable String passwordResetEmailHtmlBody) {
-    this.passwordResetEmailHtmlBody = passwordResetEmailHtmlBody;
+    this.passwordResetEmailHtmlBody = JsonNullable.<String>of(passwordResetEmailHtmlBody);
     return this;
   }
 
@@ -494,22 +601,30 @@ public class NotificationTemplatesConfig {
    * @return passwordResetEmailHtmlBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_EMAIL_HTML_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPasswordResetEmailHtmlBody() {
-    return passwordResetEmailHtmlBody;
+        return passwordResetEmailHtmlBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_EMAIL_HTML_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordResetEmailHtmlBody(@javax.annotation.Nullable String passwordResetEmailHtmlBody) {
+
+  public JsonNullable<String> getPasswordResetEmailHtmlBody_JsonNullable() {
+    return passwordResetEmailHtmlBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_RESET_EMAIL_HTML_BODY)
+  public void setPasswordResetEmailHtmlBody_JsonNullable(JsonNullable<String> passwordResetEmailHtmlBody) {
     this.passwordResetEmailHtmlBody = passwordResetEmailHtmlBody;
+  }
+
+  public void setPasswordResetEmailHtmlBody(@javax.annotation.Nullable String passwordResetEmailHtmlBody) {
+    this.passwordResetEmailHtmlBody = JsonNullable.<String>of(passwordResetEmailHtmlBody);
   }
 
 
   public NotificationTemplatesConfig passwordResetSmsBody(@javax.annotation.Nullable String passwordResetSmsBody) {
-    this.passwordResetSmsBody = passwordResetSmsBody;
+    this.passwordResetSmsBody = JsonNullable.<String>of(passwordResetSmsBody);
     return this;
   }
 
@@ -518,17 +633,25 @@ public class NotificationTemplatesConfig {
    * @return passwordResetSmsBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_SMS_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPasswordResetSmsBody() {
-    return passwordResetSmsBody;
+        return passwordResetSmsBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_SMS_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordResetSmsBody(@javax.annotation.Nullable String passwordResetSmsBody) {
+
+  public JsonNullable<String> getPasswordResetSmsBody_JsonNullable() {
+    return passwordResetSmsBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_RESET_SMS_BODY)
+  public void setPasswordResetSmsBody_JsonNullable(JsonNullable<String> passwordResetSmsBody) {
     this.passwordResetSmsBody = passwordResetSmsBody;
+  }
+
+  public void setPasswordResetSmsBody(@javax.annotation.Nullable String passwordResetSmsBody) {
+    this.passwordResetSmsBody = JsonNullable.<String>of(passwordResetSmsBody);
   }
 
 
@@ -544,28 +667,39 @@ public class NotificationTemplatesConfig {
       return false;
     }
     NotificationTemplatesConfig notificationTemplatesConfig = (NotificationTemplatesConfig) o;
-    return Objects.equals(this.emailVerificationSubject, notificationTemplatesConfig.emailVerificationSubject) &&
-        Objects.equals(this.emailVerificationHtmlBody, notificationTemplatesConfig.emailVerificationHtmlBody) &&
-        Objects.equals(this.smsVerificationBody, notificationTemplatesConfig.smsVerificationBody) &&
-        Objects.equals(this.welcomeOnGoogleEnabled, notificationTemplatesConfig.welcomeOnGoogleEnabled) &&
-        Objects.equals(this.welcomeOnEmailEnabled, notificationTemplatesConfig.welcomeOnEmailEnabled) &&
-        Objects.equals(this.welcomeOnSmsEnabled, notificationTemplatesConfig.welcomeOnSmsEnabled) &&
-        Objects.equals(this.welcomeEmailSubject, notificationTemplatesConfig.welcomeEmailSubject) &&
-        Objects.equals(this.welcomeEmailHtmlBody, notificationTemplatesConfig.welcomeEmailHtmlBody) &&
-        Objects.equals(this.welcomeSmsBody, notificationTemplatesConfig.welcomeSmsBody) &&
-        Objects.equals(this.loginOtpEmailSubject, notificationTemplatesConfig.loginOtpEmailSubject) &&
-        Objects.equals(this.loginOtpEmailHtmlBody, notificationTemplatesConfig.loginOtpEmailHtmlBody) &&
-        Objects.equals(this.loginOtpSmsBody, notificationTemplatesConfig.loginOtpSmsBody) &&
-        Objects.equals(this.inviteEmailSubject, notificationTemplatesConfig.inviteEmailSubject) &&
-        Objects.equals(this.inviteEmailHtmlBody, notificationTemplatesConfig.inviteEmailHtmlBody) &&
-        Objects.equals(this.passwordResetEmailSubject, notificationTemplatesConfig.passwordResetEmailSubject) &&
-        Objects.equals(this.passwordResetEmailHtmlBody, notificationTemplatesConfig.passwordResetEmailHtmlBody) &&
-        Objects.equals(this.passwordResetSmsBody, notificationTemplatesConfig.passwordResetSmsBody);
+    return equalsNullable(this.emailVerificationSubject, notificationTemplatesConfig.emailVerificationSubject) &&
+        equalsNullable(this.emailVerificationHtmlBody, notificationTemplatesConfig.emailVerificationHtmlBody) &&
+        equalsNullable(this.smsVerificationBody, notificationTemplatesConfig.smsVerificationBody) &&
+        equalsNullable(this.welcomeOnGoogleEnabled, notificationTemplatesConfig.welcomeOnGoogleEnabled) &&
+        equalsNullable(this.welcomeOnEmailEnabled, notificationTemplatesConfig.welcomeOnEmailEnabled) &&
+        equalsNullable(this.welcomeOnSmsEnabled, notificationTemplatesConfig.welcomeOnSmsEnabled) &&
+        equalsNullable(this.welcomeEmailSubject, notificationTemplatesConfig.welcomeEmailSubject) &&
+        equalsNullable(this.welcomeEmailHtmlBody, notificationTemplatesConfig.welcomeEmailHtmlBody) &&
+        equalsNullable(this.welcomeSmsBody, notificationTemplatesConfig.welcomeSmsBody) &&
+        equalsNullable(this.loginOtpEmailSubject, notificationTemplatesConfig.loginOtpEmailSubject) &&
+        equalsNullable(this.loginOtpEmailHtmlBody, notificationTemplatesConfig.loginOtpEmailHtmlBody) &&
+        equalsNullable(this.loginOtpSmsBody, notificationTemplatesConfig.loginOtpSmsBody) &&
+        equalsNullable(this.inviteEmailSubject, notificationTemplatesConfig.inviteEmailSubject) &&
+        equalsNullable(this.inviteEmailHtmlBody, notificationTemplatesConfig.inviteEmailHtmlBody) &&
+        equalsNullable(this.passwordResetEmailSubject, notificationTemplatesConfig.passwordResetEmailSubject) &&
+        equalsNullable(this.passwordResetEmailHtmlBody, notificationTemplatesConfig.passwordResetEmailHtmlBody) &&
+        equalsNullable(this.passwordResetSmsBody, notificationTemplatesConfig.passwordResetSmsBody);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailVerificationSubject, emailVerificationHtmlBody, smsVerificationBody, welcomeOnGoogleEnabled, welcomeOnEmailEnabled, welcomeOnSmsEnabled, welcomeEmailSubject, welcomeEmailHtmlBody, welcomeSmsBody, loginOtpEmailSubject, loginOtpEmailHtmlBody, loginOtpSmsBody, inviteEmailSubject, inviteEmailHtmlBody, passwordResetEmailSubject, passwordResetEmailHtmlBody, passwordResetSmsBody);
+    return Objects.hash(hashCodeNullable(emailVerificationSubject), hashCodeNullable(emailVerificationHtmlBody), hashCodeNullable(smsVerificationBody), hashCodeNullable(welcomeOnGoogleEnabled), hashCodeNullable(welcomeOnEmailEnabled), hashCodeNullable(welcomeOnSmsEnabled), hashCodeNullable(welcomeEmailSubject), hashCodeNullable(welcomeEmailHtmlBody), hashCodeNullable(welcomeSmsBody), hashCodeNullable(loginOtpEmailSubject), hashCodeNullable(loginOtpEmailHtmlBody), hashCodeNullable(loginOtpSmsBody), hashCodeNullable(inviteEmailSubject), hashCodeNullable(inviteEmailHtmlBody), hashCodeNullable(passwordResetEmailSubject), hashCodeNullable(passwordResetEmailHtmlBody), hashCodeNullable(passwordResetSmsBody));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

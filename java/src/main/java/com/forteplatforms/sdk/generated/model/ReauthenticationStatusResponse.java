@@ -29,6 +29,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -43,8 +47,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ReauthenticationStatusResponse {
   public static final String JSON_PROPERTY_LAST_REAUTHENTICATED_AT = "lastReauthenticatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastReauthenticatedAt;
+  private JsonNullable<OffsetDateTime> lastReauthenticatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_AVAILABLE_FACTORS = "availableFactors";
   @javax.annotation.Nonnull
@@ -54,7 +57,7 @@ public class ReauthenticationStatusResponse {
   }
 
   public ReauthenticationStatusResponse lastReauthenticatedAt(@javax.annotation.Nullable OffsetDateTime lastReauthenticatedAt) {
-    this.lastReauthenticatedAt = lastReauthenticatedAt;
+    this.lastReauthenticatedAt = JsonNullable.<OffsetDateTime>of(lastReauthenticatedAt);
     return this;
   }
 
@@ -63,17 +66,25 @@ public class ReauthenticationStatusResponse {
    * @return lastReauthenticatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_REAUTHENTICATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastReauthenticatedAt() {
-    return lastReauthenticatedAt;
+        return lastReauthenticatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_REAUTHENTICATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastReauthenticatedAt(@javax.annotation.Nullable OffsetDateTime lastReauthenticatedAt) {
+
+  public JsonNullable<OffsetDateTime> getLastReauthenticatedAt_JsonNullable() {
+    return lastReauthenticatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_REAUTHENTICATED_AT)
+  public void setLastReauthenticatedAt_JsonNullable(JsonNullable<OffsetDateTime> lastReauthenticatedAt) {
     this.lastReauthenticatedAt = lastReauthenticatedAt;
+  }
+
+  public void setLastReauthenticatedAt(@javax.annotation.Nullable OffsetDateTime lastReauthenticatedAt) {
+    this.lastReauthenticatedAt = JsonNullable.<OffsetDateTime>of(lastReauthenticatedAt);
   }
 
 
@@ -121,13 +132,24 @@ public class ReauthenticationStatusResponse {
       return false;
     }
     ReauthenticationStatusResponse reauthenticationStatusResponse = (ReauthenticationStatusResponse) o;
-    return Objects.equals(this.lastReauthenticatedAt, reauthenticationStatusResponse.lastReauthenticatedAt) &&
+    return equalsNullable(this.lastReauthenticatedAt, reauthenticationStatusResponse.lastReauthenticatedAt) &&
         Objects.equals(this.availableFactors, reauthenticationStatusResponse.availableFactors);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastReauthenticatedAt, availableFactors);
+    return Objects.hash(hashCodeNullable(lastReauthenticatedAt), availableFactors);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

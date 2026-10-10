@@ -69,7 +69,7 @@ export interface RequestLogSummary {
      * @type {string}
      * @memberof RequestLogSummary
      */
-    exceptionType?: string;
+    exceptionType?: string | null;
     /**
      * 
      * @type {InternalSource}

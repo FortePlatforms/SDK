@@ -146,6 +146,71 @@ class UpdateWebAppRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if web_app_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.web_app_name is None and "web_app_name" in self.model_fields_set:
+            _dict['webAppName'] = None
+
+        # set to None if github_build_trigger (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_build_trigger is None and "github_build_trigger" in self.model_fields_set:
+            _dict['githubBuildTrigger'] = None
+
+        # set to None if github_branch (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_branch is None and "github_branch" in self.model_fields_set:
+            _dict['githubBranch'] = None
+
+        # set to None if subdirectory (nullable) is None
+        # and model_fields_set contains the field
+        if self.subdirectory is None and "subdirectory" in self.model_fields_set:
+            _dict['subdirectory'] = None
+
+        # set to None if build_command (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_command is None and "build_command" in self.model_fields_set:
+            _dict['buildCommand'] = None
+
+        # set to None if build_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_path is None and "build_path" in self.model_fields_set:
+            _dict['buildPath'] = None
+
+        # set to None if package_manager (nullable) is None
+        # and model_fields_set contains the field
+        if self.package_manager is None and "package_manager" in self.model_fields_set:
+            _dict['packageManager'] = None
+
+        # set to None if node_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_version is None and "node_version" in self.model_fields_set:
+            _dict['nodeVersion'] = None
+
+        # set to None if install_command (nullable) is None
+        # and model_fields_set contains the field
+        if self.install_command is None and "install_command" in self.model_fields_set:
+            _dict['installCommand'] = None
+
+        # set to None if secret_keys_to_delete (nullable) is None
+        # and model_fields_set contains the field
+        if self.secret_keys_to_delete is None and "secret_keys_to_delete" in self.model_fields_set:
+            _dict['secretKeysToDelete'] = None
+
+        # set to None if reset_detected_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_detected_config is None and "reset_detected_config" in self.model_fields_set:
+            _dict['resetDetectedConfig'] = None
+
+        # set to None if site_password (nullable) is None
+        # and model_fields_set contains the field
+        if self.site_password is None and "site_password" in self.model_fields_set:
+            _dict['sitePassword'] = None
+
+        # set to None if remove_site_password (nullable) is None
+        # and model_fields_set contains the field
+        if self.remove_site_password is None and "remove_site_password" in self.model_fields_set:
+            _dict['removeSitePassword'] = None
+
         return _dict
 
     @classmethod

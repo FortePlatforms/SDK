@@ -44,7 +44,7 @@ export interface PaginatedResponseUserObject {
      * @type {string}
      * @memberof PaginatedResponseUserObject
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
 }
 
 /**

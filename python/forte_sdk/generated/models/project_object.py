@@ -146,6 +146,41 @@ class ProjectObject(BaseModel):
                 if _item_payment_triggers:
                     _items.append(_item_payment_triggers.to_dict())
             _dict['paymentTriggers'] = _items
+        # set to None if cached_user_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.cached_user_count is None and "cached_user_count" in self.model_fields_set:
+            _dict['cachedUserCount'] = None
+
+        # set to None if phone_login_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.phone_login_enabled is None and "phone_login_enabled" in self.model_fields_set:
+            _dict['phoneLoginEnabled'] = None
+
+        # set to None if email_login_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_login_enabled is None and "email_login_enabled" in self.model_fields_set:
+            _dict['emailLoginEnabled'] = None
+
+        # set to None if google_login_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.google_login_enabled is None and "google_login_enabled" in self.model_fields_set:
+            _dict['googleLoginEnabled'] = None
+
+        # set to None if password_login_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_login_enabled is None and "password_login_enabled" in self.model_fields_set:
+            _dict['passwordLoginEnabled'] = None
+
+        # set to None if sandbox_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.sandbox_mode is None and "sandbox_mode" in self.model_fields_set:
+            _dict['sandboxMode'] = None
+
+        # set to None if email_sender (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_sender is None and "email_sender" in self.model_fields_set:
+            _dict['emailSender'] = None
+
         return _dict
 
     @classmethod

@@ -28,6 +28,10 @@ import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -196,24 +200,19 @@ public class UserActionLogObject {
   private ActionTypeEnum actionType;
 
   public static final String JSON_PROPERTY_CONTACT_METHOD_ID = "contactMethodId";
-  @javax.annotation.Nullable
-  private String contactMethodId;
+  private JsonNullable<String> contactMethodId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PAYMENT_METHOD_ID = "paymentMethodId";
-  @javax.annotation.Nullable
-  private String paymentMethodId;
+  private JsonNullable<String> paymentMethodId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID = "performedByAccountId";
-  @javax.annotation.Nullable
-  private String performedByAccountId;
+  private JsonNullable<String> performedByAccountId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SOURCE_IP_ADDRESS = "sourceIpAddress";
-  @javax.annotation.Nullable
-  private String sourceIpAddress;
+  private JsonNullable<String> sourceIpAddress = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_USER_AGENT = "userAgent";
-  @javax.annotation.Nullable
-  private String userAgent;
+  private JsonNullable<String> userAgent = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
@@ -295,7 +294,7 @@ public class UserActionLogObject {
 
 
   public UserActionLogObject contactMethodId(@javax.annotation.Nullable String contactMethodId) {
-    this.contactMethodId = contactMethodId;
+    this.contactMethodId = JsonNullable.<String>of(contactMethodId);
     return this;
   }
 
@@ -304,22 +303,30 @@ public class UserActionLogObject {
    * @return contactMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTACT_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getContactMethodId() {
-    return contactMethodId;
+        return contactMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTACT_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContactMethodId(@javax.annotation.Nullable String contactMethodId) {
+
+  public JsonNullable<String> getContactMethodId_JsonNullable() {
+    return contactMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTACT_METHOD_ID)
+  public void setContactMethodId_JsonNullable(JsonNullable<String> contactMethodId) {
     this.contactMethodId = contactMethodId;
+  }
+
+  public void setContactMethodId(@javax.annotation.Nullable String contactMethodId) {
+    this.contactMethodId = JsonNullable.<String>of(contactMethodId);
   }
 
 
   public UserActionLogObject paymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
-    this.paymentMethodId = paymentMethodId;
+    this.paymentMethodId = JsonNullable.<String>of(paymentMethodId);
     return this;
   }
 
@@ -328,22 +335,30 @@ public class UserActionLogObject {
    * @return paymentMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPaymentMethodId() {
-    return paymentMethodId;
+        return paymentMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+
+  public JsonNullable<String> getPaymentMethodId_JsonNullable() {
+    return paymentMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAYMENT_METHOD_ID)
+  public void setPaymentMethodId_JsonNullable(JsonNullable<String> paymentMethodId) {
     this.paymentMethodId = paymentMethodId;
+  }
+
+  public void setPaymentMethodId(@javax.annotation.Nullable String paymentMethodId) {
+    this.paymentMethodId = JsonNullable.<String>of(paymentMethodId);
   }
 
 
   public UserActionLogObject performedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
-    this.performedByAccountId = performedByAccountId;
+    this.performedByAccountId = JsonNullable.<String>of(performedByAccountId);
     return this;
   }
 
@@ -352,22 +367,30 @@ public class UserActionLogObject {
    * @return performedByAccountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPerformedByAccountId() {
-    return performedByAccountId;
+        return performedByAccountId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPerformedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
+
+  public JsonNullable<String> getPerformedByAccountId_JsonNullable() {
+    return performedByAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID)
+  public void setPerformedByAccountId_JsonNullable(JsonNullable<String> performedByAccountId) {
     this.performedByAccountId = performedByAccountId;
+  }
+
+  public void setPerformedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
+    this.performedByAccountId = JsonNullable.<String>of(performedByAccountId);
   }
 
 
   public UserActionLogObject sourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
-    this.sourceIpAddress = sourceIpAddress;
+    this.sourceIpAddress = JsonNullable.<String>of(sourceIpAddress);
     return this;
   }
 
@@ -376,22 +399,30 @@ public class UserActionLogObject {
    * @return sourceIpAddress
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSourceIpAddress() {
-    return sourceIpAddress;
+        return sourceIpAddress.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+
+  public JsonNullable<String> getSourceIpAddress_JsonNullable() {
+    return sourceIpAddress;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SOURCE_IP_ADDRESS)
+  public void setSourceIpAddress_JsonNullable(JsonNullable<String> sourceIpAddress) {
     this.sourceIpAddress = sourceIpAddress;
+  }
+
+  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+    this.sourceIpAddress = JsonNullable.<String>of(sourceIpAddress);
   }
 
 
   public UserActionLogObject userAgent(@javax.annotation.Nullable String userAgent) {
-    this.userAgent = userAgent;
+    this.userAgent = JsonNullable.<String>of(userAgent);
     return this;
   }
 
@@ -400,17 +431,25 @@ public class UserActionLogObject {
    * @return userAgent
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_AGENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUserAgent() {
-    return userAgent;
+        return userAgent.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USER_AGENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserAgent(@javax.annotation.Nullable String userAgent) {
+
+  public JsonNullable<String> getUserAgent_JsonNullable() {
+    return userAgent;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_AGENT)
+  public void setUserAgent_JsonNullable(JsonNullable<String> userAgent) {
     this.userAgent = userAgent;
+  }
+
+  public void setUserAgent(@javax.annotation.Nullable String userAgent) {
+    this.userAgent = JsonNullable.<String>of(userAgent);
   }
 
 
@@ -461,17 +500,28 @@ public class UserActionLogObject {
     return Objects.equals(this.timestamp, userActionLogObject.timestamp) &&
         Objects.equals(this.userId, userActionLogObject.userId) &&
         Objects.equals(this.actionType, userActionLogObject.actionType) &&
-        Objects.equals(this.contactMethodId, userActionLogObject.contactMethodId) &&
-        Objects.equals(this.paymentMethodId, userActionLogObject.paymentMethodId) &&
-        Objects.equals(this.performedByAccountId, userActionLogObject.performedByAccountId) &&
-        Objects.equals(this.sourceIpAddress, userActionLogObject.sourceIpAddress) &&
-        Objects.equals(this.userAgent, userActionLogObject.userAgent) &&
+        equalsNullable(this.contactMethodId, userActionLogObject.contactMethodId) &&
+        equalsNullable(this.paymentMethodId, userActionLogObject.paymentMethodId) &&
+        equalsNullable(this.performedByAccountId, userActionLogObject.performedByAccountId) &&
+        equalsNullable(this.sourceIpAddress, userActionLogObject.sourceIpAddress) &&
+        equalsNullable(this.userAgent, userActionLogObject.userAgent) &&
         Objects.equals(this.metadata, userActionLogObject.metadata);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, userId, actionType, contactMethodId, paymentMethodId, performedByAccountId, sourceIpAddress, userAgent, metadata);
+    return Objects.hash(timestamp, userId, actionType, hashCodeNullable(contactMethodId), hashCodeNullable(paymentMethodId), hashCodeNullable(performedByAccountId), hashCodeNullable(sourceIpAddress), hashCodeNullable(userAgent), metadata);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

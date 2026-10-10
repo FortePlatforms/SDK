@@ -31,6 +31,10 @@ import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -73,8 +77,7 @@ public class RequestLogObject {
   private OffsetDateTime timestamp;
 
   public static final String JSON_PROPERTY_SOURCE_IP_ADDRESS = "sourceIpAddress";
-  @javax.annotation.Nullable
-  private String sourceIpAddress;
+  private JsonNullable<String> sourceIpAddress = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REQUEST_LOG_OBJECT_META = "requestLogObjectMeta";
   @javax.annotation.Nonnull
@@ -93,16 +96,13 @@ public class RequestLogObject {
   private Long totalLatencyMilliseconds;
 
   public static final String JSON_PROPERTY_FIRST_BYTE_LATENCY_MILLISECONDS = "firstByteLatencyMilliseconds";
-  @javax.annotation.Nullable
-  private Long firstByteLatencyMilliseconds;
+  private JsonNullable<Long> firstByteLatencyMilliseconds = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_REQUEST_BODY = "requestBody";
-  @javax.annotation.Nullable
-  private String requestBody;
+  private JsonNullable<String> requestBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RESPONSE_BODY = "responseBody";
-  @javax.annotation.Nullable
-  private String responseBody;
+  private JsonNullable<String> responseBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REQUEST_BODY_REF = "requestBodyRef";
   @javax.annotation.Nullable
@@ -125,32 +125,26 @@ public class RequestLogObject {
   private Map<String, String> responseHeaders = new HashMap<>();
 
   public static final String JSON_PROPERTY_RETRY_COUNT = "retryCount";
-  @javax.annotation.Nullable
-  private Integer retryCount;
+  private JsonNullable<Integer> retryCount = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_INTERNAL_SOURCE = "internalSource";
   @javax.annotation.Nullable
   private InternalSource internalSource;
 
   public static final String JSON_PROPERTY_EXCEPTION_TYPE = "exceptionType";
-  @javax.annotation.Nullable
-  private String exceptionType;
+  private JsonNullable<String> exceptionType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EXCEPTION_MESSAGE = "exceptionMessage";
-  @javax.annotation.Nullable
-  private String exceptionMessage;
+  private JsonNullable<String> exceptionMessage = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EXCEPTION_STACK_TRACE = "exceptionStackTrace";
-  @javax.annotation.Nullable
-  private String exceptionStackTrace;
+  private JsonNullable<String> exceptionStackTrace = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OWNER_ACCOUNT_ID = "ownerAccountId";
-  @javax.annotation.Nullable
-  private String ownerAccountId;
+  private JsonNullable<String> ownerAccountId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ENVIRONMENT = "environment";
-  @javax.annotation.Nullable
-  private String environment;
+  private JsonNullable<String> environment = JsonNullable.<String>undefined();
 
   public RequestLogObject() { 
   }
@@ -204,7 +198,7 @@ public class RequestLogObject {
 
 
   public RequestLogObject sourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
-    this.sourceIpAddress = sourceIpAddress;
+    this.sourceIpAddress = JsonNullable.<String>of(sourceIpAddress);
     return this;
   }
 
@@ -213,17 +207,25 @@ public class RequestLogObject {
    * @return sourceIpAddress
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSourceIpAddress() {
-    return sourceIpAddress;
+        return sourceIpAddress.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+
+  public JsonNullable<String> getSourceIpAddress_JsonNullable() {
+    return sourceIpAddress;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SOURCE_IP_ADDRESS)
+  public void setSourceIpAddress_JsonNullable(JsonNullable<String> sourceIpAddress) {
     this.sourceIpAddress = sourceIpAddress;
+  }
+
+  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+    this.sourceIpAddress = JsonNullable.<String>of(sourceIpAddress);
   }
 
 
@@ -324,7 +326,7 @@ public class RequestLogObject {
 
 
   public RequestLogObject firstByteLatencyMilliseconds(@javax.annotation.Nullable Long firstByteLatencyMilliseconds) {
-    this.firstByteLatencyMilliseconds = firstByteLatencyMilliseconds;
+    this.firstByteLatencyMilliseconds = JsonNullable.<Long>of(firstByteLatencyMilliseconds);
     return this;
   }
 
@@ -333,22 +335,30 @@ public class RequestLogObject {
    * @return firstByteLatencyMilliseconds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FIRST_BYTE_LATENCY_MILLISECONDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getFirstByteLatencyMilliseconds() {
-    return firstByteLatencyMilliseconds;
+        return firstByteLatencyMilliseconds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FIRST_BYTE_LATENCY_MILLISECONDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFirstByteLatencyMilliseconds(@javax.annotation.Nullable Long firstByteLatencyMilliseconds) {
+
+  public JsonNullable<Long> getFirstByteLatencyMilliseconds_JsonNullable() {
+    return firstByteLatencyMilliseconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FIRST_BYTE_LATENCY_MILLISECONDS)
+  public void setFirstByteLatencyMilliseconds_JsonNullable(JsonNullable<Long> firstByteLatencyMilliseconds) {
     this.firstByteLatencyMilliseconds = firstByteLatencyMilliseconds;
+  }
+
+  public void setFirstByteLatencyMilliseconds(@javax.annotation.Nullable Long firstByteLatencyMilliseconds) {
+    this.firstByteLatencyMilliseconds = JsonNullable.<Long>of(firstByteLatencyMilliseconds);
   }
 
 
   public RequestLogObject requestBody(@javax.annotation.Nullable String requestBody) {
-    this.requestBody = requestBody;
+    this.requestBody = JsonNullable.<String>of(requestBody);
     return this;
   }
 
@@ -357,22 +367,30 @@ public class RequestLogObject {
    * @return requestBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUEST_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRequestBody() {
-    return requestBody;
+        return requestBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUEST_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestBody(@javax.annotation.Nullable String requestBody) {
+
+  public JsonNullable<String> getRequestBody_JsonNullable() {
+    return requestBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUEST_BODY)
+  public void setRequestBody_JsonNullable(JsonNullable<String> requestBody) {
     this.requestBody = requestBody;
+  }
+
+  public void setRequestBody(@javax.annotation.Nullable String requestBody) {
+    this.requestBody = JsonNullable.<String>of(requestBody);
   }
 
 
   public RequestLogObject responseBody(@javax.annotation.Nullable String responseBody) {
-    this.responseBody = responseBody;
+    this.responseBody = JsonNullable.<String>of(responseBody);
     return this;
   }
 
@@ -381,17 +399,25 @@ public class RequestLogObject {
    * @return responseBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESPONSE_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getResponseBody() {
-    return responseBody;
+        return responseBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESPONSE_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResponseBody(@javax.annotation.Nullable String responseBody) {
+
+  public JsonNullable<String> getResponseBody_JsonNullable() {
+    return responseBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESPONSE_BODY)
+  public void setResponseBody_JsonNullable(JsonNullable<String> responseBody) {
     this.responseBody = responseBody;
+  }
+
+  public void setResponseBody(@javax.annotation.Nullable String responseBody) {
+    this.responseBody = JsonNullable.<String>of(responseBody);
   }
 
 
@@ -532,7 +558,7 @@ public class RequestLogObject {
 
 
   public RequestLogObject retryCount(@javax.annotation.Nullable Integer retryCount) {
-    this.retryCount = retryCount;
+    this.retryCount = JsonNullable.<Integer>of(retryCount);
     return this;
   }
 
@@ -541,17 +567,25 @@ public class RequestLogObject {
    * @return retryCount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RETRY_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getRetryCount() {
-    return retryCount;
+        return retryCount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RETRY_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRetryCount(@javax.annotation.Nullable Integer retryCount) {
+
+  public JsonNullable<Integer> getRetryCount_JsonNullable() {
+    return retryCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RETRY_COUNT)
+  public void setRetryCount_JsonNullable(JsonNullable<Integer> retryCount) {
     this.retryCount = retryCount;
+  }
+
+  public void setRetryCount(@javax.annotation.Nullable Integer retryCount) {
+    this.retryCount = JsonNullable.<Integer>of(retryCount);
   }
 
 
@@ -580,7 +614,7 @@ public class RequestLogObject {
 
 
   public RequestLogObject exceptionType(@javax.annotation.Nullable String exceptionType) {
-    this.exceptionType = exceptionType;
+    this.exceptionType = JsonNullable.<String>of(exceptionType);
     return this;
   }
 
@@ -589,22 +623,30 @@ public class RequestLogObject {
    * @return exceptionType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getExceptionType() {
-    return exceptionType;
+        return exceptionType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXCEPTION_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExceptionType(@javax.annotation.Nullable String exceptionType) {
+
+  public JsonNullable<String> getExceptionType_JsonNullable() {
+    return exceptionType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXCEPTION_TYPE)
+  public void setExceptionType_JsonNullable(JsonNullable<String> exceptionType) {
     this.exceptionType = exceptionType;
+  }
+
+  public void setExceptionType(@javax.annotation.Nullable String exceptionType) {
+    this.exceptionType = JsonNullable.<String>of(exceptionType);
   }
 
 
   public RequestLogObject exceptionMessage(@javax.annotation.Nullable String exceptionMessage) {
-    this.exceptionMessage = exceptionMessage;
+    this.exceptionMessage = JsonNullable.<String>of(exceptionMessage);
     return this;
   }
 
@@ -613,22 +655,30 @@ public class RequestLogObject {
    * @return exceptionMessage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getExceptionMessage() {
-    return exceptionMessage;
+        return exceptionMessage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXCEPTION_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExceptionMessage(@javax.annotation.Nullable String exceptionMessage) {
+
+  public JsonNullable<String> getExceptionMessage_JsonNullable() {
+    return exceptionMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXCEPTION_MESSAGE)
+  public void setExceptionMessage_JsonNullable(JsonNullable<String> exceptionMessage) {
     this.exceptionMessage = exceptionMessage;
+  }
+
+  public void setExceptionMessage(@javax.annotation.Nullable String exceptionMessage) {
+    this.exceptionMessage = JsonNullable.<String>of(exceptionMessage);
   }
 
 
   public RequestLogObject exceptionStackTrace(@javax.annotation.Nullable String exceptionStackTrace) {
-    this.exceptionStackTrace = exceptionStackTrace;
+    this.exceptionStackTrace = JsonNullable.<String>of(exceptionStackTrace);
     return this;
   }
 
@@ -637,22 +687,30 @@ public class RequestLogObject {
    * @return exceptionStackTrace
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_STACK_TRACE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getExceptionStackTrace() {
-    return exceptionStackTrace;
+        return exceptionStackTrace.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXCEPTION_STACK_TRACE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExceptionStackTrace(@javax.annotation.Nullable String exceptionStackTrace) {
+
+  public JsonNullable<String> getExceptionStackTrace_JsonNullable() {
+    return exceptionStackTrace;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXCEPTION_STACK_TRACE)
+  public void setExceptionStackTrace_JsonNullable(JsonNullable<String> exceptionStackTrace) {
     this.exceptionStackTrace = exceptionStackTrace;
+  }
+
+  public void setExceptionStackTrace(@javax.annotation.Nullable String exceptionStackTrace) {
+    this.exceptionStackTrace = JsonNullable.<String>of(exceptionStackTrace);
   }
 
 
   public RequestLogObject ownerAccountId(@javax.annotation.Nullable String ownerAccountId) {
-    this.ownerAccountId = ownerAccountId;
+    this.ownerAccountId = JsonNullable.<String>of(ownerAccountId);
     return this;
   }
 
@@ -661,22 +719,30 @@ public class RequestLogObject {
    * @return ownerAccountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OWNER_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOwnerAccountId() {
-    return ownerAccountId;
+        return ownerAccountId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OWNER_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOwnerAccountId(@javax.annotation.Nullable String ownerAccountId) {
+
+  public JsonNullable<String> getOwnerAccountId_JsonNullable() {
+    return ownerAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OWNER_ACCOUNT_ID)
+  public void setOwnerAccountId_JsonNullable(JsonNullable<String> ownerAccountId) {
     this.ownerAccountId = ownerAccountId;
+  }
+
+  public void setOwnerAccountId(@javax.annotation.Nullable String ownerAccountId) {
+    this.ownerAccountId = JsonNullable.<String>of(ownerAccountId);
   }
 
 
   public RequestLogObject environment(@javax.annotation.Nullable String environment) {
-    this.environment = environment;
+    this.environment = JsonNullable.<String>of(environment);
     return this;
   }
 
@@ -685,17 +751,25 @@ public class RequestLogObject {
    * @return environment
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENVIRONMENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEnvironment() {
-    return environment;
+        return environment.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENVIRONMENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnvironment(@javax.annotation.Nullable String environment) {
+
+  public JsonNullable<String> getEnvironment_JsonNullable() {
+    return environment;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENVIRONMENT)
+  public void setEnvironment_JsonNullable(JsonNullable<String> environment) {
     this.environment = environment;
+  }
+
+  public void setEnvironment(@javax.annotation.Nullable String environment) {
+    this.environment = JsonNullable.<String>of(environment);
   }
 
 
@@ -713,31 +787,42 @@ public class RequestLogObject {
     RequestLogObject requestLogObject = (RequestLogObject) o;
     return Objects.equals(this.requestId, requestLogObject.requestId) &&
         Objects.equals(this.timestamp, requestLogObject.timestamp) &&
-        Objects.equals(this.sourceIpAddress, requestLogObject.sourceIpAddress) &&
+        equalsNullable(this.sourceIpAddress, requestLogObject.sourceIpAddress) &&
         Objects.equals(this.requestLogObjectMeta, requestLogObject.requestLogObjectMeta) &&
         Objects.equals(this.targetLatencyMilliseconds, requestLogObject.targetLatencyMilliseconds) &&
         Objects.equals(this.integrationLatencyMilliseconds, requestLogObject.integrationLatencyMilliseconds) &&
         Objects.equals(this.totalLatencyMilliseconds, requestLogObject.totalLatencyMilliseconds) &&
-        Objects.equals(this.firstByteLatencyMilliseconds, requestLogObject.firstByteLatencyMilliseconds) &&
-        Objects.equals(this.requestBody, requestLogObject.requestBody) &&
-        Objects.equals(this.responseBody, requestLogObject.responseBody) &&
+        equalsNullable(this.firstByteLatencyMilliseconds, requestLogObject.firstByteLatencyMilliseconds) &&
+        equalsNullable(this.requestBody, requestLogObject.requestBody) &&
+        equalsNullable(this.responseBody, requestLogObject.responseBody) &&
         Objects.equals(this.requestBodyRef, requestLogObject.requestBodyRef) &&
         Objects.equals(this.responseBodyRef, requestLogObject.responseBodyRef) &&
         Objects.equals(this.statusCode, requestLogObject.statusCode) &&
         Objects.equals(this.requestHeaders, requestLogObject.requestHeaders) &&
         Objects.equals(this.responseHeaders, requestLogObject.responseHeaders) &&
-        Objects.equals(this.retryCount, requestLogObject.retryCount) &&
+        equalsNullable(this.retryCount, requestLogObject.retryCount) &&
         Objects.equals(this.internalSource, requestLogObject.internalSource) &&
-        Objects.equals(this.exceptionType, requestLogObject.exceptionType) &&
-        Objects.equals(this.exceptionMessage, requestLogObject.exceptionMessage) &&
-        Objects.equals(this.exceptionStackTrace, requestLogObject.exceptionStackTrace) &&
-        Objects.equals(this.ownerAccountId, requestLogObject.ownerAccountId) &&
-        Objects.equals(this.environment, requestLogObject.environment);
+        equalsNullable(this.exceptionType, requestLogObject.exceptionType) &&
+        equalsNullable(this.exceptionMessage, requestLogObject.exceptionMessage) &&
+        equalsNullable(this.exceptionStackTrace, requestLogObject.exceptionStackTrace) &&
+        equalsNullable(this.ownerAccountId, requestLogObject.ownerAccountId) &&
+        equalsNullable(this.environment, requestLogObject.environment);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, timestamp, sourceIpAddress, requestLogObjectMeta, targetLatencyMilliseconds, integrationLatencyMilliseconds, totalLatencyMilliseconds, firstByteLatencyMilliseconds, requestBody, responseBody, requestBodyRef, responseBodyRef, statusCode, requestHeaders, responseHeaders, retryCount, internalSource, exceptionType, exceptionMessage, exceptionStackTrace, ownerAccountId, environment);
+    return Objects.hash(requestId, timestamp, hashCodeNullable(sourceIpAddress), requestLogObjectMeta, targetLatencyMilliseconds, integrationLatencyMilliseconds, totalLatencyMilliseconds, hashCodeNullable(firstByteLatencyMilliseconds), hashCodeNullable(requestBody), hashCodeNullable(responseBody), requestBodyRef, responseBodyRef, statusCode, requestHeaders, responseHeaders, hashCodeNullable(retryCount), internalSource, hashCodeNullable(exceptionType), hashCodeNullable(exceptionMessage), hashCodeNullable(exceptionStackTrace), hashCodeNullable(ownerAccountId), hashCodeNullable(environment));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

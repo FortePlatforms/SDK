@@ -35,6 +35,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -60,8 +64,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT,
   UserObject.JSON_PROPERTY_MFA_METHODS,
   UserObject.JSON_PROPERTY_BACKUP_CODES_GENERATED_AT,
-  UserObject.JSON_PROPERTY_HAS_PASSWORD,
-  UserObject.JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT
+  UserObject.JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT,
+  UserObject.JSON_PROPERTY_HAS_PASSWORD
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UserObject {
@@ -70,8 +74,7 @@ public class UserObject {
   private String userId;
 
   public static final String JSON_PROPERTY_FULL_NAME = "fullName";
-  @javax.annotation.Nullable
-  private String fullName;
+  private JsonNullable<String> fullName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PROJECT_ID = "projectId";
   @javax.annotation.Nonnull
@@ -98,20 +101,17 @@ public class UserObject {
   private Map<String, Object> customMetadataAttributes = new HashMap<>();
 
   public static final String JSON_PROPERTY_STRIPE_CUSTOMER_ID = "stripeCustomerId";
-  @javax.annotation.Nullable
-  private String stripeCustomerId;
+  private JsonNullable<String> stripeCustomerId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CONTACT_METHODS = "contactMethods";
   @javax.annotation.Nonnull
   private List<ContactMethod> contactMethods = new ArrayList<>();
 
   public static final String JSON_PROPERTY_WELCOME_MESSAGE_SENT = "welcomeMessageSent";
-  @javax.annotation.Nullable
-  private Boolean welcomeMessageSent;
+  private JsonNullable<Boolean> welcomeMessageSent = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_INVITED_BY_USER_ID = "invitedByUserId";
-  @javax.annotation.Nullable
-  private String invitedByUserId;
+  private JsonNullable<String> invitedByUserId = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets state
@@ -155,28 +155,24 @@ public class UserObject {
   private StateEnum state;
 
   public static final String JSON_PROPERTY_PASSWORD_SET_AT = "passwordSetAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime passwordSetAt;
+  private JsonNullable<OffsetDateTime> passwordSetAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT = "passwordResetLastRequestedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime passwordResetLastRequestedAt;
+  private JsonNullable<OffsetDateTime> passwordResetLastRequestedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_MFA_METHODS = "mfaMethods";
-  @javax.annotation.Nullable
-  private List<MfaMethod> mfaMethods = new ArrayList<>();
+  private JsonNullable<List<MfaMethod>> mfaMethods = JsonNullable.<List<MfaMethod>>undefined();
 
   public static final String JSON_PROPERTY_BACKUP_CODES_GENERATED_AT = "backupCodesGeneratedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime backupCodesGeneratedAt;
-
-  public static final String JSON_PROPERTY_HAS_PASSWORD = "hasPassword";
-  @javax.annotation.Nullable
-  private Boolean hasPassword;
+  private JsonNullable<OffsetDateTime> backupCodesGeneratedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT = "remainingBackupCodeCount";
   @javax.annotation.Nullable
   private Integer remainingBackupCodeCount;
+
+  public static final String JSON_PROPERTY_HAS_PASSWORD = "hasPassword";
+  @javax.annotation.Nullable
+  private Boolean hasPassword;
 
   public UserObject() { 
   }
@@ -206,7 +202,7 @@ public class UserObject {
 
 
   public UserObject fullName(@javax.annotation.Nullable String fullName) {
-    this.fullName = fullName;
+    this.fullName = JsonNullable.<String>of(fullName);
     return this;
   }
 
@@ -215,17 +211,25 @@ public class UserObject {
    * @return fullName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFullName() {
-    return fullName;
+        return fullName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFullName(@javax.annotation.Nullable String fullName) {
+
+  public JsonNullable<String> getFullName_JsonNullable() {
+    return fullName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FULL_NAME)
+  public void setFullName_JsonNullable(JsonNullable<String> fullName) {
     this.fullName = fullName;
+  }
+
+  public void setFullName(@javax.annotation.Nullable String fullName) {
+    this.fullName = JsonNullable.<String>of(fullName);
   }
 
 
@@ -391,7 +395,7 @@ public class UserObject {
 
 
   public UserObject stripeCustomerId(@javax.annotation.Nullable String stripeCustomerId) {
-    this.stripeCustomerId = stripeCustomerId;
+    this.stripeCustomerId = JsonNullable.<String>of(stripeCustomerId);
     return this;
   }
 
@@ -400,17 +404,25 @@ public class UserObject {
    * @return stripeCustomerId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_CUSTOMER_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripeCustomerId() {
-    return stripeCustomerId;
+        return stripeCustomerId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_CUSTOMER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripeCustomerId(@javax.annotation.Nullable String stripeCustomerId) {
+
+  public JsonNullable<String> getStripeCustomerId_JsonNullable() {
+    return stripeCustomerId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_CUSTOMER_ID)
+  public void setStripeCustomerId_JsonNullable(JsonNullable<String> stripeCustomerId) {
     this.stripeCustomerId = stripeCustomerId;
+  }
+
+  public void setStripeCustomerId(@javax.annotation.Nullable String stripeCustomerId) {
+    this.stripeCustomerId = JsonNullable.<String>of(stripeCustomerId);
   }
 
 
@@ -447,7 +459,7 @@ public class UserObject {
 
 
   public UserObject welcomeMessageSent(@javax.annotation.Nullable Boolean welcomeMessageSent) {
-    this.welcomeMessageSent = welcomeMessageSent;
+    this.welcomeMessageSent = JsonNullable.<Boolean>of(welcomeMessageSent);
     return this;
   }
 
@@ -456,22 +468,30 @@ public class UserObject {
    * @return welcomeMessageSent
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WELCOME_MESSAGE_SENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getWelcomeMessageSent() {
-    return welcomeMessageSent;
+        return welcomeMessageSent.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WELCOME_MESSAGE_SENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWelcomeMessageSent(@javax.annotation.Nullable Boolean welcomeMessageSent) {
+
+  public JsonNullable<Boolean> getWelcomeMessageSent_JsonNullable() {
+    return welcomeMessageSent;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WELCOME_MESSAGE_SENT)
+  public void setWelcomeMessageSent_JsonNullable(JsonNullable<Boolean> welcomeMessageSent) {
     this.welcomeMessageSent = welcomeMessageSent;
+  }
+
+  public void setWelcomeMessageSent(@javax.annotation.Nullable Boolean welcomeMessageSent) {
+    this.welcomeMessageSent = JsonNullable.<Boolean>of(welcomeMessageSent);
   }
 
 
   public UserObject invitedByUserId(@javax.annotation.Nullable String invitedByUserId) {
-    this.invitedByUserId = invitedByUserId;
+    this.invitedByUserId = JsonNullable.<String>of(invitedByUserId);
     return this;
   }
 
@@ -480,17 +500,25 @@ public class UserObject {
    * @return invitedByUserId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INVITED_BY_USER_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInvitedByUserId() {
-    return invitedByUserId;
+        return invitedByUserId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INVITED_BY_USER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInvitedByUserId(@javax.annotation.Nullable String invitedByUserId) {
+
+  public JsonNullable<String> getInvitedByUserId_JsonNullable() {
+    return invitedByUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INVITED_BY_USER_ID)
+  public void setInvitedByUserId_JsonNullable(JsonNullable<String> invitedByUserId) {
     this.invitedByUserId = invitedByUserId;
+  }
+
+  public void setInvitedByUserId(@javax.annotation.Nullable String invitedByUserId) {
+    this.invitedByUserId = JsonNullable.<String>of(invitedByUserId);
   }
 
 
@@ -519,7 +547,7 @@ public class UserObject {
 
 
   public UserObject passwordSetAt(@javax.annotation.Nullable OffsetDateTime passwordSetAt) {
-    this.passwordSetAt = passwordSetAt;
+    this.passwordSetAt = JsonNullable.<OffsetDateTime>of(passwordSetAt);
     return this;
   }
 
@@ -528,22 +556,30 @@ public class UserObject {
    * @return passwordSetAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD_SET_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPasswordSetAt() {
-    return passwordSetAt;
+        return passwordSetAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD_SET_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordSetAt(@javax.annotation.Nullable OffsetDateTime passwordSetAt) {
+
+  public JsonNullable<OffsetDateTime> getPasswordSetAt_JsonNullable() {
+    return passwordSetAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_SET_AT)
+  public void setPasswordSetAt_JsonNullable(JsonNullable<OffsetDateTime> passwordSetAt) {
     this.passwordSetAt = passwordSetAt;
+  }
+
+  public void setPasswordSetAt(@javax.annotation.Nullable OffsetDateTime passwordSetAt) {
+    this.passwordSetAt = JsonNullable.<OffsetDateTime>of(passwordSetAt);
   }
 
 
   public UserObject passwordResetLastRequestedAt(@javax.annotation.Nullable OffsetDateTime passwordResetLastRequestedAt) {
-    this.passwordResetLastRequestedAt = passwordResetLastRequestedAt;
+    this.passwordResetLastRequestedAt = JsonNullable.<OffsetDateTime>of(passwordResetLastRequestedAt);
     return this;
   }
 
@@ -552,30 +588,42 @@ public class UserObject {
    * @return passwordResetLastRequestedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPasswordResetLastRequestedAt() {
-    return passwordResetLastRequestedAt;
+        return passwordResetLastRequestedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordResetLastRequestedAt(@javax.annotation.Nullable OffsetDateTime passwordResetLastRequestedAt) {
+
+  public JsonNullable<OffsetDateTime> getPasswordResetLastRequestedAt_JsonNullable() {
+    return passwordResetLastRequestedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT)
+  public void setPasswordResetLastRequestedAt_JsonNullable(JsonNullable<OffsetDateTime> passwordResetLastRequestedAt) {
     this.passwordResetLastRequestedAt = passwordResetLastRequestedAt;
+  }
+
+  public void setPasswordResetLastRequestedAt(@javax.annotation.Nullable OffsetDateTime passwordResetLastRequestedAt) {
+    this.passwordResetLastRequestedAt = JsonNullable.<OffsetDateTime>of(passwordResetLastRequestedAt);
   }
 
 
   public UserObject mfaMethods(@javax.annotation.Nullable List<MfaMethod> mfaMethods) {
-    this.mfaMethods = mfaMethods;
+    this.mfaMethods = JsonNullable.<List<MfaMethod>>of(mfaMethods);
     return this;
   }
 
   public UserObject addMfaMethodsItem(MfaMethod mfaMethodsItem) {
-    if (this.mfaMethods == null) {
-      this.mfaMethods = new ArrayList<>();
+    if (this.mfaMethods == null || !this.mfaMethods.isPresent()) {
+      this.mfaMethods = JsonNullable.<List<MfaMethod>>of(new ArrayList<>());
     }
-    this.mfaMethods.add(mfaMethodsItem);
+    try {
+      this.mfaMethods.get().add(mfaMethodsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -584,22 +632,30 @@ public class UserObject {
    * @return mfaMethods
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MFA_METHODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<MfaMethod> getMfaMethods() {
-    return mfaMethods;
+        return mfaMethods.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MFA_METHODS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMfaMethods(@javax.annotation.Nullable List<MfaMethod> mfaMethods) {
+
+  public JsonNullable<List<MfaMethod>> getMfaMethods_JsonNullable() {
+    return mfaMethods;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MFA_METHODS)
+  public void setMfaMethods_JsonNullable(JsonNullable<List<MfaMethod>> mfaMethods) {
     this.mfaMethods = mfaMethods;
+  }
+
+  public void setMfaMethods(@javax.annotation.Nullable List<MfaMethod> mfaMethods) {
+    this.mfaMethods = JsonNullable.<List<MfaMethod>>of(mfaMethods);
   }
 
 
   public UserObject backupCodesGeneratedAt(@javax.annotation.Nullable OffsetDateTime backupCodesGeneratedAt) {
-    this.backupCodesGeneratedAt = backupCodesGeneratedAt;
+    this.backupCodesGeneratedAt = JsonNullable.<OffsetDateTime>of(backupCodesGeneratedAt);
     return this;
   }
 
@@ -608,41 +664,25 @@ public class UserObject {
    * @return backupCodesGeneratedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BACKUP_CODES_GENERATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getBackupCodesGeneratedAt() {
-    return backupCodesGeneratedAt;
+        return backupCodesGeneratedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BACKUP_CODES_GENERATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBackupCodesGeneratedAt(@javax.annotation.Nullable OffsetDateTime backupCodesGeneratedAt) {
+
+  public JsonNullable<OffsetDateTime> getBackupCodesGeneratedAt_JsonNullable() {
+    return backupCodesGeneratedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BACKUP_CODES_GENERATED_AT)
+  public void setBackupCodesGeneratedAt_JsonNullable(JsonNullable<OffsetDateTime> backupCodesGeneratedAt) {
     this.backupCodesGeneratedAt = backupCodesGeneratedAt;
   }
 
-
-  public UserObject hasPassword(@javax.annotation.Nullable Boolean hasPassword) {
-    this.hasPassword = hasPassword;
-    return this;
-  }
-
-  /**
-   * Get hasPassword
-   * @return hasPassword
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getHasPassword() {
-    return hasPassword;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHasPassword(@javax.annotation.Nullable Boolean hasPassword) {
-    this.hasPassword = hasPassword;
+  public void setBackupCodesGeneratedAt(@javax.annotation.Nullable OffsetDateTime backupCodesGeneratedAt) {
+    this.backupCodesGeneratedAt = JsonNullable.<OffsetDateTime>of(backupCodesGeneratedAt);
   }
 
 
@@ -670,6 +710,30 @@ public class UserObject {
   }
 
 
+  public UserObject hasPassword(@javax.annotation.Nullable Boolean hasPassword) {
+    this.hasPassword = hasPassword;
+    return this;
+  }
+
+  /**
+   * Get hasPassword
+   * @return hasPassword
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasPassword() {
+    return hasPassword;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_PASSWORD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasPassword(@javax.annotation.Nullable Boolean hasPassword) {
+    this.hasPassword = hasPassword;
+  }
+
+
   /**
    * Return true if this UserObject object is equal to o.
    */
@@ -683,29 +747,40 @@ public class UserObject {
     }
     UserObject userObject = (UserObject) o;
     return Objects.equals(this.userId, userObject.userId) &&
-        Objects.equals(this.fullName, userObject.fullName) &&
+        equalsNullable(this.fullName, userObject.fullName) &&
         Objects.equals(this.projectId, userObject.projectId) &&
         Objects.equals(this.roles, userObject.roles) &&
         Objects.equals(this.createdAt, userObject.createdAt) &&
         Objects.equals(this.updatedAt, userObject.updatedAt) &&
         Objects.equals(this.lastActivityAt, userObject.lastActivityAt) &&
         Objects.equals(this.customMetadataAttributes, userObject.customMetadataAttributes) &&
-        Objects.equals(this.stripeCustomerId, userObject.stripeCustomerId) &&
+        equalsNullable(this.stripeCustomerId, userObject.stripeCustomerId) &&
         Objects.equals(this.contactMethods, userObject.contactMethods) &&
-        Objects.equals(this.welcomeMessageSent, userObject.welcomeMessageSent) &&
-        Objects.equals(this.invitedByUserId, userObject.invitedByUserId) &&
+        equalsNullable(this.welcomeMessageSent, userObject.welcomeMessageSent) &&
+        equalsNullable(this.invitedByUserId, userObject.invitedByUserId) &&
         Objects.equals(this.state, userObject.state) &&
-        Objects.equals(this.passwordSetAt, userObject.passwordSetAt) &&
-        Objects.equals(this.passwordResetLastRequestedAt, userObject.passwordResetLastRequestedAt) &&
-        Objects.equals(this.mfaMethods, userObject.mfaMethods) &&
-        Objects.equals(this.backupCodesGeneratedAt, userObject.backupCodesGeneratedAt) &&
-        Objects.equals(this.hasPassword, userObject.hasPassword) &&
-        Objects.equals(this.remainingBackupCodeCount, userObject.remainingBackupCodeCount);
+        equalsNullable(this.passwordSetAt, userObject.passwordSetAt) &&
+        equalsNullable(this.passwordResetLastRequestedAt, userObject.passwordResetLastRequestedAt) &&
+        equalsNullable(this.mfaMethods, userObject.mfaMethods) &&
+        equalsNullable(this.backupCodesGeneratedAt, userObject.backupCodesGeneratedAt) &&
+        Objects.equals(this.remainingBackupCodeCount, userObject.remainingBackupCodeCount) &&
+        Objects.equals(this.hasPassword, userObject.hasPassword);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, fullName, projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, stripeCustomerId, contactMethods, welcomeMessageSent, invitedByUserId, state, passwordSetAt, passwordResetLastRequestedAt, mfaMethods, backupCodesGeneratedAt, hasPassword, remainingBackupCodeCount);
+    return Objects.hash(userId, hashCodeNullable(fullName), projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, hashCodeNullable(stripeCustomerId), contactMethods, hashCodeNullable(welcomeMessageSent), hashCodeNullable(invitedByUserId), state, hashCodeNullable(passwordSetAt), hashCodeNullable(passwordResetLastRequestedAt), hashCodeNullable(mfaMethods), hashCodeNullable(backupCodesGeneratedAt), remainingBackupCodeCount, hasPassword);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -729,8 +804,8 @@ public class UserObject {
     sb.append("    passwordResetLastRequestedAt: ").append(toIndentedString(passwordResetLastRequestedAt)).append("\n");
     sb.append("    mfaMethods: ").append(toIndentedString(mfaMethods)).append("\n");
     sb.append("    backupCodesGeneratedAt: ").append(toIndentedString(backupCodesGeneratedAt)).append("\n");
-    sb.append("    hasPassword: ").append(toIndentedString(hasPassword)).append("\n");
     sb.append("    remainingBackupCodeCount: ").append(toIndentedString(remainingBackupCodeCount)).append("\n");
+    sb.append("    hasPassword: ").append(toIndentedString(hasPassword)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -880,14 +955,14 @@ public class UserObject {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbackupCodesGeneratedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupCodesGeneratedAt()))));
     }
 
-    // add `hasPassword` to the URL query string
-    if (getHasPassword() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%shasPassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPassword()))));
-    }
-
     // add `remainingBackupCodeCount` to the URL query string
     if (getRemainingBackupCodeCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sremainingBackupCodeCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemainingBackupCodeCount()))));
+    }
+
+    // add `hasPassword` to the URL query string
+    if (getHasPassword() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasPassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPassword()))));
     }
 
     return joiner.toString();

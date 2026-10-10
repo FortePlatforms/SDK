@@ -36,7 +36,7 @@ export interface LogLineObject {
      * @type {string}
      * @memberof LogLineObject
      */
-    level?: string;
+    level?: string | null;
     /**
      * 
      * @type {string}
@@ -54,19 +54,19 @@ export interface LogLineObject {
      * @type {string}
      * @memberof LogLineObject
      */
-    requestId?: string;
+    requestId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof LogLineObject
      */
-    buildId?: string;
+    buildId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof LogLineObject
      */
-    instanceId?: string;
+    instanceId?: string | null;
 }
 
 /**

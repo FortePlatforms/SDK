@@ -96,6 +96,41 @@ class ManagedDatabaseSlowQuery(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if duration_ms (nullable) is None
+        # and model_fields_set contains the field
+        if self.duration_ms is None and "duration_ms" in self.model_fields_set:
+            _dict['durationMs'] = None
+
+        # set to None if query_text (nullable) is None
+        # and model_fields_set contains the field
+        if self.query_text is None and "query_text" in self.model_fields_set:
+            _dict['queryText'] = None
+
+        # set to None if user_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_name is None and "user_name" in self.model_fields_set:
+            _dict['userName'] = None
+
+        # set to None if query_language (nullable) is None
+        # and model_fields_set contains the field
+        if self.query_language is None and "query_language" in self.model_fields_set:
+            _dict['queryLanguage'] = None
+
+        # set to None if operation (nullable) is None
+        # and model_fields_set contains the field
+        if self.operation is None and "operation" in self.model_fields_set:
+            _dict['operation'] = None
+
+        # set to None if collection (nullable) is None
+        # and model_fields_set contains the field
+        if self.collection is None and "collection" in self.model_fields_set:
+            _dict['collection'] = None
+
+        # set to None if query_text_truncated (nullable) is None
+        # and model_fields_set contains the field
+        if self.query_text_truncated is None and "query_text_truncated" in self.model_fields_set:
+            _dict['queryTextTruncated'] = None
+
         return _dict
 
     @classmethod

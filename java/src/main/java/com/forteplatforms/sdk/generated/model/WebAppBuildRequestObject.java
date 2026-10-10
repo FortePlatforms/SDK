@@ -31,6 +31,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -86,32 +90,25 @@ public class WebAppBuildRequestObject {
   private WebAppDetectionError detectionError;
 
   public static final String JSON_PROPERTY_PACKAGE_MANAGER = "packageManager";
-  @javax.annotation.Nullable
-  private String packageManager;
+  private JsonNullable<String> packageManager = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NODE_VERSION = "nodeVersion";
-  @javax.annotation.Nullable
-  private String nodeVersion;
+  private JsonNullable<String> nodeVersion = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_COMMAND = "buildCommand";
-  @javax.annotation.Nullable
-  private String buildCommand;
+  private JsonNullable<String> buildCommand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_PATH = "buildPath";
-  @javax.annotation.Nullable
-  private String buildPath;
+  private JsonNullable<String> buildPath = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DETECTED_FRAMEWORK = "detectedFramework";
-  @javax.annotation.Nullable
-  private String detectedFramework;
+  private JsonNullable<String> detectedFramework = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTALL_COMMAND = "installCommand";
-  @javax.annotation.Nullable
-  private String installCommand;
+  private JsonNullable<String> installCommand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBDIRECTORY = "subdirectory";
-  @javax.annotation.Nullable
-  private String subdirectory;
+  private JsonNullable<String> subdirectory = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets monorepoType
@@ -148,53 +145,43 @@ public class WebAppBuildRequestObject {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_MONOREPO_TYPE = "monorepoType";
-  @javax.annotation.Nullable
-  private MonorepoTypeEnum monorepoType;
+  private JsonNullable<MonorepoTypeEnum> monorepoType = JsonNullable.<MonorepoTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_WORKSPACE_ROOT = "workspaceRoot";
-  @javax.annotation.Nullable
-  private String workspaceRoot;
+  private JsonNullable<String> workspaceRoot = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_APP_PACKAGE_NAME = "appPackageName";
-  @javax.annotation.Nullable
-  private String appPackageName;
+  private JsonNullable<String> appPackageName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CONTAINER_IMAGE_URI = "containerImageUri";
-  @javax.annotation.Nullable
-  private String containerImageUri;
+  private JsonNullable<String> containerImageUri = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
-  @javax.annotation.Nullable
-  private String dockerfilePath;
+  private JsonNullable<String> dockerfilePath = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR = "dockerfileGenerationError";
   @javax.annotation.Nullable
   private DockerfileGenerationError dockerfileGenerationError;
 
   public static final String JSON_PROPERTY_OUTPUT_ZIP_S3_KEY = "outputZipS3Key";
-  @javax.annotation.Nullable
-  private String outputZipS3Key;
+  private JsonNullable<String> outputZipS3Key = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HOSTING_DEPLOYMENT_ID = "hostingDeploymentId";
-  @javax.annotation.Nullable
-  private String hostingDeploymentId;
+  private JsonNullable<String> hostingDeploymentId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HOSTING_DEPLOYMENT_STATUS = "hostingDeploymentStatus";
-  @javax.annotation.Nullable
-  private String hostingDeploymentStatus;
+  private JsonNullable<String> hostingDeploymentStatus = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED = "allBuildLogsReceived";
-  @javax.annotation.Nullable
-  private Boolean allBuildLogsReceived;
+  private JsonNullable<Boolean> allBuildLogsReceived = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_CANCELLATION_REQUESTED = "cancellationRequested";
-  @javax.annotation.Nullable
-  private Boolean cancellationRequested;
+  private JsonNullable<Boolean> cancellationRequested = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_START_TIME = "startTime";
   @javax.annotation.Nonnull
@@ -221,12 +208,10 @@ public class WebAppBuildRequestObject {
   private String commitAuthorName;
 
   public static final String JSON_PROPERTY_GIT_REF = "gitRef";
-  @javax.annotation.Nullable
-  private String gitRef;
+  private JsonNullable<String> gitRef = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RELEASE_TAG_NAME = "releaseTagName";
-  @javax.annotation.Nullable
-  private String releaseTagName;
+  private JsonNullable<String> releaseTagName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_STEP_LOGS = "buildStepLogs";
   @javax.annotation.Nullable
@@ -366,21 +351,18 @@ public class WebAppBuildRequestObject {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_ORIGIN = "origin";
-  @javax.annotation.Nullable
-  private OriginEnum origin;
+  private JsonNullable<OriginEnum> origin = JsonNullable.<OriginEnum>undefined();
 
   public static final String JSON_PROPERTY_ORIGIN_DETAIL = "originDetail";
-  @javax.annotation.Nullable
-  private String originDetail;
+  private JsonNullable<String> originDetail = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID = "triggeredByAccountId";
-  @javax.annotation.Nullable
-  private String triggeredByAccountId;
+  private JsonNullable<String> triggeredByAccountId = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets buildTier
@@ -413,13 +395,12 @@ public class WebAppBuildRequestObject {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_BUILD_TIER = "buildTier";
-  @javax.annotation.Nullable
-  private BuildTierEnum buildTier;
+  private JsonNullable<BuildTierEnum> buildTier = JsonNullable.<BuildTierEnum>undefined();
 
   /**
    * Gets or Sets failureReason
@@ -454,13 +435,12 @@ public class WebAppBuildRequestObject {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_FAILURE_REASON = "failureReason";
-  @javax.annotation.Nullable
-  private FailureReasonEnum failureReason;
+  private JsonNullable<FailureReasonEnum> failureReason = JsonNullable.<FailureReasonEnum>undefined();
 
   public WebAppBuildRequestObject() { 
   }
@@ -514,7 +494,7 @@ public class WebAppBuildRequestObject {
 
 
   public WebAppBuildRequestObject packageManager(@javax.annotation.Nullable String packageManager) {
-    this.packageManager = packageManager;
+    this.packageManager = JsonNullable.<String>of(packageManager);
     return this;
   }
 
@@ -523,22 +503,30 @@ public class WebAppBuildRequestObject {
    * @return packageManager
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PACKAGE_MANAGER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPackageManager() {
-    return packageManager;
+        return packageManager.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PACKAGE_MANAGER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPackageManager(@javax.annotation.Nullable String packageManager) {
+
+  public JsonNullable<String> getPackageManager_JsonNullable() {
+    return packageManager;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PACKAGE_MANAGER)
+  public void setPackageManager_JsonNullable(JsonNullable<String> packageManager) {
     this.packageManager = packageManager;
+  }
+
+  public void setPackageManager(@javax.annotation.Nullable String packageManager) {
+    this.packageManager = JsonNullable.<String>of(packageManager);
   }
 
 
   public WebAppBuildRequestObject nodeVersion(@javax.annotation.Nullable String nodeVersion) {
-    this.nodeVersion = nodeVersion;
+    this.nodeVersion = JsonNullable.<String>of(nodeVersion);
     return this;
   }
 
@@ -547,22 +535,30 @@ public class WebAppBuildRequestObject {
    * @return nodeVersion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NODE_VERSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNodeVersion() {
-    return nodeVersion;
+        return nodeVersion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NODE_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNodeVersion(@javax.annotation.Nullable String nodeVersion) {
+
+  public JsonNullable<String> getNodeVersion_JsonNullable() {
+    return nodeVersion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NODE_VERSION)
+  public void setNodeVersion_JsonNullable(JsonNullable<String> nodeVersion) {
     this.nodeVersion = nodeVersion;
+  }
+
+  public void setNodeVersion(@javax.annotation.Nullable String nodeVersion) {
+    this.nodeVersion = JsonNullable.<String>of(nodeVersion);
   }
 
 
   public WebAppBuildRequestObject buildCommand(@javax.annotation.Nullable String buildCommand) {
-    this.buildCommand = buildCommand;
+    this.buildCommand = JsonNullable.<String>of(buildCommand);
     return this;
   }
 
@@ -571,22 +567,30 @@ public class WebAppBuildRequestObject {
    * @return buildCommand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_COMMAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildCommand() {
-    return buildCommand;
+        return buildCommand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_COMMAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildCommand(@javax.annotation.Nullable String buildCommand) {
+
+  public JsonNullable<String> getBuildCommand_JsonNullable() {
+    return buildCommand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_COMMAND)
+  public void setBuildCommand_JsonNullable(JsonNullable<String> buildCommand) {
     this.buildCommand = buildCommand;
+  }
+
+  public void setBuildCommand(@javax.annotation.Nullable String buildCommand) {
+    this.buildCommand = JsonNullable.<String>of(buildCommand);
   }
 
 
   public WebAppBuildRequestObject buildPath(@javax.annotation.Nullable String buildPath) {
-    this.buildPath = buildPath;
+    this.buildPath = JsonNullable.<String>of(buildPath);
     return this;
   }
 
@@ -595,22 +599,30 @@ public class WebAppBuildRequestObject {
    * @return buildPath
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildPath() {
-    return buildPath;
+        return buildPath.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_PATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildPath(@javax.annotation.Nullable String buildPath) {
+
+  public JsonNullable<String> getBuildPath_JsonNullable() {
+    return buildPath;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_PATH)
+  public void setBuildPath_JsonNullable(JsonNullable<String> buildPath) {
     this.buildPath = buildPath;
+  }
+
+  public void setBuildPath(@javax.annotation.Nullable String buildPath) {
+    this.buildPath = JsonNullable.<String>of(buildPath);
   }
 
 
   public WebAppBuildRequestObject detectedFramework(@javax.annotation.Nullable String detectedFramework) {
-    this.detectedFramework = detectedFramework;
+    this.detectedFramework = JsonNullable.<String>of(detectedFramework);
     return this;
   }
 
@@ -619,22 +631,30 @@ public class WebAppBuildRequestObject {
    * @return detectedFramework
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DETECTED_FRAMEWORK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDetectedFramework() {
-    return detectedFramework;
+        return detectedFramework.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DETECTED_FRAMEWORK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetectedFramework(@javax.annotation.Nullable String detectedFramework) {
+
+  public JsonNullable<String> getDetectedFramework_JsonNullable() {
+    return detectedFramework;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DETECTED_FRAMEWORK)
+  public void setDetectedFramework_JsonNullable(JsonNullable<String> detectedFramework) {
     this.detectedFramework = detectedFramework;
+  }
+
+  public void setDetectedFramework(@javax.annotation.Nullable String detectedFramework) {
+    this.detectedFramework = JsonNullable.<String>of(detectedFramework);
   }
 
 
   public WebAppBuildRequestObject installCommand(@javax.annotation.Nullable String installCommand) {
-    this.installCommand = installCommand;
+    this.installCommand = JsonNullable.<String>of(installCommand);
     return this;
   }
 
@@ -643,22 +663,30 @@ public class WebAppBuildRequestObject {
    * @return installCommand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInstallCommand() {
-    return installCommand;
+        return installCommand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+
+  public JsonNullable<String> getInstallCommand_JsonNullable() {
+    return installCommand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTALL_COMMAND)
+  public void setInstallCommand_JsonNullable(JsonNullable<String> installCommand) {
     this.installCommand = installCommand;
+  }
+
+  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+    this.installCommand = JsonNullable.<String>of(installCommand);
   }
 
 
   public WebAppBuildRequestObject subdirectory(@javax.annotation.Nullable String subdirectory) {
-    this.subdirectory = subdirectory;
+    this.subdirectory = JsonNullable.<String>of(subdirectory);
     return this;
   }
 
@@ -667,22 +695,30 @@ public class WebAppBuildRequestObject {
    * @return subdirectory
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubdirectory() {
-    return subdirectory;
+        return subdirectory.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+
+  public JsonNullable<String> getSubdirectory_JsonNullable() {
+    return subdirectory;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBDIRECTORY)
+  public void setSubdirectory_JsonNullable(JsonNullable<String> subdirectory) {
     this.subdirectory = subdirectory;
+  }
+
+  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+    this.subdirectory = JsonNullable.<String>of(subdirectory);
   }
 
 
   public WebAppBuildRequestObject monorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
-    this.monorepoType = monorepoType;
+    this.monorepoType = JsonNullable.<MonorepoTypeEnum>of(monorepoType);
     return this;
   }
 
@@ -691,22 +727,30 @@ public class WebAppBuildRequestObject {
    * @return monorepoType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public MonorepoTypeEnum getMonorepoType() {
-    return monorepoType;
+        return monorepoType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMonorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+
+  public JsonNullable<MonorepoTypeEnum> getMonorepoType_JsonNullable() {
+    return monorepoType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MONOREPO_TYPE)
+  public void setMonorepoType_JsonNullable(JsonNullable<MonorepoTypeEnum> monorepoType) {
     this.monorepoType = monorepoType;
+  }
+
+  public void setMonorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+    this.monorepoType = JsonNullable.<MonorepoTypeEnum>of(monorepoType);
   }
 
 
   public WebAppBuildRequestObject workspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
-    this.workspaceRoot = workspaceRoot;
+    this.workspaceRoot = JsonNullable.<String>of(workspaceRoot);
     return this;
   }
 
@@ -715,22 +759,30 @@ public class WebAppBuildRequestObject {
    * @return workspaceRoot
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWorkspaceRoot() {
-    return workspaceRoot;
+        return workspaceRoot.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWorkspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+
+  public JsonNullable<String> getWorkspaceRoot_JsonNullable() {
+    return workspaceRoot;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WORKSPACE_ROOT)
+  public void setWorkspaceRoot_JsonNullable(JsonNullable<String> workspaceRoot) {
     this.workspaceRoot = workspaceRoot;
+  }
+
+  public void setWorkspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+    this.workspaceRoot = JsonNullable.<String>of(workspaceRoot);
   }
 
 
   public WebAppBuildRequestObject appPackageName(@javax.annotation.Nullable String appPackageName) {
-    this.appPackageName = appPackageName;
+    this.appPackageName = JsonNullable.<String>of(appPackageName);
     return this;
   }
 
@@ -739,22 +791,30 @@ public class WebAppBuildRequestObject {
    * @return appPackageName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAppPackageName() {
-    return appPackageName;
+        return appPackageName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAppPackageName(@javax.annotation.Nullable String appPackageName) {
+
+  public JsonNullable<String> getAppPackageName_JsonNullable() {
+    return appPackageName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_APP_PACKAGE_NAME)
+  public void setAppPackageName_JsonNullable(JsonNullable<String> appPackageName) {
     this.appPackageName = appPackageName;
+  }
+
+  public void setAppPackageName(@javax.annotation.Nullable String appPackageName) {
+    this.appPackageName = JsonNullable.<String>of(appPackageName);
   }
 
 
   public WebAppBuildRequestObject containerImageUri(@javax.annotation.Nullable String containerImageUri) {
-    this.containerImageUri = containerImageUri;
+    this.containerImageUri = JsonNullable.<String>of(containerImageUri);
     return this;
   }
 
@@ -763,22 +823,30 @@ public class WebAppBuildRequestObject {
    * @return containerImageUri
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getContainerImageUri() {
-    return containerImageUri;
+        return containerImageUri.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerImageUri(@javax.annotation.Nullable String containerImageUri) {
+
+  public JsonNullable<String> getContainerImageUri_JsonNullable() {
+    return containerImageUri;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTAINER_IMAGE_URI)
+  public void setContainerImageUri_JsonNullable(JsonNullable<String> containerImageUri) {
     this.containerImageUri = containerImageUri;
+  }
+
+  public void setContainerImageUri(@javax.annotation.Nullable String containerImageUri) {
+    this.containerImageUri = JsonNullable.<String>of(containerImageUri);
   }
 
 
   public WebAppBuildRequestObject dockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
-    this.dockerfilePath = dockerfilePath;
+    this.dockerfilePath = JsonNullable.<String>of(dockerfilePath);
     return this;
   }
 
@@ -787,17 +855,25 @@ public class WebAppBuildRequestObject {
    * @return dockerfilePath
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDockerfilePath() {
-    return dockerfilePath;
+        return dockerfilePath.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+
+  public JsonNullable<String> getDockerfilePath_JsonNullable() {
+    return dockerfilePath;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DOCKERFILE_PATH)
+  public void setDockerfilePath_JsonNullable(JsonNullable<String> dockerfilePath) {
     this.dockerfilePath = dockerfilePath;
+  }
+
+  public void setDockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+    this.dockerfilePath = JsonNullable.<String>of(dockerfilePath);
   }
 
 
@@ -826,7 +902,7 @@ public class WebAppBuildRequestObject {
 
 
   public WebAppBuildRequestObject outputZipS3Key(@javax.annotation.Nullable String outputZipS3Key) {
-    this.outputZipS3Key = outputZipS3Key;
+    this.outputZipS3Key = JsonNullable.<String>of(outputZipS3Key);
     return this;
   }
 
@@ -835,22 +911,30 @@ public class WebAppBuildRequestObject {
    * @return outputZipS3Key
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OUTPUT_ZIP_S3_KEY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOutputZipS3Key() {
-    return outputZipS3Key;
+        return outputZipS3Key.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OUTPUT_ZIP_S3_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOutputZipS3Key(@javax.annotation.Nullable String outputZipS3Key) {
+
+  public JsonNullable<String> getOutputZipS3Key_JsonNullable() {
+    return outputZipS3Key;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OUTPUT_ZIP_S3_KEY)
+  public void setOutputZipS3Key_JsonNullable(JsonNullable<String> outputZipS3Key) {
     this.outputZipS3Key = outputZipS3Key;
+  }
+
+  public void setOutputZipS3Key(@javax.annotation.Nullable String outputZipS3Key) {
+    this.outputZipS3Key = JsonNullable.<String>of(outputZipS3Key);
   }
 
 
   public WebAppBuildRequestObject hostingDeploymentId(@javax.annotation.Nullable String hostingDeploymentId) {
-    this.hostingDeploymentId = hostingDeploymentId;
+    this.hostingDeploymentId = JsonNullable.<String>of(hostingDeploymentId);
     return this;
   }
 
@@ -859,22 +943,30 @@ public class WebAppBuildRequestObject {
    * @return hostingDeploymentId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HOSTING_DEPLOYMENT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getHostingDeploymentId() {
-    return hostingDeploymentId;
+        return hostingDeploymentId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HOSTING_DEPLOYMENT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostingDeploymentId(@javax.annotation.Nullable String hostingDeploymentId) {
+
+  public JsonNullable<String> getHostingDeploymentId_JsonNullable() {
+    return hostingDeploymentId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HOSTING_DEPLOYMENT_ID)
+  public void setHostingDeploymentId_JsonNullable(JsonNullable<String> hostingDeploymentId) {
     this.hostingDeploymentId = hostingDeploymentId;
+  }
+
+  public void setHostingDeploymentId(@javax.annotation.Nullable String hostingDeploymentId) {
+    this.hostingDeploymentId = JsonNullable.<String>of(hostingDeploymentId);
   }
 
 
   public WebAppBuildRequestObject hostingDeploymentStatus(@javax.annotation.Nullable String hostingDeploymentStatus) {
-    this.hostingDeploymentStatus = hostingDeploymentStatus;
+    this.hostingDeploymentStatus = JsonNullable.<String>of(hostingDeploymentStatus);
     return this;
   }
 
@@ -883,22 +975,30 @@ public class WebAppBuildRequestObject {
    * @return hostingDeploymentStatus
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HOSTING_DEPLOYMENT_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getHostingDeploymentStatus() {
-    return hostingDeploymentStatus;
+        return hostingDeploymentStatus.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HOSTING_DEPLOYMENT_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostingDeploymentStatus(@javax.annotation.Nullable String hostingDeploymentStatus) {
+
+  public JsonNullable<String> getHostingDeploymentStatus_JsonNullable() {
+    return hostingDeploymentStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HOSTING_DEPLOYMENT_STATUS)
+  public void setHostingDeploymentStatus_JsonNullable(JsonNullable<String> hostingDeploymentStatus) {
     this.hostingDeploymentStatus = hostingDeploymentStatus;
+  }
+
+  public void setHostingDeploymentStatus(@javax.annotation.Nullable String hostingDeploymentStatus) {
+    this.hostingDeploymentStatus = JsonNullable.<String>of(hostingDeploymentStatus);
   }
 
 
   public WebAppBuildRequestObject allBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
-    this.allBuildLogsReceived = allBuildLogsReceived;
+    this.allBuildLogsReceived = JsonNullable.<Boolean>of(allBuildLogsReceived);
     return this;
   }
 
@@ -907,22 +1007,30 @@ public class WebAppBuildRequestObject {
    * @return allBuildLogsReceived
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getAllBuildLogsReceived() {
-    return allBuildLogsReceived;
+        return allBuildLogsReceived.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAllBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
+
+  public JsonNullable<Boolean> getAllBuildLogsReceived_JsonNullable() {
+    return allBuildLogsReceived;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED)
+  public void setAllBuildLogsReceived_JsonNullable(JsonNullable<Boolean> allBuildLogsReceived) {
     this.allBuildLogsReceived = allBuildLogsReceived;
+  }
+
+  public void setAllBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
+    this.allBuildLogsReceived = JsonNullable.<Boolean>of(allBuildLogsReceived);
   }
 
 
   public WebAppBuildRequestObject cancellationRequested(@javax.annotation.Nullable Boolean cancellationRequested) {
-    this.cancellationRequested = cancellationRequested;
+    this.cancellationRequested = JsonNullable.<Boolean>of(cancellationRequested);
     return this;
   }
 
@@ -931,17 +1039,25 @@ public class WebAppBuildRequestObject {
    * @return cancellationRequested
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CANCELLATION_REQUESTED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getCancellationRequested() {
-    return cancellationRequested;
+        return cancellationRequested.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CANCELLATION_REQUESTED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCancellationRequested(@javax.annotation.Nullable Boolean cancellationRequested) {
+
+  public JsonNullable<Boolean> getCancellationRequested_JsonNullable() {
+    return cancellationRequested;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CANCELLATION_REQUESTED)
+  public void setCancellationRequested_JsonNullable(JsonNullable<Boolean> cancellationRequested) {
     this.cancellationRequested = cancellationRequested;
+  }
+
+  public void setCancellationRequested(@javax.annotation.Nullable Boolean cancellationRequested) {
+    this.cancellationRequested = JsonNullable.<Boolean>of(cancellationRequested);
   }
 
 
@@ -1090,7 +1206,7 @@ public class WebAppBuildRequestObject {
 
 
   public WebAppBuildRequestObject gitRef(@javax.annotation.Nullable String gitRef) {
-    this.gitRef = gitRef;
+    this.gitRef = JsonNullable.<String>of(gitRef);
     return this;
   }
 
@@ -1099,22 +1215,30 @@ public class WebAppBuildRequestObject {
    * @return gitRef
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GIT_REF, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGitRef() {
-    return gitRef;
+        return gitRef.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GIT_REF, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGitRef(@javax.annotation.Nullable String gitRef) {
+
+  public JsonNullable<String> getGitRef_JsonNullable() {
+    return gitRef;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GIT_REF)
+  public void setGitRef_JsonNullable(JsonNullable<String> gitRef) {
     this.gitRef = gitRef;
+  }
+
+  public void setGitRef(@javax.annotation.Nullable String gitRef) {
+    this.gitRef = JsonNullable.<String>of(gitRef);
   }
 
 
   public WebAppBuildRequestObject releaseTagName(@javax.annotation.Nullable String releaseTagName) {
-    this.releaseTagName = releaseTagName;
+    this.releaseTagName = JsonNullable.<String>of(releaseTagName);
     return this;
   }
 
@@ -1123,17 +1247,25 @@ public class WebAppBuildRequestObject {
    * @return releaseTagName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RELEASE_TAG_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getReleaseTagName() {
-    return releaseTagName;
+        return releaseTagName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RELEASE_TAG_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReleaseTagName(@javax.annotation.Nullable String releaseTagName) {
+
+  public JsonNullable<String> getReleaseTagName_JsonNullable() {
+    return releaseTagName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RELEASE_TAG_NAME)
+  public void setReleaseTagName_JsonNullable(JsonNullable<String> releaseTagName) {
     this.releaseTagName = releaseTagName;
+  }
+
+  public void setReleaseTagName(@javax.annotation.Nullable String releaseTagName) {
+    this.releaseTagName = JsonNullable.<String>of(releaseTagName);
   }
 
 
@@ -1194,7 +1326,7 @@ public class WebAppBuildRequestObject {
 
 
   public WebAppBuildRequestObject origin(@javax.annotation.Nullable OriginEnum origin) {
-    this.origin = origin;
+    this.origin = JsonNullable.<OriginEnum>of(origin);
     return this;
   }
 
@@ -1203,22 +1335,30 @@ public class WebAppBuildRequestObject {
    * @return origin
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ORIGIN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OriginEnum getOrigin() {
-    return origin;
+        return origin.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ORIGIN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrigin(@javax.annotation.Nullable OriginEnum origin) {
+
+  public JsonNullable<OriginEnum> getOrigin_JsonNullable() {
+    return origin;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ORIGIN)
+  public void setOrigin_JsonNullable(JsonNullable<OriginEnum> origin) {
     this.origin = origin;
+  }
+
+  public void setOrigin(@javax.annotation.Nullable OriginEnum origin) {
+    this.origin = JsonNullable.<OriginEnum>of(origin);
   }
 
 
   public WebAppBuildRequestObject originDetail(@javax.annotation.Nullable String originDetail) {
-    this.originDetail = originDetail;
+    this.originDetail = JsonNullable.<String>of(originDetail);
     return this;
   }
 
@@ -1227,22 +1367,30 @@ public class WebAppBuildRequestObject {
    * @return originDetail
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ORIGIN_DETAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOriginDetail() {
-    return originDetail;
+        return originDetail.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ORIGIN_DETAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOriginDetail(@javax.annotation.Nullable String originDetail) {
+
+  public JsonNullable<String> getOriginDetail_JsonNullable() {
+    return originDetail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ORIGIN_DETAIL)
+  public void setOriginDetail_JsonNullable(JsonNullable<String> originDetail) {
     this.originDetail = originDetail;
+  }
+
+  public void setOriginDetail(@javax.annotation.Nullable String originDetail) {
+    this.originDetail = JsonNullable.<String>of(originDetail);
   }
 
 
   public WebAppBuildRequestObject triggeredByAccountId(@javax.annotation.Nullable String triggeredByAccountId) {
-    this.triggeredByAccountId = triggeredByAccountId;
+    this.triggeredByAccountId = JsonNullable.<String>of(triggeredByAccountId);
     return this;
   }
 
@@ -1251,22 +1399,30 @@ public class WebAppBuildRequestObject {
    * @return triggeredByAccountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTriggeredByAccountId() {
-    return triggeredByAccountId;
+        return triggeredByAccountId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTriggeredByAccountId(@javax.annotation.Nullable String triggeredByAccountId) {
+
+  public JsonNullable<String> getTriggeredByAccountId_JsonNullable() {
+    return triggeredByAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID)
+  public void setTriggeredByAccountId_JsonNullable(JsonNullable<String> triggeredByAccountId) {
     this.triggeredByAccountId = triggeredByAccountId;
+  }
+
+  public void setTriggeredByAccountId(@javax.annotation.Nullable String triggeredByAccountId) {
+    this.triggeredByAccountId = JsonNullable.<String>of(triggeredByAccountId);
   }
 
 
   public WebAppBuildRequestObject buildTier(@javax.annotation.Nullable BuildTierEnum buildTier) {
-    this.buildTier = buildTier;
+    this.buildTier = JsonNullable.<BuildTierEnum>of(buildTier);
     return this;
   }
 
@@ -1275,22 +1431,30 @@ public class WebAppBuildRequestObject {
    * @return buildTier
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_TIER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BuildTierEnum getBuildTier() {
-    return buildTier;
+        return buildTier.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_TIER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildTier(@javax.annotation.Nullable BuildTierEnum buildTier) {
+
+  public JsonNullable<BuildTierEnum> getBuildTier_JsonNullable() {
+    return buildTier;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_TIER)
+  public void setBuildTier_JsonNullable(JsonNullable<BuildTierEnum> buildTier) {
     this.buildTier = buildTier;
+  }
+
+  public void setBuildTier(@javax.annotation.Nullable BuildTierEnum buildTier) {
+    this.buildTier = JsonNullable.<BuildTierEnum>of(buildTier);
   }
 
 
   public WebAppBuildRequestObject failureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
-    this.failureReason = failureReason;
+    this.failureReason = JsonNullable.<FailureReasonEnum>of(failureReason);
     return this;
   }
 
@@ -1299,17 +1463,25 @@ public class WebAppBuildRequestObject {
    * @return failureReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public FailureReasonEnum getFailureReason() {
-    return failureReason;
+        return failureReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFailureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
+
+  public JsonNullable<FailureReasonEnum> getFailureReason_JsonNullable() {
+    return failureReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FAILURE_REASON)
+  public void setFailureReason_JsonNullable(JsonNullable<FailureReasonEnum> failureReason) {
     this.failureReason = failureReason;
+  }
+
+  public void setFailureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
+    this.failureReason = JsonNullable.<FailureReasonEnum>of(failureReason);
   }
 
 
@@ -1327,44 +1499,55 @@ public class WebAppBuildRequestObject {
     WebAppBuildRequestObject webAppBuildRequestObject = (WebAppBuildRequestObject) o;
     return Objects.equals(this.buildId, webAppBuildRequestObject.buildId) &&
         Objects.equals(this.detectionError, webAppBuildRequestObject.detectionError) &&
-        Objects.equals(this.packageManager, webAppBuildRequestObject.packageManager) &&
-        Objects.equals(this.nodeVersion, webAppBuildRequestObject.nodeVersion) &&
-        Objects.equals(this.buildCommand, webAppBuildRequestObject.buildCommand) &&
-        Objects.equals(this.buildPath, webAppBuildRequestObject.buildPath) &&
-        Objects.equals(this.detectedFramework, webAppBuildRequestObject.detectedFramework) &&
-        Objects.equals(this.installCommand, webAppBuildRequestObject.installCommand) &&
-        Objects.equals(this.subdirectory, webAppBuildRequestObject.subdirectory) &&
-        Objects.equals(this.monorepoType, webAppBuildRequestObject.monorepoType) &&
-        Objects.equals(this.workspaceRoot, webAppBuildRequestObject.workspaceRoot) &&
-        Objects.equals(this.appPackageName, webAppBuildRequestObject.appPackageName) &&
-        Objects.equals(this.containerImageUri, webAppBuildRequestObject.containerImageUri) &&
-        Objects.equals(this.dockerfilePath, webAppBuildRequestObject.dockerfilePath) &&
+        equalsNullable(this.packageManager, webAppBuildRequestObject.packageManager) &&
+        equalsNullable(this.nodeVersion, webAppBuildRequestObject.nodeVersion) &&
+        equalsNullable(this.buildCommand, webAppBuildRequestObject.buildCommand) &&
+        equalsNullable(this.buildPath, webAppBuildRequestObject.buildPath) &&
+        equalsNullable(this.detectedFramework, webAppBuildRequestObject.detectedFramework) &&
+        equalsNullable(this.installCommand, webAppBuildRequestObject.installCommand) &&
+        equalsNullable(this.subdirectory, webAppBuildRequestObject.subdirectory) &&
+        equalsNullable(this.monorepoType, webAppBuildRequestObject.monorepoType) &&
+        equalsNullable(this.workspaceRoot, webAppBuildRequestObject.workspaceRoot) &&
+        equalsNullable(this.appPackageName, webAppBuildRequestObject.appPackageName) &&
+        equalsNullable(this.containerImageUri, webAppBuildRequestObject.containerImageUri) &&
+        equalsNullable(this.dockerfilePath, webAppBuildRequestObject.dockerfilePath) &&
         Objects.equals(this.dockerfileGenerationError, webAppBuildRequestObject.dockerfileGenerationError) &&
-        Objects.equals(this.outputZipS3Key, webAppBuildRequestObject.outputZipS3Key) &&
-        Objects.equals(this.hostingDeploymentId, webAppBuildRequestObject.hostingDeploymentId) &&
-        Objects.equals(this.hostingDeploymentStatus, webAppBuildRequestObject.hostingDeploymentStatus) &&
-        Objects.equals(this.allBuildLogsReceived, webAppBuildRequestObject.allBuildLogsReceived) &&
-        Objects.equals(this.cancellationRequested, webAppBuildRequestObject.cancellationRequested) &&
+        equalsNullable(this.outputZipS3Key, webAppBuildRequestObject.outputZipS3Key) &&
+        equalsNullable(this.hostingDeploymentId, webAppBuildRequestObject.hostingDeploymentId) &&
+        equalsNullable(this.hostingDeploymentStatus, webAppBuildRequestObject.hostingDeploymentStatus) &&
+        equalsNullable(this.allBuildLogsReceived, webAppBuildRequestObject.allBuildLogsReceived) &&
+        equalsNullable(this.cancellationRequested, webAppBuildRequestObject.cancellationRequested) &&
         Objects.equals(this.startTime, webAppBuildRequestObject.startTime) &&
         Objects.equals(this.lastUpdatedTime, webAppBuildRequestObject.lastUpdatedTime) &&
         Objects.equals(this.serviceId, webAppBuildRequestObject.serviceId) &&
         Objects.equals(this.commitHash, webAppBuildRequestObject.commitHash) &&
         Objects.equals(this.commitMessage, webAppBuildRequestObject.commitMessage) &&
         Objects.equals(this.commitAuthorName, webAppBuildRequestObject.commitAuthorName) &&
-        Objects.equals(this.gitRef, webAppBuildRequestObject.gitRef) &&
-        Objects.equals(this.releaseTagName, webAppBuildRequestObject.releaseTagName) &&
+        equalsNullable(this.gitRef, webAppBuildRequestObject.gitRef) &&
+        equalsNullable(this.releaseTagName, webAppBuildRequestObject.releaseTagName) &&
         Objects.equals(this.buildStepLogs, webAppBuildRequestObject.buildStepLogs) &&
         Objects.equals(this.status, webAppBuildRequestObject.status) &&
-        Objects.equals(this.origin, webAppBuildRequestObject.origin) &&
-        Objects.equals(this.originDetail, webAppBuildRequestObject.originDetail) &&
-        Objects.equals(this.triggeredByAccountId, webAppBuildRequestObject.triggeredByAccountId) &&
-        Objects.equals(this.buildTier, webAppBuildRequestObject.buildTier) &&
-        Objects.equals(this.failureReason, webAppBuildRequestObject.failureReason);
+        equalsNullable(this.origin, webAppBuildRequestObject.origin) &&
+        equalsNullable(this.originDetail, webAppBuildRequestObject.originDetail) &&
+        equalsNullable(this.triggeredByAccountId, webAppBuildRequestObject.triggeredByAccountId) &&
+        equalsNullable(this.buildTier, webAppBuildRequestObject.buildTier) &&
+        equalsNullable(this.failureReason, webAppBuildRequestObject.failureReason);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, detectionError, packageManager, nodeVersion, buildCommand, buildPath, detectedFramework, installCommand, subdirectory, monorepoType, workspaceRoot, appPackageName, containerImageUri, dockerfilePath, dockerfileGenerationError, outputZipS3Key, hostingDeploymentId, hostingDeploymentStatus, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, originDetail, triggeredByAccountId, buildTier, failureReason);
+    return Objects.hash(buildId, detectionError, hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(buildCommand), hashCodeNullable(buildPath), hashCodeNullable(detectedFramework), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), hashCodeNullable(monorepoType), hashCodeNullable(workspaceRoot), hashCodeNullable(appPackageName), hashCodeNullable(containerImageUri), hashCodeNullable(dockerfilePath), dockerfileGenerationError, hashCodeNullable(outputZipS3Key), hashCodeNullable(hostingDeploymentId), hashCodeNullable(hostingDeploymentStatus), hashCodeNullable(allBuildLogsReceived), hashCodeNullable(cancellationRequested), startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, hashCodeNullable(gitRef), hashCodeNullable(releaseTagName), buildStepLogs, status, hashCodeNullable(origin), hashCodeNullable(originDetail), hashCodeNullable(triggeredByAccountId), hashCodeNullable(buildTier), hashCodeNullable(failureReason));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

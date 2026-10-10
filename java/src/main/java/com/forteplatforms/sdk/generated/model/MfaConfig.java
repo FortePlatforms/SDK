@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -75,39 +79,33 @@ public class MfaConfig {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_ENFORCEMENT = "enforcement";
-  @javax.annotation.Nullable
-  private EnforcementEnum enforcement;
+  private JsonNullable<EnforcementEnum> enforcement = JsonNullable.<EnforcementEnum>undefined();
 
   public static final String JSON_PROPERTY_TOTP_ENABLED = "totpEnabled";
-  @javax.annotation.Nullable
-  private Boolean totpEnabled;
+  private JsonNullable<Boolean> totpEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_EMAIL_OTP_ENABLED = "emailOtpEnabled";
-  @javax.annotation.Nullable
-  private Boolean emailOtpEnabled;
+  private JsonNullable<Boolean> emailOtpEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_SMS_OTP_ENABLED = "smsOtpEnabled";
-  @javax.annotation.Nullable
-  private Boolean smsOtpEnabled;
+  private JsonNullable<Boolean> smsOtpEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_WEB_AUTHN_ENABLED = "webAuthnEnabled";
-  @javax.annotation.Nullable
-  private Boolean webAuthnEnabled;
+  private JsonNullable<Boolean> webAuthnEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_BLOCK_OTP_FIRST_FACTOR = "blockOtpFirstFactor";
-  @javax.annotation.Nullable
-  private Boolean blockOtpFirstFactor;
+  private JsonNullable<Boolean> blockOtpFirstFactor = JsonNullable.<Boolean>undefined();
 
   public MfaConfig() { 
   }
 
   public MfaConfig enforcement(@javax.annotation.Nullable EnforcementEnum enforcement) {
-    this.enforcement = enforcement;
+    this.enforcement = JsonNullable.<EnforcementEnum>of(enforcement);
     return this;
   }
 
@@ -116,22 +114,30 @@ public class MfaConfig {
    * @return enforcement
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENFORCEMENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public EnforcementEnum getEnforcement() {
-    return enforcement;
+        return enforcement.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENFORCEMENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnforcement(@javax.annotation.Nullable EnforcementEnum enforcement) {
+
+  public JsonNullable<EnforcementEnum> getEnforcement_JsonNullable() {
+    return enforcement;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENFORCEMENT)
+  public void setEnforcement_JsonNullable(JsonNullable<EnforcementEnum> enforcement) {
     this.enforcement = enforcement;
+  }
+
+  public void setEnforcement(@javax.annotation.Nullable EnforcementEnum enforcement) {
+    this.enforcement = JsonNullable.<EnforcementEnum>of(enforcement);
   }
 
 
   public MfaConfig totpEnabled(@javax.annotation.Nullable Boolean totpEnabled) {
-    this.totpEnabled = totpEnabled;
+    this.totpEnabled = JsonNullable.<Boolean>of(totpEnabled);
     return this;
   }
 
@@ -140,22 +146,30 @@ public class MfaConfig {
    * @return totpEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TOTP_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getTotpEnabled() {
-    return totpEnabled;
+        return totpEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TOTP_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTotpEnabled(@javax.annotation.Nullable Boolean totpEnabled) {
+
+  public JsonNullable<Boolean> getTotpEnabled_JsonNullable() {
+    return totpEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TOTP_ENABLED)
+  public void setTotpEnabled_JsonNullable(JsonNullable<Boolean> totpEnabled) {
     this.totpEnabled = totpEnabled;
+  }
+
+  public void setTotpEnabled(@javax.annotation.Nullable Boolean totpEnabled) {
+    this.totpEnabled = JsonNullable.<Boolean>of(totpEnabled);
   }
 
 
   public MfaConfig emailOtpEnabled(@javax.annotation.Nullable Boolean emailOtpEnabled) {
-    this.emailOtpEnabled = emailOtpEnabled;
+    this.emailOtpEnabled = JsonNullable.<Boolean>of(emailOtpEnabled);
     return this;
   }
 
@@ -164,22 +178,30 @@ public class MfaConfig {
    * @return emailOtpEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL_OTP_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getEmailOtpEnabled() {
-    return emailOtpEnabled;
+        return emailOtpEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EMAIL_OTP_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmailOtpEnabled(@javax.annotation.Nullable Boolean emailOtpEnabled) {
+
+  public JsonNullable<Boolean> getEmailOtpEnabled_JsonNullable() {
+    return emailOtpEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL_OTP_ENABLED)
+  public void setEmailOtpEnabled_JsonNullable(JsonNullable<Boolean> emailOtpEnabled) {
     this.emailOtpEnabled = emailOtpEnabled;
+  }
+
+  public void setEmailOtpEnabled(@javax.annotation.Nullable Boolean emailOtpEnabled) {
+    this.emailOtpEnabled = JsonNullable.<Boolean>of(emailOtpEnabled);
   }
 
 
   public MfaConfig smsOtpEnabled(@javax.annotation.Nullable Boolean smsOtpEnabled) {
-    this.smsOtpEnabled = smsOtpEnabled;
+    this.smsOtpEnabled = JsonNullable.<Boolean>of(smsOtpEnabled);
     return this;
   }
 
@@ -188,22 +210,30 @@ public class MfaConfig {
    * @return smsOtpEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SMS_OTP_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getSmsOtpEnabled() {
-    return smsOtpEnabled;
+        return smsOtpEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SMS_OTP_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSmsOtpEnabled(@javax.annotation.Nullable Boolean smsOtpEnabled) {
+
+  public JsonNullable<Boolean> getSmsOtpEnabled_JsonNullable() {
+    return smsOtpEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SMS_OTP_ENABLED)
+  public void setSmsOtpEnabled_JsonNullable(JsonNullable<Boolean> smsOtpEnabled) {
     this.smsOtpEnabled = smsOtpEnabled;
+  }
+
+  public void setSmsOtpEnabled(@javax.annotation.Nullable Boolean smsOtpEnabled) {
+    this.smsOtpEnabled = JsonNullable.<Boolean>of(smsOtpEnabled);
   }
 
 
   public MfaConfig webAuthnEnabled(@javax.annotation.Nullable Boolean webAuthnEnabled) {
-    this.webAuthnEnabled = webAuthnEnabled;
+    this.webAuthnEnabled = JsonNullable.<Boolean>of(webAuthnEnabled);
     return this;
   }
 
@@ -212,22 +242,30 @@ public class MfaConfig {
    * @return webAuthnEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEB_AUTHN_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getWebAuthnEnabled() {
-    return webAuthnEnabled;
+        return webAuthnEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WEB_AUTHN_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebAuthnEnabled(@javax.annotation.Nullable Boolean webAuthnEnabled) {
+
+  public JsonNullable<Boolean> getWebAuthnEnabled_JsonNullable() {
+    return webAuthnEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WEB_AUTHN_ENABLED)
+  public void setWebAuthnEnabled_JsonNullable(JsonNullable<Boolean> webAuthnEnabled) {
     this.webAuthnEnabled = webAuthnEnabled;
+  }
+
+  public void setWebAuthnEnabled(@javax.annotation.Nullable Boolean webAuthnEnabled) {
+    this.webAuthnEnabled = JsonNullable.<Boolean>of(webAuthnEnabled);
   }
 
 
   public MfaConfig blockOtpFirstFactor(@javax.annotation.Nullable Boolean blockOtpFirstFactor) {
-    this.blockOtpFirstFactor = blockOtpFirstFactor;
+    this.blockOtpFirstFactor = JsonNullable.<Boolean>of(blockOtpFirstFactor);
     return this;
   }
 
@@ -236,17 +274,25 @@ public class MfaConfig {
    * @return blockOtpFirstFactor
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BLOCK_OTP_FIRST_FACTOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getBlockOtpFirstFactor() {
-    return blockOtpFirstFactor;
+        return blockOtpFirstFactor.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BLOCK_OTP_FIRST_FACTOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlockOtpFirstFactor(@javax.annotation.Nullable Boolean blockOtpFirstFactor) {
+
+  public JsonNullable<Boolean> getBlockOtpFirstFactor_JsonNullable() {
+    return blockOtpFirstFactor;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BLOCK_OTP_FIRST_FACTOR)
+  public void setBlockOtpFirstFactor_JsonNullable(JsonNullable<Boolean> blockOtpFirstFactor) {
     this.blockOtpFirstFactor = blockOtpFirstFactor;
+  }
+
+  public void setBlockOtpFirstFactor(@javax.annotation.Nullable Boolean blockOtpFirstFactor) {
+    this.blockOtpFirstFactor = JsonNullable.<Boolean>of(blockOtpFirstFactor);
   }
 
 
@@ -262,17 +308,28 @@ public class MfaConfig {
       return false;
     }
     MfaConfig mfaConfig = (MfaConfig) o;
-    return Objects.equals(this.enforcement, mfaConfig.enforcement) &&
-        Objects.equals(this.totpEnabled, mfaConfig.totpEnabled) &&
-        Objects.equals(this.emailOtpEnabled, mfaConfig.emailOtpEnabled) &&
-        Objects.equals(this.smsOtpEnabled, mfaConfig.smsOtpEnabled) &&
-        Objects.equals(this.webAuthnEnabled, mfaConfig.webAuthnEnabled) &&
-        Objects.equals(this.blockOtpFirstFactor, mfaConfig.blockOtpFirstFactor);
+    return equalsNullable(this.enforcement, mfaConfig.enforcement) &&
+        equalsNullable(this.totpEnabled, mfaConfig.totpEnabled) &&
+        equalsNullable(this.emailOtpEnabled, mfaConfig.emailOtpEnabled) &&
+        equalsNullable(this.smsOtpEnabled, mfaConfig.smsOtpEnabled) &&
+        equalsNullable(this.webAuthnEnabled, mfaConfig.webAuthnEnabled) &&
+        equalsNullable(this.blockOtpFirstFactor, mfaConfig.blockOtpFirstFactor);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(enforcement, totpEnabled, emailOtpEnabled, smsOtpEnabled, webAuthnEnabled, blockOtpFirstFactor);
+    return Objects.hash(hashCodeNullable(enforcement), hashCodeNullable(totpEnabled), hashCodeNullable(emailOtpEnabled), hashCodeNullable(smsOtpEnabled), hashCodeNullable(webAuthnEnabled), hashCodeNullable(blockOtpFirstFactor));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,24 +48,19 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class PasswordConfig {
   public static final String JSON_PROPERTY_MIN_LENGTH = "minLength";
-  @javax.annotation.Nullable
-  private Integer minLength;
+  private JsonNullable<Integer> minLength = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_REQUIRE_UPPERCASE = "requireUppercase";
-  @javax.annotation.Nullable
-  private Boolean requireUppercase;
+  private JsonNullable<Boolean> requireUppercase = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_REQUIRE_LOWERCASE = "requireLowercase";
-  @javax.annotation.Nullable
-  private Boolean requireLowercase;
+  private JsonNullable<Boolean> requireLowercase = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_REQUIRE_DIGIT = "requireDigit";
-  @javax.annotation.Nullable
-  private Boolean requireDigit;
+  private JsonNullable<Boolean> requireDigit = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_REQUIRE_SYMBOL = "requireSymbol";
-  @javax.annotation.Nullable
-  private Boolean requireSymbol;
+  private JsonNullable<Boolean> requireSymbol = JsonNullable.<Boolean>undefined();
 
   /**
    * Gets or Sets resetMode
@@ -94,23 +93,21 @@ public class PasswordConfig {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_RESET_MODE = "resetMode";
-  @javax.annotation.Nullable
-  private ResetModeEnum resetMode;
+  private JsonNullable<ResetModeEnum> resetMode = JsonNullable.<ResetModeEnum>undefined();
 
   public static final String JSON_PROPERTY_RESET_LINK_TARGET_URL = "resetLinkTargetUrl";
-  @javax.annotation.Nullable
-  private String resetLinkTargetUrl;
+  private JsonNullable<String> resetLinkTargetUrl = JsonNullable.<String>undefined();
 
   public PasswordConfig() { 
   }
 
   public PasswordConfig minLength(@javax.annotation.Nullable Integer minLength) {
-    this.minLength = minLength;
+    this.minLength = JsonNullable.<Integer>of(minLength);
     return this;
   }
 
@@ -119,22 +116,30 @@ public class PasswordConfig {
    * @return minLength
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MIN_LENGTH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getMinLength() {
-    return minLength;
+        return minLength.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MIN_LENGTH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinLength(@javax.annotation.Nullable Integer minLength) {
+
+  public JsonNullable<Integer> getMinLength_JsonNullable() {
+    return minLength;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MIN_LENGTH)
+  public void setMinLength_JsonNullable(JsonNullable<Integer> minLength) {
     this.minLength = minLength;
+  }
+
+  public void setMinLength(@javax.annotation.Nullable Integer minLength) {
+    this.minLength = JsonNullable.<Integer>of(minLength);
   }
 
 
   public PasswordConfig requireUppercase(@javax.annotation.Nullable Boolean requireUppercase) {
-    this.requireUppercase = requireUppercase;
+    this.requireUppercase = JsonNullable.<Boolean>of(requireUppercase);
     return this;
   }
 
@@ -143,22 +148,30 @@ public class PasswordConfig {
    * @return requireUppercase
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUIRE_UPPERCASE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRequireUppercase() {
-    return requireUppercase;
+        return requireUppercase.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUIRE_UPPERCASE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequireUppercase(@javax.annotation.Nullable Boolean requireUppercase) {
+
+  public JsonNullable<Boolean> getRequireUppercase_JsonNullable() {
+    return requireUppercase;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUIRE_UPPERCASE)
+  public void setRequireUppercase_JsonNullable(JsonNullable<Boolean> requireUppercase) {
     this.requireUppercase = requireUppercase;
+  }
+
+  public void setRequireUppercase(@javax.annotation.Nullable Boolean requireUppercase) {
+    this.requireUppercase = JsonNullable.<Boolean>of(requireUppercase);
   }
 
 
   public PasswordConfig requireLowercase(@javax.annotation.Nullable Boolean requireLowercase) {
-    this.requireLowercase = requireLowercase;
+    this.requireLowercase = JsonNullable.<Boolean>of(requireLowercase);
     return this;
   }
 
@@ -167,22 +180,30 @@ public class PasswordConfig {
    * @return requireLowercase
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUIRE_LOWERCASE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRequireLowercase() {
-    return requireLowercase;
+        return requireLowercase.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUIRE_LOWERCASE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequireLowercase(@javax.annotation.Nullable Boolean requireLowercase) {
+
+  public JsonNullable<Boolean> getRequireLowercase_JsonNullable() {
+    return requireLowercase;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUIRE_LOWERCASE)
+  public void setRequireLowercase_JsonNullable(JsonNullable<Boolean> requireLowercase) {
     this.requireLowercase = requireLowercase;
+  }
+
+  public void setRequireLowercase(@javax.annotation.Nullable Boolean requireLowercase) {
+    this.requireLowercase = JsonNullable.<Boolean>of(requireLowercase);
   }
 
 
   public PasswordConfig requireDigit(@javax.annotation.Nullable Boolean requireDigit) {
-    this.requireDigit = requireDigit;
+    this.requireDigit = JsonNullable.<Boolean>of(requireDigit);
     return this;
   }
 
@@ -191,22 +212,30 @@ public class PasswordConfig {
    * @return requireDigit
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUIRE_DIGIT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRequireDigit() {
-    return requireDigit;
+        return requireDigit.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUIRE_DIGIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequireDigit(@javax.annotation.Nullable Boolean requireDigit) {
+
+  public JsonNullable<Boolean> getRequireDigit_JsonNullable() {
+    return requireDigit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUIRE_DIGIT)
+  public void setRequireDigit_JsonNullable(JsonNullable<Boolean> requireDigit) {
     this.requireDigit = requireDigit;
+  }
+
+  public void setRequireDigit(@javax.annotation.Nullable Boolean requireDigit) {
+    this.requireDigit = JsonNullable.<Boolean>of(requireDigit);
   }
 
 
   public PasswordConfig requireSymbol(@javax.annotation.Nullable Boolean requireSymbol) {
-    this.requireSymbol = requireSymbol;
+    this.requireSymbol = JsonNullable.<Boolean>of(requireSymbol);
     return this;
   }
 
@@ -215,22 +244,30 @@ public class PasswordConfig {
    * @return requireSymbol
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUIRE_SYMBOL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRequireSymbol() {
-    return requireSymbol;
+        return requireSymbol.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUIRE_SYMBOL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequireSymbol(@javax.annotation.Nullable Boolean requireSymbol) {
+
+  public JsonNullable<Boolean> getRequireSymbol_JsonNullable() {
+    return requireSymbol;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUIRE_SYMBOL)
+  public void setRequireSymbol_JsonNullable(JsonNullable<Boolean> requireSymbol) {
     this.requireSymbol = requireSymbol;
+  }
+
+  public void setRequireSymbol(@javax.annotation.Nullable Boolean requireSymbol) {
+    this.requireSymbol = JsonNullable.<Boolean>of(requireSymbol);
   }
 
 
   public PasswordConfig resetMode(@javax.annotation.Nullable ResetModeEnum resetMode) {
-    this.resetMode = resetMode;
+    this.resetMode = JsonNullable.<ResetModeEnum>of(resetMode);
     return this;
   }
 
@@ -239,22 +276,30 @@ public class PasswordConfig {
    * @return resetMode
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESET_MODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public ResetModeEnum getResetMode() {
-    return resetMode;
+        return resetMode.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESET_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResetMode(@javax.annotation.Nullable ResetModeEnum resetMode) {
+
+  public JsonNullable<ResetModeEnum> getResetMode_JsonNullable() {
+    return resetMode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESET_MODE)
+  public void setResetMode_JsonNullable(JsonNullable<ResetModeEnum> resetMode) {
     this.resetMode = resetMode;
+  }
+
+  public void setResetMode(@javax.annotation.Nullable ResetModeEnum resetMode) {
+    this.resetMode = JsonNullable.<ResetModeEnum>of(resetMode);
   }
 
 
   public PasswordConfig resetLinkTargetUrl(@javax.annotation.Nullable String resetLinkTargetUrl) {
-    this.resetLinkTargetUrl = resetLinkTargetUrl;
+    this.resetLinkTargetUrl = JsonNullable.<String>of(resetLinkTargetUrl);
     return this;
   }
 
@@ -263,17 +308,25 @@ public class PasswordConfig {
    * @return resetLinkTargetUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESET_LINK_TARGET_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getResetLinkTargetUrl() {
-    return resetLinkTargetUrl;
+        return resetLinkTargetUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESET_LINK_TARGET_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResetLinkTargetUrl(@javax.annotation.Nullable String resetLinkTargetUrl) {
+
+  public JsonNullable<String> getResetLinkTargetUrl_JsonNullable() {
+    return resetLinkTargetUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESET_LINK_TARGET_URL)
+  public void setResetLinkTargetUrl_JsonNullable(JsonNullable<String> resetLinkTargetUrl) {
     this.resetLinkTargetUrl = resetLinkTargetUrl;
+  }
+
+  public void setResetLinkTargetUrl(@javax.annotation.Nullable String resetLinkTargetUrl) {
+    this.resetLinkTargetUrl = JsonNullable.<String>of(resetLinkTargetUrl);
   }
 
 
@@ -289,18 +342,29 @@ public class PasswordConfig {
       return false;
     }
     PasswordConfig passwordConfig = (PasswordConfig) o;
-    return Objects.equals(this.minLength, passwordConfig.minLength) &&
-        Objects.equals(this.requireUppercase, passwordConfig.requireUppercase) &&
-        Objects.equals(this.requireLowercase, passwordConfig.requireLowercase) &&
-        Objects.equals(this.requireDigit, passwordConfig.requireDigit) &&
-        Objects.equals(this.requireSymbol, passwordConfig.requireSymbol) &&
-        Objects.equals(this.resetMode, passwordConfig.resetMode) &&
-        Objects.equals(this.resetLinkTargetUrl, passwordConfig.resetLinkTargetUrl);
+    return equalsNullable(this.minLength, passwordConfig.minLength) &&
+        equalsNullable(this.requireUppercase, passwordConfig.requireUppercase) &&
+        equalsNullable(this.requireLowercase, passwordConfig.requireLowercase) &&
+        equalsNullable(this.requireDigit, passwordConfig.requireDigit) &&
+        equalsNullable(this.requireSymbol, passwordConfig.requireSymbol) &&
+        equalsNullable(this.resetMode, passwordConfig.resetMode) &&
+        equalsNullable(this.resetLinkTargetUrl, passwordConfig.resetLinkTargetUrl);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(minLength, requireUppercase, requireLowercase, requireDigit, requireSymbol, resetMode, resetLinkTargetUrl);
+    return Objects.hash(hashCodeNullable(minLength), hashCodeNullable(requireUppercase), hashCodeNullable(requireLowercase), hashCodeNullable(requireDigit), hashCodeNullable(requireSymbol), hashCodeNullable(resetMode), hashCodeNullable(resetLinkTargetUrl));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

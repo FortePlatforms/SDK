@@ -134,7 +134,7 @@ export interface ProjectObject {
      * @type {number}
      * @memberof ProjectObject
      */
-    cachedUserCount?: number;
+    cachedUserCount?: number | null;
     /**
      * 
      * @type {string}
@@ -146,25 +146,25 @@ export interface ProjectObject {
      * @type {boolean}
      * @memberof ProjectObject
      */
-    phoneLoginEnabled?: boolean;
+    phoneLoginEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof ProjectObject
      */
-    emailLoginEnabled?: boolean;
+    emailLoginEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof ProjectObject
      */
-    googleLoginEnabled?: boolean;
+    googleLoginEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof ProjectObject
      */
-    passwordLoginEnabled?: boolean;
+    passwordLoginEnabled?: boolean | null;
     /**
      * 
      * @type {PasswordConfig}
@@ -182,7 +182,7 @@ export interface ProjectObject {
      * @type {boolean}
      * @memberof ProjectObject
      */
-    sandboxMode?: boolean;
+    sandboxMode?: boolean | null;
     /**
      * 
      * @type {NotificationTemplatesConfig}
@@ -200,7 +200,7 @@ export interface ProjectObject {
      * @type {ProjectObjectEmailSenderType}
      * @memberof ProjectObject
      */
-    emailSender?: ProjectObjectEmailSenderType;
+    emailSender?: ProjectObjectEmailSenderType | null;
     /**
      * 
      * @type {boolean}

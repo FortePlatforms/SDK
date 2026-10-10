@@ -24,19 +24,19 @@ export interface RegisterUserRequest {
      * @type {string}
      * @memberof RegisterUserRequest
      */
-    fullName?: string;
+    fullName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RegisterUserRequest
      */
-    email?: string;
+    email?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RegisterUserRequest
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -48,19 +48,19 @@ export interface RegisterUserRequest {
      * @type {string}
      * @memberof RegisterUserRequest
      */
-    recaptchaToken?: string;
+    recaptchaToken?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RegisterUserRequest
      */
-    password?: string;
+    password?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof RegisterUserRequest
      */
-    sendWelcomeMessage?: boolean;
+    sendWelcomeMessage?: boolean | null;
 }
 
 /**

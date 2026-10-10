@@ -71,6 +71,16 @@ class MfaChallengeResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if code_expiration_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.code_expiration_time is None and "code_expiration_time" in self.model_fields_set:
+            _dict['codeExpirationTime'] = None
+
+        # set to None if web_authn_request_options (nullable) is None
+        # and model_fields_set contains the field
+        if self.web_authn_request_options is None and "web_authn_request_options" in self.model_fields_set:
+            _dict['webAuthnRequestOptions'] = None
+
         return _dict
 
     @classmethod

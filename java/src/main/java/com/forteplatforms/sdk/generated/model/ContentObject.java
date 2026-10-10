@@ -31,6 +31,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -117,8 +121,7 @@ public class ContentObject {
   private Long sizeBytes;
 
   public static final String JSON_PROPERTY_FILE_NAME = "fileName";
-  @javax.annotation.Nullable
-  private String fileName;
+  private JsonNullable<String> fileName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nonnull
@@ -137,12 +140,10 @@ public class ContentObject {
   private OffsetDateTime updatedAt;
 
   public static final String JSON_PROPERTY_VALIDATED_AT = "validatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime validatedAt;
+  private JsonNullable<OffsetDateTime> validatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_EXPIRES_AT = "expiresAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime expiresAt;
+  private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.<OffsetDateTime>undefined();
 
   public ContentObject() { 
   }
@@ -292,7 +293,7 @@ public class ContentObject {
 
 
   public ContentObject fileName(@javax.annotation.Nullable String fileName) {
-    this.fileName = fileName;
+    this.fileName = JsonNullable.<String>of(fileName);
     return this;
   }
 
@@ -301,17 +302,25 @@ public class ContentObject {
    * @return fileName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FILE_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFileName() {
-    return fileName;
+        return fileName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FILE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFileName(@javax.annotation.Nullable String fileName) {
+
+  public JsonNullable<String> getFileName_JsonNullable() {
+    return fileName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FILE_NAME)
+  public void setFileName_JsonNullable(JsonNullable<String> fileName) {
     this.fileName = fileName;
+  }
+
+  public void setFileName(@javax.annotation.Nullable String fileName) {
+    this.fileName = JsonNullable.<String>of(fileName);
   }
 
 
@@ -428,7 +437,7 @@ public class ContentObject {
 
 
   public ContentObject validatedAt(@javax.annotation.Nullable OffsetDateTime validatedAt) {
-    this.validatedAt = validatedAt;
+    this.validatedAt = JsonNullable.<OffsetDateTime>of(validatedAt);
     return this;
   }
 
@@ -437,22 +446,30 @@ public class ContentObject {
    * @return validatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_VALIDATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getValidatedAt() {
-    return validatedAt;
+        return validatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_VALIDATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setValidatedAt(@javax.annotation.Nullable OffsetDateTime validatedAt) {
+
+  public JsonNullable<OffsetDateTime> getValidatedAt_JsonNullable() {
+    return validatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VALIDATED_AT)
+  public void setValidatedAt_JsonNullable(JsonNullable<OffsetDateTime> validatedAt) {
     this.validatedAt = validatedAt;
+  }
+
+  public void setValidatedAt(@javax.annotation.Nullable OffsetDateTime validatedAt) {
+    this.validatedAt = JsonNullable.<OffsetDateTime>of(validatedAt);
   }
 
 
   public ContentObject expiresAt(@javax.annotation.Nullable OffsetDateTime expiresAt) {
-    this.expiresAt = expiresAt;
+    this.expiresAt = JsonNullable.<OffsetDateTime>of(expiresAt);
     return this;
   }
 
@@ -461,17 +478,25 @@ public class ContentObject {
    * @return expiresAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPIRES_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getExpiresAt() {
-    return expiresAt;
+        return expiresAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXPIRES_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpiresAt(@javax.annotation.Nullable OffsetDateTime expiresAt) {
+
+  public JsonNullable<OffsetDateTime> getExpiresAt_JsonNullable() {
+    return expiresAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  public void setExpiresAt_JsonNullable(JsonNullable<OffsetDateTime> expiresAt) {
     this.expiresAt = expiresAt;
+  }
+
+  public void setExpiresAt(@javax.annotation.Nullable OffsetDateTime expiresAt) {
+    this.expiresAt = JsonNullable.<OffsetDateTime>of(expiresAt);
   }
 
 
@@ -493,18 +518,29 @@ public class ContentObject {
         Objects.equals(this.state, contentObject.state) &&
         Objects.equals(this.contentType, contentObject.contentType) &&
         Objects.equals(this.sizeBytes, contentObject.sizeBytes) &&
-        Objects.equals(this.fileName, contentObject.fileName) &&
+        equalsNullable(this.fileName, contentObject.fileName) &&
         Objects.equals(this.metadata, contentObject.metadata) &&
         Objects.equals(this.sharedWith, contentObject.sharedWith) &&
         Objects.equals(this.createdAt, contentObject.createdAt) &&
         Objects.equals(this.updatedAt, contentObject.updatedAt) &&
-        Objects.equals(this.validatedAt, contentObject.validatedAt) &&
-        Objects.equals(this.expiresAt, contentObject.expiresAt);
+        equalsNullable(this.validatedAt, contentObject.validatedAt) &&
+        equalsNullable(this.expiresAt, contentObject.expiresAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentId, projectId, userId, state, contentType, sizeBytes, fileName, metadata, sharedWith, createdAt, updatedAt, validatedAt, expiresAt);
+    return Objects.hash(contentId, projectId, userId, state, contentType, sizeBytes, hashCodeNullable(fileName), metadata, sharedWith, createdAt, updatedAt, hashCodeNullable(validatedAt), hashCodeNullable(expiresAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

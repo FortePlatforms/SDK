@@ -121,6 +121,26 @@ class CreateSubscriptionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of customer_address
         if self.customer_address:
             _dict['customerAddress'] = self.customer_address.to_dict()
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
+
+        # set to None if start_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_time is None and "start_time" in self.model_fields_set:
+            _dict['startTime'] = None
+
+        # set to None if end_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.end_time is None and "end_time" in self.model_fields_set:
+            _dict['endTime'] = None
+
+        # set to None if payment_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_method_id is None and "payment_method_id" in self.model_fields_set:
+            _dict['paymentMethodId'] = None
+
         return _dict
 
     @classmethod

@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -62,20 +66,17 @@ public class CustomEmailTemplateObject {
   private String subject;
 
   public static final String JSON_PROPERTY_HTML_BODY = "htmlBody";
-  @javax.annotation.Nullable
-  private String htmlBody;
+  private JsonNullable<String> htmlBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TEXT_BODY = "textBody";
-  @javax.annotation.Nullable
-  private String textBody;
+  private JsonNullable<String> textBody = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nonnull
   private OffsetDateTime createdTimestamp;
 
   public static final String JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP = "lastModifiedTimestamp";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastModifiedTimestamp;
+  private JsonNullable<OffsetDateTime> lastModifiedTimestamp = JsonNullable.<OffsetDateTime>undefined();
 
   public CustomEmailTemplateObject() { 
   }
@@ -177,7 +178,7 @@ public class CustomEmailTemplateObject {
 
 
   public CustomEmailTemplateObject htmlBody(@javax.annotation.Nullable String htmlBody) {
-    this.htmlBody = htmlBody;
+    this.htmlBody = JsonNullable.<String>of(htmlBody);
     return this;
   }
 
@@ -186,22 +187,30 @@ public class CustomEmailTemplateObject {
    * @return htmlBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HTML_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getHtmlBody() {
-    return htmlBody;
+        return htmlBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HTML_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHtmlBody(@javax.annotation.Nullable String htmlBody) {
+
+  public JsonNullable<String> getHtmlBody_JsonNullable() {
+    return htmlBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HTML_BODY)
+  public void setHtmlBody_JsonNullable(JsonNullable<String> htmlBody) {
     this.htmlBody = htmlBody;
+  }
+
+  public void setHtmlBody(@javax.annotation.Nullable String htmlBody) {
+    this.htmlBody = JsonNullable.<String>of(htmlBody);
   }
 
 
   public CustomEmailTemplateObject textBody(@javax.annotation.Nullable String textBody) {
-    this.textBody = textBody;
+    this.textBody = JsonNullable.<String>of(textBody);
     return this;
   }
 
@@ -210,17 +219,25 @@ public class CustomEmailTemplateObject {
    * @return textBody
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TEXT_BODY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTextBody() {
-    return textBody;
+        return textBody.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TEXT_BODY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTextBody(@javax.annotation.Nullable String textBody) {
+
+  public JsonNullable<String> getTextBody_JsonNullable() {
+    return textBody;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TEXT_BODY)
+  public void setTextBody_JsonNullable(JsonNullable<String> textBody) {
     this.textBody = textBody;
+  }
+
+  public void setTextBody(@javax.annotation.Nullable String textBody) {
+    this.textBody = JsonNullable.<String>of(textBody);
   }
 
 
@@ -249,7 +266,7 @@ public class CustomEmailTemplateObject {
 
 
   public CustomEmailTemplateObject lastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
-    this.lastModifiedTimestamp = lastModifiedTimestamp;
+    this.lastModifiedTimestamp = JsonNullable.<OffsetDateTime>of(lastModifiedTimestamp);
     return this;
   }
 
@@ -258,17 +275,25 @@ public class CustomEmailTemplateObject {
    * @return lastModifiedTimestamp
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastModifiedTimestamp() {
-    return lastModifiedTimestamp;
+        return lastModifiedTimestamp.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
+
+  public JsonNullable<OffsetDateTime> getLastModifiedTimestamp_JsonNullable() {
+    return lastModifiedTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP)
+  public void setLastModifiedTimestamp_JsonNullable(JsonNullable<OffsetDateTime> lastModifiedTimestamp) {
     this.lastModifiedTimestamp = lastModifiedTimestamp;
+  }
+
+  public void setLastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
+    this.lastModifiedTimestamp = JsonNullable.<OffsetDateTime>of(lastModifiedTimestamp);
   }
 
 
@@ -288,15 +313,26 @@ public class CustomEmailTemplateObject {
         Objects.equals(this.projectId, customEmailTemplateObject.projectId) &&
         Objects.equals(this.name, customEmailTemplateObject.name) &&
         Objects.equals(this.subject, customEmailTemplateObject.subject) &&
-        Objects.equals(this.htmlBody, customEmailTemplateObject.htmlBody) &&
-        Objects.equals(this.textBody, customEmailTemplateObject.textBody) &&
+        equalsNullable(this.htmlBody, customEmailTemplateObject.htmlBody) &&
+        equalsNullable(this.textBody, customEmailTemplateObject.textBody) &&
         Objects.equals(this.createdTimestamp, customEmailTemplateObject.createdTimestamp) &&
-        Objects.equals(this.lastModifiedTimestamp, customEmailTemplateObject.lastModifiedTimestamp);
+        equalsNullable(this.lastModifiedTimestamp, customEmailTemplateObject.lastModifiedTimestamp);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customEmailTemplateId, projectId, name, subject, htmlBody, textBody, createdTimestamp, lastModifiedTimestamp);
+    return Objects.hash(customEmailTemplateId, projectId, name, subject, hashCodeNullable(htmlBody), hashCodeNullable(textBody), createdTimestamp, hashCodeNullable(lastModifiedTimestamp));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -74,6 +74,21 @@ class ManagedDatabaseUsage(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if usage_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.usage_bytes is None and "usage_bytes" in self.model_fields_set:
+            _dict['usageBytes'] = None
+
+        # set to None if physical_usage_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.physical_usage_bytes is None and "physical_usage_bytes" in self.model_fields_set:
+            _dict['physicalUsageBytes'] = None
+
+        # set to None if usage_updated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.usage_updated_at is None and "usage_updated_at" in self.model_fields_set:
+            _dict['usageUpdatedAt'] = None
+
         return _dict
 
     @classmethod

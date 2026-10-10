@@ -89,6 +89,16 @@ class UpdateSubscriptionRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of customer_address
         if self.customer_address:
             _dict['customerAddress'] = self.customer_address.to_dict()
+        # set to None if payment_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.payment_method_id is None and "payment_method_id" in self.model_fields_set:
+            _dict['paymentMethodId'] = None
+
+        # set to None if cancel_at_period_end (nullable) is None
+        # and model_fields_set contains the field
+        if self.cancel_at_period_end is None and "cancel_at_period_end" in self.model_fields_set:
+            _dict['cancelAtPeriodEnd'] = None
+
         return _dict
 
     @classmethod

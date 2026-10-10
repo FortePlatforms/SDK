@@ -64,13 +64,13 @@ export interface LoginUserResponse {
      * @type {LoginUserResponseMfaStatusType}
      * @memberof LoginUserResponse
      */
-    mfaStatus?: LoginUserResponseMfaStatusType;
+    mfaStatus?: LoginUserResponseMfaStatusType | null;
     /**
      * 
      * @type {Array<MfaMethodSummary>}
      * @memberof LoginUserResponse
      */
-    availableMfaMethods?: Array<MfaMethodSummary>;
+    availableMfaMethods?: Array<MfaMethodSummary> | null;
 }
 
 

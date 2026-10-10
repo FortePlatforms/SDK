@@ -105,6 +105,181 @@ class ManagedDatabaseMetricPoint(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if interval_ms (nullable) is None
+        # and model_fields_set contains the field
+        if self.interval_ms is None and "interval_ms" in self.model_fields_set:
+            _dict['intervalMs'] = None
+
+        # set to None if active_time_ms (nullable) is None
+        # and model_fields_set contains the field
+        if self.active_time_ms is None and "active_time_ms" in self.model_fields_set:
+            _dict['activeTimeMs'] = None
+
+        # set to None if xact_commit (nullable) is None
+        # and model_fields_set contains the field
+        if self.xact_commit is None and "xact_commit" in self.model_fields_set:
+            _dict['xactCommit'] = None
+
+        # set to None if xact_rollback (nullable) is None
+        # and model_fields_set contains the field
+        if self.xact_rollback is None and "xact_rollback" in self.model_fields_set:
+            _dict['xactRollback'] = None
+
+        # set to None if blks_hit (nullable) is None
+        # and model_fields_set contains the field
+        if self.blks_hit is None and "blks_hit" in self.model_fields_set:
+            _dict['blksHit'] = None
+
+        # set to None if blks_read (nullable) is None
+        # and model_fields_set contains the field
+        if self.blks_read is None and "blks_read" in self.model_fields_set:
+            _dict['blksRead'] = None
+
+        # set to None if tup_returned (nullable) is None
+        # and model_fields_set contains the field
+        if self.tup_returned is None and "tup_returned" in self.model_fields_set:
+            _dict['tupReturned'] = None
+
+        # set to None if tup_fetched (nullable) is None
+        # and model_fields_set contains the field
+        if self.tup_fetched is None and "tup_fetched" in self.model_fields_set:
+            _dict['tupFetched'] = None
+
+        # set to None if tup_inserted (nullable) is None
+        # and model_fields_set contains the field
+        if self.tup_inserted is None and "tup_inserted" in self.model_fields_set:
+            _dict['tupInserted'] = None
+
+        # set to None if tup_updated (nullable) is None
+        # and model_fields_set contains the field
+        if self.tup_updated is None and "tup_updated" in self.model_fields_set:
+            _dict['tupUpdated'] = None
+
+        # set to None if tup_deleted (nullable) is None
+        # and model_fields_set contains the field
+        if self.tup_deleted is None and "tup_deleted" in self.model_fields_set:
+            _dict['tupDeleted'] = None
+
+        # set to None if temp_files (nullable) is None
+        # and model_fields_set contains the field
+        if self.temp_files is None and "temp_files" in self.model_fields_set:
+            _dict['tempFiles'] = None
+
+        # set to None if temp_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.temp_bytes is None and "temp_bytes" in self.model_fields_set:
+            _dict['tempBytes'] = None
+
+        # set to None if deadlocks (nullable) is None
+        # and model_fields_set contains the field
+        if self.deadlocks is None and "deadlocks" in self.model_fields_set:
+            _dict['deadlocks'] = None
+
+        # set to None if stmt_total_exec_ms (nullable) is None
+        # and model_fields_set contains the field
+        if self.stmt_total_exec_ms is None and "stmt_total_exec_ms" in self.model_fields_set:
+            _dict['stmtTotalExecMs'] = None
+
+        # set to None if stmt_calls (nullable) is None
+        # and model_fields_set contains the field
+        if self.stmt_calls is None and "stmt_calls" in self.model_fields_set:
+            _dict['stmtCalls'] = None
+
+        # set to None if stmt_wal_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.stmt_wal_bytes is None and "stmt_wal_bytes" in self.model_fields_set:
+            _dict['stmtWalBytes'] = None
+
+        # set to None if stmt_temp_blks (nullable) is None
+        # and model_fields_set contains the field
+        if self.stmt_temp_blks is None and "stmt_temp_blks" in self.model_fields_set:
+            _dict['stmtTempBlks'] = None
+
+        # set to None if query_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.query_count is None and "query_count" in self.model_fields_set:
+            _dict['queryCount'] = None
+
+        # set to None if avg_query_time_micros (nullable) is None
+        # and model_fields_set contains the field
+        if self.avg_query_time_micros is None and "avg_query_time_micros" in self.model_fields_set:
+            _dict['avgQueryTimeMicros'] = None
+
+        # set to None if client_connections (nullable) is None
+        # and model_fields_set contains the field
+        if self.client_connections is None and "client_connections" in self.model_fields_set:
+            _dict['clientConnections'] = None
+
+        # set to None if server_connections (nullable) is None
+        # and model_fields_set contains the field
+        if self.server_connections is None and "server_connections" in self.model_fields_set:
+            _dict['serverConnections'] = None
+
+        # set to None if cl_waiting (nullable) is None
+        # and model_fields_set contains the field
+        if self.cl_waiting is None and "cl_waiting" in self.model_fields_set:
+            _dict['clWaiting'] = None
+
+        # set to None if pgb_query_time_micros (nullable) is None
+        # and model_fields_set contains the field
+        if self.pgb_query_time_micros is None and "pgb_query_time_micros" in self.model_fields_set:
+            _dict['pgbQueryTimeMicros'] = None
+
+        # set to None if pgb_wait_time_micros (nullable) is None
+        # and model_fields_set contains the field
+        if self.pgb_wait_time_micros is None and "pgb_wait_time_micros" in self.model_fields_set:
+            _dict['pgbWaitTimeMicros'] = None
+
+        # set to None if pgb_xact_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.pgb_xact_count is None and "pgb_xact_count" in self.model_fields_set:
+            _dict['pgbXactCount'] = None
+
+        # set to None if pgb_xact_time_micros (nullable) is None
+        # and model_fields_set contains the field
+        if self.pgb_xact_time_micros is None and "pgb_xact_time_micros" in self.model_fields_set:
+            _dict['pgbXactTimeMicros'] = None
+
+        # set to None if max_wait_micros (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_wait_micros is None and "max_wait_micros" in self.model_fields_set:
+            _dict['maxWaitMicros'] = None
+
+        # set to None if pool_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.pool_size is None and "pool_size" in self.model_fields_set:
+            _dict['poolSize'] = None
+
+        # set to None if session_time_ms (nullable) is None
+        # and model_fields_set contains the field
+        if self.session_time_ms is None and "session_time_ms" in self.model_fields_set:
+            _dict['sessionTimeMs'] = None
+
+        # set to None if idle_in_transaction_time_ms (nullable) is None
+        # and model_fields_set contains the field
+        if self.idle_in_transaction_time_ms is None and "idle_in_transaction_time_ms" in self.model_fields_set:
+            _dict['idleInTransactionTimeMs'] = None
+
+        # set to None if sessions_abnormal (nullable) is None
+        # and model_fields_set contains the field
+        if self.sessions_abnormal is None and "sessions_abnormal" in self.model_fields_set:
+            _dict['sessionsAbnormal'] = None
+
+        # set to None if backends (nullable) is None
+        # and model_fields_set contains the field
+        if self.backends is None and "backends" in self.model_fields_set:
+            _dict['backends'] = None
+
+        # set to None if logical_size_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.logical_size_bytes is None and "logical_size_bytes" in self.model_fields_set:
+            _dict['logicalSizeBytes'] = None
+
+        # set to None if physical_size_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.physical_size_bytes is None and "physical_size_bytes" in self.model_fields_set:
+            _dict['physicalSizeBytes'] = None
+
         return _dict
 
     @classmethod

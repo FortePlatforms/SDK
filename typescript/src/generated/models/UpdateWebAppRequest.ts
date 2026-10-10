@@ -24,55 +24,55 @@ export interface UpdateWebAppRequest {
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    webAppName?: string;
+    webAppName?: string | null;
     /**
      * 
      * @type {UpdateWebAppRequestGithubBuildTriggerType}
      * @memberof UpdateWebAppRequest
      */
-    githubBuildTrigger?: UpdateWebAppRequestGithubBuildTriggerType;
+    githubBuildTrigger?: UpdateWebAppRequestGithubBuildTriggerType | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    githubBranch?: string;
+    githubBranch?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    subdirectory?: string;
+    subdirectory?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    buildCommand?: string;
+    buildCommand?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    buildPath?: string;
+    buildPath?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    packageManager?: string;
+    packageManager?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    nodeVersion?: string;
+    nodeVersion?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    installCommand?: string;
+    installCommand?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -90,25 +90,25 @@ export interface UpdateWebAppRequest {
      * @type {Set<string>}
      * @memberof UpdateWebAppRequest
      */
-    secretKeysToDelete?: Set<string>;
+    secretKeysToDelete?: Set<string> | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateWebAppRequest
      */
-    resetDetectedConfig?: boolean;
+    resetDetectedConfig?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateWebAppRequest
      */
-    sitePassword?: string;
+    sitePassword?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateWebAppRequest
      */
-    removeSitePassword?: boolean;
+    removeSitePassword?: boolean | null;
 }
 
 

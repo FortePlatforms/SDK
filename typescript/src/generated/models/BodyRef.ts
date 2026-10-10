@@ -30,7 +30,7 @@ export interface BodyRef {
      * @type {string}
      * @memberof BodyRef
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * 
      * @type {boolean}

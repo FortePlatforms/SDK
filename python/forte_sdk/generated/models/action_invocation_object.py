@@ -85,6 +85,41 @@ class ActionInvocationObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if idempotency_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.idempotency_key is None and "idempotency_key" in self.model_fields_set:
+            _dict['idempotencyKey'] = None
+
+        # set to None if scheduled_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.scheduled_at is None and "scheduled_at" in self.model_fields_set:
+            _dict['scheduledAt'] = None
+
+        # set to None if started_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.started_at is None and "started_at" in self.model_fields_set:
+            _dict['startedAt'] = None
+
+        # set to None if completed_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.completed_at is None and "completed_at" in self.model_fields_set:
+            _dict['completedAt'] = None
+
+        # set to None if next_attempt_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_attempt_at is None and "next_attempt_at" in self.model_fields_set:
+            _dict['nextAttemptAt'] = None
+
+        # set to None if response_status_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.response_status_code is None and "response_status_code" in self.model_fields_set:
+            _dict['responseStatusCode'] = None
+
+        # set to None if error_message (nullable) is None
+        # and model_fields_set contains the field
+        if self.error_message is None and "error_message" in self.model_fields_set:
+            _dict['errorMessage'] = None
+
         return _dict
 
     @classmethod

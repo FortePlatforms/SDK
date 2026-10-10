@@ -36,7 +36,7 @@ export interface ManagedDatabaseSlowQuery {
      * @type {number}
      * @memberof ManagedDatabaseSlowQuery
      */
-    durationMs?: number;
+    durationMs?: number | null;
     /**
      * 
      * @type {ManagedDatabaseSlowQueryKindType}
@@ -48,37 +48,37 @@ export interface ManagedDatabaseSlowQuery {
      * @type {string}
      * @memberof ManagedDatabaseSlowQuery
      */
-    queryText?: string;
+    queryText?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseSlowQuery
      */
-    userName?: string;
+    userName?: string | null;
     /**
      * 
      * @type {ManagedDatabaseSlowQueryQueryLanguageType}
      * @memberof ManagedDatabaseSlowQuery
      */
-    queryLanguage?: ManagedDatabaseSlowQueryQueryLanguageType;
+    queryLanguage?: ManagedDatabaseSlowQueryQueryLanguageType | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseSlowQuery
      */
-    operation?: string;
+    operation?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseSlowQuery
      */
-    collection?: string;
+    collection?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof ManagedDatabaseSlowQuery
      */
-    queryTextTruncated?: boolean;
+    queryTextTruncated?: boolean | null;
 }
 
 

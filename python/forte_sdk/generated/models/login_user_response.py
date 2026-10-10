@@ -99,6 +99,16 @@ class LoginUserResponse(BaseModel):
                 if _item_available_mfa_methods:
                     _items.append(_item_available_mfa_methods.to_dict())
             _dict['availableMfaMethods'] = _items
+        # set to None if mfa_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.mfa_status is None and "mfa_status" in self.model_fields_set:
+            _dict['mfaStatus'] = None
+
+        # set to None if available_mfa_methods (nullable) is None
+        # and model_fields_set contains the field
+        if self.available_mfa_methods is None and "available_mfa_methods" in self.model_fields_set:
+            _dict['availableMfaMethods'] = None
+
         return _dict
 
     @classmethod

@@ -30,6 +30,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,12 +55,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RequestLogFilter {
   public static final String JSON_PROPERTY_MIN_TIME = "minTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime minTime;
+  private JsonNullable<OffsetDateTime> minTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_MAX_TIME = "maxTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime maxTime;
+  private JsonNullable<OffsetDateTime> maxTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -67,30 +69,25 @@ public class RequestLogFilter {
   private RequestLogPathFilter path;
 
   public static final String JSON_PROPERTY_METHODS = "methods";
-  @javax.annotation.Nullable
-  private List<String> methods = new ArrayList<>();
+  private JsonNullable<List<String>> methods = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_NOT_METHODS = "notMethods";
-  @javax.annotation.Nullable
-  private List<String> notMethods = new ArrayList<>();
+  private JsonNullable<List<String>> notMethods = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_MIN_LATENCY_MILLISECONDS = "minLatencyMilliseconds";
-  @javax.annotation.Nullable
-  private Long minLatencyMilliseconds;
+  private JsonNullable<Long> minLatencyMilliseconds = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_MAX_LATENCY_MILLISECONDS = "maxLatencyMilliseconds";
-  @javax.annotation.Nullable
-  private Long maxLatencyMilliseconds;
+  private JsonNullable<Long> maxLatencyMilliseconds = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_USER_ID = "userId";
-  @javax.annotation.Nullable
-  private String userId;
+  private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
   public RequestLogFilter() { 
   }
 
   public RequestLogFilter minTime(@javax.annotation.Nullable OffsetDateTime minTime) {
-    this.minTime = minTime;
+    this.minTime = JsonNullable.<OffsetDateTime>of(minTime);
     return this;
   }
 
@@ -99,22 +96,30 @@ public class RequestLogFilter {
    * @return minTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MIN_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getMinTime() {
-    return minTime;
+        return minTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MIN_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinTime(@javax.annotation.Nullable OffsetDateTime minTime) {
+
+  public JsonNullable<OffsetDateTime> getMinTime_JsonNullable() {
+    return minTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MIN_TIME)
+  public void setMinTime_JsonNullable(JsonNullable<OffsetDateTime> minTime) {
     this.minTime = minTime;
+  }
+
+  public void setMinTime(@javax.annotation.Nullable OffsetDateTime minTime) {
+    this.minTime = JsonNullable.<OffsetDateTime>of(minTime);
   }
 
 
   public RequestLogFilter maxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
-    this.maxTime = maxTime;
+    this.maxTime = JsonNullable.<OffsetDateTime>of(maxTime);
     return this;
   }
 
@@ -123,17 +128,25 @@ public class RequestLogFilter {
    * @return maxTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAX_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getMaxTime() {
-    return maxTime;
+        return maxTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MAX_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
+
+  public JsonNullable<OffsetDateTime> getMaxTime_JsonNullable() {
+    return maxTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAX_TIME)
+  public void setMaxTime_JsonNullable(JsonNullable<OffsetDateTime> maxTime) {
     this.maxTime = maxTime;
+  }
+
+  public void setMaxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
+    this.maxTime = JsonNullable.<OffsetDateTime>of(maxTime);
   }
 
 
@@ -186,15 +199,19 @@ public class RequestLogFilter {
 
 
   public RequestLogFilter methods(@javax.annotation.Nullable List<String> methods) {
-    this.methods = methods;
+    this.methods = JsonNullable.<List<String>>of(methods);
     return this;
   }
 
   public RequestLogFilter addMethodsItem(String methodsItem) {
-    if (this.methods == null) {
-      this.methods = new ArrayList<>();
+    if (this.methods == null || !this.methods.isPresent()) {
+      this.methods = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.methods.add(methodsItem);
+    try {
+      this.methods.get().add(methodsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -203,30 +220,42 @@ public class RequestLogFilter {
    * @return methods
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_METHODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getMethods() {
-    return methods;
+        return methods.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_METHODS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMethods(@javax.annotation.Nullable List<String> methods) {
+
+  public JsonNullable<List<String>> getMethods_JsonNullable() {
+    return methods;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_METHODS)
+  public void setMethods_JsonNullable(JsonNullable<List<String>> methods) {
     this.methods = methods;
+  }
+
+  public void setMethods(@javax.annotation.Nullable List<String> methods) {
+    this.methods = JsonNullable.<List<String>>of(methods);
   }
 
 
   public RequestLogFilter notMethods(@javax.annotation.Nullable List<String> notMethods) {
-    this.notMethods = notMethods;
+    this.notMethods = JsonNullable.<List<String>>of(notMethods);
     return this;
   }
 
   public RequestLogFilter addNotMethodsItem(String notMethodsItem) {
-    if (this.notMethods == null) {
-      this.notMethods = new ArrayList<>();
+    if (this.notMethods == null || !this.notMethods.isPresent()) {
+      this.notMethods = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.notMethods.add(notMethodsItem);
+    try {
+      this.notMethods.get().add(notMethodsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -235,22 +264,30 @@ public class RequestLogFilter {
    * @return notMethods
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NOT_METHODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getNotMethods() {
-    return notMethods;
+        return notMethods.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NOT_METHODS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotMethods(@javax.annotation.Nullable List<String> notMethods) {
+
+  public JsonNullable<List<String>> getNotMethods_JsonNullable() {
+    return notMethods;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_METHODS)
+  public void setNotMethods_JsonNullable(JsonNullable<List<String>> notMethods) {
     this.notMethods = notMethods;
+  }
+
+  public void setNotMethods(@javax.annotation.Nullable List<String> notMethods) {
+    this.notMethods = JsonNullable.<List<String>>of(notMethods);
   }
 
 
   public RequestLogFilter minLatencyMilliseconds(@javax.annotation.Nullable Long minLatencyMilliseconds) {
-    this.minLatencyMilliseconds = minLatencyMilliseconds;
+    this.minLatencyMilliseconds = JsonNullable.<Long>of(minLatencyMilliseconds);
     return this;
   }
 
@@ -259,22 +296,30 @@ public class RequestLogFilter {
    * @return minLatencyMilliseconds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MIN_LATENCY_MILLISECONDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getMinLatencyMilliseconds() {
-    return minLatencyMilliseconds;
+        return minLatencyMilliseconds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MIN_LATENCY_MILLISECONDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinLatencyMilliseconds(@javax.annotation.Nullable Long minLatencyMilliseconds) {
+
+  public JsonNullable<Long> getMinLatencyMilliseconds_JsonNullable() {
+    return minLatencyMilliseconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MIN_LATENCY_MILLISECONDS)
+  public void setMinLatencyMilliseconds_JsonNullable(JsonNullable<Long> minLatencyMilliseconds) {
     this.minLatencyMilliseconds = minLatencyMilliseconds;
+  }
+
+  public void setMinLatencyMilliseconds(@javax.annotation.Nullable Long minLatencyMilliseconds) {
+    this.minLatencyMilliseconds = JsonNullable.<Long>of(minLatencyMilliseconds);
   }
 
 
   public RequestLogFilter maxLatencyMilliseconds(@javax.annotation.Nullable Long maxLatencyMilliseconds) {
-    this.maxLatencyMilliseconds = maxLatencyMilliseconds;
+    this.maxLatencyMilliseconds = JsonNullable.<Long>of(maxLatencyMilliseconds);
     return this;
   }
 
@@ -283,22 +328,30 @@ public class RequestLogFilter {
    * @return maxLatencyMilliseconds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAX_LATENCY_MILLISECONDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getMaxLatencyMilliseconds() {
-    return maxLatencyMilliseconds;
+        return maxLatencyMilliseconds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MAX_LATENCY_MILLISECONDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxLatencyMilliseconds(@javax.annotation.Nullable Long maxLatencyMilliseconds) {
+
+  public JsonNullable<Long> getMaxLatencyMilliseconds_JsonNullable() {
+    return maxLatencyMilliseconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAX_LATENCY_MILLISECONDS)
+  public void setMaxLatencyMilliseconds_JsonNullable(JsonNullable<Long> maxLatencyMilliseconds) {
     this.maxLatencyMilliseconds = maxLatencyMilliseconds;
+  }
+
+  public void setMaxLatencyMilliseconds(@javax.annotation.Nullable Long maxLatencyMilliseconds) {
+    this.maxLatencyMilliseconds = JsonNullable.<Long>of(maxLatencyMilliseconds);
   }
 
 
   public RequestLogFilter userId(@javax.annotation.Nullable String userId) {
-    this.userId = userId;
+    this.userId = JsonNullable.<String>of(userId);
     return this;
   }
 
@@ -307,17 +360,25 @@ public class RequestLogFilter {
    * @return userId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUserId() {
-    return userId;
+        return userId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserId(@javax.annotation.Nullable String userId) {
+
+  public JsonNullable<String> getUserId_JsonNullable() {
+    return userId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_ID)
+  public void setUserId_JsonNullable(JsonNullable<String> userId) {
     this.userId = userId;
+  }
+
+  public void setUserId(@javax.annotation.Nullable String userId) {
+    this.userId = JsonNullable.<String>of(userId);
   }
 
 
@@ -333,20 +394,31 @@ public class RequestLogFilter {
       return false;
     }
     RequestLogFilter requestLogFilter = (RequestLogFilter) o;
-    return Objects.equals(this.minTime, requestLogFilter.minTime) &&
-        Objects.equals(this.maxTime, requestLogFilter.maxTime) &&
+    return equalsNullable(this.minTime, requestLogFilter.minTime) &&
+        equalsNullable(this.maxTime, requestLogFilter.maxTime) &&
         Objects.equals(this.status, requestLogFilter.status) &&
         Objects.equals(this.path, requestLogFilter.path) &&
-        Objects.equals(this.methods, requestLogFilter.methods) &&
-        Objects.equals(this.notMethods, requestLogFilter.notMethods) &&
-        Objects.equals(this.minLatencyMilliseconds, requestLogFilter.minLatencyMilliseconds) &&
-        Objects.equals(this.maxLatencyMilliseconds, requestLogFilter.maxLatencyMilliseconds) &&
-        Objects.equals(this.userId, requestLogFilter.userId);
+        equalsNullable(this.methods, requestLogFilter.methods) &&
+        equalsNullable(this.notMethods, requestLogFilter.notMethods) &&
+        equalsNullable(this.minLatencyMilliseconds, requestLogFilter.minLatencyMilliseconds) &&
+        equalsNullable(this.maxLatencyMilliseconds, requestLogFilter.maxLatencyMilliseconds) &&
+        equalsNullable(this.userId, requestLogFilter.userId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(minTime, maxTime, status, path, methods, notMethods, minLatencyMilliseconds, maxLatencyMilliseconds, userId);
+    return Objects.hash(hashCodeNullable(minTime), hashCodeNullable(maxTime), status, path, hashCodeNullable(methods), hashCodeNullable(notMethods), hashCodeNullable(minLatencyMilliseconds), hashCodeNullable(maxLatencyMilliseconds), hashCodeNullable(userId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

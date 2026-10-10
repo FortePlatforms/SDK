@@ -42,19 +42,19 @@ export interface CreateManagedDatabaseRequest {
      * @type {string}
      * @memberof CreateManagedDatabaseRequest
      */
-    cpu?: string;
+    cpu?: string | null;
     /**
      * 
      * @type {number}
      * @memberof CreateManagedDatabaseRequest
      */
-    memoryGb?: number;
+    memoryGb?: number | null;
     /**
      * 
      * @type {number}
      * @memberof CreateManagedDatabaseRequest
      */
-    storageGb?: number;
+    storageGb?: number | null;
 }
 
 

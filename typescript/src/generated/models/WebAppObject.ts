@@ -58,7 +58,7 @@ export interface WebAppObject {
      * @type {string}
      * @memberof WebAppObject
      */
-    forteDnsEndpoint?: string;
+    forteDnsEndpoint?: string | null;
     /**
      * 
      * @type {boolean}
@@ -70,85 +70,85 @@ export interface WebAppObject {
      * @type {Array<CustomDomain>}
      * @memberof WebAppObject
      */
-    customDomains?: Array<CustomDomain>;
+    customDomains?: Array<CustomDomain> | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    buildPath?: string;
+    buildPath?: string | null;
     /**
      * 
      * @type {WebAppObjectWebAppTypeType}
      * @memberof WebAppObject
      */
-    webAppType?: WebAppObjectWebAppTypeType;
+    webAppType?: WebAppObjectWebAppTypeType | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    packageManager?: string;
+    packageManager?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    nodeVersion?: string;
+    nodeVersion?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    installCommand?: string;
+    installCommand?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    subdirectory?: string;
+    subdirectory?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    detectedFramework?: string;
+    detectedFramework?: string | null;
     /**
      * 
      * @type {WebAppObjectMonorepoTypeType}
      * @memberof WebAppObject
      */
-    monorepoType?: WebAppObjectMonorepoTypeType;
+    monorepoType?: WebAppObjectMonorepoTypeType | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    workspaceRoot?: string;
+    workspaceRoot?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    appPackageName?: string;
+    appPackageName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    containerImageUri?: string;
+    containerImageUri?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    liveBuildId?: string;
+    liveBuildId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    liveCommitHash?: string;
+    liveCommitHash?: string | null;
     /**
      * 
      * @type {WebAppDetectionResponse}
@@ -160,7 +160,7 @@ export interface WebAppObject {
      * @type {string}
      * @memberof WebAppObject
      */
-    dockerfilePath?: string;
+    dockerfilePath?: string | null;
     /**
      * 
      * @type {DockerfileGenerationResponse}
@@ -172,25 +172,25 @@ export interface WebAppObject {
      * @type {string}
      * @memberof WebAppObject
      */
-    hostingProviderAppId?: string;
+    hostingProviderAppId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    hostingProviderBranchName?: string;
+    hostingProviderBranchName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    hostingProviderDomainStatus?: string;
+    hostingProviderDomainStatus?: string | null;
     /**
      * 
      * @type {Date}
      * @memberof WebAppObject
      */
-    hostingProviderDomainAvailableAt?: Date;
+    hostingProviderDomainAvailableAt?: Date | null;
     /**
      * 
      * @type {Date}
@@ -220,19 +220,19 @@ export interface WebAppObject {
      * @type {string}
      * @memberof WebAppObject
      */
-    githubBranch?: string;
+    githubBranch?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppObject
      */
-    currentBuildId?: string;
+    currentBuildId?: string | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof WebAppObject
      */
-    enqueuedBuildIds?: Array<string>;
+    enqueuedBuildIds?: Array<string> | null;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -244,7 +244,7 @@ export interface WebAppObject {
      * @type {string}
      * @memberof WebAppObject
      */
-    baseDirectory?: string;
+    baseDirectory?: string | null;
     /**
      * 
      * @type {boolean}

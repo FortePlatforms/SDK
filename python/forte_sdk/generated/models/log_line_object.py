@@ -77,6 +77,26 @@ class LogLineObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if level (nullable) is None
+        # and model_fields_set contains the field
+        if self.level is None and "level" in self.model_fields_set:
+            _dict['level'] = None
+
+        # set to None if request_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.request_id is None and "request_id" in self.model_fields_set:
+            _dict['requestId'] = None
+
+        # set to None if build_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_id is None and "build_id" in self.model_fields_set:
+            _dict['buildId'] = None
+
+        # set to None if instance_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.instance_id is None and "instance_id" in self.model_fields_set:
+            _dict['instanceId'] = None
+
         return _dict
 
     @classmethod

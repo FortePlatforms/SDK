@@ -28,6 +28,10 @@ import com.forteplatforms.sdk.generated.model.ActionInvocationStatus;
 import com.forteplatforms.sdk.generated.model.ActionInvocationTrigger;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -66,8 +70,7 @@ public class ActionInvocationObject {
   private String projectId;
 
   public static final String JSON_PROPERTY_IDEMPOTENCY_KEY = "idempotencyKey";
-  @javax.annotation.Nullable
-  private String idempotencyKey;
+  private JsonNullable<String> idempotencyKey = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nonnull
@@ -78,32 +81,26 @@ public class ActionInvocationObject {
   private ActionInvocationTrigger trigger;
 
   public static final String JSON_PROPERTY_SCHEDULED_AT = "scheduledAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime scheduledAt;
+  private JsonNullable<OffsetDateTime> scheduledAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_STARTED_AT = "startedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime startedAt;
+  private JsonNullable<OffsetDateTime> startedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_COMPLETED_AT = "completedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime completedAt;
+  private JsonNullable<OffsetDateTime> completedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_NEXT_ATTEMPT_AT = "nextAttemptAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime nextAttemptAt;
+  private JsonNullable<OffsetDateTime> nextAttemptAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_ATTEMPT_COUNT = "attemptCount";
   @javax.annotation.Nonnull
   private Integer attemptCount;
 
   public static final String JSON_PROPERTY_RESPONSE_STATUS_CODE = "responseStatusCode";
-  @javax.annotation.Nullable
-  private Integer responseStatusCode;
+  private JsonNullable<Integer> responseStatusCode = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
-  @javax.annotation.Nullable
-  private String errorMessage;
+  private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nonnull
@@ -185,7 +182,7 @@ public class ActionInvocationObject {
 
 
   public ActionInvocationObject idempotencyKey(@javax.annotation.Nullable String idempotencyKey) {
-    this.idempotencyKey = idempotencyKey;
+    this.idempotencyKey = JsonNullable.<String>of(idempotencyKey);
     return this;
   }
 
@@ -194,17 +191,25 @@ public class ActionInvocationObject {
    * @return idempotencyKey
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IDEMPOTENCY_KEY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getIdempotencyKey() {
-    return idempotencyKey;
+        return idempotencyKey.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IDEMPOTENCY_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdempotencyKey(@javax.annotation.Nullable String idempotencyKey) {
+
+  public JsonNullable<String> getIdempotencyKey_JsonNullable() {
+    return idempotencyKey;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IDEMPOTENCY_KEY)
+  public void setIdempotencyKey_JsonNullable(JsonNullable<String> idempotencyKey) {
     this.idempotencyKey = idempotencyKey;
+  }
+
+  public void setIdempotencyKey(@javax.annotation.Nullable String idempotencyKey) {
+    this.idempotencyKey = JsonNullable.<String>of(idempotencyKey);
   }
 
 
@@ -257,7 +262,7 @@ public class ActionInvocationObject {
 
 
   public ActionInvocationObject scheduledAt(@javax.annotation.Nullable OffsetDateTime scheduledAt) {
-    this.scheduledAt = scheduledAt;
+    this.scheduledAt = JsonNullable.<OffsetDateTime>of(scheduledAt);
     return this;
   }
 
@@ -266,22 +271,30 @@ public class ActionInvocationObject {
    * @return scheduledAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SCHEDULED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getScheduledAt() {
-    return scheduledAt;
+        return scheduledAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SCHEDULED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setScheduledAt(@javax.annotation.Nullable OffsetDateTime scheduledAt) {
+
+  public JsonNullable<OffsetDateTime> getScheduledAt_JsonNullable() {
+    return scheduledAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SCHEDULED_AT)
+  public void setScheduledAt_JsonNullable(JsonNullable<OffsetDateTime> scheduledAt) {
     this.scheduledAt = scheduledAt;
+  }
+
+  public void setScheduledAt(@javax.annotation.Nullable OffsetDateTime scheduledAt) {
+    this.scheduledAt = JsonNullable.<OffsetDateTime>of(scheduledAt);
   }
 
 
   public ActionInvocationObject startedAt(@javax.annotation.Nullable OffsetDateTime startedAt) {
-    this.startedAt = startedAt;
+    this.startedAt = JsonNullable.<OffsetDateTime>of(startedAt);
     return this;
   }
 
@@ -290,22 +303,30 @@ public class ActionInvocationObject {
    * @return startedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STARTED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getStartedAt() {
-    return startedAt;
+        return startedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STARTED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartedAt(@javax.annotation.Nullable OffsetDateTime startedAt) {
+
+  public JsonNullable<OffsetDateTime> getStartedAt_JsonNullable() {
+    return startedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STARTED_AT)
+  public void setStartedAt_JsonNullable(JsonNullable<OffsetDateTime> startedAt) {
     this.startedAt = startedAt;
+  }
+
+  public void setStartedAt(@javax.annotation.Nullable OffsetDateTime startedAt) {
+    this.startedAt = JsonNullable.<OffsetDateTime>of(startedAt);
   }
 
 
   public ActionInvocationObject completedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
-    this.completedAt = completedAt;
+    this.completedAt = JsonNullable.<OffsetDateTime>of(completedAt);
     return this;
   }
 
@@ -314,22 +335,30 @@ public class ActionInvocationObject {
    * @return completedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_COMPLETED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCompletedAt() {
-    return completedAt;
+        return completedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_COMPLETED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCompletedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
+
+  public JsonNullable<OffsetDateTime> getCompletedAt_JsonNullable() {
+    return completedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COMPLETED_AT)
+  public void setCompletedAt_JsonNullable(JsonNullable<OffsetDateTime> completedAt) {
     this.completedAt = completedAt;
+  }
+
+  public void setCompletedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
+    this.completedAt = JsonNullable.<OffsetDateTime>of(completedAt);
   }
 
 
   public ActionInvocationObject nextAttemptAt(@javax.annotation.Nullable OffsetDateTime nextAttemptAt) {
-    this.nextAttemptAt = nextAttemptAt;
+    this.nextAttemptAt = JsonNullable.<OffsetDateTime>of(nextAttemptAt);
     return this;
   }
 
@@ -338,17 +367,25 @@ public class ActionInvocationObject {
    * @return nextAttemptAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_ATTEMPT_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getNextAttemptAt() {
-    return nextAttemptAt;
+        return nextAttemptAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEXT_ATTEMPT_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextAttemptAt(@javax.annotation.Nullable OffsetDateTime nextAttemptAt) {
+
+  public JsonNullable<OffsetDateTime> getNextAttemptAt_JsonNullable() {
+    return nextAttemptAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_ATTEMPT_AT)
+  public void setNextAttemptAt_JsonNullable(JsonNullable<OffsetDateTime> nextAttemptAt) {
     this.nextAttemptAt = nextAttemptAt;
+  }
+
+  public void setNextAttemptAt(@javax.annotation.Nullable OffsetDateTime nextAttemptAt) {
+    this.nextAttemptAt = JsonNullable.<OffsetDateTime>of(nextAttemptAt);
   }
 
 
@@ -377,7 +414,7 @@ public class ActionInvocationObject {
 
 
   public ActionInvocationObject responseStatusCode(@javax.annotation.Nullable Integer responseStatusCode) {
-    this.responseStatusCode = responseStatusCode;
+    this.responseStatusCode = JsonNullable.<Integer>of(responseStatusCode);
     return this;
   }
 
@@ -386,22 +423,30 @@ public class ActionInvocationObject {
    * @return responseStatusCode
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESPONSE_STATUS_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getResponseStatusCode() {
-    return responseStatusCode;
+        return responseStatusCode.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESPONSE_STATUS_CODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResponseStatusCode(@javax.annotation.Nullable Integer responseStatusCode) {
+
+  public JsonNullable<Integer> getResponseStatusCode_JsonNullable() {
+    return responseStatusCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESPONSE_STATUS_CODE)
+  public void setResponseStatusCode_JsonNullable(JsonNullable<Integer> responseStatusCode) {
     this.responseStatusCode = responseStatusCode;
+  }
+
+  public void setResponseStatusCode(@javax.annotation.Nullable Integer responseStatusCode) {
+    this.responseStatusCode = JsonNullable.<Integer>of(responseStatusCode);
   }
 
 
   public ActionInvocationObject errorMessage(@javax.annotation.Nullable String errorMessage) {
-    this.errorMessage = errorMessage;
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
     return this;
   }
 
@@ -410,17 +455,25 @@ public class ActionInvocationObject {
    * @return errorMessage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getErrorMessage() {
-    return errorMessage;
+        return errorMessage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+
+  public JsonNullable<String> getErrorMessage_JsonNullable() {
+    return errorMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  public void setErrorMessage_JsonNullable(JsonNullable<String> errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
   }
 
 
@@ -463,22 +516,33 @@ public class ActionInvocationObject {
     return Objects.equals(this.invocationId, actionInvocationObject.invocationId) &&
         Objects.equals(this.actionId, actionInvocationObject.actionId) &&
         Objects.equals(this.projectId, actionInvocationObject.projectId) &&
-        Objects.equals(this.idempotencyKey, actionInvocationObject.idempotencyKey) &&
+        equalsNullable(this.idempotencyKey, actionInvocationObject.idempotencyKey) &&
         Objects.equals(this.status, actionInvocationObject.status) &&
         Objects.equals(this.trigger, actionInvocationObject.trigger) &&
-        Objects.equals(this.scheduledAt, actionInvocationObject.scheduledAt) &&
-        Objects.equals(this.startedAt, actionInvocationObject.startedAt) &&
-        Objects.equals(this.completedAt, actionInvocationObject.completedAt) &&
-        Objects.equals(this.nextAttemptAt, actionInvocationObject.nextAttemptAt) &&
+        equalsNullable(this.scheduledAt, actionInvocationObject.scheduledAt) &&
+        equalsNullable(this.startedAt, actionInvocationObject.startedAt) &&
+        equalsNullable(this.completedAt, actionInvocationObject.completedAt) &&
+        equalsNullable(this.nextAttemptAt, actionInvocationObject.nextAttemptAt) &&
         Objects.equals(this.attemptCount, actionInvocationObject.attemptCount) &&
-        Objects.equals(this.responseStatusCode, actionInvocationObject.responseStatusCode) &&
-        Objects.equals(this.errorMessage, actionInvocationObject.errorMessage) &&
+        equalsNullable(this.responseStatusCode, actionInvocationObject.responseStatusCode) &&
+        equalsNullable(this.errorMessage, actionInvocationObject.errorMessage) &&
         Objects.equals(this.createdTimestamp, actionInvocationObject.createdTimestamp);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invocationId, actionId, projectId, idempotencyKey, status, trigger, scheduledAt, startedAt, completedAt, nextAttemptAt, attemptCount, responseStatusCode, errorMessage, createdTimestamp);
+    return Objects.hash(invocationId, actionId, projectId, hashCodeNullable(idempotencyKey), status, trigger, hashCodeNullable(scheduledAt), hashCodeNullable(startedAt), hashCodeNullable(completedAt), hashCodeNullable(nextAttemptAt), attemptCount, hashCodeNullable(responseStatusCode), hashCodeNullable(errorMessage), createdTimestamp);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -71,6 +71,11 @@ class CreatePaymentTriggerInvocationResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if request_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.request_id is None and "request_id" in self.model_fields_set:
+            _dict['requestId'] = None
+
         return _dict
 
     @classmethod

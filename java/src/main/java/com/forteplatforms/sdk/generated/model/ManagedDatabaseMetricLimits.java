@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,24 +48,19 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseMetricLimits {
   public static final String JSON_PROPERTY_POOL_SIZE = "poolSize";
-  @javax.annotation.Nullable
-  private Integer poolSize;
+  private JsonNullable<Integer> poolSize = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_MAX_CLIENT_CONNECTIONS = "maxClientConnections";
-  @javax.annotation.Nullable
-  private Integer maxClientConnections;
+  private JsonNullable<Integer> maxClientConnections = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_QUERY_WAIT_TIMEOUT_SECONDS = "queryWaitTimeoutSeconds";
-  @javax.annotation.Nullable
-  private Integer queryWaitTimeoutSeconds;
+  private JsonNullable<Integer> queryWaitTimeoutSeconds = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_PER_USER_CONNECTION_LIMIT = "perUserConnectionLimit";
-  @javax.annotation.Nullable
-  private Integer perUserConnectionLimit;
+  private JsonNullable<Integer> perUserConnectionLimit = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_USER_COUNT = "userCount";
-  @javax.annotation.Nullable
-  private Integer userCount;
+  private JsonNullable<Integer> userCount = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_STORAGE_LIMIT_BYTES = "storageLimitBytes";
   @javax.annotation.Nonnull
@@ -110,7 +109,7 @@ public class ManagedDatabaseMetricLimits {
   }
 
   public ManagedDatabaseMetricLimits poolSize(@javax.annotation.Nullable Integer poolSize) {
-    this.poolSize = poolSize;
+    this.poolSize = JsonNullable.<Integer>of(poolSize);
     return this;
   }
 
@@ -119,22 +118,30 @@ public class ManagedDatabaseMetricLimits {
    * @return poolSize
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_POOL_SIZE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getPoolSize() {
-    return poolSize;
+        return poolSize.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_POOL_SIZE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPoolSize(@javax.annotation.Nullable Integer poolSize) {
+
+  public JsonNullable<Integer> getPoolSize_JsonNullable() {
+    return poolSize;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_POOL_SIZE)
+  public void setPoolSize_JsonNullable(JsonNullable<Integer> poolSize) {
     this.poolSize = poolSize;
+  }
+
+  public void setPoolSize(@javax.annotation.Nullable Integer poolSize) {
+    this.poolSize = JsonNullable.<Integer>of(poolSize);
   }
 
 
   public ManagedDatabaseMetricLimits maxClientConnections(@javax.annotation.Nullable Integer maxClientConnections) {
-    this.maxClientConnections = maxClientConnections;
+    this.maxClientConnections = JsonNullable.<Integer>of(maxClientConnections);
     return this;
   }
 
@@ -143,22 +150,30 @@ public class ManagedDatabaseMetricLimits {
    * @return maxClientConnections
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAX_CLIENT_CONNECTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getMaxClientConnections() {
-    return maxClientConnections;
+        return maxClientConnections.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MAX_CLIENT_CONNECTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxClientConnections(@javax.annotation.Nullable Integer maxClientConnections) {
+
+  public JsonNullable<Integer> getMaxClientConnections_JsonNullable() {
+    return maxClientConnections;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAX_CLIENT_CONNECTIONS)
+  public void setMaxClientConnections_JsonNullable(JsonNullable<Integer> maxClientConnections) {
     this.maxClientConnections = maxClientConnections;
+  }
+
+  public void setMaxClientConnections(@javax.annotation.Nullable Integer maxClientConnections) {
+    this.maxClientConnections = JsonNullable.<Integer>of(maxClientConnections);
   }
 
 
   public ManagedDatabaseMetricLimits queryWaitTimeoutSeconds(@javax.annotation.Nullable Integer queryWaitTimeoutSeconds) {
-    this.queryWaitTimeoutSeconds = queryWaitTimeoutSeconds;
+    this.queryWaitTimeoutSeconds = JsonNullable.<Integer>of(queryWaitTimeoutSeconds);
     return this;
   }
 
@@ -167,22 +182,30 @@ public class ManagedDatabaseMetricLimits {
    * @return queryWaitTimeoutSeconds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_QUERY_WAIT_TIMEOUT_SECONDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getQueryWaitTimeoutSeconds() {
-    return queryWaitTimeoutSeconds;
+        return queryWaitTimeoutSeconds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_QUERY_WAIT_TIMEOUT_SECONDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQueryWaitTimeoutSeconds(@javax.annotation.Nullable Integer queryWaitTimeoutSeconds) {
+
+  public JsonNullable<Integer> getQueryWaitTimeoutSeconds_JsonNullable() {
+    return queryWaitTimeoutSeconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_QUERY_WAIT_TIMEOUT_SECONDS)
+  public void setQueryWaitTimeoutSeconds_JsonNullable(JsonNullable<Integer> queryWaitTimeoutSeconds) {
     this.queryWaitTimeoutSeconds = queryWaitTimeoutSeconds;
+  }
+
+  public void setQueryWaitTimeoutSeconds(@javax.annotation.Nullable Integer queryWaitTimeoutSeconds) {
+    this.queryWaitTimeoutSeconds = JsonNullable.<Integer>of(queryWaitTimeoutSeconds);
   }
 
 
   public ManagedDatabaseMetricLimits perUserConnectionLimit(@javax.annotation.Nullable Integer perUserConnectionLimit) {
-    this.perUserConnectionLimit = perUserConnectionLimit;
+    this.perUserConnectionLimit = JsonNullable.<Integer>of(perUserConnectionLimit);
     return this;
   }
 
@@ -191,22 +214,30 @@ public class ManagedDatabaseMetricLimits {
    * @return perUserConnectionLimit
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PER_USER_CONNECTION_LIMIT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getPerUserConnectionLimit() {
-    return perUserConnectionLimit;
+        return perUserConnectionLimit.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PER_USER_CONNECTION_LIMIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPerUserConnectionLimit(@javax.annotation.Nullable Integer perUserConnectionLimit) {
+
+  public JsonNullable<Integer> getPerUserConnectionLimit_JsonNullable() {
+    return perUserConnectionLimit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PER_USER_CONNECTION_LIMIT)
+  public void setPerUserConnectionLimit_JsonNullable(JsonNullable<Integer> perUserConnectionLimit) {
     this.perUserConnectionLimit = perUserConnectionLimit;
+  }
+
+  public void setPerUserConnectionLimit(@javax.annotation.Nullable Integer perUserConnectionLimit) {
+    this.perUserConnectionLimit = JsonNullable.<Integer>of(perUserConnectionLimit);
   }
 
 
   public ManagedDatabaseMetricLimits userCount(@javax.annotation.Nullable Integer userCount) {
-    this.userCount = userCount;
+    this.userCount = JsonNullable.<Integer>of(userCount);
     return this;
   }
 
@@ -215,17 +246,25 @@ public class ManagedDatabaseMetricLimits {
    * @return userCount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getUserCount() {
-    return userCount;
+        return userCount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USER_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserCount(@javax.annotation.Nullable Integer userCount) {
+
+  public JsonNullable<Integer> getUserCount_JsonNullable() {
+    return userCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_COUNT)
+  public void setUserCount_JsonNullable(JsonNullable<Integer> userCount) {
     this.userCount = userCount;
+  }
+
+  public void setUserCount(@javax.annotation.Nullable Integer userCount) {
+    this.userCount = JsonNullable.<Integer>of(userCount);
   }
 
 
@@ -289,18 +328,29 @@ public class ManagedDatabaseMetricLimits {
       return false;
     }
     ManagedDatabaseMetricLimits managedDatabaseMetricLimits = (ManagedDatabaseMetricLimits) o;
-    return Objects.equals(this.poolSize, managedDatabaseMetricLimits.poolSize) &&
-        Objects.equals(this.maxClientConnections, managedDatabaseMetricLimits.maxClientConnections) &&
-        Objects.equals(this.queryWaitTimeoutSeconds, managedDatabaseMetricLimits.queryWaitTimeoutSeconds) &&
-        Objects.equals(this.perUserConnectionLimit, managedDatabaseMetricLimits.perUserConnectionLimit) &&
-        Objects.equals(this.userCount, managedDatabaseMetricLimits.userCount) &&
+    return equalsNullable(this.poolSize, managedDatabaseMetricLimits.poolSize) &&
+        equalsNullable(this.maxClientConnections, managedDatabaseMetricLimits.maxClientConnections) &&
+        equalsNullable(this.queryWaitTimeoutSeconds, managedDatabaseMetricLimits.queryWaitTimeoutSeconds) &&
+        equalsNullable(this.perUserConnectionLimit, managedDatabaseMetricLimits.perUserConnectionLimit) &&
+        equalsNullable(this.userCount, managedDatabaseMetricLimits.userCount) &&
         Objects.equals(this.storageLimitBytes, managedDatabaseMetricLimits.storageLimitBytes) &&
         Objects.equals(this.tier, managedDatabaseMetricLimits.tier);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(poolSize, maxClientConnections, queryWaitTimeoutSeconds, perUserConnectionLimit, userCount, storageLimitBytes, tier);
+    return Objects.hash(hashCodeNullable(poolSize), hashCodeNullable(maxClientConnections), hashCodeNullable(queryWaitTimeoutSeconds), hashCodeNullable(perUserConnectionLimit), hashCodeNullable(userCount), storageLimitBytes, tier);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

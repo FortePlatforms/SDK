@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,8 +55,7 @@ public class CreateContentUploadLinkRequest {
   private Long sizeBytes;
 
   public static final String JSON_PROPERTY_FILE_NAME = "fileName";
-  @javax.annotation.Nullable
-  private String fileName;
+  private JsonNullable<String> fileName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
@@ -110,7 +113,7 @@ public class CreateContentUploadLinkRequest {
 
 
   public CreateContentUploadLinkRequest fileName(@javax.annotation.Nullable String fileName) {
-    this.fileName = fileName;
+    this.fileName = JsonNullable.<String>of(fileName);
     return this;
   }
 
@@ -119,17 +122,25 @@ public class CreateContentUploadLinkRequest {
    * @return fileName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FILE_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFileName() {
-    return fileName;
+        return fileName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FILE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFileName(@javax.annotation.Nullable String fileName) {
+
+  public JsonNullable<String> getFileName_JsonNullable() {
+    return fileName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FILE_NAME)
+  public void setFileName_JsonNullable(JsonNullable<String> fileName) {
     this.fileName = fileName;
+  }
+
+  public void setFileName(@javax.annotation.Nullable String fileName) {
+    this.fileName = JsonNullable.<String>of(fileName);
   }
 
 
@@ -179,13 +190,24 @@ public class CreateContentUploadLinkRequest {
     CreateContentUploadLinkRequest createContentUploadLinkRequest = (CreateContentUploadLinkRequest) o;
     return Objects.equals(this.contentType, createContentUploadLinkRequest.contentType) &&
         Objects.equals(this.sizeBytes, createContentUploadLinkRequest.sizeBytes) &&
-        Objects.equals(this.fileName, createContentUploadLinkRequest.fileName) &&
+        equalsNullable(this.fileName, createContentUploadLinkRequest.fileName) &&
         Objects.equals(this.metadata, createContentUploadLinkRequest.metadata);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, sizeBytes, fileName, metadata);
+    return Objects.hash(contentType, sizeBytes, hashCodeNullable(fileName), metadata);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

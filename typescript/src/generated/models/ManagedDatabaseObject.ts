@@ -56,13 +56,13 @@ export interface ManagedDatabaseObject {
      * @type {string}
      * @memberof ManagedDatabaseObject
      */
-    cpu?: string;
+    cpu?: string | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseObject
      */
-    memoryGb?: number;
+    memoryGb?: number | null;
     /**
      * 
      * @type {number}
@@ -92,61 +92,61 @@ export interface ManagedDatabaseObject {
      * @type {Date}
      * @memberof ManagedDatabaseObject
      */
-    lastModifiedTimestamp?: Date;
+    lastModifiedTimestamp?: Date | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseObject
      */
-    host?: string;
+    host?: string | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseObject
      */
-    port?: number;
+    port?: number | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseObject
      */
-    databaseName?: string;
+    databaseName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseObject
      */
-    sslMode?: string;
+    sslMode?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof ManagedDatabaseObject
      */
-    readOnly?: boolean;
+    readOnly?: boolean | null;
     /**
      * 
      * @type {Date}
      * @memberof ManagedDatabaseObject
      */
-    cleanupUnlockExpiresAt?: Date;
+    cleanupUnlockExpiresAt?: Date | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseObject
      */
-    usageBytes?: number;
+    usageBytes?: number | null;
     /**
      * 
      * @type {number}
      * @memberof ManagedDatabaseObject
      */
-    physicalUsageBytes?: number;
+    physicalUsageBytes?: number | null;
     /**
      * 
      * @type {Date}
      * @memberof ManagedDatabaseObject
      */
-    usageUpdatedAt?: Date;
+    usageUpdatedAt?: Date | null;
 }
 
 

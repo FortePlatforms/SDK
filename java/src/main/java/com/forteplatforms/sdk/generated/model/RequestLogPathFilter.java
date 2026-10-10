@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -43,34 +47,34 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RequestLogPathFilter {
   public static final String JSON_PROPERTY_EQUAL_TO = "equalTo";
-  @javax.annotation.Nullable
-  private List<String> equalTo = new ArrayList<>();
+  private JsonNullable<List<String>> equalTo = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_NOT_EQUAL_TO = "notEqualTo";
-  @javax.annotation.Nullable
-  private List<String> notEqualTo = new ArrayList<>();
+  private JsonNullable<List<String>> notEqualTo = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_STARTS_WITH = "startsWith";
-  @javax.annotation.Nullable
-  private List<String> startsWith = new ArrayList<>();
+  private JsonNullable<List<String>> startsWith = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_CONTAINS = "contains";
-  @javax.annotation.Nullable
-  private List<String> contains = new ArrayList<>();
+  private JsonNullable<List<String>> contains = JsonNullable.<List<String>>undefined();
 
   public RequestLogPathFilter() { 
   }
 
   public RequestLogPathFilter equalTo(@javax.annotation.Nullable List<String> equalTo) {
-    this.equalTo = equalTo;
+    this.equalTo = JsonNullable.<List<String>>of(equalTo);
     return this;
   }
 
   public RequestLogPathFilter addEqualToItem(String equalToItem) {
-    if (this.equalTo == null) {
-      this.equalTo = new ArrayList<>();
+    if (this.equalTo == null || !this.equalTo.isPresent()) {
+      this.equalTo = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.equalTo.add(equalToItem);
+    try {
+      this.equalTo.get().add(equalToItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -79,30 +83,42 @@ public class RequestLogPathFilter {
    * @return equalTo
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EQUAL_TO, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getEqualTo() {
-    return equalTo;
+        return equalTo.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EQUAL_TO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEqualTo(@javax.annotation.Nullable List<String> equalTo) {
+
+  public JsonNullable<List<String>> getEqualTo_JsonNullable() {
+    return equalTo;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EQUAL_TO)
+  public void setEqualTo_JsonNullable(JsonNullable<List<String>> equalTo) {
     this.equalTo = equalTo;
+  }
+
+  public void setEqualTo(@javax.annotation.Nullable List<String> equalTo) {
+    this.equalTo = JsonNullable.<List<String>>of(equalTo);
   }
 
 
   public RequestLogPathFilter notEqualTo(@javax.annotation.Nullable List<String> notEqualTo) {
-    this.notEqualTo = notEqualTo;
+    this.notEqualTo = JsonNullable.<List<String>>of(notEqualTo);
     return this;
   }
 
   public RequestLogPathFilter addNotEqualToItem(String notEqualToItem) {
-    if (this.notEqualTo == null) {
-      this.notEqualTo = new ArrayList<>();
+    if (this.notEqualTo == null || !this.notEqualTo.isPresent()) {
+      this.notEqualTo = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.notEqualTo.add(notEqualToItem);
+    try {
+      this.notEqualTo.get().add(notEqualToItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -111,30 +127,42 @@ public class RequestLogPathFilter {
    * @return notEqualTo
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NOT_EQUAL_TO, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getNotEqualTo() {
-    return notEqualTo;
+        return notEqualTo.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NOT_EQUAL_TO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotEqualTo(@javax.annotation.Nullable List<String> notEqualTo) {
+
+  public JsonNullable<List<String>> getNotEqualTo_JsonNullable() {
+    return notEqualTo;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_EQUAL_TO)
+  public void setNotEqualTo_JsonNullable(JsonNullable<List<String>> notEqualTo) {
     this.notEqualTo = notEqualTo;
+  }
+
+  public void setNotEqualTo(@javax.annotation.Nullable List<String> notEqualTo) {
+    this.notEqualTo = JsonNullable.<List<String>>of(notEqualTo);
   }
 
 
   public RequestLogPathFilter startsWith(@javax.annotation.Nullable List<String> startsWith) {
-    this.startsWith = startsWith;
+    this.startsWith = JsonNullable.<List<String>>of(startsWith);
     return this;
   }
 
   public RequestLogPathFilter addStartsWithItem(String startsWithItem) {
-    if (this.startsWith == null) {
-      this.startsWith = new ArrayList<>();
+    if (this.startsWith == null || !this.startsWith.isPresent()) {
+      this.startsWith = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.startsWith.add(startsWithItem);
+    try {
+      this.startsWith.get().add(startsWithItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -143,30 +171,42 @@ public class RequestLogPathFilter {
    * @return startsWith
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STARTS_WITH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getStartsWith() {
-    return startsWith;
+        return startsWith.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STARTS_WITH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartsWith(@javax.annotation.Nullable List<String> startsWith) {
+
+  public JsonNullable<List<String>> getStartsWith_JsonNullable() {
+    return startsWith;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STARTS_WITH)
+  public void setStartsWith_JsonNullable(JsonNullable<List<String>> startsWith) {
     this.startsWith = startsWith;
+  }
+
+  public void setStartsWith(@javax.annotation.Nullable List<String> startsWith) {
+    this.startsWith = JsonNullable.<List<String>>of(startsWith);
   }
 
 
   public RequestLogPathFilter contains(@javax.annotation.Nullable List<String> contains) {
-    this.contains = contains;
+    this.contains = JsonNullable.<List<String>>of(contains);
     return this;
   }
 
   public RequestLogPathFilter addContainsItem(String containsItem) {
-    if (this.contains == null) {
-      this.contains = new ArrayList<>();
+    if (this.contains == null || !this.contains.isPresent()) {
+      this.contains = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.contains.add(containsItem);
+    try {
+      this.contains.get().add(containsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -175,17 +215,25 @@ public class RequestLogPathFilter {
    * @return contains
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTAINS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getContains() {
-    return contains;
+        return contains.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTAINS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContains(@javax.annotation.Nullable List<String> contains) {
+
+  public JsonNullable<List<String>> getContains_JsonNullable() {
+    return contains;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTAINS)
+  public void setContains_JsonNullable(JsonNullable<List<String>> contains) {
     this.contains = contains;
+  }
+
+  public void setContains(@javax.annotation.Nullable List<String> contains) {
+    this.contains = JsonNullable.<List<String>>of(contains);
   }
 
 
@@ -201,15 +249,26 @@ public class RequestLogPathFilter {
       return false;
     }
     RequestLogPathFilter requestLogPathFilter = (RequestLogPathFilter) o;
-    return Objects.equals(this.equalTo, requestLogPathFilter.equalTo) &&
-        Objects.equals(this.notEqualTo, requestLogPathFilter.notEqualTo) &&
-        Objects.equals(this.startsWith, requestLogPathFilter.startsWith) &&
-        Objects.equals(this.contains, requestLogPathFilter.contains);
+    return equalsNullable(this.equalTo, requestLogPathFilter.equalTo) &&
+        equalsNullable(this.notEqualTo, requestLogPathFilter.notEqualTo) &&
+        equalsNullable(this.startsWith, requestLogPathFilter.startsWith) &&
+        equalsNullable(this.contains, requestLogPathFilter.contains);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(equalTo, notEqualTo, startsWith, contains);
+    return Objects.hash(hashCodeNullable(equalTo), hashCodeNullable(notEqualTo), hashCodeNullable(startsWith), hashCodeNullable(contains));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

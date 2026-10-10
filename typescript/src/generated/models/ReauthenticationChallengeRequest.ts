@@ -30,7 +30,7 @@ export interface ReauthenticationChallengeRequest {
      * @type {string}
      * @memberof ReauthenticationChallengeRequest
      */
-    targetContactMethodId?: string;
+    targetContactMethodId?: string | null;
 }
 
 

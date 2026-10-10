@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,38 +50,32 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RegisterUserRequest {
   public static final String JSON_PROPERTY_FULL_NAME = "fullName";
-  @javax.annotation.Nullable
-  private String fullName;
+  private JsonNullable<String> fullName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EMAIL = "email";
-  @javax.annotation.Nullable
-  private String email;
+  private JsonNullable<String> email = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
-  @javax.annotation.Nullable
-  private String phoneNumber;
+  private JsonNullable<String> phoneNumber = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CUSTOM_METADATA_ATTRIBUTES = "customMetadataAttributes";
   @javax.annotation.Nullable
   private Map<String, Object> customMetadataAttributes = new HashMap<>();
 
   public static final String JSON_PROPERTY_RECAPTCHA_TOKEN = "recaptchaToken";
-  @javax.annotation.Nullable
-  private String recaptchaToken;
+  private JsonNullable<String> recaptchaToken = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD = "password";
-  @javax.annotation.Nullable
-  private String password;
+  private JsonNullable<String> password = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SEND_WELCOME_MESSAGE = "sendWelcomeMessage";
-  @javax.annotation.Nullable
-  private Boolean sendWelcomeMessage;
+  private JsonNullable<Boolean> sendWelcomeMessage = JsonNullable.<Boolean>undefined();
 
   public RegisterUserRequest() { 
   }
 
   public RegisterUserRequest fullName(@javax.annotation.Nullable String fullName) {
-    this.fullName = fullName;
+    this.fullName = JsonNullable.<String>of(fullName);
     return this;
   }
 
@@ -86,22 +84,30 @@ public class RegisterUserRequest {
    * @return fullName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFullName() {
-    return fullName;
+        return fullName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFullName(@javax.annotation.Nullable String fullName) {
+
+  public JsonNullable<String> getFullName_JsonNullable() {
+    return fullName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FULL_NAME)
+  public void setFullName_JsonNullable(JsonNullable<String> fullName) {
     this.fullName = fullName;
+  }
+
+  public void setFullName(@javax.annotation.Nullable String fullName) {
+    this.fullName = JsonNullable.<String>of(fullName);
   }
 
 
   public RegisterUserRequest email(@javax.annotation.Nullable String email) {
-    this.email = email;
+    this.email = JsonNullable.<String>of(email);
     return this;
   }
 
@@ -110,22 +116,30 @@ public class RegisterUserRequest {
    * @return email
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEmail() {
-    return email;
+        return email.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmail(@javax.annotation.Nullable String email) {
+
+  public JsonNullable<String> getEmail_JsonNullable() {
+    return email;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  public void setEmail_JsonNullable(JsonNullable<String> email) {
     this.email = email;
+  }
+
+  public void setEmail(@javax.annotation.Nullable String email) {
+    this.email = JsonNullable.<String>of(email);
   }
 
 
   public RegisterUserRequest phoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
     return this;
   }
 
@@ -134,17 +148,25 @@ public class RegisterUserRequest {
    * @return phoneNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPhoneNumber() {
-    return phoneNumber;
+        return phoneNumber.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+
+  public JsonNullable<String> getPhoneNumber_JsonNullable() {
+    return phoneNumber;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
+  public void setPhoneNumber_JsonNullable(JsonNullable<String> phoneNumber) {
     this.phoneNumber = phoneNumber;
+  }
+
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
   }
 
 
@@ -181,7 +203,7 @@ public class RegisterUserRequest {
 
 
   public RegisterUserRequest recaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
-    this.recaptchaToken = recaptchaToken;
+    this.recaptchaToken = JsonNullable.<String>of(recaptchaToken);
     return this;
   }
 
@@ -190,22 +212,30 @@ public class RegisterUserRequest {
    * @return recaptchaToken
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRecaptchaToken() {
-    return recaptchaToken;
+        return recaptchaToken.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRecaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
+
+  public JsonNullable<String> getRecaptchaToken_JsonNullable() {
+    return recaptchaToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RECAPTCHA_TOKEN)
+  public void setRecaptchaToken_JsonNullable(JsonNullable<String> recaptchaToken) {
     this.recaptchaToken = recaptchaToken;
+  }
+
+  public void setRecaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
+    this.recaptchaToken = JsonNullable.<String>of(recaptchaToken);
   }
 
 
   public RegisterUserRequest password(@javax.annotation.Nullable String password) {
-    this.password = password;
+    this.password = JsonNullable.<String>of(password);
     return this;
   }
 
@@ -214,22 +244,30 @@ public class RegisterUserRequest {
    * @return password
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPassword() {
-    return password;
+        return password.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPassword(@javax.annotation.Nullable String password) {
+
+  public JsonNullable<String> getPassword_JsonNullable() {
+    return password;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  public void setPassword_JsonNullable(JsonNullable<String> password) {
     this.password = password;
+  }
+
+  public void setPassword(@javax.annotation.Nullable String password) {
+    this.password = JsonNullable.<String>of(password);
   }
 
 
   public RegisterUserRequest sendWelcomeMessage(@javax.annotation.Nullable Boolean sendWelcomeMessage) {
-    this.sendWelcomeMessage = sendWelcomeMessage;
+    this.sendWelcomeMessage = JsonNullable.<Boolean>of(sendWelcomeMessage);
     return this;
   }
 
@@ -238,17 +276,25 @@ public class RegisterUserRequest {
    * @return sendWelcomeMessage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SEND_WELCOME_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getSendWelcomeMessage() {
-    return sendWelcomeMessage;
+        return sendWelcomeMessage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SEND_WELCOME_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSendWelcomeMessage(@javax.annotation.Nullable Boolean sendWelcomeMessage) {
+
+  public JsonNullable<Boolean> getSendWelcomeMessage_JsonNullable() {
+    return sendWelcomeMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SEND_WELCOME_MESSAGE)
+  public void setSendWelcomeMessage_JsonNullable(JsonNullable<Boolean> sendWelcomeMessage) {
     this.sendWelcomeMessage = sendWelcomeMessage;
+  }
+
+  public void setSendWelcomeMessage(@javax.annotation.Nullable Boolean sendWelcomeMessage) {
+    this.sendWelcomeMessage = JsonNullable.<Boolean>of(sendWelcomeMessage);
   }
 
 
@@ -264,18 +310,29 @@ public class RegisterUserRequest {
       return false;
     }
     RegisterUserRequest registerUserRequest = (RegisterUserRequest) o;
-    return Objects.equals(this.fullName, registerUserRequest.fullName) &&
-        Objects.equals(this.email, registerUserRequest.email) &&
-        Objects.equals(this.phoneNumber, registerUserRequest.phoneNumber) &&
+    return equalsNullable(this.fullName, registerUserRequest.fullName) &&
+        equalsNullable(this.email, registerUserRequest.email) &&
+        equalsNullable(this.phoneNumber, registerUserRequest.phoneNumber) &&
         Objects.equals(this.customMetadataAttributes, registerUserRequest.customMetadataAttributes) &&
-        Objects.equals(this.recaptchaToken, registerUserRequest.recaptchaToken) &&
-        Objects.equals(this.password, registerUserRequest.password) &&
-        Objects.equals(this.sendWelcomeMessage, registerUserRequest.sendWelcomeMessage);
+        equalsNullable(this.recaptchaToken, registerUserRequest.recaptchaToken) &&
+        equalsNullable(this.password, registerUserRequest.password) &&
+        equalsNullable(this.sendWelcomeMessage, registerUserRequest.sendWelcomeMessage);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fullName, email, phoneNumber, customMetadataAttributes, recaptchaToken, password, sendWelcomeMessage);
+    return Objects.hash(hashCodeNullable(fullName), hashCodeNullable(email), hashCodeNullable(phoneNumber), customMetadataAttributes, hashCodeNullable(recaptchaToken), hashCodeNullable(password), hashCodeNullable(sendWelcomeMessage));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

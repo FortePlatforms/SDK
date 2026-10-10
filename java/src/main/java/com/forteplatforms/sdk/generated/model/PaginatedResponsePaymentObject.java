@@ -28,6 +28,10 @@ import com.forteplatforms.sdk.generated.model.PaymentObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,8 +55,7 @@ public class PaginatedResponsePaymentObject {
   private Boolean hasNextPage;
 
   public static final String JSON_PROPERTY_NEXT_PAGE_TOKEN = "nextPageToken";
-  @javax.annotation.Nullable
-  private String nextPageToken;
+  private JsonNullable<String> nextPageToken = JsonNullable.<String>undefined();
 
   public PaginatedResponsePaymentObject() { 
   }
@@ -114,7 +117,7 @@ public class PaginatedResponsePaymentObject {
 
 
   public PaginatedResponsePaymentObject nextPageToken(@javax.annotation.Nullable String nextPageToken) {
-    this.nextPageToken = nextPageToken;
+    this.nextPageToken = JsonNullable.<String>of(nextPageToken);
     return this;
   }
 
@@ -123,17 +126,25 @@ public class PaginatedResponsePaymentObject {
    * @return nextPageToken
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_PAGE_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNextPageToken() {
-    return nextPageToken;
+        return nextPageToken.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEXT_PAGE_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextPageToken(@javax.annotation.Nullable String nextPageToken) {
+
+  public JsonNullable<String> getNextPageToken_JsonNullable() {
+    return nextPageToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_PAGE_TOKEN)
+  public void setNextPageToken_JsonNullable(JsonNullable<String> nextPageToken) {
     this.nextPageToken = nextPageToken;
+  }
+
+  public void setNextPageToken(@javax.annotation.Nullable String nextPageToken) {
+    this.nextPageToken = JsonNullable.<String>of(nextPageToken);
   }
 
 
@@ -151,12 +162,23 @@ public class PaginatedResponsePaymentObject {
     PaginatedResponsePaymentObject paginatedResponsePaymentObject = (PaginatedResponsePaymentObject) o;
     return Objects.equals(this.items, paginatedResponsePaymentObject.items) &&
         Objects.equals(this.hasNextPage, paginatedResponsePaymentObject.hasNextPage) &&
-        Objects.equals(this.nextPageToken, paginatedResponsePaymentObject.nextPageToken);
+        equalsNullable(this.nextPageToken, paginatedResponsePaymentObject.nextPageToken);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, hasNextPage, nextPageToken);
+    return Objects.hash(items, hasNextPage, hashCodeNullable(nextPageToken));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

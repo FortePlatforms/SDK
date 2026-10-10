@@ -24,13 +24,13 @@ export interface PaymentSort {
      * @type {PaymentSortSortByType}
      * @memberof PaymentSort
      */
-    sortBy?: PaymentSortSortByType;
+    sortBy?: PaymentSortSortByType | null;
     /**
      * 
      * @type {PaymentSortSortDirType}
      * @memberof PaymentSort
      */
-    sortDir?: PaymentSortSortDirType;
+    sortDir?: PaymentSortSortDirType | null;
 }
 
 

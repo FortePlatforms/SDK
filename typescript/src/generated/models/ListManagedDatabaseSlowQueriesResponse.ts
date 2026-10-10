@@ -38,7 +38,7 @@ export interface ListManagedDatabaseSlowQueriesResponse {
      * @type {string}
      * @memberof ListManagedDatabaseSlowQueriesResponse
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
 }
 
 /**

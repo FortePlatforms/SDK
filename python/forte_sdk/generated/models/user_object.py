@@ -48,9 +48,9 @@ class UserObject(BaseModel):
     password_reset_last_requested_at: Optional[datetime] = Field(default=None, alias="passwordResetLastRequestedAt")
     mfa_methods: Optional[List[MfaMethod]] = Field(default=None, alias="mfaMethods")
     backup_codes_generated_at: Optional[datetime] = Field(default=None, alias="backupCodesGeneratedAt")
-    has_password: Optional[StrictBool] = Field(default=None, alias="hasPassword")
     remaining_backup_code_count: Optional[StrictInt] = Field(default=None, alias="remainingBackupCodeCount")
-    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "invitedByUserId", "state", "passwordSetAt", "passwordResetLastRequestedAt", "mfaMethods", "backupCodesGeneratedAt", "hasPassword", "remainingBackupCodeCount"]
+    has_password: Optional[StrictBool] = Field(default=None, alias="hasPassword")
+    __properties: ClassVar[List[str]] = ["userId", "fullName", "projectId", "roles", "createdAt", "updatedAt", "lastActivityAt", "customMetadataAttributes", "stripeCustomerId", "contactMethods", "welcomeMessageSent", "invitedByUserId", "state", "passwordSetAt", "passwordResetLastRequestedAt", "mfaMethods", "backupCodesGeneratedAt", "remainingBackupCodeCount", "hasPassword"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -112,6 +112,46 @@ class UserObject(BaseModel):
                 if _item_mfa_methods:
                     _items.append(_item_mfa_methods.to_dict())
             _dict['mfaMethods'] = _items
+        # set to None if full_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.full_name is None and "full_name" in self.model_fields_set:
+            _dict['fullName'] = None
+
+        # set to None if stripe_customer_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_customer_id is None and "stripe_customer_id" in self.model_fields_set:
+            _dict['stripeCustomerId'] = None
+
+        # set to None if welcome_message_sent (nullable) is None
+        # and model_fields_set contains the field
+        if self.welcome_message_sent is None and "welcome_message_sent" in self.model_fields_set:
+            _dict['welcomeMessageSent'] = None
+
+        # set to None if invited_by_user_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.invited_by_user_id is None and "invited_by_user_id" in self.model_fields_set:
+            _dict['invitedByUserId'] = None
+
+        # set to None if password_set_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_set_at is None and "password_set_at" in self.model_fields_set:
+            _dict['passwordSetAt'] = None
+
+        # set to None if password_reset_last_requested_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.password_reset_last_requested_at is None and "password_reset_last_requested_at" in self.model_fields_set:
+            _dict['passwordResetLastRequestedAt'] = None
+
+        # set to None if mfa_methods (nullable) is None
+        # and model_fields_set contains the field
+        if self.mfa_methods is None and "mfa_methods" in self.model_fields_set:
+            _dict['mfaMethods'] = None
+
+        # set to None if backup_codes_generated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_codes_generated_at is None and "backup_codes_generated_at" in self.model_fields_set:
+            _dict['backupCodesGeneratedAt'] = None
+
         return _dict
 
     @classmethod
@@ -141,8 +181,8 @@ class UserObject(BaseModel):
             "passwordResetLastRequestedAt": obj.get("passwordResetLastRequestedAt"),
             "mfaMethods": [MfaMethod.from_dict(_item) for _item in obj["mfaMethods"]] if obj.get("mfaMethods") is not None else None,
             "backupCodesGeneratedAt": obj.get("backupCodesGeneratedAt"),
-            "hasPassword": obj.get("hasPassword"),
-            "remainingBackupCodeCount": obj.get("remainingBackupCodeCount")
+            "remainingBackupCodeCount": obj.get("remainingBackupCodeCount"),
+            "hasPassword": obj.get("hasPassword")
         })
         return _obj
 

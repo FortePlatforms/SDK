@@ -24,19 +24,19 @@ export interface CreateOtpLoginRequest {
      * @type {string}
      * @memberof CreateOtpLoginRequest
      */
-    email?: string;
+    email?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateOtpLoginRequest
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateOtpLoginRequest
      */
-    recaptchaToken?: string;
+    recaptchaToken?: string | null;
 }
 
 /**

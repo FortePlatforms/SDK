@@ -32,25 +32,25 @@ export interface RequestLogStatusFilter {
      * @type {Array<number>}
      * @memberof RequestLogStatusFilter
      */
-    codes?: Array<number>;
+    codes?: Array<number> | null;
     /**
      * 
      * @type {Array<StatusRange>}
      * @memberof RequestLogStatusFilter
      */
-    ranges?: Array<StatusRange>;
+    ranges?: Array<StatusRange> | null;
     /**
      * 
      * @type {Array<number>}
      * @memberof RequestLogStatusFilter
      */
-    notCodes?: Array<number>;
+    notCodes?: Array<number> | null;
     /**
      * 
      * @type {Array<StatusRange>}
      * @memberof RequestLogStatusFilter
      */
-    notRanges?: Array<StatusRange>;
+    notRanges?: Array<StatusRange> | null;
 }
 
 /**

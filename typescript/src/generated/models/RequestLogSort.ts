@@ -24,13 +24,13 @@ export interface RequestLogSort {
      * @type {RequestLogSortSortByType}
      * @memberof RequestLogSort
      */
-    sortBy?: RequestLogSortSortByType;
+    sortBy?: RequestLogSortSortByType | null;
     /**
      * 
      * @type {RequestLogSortSortDirType}
      * @memberof RequestLogSort
      */
-    sortDir?: RequestLogSortSortDirType;
+    sortDir?: RequestLogSortSortDirType | null;
 }
 
 

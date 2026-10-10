@@ -73,6 +73,16 @@ class RequestLogObjectMeta(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if request_path_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.request_path_id is None and "request_path_id" in self.model_fields_set:
+            _dict['requestPathId'] = None
+
+        # set to None if user_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_id is None and "user_id" in self.model_fields_set:
+            _dict['userId'] = None
+
         return _dict
 
     @classmethod

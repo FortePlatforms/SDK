@@ -71,6 +71,16 @@ class FieldChange(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if before (nullable) is None
+        # and model_fields_set contains the field
+        if self.before is None and "before" in self.model_fields_set:
+            _dict['before'] = None
+
+        # set to None if after (nullable) is None
+        # and model_fields_set contains the field
+        if self.after is None and "after" in self.model_fields_set:
+            _dict['after'] = None
+
         return _dict
 
     @classmethod

@@ -39,13 +39,13 @@ export interface RequestLogFilter {
      * @type {Date}
      * @memberof RequestLogFilter
      */
-    minTime?: Date;
+    minTime?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof RequestLogFilter
      */
-    maxTime?: Date;
+    maxTime?: Date | null;
     /**
      * 
      * @type {RequestLogStatusFilter}
@@ -63,31 +63,31 @@ export interface RequestLogFilter {
      * @type {Array<string>}
      * @memberof RequestLogFilter
      */
-    methods?: Array<string>;
+    methods?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof RequestLogFilter
      */
-    notMethods?: Array<string>;
+    notMethods?: Array<string> | null;
     /**
      * 
      * @type {number}
      * @memberof RequestLogFilter
      */
-    minLatencyMilliseconds?: number;
+    minLatencyMilliseconds?: number | null;
     /**
      * 
      * @type {number}
      * @memberof RequestLogFilter
      */
-    maxLatencyMilliseconds?: number;
+    maxLatencyMilliseconds?: number | null;
     /**
      * 
      * @type {string}
      * @memberof RequestLogFilter
      */
-    userId?: string;
+    userId?: string | null;
 }
 
 /**

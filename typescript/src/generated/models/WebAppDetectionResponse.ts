@@ -32,67 +32,67 @@ export interface WebAppDetectionResponse {
      * @type {WebAppDetectionResponseWebAppTypeType}
      * @memberof WebAppDetectionResponse
      */
-    webAppType?: WebAppDetectionResponseWebAppTypeType;
+    webAppType?: WebAppDetectionResponseWebAppTypeType | null;
     /**
      * Detected package manager (npm, yarn, pnpm, or bun)
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    packageManager?: string;
+    packageManager?: string | null;
     /**
      * Detected Node.js version (e.g. "22")
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    nodeVersion?: string;
+    nodeVersion?: string | null;
     /**
      * Build command to produce the output directory
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    buildCommand?: string;
+    buildCommand?: string | null;
     /**
      * Path to the build output directory
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    buildPath?: string;
+    buildPath?: string | null;
     /**
      * Install command override, useful for monorepos
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    installCommand?: string;
+    installCommand?: string | null;
     /**
      * Detected frontend framework (e.g. "Vite", "Next.js", "Astro")
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    detectedFramework?: string;
+    detectedFramework?: string | null;
     /**
      * Monorepo subdirectory containing the web app
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    subdirectory?: string;
+    subdirectory?: string | null;
     /**
      * Monorepo flavor detected from lockfile + workspace declaration; null for single-project repos
      * @type {WebAppDetectionResponseMonorepoTypeType}
      * @memberof WebAppDetectionResponse
      */
-    monorepoType?: WebAppDetectionResponseMonorepoTypeType;
+    monorepoType?: WebAppDetectionResponseMonorepoTypeType | null;
     /**
      * Path (relative to repo root) of the directory containing pnpm-workspace.yaml or the root package.json with a workspaces field; empty string for repo root; null for single-project repos
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    workspaceRoot?: string;
+    workspaceRoot?: string | null;
     /**
      * The `name` field from the web app's package.json, used by monorepo --filter flags
      * @type {string}
      * @memberof WebAppDetectionResponse
      */
-    appPackageName?: string;
+    appPackageName?: string | null;
     /**
      * Analysis results from scanning the repository structure
      * @type {RepositoryAnalysis}

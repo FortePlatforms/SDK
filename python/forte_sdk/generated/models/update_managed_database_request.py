@@ -86,6 +86,26 @@ class UpdateManagedDatabaseRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if name (nullable) is None
+        # and model_fields_set contains the field
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
+
+        # set to None if cpu (nullable) is None
+        # and model_fields_set contains the field
+        if self.cpu is None and "cpu" in self.model_fields_set:
+            _dict['cpu'] = None
+
+        # set to None if memory_gb (nullable) is None
+        # and model_fields_set contains the field
+        if self.memory_gb is None and "memory_gb" in self.model_fields_set:
+            _dict['memoryGb'] = None
+
+        # set to None if storage_gb (nullable) is None
+        # and model_fields_set contains the field
+        if self.storage_gb is None and "storage_gb" in self.model_fields_set:
+            _dict['storageGb'] = None
+
         return _dict
 
     @classmethod

@@ -36,7 +36,7 @@ export interface PasswordLoginRequest {
      * @type {string}
      * @memberof PasswordLoginRequest
      */
-    recaptchaToken?: string;
+    recaptchaToken?: string | null;
 }
 
 /**

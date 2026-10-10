@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.SubscriptionObject;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,8 +50,7 @@ public class CreateSubscriptionResponse {
   private SubscriptionObject subscription;
 
   public static final String JSON_PROPERTY_STRIPE_CLIENT_SECRET = "stripeClientSecret";
-  @javax.annotation.Nullable
-  private String stripeClientSecret;
+  private JsonNullable<String> stripeClientSecret = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STRIPE_PUBLISHABLE_KEY = "stripePublishableKey";
   @javax.annotation.Nonnull
@@ -85,7 +88,7 @@ public class CreateSubscriptionResponse {
 
 
   public CreateSubscriptionResponse stripeClientSecret(@javax.annotation.Nullable String stripeClientSecret) {
-    this.stripeClientSecret = stripeClientSecret;
+    this.stripeClientSecret = JsonNullable.<String>of(stripeClientSecret);
     return this;
   }
 
@@ -94,17 +97,25 @@ public class CreateSubscriptionResponse {
    * @return stripeClientSecret
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_CLIENT_SECRET, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripeClientSecret() {
-    return stripeClientSecret;
+        return stripeClientSecret.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_CLIENT_SECRET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripeClientSecret(@javax.annotation.Nullable String stripeClientSecret) {
+
+  public JsonNullable<String> getStripeClientSecret_JsonNullable() {
+    return stripeClientSecret;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_CLIENT_SECRET)
+  public void setStripeClientSecret_JsonNullable(JsonNullable<String> stripeClientSecret) {
     this.stripeClientSecret = stripeClientSecret;
+  }
+
+  public void setStripeClientSecret(@javax.annotation.Nullable String stripeClientSecret) {
+    this.stripeClientSecret = JsonNullable.<String>of(stripeClientSecret);
   }
 
 
@@ -169,14 +180,25 @@ public class CreateSubscriptionResponse {
     }
     CreateSubscriptionResponse createSubscriptionResponse = (CreateSubscriptionResponse) o;
     return Objects.equals(this.subscription, createSubscriptionResponse.subscription) &&
-        Objects.equals(this.stripeClientSecret, createSubscriptionResponse.stripeClientSecret) &&
+        equalsNullable(this.stripeClientSecret, createSubscriptionResponse.stripeClientSecret) &&
         Objects.equals(this.stripePublishableKey, createSubscriptionResponse.stripePublishableKey) &&
         Objects.equals(this.stripeConnectedAccountId, createSubscriptionResponse.stripeConnectedAccountId);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(subscription, stripeClientSecret, stripePublishableKey, stripeConnectedAccountId);
+    return Objects.hash(subscription, hashCodeNullable(stripeClientSecret), stripePublishableKey, stripeConnectedAccountId);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

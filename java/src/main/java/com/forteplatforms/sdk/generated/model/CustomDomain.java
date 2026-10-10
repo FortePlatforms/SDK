@@ -30,6 +30,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -121,24 +125,19 @@ public class CustomDomain {
   private OffsetDateTime lastModifiedTimestamp;
 
   public static final String JSON_PROPERTY_VERIFIED_TIMESTAMP = "verifiedTimestamp";
-  @javax.annotation.Nullable
-  private OffsetDateTime verifiedTimestamp;
+  private JsonNullable<OffsetDateTime> verifiedTimestamp = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_ACTIVATED_TIMESTAMP = "activatedTimestamp";
-  @javax.annotation.Nullable
-  private OffsetDateTime activatedTimestamp;
+  private JsonNullable<OffsetDateTime> activatedTimestamp = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_FAILURE_REASON = "failureReason";
-  @javax.annotation.Nullable
-  private String failureReason;
+  private JsonNullable<String> failureReason = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REQUIRED_DNS_RECORDS = "requiredDnsRecords";
-  @javax.annotation.Nullable
-  private List<DnsRecordRequirement> requiredDnsRecords = new ArrayList<>();
+  private JsonNullable<List<DnsRecordRequirement>> requiredDnsRecords = JsonNullable.<List<DnsRecordRequirement>>undefined();
 
   public static final String JSON_PROPERTY_LAST_DNS_CHECK_AT = "lastDnsCheckAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastDnsCheckAt;
+  private JsonNullable<OffsetDateTime> lastDnsCheckAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_LAST_DNS_CHECK_RESULT = "lastDnsCheckResult";
   @javax.annotation.Nullable
@@ -292,7 +291,7 @@ public class CustomDomain {
 
 
   public CustomDomain verifiedTimestamp(@javax.annotation.Nullable OffsetDateTime verifiedTimestamp) {
-    this.verifiedTimestamp = verifiedTimestamp;
+    this.verifiedTimestamp = JsonNullable.<OffsetDateTime>of(verifiedTimestamp);
     return this;
   }
 
@@ -301,22 +300,30 @@ public class CustomDomain {
    * @return verifiedTimestamp
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_VERIFIED_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getVerifiedTimestamp() {
-    return verifiedTimestamp;
+        return verifiedTimestamp.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_VERIFIED_TIMESTAMP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVerifiedTimestamp(@javax.annotation.Nullable OffsetDateTime verifiedTimestamp) {
+
+  public JsonNullable<OffsetDateTime> getVerifiedTimestamp_JsonNullable() {
+    return verifiedTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VERIFIED_TIMESTAMP)
+  public void setVerifiedTimestamp_JsonNullable(JsonNullable<OffsetDateTime> verifiedTimestamp) {
     this.verifiedTimestamp = verifiedTimestamp;
+  }
+
+  public void setVerifiedTimestamp(@javax.annotation.Nullable OffsetDateTime verifiedTimestamp) {
+    this.verifiedTimestamp = JsonNullable.<OffsetDateTime>of(verifiedTimestamp);
   }
 
 
   public CustomDomain activatedTimestamp(@javax.annotation.Nullable OffsetDateTime activatedTimestamp) {
-    this.activatedTimestamp = activatedTimestamp;
+    this.activatedTimestamp = JsonNullable.<OffsetDateTime>of(activatedTimestamp);
     return this;
   }
 
@@ -325,22 +332,30 @@ public class CustomDomain {
    * @return activatedTimestamp
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACTIVATED_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getActivatedTimestamp() {
-    return activatedTimestamp;
+        return activatedTimestamp.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACTIVATED_TIMESTAMP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActivatedTimestamp(@javax.annotation.Nullable OffsetDateTime activatedTimestamp) {
+
+  public JsonNullable<OffsetDateTime> getActivatedTimestamp_JsonNullable() {
+    return activatedTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACTIVATED_TIMESTAMP)
+  public void setActivatedTimestamp_JsonNullable(JsonNullable<OffsetDateTime> activatedTimestamp) {
     this.activatedTimestamp = activatedTimestamp;
+  }
+
+  public void setActivatedTimestamp(@javax.annotation.Nullable OffsetDateTime activatedTimestamp) {
+    this.activatedTimestamp = JsonNullable.<OffsetDateTime>of(activatedTimestamp);
   }
 
 
   public CustomDomain failureReason(@javax.annotation.Nullable String failureReason) {
-    this.failureReason = failureReason;
+    this.failureReason = JsonNullable.<String>of(failureReason);
     return this;
   }
 
@@ -349,30 +364,42 @@ public class CustomDomain {
    * @return failureReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFailureReason() {
-    return failureReason;
+        return failureReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFailureReason(@javax.annotation.Nullable String failureReason) {
+
+  public JsonNullable<String> getFailureReason_JsonNullable() {
+    return failureReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FAILURE_REASON)
+  public void setFailureReason_JsonNullable(JsonNullable<String> failureReason) {
     this.failureReason = failureReason;
+  }
+
+  public void setFailureReason(@javax.annotation.Nullable String failureReason) {
+    this.failureReason = JsonNullable.<String>of(failureReason);
   }
 
 
   public CustomDomain requiredDnsRecords(@javax.annotation.Nullable List<DnsRecordRequirement> requiredDnsRecords) {
-    this.requiredDnsRecords = requiredDnsRecords;
+    this.requiredDnsRecords = JsonNullable.<List<DnsRecordRequirement>>of(requiredDnsRecords);
     return this;
   }
 
   public CustomDomain addRequiredDnsRecordsItem(DnsRecordRequirement requiredDnsRecordsItem) {
-    if (this.requiredDnsRecords == null) {
-      this.requiredDnsRecords = new ArrayList<>();
+    if (this.requiredDnsRecords == null || !this.requiredDnsRecords.isPresent()) {
+      this.requiredDnsRecords = JsonNullable.<List<DnsRecordRequirement>>of(new ArrayList<>());
     }
-    this.requiredDnsRecords.add(requiredDnsRecordsItem);
+    try {
+      this.requiredDnsRecords.get().add(requiredDnsRecordsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -381,22 +408,30 @@ public class CustomDomain {
    * @return requiredDnsRecords
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUIRED_DNS_RECORDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<DnsRecordRequirement> getRequiredDnsRecords() {
-    return requiredDnsRecords;
+        return requiredDnsRecords.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUIRED_DNS_RECORDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequiredDnsRecords(@javax.annotation.Nullable List<DnsRecordRequirement> requiredDnsRecords) {
+
+  public JsonNullable<List<DnsRecordRequirement>> getRequiredDnsRecords_JsonNullable() {
+    return requiredDnsRecords;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUIRED_DNS_RECORDS)
+  public void setRequiredDnsRecords_JsonNullable(JsonNullable<List<DnsRecordRequirement>> requiredDnsRecords) {
     this.requiredDnsRecords = requiredDnsRecords;
+  }
+
+  public void setRequiredDnsRecords(@javax.annotation.Nullable List<DnsRecordRequirement> requiredDnsRecords) {
+    this.requiredDnsRecords = JsonNullable.<List<DnsRecordRequirement>>of(requiredDnsRecords);
   }
 
 
   public CustomDomain lastDnsCheckAt(@javax.annotation.Nullable OffsetDateTime lastDnsCheckAt) {
-    this.lastDnsCheckAt = lastDnsCheckAt;
+    this.lastDnsCheckAt = JsonNullable.<OffsetDateTime>of(lastDnsCheckAt);
     return this;
   }
 
@@ -405,17 +440,25 @@ public class CustomDomain {
    * @return lastDnsCheckAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_DNS_CHECK_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastDnsCheckAt() {
-    return lastDnsCheckAt;
+        return lastDnsCheckAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_DNS_CHECK_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastDnsCheckAt(@javax.annotation.Nullable OffsetDateTime lastDnsCheckAt) {
+
+  public JsonNullable<OffsetDateTime> getLastDnsCheckAt_JsonNullable() {
+    return lastDnsCheckAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_DNS_CHECK_AT)
+  public void setLastDnsCheckAt_JsonNullable(JsonNullable<OffsetDateTime> lastDnsCheckAt) {
     this.lastDnsCheckAt = lastDnsCheckAt;
+  }
+
+  public void setLastDnsCheckAt(@javax.annotation.Nullable OffsetDateTime lastDnsCheckAt) {
+    this.lastDnsCheckAt = JsonNullable.<OffsetDateTime>of(lastDnsCheckAt);
   }
 
 
@@ -461,17 +504,28 @@ public class CustomDomain {
         Objects.equals(this.status, customDomain.status) &&
         Objects.equals(this.createdTimestamp, customDomain.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, customDomain.lastModifiedTimestamp) &&
-        Objects.equals(this.verifiedTimestamp, customDomain.verifiedTimestamp) &&
-        Objects.equals(this.activatedTimestamp, customDomain.activatedTimestamp) &&
-        Objects.equals(this.failureReason, customDomain.failureReason) &&
-        Objects.equals(this.requiredDnsRecords, customDomain.requiredDnsRecords) &&
-        Objects.equals(this.lastDnsCheckAt, customDomain.lastDnsCheckAt) &&
+        equalsNullable(this.verifiedTimestamp, customDomain.verifiedTimestamp) &&
+        equalsNullable(this.activatedTimestamp, customDomain.activatedTimestamp) &&
+        equalsNullable(this.failureReason, customDomain.failureReason) &&
+        equalsNullable(this.requiredDnsRecords, customDomain.requiredDnsRecords) &&
+        equalsNullable(this.lastDnsCheckAt, customDomain.lastDnsCheckAt) &&
         Objects.equals(this.lastDnsCheckResult, customDomain.lastDnsCheckResult);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customDomainId, domain, apex, status, createdTimestamp, lastModifiedTimestamp, verifiedTimestamp, activatedTimestamp, failureReason, requiredDnsRecords, lastDnsCheckAt, lastDnsCheckResult);
+    return Objects.hash(customDomainId, domain, apex, status, createdTimestamp, lastModifiedTimestamp, hashCodeNullable(verifiedTimestamp), hashCodeNullable(activatedTimestamp), hashCodeNullable(failureReason), hashCodeNullable(requiredDnsRecords), hashCodeNullable(lastDnsCheckAt), lastDnsCheckResult);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

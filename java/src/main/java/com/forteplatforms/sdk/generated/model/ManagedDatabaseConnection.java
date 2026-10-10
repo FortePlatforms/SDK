@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseEnvVarMappings;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -65,8 +69,7 @@ public class ManagedDatabaseConnection {
   private OffsetDateTime createdTimestamp;
 
   public static final String JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP = "lastModifiedTimestamp";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastModifiedTimestamp;
+  private JsonNullable<OffsetDateTime> lastModifiedTimestamp = JsonNullable.<OffsetDateTime>undefined();
 
   public ManagedDatabaseConnection() { 
   }
@@ -192,7 +195,7 @@ public class ManagedDatabaseConnection {
 
 
   public ManagedDatabaseConnection lastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
-    this.lastModifiedTimestamp = lastModifiedTimestamp;
+    this.lastModifiedTimestamp = JsonNullable.<OffsetDateTime>of(lastModifiedTimestamp);
     return this;
   }
 
@@ -201,17 +204,25 @@ public class ManagedDatabaseConnection {
    * @return lastModifiedTimestamp
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastModifiedTimestamp() {
-    return lastModifiedTimestamp;
+        return lastModifiedTimestamp.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
+
+  public JsonNullable<OffsetDateTime> getLastModifiedTimestamp_JsonNullable() {
+    return lastModifiedTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP)
+  public void setLastModifiedTimestamp_JsonNullable(JsonNullable<OffsetDateTime> lastModifiedTimestamp) {
     this.lastModifiedTimestamp = lastModifiedTimestamp;
+  }
+
+  public void setLastModifiedTimestamp(@javax.annotation.Nullable OffsetDateTime lastModifiedTimestamp) {
+    this.lastModifiedTimestamp = JsonNullable.<OffsetDateTime>of(lastModifiedTimestamp);
   }
 
 
@@ -232,12 +243,23 @@ public class ManagedDatabaseConnection {
         Objects.equals(this.environmentVariableMappings, managedDatabaseConnection.environmentVariableMappings) &&
         Objects.equals(this.builtInUsername, managedDatabaseConnection.builtInUsername) &&
         Objects.equals(this.createdTimestamp, managedDatabaseConnection.createdTimestamp) &&
-        Objects.equals(this.lastModifiedTimestamp, managedDatabaseConnection.lastModifiedTimestamp);
+        equalsNullable(this.lastModifiedTimestamp, managedDatabaseConnection.lastModifiedTimestamp);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectionId, serviceId, environmentVariableMappings, builtInUsername, createdTimestamp, lastModifiedTimestamp);
+    return Objects.hash(connectionId, serviceId, environmentVariableMappings, builtInUsername, createdTimestamp, hashCodeNullable(lastModifiedTimestamp));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

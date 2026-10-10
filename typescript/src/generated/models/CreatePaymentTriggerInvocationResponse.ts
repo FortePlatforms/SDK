@@ -30,7 +30,7 @@ export interface CreatePaymentTriggerInvocationResponse {
      * @type {string}
      * @memberof CreatePaymentTriggerInvocationResponse
      */
-    requestId?: string;
+    requestId?: string | null;
     /**
      * 
      * @type {number}

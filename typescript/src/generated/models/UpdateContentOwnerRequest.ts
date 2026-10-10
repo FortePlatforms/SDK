@@ -30,7 +30,7 @@ export interface UpdateContentOwnerRequest {
      * @type {UpdateContentOwnerRequestGrantPreviousOwnerPermissionType}
      * @memberof UpdateContentOwnerRequest
      */
-    grantPreviousOwnerPermission?: UpdateContentOwnerRequestGrantPreviousOwnerPermissionType;
+    grantPreviousOwnerPermission?: UpdateContentOwnerRequestGrantPreviousOwnerPermissionType | null;
 }
 
 

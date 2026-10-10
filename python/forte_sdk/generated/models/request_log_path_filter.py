@@ -73,6 +73,26 @@ class RequestLogPathFilter(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if equal_to (nullable) is None
+        # and model_fields_set contains the field
+        if self.equal_to is None and "equal_to" in self.model_fields_set:
+            _dict['equalTo'] = None
+
+        # set to None if not_equal_to (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_equal_to is None and "not_equal_to" in self.model_fields_set:
+            _dict['notEqualTo'] = None
+
+        # set to None if starts_with (nullable) is None
+        # and model_fields_set contains the field
+        if self.starts_with is None and "starts_with" in self.model_fields_set:
+            _dict['startsWith'] = None
+
+        # set to None if contains (nullable) is None
+        # and model_fields_set contains the field
+        if self.contains is None and "contains" in self.model_fields_set:
+            _dict['contains'] = None
+
         return _dict
 
     @classmethod

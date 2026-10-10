@@ -70,6 +70,11 @@ class ChangePasswordRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if current_password (nullable) is None
+        # and model_fields_set contains the field
+        if self.current_password is None and "current_password" in self.model_fields_set:
+            _dict['currentPassword'] = None
+
         return _dict
 
     @classmethod

@@ -44,7 +44,7 @@ export interface PaginatedResponseRequestLogSummary {
      * @type {string}
      * @memberof PaginatedResponseRequestLogSummary
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
 }
 
 /**

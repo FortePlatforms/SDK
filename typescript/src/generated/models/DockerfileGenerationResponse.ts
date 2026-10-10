@@ -64,7 +64,7 @@ export interface DockerfileGenerationResponse {
      * @type {Array<string>}
      * @memberof DockerfileGenerationResponse
      */
-    detectedLanguages?: Array<string>;
+    detectedLanguages?: Array<string> | null;
     /**
      * Analysis results from scanning the repository (present when it can be resolved)
      * @type {RepositoryAnalysis}

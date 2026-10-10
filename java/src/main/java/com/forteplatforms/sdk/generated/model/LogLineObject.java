@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -54,8 +58,7 @@ public class LogLineObject {
   private Long ingestionDelayMillis;
 
   public static final String JSON_PROPERTY_LEVEL = "level";
-  @javax.annotation.Nullable
-  private String level;
+  private JsonNullable<String> level = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nonnull
@@ -66,16 +69,13 @@ public class LogLineObject {
   private String serviceId;
 
   public static final String JSON_PROPERTY_REQUEST_ID = "requestId";
-  @javax.annotation.Nullable
-  private String requestId;
+  private JsonNullable<String> requestId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_ID = "buildId";
-  @javax.annotation.Nullable
-  private String buildId;
+  private JsonNullable<String> buildId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTANCE_ID = "instanceId";
-  @javax.annotation.Nullable
-  private String instanceId;
+  private JsonNullable<String> instanceId = JsonNullable.<String>undefined();
 
   public LogLineObject() { 
   }
@@ -129,7 +129,7 @@ public class LogLineObject {
 
 
   public LogLineObject level(@javax.annotation.Nullable String level) {
-    this.level = level;
+    this.level = JsonNullable.<String>of(level);
     return this;
   }
 
@@ -138,17 +138,25 @@ public class LogLineObject {
    * @return level
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LEVEL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLevel() {
-    return level;
+        return level.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LEVEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLevel(@javax.annotation.Nullable String level) {
+
+  public JsonNullable<String> getLevel_JsonNullable() {
+    return level;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LEVEL)
+  public void setLevel_JsonNullable(JsonNullable<String> level) {
     this.level = level;
+  }
+
+  public void setLevel(@javax.annotation.Nullable String level) {
+    this.level = JsonNullable.<String>of(level);
   }
 
 
@@ -201,7 +209,7 @@ public class LogLineObject {
 
 
   public LogLineObject requestId(@javax.annotation.Nullable String requestId) {
-    this.requestId = requestId;
+    this.requestId = JsonNullable.<String>of(requestId);
     return this;
   }
 
@@ -210,22 +218,30 @@ public class LogLineObject {
    * @return requestId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUEST_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRequestId() {
-    return requestId;
+        return requestId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUEST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestId(@javax.annotation.Nullable String requestId) {
+
+  public JsonNullable<String> getRequestId_JsonNullable() {
+    return requestId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUEST_ID)
+  public void setRequestId_JsonNullable(JsonNullable<String> requestId) {
     this.requestId = requestId;
+  }
+
+  public void setRequestId(@javax.annotation.Nullable String requestId) {
+    this.requestId = JsonNullable.<String>of(requestId);
   }
 
 
   public LogLineObject buildId(@javax.annotation.Nullable String buildId) {
-    this.buildId = buildId;
+    this.buildId = JsonNullable.<String>of(buildId);
     return this;
   }
 
@@ -234,22 +250,30 @@ public class LogLineObject {
    * @return buildId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildId() {
-    return buildId;
+        return buildId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildId(@javax.annotation.Nullable String buildId) {
+
+  public JsonNullable<String> getBuildId_JsonNullable() {
+    return buildId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_ID)
+  public void setBuildId_JsonNullable(JsonNullable<String> buildId) {
     this.buildId = buildId;
+  }
+
+  public void setBuildId(@javax.annotation.Nullable String buildId) {
+    this.buildId = JsonNullable.<String>of(buildId);
   }
 
 
   public LogLineObject instanceId(@javax.annotation.Nullable String instanceId) {
-    this.instanceId = instanceId;
+    this.instanceId = JsonNullable.<String>of(instanceId);
     return this;
   }
 
@@ -258,17 +282,25 @@ public class LogLineObject {
    * @return instanceId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INSTANCE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInstanceId() {
-    return instanceId;
+        return instanceId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INSTANCE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstanceId(@javax.annotation.Nullable String instanceId) {
+
+  public JsonNullable<String> getInstanceId_JsonNullable() {
+    return instanceId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTANCE_ID)
+  public void setInstanceId_JsonNullable(JsonNullable<String> instanceId) {
     this.instanceId = instanceId;
+  }
+
+  public void setInstanceId(@javax.annotation.Nullable String instanceId) {
+    this.instanceId = JsonNullable.<String>of(instanceId);
   }
 
 
@@ -286,17 +318,28 @@ public class LogLineObject {
     LogLineObject logLineObject = (LogLineObject) o;
     return Objects.equals(this.timestamp, logLineObject.timestamp) &&
         Objects.equals(this.ingestionDelayMillis, logLineObject.ingestionDelayMillis) &&
-        Objects.equals(this.level, logLineObject.level) &&
+        equalsNullable(this.level, logLineObject.level) &&
         Objects.equals(this.message, logLineObject.message) &&
         Objects.equals(this.serviceId, logLineObject.serviceId) &&
-        Objects.equals(this.requestId, logLineObject.requestId) &&
-        Objects.equals(this.buildId, logLineObject.buildId) &&
-        Objects.equals(this.instanceId, logLineObject.instanceId);
+        equalsNullable(this.requestId, logLineObject.requestId) &&
+        equalsNullable(this.buildId, logLineObject.buildId) &&
+        equalsNullable(this.instanceId, logLineObject.instanceId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, ingestionDelayMillis, level, message, serviceId, requestId, buildId, instanceId);
+    return Objects.hash(timestamp, ingestionDelayMillis, hashCodeNullable(level), message, serviceId, hashCodeNullable(requestId), hashCodeNullable(buildId), hashCodeNullable(instanceId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

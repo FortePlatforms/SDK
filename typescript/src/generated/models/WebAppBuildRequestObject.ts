@@ -58,73 +58,73 @@ export interface WebAppBuildRequestObject {
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    packageManager?: string;
+    packageManager?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    nodeVersion?: string;
+    nodeVersion?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    buildCommand?: string;
+    buildCommand?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    buildPath?: string;
+    buildPath?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    detectedFramework?: string;
+    detectedFramework?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    installCommand?: string;
+    installCommand?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    subdirectory?: string;
+    subdirectory?: string | null;
     /**
      * 
      * @type {WebAppBuildRequestObjectMonorepoTypeType}
      * @memberof WebAppBuildRequestObject
      */
-    monorepoType?: WebAppBuildRequestObjectMonorepoTypeType;
+    monorepoType?: WebAppBuildRequestObjectMonorepoTypeType | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    workspaceRoot?: string;
+    workspaceRoot?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    appPackageName?: string;
+    appPackageName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    containerImageUri?: string;
+    containerImageUri?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    dockerfilePath?: string;
+    dockerfilePath?: string | null;
     /**
      * 
      * @type {DockerfileGenerationError}
@@ -136,31 +136,31 @@ export interface WebAppBuildRequestObject {
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    outputZipS3Key?: string;
+    outputZipS3Key?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    hostingDeploymentId?: string;
+    hostingDeploymentId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    hostingDeploymentStatus?: string;
+    hostingDeploymentStatus?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof WebAppBuildRequestObject
      */
-    allBuildLogsReceived?: boolean;
+    allBuildLogsReceived?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof WebAppBuildRequestObject
      */
-    cancellationRequested?: boolean;
+    cancellationRequested?: boolean | null;
     /**
      * 
      * @type {Date}
@@ -202,13 +202,13 @@ export interface WebAppBuildRequestObject {
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    gitRef?: string;
+    gitRef?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    releaseTagName?: string;
+    releaseTagName?: string | null;
     /**
      * 
      * @type {Array<BuildStepLog>}
@@ -226,31 +226,31 @@ export interface WebAppBuildRequestObject {
      * @type {WebAppBuildRequestObjectOriginType}
      * @memberof WebAppBuildRequestObject
      */
-    origin?: WebAppBuildRequestObjectOriginType;
+    origin?: WebAppBuildRequestObjectOriginType | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    originDetail?: string;
+    originDetail?: string | null;
     /**
      * 
      * @type {string}
      * @memberof WebAppBuildRequestObject
      */
-    triggeredByAccountId?: string;
+    triggeredByAccountId?: string | null;
     /**
      * 
      * @type {WebAppBuildRequestObjectBuildTierType}
      * @memberof WebAppBuildRequestObject
      */
-    buildTier?: WebAppBuildRequestObjectBuildTierType;
+    buildTier?: WebAppBuildRequestObjectBuildTierType | null;
     /**
      * 
      * @type {WebAppBuildRequestObjectFailureReasonType}
      * @memberof WebAppBuildRequestObject
      */
-    failureReason?: WebAppBuildRequestObjectFailureReasonType;
+    failureReason?: WebAppBuildRequestObjectFailureReasonType | null;
 }
 
 

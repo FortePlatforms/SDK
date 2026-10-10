@@ -29,6 +29,10 @@ import com.forteplatforms.sdk.generated.model.PaymentLineItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -52,8 +56,7 @@ public class CreatePaymentPreviewResponse {
   private Long subtotalCents;
 
   public static final String JSON_PROPERTY_TAX_CENTS = "taxCents";
-  @javax.annotation.Nullable
-  private Long taxCents;
+  private JsonNullable<Long> taxCents = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nonnull
@@ -72,8 +75,7 @@ public class CreatePaymentPreviewResponse {
   private PaymentAddress customerAddress;
 
   public static final String JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID = "stripeTaxCalculationId";
-  @javax.annotation.Nullable
-  private String stripeTaxCalculationId;
+  private JsonNullable<String> stripeTaxCalculationId = JsonNullable.<String>undefined();
 
   public CreatePaymentPreviewResponse() { 
   }
@@ -103,7 +105,7 @@ public class CreatePaymentPreviewResponse {
 
 
   public CreatePaymentPreviewResponse taxCents(@javax.annotation.Nullable Long taxCents) {
-    this.taxCents = taxCents;
+    this.taxCents = JsonNullable.<Long>of(taxCents);
     return this;
   }
 
@@ -112,17 +114,25 @@ public class CreatePaymentPreviewResponse {
    * @return taxCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTaxCents() {
-    return taxCents;
+        return taxCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTaxCents(@javax.annotation.Nullable Long taxCents) {
+
+  public JsonNullable<Long> getTaxCents_JsonNullable() {
+    return taxCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_CENTS)
+  public void setTaxCents_JsonNullable(JsonNullable<Long> taxCents) {
     this.taxCents = taxCents;
+  }
+
+  public void setTaxCents(@javax.annotation.Nullable Long taxCents) {
+    this.taxCents = JsonNullable.<Long>of(taxCents);
   }
 
 
@@ -231,7 +241,7 @@ public class CreatePaymentPreviewResponse {
 
 
   public CreatePaymentPreviewResponse stripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
-    this.stripeTaxCalculationId = stripeTaxCalculationId;
+    this.stripeTaxCalculationId = JsonNullable.<String>of(stripeTaxCalculationId);
     return this;
   }
 
@@ -240,17 +250,25 @@ public class CreatePaymentPreviewResponse {
    * @return stripeTaxCalculationId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripeTaxCalculationId() {
-    return stripeTaxCalculationId;
+        return stripeTaxCalculationId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
+
+  public JsonNullable<String> getStripeTaxCalculationId_JsonNullable() {
+    return stripeTaxCalculationId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID)
+  public void setStripeTaxCalculationId_JsonNullable(JsonNullable<String> stripeTaxCalculationId) {
     this.stripeTaxCalculationId = stripeTaxCalculationId;
+  }
+
+  public void setStripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
+    this.stripeTaxCalculationId = JsonNullable.<String>of(stripeTaxCalculationId);
   }
 
 
@@ -267,17 +285,28 @@ public class CreatePaymentPreviewResponse {
     }
     CreatePaymentPreviewResponse createPaymentPreviewResponse = (CreatePaymentPreviewResponse) o;
     return Objects.equals(this.subtotalCents, createPaymentPreviewResponse.subtotalCents) &&
-        Objects.equals(this.taxCents, createPaymentPreviewResponse.taxCents) &&
+        equalsNullable(this.taxCents, createPaymentPreviewResponse.taxCents) &&
         Objects.equals(this.amountCents, createPaymentPreviewResponse.amountCents) &&
         Objects.equals(this.currency, createPaymentPreviewResponse.currency) &&
         Objects.equals(this.lineItems, createPaymentPreviewResponse.lineItems) &&
         Objects.equals(this.customerAddress, createPaymentPreviewResponse.customerAddress) &&
-        Objects.equals(this.stripeTaxCalculationId, createPaymentPreviewResponse.stripeTaxCalculationId);
+        equalsNullable(this.stripeTaxCalculationId, createPaymentPreviewResponse.stripeTaxCalculationId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subtotalCents, taxCents, amountCents, currency, lineItems, customerAddress, stripeTaxCalculationId);
+    return Objects.hash(subtotalCents, hashCodeNullable(taxCents), amountCents, currency, lineItems, customerAddress, hashCodeNullable(stripeTaxCalculationId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

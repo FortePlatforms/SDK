@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -714,13 +718,12 @@ public class ForteApiException {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
-  @javax.annotation.Nullable
-  private ErrorCodeEnum errorCode;
+  private JsonNullable<ErrorCodeEnum> errorCode = JsonNullable.<ErrorCodeEnum>undefined();
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
@@ -734,7 +737,7 @@ public class ForteApiException {
   }
 
   public ForteApiException errorCode(@javax.annotation.Nullable ErrorCodeEnum errorCode) {
-    this.errorCode = errorCode;
+    this.errorCode = JsonNullable.<ErrorCodeEnum>of(errorCode);
     return this;
   }
 
@@ -743,17 +746,25 @@ public class ForteApiException {
    * @return errorCode
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public ErrorCodeEnum getErrorCode() {
-    return errorCode;
+        return errorCode.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_CODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorCode(@javax.annotation.Nullable ErrorCodeEnum errorCode) {
+
+  public JsonNullable<ErrorCodeEnum> getErrorCode_JsonNullable() {
+    return errorCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_CODE)
+  public void setErrorCode_JsonNullable(JsonNullable<ErrorCodeEnum> errorCode) {
     this.errorCode = errorCode;
+  }
+
+  public void setErrorCode(@javax.annotation.Nullable ErrorCodeEnum errorCode) {
+    this.errorCode = JsonNullable.<ErrorCodeEnum>of(errorCode);
   }
 
 
@@ -817,14 +828,25 @@ public class ForteApiException {
       return false;
     }
     ForteApiException forteApiException = (ForteApiException) o;
-    return Objects.equals(this.errorCode, forteApiException.errorCode) &&
+    return equalsNullable(this.errorCode, forteApiException.errorCode) &&
         Objects.equals(this.message, forteApiException.message) &&
         Objects.equals(this.forteExceptionType, forteApiException.forteExceptionType);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(errorCode, message, forteExceptionType);
+    return Objects.hash(hashCodeNullable(errorCode), message, forteExceptionType);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

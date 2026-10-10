@@ -79,6 +79,16 @@ class InternalSource(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if subject_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.subject_id is None and "subject_id" in self.model_fields_set:
+            _dict['subjectId'] = None
+
+        # set to None if replay (nullable) is None
+        # and model_fields_set contains the field
+        if self.replay is None and "replay" in self.model_fields_set:
+            _dict['replay'] = None
+
         return _dict
 
     @classmethod

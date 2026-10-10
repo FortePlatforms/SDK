@@ -24,13 +24,13 @@ export interface WebAppDetectionError {
      * @type {WebAppDetectionErrorErrorTypeType}
      * @memberof WebAppDetectionError
      */
-    errorType?: WebAppDetectionErrorErrorTypeType;
+    errorType?: WebAppDetectionErrorErrorTypeType | null;
     /**
      * Detailed error message explaining what went wrong
      * @type {string}
      * @memberof WebAppDetectionError
      */
-    message?: string;
+    message?: string | null;
 }
 
 

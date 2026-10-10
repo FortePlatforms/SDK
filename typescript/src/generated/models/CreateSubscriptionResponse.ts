@@ -38,7 +38,7 @@ export interface CreateSubscriptionResponse {
      * @type {string}
      * @memberof CreateSubscriptionResponse
      */
-    stripeClientSecret?: string;
+    stripeClientSecret?: string | null;
     /**
      * 
      * @type {string}

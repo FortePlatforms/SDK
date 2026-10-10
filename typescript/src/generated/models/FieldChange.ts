@@ -30,13 +30,13 @@ export interface FieldChange {
      * @type {string}
      * @memberof FieldChange
      */
-    before?: string;
+    before?: string | null;
     /**
      * 
      * @type {string}
      * @memberof FieldChange
      */
-    after?: string;
+    after?: string | null;
 }
 
 /**

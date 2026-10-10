@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,14 +42,13 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateUserRequest {
   public static final String JSON_PROPERTY_FULL_NAME = "fullName";
-  @javax.annotation.Nullable
-  private String fullName;
+  private JsonNullable<String> fullName = JsonNullable.<String>undefined();
 
   public UpdateUserRequest() { 
   }
 
   public UpdateUserRequest fullName(@javax.annotation.Nullable String fullName) {
-    this.fullName = fullName;
+    this.fullName = JsonNullable.<String>of(fullName);
     return this;
   }
 
@@ -54,17 +57,25 @@ public class UpdateUserRequest {
    * @return fullName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFullName() {
-    return fullName;
+        return fullName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFullName(@javax.annotation.Nullable String fullName) {
+
+  public JsonNullable<String> getFullName_JsonNullable() {
+    return fullName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FULL_NAME)
+  public void setFullName_JsonNullable(JsonNullable<String> fullName) {
     this.fullName = fullName;
+  }
+
+  public void setFullName(@javax.annotation.Nullable String fullName) {
+    this.fullName = JsonNullable.<String>of(fullName);
   }
 
 
@@ -80,12 +91,23 @@ public class UpdateUserRequest {
       return false;
     }
     UpdateUserRequest updateUserRequest = (UpdateUserRequest) o;
-    return Objects.equals(this.fullName, updateUserRequest.fullName);
+    return equalsNullable(this.fullName, updateUserRequest.fullName);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fullName);
+    return Objects.hash(hashCodeNullable(fullName));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -24,7 +24,7 @@ export interface ReauthenticationChallengeResponse {
      * @type {Date}
      * @memberof ReauthenticationChallengeResponse
      */
-    codeExpirationTime?: Date;
+    codeExpirationTime?: Date | null;
 }
 
 /**

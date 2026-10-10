@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,6 +31,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -61,12 +64,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateForteServiceRequest {
   public static final String JSON_PROPERTY_RESET_DOCKERFILE = "resetDockerfile";
-  @javax.annotation.Nullable
-  private Boolean resetDockerfile;
+  private JsonNullable<Boolean> resetDockerfile = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_RESET_HEALTH_CHECK_CONFIG = "resetHealthCheckConfig";
-  @javax.annotation.Nullable
-  private Boolean resetHealthCheckConfig;
+  private JsonNullable<Boolean> resetHealthCheckConfig = JsonNullable.<Boolean>undefined();
 
   /**
    * Gets or Sets githubBuildTrigger
@@ -99,25 +100,21 @@ public class UpdateForteServiceRequest {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_GITHUB_BUILD_TRIGGER = "githubBuildTrigger";
-  @javax.annotation.Nullable
-  private GithubBuildTriggerEnum githubBuildTrigger;
+  private JsonNullable<GithubBuildTriggerEnum> githubBuildTrigger = JsonNullable.<GithubBuildTriggerEnum>undefined();
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
-  @javax.annotation.Nullable
-  private String githubBranch;
+  private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
-  @javax.annotation.Nullable
-  private String baseDirectory;
+  private JsonNullable<String> baseDirectory = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SERVICE_NAME = "serviceName";
-  @javax.annotation.Nullable
-  private String serviceName;
+  private JsonNullable<String> serviceName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ENVIRONMENT_VARIABLES = "environmentVariables";
   @javax.annotation.Nullable
@@ -128,46 +125,38 @@ public class UpdateForteServiceRequest {
   private Map<String, String> secretsToUpsert = new HashMap<>();
 
   public static final String JSON_PROPERTY_SECRET_KEYS_TO_DELETE = "secretKeysToDelete";
-  @javax.annotation.Nullable
-  private Set<String> secretKeysToDelete = new LinkedHashSet<>();
+  private JsonNullable<Set<String>> secretKeysToDelete = JsonNullable.<Set<String>>undefined();
 
   public static final String JSON_PROPERTY_AUTH_PATH_EXCLUSIONS = "authPathExclusions";
-  @javax.annotation.Nullable
-  private List<String> authPathExclusions = new ArrayList<>();
+  private JsonNullable<List<String>> authPathExclusions = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_BLOCKED_PATHS = "blockedPaths";
-  @javax.annotation.Nullable
-  private List<String> blockedPaths = new ArrayList<>();
+  private JsonNullable<List<String>> blockedPaths = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
-  @javax.annotation.Nullable
-  private Integer baseInstances;
+  private JsonNullable<Integer> baseInstances = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_REGION_REPLICAS = "regionReplicas";
   @javax.annotation.Nullable
   private Map<String, Integer> regionReplicas = new HashMap<>();
 
   public static final String JSON_PROPERTY_CONTAINER_CPU = "containerCpu";
-  @javax.annotation.Nullable
-  private String containerCpu;
+  private JsonNullable<String> containerCpu = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HEALTH_CHECK_PORT = "healthCheckPort";
-  @javax.annotation.Nullable
-  private Integer healthCheckPort;
+  private JsonNullable<Integer> healthCheckPort = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_HEALTH_CHECK_PATH = "healthCheckPath";
-  @javax.annotation.Nullable
-  private String healthCheckPath;
+  private JsonNullable<String> healthCheckPath = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED = "requestResponseBodyLoggingEnabled";
-  @javax.annotation.Nullable
-  private Boolean requestResponseBodyLoggingEnabled;
+  private JsonNullable<Boolean> requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>undefined();
 
   public UpdateForteServiceRequest() { 
   }
 
   public UpdateForteServiceRequest resetDockerfile(@javax.annotation.Nullable Boolean resetDockerfile) {
-    this.resetDockerfile = resetDockerfile;
+    this.resetDockerfile = JsonNullable.<Boolean>of(resetDockerfile);
     return this;
   }
 
@@ -176,22 +165,30 @@ public class UpdateForteServiceRequest {
    * @return resetDockerfile
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESET_DOCKERFILE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getResetDockerfile() {
-    return resetDockerfile;
+        return resetDockerfile.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESET_DOCKERFILE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResetDockerfile(@javax.annotation.Nullable Boolean resetDockerfile) {
+
+  public JsonNullable<Boolean> getResetDockerfile_JsonNullable() {
+    return resetDockerfile;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESET_DOCKERFILE)
+  public void setResetDockerfile_JsonNullable(JsonNullable<Boolean> resetDockerfile) {
     this.resetDockerfile = resetDockerfile;
+  }
+
+  public void setResetDockerfile(@javax.annotation.Nullable Boolean resetDockerfile) {
+    this.resetDockerfile = JsonNullable.<Boolean>of(resetDockerfile);
   }
 
 
   public UpdateForteServiceRequest resetHealthCheckConfig(@javax.annotation.Nullable Boolean resetHealthCheckConfig) {
-    this.resetHealthCheckConfig = resetHealthCheckConfig;
+    this.resetHealthCheckConfig = JsonNullable.<Boolean>of(resetHealthCheckConfig);
     return this;
   }
 
@@ -200,22 +197,30 @@ public class UpdateForteServiceRequest {
    * @return resetHealthCheckConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESET_HEALTH_CHECK_CONFIG, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getResetHealthCheckConfig() {
-    return resetHealthCheckConfig;
+        return resetHealthCheckConfig.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESET_HEALTH_CHECK_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResetHealthCheckConfig(@javax.annotation.Nullable Boolean resetHealthCheckConfig) {
+
+  public JsonNullable<Boolean> getResetHealthCheckConfig_JsonNullable() {
+    return resetHealthCheckConfig;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESET_HEALTH_CHECK_CONFIG)
+  public void setResetHealthCheckConfig_JsonNullable(JsonNullable<Boolean> resetHealthCheckConfig) {
     this.resetHealthCheckConfig = resetHealthCheckConfig;
+  }
+
+  public void setResetHealthCheckConfig(@javax.annotation.Nullable Boolean resetHealthCheckConfig) {
+    this.resetHealthCheckConfig = JsonNullable.<Boolean>of(resetHealthCheckConfig);
   }
 
 
   public UpdateForteServiceRequest githubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
-    this.githubBuildTrigger = githubBuildTrigger;
+    this.githubBuildTrigger = JsonNullable.<GithubBuildTriggerEnum>of(githubBuildTrigger);
     return this;
   }
 
@@ -224,22 +229,30 @@ public class UpdateForteServiceRequest {
    * @return githubBuildTrigger
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public GithubBuildTriggerEnum getGithubBuildTrigger() {
-    return githubBuildTrigger;
+        return githubBuildTrigger.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GITHUB_BUILD_TRIGGER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGithubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
+
+  public JsonNullable<GithubBuildTriggerEnum> getGithubBuildTrigger_JsonNullable() {
+    return githubBuildTrigger;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_BUILD_TRIGGER)
+  public void setGithubBuildTrigger_JsonNullable(JsonNullable<GithubBuildTriggerEnum> githubBuildTrigger) {
     this.githubBuildTrigger = githubBuildTrigger;
+  }
+
+  public void setGithubBuildTrigger(@javax.annotation.Nullable GithubBuildTriggerEnum githubBuildTrigger) {
+    this.githubBuildTrigger = JsonNullable.<GithubBuildTriggerEnum>of(githubBuildTrigger);
   }
 
 
   public UpdateForteServiceRequest githubBranch(@javax.annotation.Nullable String githubBranch) {
-    this.githubBranch = githubBranch;
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
     return this;
   }
 
@@ -248,22 +261,30 @@ public class UpdateForteServiceRequest {
    * @return githubBranch
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGithubBranch() {
-    return githubBranch;
+        return githubBranch.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+
+  public JsonNullable<String> getGithubBranch_JsonNullable() {
+    return githubBranch;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_BRANCH)
+  public void setGithubBranch_JsonNullable(JsonNullable<String> githubBranch) {
     this.githubBranch = githubBranch;
+  }
+
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
   }
 
 
   public UpdateForteServiceRequest baseDirectory(@javax.annotation.Nullable String baseDirectory) {
-    this.baseDirectory = baseDirectory;
+    this.baseDirectory = JsonNullable.<String>of(baseDirectory);
     return this;
   }
 
@@ -272,22 +293,30 @@ public class UpdateForteServiceRequest {
    * @return baseDirectory
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBaseDirectory() {
-    return baseDirectory;
+        return baseDirectory.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+
+  public JsonNullable<String> getBaseDirectory_JsonNullable() {
+    return baseDirectory;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BASE_DIRECTORY)
+  public void setBaseDirectory_JsonNullable(JsonNullable<String> baseDirectory) {
     this.baseDirectory = baseDirectory;
+  }
+
+  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = JsonNullable.<String>of(baseDirectory);
   }
 
 
   public UpdateForteServiceRequest serviceName(@javax.annotation.Nullable String serviceName) {
-    this.serviceName = serviceName;
+    this.serviceName = JsonNullable.<String>of(serviceName);
     return this;
   }
 
@@ -296,17 +325,25 @@ public class UpdateForteServiceRequest {
    * @return serviceName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SERVICE_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getServiceName() {
-    return serviceName;
+        return serviceName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SERVICE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setServiceName(@javax.annotation.Nullable String serviceName) {
+
+  public JsonNullable<String> getServiceName_JsonNullable() {
+    return serviceName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SERVICE_NAME)
+  public void setServiceName_JsonNullable(JsonNullable<String> serviceName) {
     this.serviceName = serviceName;
+  }
+
+  public void setServiceName(@javax.annotation.Nullable String serviceName) {
+    this.serviceName = JsonNullable.<String>of(serviceName);
   }
 
 
@@ -375,15 +412,19 @@ public class UpdateForteServiceRequest {
 
 
   public UpdateForteServiceRequest secretKeysToDelete(@javax.annotation.Nullable Set<String> secretKeysToDelete) {
-    this.secretKeysToDelete = secretKeysToDelete;
+    this.secretKeysToDelete = JsonNullable.<Set<String>>of(secretKeysToDelete);
     return this;
   }
 
   public UpdateForteServiceRequest addSecretKeysToDeleteItem(String secretKeysToDeleteItem) {
-    if (this.secretKeysToDelete == null) {
-      this.secretKeysToDelete = new LinkedHashSet<>();
+    if (this.secretKeysToDelete == null || !this.secretKeysToDelete.isPresent()) {
+      this.secretKeysToDelete = JsonNullable.<Set<String>>of(new LinkedHashSet<>());
     }
-    this.secretKeysToDelete.add(secretKeysToDeleteItem);
+    try {
+      this.secretKeysToDelete.get().add(secretKeysToDeleteItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -392,31 +433,42 @@ public class UpdateForteServiceRequest {
    * @return secretKeysToDelete
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SECRET_KEYS_TO_DELETE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Set<String> getSecretKeysToDelete() {
-    return secretKeysToDelete;
+        return secretKeysToDelete.orElse(null);
   }
 
-
-  @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(value = JSON_PROPERTY_SECRET_KEYS_TO_DELETE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecretKeysToDelete(@javax.annotation.Nullable Set<String> secretKeysToDelete) {
+
+  public JsonNullable<Set<String>> getSecretKeysToDelete_JsonNullable() {
+    return secretKeysToDelete;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SECRET_KEYS_TO_DELETE)
+  public void setSecretKeysToDelete_JsonNullable(JsonNullable<Set<String>> secretKeysToDelete) {
     this.secretKeysToDelete = secretKeysToDelete;
+  }
+
+  public void setSecretKeysToDelete(@javax.annotation.Nullable Set<String> secretKeysToDelete) {
+    this.secretKeysToDelete = JsonNullable.<Set<String>>of(secretKeysToDelete);
   }
 
 
   public UpdateForteServiceRequest authPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
-    this.authPathExclusions = authPathExclusions;
+    this.authPathExclusions = JsonNullable.<List<String>>of(authPathExclusions);
     return this;
   }
 
   public UpdateForteServiceRequest addAuthPathExclusionsItem(String authPathExclusionsItem) {
-    if (this.authPathExclusions == null) {
-      this.authPathExclusions = new ArrayList<>();
+    if (this.authPathExclusions == null || !this.authPathExclusions.isPresent()) {
+      this.authPathExclusions = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.authPathExclusions.add(authPathExclusionsItem);
+    try {
+      this.authPathExclusions.get().add(authPathExclusionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -425,30 +477,42 @@ public class UpdateForteServiceRequest {
    * @return authPathExclusions
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getAuthPathExclusions() {
-    return authPathExclusions;
+        return authPathExclusions.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
+
+  public JsonNullable<List<String>> getAuthPathExclusions_JsonNullable() {
+    return authPathExclusions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUTH_PATH_EXCLUSIONS)
+  public void setAuthPathExclusions_JsonNullable(JsonNullable<List<String>> authPathExclusions) {
     this.authPathExclusions = authPathExclusions;
+  }
+
+  public void setAuthPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
+    this.authPathExclusions = JsonNullable.<List<String>>of(authPathExclusions);
   }
 
 
   public UpdateForteServiceRequest blockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
-    this.blockedPaths = blockedPaths;
+    this.blockedPaths = JsonNullable.<List<String>>of(blockedPaths);
     return this;
   }
 
   public UpdateForteServiceRequest addBlockedPathsItem(String blockedPathsItem) {
-    if (this.blockedPaths == null) {
-      this.blockedPaths = new ArrayList<>();
+    if (this.blockedPaths == null || !this.blockedPaths.isPresent()) {
+      this.blockedPaths = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.blockedPaths.add(blockedPathsItem);
+    try {
+      this.blockedPaths.get().add(blockedPathsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -457,22 +521,30 @@ public class UpdateForteServiceRequest {
    * @return blockedPaths
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getBlockedPaths() {
-    return blockedPaths;
+        return blockedPaths.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+
+  public JsonNullable<List<String>> getBlockedPaths_JsonNullable() {
+    return blockedPaths;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BLOCKED_PATHS)
+  public void setBlockedPaths_JsonNullable(JsonNullable<List<String>> blockedPaths) {
     this.blockedPaths = blockedPaths;
+  }
+
+  public void setBlockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+    this.blockedPaths = JsonNullable.<List<String>>of(blockedPaths);
   }
 
 
   public UpdateForteServiceRequest baseInstances(@javax.annotation.Nullable Integer baseInstances) {
-    this.baseInstances = baseInstances;
+    this.baseInstances = JsonNullable.<Integer>of(baseInstances);
     return this;
   }
 
@@ -483,17 +555,25 @@ public class UpdateForteServiceRequest {
    * @return baseInstances
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BASE_INSTANCES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getBaseInstances() {
-    return baseInstances;
+        return baseInstances.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BASE_INSTANCES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBaseInstances(@javax.annotation.Nullable Integer baseInstances) {
+
+  public JsonNullable<Integer> getBaseInstances_JsonNullable() {
+    return baseInstances;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BASE_INSTANCES)
+  public void setBaseInstances_JsonNullable(JsonNullable<Integer> baseInstances) {
     this.baseInstances = baseInstances;
+  }
+
+  public void setBaseInstances(@javax.annotation.Nullable Integer baseInstances) {
+    this.baseInstances = JsonNullable.<Integer>of(baseInstances);
   }
 
 
@@ -530,7 +610,7 @@ public class UpdateForteServiceRequest {
 
 
   public UpdateForteServiceRequest containerCpu(@javax.annotation.Nullable String containerCpu) {
-    this.containerCpu = containerCpu;
+    this.containerCpu = JsonNullable.<String>of(containerCpu);
     return this;
   }
 
@@ -539,22 +619,30 @@ public class UpdateForteServiceRequest {
    * @return containerCpu
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTAINER_CPU, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getContainerCpu() {
-    return containerCpu;
+        return containerCpu.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTAINER_CPU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerCpu(@javax.annotation.Nullable String containerCpu) {
+
+  public JsonNullable<String> getContainerCpu_JsonNullable() {
+    return containerCpu;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTAINER_CPU)
+  public void setContainerCpu_JsonNullable(JsonNullable<String> containerCpu) {
     this.containerCpu = containerCpu;
+  }
+
+  public void setContainerCpu(@javax.annotation.Nullable String containerCpu) {
+    this.containerCpu = JsonNullable.<String>of(containerCpu);
   }
 
 
   public UpdateForteServiceRequest healthCheckPort(@javax.annotation.Nullable Integer healthCheckPort) {
-    this.healthCheckPort = healthCheckPort;
+    this.healthCheckPort = JsonNullable.<Integer>of(healthCheckPort);
     return this;
   }
 
@@ -565,22 +653,30 @@ public class UpdateForteServiceRequest {
    * @return healthCheckPort
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PORT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getHealthCheckPort() {
-    return healthCheckPort;
+        return healthCheckPort.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthCheckPort(@javax.annotation.Nullable Integer healthCheckPort) {
+
+  public JsonNullable<Integer> getHealthCheckPort_JsonNullable() {
+    return healthCheckPort;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_PORT)
+  public void setHealthCheckPort_JsonNullable(JsonNullable<Integer> healthCheckPort) {
     this.healthCheckPort = healthCheckPort;
+  }
+
+  public void setHealthCheckPort(@javax.annotation.Nullable Integer healthCheckPort) {
+    this.healthCheckPort = JsonNullable.<Integer>of(healthCheckPort);
   }
 
 
   public UpdateForteServiceRequest healthCheckPath(@javax.annotation.Nullable String healthCheckPath) {
-    this.healthCheckPath = healthCheckPath;
+    this.healthCheckPath = JsonNullable.<String>of(healthCheckPath);
     return this;
   }
 
@@ -589,22 +685,30 @@ public class UpdateForteServiceRequest {
    * @return healthCheckPath
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getHealthCheckPath() {
-    return healthCheckPath;
+        return healthCheckPath.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthCheckPath(@javax.annotation.Nullable String healthCheckPath) {
+
+  public JsonNullable<String> getHealthCheckPath_JsonNullable() {
+    return healthCheckPath;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_PATH)
+  public void setHealthCheckPath_JsonNullable(JsonNullable<String> healthCheckPath) {
     this.healthCheckPath = healthCheckPath;
+  }
+
+  public void setHealthCheckPath(@javax.annotation.Nullable String healthCheckPath) {
+    this.healthCheckPath = JsonNullable.<String>of(healthCheckPath);
   }
 
 
   public UpdateForteServiceRequest requestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
-    this.requestResponseBodyLoggingEnabled = requestResponseBodyLoggingEnabled;
+    this.requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>of(requestResponseBodyLoggingEnabled);
     return this;
   }
 
@@ -613,17 +717,25 @@ public class UpdateForteServiceRequest {
    * @return requestResponseBodyLoggingEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRequestResponseBodyLoggingEnabled() {
-    return requestResponseBodyLoggingEnabled;
+        return requestResponseBodyLoggingEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
+
+  public JsonNullable<Boolean> getRequestResponseBodyLoggingEnabled_JsonNullable() {
+    return requestResponseBodyLoggingEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED)
+  public void setRequestResponseBodyLoggingEnabled_JsonNullable(JsonNullable<Boolean> requestResponseBodyLoggingEnabled) {
     this.requestResponseBodyLoggingEnabled = requestResponseBodyLoggingEnabled;
+  }
+
+  public void setRequestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
+    this.requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>of(requestResponseBodyLoggingEnabled);
   }
 
 
@@ -639,28 +751,39 @@ public class UpdateForteServiceRequest {
       return false;
     }
     UpdateForteServiceRequest updateForteServiceRequest = (UpdateForteServiceRequest) o;
-    return Objects.equals(this.resetDockerfile, updateForteServiceRequest.resetDockerfile) &&
-        Objects.equals(this.resetHealthCheckConfig, updateForteServiceRequest.resetHealthCheckConfig) &&
-        Objects.equals(this.githubBuildTrigger, updateForteServiceRequest.githubBuildTrigger) &&
-        Objects.equals(this.githubBranch, updateForteServiceRequest.githubBranch) &&
-        Objects.equals(this.baseDirectory, updateForteServiceRequest.baseDirectory) &&
-        Objects.equals(this.serviceName, updateForteServiceRequest.serviceName) &&
+    return equalsNullable(this.resetDockerfile, updateForteServiceRequest.resetDockerfile) &&
+        equalsNullable(this.resetHealthCheckConfig, updateForteServiceRequest.resetHealthCheckConfig) &&
+        equalsNullable(this.githubBuildTrigger, updateForteServiceRequest.githubBuildTrigger) &&
+        equalsNullable(this.githubBranch, updateForteServiceRequest.githubBranch) &&
+        equalsNullable(this.baseDirectory, updateForteServiceRequest.baseDirectory) &&
+        equalsNullable(this.serviceName, updateForteServiceRequest.serviceName) &&
         Objects.equals(this.environmentVariables, updateForteServiceRequest.environmentVariables) &&
         Objects.equals(this.secretsToUpsert, updateForteServiceRequest.secretsToUpsert) &&
-        Objects.equals(this.secretKeysToDelete, updateForteServiceRequest.secretKeysToDelete) &&
-        Objects.equals(this.authPathExclusions, updateForteServiceRequest.authPathExclusions) &&
-        Objects.equals(this.blockedPaths, updateForteServiceRequest.blockedPaths) &&
-        Objects.equals(this.baseInstances, updateForteServiceRequest.baseInstances) &&
+        equalsNullable(this.secretKeysToDelete, updateForteServiceRequest.secretKeysToDelete) &&
+        equalsNullable(this.authPathExclusions, updateForteServiceRequest.authPathExclusions) &&
+        equalsNullable(this.blockedPaths, updateForteServiceRequest.blockedPaths) &&
+        equalsNullable(this.baseInstances, updateForteServiceRequest.baseInstances) &&
         Objects.equals(this.regionReplicas, updateForteServiceRequest.regionReplicas) &&
-        Objects.equals(this.containerCpu, updateForteServiceRequest.containerCpu) &&
-        Objects.equals(this.healthCheckPort, updateForteServiceRequest.healthCheckPort) &&
-        Objects.equals(this.healthCheckPath, updateForteServiceRequest.healthCheckPath) &&
-        Objects.equals(this.requestResponseBodyLoggingEnabled, updateForteServiceRequest.requestResponseBodyLoggingEnabled);
+        equalsNullable(this.containerCpu, updateForteServiceRequest.containerCpu) &&
+        equalsNullable(this.healthCheckPort, updateForteServiceRequest.healthCheckPort) &&
+        equalsNullable(this.healthCheckPath, updateForteServiceRequest.healthCheckPath) &&
+        equalsNullable(this.requestResponseBodyLoggingEnabled, updateForteServiceRequest.requestResponseBodyLoggingEnabled);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resetDockerfile, resetHealthCheckConfig, githubBuildTrigger, githubBranch, baseDirectory, serviceName, environmentVariables, secretsToUpsert, secretKeysToDelete, authPathExclusions, blockedPaths, baseInstances, regionReplicas, containerCpu, healthCheckPort, healthCheckPath, requestResponseBodyLoggingEnabled);
+    return Objects.hash(hashCodeNullable(resetDockerfile), hashCodeNullable(resetHealthCheckConfig), hashCodeNullable(githubBuildTrigger), hashCodeNullable(githubBranch), hashCodeNullable(baseDirectory), hashCodeNullable(serviceName), environmentVariables, secretsToUpsert, hashCodeNullable(secretKeysToDelete), hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), hashCodeNullable(baseInstances), regionReplicas, hashCodeNullable(containerCpu), hashCodeNullable(healthCheckPort), hashCodeNullable(healthCheckPath), hashCodeNullable(requestResponseBodyLoggingEnabled));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

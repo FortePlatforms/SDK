@@ -24,19 +24,19 @@ export interface DockerfileGenerationError {
      * @type {DockerfileGenerationErrorErrorTypeType}
      * @memberof DockerfileGenerationError
      */
-    errorType?: DockerfileGenerationErrorErrorTypeType;
+    errorType?: DockerfileGenerationErrorErrorTypeType | null;
     /**
      * Detailed error message explaining what went wrong
      * @type {string}
      * @memberof DockerfileGenerationError
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * Actionable suggestions for resolving the error
      * @type {Array<string>}
      * @memberof DockerfileGenerationError
      */
-    suggestions?: Array<string>;
+    suggestions?: Array<string> | null;
 }
 
 

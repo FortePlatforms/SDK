@@ -31,6 +31,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,8 +55,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class AccountActionLogObject {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -336,26 +339,23 @@ public class AccountActionLogObject {
   private ActionTypeEnum actionType;
 
   public static final String JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID = "performedByAccountId";
-  @javax.annotation.Nullable
-  private String performedByAccountId;
+  private JsonNullable<String> performedByAccountId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
-  @javax.annotation.Nullable
-  private String resourceId;
+  private JsonNullable<String> resourceId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DETAILS = "details";
   @javax.annotation.Nullable
   private Map<String, String> details = new HashMap<>();
 
   public static final String JSON_PROPERTY_FIELD_CHANGES = "fieldChanges";
-  @javax.annotation.Nullable
-  private List<FieldChange> fieldChanges = new ArrayList<>();
+  private JsonNullable<List<FieldChange>> fieldChanges = JsonNullable.<List<FieldChange>>undefined();
 
   public AccountActionLogObject() { 
   }
 
   public AccountActionLogObject id(@javax.annotation.Nullable String id) {
-    this.id = id;
+    this.id = JsonNullable.<String>of(id);
     return this;
   }
 
@@ -364,17 +364,25 @@ public class AccountActionLogObject {
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(@javax.annotation.Nullable String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
@@ -451,7 +459,7 @@ public class AccountActionLogObject {
 
 
   public AccountActionLogObject performedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
-    this.performedByAccountId = performedByAccountId;
+    this.performedByAccountId = JsonNullable.<String>of(performedByAccountId);
     return this;
   }
 
@@ -460,22 +468,30 @@ public class AccountActionLogObject {
    * @return performedByAccountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPerformedByAccountId() {
-    return performedByAccountId;
+        return performedByAccountId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPerformedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
+
+  public JsonNullable<String> getPerformedByAccountId_JsonNullable() {
+    return performedByAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID)
+  public void setPerformedByAccountId_JsonNullable(JsonNullable<String> performedByAccountId) {
     this.performedByAccountId = performedByAccountId;
+  }
+
+  public void setPerformedByAccountId(@javax.annotation.Nullable String performedByAccountId) {
+    this.performedByAccountId = JsonNullable.<String>of(performedByAccountId);
   }
 
 
   public AccountActionLogObject resourceId(@javax.annotation.Nullable String resourceId) {
-    this.resourceId = resourceId;
+    this.resourceId = JsonNullable.<String>of(resourceId);
     return this;
   }
 
@@ -484,17 +500,25 @@ public class AccountActionLogObject {
    * @return resourceId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESOURCE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getResourceId() {
-    return resourceId;
+        return resourceId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESOURCE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceId(@javax.annotation.Nullable String resourceId) {
+
+  public JsonNullable<String> getResourceId_JsonNullable() {
+    return resourceId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
+  public void setResourceId_JsonNullable(JsonNullable<String> resourceId) {
     this.resourceId = resourceId;
+  }
+
+  public void setResourceId(@javax.annotation.Nullable String resourceId) {
+    this.resourceId = JsonNullable.<String>of(resourceId);
   }
 
 
@@ -531,15 +555,19 @@ public class AccountActionLogObject {
 
 
   public AccountActionLogObject fieldChanges(@javax.annotation.Nullable List<FieldChange> fieldChanges) {
-    this.fieldChanges = fieldChanges;
+    this.fieldChanges = JsonNullable.<List<FieldChange>>of(fieldChanges);
     return this;
   }
 
   public AccountActionLogObject addFieldChangesItem(FieldChange fieldChangesItem) {
-    if (this.fieldChanges == null) {
-      this.fieldChanges = new ArrayList<>();
+    if (this.fieldChanges == null || !this.fieldChanges.isPresent()) {
+      this.fieldChanges = JsonNullable.<List<FieldChange>>of(new ArrayList<>());
     }
-    this.fieldChanges.add(fieldChangesItem);
+    try {
+      this.fieldChanges.get().add(fieldChangesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -548,17 +576,25 @@ public class AccountActionLogObject {
    * @return fieldChanges
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FIELD_CHANGES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<FieldChange> getFieldChanges() {
-    return fieldChanges;
+        return fieldChanges.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FIELD_CHANGES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFieldChanges(@javax.annotation.Nullable List<FieldChange> fieldChanges) {
+
+  public JsonNullable<List<FieldChange>> getFieldChanges_JsonNullable() {
+    return fieldChanges;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FIELD_CHANGES)
+  public void setFieldChanges_JsonNullable(JsonNullable<List<FieldChange>> fieldChanges) {
     this.fieldChanges = fieldChanges;
+  }
+
+  public void setFieldChanges(@javax.annotation.Nullable List<FieldChange> fieldChanges) {
+    this.fieldChanges = JsonNullable.<List<FieldChange>>of(fieldChanges);
   }
 
 
@@ -574,19 +610,30 @@ public class AccountActionLogObject {
       return false;
     }
     AccountActionLogObject accountActionLogObject = (AccountActionLogObject) o;
-    return Objects.equals(this.id, accountActionLogObject.id) &&
+    return equalsNullable(this.id, accountActionLogObject.id) &&
         Objects.equals(this.timestamp, accountActionLogObject.timestamp) &&
         Objects.equals(this.accountId, accountActionLogObject.accountId) &&
         Objects.equals(this.actionType, accountActionLogObject.actionType) &&
-        Objects.equals(this.performedByAccountId, accountActionLogObject.performedByAccountId) &&
-        Objects.equals(this.resourceId, accountActionLogObject.resourceId) &&
+        equalsNullable(this.performedByAccountId, accountActionLogObject.performedByAccountId) &&
+        equalsNullable(this.resourceId, accountActionLogObject.resourceId) &&
         Objects.equals(this.details, accountActionLogObject.details) &&
-        Objects.equals(this.fieldChanges, accountActionLogObject.fieldChanges);
+        equalsNullable(this.fieldChanges, accountActionLogObject.fieldChanges);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, timestamp, accountId, actionType, performedByAccountId, resourceId, details, fieldChanges);
+    return Objects.hash(hashCodeNullable(id), timestamp, accountId, actionType, hashCodeNullable(performedByAccountId), hashCodeNullable(resourceId), details, hashCodeNullable(fieldChanges));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -87,6 +87,41 @@ class RequestLogFilter(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of path
         if self.path:
             _dict['path'] = self.path.to_dict()
+        # set to None if min_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.min_time is None and "min_time" in self.model_fields_set:
+            _dict['minTime'] = None
+
+        # set to None if max_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_time is None and "max_time" in self.model_fields_set:
+            _dict['maxTime'] = None
+
+        # set to None if methods (nullable) is None
+        # and model_fields_set contains the field
+        if self.methods is None and "methods" in self.model_fields_set:
+            _dict['methods'] = None
+
+        # set to None if not_methods (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_methods is None and "not_methods" in self.model_fields_set:
+            _dict['notMethods'] = None
+
+        # set to None if min_latency_milliseconds (nullable) is None
+        # and model_fields_set contains the field
+        if self.min_latency_milliseconds is None and "min_latency_milliseconds" in self.model_fields_set:
+            _dict['minLatencyMilliseconds'] = None
+
+        # set to None if max_latency_milliseconds (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_latency_milliseconds is None and "max_latency_milliseconds" in self.model_fields_set:
+            _dict['maxLatencyMilliseconds'] = None
+
+        # set to None if user_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_id is None and "user_id" in self.model_fields_set:
+            _dict['userId'] = None
+
         return _dict
 
     @classmethod

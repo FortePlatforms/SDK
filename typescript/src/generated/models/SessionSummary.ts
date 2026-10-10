@@ -36,43 +36,43 @@ export interface SessionSummary {
      * @type {Date}
      * @memberof SessionSummary
      */
-    expirationTime?: Date;
+    expirationTime?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof SessionSummary
      */
-    lastActivityAt?: Date;
+    lastActivityAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof SessionSummary
      */
-    lastReauthenticatedAt?: Date;
+    lastReauthenticatedAt?: Date | null;
     /**
      * 
      * @type {string}
      * @memberof SessionSummary
      */
-    sourceIpAddress?: string;
+    sourceIpAddress?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SessionSummary
      */
-    approximateLocation?: string;
+    approximateLocation?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SessionSummary
      */
-    userAgent?: string;
+    userAgent?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SessionSummary
      */
-    deviceDescription?: string;
+    deviceDescription?: string | null;
     /**
      * 
      * @type {boolean}

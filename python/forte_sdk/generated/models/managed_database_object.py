@@ -118,6 +118,66 @@ class ManagedDatabaseObject(BaseModel):
                 if _item_connections:
                     _items.append(_item_connections.to_dict())
             _dict['connections'] = _items
+        # set to None if cpu (nullable) is None
+        # and model_fields_set contains the field
+        if self.cpu is None and "cpu" in self.model_fields_set:
+            _dict['cpu'] = None
+
+        # set to None if memory_gb (nullable) is None
+        # and model_fields_set contains the field
+        if self.memory_gb is None and "memory_gb" in self.model_fields_set:
+            _dict['memoryGb'] = None
+
+        # set to None if last_modified_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_modified_timestamp is None and "last_modified_timestamp" in self.model_fields_set:
+            _dict['lastModifiedTimestamp'] = None
+
+        # set to None if host (nullable) is None
+        # and model_fields_set contains the field
+        if self.host is None and "host" in self.model_fields_set:
+            _dict['host'] = None
+
+        # set to None if port (nullable) is None
+        # and model_fields_set contains the field
+        if self.port is None and "port" in self.model_fields_set:
+            _dict['port'] = None
+
+        # set to None if database_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.database_name is None and "database_name" in self.model_fields_set:
+            _dict['databaseName'] = None
+
+        # set to None if ssl_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.ssl_mode is None and "ssl_mode" in self.model_fields_set:
+            _dict['sslMode'] = None
+
+        # set to None if read_only (nullable) is None
+        # and model_fields_set contains the field
+        if self.read_only is None and "read_only" in self.model_fields_set:
+            _dict['readOnly'] = None
+
+        # set to None if cleanup_unlock_expires_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.cleanup_unlock_expires_at is None and "cleanup_unlock_expires_at" in self.model_fields_set:
+            _dict['cleanupUnlockExpiresAt'] = None
+
+        # set to None if usage_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.usage_bytes is None and "usage_bytes" in self.model_fields_set:
+            _dict['usageBytes'] = None
+
+        # set to None if physical_usage_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.physical_usage_bytes is None and "physical_usage_bytes" in self.model_fields_set:
+            _dict['physicalUsageBytes'] = None
+
+        # set to None if usage_updated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.usage_updated_at is None and "usage_updated_at" in self.model_fields_set:
+            _dict['usageUpdatedAt'] = None
+
         return _dict
 
     @classmethod

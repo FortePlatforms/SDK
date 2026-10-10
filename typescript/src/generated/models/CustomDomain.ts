@@ -75,31 +75,31 @@ export interface CustomDomain {
      * @type {Date}
      * @memberof CustomDomain
      */
-    verifiedTimestamp?: Date;
+    verifiedTimestamp?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof CustomDomain
      */
-    activatedTimestamp?: Date;
+    activatedTimestamp?: Date | null;
     /**
      * 
      * @type {string}
      * @memberof CustomDomain
      */
-    failureReason?: string;
+    failureReason?: string | null;
     /**
      * 
      * @type {Array<DnsRecordRequirement>}
      * @memberof CustomDomain
      */
-    requiredDnsRecords?: Array<DnsRecordRequirement>;
+    requiredDnsRecords?: Array<DnsRecordRequirement> | null;
     /**
      * 
      * @type {Date}
      * @memberof CustomDomain
      */
-    lastDnsCheckAt?: Date;
+    lastDnsCheckAt?: Date | null;
     /**
      * 
      * @type {DnsValidationResult}

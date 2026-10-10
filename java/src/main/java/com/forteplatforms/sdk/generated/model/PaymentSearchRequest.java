@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.PaymentFilter;
 import com.forteplatforms.sdk.generated.model.PaymentSort;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,12 +55,10 @@ public class PaymentSearchRequest {
   private PaymentSort sort;
 
   public static final String JSON_PROPERTY_NEXT_TOKEN = "nextToken";
-  @javax.annotation.Nullable
-  private String nextToken;
+  private JsonNullable<String> nextToken = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PAGE_SIZE = "pageSize";
-  @javax.annotation.Nullable
-  private Integer pageSize;
+  private JsonNullable<Integer> pageSize = JsonNullable.<Integer>undefined();
 
   public PaymentSearchRequest() { 
   }
@@ -110,7 +112,7 @@ public class PaymentSearchRequest {
 
 
   public PaymentSearchRequest nextToken(@javax.annotation.Nullable String nextToken) {
-    this.nextToken = nextToken;
+    this.nextToken = JsonNullable.<String>of(nextToken);
     return this;
   }
 
@@ -119,22 +121,30 @@ public class PaymentSearchRequest {
    * @return nextToken
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNextToken() {
-    return nextToken;
+        return nextToken.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEXT_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextToken(@javax.annotation.Nullable String nextToken) {
+
+  public JsonNullable<String> getNextToken_JsonNullable() {
+    return nextToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_TOKEN)
+  public void setNextToken_JsonNullable(JsonNullable<String> nextToken) {
     this.nextToken = nextToken;
+  }
+
+  public void setNextToken(@javax.annotation.Nullable String nextToken) {
+    this.nextToken = JsonNullable.<String>of(nextToken);
   }
 
 
   public PaymentSearchRequest pageSize(@javax.annotation.Nullable Integer pageSize) {
-    this.pageSize = pageSize;
+    this.pageSize = JsonNullable.<Integer>of(pageSize);
     return this;
   }
 
@@ -145,17 +155,25 @@ public class PaymentSearchRequest {
    * @return pageSize
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PAGE_SIZE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getPageSize() {
-    return pageSize;
+        return pageSize.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PAGE_SIZE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPageSize(@javax.annotation.Nullable Integer pageSize) {
+
+  public JsonNullable<Integer> getPageSize_JsonNullable() {
+    return pageSize;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAGE_SIZE)
+  public void setPageSize_JsonNullable(JsonNullable<Integer> pageSize) {
     this.pageSize = pageSize;
+  }
+
+  public void setPageSize(@javax.annotation.Nullable Integer pageSize) {
+    this.pageSize = JsonNullable.<Integer>of(pageSize);
   }
 
 
@@ -173,13 +191,24 @@ public class PaymentSearchRequest {
     PaymentSearchRequest paymentSearchRequest = (PaymentSearchRequest) o;
     return Objects.equals(this.filter, paymentSearchRequest.filter) &&
         Objects.equals(this.sort, paymentSearchRequest.sort) &&
-        Objects.equals(this.nextToken, paymentSearchRequest.nextToken) &&
-        Objects.equals(this.pageSize, paymentSearchRequest.pageSize);
+        equalsNullable(this.nextToken, paymentSearchRequest.nextToken) &&
+        equalsNullable(this.pageSize, paymentSearchRequest.pageSize);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filter, sort, nextToken, pageSize);
+    return Objects.hash(filter, sort, hashCodeNullable(nextToken), hashCodeNullable(pageSize));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

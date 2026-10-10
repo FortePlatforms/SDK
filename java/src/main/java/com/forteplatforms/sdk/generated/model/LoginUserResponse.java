@@ -30,6 +30,10 @@ import com.forteplatforms.sdk.generated.model.UserObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -91,17 +95,15 @@ public class LoginUserResponse {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_MFA_STATUS = "mfaStatus";
-  @javax.annotation.Nullable
-  private MfaStatusEnum mfaStatus;
+  private JsonNullable<MfaStatusEnum> mfaStatus = JsonNullable.<MfaStatusEnum>undefined();
 
   public static final String JSON_PROPERTY_AVAILABLE_MFA_METHODS = "availableMfaMethods";
-  @javax.annotation.Nullable
-  private List<MfaMethodSummary> availableMfaMethods = new ArrayList<>();
+  private JsonNullable<List<MfaMethodSummary>> availableMfaMethods = JsonNullable.<List<MfaMethodSummary>>undefined();
 
   public LoginUserResponse() { 
   }
@@ -179,7 +181,7 @@ public class LoginUserResponse {
 
 
   public LoginUserResponse mfaStatus(@javax.annotation.Nullable MfaStatusEnum mfaStatus) {
-    this.mfaStatus = mfaStatus;
+    this.mfaStatus = JsonNullable.<MfaStatusEnum>of(mfaStatus);
     return this;
   }
 
@@ -188,30 +190,42 @@ public class LoginUserResponse {
    * @return mfaStatus
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MFA_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public MfaStatusEnum getMfaStatus() {
-    return mfaStatus;
+        return mfaStatus.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MFA_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMfaStatus(@javax.annotation.Nullable MfaStatusEnum mfaStatus) {
+
+  public JsonNullable<MfaStatusEnum> getMfaStatus_JsonNullable() {
+    return mfaStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MFA_STATUS)
+  public void setMfaStatus_JsonNullable(JsonNullable<MfaStatusEnum> mfaStatus) {
     this.mfaStatus = mfaStatus;
+  }
+
+  public void setMfaStatus(@javax.annotation.Nullable MfaStatusEnum mfaStatus) {
+    this.mfaStatus = JsonNullable.<MfaStatusEnum>of(mfaStatus);
   }
 
 
   public LoginUserResponse availableMfaMethods(@javax.annotation.Nullable List<MfaMethodSummary> availableMfaMethods) {
-    this.availableMfaMethods = availableMfaMethods;
+    this.availableMfaMethods = JsonNullable.<List<MfaMethodSummary>>of(availableMfaMethods);
     return this;
   }
 
   public LoginUserResponse addAvailableMfaMethodsItem(MfaMethodSummary availableMfaMethodsItem) {
-    if (this.availableMfaMethods == null) {
-      this.availableMfaMethods = new ArrayList<>();
+    if (this.availableMfaMethods == null || !this.availableMfaMethods.isPresent()) {
+      this.availableMfaMethods = JsonNullable.<List<MfaMethodSummary>>of(new ArrayList<>());
     }
-    this.availableMfaMethods.add(availableMfaMethodsItem);
+    try {
+      this.availableMfaMethods.get().add(availableMfaMethodsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -220,17 +234,25 @@ public class LoginUserResponse {
    * @return availableMfaMethods
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AVAILABLE_MFA_METHODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<MfaMethodSummary> getAvailableMfaMethods() {
-    return availableMfaMethods;
+        return availableMfaMethods.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AVAILABLE_MFA_METHODS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvailableMfaMethods(@javax.annotation.Nullable List<MfaMethodSummary> availableMfaMethods) {
+
+  public JsonNullable<List<MfaMethodSummary>> getAvailableMfaMethods_JsonNullable() {
+    return availableMfaMethods;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AVAILABLE_MFA_METHODS)
+  public void setAvailableMfaMethods_JsonNullable(JsonNullable<List<MfaMethodSummary>> availableMfaMethods) {
     this.availableMfaMethods = availableMfaMethods;
+  }
+
+  public void setAvailableMfaMethods(@javax.annotation.Nullable List<MfaMethodSummary> availableMfaMethods) {
+    this.availableMfaMethods = JsonNullable.<List<MfaMethodSummary>>of(availableMfaMethods);
   }
 
 
@@ -249,13 +271,24 @@ public class LoginUserResponse {
     return Objects.equals(this.userId, loginUserResponse.userId) &&
         Objects.equals(this.userObject, loginUserResponse.userObject) &&
         Objects.equals(this.sessionToken, loginUserResponse.sessionToken) &&
-        Objects.equals(this.mfaStatus, loginUserResponse.mfaStatus) &&
-        Objects.equals(this.availableMfaMethods, loginUserResponse.availableMfaMethods);
+        equalsNullable(this.mfaStatus, loginUserResponse.mfaStatus) &&
+        equalsNullable(this.availableMfaMethods, loginUserResponse.availableMfaMethods);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, userObject, sessionToken, mfaStatus, availableMfaMethods);
+    return Objects.hash(userId, userObject, sessionToken, hashCodeNullable(mfaStatus), hashCodeNullable(availableMfaMethods));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

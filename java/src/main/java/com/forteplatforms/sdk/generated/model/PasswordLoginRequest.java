@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -48,8 +52,7 @@ public class PasswordLoginRequest {
   private String password;
 
   public static final String JSON_PROPERTY_RECAPTCHA_TOKEN = "recaptchaToken";
-  @javax.annotation.Nullable
-  private String recaptchaToken;
+  private JsonNullable<String> recaptchaToken = JsonNullable.<String>undefined();
 
   public PasswordLoginRequest() { 
   }
@@ -103,7 +106,7 @@ public class PasswordLoginRequest {
 
 
   public PasswordLoginRequest recaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
-    this.recaptchaToken = recaptchaToken;
+    this.recaptchaToken = JsonNullable.<String>of(recaptchaToken);
     return this;
   }
 
@@ -112,17 +115,25 @@ public class PasswordLoginRequest {
    * @return recaptchaToken
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRecaptchaToken() {
-    return recaptchaToken;
+        return recaptchaToken.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRecaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
+
+  public JsonNullable<String> getRecaptchaToken_JsonNullable() {
+    return recaptchaToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RECAPTCHA_TOKEN)
+  public void setRecaptchaToken_JsonNullable(JsonNullable<String> recaptchaToken) {
     this.recaptchaToken = recaptchaToken;
+  }
+
+  public void setRecaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
+    this.recaptchaToken = JsonNullable.<String>of(recaptchaToken);
   }
 
 
@@ -140,12 +151,23 @@ public class PasswordLoginRequest {
     PasswordLoginRequest passwordLoginRequest = (PasswordLoginRequest) o;
     return Objects.equals(this.contactValue, passwordLoginRequest.contactValue) &&
         Objects.equals(this.password, passwordLoginRequest.password) &&
-        Objects.equals(this.recaptchaToken, passwordLoginRequest.recaptchaToken);
+        equalsNullable(this.recaptchaToken, passwordLoginRequest.recaptchaToken);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contactValue, password, recaptchaToken);
+    return Objects.hash(contactValue, password, hashCodeNullable(recaptchaToken));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

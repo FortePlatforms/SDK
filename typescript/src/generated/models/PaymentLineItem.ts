@@ -42,13 +42,13 @@ export interface PaymentLineItem {
      * @type {string}
      * @memberof PaymentLineItem
      */
-    taxCode?: string;
+    taxCode?: string | null;
     /**
      * 
      * @type {number}
      * @memberof PaymentLineItem
      */
-    taxAmountCents?: number;
+    taxAmountCents?: number | null;
 }
 
 /**

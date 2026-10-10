@@ -28,6 +28,10 @@ import com.forteplatforms.sdk.generated.model.DnsRecordRequirement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -98,12 +102,10 @@ public class DnsRecordCheck {
   private List<String> observedValues = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ERROR_DETAIL = "errorDetail";
-  @javax.annotation.Nullable
-  private String errorDetail;
+  private JsonNullable<String> errorDetail = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RECOMMENDED_VALUE = "recommendedValue";
-  @javax.annotation.Nullable
-  private String recommendedValue;
+  private JsonNullable<String> recommendedValue = JsonNullable.<String>undefined();
 
   public DnsRecordCheck() { 
   }
@@ -189,7 +191,7 @@ public class DnsRecordCheck {
 
 
   public DnsRecordCheck errorDetail(@javax.annotation.Nullable String errorDetail) {
-    this.errorDetail = errorDetail;
+    this.errorDetail = JsonNullable.<String>of(errorDetail);
     return this;
   }
 
@@ -198,22 +200,30 @@ public class DnsRecordCheck {
    * @return errorDetail
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_DETAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getErrorDetail() {
-    return errorDetail;
+        return errorDetail.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_DETAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorDetail(@javax.annotation.Nullable String errorDetail) {
+
+  public JsonNullable<String> getErrorDetail_JsonNullable() {
+    return errorDetail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_DETAIL)
+  public void setErrorDetail_JsonNullable(JsonNullable<String> errorDetail) {
     this.errorDetail = errorDetail;
+  }
+
+  public void setErrorDetail(@javax.annotation.Nullable String errorDetail) {
+    this.errorDetail = JsonNullable.<String>of(errorDetail);
   }
 
 
   public DnsRecordCheck recommendedValue(@javax.annotation.Nullable String recommendedValue) {
-    this.recommendedValue = recommendedValue;
+    this.recommendedValue = JsonNullable.<String>of(recommendedValue);
     return this;
   }
 
@@ -222,17 +232,25 @@ public class DnsRecordCheck {
    * @return recommendedValue
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RECOMMENDED_VALUE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRecommendedValue() {
-    return recommendedValue;
+        return recommendedValue.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RECOMMENDED_VALUE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRecommendedValue(@javax.annotation.Nullable String recommendedValue) {
+
+  public JsonNullable<String> getRecommendedValue_JsonNullable() {
+    return recommendedValue;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RECOMMENDED_VALUE)
+  public void setRecommendedValue_JsonNullable(JsonNullable<String> recommendedValue) {
     this.recommendedValue = recommendedValue;
+  }
+
+  public void setRecommendedValue(@javax.annotation.Nullable String recommendedValue) {
+    this.recommendedValue = JsonNullable.<String>of(recommendedValue);
   }
 
 
@@ -251,13 +269,24 @@ public class DnsRecordCheck {
     return Objects.equals(this.requirement, dnsRecordCheck.requirement) &&
         Objects.equals(this.status, dnsRecordCheck.status) &&
         Objects.equals(this.observedValues, dnsRecordCheck.observedValues) &&
-        Objects.equals(this.errorDetail, dnsRecordCheck.errorDetail) &&
-        Objects.equals(this.recommendedValue, dnsRecordCheck.recommendedValue);
+        equalsNullable(this.errorDetail, dnsRecordCheck.errorDetail) &&
+        equalsNullable(this.recommendedValue, dnsRecordCheck.recommendedValue);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requirement, status, observedValues, errorDetail, recommendedValue);
+    return Objects.hash(requirement, status, observedValues, hashCodeNullable(errorDetail), hashCodeNullable(recommendedValue));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

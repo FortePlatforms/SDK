@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -54,12 +58,10 @@ public class PaymentLineItem {
   private Integer quantity;
 
   public static final String JSON_PROPERTY_TAX_CODE = "taxCode";
-  @javax.annotation.Nullable
-  private String taxCode;
+  private JsonNullable<String> taxCode = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TAX_AMOUNT_CENTS = "taxAmountCents";
-  @javax.annotation.Nullable
-  private Long taxAmountCents;
+  private JsonNullable<Long> taxAmountCents = JsonNullable.<Long>undefined();
 
   public PaymentLineItem() { 
   }
@@ -139,7 +141,7 @@ public class PaymentLineItem {
 
 
   public PaymentLineItem taxCode(@javax.annotation.Nullable String taxCode) {
-    this.taxCode = taxCode;
+    this.taxCode = JsonNullable.<String>of(taxCode);
     return this;
   }
 
@@ -148,22 +150,30 @@ public class PaymentLineItem {
    * @return taxCode
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TAX_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTaxCode() {
-    return taxCode;
+        return taxCode.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TAX_CODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTaxCode(@javax.annotation.Nullable String taxCode) {
+
+  public JsonNullable<String> getTaxCode_JsonNullable() {
+    return taxCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_CODE)
+  public void setTaxCode_JsonNullable(JsonNullable<String> taxCode) {
     this.taxCode = taxCode;
+  }
+
+  public void setTaxCode(@javax.annotation.Nullable String taxCode) {
+    this.taxCode = JsonNullable.<String>of(taxCode);
   }
 
 
   public PaymentLineItem taxAmountCents(@javax.annotation.Nullable Long taxAmountCents) {
-    this.taxAmountCents = taxAmountCents;
+    this.taxAmountCents = JsonNullable.<Long>of(taxAmountCents);
     return this;
   }
 
@@ -172,17 +182,25 @@ public class PaymentLineItem {
    * @return taxAmountCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TAX_AMOUNT_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTaxAmountCents() {
-    return taxAmountCents;
+        return taxAmountCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TAX_AMOUNT_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTaxAmountCents(@javax.annotation.Nullable Long taxAmountCents) {
+
+  public JsonNullable<Long> getTaxAmountCents_JsonNullable() {
+    return taxAmountCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_AMOUNT_CENTS)
+  public void setTaxAmountCents_JsonNullable(JsonNullable<Long> taxAmountCents) {
     this.taxAmountCents = taxAmountCents;
+  }
+
+  public void setTaxAmountCents(@javax.annotation.Nullable Long taxAmountCents) {
+    this.taxAmountCents = JsonNullable.<Long>of(taxAmountCents);
   }
 
 
@@ -201,13 +219,24 @@ public class PaymentLineItem {
     return Objects.equals(this.description, paymentLineItem.description) &&
         Objects.equals(this.unitAmountCents, paymentLineItem.unitAmountCents) &&
         Objects.equals(this.quantity, paymentLineItem.quantity) &&
-        Objects.equals(this.taxCode, paymentLineItem.taxCode) &&
-        Objects.equals(this.taxAmountCents, paymentLineItem.taxAmountCents);
+        equalsNullable(this.taxCode, paymentLineItem.taxCode) &&
+        equalsNullable(this.taxAmountCents, paymentLineItem.taxAmountCents);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, unitAmountCents, quantity, taxCode, taxAmountCents);
+    return Objects.hash(description, unitAmountCents, quantity, hashCodeNullable(taxCode), hashCodeNullable(taxAmountCents));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

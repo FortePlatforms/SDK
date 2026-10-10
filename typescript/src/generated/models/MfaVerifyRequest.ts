@@ -30,13 +30,13 @@ export interface MfaVerifyRequest {
      * @type {string}
      * @memberof MfaVerifyRequest
      */
-    code?: string;
+    code?: string | null;
     /**
      * 
      * @type {string}
      * @memberof MfaVerifyRequest
      */
-    webAuthnAssertion?: string;
+    webAuthnAssertion?: string | null;
 }
 
 

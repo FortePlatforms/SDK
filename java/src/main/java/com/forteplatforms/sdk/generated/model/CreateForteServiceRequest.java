@@ -30,6 +30,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -99,8 +103,7 @@ public class CreateForteServiceRequest {
   private BuildTriggerEnum buildTrigger;
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
-  @javax.annotation.Nullable
-  private String githubBranch;
+  private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SERVICE_NAME = "serviceName";
   @javax.annotation.Nonnull
@@ -115,36 +118,29 @@ public class CreateForteServiceRequest {
   private Map<String, String> secrets = new HashMap<>();
 
   public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
-  @javax.annotation.Nullable
-  private Integer baseInstances;
+  private JsonNullable<Integer> baseInstances = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_REGION_REPLICAS = "regionReplicas";
   @javax.annotation.Nullable
   private Map<String, Integer> regionReplicas = new HashMap<>();
 
   public static final String JSON_PROPERTY_CONTAINER_CPU = "containerCpu";
-  @javax.annotation.Nullable
-  private String containerCpu;
+  private JsonNullable<String> containerCpu = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HEALTH_CHECK_PORT = "healthCheckPort";
-  @javax.annotation.Nullable
-  private Integer healthCheckPort;
+  private JsonNullable<Integer> healthCheckPort = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_HEALTH_CHECK_PATH = "healthCheckPath";
-  @javax.annotation.Nullable
-  private String healthCheckPath;
+  private JsonNullable<String> healthCheckPath = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
-  @javax.annotation.Nullable
-  private String baseDirectory;
+  private JsonNullable<String> baseDirectory = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED = "requestResponseBodyLoggingEnabled";
-  @javax.annotation.Nullable
-  private Boolean requestResponseBodyLoggingEnabled;
+  private JsonNullable<Boolean> requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_DATABASE_CONNECTIONS = "databaseConnections";
-  @javax.annotation.Nullable
-  private List<CreateServiceDatabaseConnectionRequest> databaseConnections = new ArrayList<>();
+  private JsonNullable<List<CreateServiceDatabaseConnectionRequest>> databaseConnections = JsonNullable.<List<CreateServiceDatabaseConnectionRequest>>undefined();
 
   public CreateForteServiceRequest() { 
   }
@@ -198,7 +194,7 @@ public class CreateForteServiceRequest {
 
 
   public CreateForteServiceRequest githubBranch(@javax.annotation.Nullable String githubBranch) {
-    this.githubBranch = githubBranch;
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
     return this;
   }
 
@@ -207,17 +203,25 @@ public class CreateForteServiceRequest {
    * @return githubBranch
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGithubBranch() {
-    return githubBranch;
+        return githubBranch.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+
+  public JsonNullable<String> getGithubBranch_JsonNullable() {
+    return githubBranch;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_BRANCH)
+  public void setGithubBranch_JsonNullable(JsonNullable<String> githubBranch) {
     this.githubBranch = githubBranch;
+  }
+
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
   }
 
 
@@ -310,7 +314,7 @@ public class CreateForteServiceRequest {
 
 
   public CreateForteServiceRequest baseInstances(@javax.annotation.Nullable Integer baseInstances) {
-    this.baseInstances = baseInstances;
+    this.baseInstances = JsonNullable.<Integer>of(baseInstances);
     return this;
   }
 
@@ -321,17 +325,25 @@ public class CreateForteServiceRequest {
    * @return baseInstances
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BASE_INSTANCES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getBaseInstances() {
-    return baseInstances;
+        return baseInstances.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BASE_INSTANCES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBaseInstances(@javax.annotation.Nullable Integer baseInstances) {
+
+  public JsonNullable<Integer> getBaseInstances_JsonNullable() {
+    return baseInstances;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BASE_INSTANCES)
+  public void setBaseInstances_JsonNullable(JsonNullable<Integer> baseInstances) {
     this.baseInstances = baseInstances;
+  }
+
+  public void setBaseInstances(@javax.annotation.Nullable Integer baseInstances) {
+    this.baseInstances = JsonNullable.<Integer>of(baseInstances);
   }
 
 
@@ -368,7 +380,7 @@ public class CreateForteServiceRequest {
 
 
   public CreateForteServiceRequest containerCpu(@javax.annotation.Nullable String containerCpu) {
-    this.containerCpu = containerCpu;
+    this.containerCpu = JsonNullable.<String>of(containerCpu);
     return this;
   }
 
@@ -377,22 +389,30 @@ public class CreateForteServiceRequest {
    * @return containerCpu
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTAINER_CPU, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getContainerCpu() {
-    return containerCpu;
+        return containerCpu.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTAINER_CPU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerCpu(@javax.annotation.Nullable String containerCpu) {
+
+  public JsonNullable<String> getContainerCpu_JsonNullable() {
+    return containerCpu;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTAINER_CPU)
+  public void setContainerCpu_JsonNullable(JsonNullable<String> containerCpu) {
     this.containerCpu = containerCpu;
+  }
+
+  public void setContainerCpu(@javax.annotation.Nullable String containerCpu) {
+    this.containerCpu = JsonNullable.<String>of(containerCpu);
   }
 
 
   public CreateForteServiceRequest healthCheckPort(@javax.annotation.Nullable Integer healthCheckPort) {
-    this.healthCheckPort = healthCheckPort;
+    this.healthCheckPort = JsonNullable.<Integer>of(healthCheckPort);
     return this;
   }
 
@@ -403,22 +423,30 @@ public class CreateForteServiceRequest {
    * @return healthCheckPort
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PORT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getHealthCheckPort() {
-    return healthCheckPort;
+        return healthCheckPort.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthCheckPort(@javax.annotation.Nullable Integer healthCheckPort) {
+
+  public JsonNullable<Integer> getHealthCheckPort_JsonNullable() {
+    return healthCheckPort;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_PORT)
+  public void setHealthCheckPort_JsonNullable(JsonNullable<Integer> healthCheckPort) {
     this.healthCheckPort = healthCheckPort;
+  }
+
+  public void setHealthCheckPort(@javax.annotation.Nullable Integer healthCheckPort) {
+    this.healthCheckPort = JsonNullable.<Integer>of(healthCheckPort);
   }
 
 
   public CreateForteServiceRequest healthCheckPath(@javax.annotation.Nullable String healthCheckPath) {
-    this.healthCheckPath = healthCheckPath;
+    this.healthCheckPath = JsonNullable.<String>of(healthCheckPath);
     return this;
   }
 
@@ -427,22 +455,30 @@ public class CreateForteServiceRequest {
    * @return healthCheckPath
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getHealthCheckPath() {
-    return healthCheckPath;
+        return healthCheckPath.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HEALTH_CHECK_PATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthCheckPath(@javax.annotation.Nullable String healthCheckPath) {
+
+  public JsonNullable<String> getHealthCheckPath_JsonNullable() {
+    return healthCheckPath;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_PATH)
+  public void setHealthCheckPath_JsonNullable(JsonNullable<String> healthCheckPath) {
     this.healthCheckPath = healthCheckPath;
+  }
+
+  public void setHealthCheckPath(@javax.annotation.Nullable String healthCheckPath) {
+    this.healthCheckPath = JsonNullable.<String>of(healthCheckPath);
   }
 
 
   public CreateForteServiceRequest baseDirectory(@javax.annotation.Nullable String baseDirectory) {
-    this.baseDirectory = baseDirectory;
+    this.baseDirectory = JsonNullable.<String>of(baseDirectory);
     return this;
   }
 
@@ -451,22 +487,30 @@ public class CreateForteServiceRequest {
    * @return baseDirectory
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBaseDirectory() {
-    return baseDirectory;
+        return baseDirectory.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+
+  public JsonNullable<String> getBaseDirectory_JsonNullable() {
+    return baseDirectory;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BASE_DIRECTORY)
+  public void setBaseDirectory_JsonNullable(JsonNullable<String> baseDirectory) {
     this.baseDirectory = baseDirectory;
+  }
+
+  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = JsonNullable.<String>of(baseDirectory);
   }
 
 
   public CreateForteServiceRequest requestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
-    this.requestResponseBodyLoggingEnabled = requestResponseBodyLoggingEnabled;
+    this.requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>of(requestResponseBodyLoggingEnabled);
     return this;
   }
 
@@ -475,30 +519,42 @@ public class CreateForteServiceRequest {
    * @return requestResponseBodyLoggingEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRequestResponseBodyLoggingEnabled() {
-    return requestResponseBodyLoggingEnabled;
+        return requestResponseBodyLoggingEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
+
+  public JsonNullable<Boolean> getRequestResponseBodyLoggingEnabled_JsonNullable() {
+    return requestResponseBodyLoggingEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED)
+  public void setRequestResponseBodyLoggingEnabled_JsonNullable(JsonNullable<Boolean> requestResponseBodyLoggingEnabled) {
     this.requestResponseBodyLoggingEnabled = requestResponseBodyLoggingEnabled;
+  }
+
+  public void setRequestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
+    this.requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>of(requestResponseBodyLoggingEnabled);
   }
 
 
   public CreateForteServiceRequest databaseConnections(@javax.annotation.Nullable List<CreateServiceDatabaseConnectionRequest> databaseConnections) {
-    this.databaseConnections = databaseConnections;
+    this.databaseConnections = JsonNullable.<List<CreateServiceDatabaseConnectionRequest>>of(databaseConnections);
     return this;
   }
 
   public CreateForteServiceRequest addDatabaseConnectionsItem(CreateServiceDatabaseConnectionRequest databaseConnectionsItem) {
-    if (this.databaseConnections == null) {
-      this.databaseConnections = new ArrayList<>();
+    if (this.databaseConnections == null || !this.databaseConnections.isPresent()) {
+      this.databaseConnections = JsonNullable.<List<CreateServiceDatabaseConnectionRequest>>of(new ArrayList<>());
     }
-    this.databaseConnections.add(databaseConnectionsItem);
+    try {
+      this.databaseConnections.get().add(databaseConnectionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -507,17 +563,25 @@ public class CreateForteServiceRequest {
    * @return databaseConnections
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DATABASE_CONNECTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<CreateServiceDatabaseConnectionRequest> getDatabaseConnections() {
-    return databaseConnections;
+        return databaseConnections.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DATABASE_CONNECTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDatabaseConnections(@javax.annotation.Nullable List<CreateServiceDatabaseConnectionRequest> databaseConnections) {
+
+  public JsonNullable<List<CreateServiceDatabaseConnectionRequest>> getDatabaseConnections_JsonNullable() {
+    return databaseConnections;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DATABASE_CONNECTIONS)
+  public void setDatabaseConnections_JsonNullable(JsonNullable<List<CreateServiceDatabaseConnectionRequest>> databaseConnections) {
     this.databaseConnections = databaseConnections;
+  }
+
+  public void setDatabaseConnections(@javax.annotation.Nullable List<CreateServiceDatabaseConnectionRequest> databaseConnections) {
+    this.databaseConnections = JsonNullable.<List<CreateServiceDatabaseConnectionRequest>>of(databaseConnections);
   }
 
 
@@ -535,23 +599,34 @@ public class CreateForteServiceRequest {
     CreateForteServiceRequest createForteServiceRequest = (CreateForteServiceRequest) o;
     return Objects.equals(this.githubRepositoryUrl, createForteServiceRequest.githubRepositoryUrl) &&
         Objects.equals(this.buildTrigger, createForteServiceRequest.buildTrigger) &&
-        Objects.equals(this.githubBranch, createForteServiceRequest.githubBranch) &&
+        equalsNullable(this.githubBranch, createForteServiceRequest.githubBranch) &&
         Objects.equals(this.serviceName, createForteServiceRequest.serviceName) &&
         Objects.equals(this.environmentVariables, createForteServiceRequest.environmentVariables) &&
         Objects.equals(this.secrets, createForteServiceRequest.secrets) &&
-        Objects.equals(this.baseInstances, createForteServiceRequest.baseInstances) &&
+        equalsNullable(this.baseInstances, createForteServiceRequest.baseInstances) &&
         Objects.equals(this.regionReplicas, createForteServiceRequest.regionReplicas) &&
-        Objects.equals(this.containerCpu, createForteServiceRequest.containerCpu) &&
-        Objects.equals(this.healthCheckPort, createForteServiceRequest.healthCheckPort) &&
-        Objects.equals(this.healthCheckPath, createForteServiceRequest.healthCheckPath) &&
-        Objects.equals(this.baseDirectory, createForteServiceRequest.baseDirectory) &&
-        Objects.equals(this.requestResponseBodyLoggingEnabled, createForteServiceRequest.requestResponseBodyLoggingEnabled) &&
-        Objects.equals(this.databaseConnections, createForteServiceRequest.databaseConnections);
+        equalsNullable(this.containerCpu, createForteServiceRequest.containerCpu) &&
+        equalsNullable(this.healthCheckPort, createForteServiceRequest.healthCheckPort) &&
+        equalsNullable(this.healthCheckPath, createForteServiceRequest.healthCheckPath) &&
+        equalsNullable(this.baseDirectory, createForteServiceRequest.baseDirectory) &&
+        equalsNullable(this.requestResponseBodyLoggingEnabled, createForteServiceRequest.requestResponseBodyLoggingEnabled) &&
+        equalsNullable(this.databaseConnections, createForteServiceRequest.databaseConnections);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(githubRepositoryUrl, buildTrigger, githubBranch, serviceName, environmentVariables, secrets, baseInstances, regionReplicas, containerCpu, healthCheckPort, healthCheckPath, baseDirectory, requestResponseBodyLoggingEnabled, databaseConnections);
+    return Objects.hash(githubRepositoryUrl, buildTrigger, hashCodeNullable(githubBranch), serviceName, environmentVariables, secrets, hashCodeNullable(baseInstances), regionReplicas, hashCodeNullable(containerCpu), hashCodeNullable(healthCheckPort), hashCodeNullable(healthCheckPath), hashCodeNullable(baseDirectory), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(databaseConnections));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

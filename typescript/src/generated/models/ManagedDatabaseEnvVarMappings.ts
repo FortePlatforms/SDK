@@ -24,49 +24,49 @@ export interface ManagedDatabaseEnvVarMappings {
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
-    connectionStringEnvVar?: string;
+    connectionStringEnvVar?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
-    hostEnvVar?: string;
+    hostEnvVar?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
-    portEnvVar?: string;
+    portEnvVar?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
-    databaseEnvVar?: string;
+    databaseEnvVar?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
-    usernameEnvVar?: string;
+    usernameEnvVar?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
-    passwordEnvVar?: string;
+    passwordEnvVar?: string | null;
     /**
      * 
      * @type {ManagedDatabaseEnvVarMappingsConnectionStringFormatType}
      * @memberof ManagedDatabaseEnvVarMappings
      */
-    connectionStringFormat?: ManagedDatabaseEnvVarMappingsConnectionStringFormatType;
+    connectionStringFormat?: ManagedDatabaseEnvVarMappingsConnectionStringFormatType | null;
     /**
      * 
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
-    connectionStringTemplate?: string;
+    connectionStringTemplate?: string | null;
 }
 
 

@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -89,39 +93,33 @@ public class HealthCheckDetectionError {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_ERROR_TYPE = "errorType";
-  @javax.annotation.Nullable
-  private ErrorTypeEnum errorType;
+  private JsonNullable<ErrorTypeEnum> errorType = JsonNullable.<ErrorTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
-  @javax.annotation.Nullable
-  private String errorMessage;
+  private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EXPOSED_PORT = "exposedPort";
-  @javax.annotation.Nullable
-  private Integer exposedPort;
+  private JsonNullable<Integer> exposedPort = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_DETECTED_FRAMEWORK = "detectedFramework";
-  @javax.annotation.Nullable
-  private String detectedFramework;
+  private JsonNullable<String> detectedFramework = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SEARCHED_PATHS = "searchedPaths";
-  @javax.annotation.Nullable
-  private List<String> searchedPaths = new ArrayList<>();
+  private JsonNullable<List<String>> searchedPaths = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_SUGGESTIONS = "suggestions";
-  @javax.annotation.Nullable
-  private List<String> suggestions = new ArrayList<>();
+  private JsonNullable<List<String>> suggestions = JsonNullable.<List<String>>undefined();
 
   public HealthCheckDetectionError() { 
   }
 
   public HealthCheckDetectionError errorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
-    this.errorType = errorType;
+    this.errorType = JsonNullable.<ErrorTypeEnum>of(errorType);
     return this;
   }
 
@@ -130,22 +128,30 @@ public class HealthCheckDetectionError {
    * @return errorType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public ErrorTypeEnum getErrorType() {
-    return errorType;
+        return errorType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
+
+  public JsonNullable<ErrorTypeEnum> getErrorType_JsonNullable() {
+    return errorType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_TYPE)
+  public void setErrorType_JsonNullable(JsonNullable<ErrorTypeEnum> errorType) {
     this.errorType = errorType;
+  }
+
+  public void setErrorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
+    this.errorType = JsonNullable.<ErrorTypeEnum>of(errorType);
   }
 
 
   public HealthCheckDetectionError errorMessage(@javax.annotation.Nullable String errorMessage) {
-    this.errorMessage = errorMessage;
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
     return this;
   }
 
@@ -154,22 +160,30 @@ public class HealthCheckDetectionError {
    * @return errorMessage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getErrorMessage() {
-    return errorMessage;
+        return errorMessage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+
+  public JsonNullable<String> getErrorMessage_JsonNullable() {
+    return errorMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  public void setErrorMessage_JsonNullable(JsonNullable<String> errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
   }
 
 
   public HealthCheckDetectionError exposedPort(@javax.annotation.Nullable Integer exposedPort) {
-    this.exposedPort = exposedPort;
+    this.exposedPort = JsonNullable.<Integer>of(exposedPort);
     return this;
   }
 
@@ -178,22 +192,30 @@ public class HealthCheckDetectionError {
    * @return exposedPort
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPOSED_PORT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getExposedPort() {
-    return exposedPort;
+        return exposedPort.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXPOSED_PORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExposedPort(@javax.annotation.Nullable Integer exposedPort) {
+
+  public JsonNullable<Integer> getExposedPort_JsonNullable() {
+    return exposedPort;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPOSED_PORT)
+  public void setExposedPort_JsonNullable(JsonNullable<Integer> exposedPort) {
     this.exposedPort = exposedPort;
+  }
+
+  public void setExposedPort(@javax.annotation.Nullable Integer exposedPort) {
+    this.exposedPort = JsonNullable.<Integer>of(exposedPort);
   }
 
 
   public HealthCheckDetectionError detectedFramework(@javax.annotation.Nullable String detectedFramework) {
-    this.detectedFramework = detectedFramework;
+    this.detectedFramework = JsonNullable.<String>of(detectedFramework);
     return this;
   }
 
@@ -202,30 +224,42 @@ public class HealthCheckDetectionError {
    * @return detectedFramework
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DETECTED_FRAMEWORK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDetectedFramework() {
-    return detectedFramework;
+        return detectedFramework.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DETECTED_FRAMEWORK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetectedFramework(@javax.annotation.Nullable String detectedFramework) {
+
+  public JsonNullable<String> getDetectedFramework_JsonNullable() {
+    return detectedFramework;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DETECTED_FRAMEWORK)
+  public void setDetectedFramework_JsonNullable(JsonNullable<String> detectedFramework) {
     this.detectedFramework = detectedFramework;
+  }
+
+  public void setDetectedFramework(@javax.annotation.Nullable String detectedFramework) {
+    this.detectedFramework = JsonNullable.<String>of(detectedFramework);
   }
 
 
   public HealthCheckDetectionError searchedPaths(@javax.annotation.Nullable List<String> searchedPaths) {
-    this.searchedPaths = searchedPaths;
+    this.searchedPaths = JsonNullable.<List<String>>of(searchedPaths);
     return this;
   }
 
   public HealthCheckDetectionError addSearchedPathsItem(String searchedPathsItem) {
-    if (this.searchedPaths == null) {
-      this.searchedPaths = new ArrayList<>();
+    if (this.searchedPaths == null || !this.searchedPaths.isPresent()) {
+      this.searchedPaths = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.searchedPaths.add(searchedPathsItem);
+    try {
+      this.searchedPaths.get().add(searchedPathsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -234,30 +268,42 @@ public class HealthCheckDetectionError {
    * @return searchedPaths
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SEARCHED_PATHS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getSearchedPaths() {
-    return searchedPaths;
+        return searchedPaths.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SEARCHED_PATHS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSearchedPaths(@javax.annotation.Nullable List<String> searchedPaths) {
+
+  public JsonNullable<List<String>> getSearchedPaths_JsonNullable() {
+    return searchedPaths;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SEARCHED_PATHS)
+  public void setSearchedPaths_JsonNullable(JsonNullable<List<String>> searchedPaths) {
     this.searchedPaths = searchedPaths;
+  }
+
+  public void setSearchedPaths(@javax.annotation.Nullable List<String> searchedPaths) {
+    this.searchedPaths = JsonNullable.<List<String>>of(searchedPaths);
   }
 
 
   public HealthCheckDetectionError suggestions(@javax.annotation.Nullable List<String> suggestions) {
-    this.suggestions = suggestions;
+    this.suggestions = JsonNullable.<List<String>>of(suggestions);
     return this;
   }
 
   public HealthCheckDetectionError addSuggestionsItem(String suggestionsItem) {
-    if (this.suggestions == null) {
-      this.suggestions = new ArrayList<>();
+    if (this.suggestions == null || !this.suggestions.isPresent()) {
+      this.suggestions = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.suggestions.add(suggestionsItem);
+    try {
+      this.suggestions.get().add(suggestionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -266,17 +312,25 @@ public class HealthCheckDetectionError {
    * @return suggestions
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUGGESTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getSuggestions() {
-    return suggestions;
+        return suggestions.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUGGESTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSuggestions(@javax.annotation.Nullable List<String> suggestions) {
+
+  public JsonNullable<List<String>> getSuggestions_JsonNullable() {
+    return suggestions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
+  public void setSuggestions_JsonNullable(JsonNullable<List<String>> suggestions) {
     this.suggestions = suggestions;
+  }
+
+  public void setSuggestions(@javax.annotation.Nullable List<String> suggestions) {
+    this.suggestions = JsonNullable.<List<String>>of(suggestions);
   }
 
 
@@ -292,17 +346,28 @@ public class HealthCheckDetectionError {
       return false;
     }
     HealthCheckDetectionError healthCheckDetectionError = (HealthCheckDetectionError) o;
-    return Objects.equals(this.errorType, healthCheckDetectionError.errorType) &&
-        Objects.equals(this.errorMessage, healthCheckDetectionError.errorMessage) &&
-        Objects.equals(this.exposedPort, healthCheckDetectionError.exposedPort) &&
-        Objects.equals(this.detectedFramework, healthCheckDetectionError.detectedFramework) &&
-        Objects.equals(this.searchedPaths, healthCheckDetectionError.searchedPaths) &&
-        Objects.equals(this.suggestions, healthCheckDetectionError.suggestions);
+    return equalsNullable(this.errorType, healthCheckDetectionError.errorType) &&
+        equalsNullable(this.errorMessage, healthCheckDetectionError.errorMessage) &&
+        equalsNullable(this.exposedPort, healthCheckDetectionError.exposedPort) &&
+        equalsNullable(this.detectedFramework, healthCheckDetectionError.detectedFramework) &&
+        equalsNullable(this.searchedPaths, healthCheckDetectionError.searchedPaths) &&
+        equalsNullable(this.suggestions, healthCheckDetectionError.suggestions);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorType, errorMessage, exposedPort, detectedFramework, searchedPaths, suggestions);
+    return Objects.hash(hashCodeNullable(errorType), hashCodeNullable(errorMessage), hashCodeNullable(exposedPort), hashCodeNullable(detectedFramework), hashCodeNullable(searchedPaths), hashCodeNullable(suggestions));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

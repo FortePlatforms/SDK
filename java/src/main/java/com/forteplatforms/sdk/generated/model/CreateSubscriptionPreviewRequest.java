@@ -30,6 +30,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -99,12 +103,10 @@ public class CreateSubscriptionPreviewRequest {
   private PaymentAddress customerAddress;
 
   public static final String JSON_PROPERTY_START_TIME = "startTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime startTime;
+  private JsonNullable<OffsetDateTime> startTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_END_TIME = "endTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime endTime;
+  private JsonNullable<OffsetDateTime> endTime = JsonNullable.<OffsetDateTime>undefined();
 
   public CreateSubscriptionPreviewRequest() { 
   }
@@ -214,7 +216,7 @@ public class CreateSubscriptionPreviewRequest {
 
 
   public CreateSubscriptionPreviewRequest startTime(@javax.annotation.Nullable OffsetDateTime startTime) {
-    this.startTime = startTime;
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
     return this;
   }
 
@@ -223,22 +225,30 @@ public class CreateSubscriptionPreviewRequest {
    * @return startTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getStartTime() {
-    return startTime;
+        return startTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+
+  public JsonNullable<OffsetDateTime> getStartTime_JsonNullable() {
+    return startTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_START_TIME)
+  public void setStartTime_JsonNullable(JsonNullable<OffsetDateTime> startTime) {
     this.startTime = startTime;
+  }
+
+  public void setStartTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
   }
 
 
   public CreateSubscriptionPreviewRequest endTime(@javax.annotation.Nullable OffsetDateTime endTime) {
-    this.endTime = endTime;
+    this.endTime = JsonNullable.<OffsetDateTime>of(endTime);
     return this;
   }
 
@@ -247,17 +257,25 @@ public class CreateSubscriptionPreviewRequest {
    * @return endTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_END_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getEndTime() {
-    return endTime;
+        return endTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_END_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndTime(@javax.annotation.Nullable OffsetDateTime endTime) {
+
+  public JsonNullable<OffsetDateTime> getEndTime_JsonNullable() {
+    return endTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_END_TIME)
+  public void setEndTime_JsonNullable(JsonNullable<OffsetDateTime> endTime) {
     this.endTime = endTime;
+  }
+
+  public void setEndTime(@javax.annotation.Nullable OffsetDateTime endTime) {
+    this.endTime = JsonNullable.<OffsetDateTime>of(endTime);
   }
 
 
@@ -277,13 +295,24 @@ public class CreateSubscriptionPreviewRequest {
         Objects.equals(this.lineItems, createSubscriptionPreviewRequest.lineItems) &&
         Objects.equals(this.interval, createSubscriptionPreviewRequest.interval) &&
         Objects.equals(this.customerAddress, createSubscriptionPreviewRequest.customerAddress) &&
-        Objects.equals(this.startTime, createSubscriptionPreviewRequest.startTime) &&
-        Objects.equals(this.endTime, createSubscriptionPreviewRequest.endTime);
+        equalsNullable(this.startTime, createSubscriptionPreviewRequest.startTime) &&
+        equalsNullable(this.endTime, createSubscriptionPreviewRequest.endTime);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, lineItems, interval, customerAddress, startTime, endTime);
+    return Objects.hash(currency, lineItems, interval, customerAddress, hashCodeNullable(startTime), hashCodeNullable(endTime));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

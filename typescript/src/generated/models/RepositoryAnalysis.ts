@@ -24,7 +24,7 @@ export interface RepositoryAnalysis {
      * @type {Array<string>}
      * @memberof RepositoryAnalysis
      */
-    detectedFrameworks?: Array<string>;
+    detectedFrameworks?: Array<string> | null;
 }
 
 /**

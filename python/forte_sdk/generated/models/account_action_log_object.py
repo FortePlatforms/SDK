@@ -92,6 +92,26 @@ class AccountActionLogObject(BaseModel):
                 if _item_field_changes:
                     _items.append(_item_field_changes.to_dict())
             _dict['fieldChanges'] = _items
+        # set to None if id (nullable) is None
+        # and model_fields_set contains the field
+        if self.id is None and "id" in self.model_fields_set:
+            _dict['id'] = None
+
+        # set to None if performed_by_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.performed_by_account_id is None and "performed_by_account_id" in self.model_fields_set:
+            _dict['performedByAccountId'] = None
+
+        # set to None if resource_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.resource_id is None and "resource_id" in self.model_fields_set:
+            _dict['resourceId'] = None
+
+        # set to None if field_changes (nullable) is None
+        # and model_fields_set contains the field
+        if self.field_changes is None and "field_changes" in self.model_fields_set:
+            _dict['fieldChanges'] = None
+
         return _dict
 
     @classmethod

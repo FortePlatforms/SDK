@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -49,8 +53,7 @@ public class RefundRecord {
   private OffsetDateTime timestamp;
 
   public static final String JSON_PROPERTY_STRIPE_REFUND_ID = "stripeRefundId";
-  @javax.annotation.Nullable
-  private String stripeRefundId;
+  private JsonNullable<String> stripeRefundId = JsonNullable.<String>undefined();
 
   public RefundRecord() { 
   }
@@ -105,7 +108,7 @@ public class RefundRecord {
 
 
   public RefundRecord stripeRefundId(@javax.annotation.Nullable String stripeRefundId) {
-    this.stripeRefundId = stripeRefundId;
+    this.stripeRefundId = JsonNullable.<String>of(stripeRefundId);
     return this;
   }
 
@@ -114,17 +117,25 @@ public class RefundRecord {
    * @return stripeRefundId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_REFUND_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripeRefundId() {
-    return stripeRefundId;
+        return stripeRefundId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_REFUND_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripeRefundId(@javax.annotation.Nullable String stripeRefundId) {
+
+  public JsonNullable<String> getStripeRefundId_JsonNullable() {
+    return stripeRefundId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_REFUND_ID)
+  public void setStripeRefundId_JsonNullable(JsonNullable<String> stripeRefundId) {
     this.stripeRefundId = stripeRefundId;
+  }
+
+  public void setStripeRefundId(@javax.annotation.Nullable String stripeRefundId) {
+    this.stripeRefundId = JsonNullable.<String>of(stripeRefundId);
   }
 
 
@@ -142,12 +153,23 @@ public class RefundRecord {
     RefundRecord refundRecord = (RefundRecord) o;
     return Objects.equals(this.amountCents, refundRecord.amountCents) &&
         Objects.equals(this.timestamp, refundRecord.timestamp) &&
-        Objects.equals(this.stripeRefundId, refundRecord.stripeRefundId);
+        equalsNullable(this.stripeRefundId, refundRecord.stripeRefundId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountCents, timestamp, stripeRefundId);
+    return Objects.hash(amountCents, timestamp, hashCodeNullable(stripeRefundId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

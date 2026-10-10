@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,16 +55,14 @@ public class ManagedDatabaseUser {
   private String username;
 
   public static final String JSON_PROPERTY_ROLE_NAME = "roleName";
-  @javax.annotation.Nullable
-  private String roleName;
+  private JsonNullable<String> roleName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nonnull
   private OffsetDateTime createdTimestamp;
 
   public static final String JSON_PROPERTY_PASSWORD_LAST_ROTATED_TIMESTAMP = "passwordLastRotatedTimestamp";
-  @javax.annotation.Nullable
-  private OffsetDateTime passwordLastRotatedTimestamp;
+  private JsonNullable<OffsetDateTime> passwordLastRotatedTimestamp = JsonNullable.<OffsetDateTime>undefined();
 
   public ManagedDatabaseUser() { 
   }
@@ -114,7 +116,7 @@ public class ManagedDatabaseUser {
 
 
   public ManagedDatabaseUser roleName(@javax.annotation.Nullable String roleName) {
-    this.roleName = roleName;
+    this.roleName = JsonNullable.<String>of(roleName);
     return this;
   }
 
@@ -123,17 +125,25 @@ public class ManagedDatabaseUser {
    * @return roleName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ROLE_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRoleName() {
-    return roleName;
+        return roleName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ROLE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRoleName(@javax.annotation.Nullable String roleName) {
+
+  public JsonNullable<String> getRoleName_JsonNullable() {
+    return roleName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ROLE_NAME)
+  public void setRoleName_JsonNullable(JsonNullable<String> roleName) {
     this.roleName = roleName;
+  }
+
+  public void setRoleName(@javax.annotation.Nullable String roleName) {
+    this.roleName = JsonNullable.<String>of(roleName);
   }
 
 
@@ -162,7 +172,7 @@ public class ManagedDatabaseUser {
 
 
   public ManagedDatabaseUser passwordLastRotatedTimestamp(@javax.annotation.Nullable OffsetDateTime passwordLastRotatedTimestamp) {
-    this.passwordLastRotatedTimestamp = passwordLastRotatedTimestamp;
+    this.passwordLastRotatedTimestamp = JsonNullable.<OffsetDateTime>of(passwordLastRotatedTimestamp);
     return this;
   }
 
@@ -171,17 +181,25 @@ public class ManagedDatabaseUser {
    * @return passwordLastRotatedTimestamp
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD_LAST_ROTATED_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPasswordLastRotatedTimestamp() {
-    return passwordLastRotatedTimestamp;
+        return passwordLastRotatedTimestamp.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD_LAST_ROTATED_TIMESTAMP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordLastRotatedTimestamp(@javax.annotation.Nullable OffsetDateTime passwordLastRotatedTimestamp) {
+
+  public JsonNullable<OffsetDateTime> getPasswordLastRotatedTimestamp_JsonNullable() {
+    return passwordLastRotatedTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_LAST_ROTATED_TIMESTAMP)
+  public void setPasswordLastRotatedTimestamp_JsonNullable(JsonNullable<OffsetDateTime> passwordLastRotatedTimestamp) {
     this.passwordLastRotatedTimestamp = passwordLastRotatedTimestamp;
+  }
+
+  public void setPasswordLastRotatedTimestamp(@javax.annotation.Nullable OffsetDateTime passwordLastRotatedTimestamp) {
+    this.passwordLastRotatedTimestamp = JsonNullable.<OffsetDateTime>of(passwordLastRotatedTimestamp);
   }
 
 
@@ -199,14 +217,25 @@ public class ManagedDatabaseUser {
     ManagedDatabaseUser managedDatabaseUser = (ManagedDatabaseUser) o;
     return Objects.equals(this.databaseUserId, managedDatabaseUser.databaseUserId) &&
         Objects.equals(this.username, managedDatabaseUser.username) &&
-        Objects.equals(this.roleName, managedDatabaseUser.roleName) &&
+        equalsNullable(this.roleName, managedDatabaseUser.roleName) &&
         Objects.equals(this.createdTimestamp, managedDatabaseUser.createdTimestamp) &&
-        Objects.equals(this.passwordLastRotatedTimestamp, managedDatabaseUser.passwordLastRotatedTimestamp);
+        equalsNullable(this.passwordLastRotatedTimestamp, managedDatabaseUser.passwordLastRotatedTimestamp);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(databaseUserId, username, roleName, createdTimestamp, passwordLastRotatedTimestamp);
+    return Objects.hash(databaseUserId, username, hashCodeNullable(roleName), createdTimestamp, hashCodeNullable(passwordLastRotatedTimestamp));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

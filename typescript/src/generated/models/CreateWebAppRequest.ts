@@ -36,7 +36,7 @@ export interface CreateWebAppRequest {
      * @type {string}
      * @memberof CreateWebAppRequest
      */
-    githubBranch?: string;
+    githubBranch?: string | null;
     /**
      * 
      * @type {CreateWebAppRequestBuildTriggerType}
@@ -48,37 +48,37 @@ export interface CreateWebAppRequest {
      * @type {string}
      * @memberof CreateWebAppRequest
      */
-    buildCommand?: string;
+    buildCommand?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateWebAppRequest
      */
-    buildPath?: string;
+    buildPath?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateWebAppRequest
      */
-    packageManager?: string;
+    packageManager?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateWebAppRequest
      */
-    nodeVersion?: string;
+    nodeVersion?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateWebAppRequest
      */
-    installCommand?: string;
+    installCommand?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateWebAppRequest
      */
-    subdirectory?: string;
+    subdirectory?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}

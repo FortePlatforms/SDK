@@ -79,6 +79,21 @@ class ReauthenticationFactor(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if mfa_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.mfa_method_id is None and "mfa_method_id" in self.model_fields_set:
+            _dict['mfaMethodId'] = None
+
+        # set to None if contact_method_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.contact_method_id is None and "contact_method_id" in self.model_fields_set:
+            _dict['contactMethodId'] = None
+
+        # set to None if masked_target (nullable) is None
+        # and model_fields_set contains the field
+        if self.masked_target is None and "masked_target" in self.model_fields_set:
+            _dict['maskedTarget'] = None
+
         return _dict
 
     @classmethod

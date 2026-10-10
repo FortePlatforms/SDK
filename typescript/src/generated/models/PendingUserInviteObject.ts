@@ -48,7 +48,7 @@ export interface PendingUserInviteObject {
      * @type {string}
      * @memberof PendingUserInviteObject
      */
-    inviterFullName?: string;
+    inviterFullName?: string | null;
     /**
      * 
      * @type {Date}
@@ -66,13 +66,13 @@ export interface PendingUserInviteObject {
      * @type {Date}
      * @memberof PendingUserInviteObject
      */
-    consumedAt?: Date;
+    consumedAt?: Date | null;
     /**
      * 
      * @type {string}
      * @memberof PendingUserInviteObject
      */
-    consumedByUserId?: string;
+    consumedByUserId?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}

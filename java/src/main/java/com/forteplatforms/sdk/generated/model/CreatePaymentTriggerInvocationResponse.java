@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,8 +48,7 @@ public class CreatePaymentTriggerInvocationResponse {
   private String invocationId;
 
   public static final String JSON_PROPERTY_REQUEST_ID = "requestId";
-  @javax.annotation.Nullable
-  private String requestId;
+  private JsonNullable<String> requestId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STATUS_CODE = "statusCode";
   @javax.annotation.Nonnull
@@ -79,7 +82,7 @@ public class CreatePaymentTriggerInvocationResponse {
 
 
   public CreatePaymentTriggerInvocationResponse requestId(@javax.annotation.Nullable String requestId) {
-    this.requestId = requestId;
+    this.requestId = JsonNullable.<String>of(requestId);
     return this;
   }
 
@@ -88,17 +91,25 @@ public class CreatePaymentTriggerInvocationResponse {
    * @return requestId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUEST_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRequestId() {
-    return requestId;
+        return requestId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUEST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestId(@javax.annotation.Nullable String requestId) {
+
+  public JsonNullable<String> getRequestId_JsonNullable() {
+    return requestId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUEST_ID)
+  public void setRequestId_JsonNullable(JsonNullable<String> requestId) {
     this.requestId = requestId;
+  }
+
+  public void setRequestId(@javax.annotation.Nullable String requestId) {
+    this.requestId = JsonNullable.<String>of(requestId);
   }
 
 
@@ -139,13 +150,24 @@ public class CreatePaymentTriggerInvocationResponse {
     }
     CreatePaymentTriggerInvocationResponse createPaymentTriggerInvocationResponse = (CreatePaymentTriggerInvocationResponse) o;
     return Objects.equals(this.invocationId, createPaymentTriggerInvocationResponse.invocationId) &&
-        Objects.equals(this.requestId, createPaymentTriggerInvocationResponse.requestId) &&
+        equalsNullable(this.requestId, createPaymentTriggerInvocationResponse.requestId) &&
         Objects.equals(this.statusCode, createPaymentTriggerInvocationResponse.statusCode);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invocationId, requestId, statusCode);
+    return Objects.hash(invocationId, hashCodeNullable(requestId), statusCode);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

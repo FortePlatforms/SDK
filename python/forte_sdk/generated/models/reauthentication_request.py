@@ -77,6 +77,11 @@ class ReauthenticationRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if credential (nullable) is None
+        # and model_fields_set contains the field
+        if self.credential is None and "credential" in self.model_fields_set:
+            _dict['credential'] = None
+
         return _dict
 
     @classmethod

@@ -28,6 +28,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -52,12 +56,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class PaymentFilter {
   public static final String JSON_PROPERTY_MIN_TIME = "minTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime minTime;
+  private JsonNullable<OffsetDateTime> minTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_MAX_TIME = "maxTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime maxTime;
+  private JsonNullable<OffsetDateTime> maxTime = JsonNullable.<OffsetDateTime>undefined();
 
   /**
    * Gets or Sets states
@@ -105,8 +107,7 @@ public class PaymentFilter {
   }
 
   public static final String JSON_PROPERTY_STATES = "states";
-  @javax.annotation.Nullable
-  private List<StatesEnum> states = new ArrayList<>();
+  private JsonNullable<List<StatesEnum>> states = JsonNullable.<List<StatesEnum>>undefined();
 
   /**
    * Gets or Sets notStates
@@ -154,28 +155,22 @@ public class PaymentFilter {
   }
 
   public static final String JSON_PROPERTY_NOT_STATES = "notStates";
-  @javax.annotation.Nullable
-  private List<NotStatesEnum> notStates = new ArrayList<>();
+  private JsonNullable<List<NotStatesEnum>> notStates = JsonNullable.<List<NotStatesEnum>>undefined();
 
   public static final String JSON_PROPERTY_USER_ID = "userId";
-  @javax.annotation.Nullable
-  private String userId;
+  private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IDS = "ids";
-  @javax.annotation.Nullable
-  private List<String> ids = new ArrayList<>();
+  private JsonNullable<List<String>> ids = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_NOT_IDS = "notIds";
-  @javax.annotation.Nullable
-  private List<String> notIds = new ArrayList<>();
+  private JsonNullable<List<String>> notIds = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_SUBSCRIPTION = "subscription";
-  @javax.annotation.Nullable
-  private Boolean subscription;
+  private JsonNullable<Boolean> subscription = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_LINE_ITEM_DESCRIPTION = "lineItemDescription";
-  @javax.annotation.Nullable
-  private String lineItemDescription;
+  private JsonNullable<String> lineItemDescription = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets productGroupBy
@@ -210,27 +205,24 @@ public class PaymentFilter {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_PRODUCT_GROUP_BY = "productGroupBy";
-  @javax.annotation.Nullable
-  private ProductGroupByEnum productGroupBy;
+  private JsonNullable<ProductGroupByEnum> productGroupBy = JsonNullable.<ProductGroupByEnum>undefined();
 
   public static final String JSON_PROPERTY_PRODUCT_KEY = "productKey";
-  @javax.annotation.Nullable
-  private String productKey;
+  private JsonNullable<String> productKey = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PRODUCT_METADATA_KEY = "productMetadataKey";
-  @javax.annotation.Nullable
-  private String productMetadataKey;
+  private JsonNullable<String> productMetadataKey = JsonNullable.<String>undefined();
 
   public PaymentFilter() { 
   }
 
   public PaymentFilter minTime(@javax.annotation.Nullable OffsetDateTime minTime) {
-    this.minTime = minTime;
+    this.minTime = JsonNullable.<OffsetDateTime>of(minTime);
     return this;
   }
 
@@ -239,22 +231,30 @@ public class PaymentFilter {
    * @return minTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MIN_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getMinTime() {
-    return minTime;
+        return minTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MIN_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinTime(@javax.annotation.Nullable OffsetDateTime minTime) {
+
+  public JsonNullable<OffsetDateTime> getMinTime_JsonNullable() {
+    return minTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MIN_TIME)
+  public void setMinTime_JsonNullable(JsonNullable<OffsetDateTime> minTime) {
     this.minTime = minTime;
+  }
+
+  public void setMinTime(@javax.annotation.Nullable OffsetDateTime minTime) {
+    this.minTime = JsonNullable.<OffsetDateTime>of(minTime);
   }
 
 
   public PaymentFilter maxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
-    this.maxTime = maxTime;
+    this.maxTime = JsonNullable.<OffsetDateTime>of(maxTime);
     return this;
   }
 
@@ -263,30 +263,42 @@ public class PaymentFilter {
    * @return maxTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAX_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getMaxTime() {
-    return maxTime;
+        return maxTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MAX_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
+
+  public JsonNullable<OffsetDateTime> getMaxTime_JsonNullable() {
+    return maxTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAX_TIME)
+  public void setMaxTime_JsonNullable(JsonNullable<OffsetDateTime> maxTime) {
     this.maxTime = maxTime;
+  }
+
+  public void setMaxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
+    this.maxTime = JsonNullable.<OffsetDateTime>of(maxTime);
   }
 
 
   public PaymentFilter states(@javax.annotation.Nullable List<StatesEnum> states) {
-    this.states = states;
+    this.states = JsonNullable.<List<StatesEnum>>of(states);
     return this;
   }
 
   public PaymentFilter addStatesItem(StatesEnum statesItem) {
-    if (this.states == null) {
-      this.states = new ArrayList<>();
+    if (this.states == null || !this.states.isPresent()) {
+      this.states = JsonNullable.<List<StatesEnum>>of(new ArrayList<>());
     }
-    this.states.add(statesItem);
+    try {
+      this.states.get().add(statesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -295,30 +307,42 @@ public class PaymentFilter {
    * @return states
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<StatesEnum> getStates() {
-    return states;
+        return states.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STATES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStates(@javax.annotation.Nullable List<StatesEnum> states) {
+
+  public JsonNullable<List<StatesEnum>> getStates_JsonNullable() {
+    return states;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STATES)
+  public void setStates_JsonNullable(JsonNullable<List<StatesEnum>> states) {
     this.states = states;
+  }
+
+  public void setStates(@javax.annotation.Nullable List<StatesEnum> states) {
+    this.states = JsonNullable.<List<StatesEnum>>of(states);
   }
 
 
   public PaymentFilter notStates(@javax.annotation.Nullable List<NotStatesEnum> notStates) {
-    this.notStates = notStates;
+    this.notStates = JsonNullable.<List<NotStatesEnum>>of(notStates);
     return this;
   }
 
   public PaymentFilter addNotStatesItem(NotStatesEnum notStatesItem) {
-    if (this.notStates == null) {
-      this.notStates = new ArrayList<>();
+    if (this.notStates == null || !this.notStates.isPresent()) {
+      this.notStates = JsonNullable.<List<NotStatesEnum>>of(new ArrayList<>());
     }
-    this.notStates.add(notStatesItem);
+    try {
+      this.notStates.get().add(notStatesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -327,22 +351,30 @@ public class PaymentFilter {
    * @return notStates
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NOT_STATES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<NotStatesEnum> getNotStates() {
-    return notStates;
+        return notStates.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NOT_STATES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotStates(@javax.annotation.Nullable List<NotStatesEnum> notStates) {
+
+  public JsonNullable<List<NotStatesEnum>> getNotStates_JsonNullable() {
+    return notStates;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_STATES)
+  public void setNotStates_JsonNullable(JsonNullable<List<NotStatesEnum>> notStates) {
     this.notStates = notStates;
+  }
+
+  public void setNotStates(@javax.annotation.Nullable List<NotStatesEnum> notStates) {
+    this.notStates = JsonNullable.<List<NotStatesEnum>>of(notStates);
   }
 
 
   public PaymentFilter userId(@javax.annotation.Nullable String userId) {
-    this.userId = userId;
+    this.userId = JsonNullable.<String>of(userId);
     return this;
   }
 
@@ -351,30 +383,42 @@ public class PaymentFilter {
    * @return userId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUserId() {
-    return userId;
+        return userId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserId(@javax.annotation.Nullable String userId) {
+
+  public JsonNullable<String> getUserId_JsonNullable() {
+    return userId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_ID)
+  public void setUserId_JsonNullable(JsonNullable<String> userId) {
     this.userId = userId;
+  }
+
+  public void setUserId(@javax.annotation.Nullable String userId) {
+    this.userId = JsonNullable.<String>of(userId);
   }
 
 
   public PaymentFilter ids(@javax.annotation.Nullable List<String> ids) {
-    this.ids = ids;
+    this.ids = JsonNullable.<List<String>>of(ids);
     return this;
   }
 
   public PaymentFilter addIdsItem(String idsItem) {
-    if (this.ids == null) {
-      this.ids = new ArrayList<>();
+    if (this.ids == null || !this.ids.isPresent()) {
+      this.ids = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.ids.add(idsItem);
+    try {
+      this.ids.get().add(idsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -383,30 +427,42 @@ public class PaymentFilter {
    * @return ids
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getIds() {
-    return ids;
+        return ids.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIds(@javax.annotation.Nullable List<String> ids) {
+
+  public JsonNullable<List<String>> getIds_JsonNullable() {
+    return ids;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IDS)
+  public void setIds_JsonNullable(JsonNullable<List<String>> ids) {
     this.ids = ids;
+  }
+
+  public void setIds(@javax.annotation.Nullable List<String> ids) {
+    this.ids = JsonNullable.<List<String>>of(ids);
   }
 
 
   public PaymentFilter notIds(@javax.annotation.Nullable List<String> notIds) {
-    this.notIds = notIds;
+    this.notIds = JsonNullable.<List<String>>of(notIds);
     return this;
   }
 
   public PaymentFilter addNotIdsItem(String notIdsItem) {
-    if (this.notIds == null) {
-      this.notIds = new ArrayList<>();
+    if (this.notIds == null || !this.notIds.isPresent()) {
+      this.notIds = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.notIds.add(notIdsItem);
+    try {
+      this.notIds.get().add(notIdsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -415,22 +471,30 @@ public class PaymentFilter {
    * @return notIds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NOT_IDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getNotIds() {
-    return notIds;
+        return notIds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NOT_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotIds(@javax.annotation.Nullable List<String> notIds) {
+
+  public JsonNullable<List<String>> getNotIds_JsonNullable() {
+    return notIds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_IDS)
+  public void setNotIds_JsonNullable(JsonNullable<List<String>> notIds) {
     this.notIds = notIds;
+  }
+
+  public void setNotIds(@javax.annotation.Nullable List<String> notIds) {
+    this.notIds = JsonNullable.<List<String>>of(notIds);
   }
 
 
   public PaymentFilter subscription(@javax.annotation.Nullable Boolean subscription) {
-    this.subscription = subscription;
+    this.subscription = JsonNullable.<Boolean>of(subscription);
     return this;
   }
 
@@ -439,22 +503,30 @@ public class PaymentFilter {
    * @return subscription
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getSubscription() {
-    return subscription;
+        return subscription.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscription(@javax.annotation.Nullable Boolean subscription) {
+
+  public JsonNullable<Boolean> getSubscription_JsonNullable() {
+    return subscription;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION)
+  public void setSubscription_JsonNullable(JsonNullable<Boolean> subscription) {
     this.subscription = subscription;
+  }
+
+  public void setSubscription(@javax.annotation.Nullable Boolean subscription) {
+    this.subscription = JsonNullable.<Boolean>of(subscription);
   }
 
 
   public PaymentFilter lineItemDescription(@javax.annotation.Nullable String lineItemDescription) {
-    this.lineItemDescription = lineItemDescription;
+    this.lineItemDescription = JsonNullable.<String>of(lineItemDescription);
     return this;
   }
 
@@ -463,22 +535,30 @@ public class PaymentFilter {
    * @return lineItemDescription
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LINE_ITEM_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLineItemDescription() {
-    return lineItemDescription;
+        return lineItemDescription.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LINE_ITEM_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLineItemDescription(@javax.annotation.Nullable String lineItemDescription) {
+
+  public JsonNullable<String> getLineItemDescription_JsonNullable() {
+    return lineItemDescription;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LINE_ITEM_DESCRIPTION)
+  public void setLineItemDescription_JsonNullable(JsonNullable<String> lineItemDescription) {
     this.lineItemDescription = lineItemDescription;
+  }
+
+  public void setLineItemDescription(@javax.annotation.Nullable String lineItemDescription) {
+    this.lineItemDescription = JsonNullable.<String>of(lineItemDescription);
   }
 
 
   public PaymentFilter productGroupBy(@javax.annotation.Nullable ProductGroupByEnum productGroupBy) {
-    this.productGroupBy = productGroupBy;
+    this.productGroupBy = JsonNullable.<ProductGroupByEnum>of(productGroupBy);
     return this;
   }
 
@@ -487,22 +567,30 @@ public class PaymentFilter {
    * @return productGroupBy
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PRODUCT_GROUP_BY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public ProductGroupByEnum getProductGroupBy() {
-    return productGroupBy;
+        return productGroupBy.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PRODUCT_GROUP_BY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProductGroupBy(@javax.annotation.Nullable ProductGroupByEnum productGroupBy) {
+
+  public JsonNullable<ProductGroupByEnum> getProductGroupBy_JsonNullable() {
+    return productGroupBy;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PRODUCT_GROUP_BY)
+  public void setProductGroupBy_JsonNullable(JsonNullable<ProductGroupByEnum> productGroupBy) {
     this.productGroupBy = productGroupBy;
+  }
+
+  public void setProductGroupBy(@javax.annotation.Nullable ProductGroupByEnum productGroupBy) {
+    this.productGroupBy = JsonNullable.<ProductGroupByEnum>of(productGroupBy);
   }
 
 
   public PaymentFilter productKey(@javax.annotation.Nullable String productKey) {
-    this.productKey = productKey;
+    this.productKey = JsonNullable.<String>of(productKey);
     return this;
   }
 
@@ -511,22 +599,30 @@ public class PaymentFilter {
    * @return productKey
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PRODUCT_KEY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getProductKey() {
-    return productKey;
+        return productKey.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PRODUCT_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProductKey(@javax.annotation.Nullable String productKey) {
+
+  public JsonNullable<String> getProductKey_JsonNullable() {
+    return productKey;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PRODUCT_KEY)
+  public void setProductKey_JsonNullable(JsonNullable<String> productKey) {
     this.productKey = productKey;
+  }
+
+  public void setProductKey(@javax.annotation.Nullable String productKey) {
+    this.productKey = JsonNullable.<String>of(productKey);
   }
 
 
   public PaymentFilter productMetadataKey(@javax.annotation.Nullable String productMetadataKey) {
-    this.productMetadataKey = productMetadataKey;
+    this.productMetadataKey = JsonNullable.<String>of(productMetadataKey);
     return this;
   }
 
@@ -535,17 +631,25 @@ public class PaymentFilter {
    * @return productMetadataKey
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PRODUCT_METADATA_KEY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getProductMetadataKey() {
-    return productMetadataKey;
+        return productMetadataKey.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PRODUCT_METADATA_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProductMetadataKey(@javax.annotation.Nullable String productMetadataKey) {
+
+  public JsonNullable<String> getProductMetadataKey_JsonNullable() {
+    return productMetadataKey;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PRODUCT_METADATA_KEY)
+  public void setProductMetadataKey_JsonNullable(JsonNullable<String> productMetadataKey) {
     this.productMetadataKey = productMetadataKey;
+  }
+
+  public void setProductMetadataKey(@javax.annotation.Nullable String productMetadataKey) {
+    this.productMetadataKey = JsonNullable.<String>of(productMetadataKey);
   }
 
 
@@ -561,23 +665,34 @@ public class PaymentFilter {
       return false;
     }
     PaymentFilter paymentFilter = (PaymentFilter) o;
-    return Objects.equals(this.minTime, paymentFilter.minTime) &&
-        Objects.equals(this.maxTime, paymentFilter.maxTime) &&
-        Objects.equals(this.states, paymentFilter.states) &&
-        Objects.equals(this.notStates, paymentFilter.notStates) &&
-        Objects.equals(this.userId, paymentFilter.userId) &&
-        Objects.equals(this.ids, paymentFilter.ids) &&
-        Objects.equals(this.notIds, paymentFilter.notIds) &&
-        Objects.equals(this.subscription, paymentFilter.subscription) &&
-        Objects.equals(this.lineItemDescription, paymentFilter.lineItemDescription) &&
-        Objects.equals(this.productGroupBy, paymentFilter.productGroupBy) &&
-        Objects.equals(this.productKey, paymentFilter.productKey) &&
-        Objects.equals(this.productMetadataKey, paymentFilter.productMetadataKey);
+    return equalsNullable(this.minTime, paymentFilter.minTime) &&
+        equalsNullable(this.maxTime, paymentFilter.maxTime) &&
+        equalsNullable(this.states, paymentFilter.states) &&
+        equalsNullable(this.notStates, paymentFilter.notStates) &&
+        equalsNullable(this.userId, paymentFilter.userId) &&
+        equalsNullable(this.ids, paymentFilter.ids) &&
+        equalsNullable(this.notIds, paymentFilter.notIds) &&
+        equalsNullable(this.subscription, paymentFilter.subscription) &&
+        equalsNullable(this.lineItemDescription, paymentFilter.lineItemDescription) &&
+        equalsNullable(this.productGroupBy, paymentFilter.productGroupBy) &&
+        equalsNullable(this.productKey, paymentFilter.productKey) &&
+        equalsNullable(this.productMetadataKey, paymentFilter.productMetadataKey);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(minTime, maxTime, states, notStates, userId, ids, notIds, subscription, lineItemDescription, productGroupBy, productKey, productMetadataKey);
+    return Objects.hash(hashCodeNullable(minTime), hashCodeNullable(maxTime), hashCodeNullable(states), hashCodeNullable(notStates), hashCodeNullable(userId), hashCodeNullable(ids), hashCodeNullable(notIds), hashCodeNullable(subscription), hashCodeNullable(lineItemDescription), hashCodeNullable(productGroupBy), hashCodeNullable(productKey), hashCodeNullable(productMetadataKey));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -30,6 +30,10 @@ import com.forteplatforms.sdk.generated.model.RepositoryAnalysis;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -59,8 +63,7 @@ public class DockerfileGenerationResponse {
   private DockerfileGenerationError error;
 
   public static final String JSON_PROPERTY_DETECTED_LANGUAGES = "detectedLanguages";
-  @javax.annotation.Nullable
-  private List<String> detectedLanguages = new ArrayList<>();
+  private JsonNullable<List<String>> detectedLanguages = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_REPOSITORY_ANALYSIS = "repositoryAnalysis";
   @javax.annotation.Nullable
@@ -142,15 +145,19 @@ public class DockerfileGenerationResponse {
 
 
   public DockerfileGenerationResponse detectedLanguages(@javax.annotation.Nullable List<String> detectedLanguages) {
-    this.detectedLanguages = detectedLanguages;
+    this.detectedLanguages = JsonNullable.<List<String>>of(detectedLanguages);
     return this;
   }
 
   public DockerfileGenerationResponse addDetectedLanguagesItem(String detectedLanguagesItem) {
-    if (this.detectedLanguages == null) {
-      this.detectedLanguages = new ArrayList<>();
+    if (this.detectedLanguages == null || !this.detectedLanguages.isPresent()) {
+      this.detectedLanguages = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.detectedLanguages.add(detectedLanguagesItem);
+    try {
+      this.detectedLanguages.get().add(detectedLanguagesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -159,17 +166,25 @@ public class DockerfileGenerationResponse {
    * @return detectedLanguages
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DETECTED_LANGUAGES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getDetectedLanguages() {
-    return detectedLanguages;
+        return detectedLanguages.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DETECTED_LANGUAGES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetectedLanguages(@javax.annotation.Nullable List<String> detectedLanguages) {
+
+  public JsonNullable<List<String>> getDetectedLanguages_JsonNullable() {
+    return detectedLanguages;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DETECTED_LANGUAGES)
+  public void setDetectedLanguages_JsonNullable(JsonNullable<List<String>> detectedLanguages) {
     this.detectedLanguages = detectedLanguages;
+  }
+
+  public void setDetectedLanguages(@javax.annotation.Nullable List<String> detectedLanguages) {
+    this.detectedLanguages = JsonNullable.<List<String>>of(detectedLanguages);
   }
 
 
@@ -212,13 +227,24 @@ public class DockerfileGenerationResponse {
     return Objects.equals(this.success, dockerfileGenerationResponse.success) &&
         Objects.equals(this.output, dockerfileGenerationResponse.output) &&
         Objects.equals(this.error, dockerfileGenerationResponse.error) &&
-        Objects.equals(this.detectedLanguages, dockerfileGenerationResponse.detectedLanguages) &&
+        equalsNullable(this.detectedLanguages, dockerfileGenerationResponse.detectedLanguages) &&
         Objects.equals(this.repositoryAnalysis, dockerfileGenerationResponse.repositoryAnalysis);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, output, error, detectedLanguages, repositoryAnalysis);
+    return Objects.hash(success, output, error, hashCodeNullable(detectedLanguages), repositoryAnalysis);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -32,13 +32,13 @@ export interface UpdateSubscriptionRequest {
      * @type {string}
      * @memberof UpdateSubscriptionRequest
      */
-    paymentMethodId?: string;
+    paymentMethodId?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateSubscriptionRequest
      */
-    cancelAtPeriodEnd?: boolean;
+    cancelAtPeriodEnd?: boolean | null;
     /**
      * 
      * @type {PaymentAddress}

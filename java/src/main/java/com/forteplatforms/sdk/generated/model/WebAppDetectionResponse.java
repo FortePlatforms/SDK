@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.RepositoryAnalysis;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -80,41 +84,33 @@ public class WebAppDetectionResponse {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_WEB_APP_TYPE = "webAppType";
-  @javax.annotation.Nullable
-  private WebAppTypeEnum webAppType;
+  private JsonNullable<WebAppTypeEnum> webAppType = JsonNullable.<WebAppTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_PACKAGE_MANAGER = "packageManager";
-  @javax.annotation.Nullable
-  private String packageManager;
+  private JsonNullable<String> packageManager = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NODE_VERSION = "nodeVersion";
-  @javax.annotation.Nullable
-  private String nodeVersion;
+  private JsonNullable<String> nodeVersion = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_COMMAND = "buildCommand";
-  @javax.annotation.Nullable
-  private String buildCommand;
+  private JsonNullable<String> buildCommand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_PATH = "buildPath";
-  @javax.annotation.Nullable
-  private String buildPath;
+  private JsonNullable<String> buildPath = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTALL_COMMAND = "installCommand";
-  @javax.annotation.Nullable
-  private String installCommand;
+  private JsonNullable<String> installCommand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DETECTED_FRAMEWORK = "detectedFramework";
-  @javax.annotation.Nullable
-  private String detectedFramework;
+  private JsonNullable<String> detectedFramework = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBDIRECTORY = "subdirectory";
-  @javax.annotation.Nullable
-  private String subdirectory;
+  private JsonNullable<String> subdirectory = JsonNullable.<String>undefined();
 
   /**
    * Monorepo flavor detected from lockfile + workspace declaration; null for single-project repos
@@ -151,21 +147,18 @@ public class WebAppDetectionResponse {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_MONOREPO_TYPE = "monorepoType";
-  @javax.annotation.Nullable
-  private MonorepoTypeEnum monorepoType;
+  private JsonNullable<MonorepoTypeEnum> monorepoType = JsonNullable.<MonorepoTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_WORKSPACE_ROOT = "workspaceRoot";
-  @javax.annotation.Nullable
-  private String workspaceRoot;
+  private JsonNullable<String> workspaceRoot = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_APP_PACKAGE_NAME = "appPackageName";
-  @javax.annotation.Nullable
-  private String appPackageName;
+  private JsonNullable<String> appPackageName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REPOSITORY_ANALYSIS = "repositoryAnalysis";
   @javax.annotation.Nullable
@@ -175,7 +168,7 @@ public class WebAppDetectionResponse {
   }
 
   public WebAppDetectionResponse webAppType(@javax.annotation.Nullable WebAppTypeEnum webAppType) {
-    this.webAppType = webAppType;
+    this.webAppType = JsonNullable.<WebAppTypeEnum>of(webAppType);
     return this;
   }
 
@@ -184,22 +177,30 @@ public class WebAppDetectionResponse {
    * @return webAppType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEB_APP_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public WebAppTypeEnum getWebAppType() {
-    return webAppType;
+        return webAppType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WEB_APP_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebAppType(@javax.annotation.Nullable WebAppTypeEnum webAppType) {
+
+  public JsonNullable<WebAppTypeEnum> getWebAppType_JsonNullable() {
+    return webAppType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WEB_APP_TYPE)
+  public void setWebAppType_JsonNullable(JsonNullable<WebAppTypeEnum> webAppType) {
     this.webAppType = webAppType;
+  }
+
+  public void setWebAppType(@javax.annotation.Nullable WebAppTypeEnum webAppType) {
+    this.webAppType = JsonNullable.<WebAppTypeEnum>of(webAppType);
   }
 
 
   public WebAppDetectionResponse packageManager(@javax.annotation.Nullable String packageManager) {
-    this.packageManager = packageManager;
+    this.packageManager = JsonNullable.<String>of(packageManager);
     return this;
   }
 
@@ -208,22 +209,30 @@ public class WebAppDetectionResponse {
    * @return packageManager
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PACKAGE_MANAGER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPackageManager() {
-    return packageManager;
+        return packageManager.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PACKAGE_MANAGER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPackageManager(@javax.annotation.Nullable String packageManager) {
+
+  public JsonNullable<String> getPackageManager_JsonNullable() {
+    return packageManager;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PACKAGE_MANAGER)
+  public void setPackageManager_JsonNullable(JsonNullable<String> packageManager) {
     this.packageManager = packageManager;
+  }
+
+  public void setPackageManager(@javax.annotation.Nullable String packageManager) {
+    this.packageManager = JsonNullable.<String>of(packageManager);
   }
 
 
   public WebAppDetectionResponse nodeVersion(@javax.annotation.Nullable String nodeVersion) {
-    this.nodeVersion = nodeVersion;
+    this.nodeVersion = JsonNullable.<String>of(nodeVersion);
     return this;
   }
 
@@ -232,22 +241,30 @@ public class WebAppDetectionResponse {
    * @return nodeVersion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NODE_VERSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNodeVersion() {
-    return nodeVersion;
+        return nodeVersion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NODE_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNodeVersion(@javax.annotation.Nullable String nodeVersion) {
+
+  public JsonNullable<String> getNodeVersion_JsonNullable() {
+    return nodeVersion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NODE_VERSION)
+  public void setNodeVersion_JsonNullable(JsonNullable<String> nodeVersion) {
     this.nodeVersion = nodeVersion;
+  }
+
+  public void setNodeVersion(@javax.annotation.Nullable String nodeVersion) {
+    this.nodeVersion = JsonNullable.<String>of(nodeVersion);
   }
 
 
   public WebAppDetectionResponse buildCommand(@javax.annotation.Nullable String buildCommand) {
-    this.buildCommand = buildCommand;
+    this.buildCommand = JsonNullable.<String>of(buildCommand);
     return this;
   }
 
@@ -256,22 +273,30 @@ public class WebAppDetectionResponse {
    * @return buildCommand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_COMMAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildCommand() {
-    return buildCommand;
+        return buildCommand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_COMMAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildCommand(@javax.annotation.Nullable String buildCommand) {
+
+  public JsonNullable<String> getBuildCommand_JsonNullable() {
+    return buildCommand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_COMMAND)
+  public void setBuildCommand_JsonNullable(JsonNullable<String> buildCommand) {
     this.buildCommand = buildCommand;
+  }
+
+  public void setBuildCommand(@javax.annotation.Nullable String buildCommand) {
+    this.buildCommand = JsonNullable.<String>of(buildCommand);
   }
 
 
   public WebAppDetectionResponse buildPath(@javax.annotation.Nullable String buildPath) {
-    this.buildPath = buildPath;
+    this.buildPath = JsonNullable.<String>of(buildPath);
     return this;
   }
 
@@ -280,22 +305,30 @@ public class WebAppDetectionResponse {
    * @return buildPath
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBuildPath() {
-    return buildPath;
+        return buildPath.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_PATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildPath(@javax.annotation.Nullable String buildPath) {
+
+  public JsonNullable<String> getBuildPath_JsonNullable() {
+    return buildPath;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_PATH)
+  public void setBuildPath_JsonNullable(JsonNullable<String> buildPath) {
     this.buildPath = buildPath;
+  }
+
+  public void setBuildPath(@javax.annotation.Nullable String buildPath) {
+    this.buildPath = JsonNullable.<String>of(buildPath);
   }
 
 
   public WebAppDetectionResponse installCommand(@javax.annotation.Nullable String installCommand) {
-    this.installCommand = installCommand;
+    this.installCommand = JsonNullable.<String>of(installCommand);
     return this;
   }
 
@@ -304,22 +337,30 @@ public class WebAppDetectionResponse {
    * @return installCommand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInstallCommand() {
-    return installCommand;
+        return installCommand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INSTALL_COMMAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+
+  public JsonNullable<String> getInstallCommand_JsonNullable() {
+    return installCommand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTALL_COMMAND)
+  public void setInstallCommand_JsonNullable(JsonNullable<String> installCommand) {
     this.installCommand = installCommand;
+  }
+
+  public void setInstallCommand(@javax.annotation.Nullable String installCommand) {
+    this.installCommand = JsonNullable.<String>of(installCommand);
   }
 
 
   public WebAppDetectionResponse detectedFramework(@javax.annotation.Nullable String detectedFramework) {
-    this.detectedFramework = detectedFramework;
+    this.detectedFramework = JsonNullable.<String>of(detectedFramework);
     return this;
   }
 
@@ -328,22 +369,30 @@ public class WebAppDetectionResponse {
    * @return detectedFramework
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DETECTED_FRAMEWORK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDetectedFramework() {
-    return detectedFramework;
+        return detectedFramework.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DETECTED_FRAMEWORK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetectedFramework(@javax.annotation.Nullable String detectedFramework) {
+
+  public JsonNullable<String> getDetectedFramework_JsonNullable() {
+    return detectedFramework;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DETECTED_FRAMEWORK)
+  public void setDetectedFramework_JsonNullable(JsonNullable<String> detectedFramework) {
     this.detectedFramework = detectedFramework;
+  }
+
+  public void setDetectedFramework(@javax.annotation.Nullable String detectedFramework) {
+    this.detectedFramework = JsonNullable.<String>of(detectedFramework);
   }
 
 
   public WebAppDetectionResponse subdirectory(@javax.annotation.Nullable String subdirectory) {
-    this.subdirectory = subdirectory;
+    this.subdirectory = JsonNullable.<String>of(subdirectory);
     return this;
   }
 
@@ -352,22 +401,30 @@ public class WebAppDetectionResponse {
    * @return subdirectory
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubdirectory() {
-    return subdirectory;
+        return subdirectory.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBDIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+
+  public JsonNullable<String> getSubdirectory_JsonNullable() {
+    return subdirectory;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBDIRECTORY)
+  public void setSubdirectory_JsonNullable(JsonNullable<String> subdirectory) {
     this.subdirectory = subdirectory;
+  }
+
+  public void setSubdirectory(@javax.annotation.Nullable String subdirectory) {
+    this.subdirectory = JsonNullable.<String>of(subdirectory);
   }
 
 
   public WebAppDetectionResponse monorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
-    this.monorepoType = monorepoType;
+    this.monorepoType = JsonNullable.<MonorepoTypeEnum>of(monorepoType);
     return this;
   }
 
@@ -376,22 +433,30 @@ public class WebAppDetectionResponse {
    * @return monorepoType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public MonorepoTypeEnum getMonorepoType() {
-    return monorepoType;
+        return monorepoType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MONOREPO_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMonorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+
+  public JsonNullable<MonorepoTypeEnum> getMonorepoType_JsonNullable() {
+    return monorepoType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MONOREPO_TYPE)
+  public void setMonorepoType_JsonNullable(JsonNullable<MonorepoTypeEnum> monorepoType) {
     this.monorepoType = monorepoType;
+  }
+
+  public void setMonorepoType(@javax.annotation.Nullable MonorepoTypeEnum monorepoType) {
+    this.monorepoType = JsonNullable.<MonorepoTypeEnum>of(monorepoType);
   }
 
 
   public WebAppDetectionResponse workspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
-    this.workspaceRoot = workspaceRoot;
+    this.workspaceRoot = JsonNullable.<String>of(workspaceRoot);
     return this;
   }
 
@@ -400,22 +465,30 @@ public class WebAppDetectionResponse {
    * @return workspaceRoot
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWorkspaceRoot() {
-    return workspaceRoot;
+        return workspaceRoot.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WORKSPACE_ROOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWorkspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+
+  public JsonNullable<String> getWorkspaceRoot_JsonNullable() {
+    return workspaceRoot;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WORKSPACE_ROOT)
+  public void setWorkspaceRoot_JsonNullable(JsonNullable<String> workspaceRoot) {
     this.workspaceRoot = workspaceRoot;
+  }
+
+  public void setWorkspaceRoot(@javax.annotation.Nullable String workspaceRoot) {
+    this.workspaceRoot = JsonNullable.<String>of(workspaceRoot);
   }
 
 
   public WebAppDetectionResponse appPackageName(@javax.annotation.Nullable String appPackageName) {
-    this.appPackageName = appPackageName;
+    this.appPackageName = JsonNullable.<String>of(appPackageName);
     return this;
   }
 
@@ -424,17 +497,25 @@ public class WebAppDetectionResponse {
    * @return appPackageName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAppPackageName() {
-    return appPackageName;
+        return appPackageName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_APP_PACKAGE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAppPackageName(@javax.annotation.Nullable String appPackageName) {
+
+  public JsonNullable<String> getAppPackageName_JsonNullable() {
+    return appPackageName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_APP_PACKAGE_NAME)
+  public void setAppPackageName_JsonNullable(JsonNullable<String> appPackageName) {
     this.appPackageName = appPackageName;
+  }
+
+  public void setAppPackageName(@javax.annotation.Nullable String appPackageName) {
+    this.appPackageName = JsonNullable.<String>of(appPackageName);
   }
 
 
@@ -474,23 +555,34 @@ public class WebAppDetectionResponse {
       return false;
     }
     WebAppDetectionResponse webAppDetectionResponse = (WebAppDetectionResponse) o;
-    return Objects.equals(this.webAppType, webAppDetectionResponse.webAppType) &&
-        Objects.equals(this.packageManager, webAppDetectionResponse.packageManager) &&
-        Objects.equals(this.nodeVersion, webAppDetectionResponse.nodeVersion) &&
-        Objects.equals(this.buildCommand, webAppDetectionResponse.buildCommand) &&
-        Objects.equals(this.buildPath, webAppDetectionResponse.buildPath) &&
-        Objects.equals(this.installCommand, webAppDetectionResponse.installCommand) &&
-        Objects.equals(this.detectedFramework, webAppDetectionResponse.detectedFramework) &&
-        Objects.equals(this.subdirectory, webAppDetectionResponse.subdirectory) &&
-        Objects.equals(this.monorepoType, webAppDetectionResponse.monorepoType) &&
-        Objects.equals(this.workspaceRoot, webAppDetectionResponse.workspaceRoot) &&
-        Objects.equals(this.appPackageName, webAppDetectionResponse.appPackageName) &&
+    return equalsNullable(this.webAppType, webAppDetectionResponse.webAppType) &&
+        equalsNullable(this.packageManager, webAppDetectionResponse.packageManager) &&
+        equalsNullable(this.nodeVersion, webAppDetectionResponse.nodeVersion) &&
+        equalsNullable(this.buildCommand, webAppDetectionResponse.buildCommand) &&
+        equalsNullable(this.buildPath, webAppDetectionResponse.buildPath) &&
+        equalsNullable(this.installCommand, webAppDetectionResponse.installCommand) &&
+        equalsNullable(this.detectedFramework, webAppDetectionResponse.detectedFramework) &&
+        equalsNullable(this.subdirectory, webAppDetectionResponse.subdirectory) &&
+        equalsNullable(this.monorepoType, webAppDetectionResponse.monorepoType) &&
+        equalsNullable(this.workspaceRoot, webAppDetectionResponse.workspaceRoot) &&
+        equalsNullable(this.appPackageName, webAppDetectionResponse.appPackageName) &&
         Objects.equals(this.repositoryAnalysis, webAppDetectionResponse.repositoryAnalysis);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppType, packageManager, nodeVersion, buildCommand, buildPath, installCommand, detectedFramework, subdirectory, monorepoType, workspaceRoot, appPackageName, repositoryAnalysis);
+    return Objects.hash(hashCodeNullable(webAppType), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(buildCommand), hashCodeNullable(buildPath), hashCodeNullable(installCommand), hashCodeNullable(detectedFramework), hashCodeNullable(subdirectory), hashCodeNullable(monorepoType), hashCodeNullable(workspaceRoot), hashCodeNullable(appPackageName), repositoryAnalysis);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -24,25 +24,25 @@ export interface UpdateManagedDatabaseRequest {
      * @type {string}
      * @memberof UpdateManagedDatabaseRequest
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateManagedDatabaseRequest
      */
-    cpu?: string;
+    cpu?: string | null;
     /**
      * 
      * @type {number}
      * @memberof UpdateManagedDatabaseRequest
      */
-    memoryGb?: number;
+    memoryGb?: number | null;
     /**
      * 
      * @type {number}
      * @memberof UpdateManagedDatabaseRequest
      */
-    storageGb?: number;
+    storageGb?: number | null;
 }
 
 /**

@@ -45,7 +45,7 @@ export interface UserObject {
      * @type {string}
      * @memberof UserObject
      */
-    fullName?: string;
+    fullName?: string | null;
     /**
      * 
      * @type {string}
@@ -87,7 +87,7 @@ export interface UserObject {
      * @type {string}
      * @memberof UserObject
      */
-    stripeCustomerId?: string;
+    stripeCustomerId?: string | null;
     /**
      * 
      * @type {Array<ContactMethod>}
@@ -99,13 +99,13 @@ export interface UserObject {
      * @type {boolean}
      * @memberof UserObject
      */
-    welcomeMessageSent?: boolean;
+    welcomeMessageSent?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof UserObject
      */
-    invitedByUserId?: string;
+    invitedByUserId?: string | null;
     /**
      * 
      * @type {UserObjectStateType}
@@ -117,37 +117,37 @@ export interface UserObject {
      * @type {Date}
      * @memberof UserObject
      */
-    passwordSetAt?: Date;
+    passwordSetAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof UserObject
      */
-    passwordResetLastRequestedAt?: Date;
+    passwordResetLastRequestedAt?: Date | null;
     /**
      * 
      * @type {Array<MfaMethod>}
      * @memberof UserObject
      */
-    mfaMethods?: Array<MfaMethod>;
+    mfaMethods?: Array<MfaMethod> | null;
     /**
      * 
      * @type {Date}
      * @memberof UserObject
      */
-    backupCodesGeneratedAt?: Date;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserObject
-     */
-    hasPassword?: boolean;
+    backupCodesGeneratedAt?: Date | null;
     /**
      * 
      * @type {number}
      * @memberof UserObject
      */
     remainingBackupCodeCount?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserObject
+     */
+    hasPassword?: boolean;
 }
 
 
@@ -202,8 +202,8 @@ export function UserObjectFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'passwordResetLastRequestedAt': json['passwordResetLastRequestedAt'] == null ? undefined : (new Date(json['passwordResetLastRequestedAt'])),
         'mfaMethods': json['mfaMethods'] == null ? undefined : ((json['mfaMethods'] as Array<any>).map(MfaMethodFromJSON)),
         'backupCodesGeneratedAt': json['backupCodesGeneratedAt'] == null ? undefined : (new Date(json['backupCodesGeneratedAt'])),
-        'hasPassword': json['hasPassword'] == null ? undefined : json['hasPassword'],
         'remainingBackupCodeCount': json['remainingBackupCodeCount'] == null ? undefined : json['remainingBackupCodeCount'],
+        'hasPassword': json['hasPassword'] == null ? undefined : json['hasPassword'],
     };
 }
 
@@ -235,8 +235,8 @@ export function UserObjectToJSONTyped(value?: UserObject | null, ignoreDiscrimin
         'passwordResetLastRequestedAt': value['passwordResetLastRequestedAt'] == null ? value['passwordResetLastRequestedAt'] : value['passwordResetLastRequestedAt'].toISOString(),
         'mfaMethods': value['mfaMethods'] == null ? undefined : ((value['mfaMethods'] as Array<any>).map(MfaMethodToJSON)),
         'backupCodesGeneratedAt': value['backupCodesGeneratedAt'] == null ? value['backupCodesGeneratedAt'] : value['backupCodesGeneratedAt'].toISOString(),
-        'hasPassword': value['hasPassword'],
         'remainingBackupCodeCount': value['remainingBackupCodeCount'],
+        'hasPassword': value['hasPassword'],
     };
 }
 

@@ -24,7 +24,7 @@ export interface MfaMethodSummary {
      * @type {string}
      * @memberof MfaMethodSummary
      */
-    mfaMethodId?: string;
+    mfaMethodId?: string | null;
     /**
      * 
      * @type {MfaMethodSummaryTypeType}
@@ -36,13 +36,13 @@ export interface MfaMethodSummary {
      * @type {string}
      * @memberof MfaMethodSummary
      */
-    contactMethodId?: string;
+    contactMethodId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof MfaMethodSummary
      */
-    maskedTarget?: string;
+    maskedTarget?: string | null;
 }
 
 

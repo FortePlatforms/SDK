@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -69,13 +73,12 @@ public class PaymentSort {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_SORT_BY = "sortBy";
-  @javax.annotation.Nullable
-  private SortByEnum sortBy;
+  private JsonNullable<SortByEnum> sortBy = JsonNullable.<SortByEnum>undefined();
 
   /**
    * Gets or Sets sortDir
@@ -108,19 +111,18 @@ public class PaymentSort {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_SORT_DIR = "sortDir";
-  @javax.annotation.Nullable
-  private SortDirEnum sortDir;
+  private JsonNullable<SortDirEnum> sortDir = JsonNullable.<SortDirEnum>undefined();
 
   public PaymentSort() { 
   }
 
   public PaymentSort sortBy(@javax.annotation.Nullable SortByEnum sortBy) {
-    this.sortBy = sortBy;
+    this.sortBy = JsonNullable.<SortByEnum>of(sortBy);
     return this;
   }
 
@@ -129,22 +131,30 @@ public class PaymentSort {
    * @return sortBy
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SORT_BY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public SortByEnum getSortBy() {
-    return sortBy;
+        return sortBy.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SORT_BY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSortBy(@javax.annotation.Nullable SortByEnum sortBy) {
+
+  public JsonNullable<SortByEnum> getSortBy_JsonNullable() {
+    return sortBy;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SORT_BY)
+  public void setSortBy_JsonNullable(JsonNullable<SortByEnum> sortBy) {
     this.sortBy = sortBy;
+  }
+
+  public void setSortBy(@javax.annotation.Nullable SortByEnum sortBy) {
+    this.sortBy = JsonNullable.<SortByEnum>of(sortBy);
   }
 
 
   public PaymentSort sortDir(@javax.annotation.Nullable SortDirEnum sortDir) {
-    this.sortDir = sortDir;
+    this.sortDir = JsonNullable.<SortDirEnum>of(sortDir);
     return this;
   }
 
@@ -153,17 +163,25 @@ public class PaymentSort {
    * @return sortDir
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SORT_DIR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public SortDirEnum getSortDir() {
-    return sortDir;
+        return sortDir.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SORT_DIR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSortDir(@javax.annotation.Nullable SortDirEnum sortDir) {
+
+  public JsonNullable<SortDirEnum> getSortDir_JsonNullable() {
+    return sortDir;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SORT_DIR)
+  public void setSortDir_JsonNullable(JsonNullable<SortDirEnum> sortDir) {
     this.sortDir = sortDir;
+  }
+
+  public void setSortDir(@javax.annotation.Nullable SortDirEnum sortDir) {
+    this.sortDir = JsonNullable.<SortDirEnum>of(sortDir);
   }
 
 
@@ -179,13 +197,24 @@ public class PaymentSort {
       return false;
     }
     PaymentSort paymentSort = (PaymentSort) o;
-    return Objects.equals(this.sortBy, paymentSort.sortBy) &&
-        Objects.equals(this.sortDir, paymentSort.sortDir);
+    return equalsNullable(this.sortBy, paymentSort.sortBy) &&
+        equalsNullable(this.sortDir, paymentSort.sortDir);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sortBy, sortDir);
+    return Objects.hash(hashCodeNullable(sortBy), hashCodeNullable(sortDir));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

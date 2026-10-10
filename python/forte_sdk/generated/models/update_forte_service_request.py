@@ -161,6 +161,76 @@ class UpdateForteServiceRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if reset_dockerfile (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_dockerfile is None and "reset_dockerfile" in self.model_fields_set:
+            _dict['resetDockerfile'] = None
+
+        # set to None if reset_health_check_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.reset_health_check_config is None and "reset_health_check_config" in self.model_fields_set:
+            _dict['resetHealthCheckConfig'] = None
+
+        # set to None if github_build_trigger (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_build_trigger is None and "github_build_trigger" in self.model_fields_set:
+            _dict['githubBuildTrigger'] = None
+
+        # set to None if github_branch (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_branch is None and "github_branch" in self.model_fields_set:
+            _dict['githubBranch'] = None
+
+        # set to None if base_directory (nullable) is None
+        # and model_fields_set contains the field
+        if self.base_directory is None and "base_directory" in self.model_fields_set:
+            _dict['baseDirectory'] = None
+
+        # set to None if service_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.service_name is None and "service_name" in self.model_fields_set:
+            _dict['serviceName'] = None
+
+        # set to None if secret_keys_to_delete (nullable) is None
+        # and model_fields_set contains the field
+        if self.secret_keys_to_delete is None and "secret_keys_to_delete" in self.model_fields_set:
+            _dict['secretKeysToDelete'] = None
+
+        # set to None if auth_path_exclusions (nullable) is None
+        # and model_fields_set contains the field
+        if self.auth_path_exclusions is None and "auth_path_exclusions" in self.model_fields_set:
+            _dict['authPathExclusions'] = None
+
+        # set to None if blocked_paths (nullable) is None
+        # and model_fields_set contains the field
+        if self.blocked_paths is None and "blocked_paths" in self.model_fields_set:
+            _dict['blockedPaths'] = None
+
+        # set to None if base_instances (nullable) is None
+        # and model_fields_set contains the field
+        if self.base_instances is None and "base_instances" in self.model_fields_set:
+            _dict['baseInstances'] = None
+
+        # set to None if container_cpu (nullable) is None
+        # and model_fields_set contains the field
+        if self.container_cpu is None and "container_cpu" in self.model_fields_set:
+            _dict['containerCpu'] = None
+
+        # set to None if health_check_port (nullable) is None
+        # and model_fields_set contains the field
+        if self.health_check_port is None and "health_check_port" in self.model_fields_set:
+            _dict['healthCheckPort'] = None
+
+        # set to None if health_check_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.health_check_path is None and "health_check_path" in self.model_fields_set:
+            _dict['healthCheckPath'] = None
+
+        # set to None if request_response_body_logging_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.request_response_body_logging_enabled is None and "request_response_body_logging_enabled" in self.model_fields_set:
+            _dict['requestResponseBodyLoggingEnabled'] = None
+
         return _dict
 
     @classmethod

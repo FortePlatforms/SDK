@@ -80,6 +80,11 @@ class UpdateContentOwnerRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if grant_previous_owner_permission (nullable) is None
+        # and model_fields_set contains the field
+        if self.grant_previous_owner_permission is None and "grant_previous_owner_permission" in self.model_fields_set:
+            _dict['grantPreviousOwnerPermission'] = None
+
         return _dict
 
     @classmethod

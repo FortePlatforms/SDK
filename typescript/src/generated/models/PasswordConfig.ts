@@ -24,43 +24,43 @@ export interface PasswordConfig {
      * @type {number}
      * @memberof PasswordConfig
      */
-    minLength?: number;
+    minLength?: number | null;
     /**
      * 
      * @type {boolean}
      * @memberof PasswordConfig
      */
-    requireUppercase?: boolean;
+    requireUppercase?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof PasswordConfig
      */
-    requireLowercase?: boolean;
+    requireLowercase?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof PasswordConfig
      */
-    requireDigit?: boolean;
+    requireDigit?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof PasswordConfig
      */
-    requireSymbol?: boolean;
+    requireSymbol?: boolean | null;
     /**
      * 
      * @type {PasswordConfigResetModeType}
      * @memberof PasswordConfig
      */
-    resetMode?: PasswordConfigResetModeType;
+    resetMode?: PasswordConfigResetModeType | null;
     /**
      * 
      * @type {string}
      * @memberof PasswordConfig
      */
-    resetLinkTargetUrl?: string;
+    resetLinkTargetUrl?: string | null;
 }
 
 

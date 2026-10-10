@@ -37,6 +37,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -84,28 +88,22 @@ public class ServiceObject {
   private String serviceName;
 
   public static final String JSON_PROPERTY_PUBLIC_DNS_ENDPOINT = "publicDnsEndpoint";
-  @javax.annotation.Nullable
-  private String publicDnsEndpoint;
+  private JsonNullable<String> publicDnsEndpoint = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LIVE_BUILD_ID = "liveBuildId";
-  @javax.annotation.Nullable
-  private String liveBuildId;
+  private JsonNullable<String> liveBuildId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LIVE_COMMIT_HASH = "liveCommitHash";
-  @javax.annotation.Nullable
-  private String liveCommitHash;
+  private JsonNullable<String> liveCommitHash = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PAUSED_AT = "pausedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime pausedAt;
+  private JsonNullable<OffsetDateTime> pausedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED = "requestResponseBodyLoggingEnabled";
-  @javax.annotation.Nullable
-  private Boolean requestResponseBodyLoggingEnabled;
+  private JsonNullable<Boolean> requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_DOCKERFILE_PATH = "dockerfilePath";
-  @javax.annotation.Nullable
-  private String dockerfilePath;
+  private JsonNullable<String> dockerfilePath = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HEALTH_CHECK_CONFIGURATION = "healthCheckConfiguration";
   @javax.annotation.Nullable
@@ -120,12 +118,10 @@ public class ServiceObject {
   private HealthCheckDetectionResponse healthCheckDetectionResponse;
 
   public static final String JSON_PROPERTY_AUTH_PATH_EXCLUSIONS = "authPathExclusions";
-  @javax.annotation.Nullable
-  private List<String> authPathExclusions = new ArrayList<>();
+  private JsonNullable<List<String>> authPathExclusions = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_BLOCKED_PATHS = "blockedPaths";
-  @javax.annotation.Nullable
-  private List<String> blockedPaths = new ArrayList<>();
+  private JsonNullable<List<String>> blockedPaths = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_BASE_INSTANCES = "baseInstances";
   @javax.annotation.Nonnull
@@ -140,8 +136,7 @@ public class ServiceObject {
   private String containerCpu;
 
   public static final String JSON_PROPERTY_CUSTOM_DOMAINS = "customDomains";
-  @javax.annotation.Nullable
-  private List<CustomDomain> customDomains = new ArrayList<>();
+  private JsonNullable<List<CustomDomain>> customDomains = JsonNullable.<List<CustomDomain>>undefined();
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nullable
@@ -195,24 +190,20 @@ public class ServiceObject {
   private GithubBuildTriggerEnum githubBuildTrigger;
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
-  @javax.annotation.Nullable
-  private String githubBranch;
+  private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CURRENT_BUILD_ID = "currentBuildId";
-  @javax.annotation.Nullable
-  private String currentBuildId;
+  private JsonNullable<String> currentBuildId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ENQUEUED_BUILD_IDS = "enqueuedBuildIds";
-  @javax.annotation.Nullable
-  private List<String> enqueuedBuildIds = new ArrayList<>();
+  private JsonNullable<List<String>> enqueuedBuildIds = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_ENVIRONMENT_VARIABLES = "environmentVariables";
   @javax.annotation.Nullable
   private Map<String, String> environmentVariables = new HashMap<>();
 
   public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
-  @javax.annotation.Nullable
-  private String baseDirectory;
+  private JsonNullable<String> baseDirectory = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SECRET_KEYS = "secretKeys";
   @javax.annotation.Nullable
@@ -270,7 +261,7 @@ public class ServiceObject {
 
 
   public ServiceObject publicDnsEndpoint(@javax.annotation.Nullable String publicDnsEndpoint) {
-    this.publicDnsEndpoint = publicDnsEndpoint;
+    this.publicDnsEndpoint = JsonNullable.<String>of(publicDnsEndpoint);
     return this;
   }
 
@@ -279,22 +270,30 @@ public class ServiceObject {
    * @return publicDnsEndpoint
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PUBLIC_DNS_ENDPOINT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPublicDnsEndpoint() {
-    return publicDnsEndpoint;
+        return publicDnsEndpoint.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PUBLIC_DNS_ENDPOINT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPublicDnsEndpoint(@javax.annotation.Nullable String publicDnsEndpoint) {
+
+  public JsonNullable<String> getPublicDnsEndpoint_JsonNullable() {
+    return publicDnsEndpoint;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PUBLIC_DNS_ENDPOINT)
+  public void setPublicDnsEndpoint_JsonNullable(JsonNullable<String> publicDnsEndpoint) {
     this.publicDnsEndpoint = publicDnsEndpoint;
+  }
+
+  public void setPublicDnsEndpoint(@javax.annotation.Nullable String publicDnsEndpoint) {
+    this.publicDnsEndpoint = JsonNullable.<String>of(publicDnsEndpoint);
   }
 
 
   public ServiceObject liveBuildId(@javax.annotation.Nullable String liveBuildId) {
-    this.liveBuildId = liveBuildId;
+    this.liveBuildId = JsonNullable.<String>of(liveBuildId);
     return this;
   }
 
@@ -303,22 +302,30 @@ public class ServiceObject {
    * @return liveBuildId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LIVE_BUILD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLiveBuildId() {
-    return liveBuildId;
+        return liveBuildId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LIVE_BUILD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLiveBuildId(@javax.annotation.Nullable String liveBuildId) {
+
+  public JsonNullable<String> getLiveBuildId_JsonNullable() {
+    return liveBuildId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LIVE_BUILD_ID)
+  public void setLiveBuildId_JsonNullable(JsonNullable<String> liveBuildId) {
     this.liveBuildId = liveBuildId;
+  }
+
+  public void setLiveBuildId(@javax.annotation.Nullable String liveBuildId) {
+    this.liveBuildId = JsonNullable.<String>of(liveBuildId);
   }
 
 
   public ServiceObject liveCommitHash(@javax.annotation.Nullable String liveCommitHash) {
-    this.liveCommitHash = liveCommitHash;
+    this.liveCommitHash = JsonNullable.<String>of(liveCommitHash);
     return this;
   }
 
@@ -327,22 +334,30 @@ public class ServiceObject {
    * @return liveCommitHash
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LIVE_COMMIT_HASH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLiveCommitHash() {
-    return liveCommitHash;
+        return liveCommitHash.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LIVE_COMMIT_HASH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLiveCommitHash(@javax.annotation.Nullable String liveCommitHash) {
+
+  public JsonNullable<String> getLiveCommitHash_JsonNullable() {
+    return liveCommitHash;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LIVE_COMMIT_HASH)
+  public void setLiveCommitHash_JsonNullable(JsonNullable<String> liveCommitHash) {
     this.liveCommitHash = liveCommitHash;
+  }
+
+  public void setLiveCommitHash(@javax.annotation.Nullable String liveCommitHash) {
+    this.liveCommitHash = JsonNullable.<String>of(liveCommitHash);
   }
 
 
   public ServiceObject pausedAt(@javax.annotation.Nullable OffsetDateTime pausedAt) {
-    this.pausedAt = pausedAt;
+    this.pausedAt = JsonNullable.<OffsetDateTime>of(pausedAt);
     return this;
   }
 
@@ -351,22 +366,30 @@ public class ServiceObject {
    * @return pausedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PAUSED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPausedAt() {
-    return pausedAt;
+        return pausedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PAUSED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPausedAt(@javax.annotation.Nullable OffsetDateTime pausedAt) {
+
+  public JsonNullable<OffsetDateTime> getPausedAt_JsonNullable() {
+    return pausedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAUSED_AT)
+  public void setPausedAt_JsonNullable(JsonNullable<OffsetDateTime> pausedAt) {
     this.pausedAt = pausedAt;
+  }
+
+  public void setPausedAt(@javax.annotation.Nullable OffsetDateTime pausedAt) {
+    this.pausedAt = JsonNullable.<OffsetDateTime>of(pausedAt);
   }
 
 
   public ServiceObject requestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
-    this.requestResponseBodyLoggingEnabled = requestResponseBodyLoggingEnabled;
+    this.requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>of(requestResponseBodyLoggingEnabled);
     return this;
   }
 
@@ -375,22 +398,30 @@ public class ServiceObject {
    * @return requestResponseBodyLoggingEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getRequestResponseBodyLoggingEnabled() {
-    return requestResponseBodyLoggingEnabled;
+        return requestResponseBodyLoggingEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
+
+  public JsonNullable<Boolean> getRequestResponseBodyLoggingEnabled_JsonNullable() {
+    return requestResponseBodyLoggingEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED)
+  public void setRequestResponseBodyLoggingEnabled_JsonNullable(JsonNullable<Boolean> requestResponseBodyLoggingEnabled) {
     this.requestResponseBodyLoggingEnabled = requestResponseBodyLoggingEnabled;
+  }
+
+  public void setRequestResponseBodyLoggingEnabled(@javax.annotation.Nullable Boolean requestResponseBodyLoggingEnabled) {
+    this.requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>of(requestResponseBodyLoggingEnabled);
   }
 
 
   public ServiceObject dockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
-    this.dockerfilePath = dockerfilePath;
+    this.dockerfilePath = JsonNullable.<String>of(dockerfilePath);
     return this;
   }
 
@@ -399,17 +430,25 @@ public class ServiceObject {
    * @return dockerfilePath
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDockerfilePath() {
-    return dockerfilePath;
+        return dockerfilePath.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DOCKERFILE_PATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+
+  public JsonNullable<String> getDockerfilePath_JsonNullable() {
+    return dockerfilePath;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DOCKERFILE_PATH)
+  public void setDockerfilePath_JsonNullable(JsonNullable<String> dockerfilePath) {
     this.dockerfilePath = dockerfilePath;
+  }
+
+  public void setDockerfilePath(@javax.annotation.Nullable String dockerfilePath) {
+    this.dockerfilePath = JsonNullable.<String>of(dockerfilePath);
   }
 
 
@@ -486,15 +525,19 @@ public class ServiceObject {
 
 
   public ServiceObject authPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
-    this.authPathExclusions = authPathExclusions;
+    this.authPathExclusions = JsonNullable.<List<String>>of(authPathExclusions);
     return this;
   }
 
   public ServiceObject addAuthPathExclusionsItem(String authPathExclusionsItem) {
-    if (this.authPathExclusions == null) {
-      this.authPathExclusions = new ArrayList<>();
+    if (this.authPathExclusions == null || !this.authPathExclusions.isPresent()) {
+      this.authPathExclusions = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.authPathExclusions.add(authPathExclusionsItem);
+    try {
+      this.authPathExclusions.get().add(authPathExclusionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -503,30 +546,42 @@ public class ServiceObject {
    * @return authPathExclusions
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getAuthPathExclusions() {
-    return authPathExclusions;
+        return authPathExclusions.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
+
+  public JsonNullable<List<String>> getAuthPathExclusions_JsonNullable() {
+    return authPathExclusions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUTH_PATH_EXCLUSIONS)
+  public void setAuthPathExclusions_JsonNullable(JsonNullable<List<String>> authPathExclusions) {
     this.authPathExclusions = authPathExclusions;
+  }
+
+  public void setAuthPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
+    this.authPathExclusions = JsonNullable.<List<String>>of(authPathExclusions);
   }
 
 
   public ServiceObject blockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
-    this.blockedPaths = blockedPaths;
+    this.blockedPaths = JsonNullable.<List<String>>of(blockedPaths);
     return this;
   }
 
   public ServiceObject addBlockedPathsItem(String blockedPathsItem) {
-    if (this.blockedPaths == null) {
-      this.blockedPaths = new ArrayList<>();
+    if (this.blockedPaths == null || !this.blockedPaths.isPresent()) {
+      this.blockedPaths = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.blockedPaths.add(blockedPathsItem);
+    try {
+      this.blockedPaths.get().add(blockedPathsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -535,17 +590,25 @@ public class ServiceObject {
    * @return blockedPaths
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getBlockedPaths() {
-    return blockedPaths;
+        return blockedPaths.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+
+  public JsonNullable<List<String>> getBlockedPaths_JsonNullable() {
+    return blockedPaths;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BLOCKED_PATHS)
+  public void setBlockedPaths_JsonNullable(JsonNullable<List<String>> blockedPaths) {
     this.blockedPaths = blockedPaths;
+  }
+
+  public void setBlockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+    this.blockedPaths = JsonNullable.<List<String>>of(blockedPaths);
   }
 
 
@@ -630,15 +693,19 @@ public class ServiceObject {
 
 
   public ServiceObject customDomains(@javax.annotation.Nullable List<CustomDomain> customDomains) {
-    this.customDomains = customDomains;
+    this.customDomains = JsonNullable.<List<CustomDomain>>of(customDomains);
     return this;
   }
 
   public ServiceObject addCustomDomainsItem(CustomDomain customDomainsItem) {
-    if (this.customDomains == null) {
-      this.customDomains = new ArrayList<>();
+    if (this.customDomains == null || !this.customDomains.isPresent()) {
+      this.customDomains = JsonNullable.<List<CustomDomain>>of(new ArrayList<>());
     }
-    this.customDomains.add(customDomainsItem);
+    try {
+      this.customDomains.get().add(customDomainsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -647,17 +714,25 @@ public class ServiceObject {
    * @return customDomains
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CUSTOM_DOMAINS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<CustomDomain> getCustomDomains() {
-    return customDomains;
+        return customDomains.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CUSTOM_DOMAINS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomDomains(@javax.annotation.Nullable List<CustomDomain> customDomains) {
+
+  public JsonNullable<List<CustomDomain>> getCustomDomains_JsonNullable() {
+    return customDomains;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CUSTOM_DOMAINS)
+  public void setCustomDomains_JsonNullable(JsonNullable<List<CustomDomain>> customDomains) {
     this.customDomains = customDomains;
+  }
+
+  public void setCustomDomains(@javax.annotation.Nullable List<CustomDomain> customDomains) {
+    this.customDomains = JsonNullable.<List<CustomDomain>>of(customDomains);
   }
 
 
@@ -758,7 +833,7 @@ public class ServiceObject {
 
 
   public ServiceObject githubBranch(@javax.annotation.Nullable String githubBranch) {
-    this.githubBranch = githubBranch;
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
     return this;
   }
 
@@ -767,22 +842,30 @@ public class ServiceObject {
    * @return githubBranch
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGithubBranch() {
-    return githubBranch;
+        return githubBranch.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GITHUB_BRANCH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+
+  public JsonNullable<String> getGithubBranch_JsonNullable() {
+    return githubBranch;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_BRANCH)
+  public void setGithubBranch_JsonNullable(JsonNullable<String> githubBranch) {
     this.githubBranch = githubBranch;
+  }
+
+  public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
+    this.githubBranch = JsonNullable.<String>of(githubBranch);
   }
 
 
   public ServiceObject currentBuildId(@javax.annotation.Nullable String currentBuildId) {
-    this.currentBuildId = currentBuildId;
+    this.currentBuildId = JsonNullable.<String>of(currentBuildId);
     return this;
   }
 
@@ -791,30 +874,42 @@ public class ServiceObject {
    * @return currentBuildId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CURRENT_BUILD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCurrentBuildId() {
-    return currentBuildId;
+        return currentBuildId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CURRENT_BUILD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrentBuildId(@javax.annotation.Nullable String currentBuildId) {
+
+  public JsonNullable<String> getCurrentBuildId_JsonNullable() {
+    return currentBuildId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CURRENT_BUILD_ID)
+  public void setCurrentBuildId_JsonNullable(JsonNullable<String> currentBuildId) {
     this.currentBuildId = currentBuildId;
+  }
+
+  public void setCurrentBuildId(@javax.annotation.Nullable String currentBuildId) {
+    this.currentBuildId = JsonNullable.<String>of(currentBuildId);
   }
 
 
   public ServiceObject enqueuedBuildIds(@javax.annotation.Nullable List<String> enqueuedBuildIds) {
-    this.enqueuedBuildIds = enqueuedBuildIds;
+    this.enqueuedBuildIds = JsonNullable.<List<String>>of(enqueuedBuildIds);
     return this;
   }
 
   public ServiceObject addEnqueuedBuildIdsItem(String enqueuedBuildIdsItem) {
-    if (this.enqueuedBuildIds == null) {
-      this.enqueuedBuildIds = new ArrayList<>();
+    if (this.enqueuedBuildIds == null || !this.enqueuedBuildIds.isPresent()) {
+      this.enqueuedBuildIds = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.enqueuedBuildIds.add(enqueuedBuildIdsItem);
+    try {
+      this.enqueuedBuildIds.get().add(enqueuedBuildIdsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -823,17 +918,25 @@ public class ServiceObject {
    * @return enqueuedBuildIds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENQUEUED_BUILD_IDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getEnqueuedBuildIds() {
-    return enqueuedBuildIds;
+        return enqueuedBuildIds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENQUEUED_BUILD_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnqueuedBuildIds(@javax.annotation.Nullable List<String> enqueuedBuildIds) {
+
+  public JsonNullable<List<String>> getEnqueuedBuildIds_JsonNullable() {
+    return enqueuedBuildIds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENQUEUED_BUILD_IDS)
+  public void setEnqueuedBuildIds_JsonNullable(JsonNullable<List<String>> enqueuedBuildIds) {
     this.enqueuedBuildIds = enqueuedBuildIds;
+  }
+
+  public void setEnqueuedBuildIds(@javax.annotation.Nullable List<String> enqueuedBuildIds) {
+    this.enqueuedBuildIds = JsonNullable.<List<String>>of(enqueuedBuildIds);
   }
 
 
@@ -870,7 +973,7 @@ public class ServiceObject {
 
 
   public ServiceObject baseDirectory(@javax.annotation.Nullable String baseDirectory) {
-    this.baseDirectory = baseDirectory;
+    this.baseDirectory = JsonNullable.<String>of(baseDirectory);
     return this;
   }
 
@@ -879,17 +982,25 @@ public class ServiceObject {
    * @return baseDirectory
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBaseDirectory() {
-    return baseDirectory;
+        return baseDirectory.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BASE_DIRECTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+
+  public JsonNullable<String> getBaseDirectory_JsonNullable() {
+    return baseDirectory;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BASE_DIRECTORY)
+  public void setBaseDirectory_JsonNullable(JsonNullable<String> baseDirectory) {
     this.baseDirectory = baseDirectory;
+  }
+
+  public void setBaseDirectory(@javax.annotation.Nullable String baseDirectory) {
+    this.baseDirectory = JsonNullable.<String>of(baseDirectory);
   }
 
 
@@ -940,36 +1051,47 @@ public class ServiceObject {
     ServiceObject serviceObject = (ServiceObject) o;
     return Objects.equals(this.serviceId, serviceObject.serviceId) &&
         Objects.equals(this.serviceName, serviceObject.serviceName) &&
-        Objects.equals(this.publicDnsEndpoint, serviceObject.publicDnsEndpoint) &&
-        Objects.equals(this.liveBuildId, serviceObject.liveBuildId) &&
-        Objects.equals(this.liveCommitHash, serviceObject.liveCommitHash) &&
-        Objects.equals(this.pausedAt, serviceObject.pausedAt) &&
-        Objects.equals(this.requestResponseBodyLoggingEnabled, serviceObject.requestResponseBodyLoggingEnabled) &&
-        Objects.equals(this.dockerfilePath, serviceObject.dockerfilePath) &&
+        equalsNullable(this.publicDnsEndpoint, serviceObject.publicDnsEndpoint) &&
+        equalsNullable(this.liveBuildId, serviceObject.liveBuildId) &&
+        equalsNullable(this.liveCommitHash, serviceObject.liveCommitHash) &&
+        equalsNullable(this.pausedAt, serviceObject.pausedAt) &&
+        equalsNullable(this.requestResponseBodyLoggingEnabled, serviceObject.requestResponseBodyLoggingEnabled) &&
+        equalsNullable(this.dockerfilePath, serviceObject.dockerfilePath) &&
         Objects.equals(this.healthCheckConfiguration, serviceObject.healthCheckConfiguration) &&
         Objects.equals(this.dockerfileDetectionResponse, serviceObject.dockerfileDetectionResponse) &&
         Objects.equals(this.healthCheckDetectionResponse, serviceObject.healthCheckDetectionResponse) &&
-        Objects.equals(this.authPathExclusions, serviceObject.authPathExclusions) &&
-        Objects.equals(this.blockedPaths, serviceObject.blockedPaths) &&
+        equalsNullable(this.authPathExclusions, serviceObject.authPathExclusions) &&
+        equalsNullable(this.blockedPaths, serviceObject.blockedPaths) &&
         Objects.equals(this.baseInstances, serviceObject.baseInstances) &&
         Objects.equals(this.regionReplicas, serviceObject.regionReplicas) &&
         Objects.equals(this.containerCpu, serviceObject.containerCpu) &&
-        Objects.equals(this.customDomains, serviceObject.customDomains) &&
+        equalsNullable(this.customDomains, serviceObject.customDomains) &&
         Objects.equals(this.createdTimestamp, serviceObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, serviceObject.lastModifiedTimestamp) &&
         Objects.equals(this.githubRepositoryUrl, serviceObject.githubRepositoryUrl) &&
         Objects.equals(this.githubBuildTrigger, serviceObject.githubBuildTrigger) &&
-        Objects.equals(this.githubBranch, serviceObject.githubBranch) &&
-        Objects.equals(this.currentBuildId, serviceObject.currentBuildId) &&
-        Objects.equals(this.enqueuedBuildIds, serviceObject.enqueuedBuildIds) &&
+        equalsNullable(this.githubBranch, serviceObject.githubBranch) &&
+        equalsNullable(this.currentBuildId, serviceObject.currentBuildId) &&
+        equalsNullable(this.enqueuedBuildIds, serviceObject.enqueuedBuildIds) &&
         Objects.equals(this.environmentVariables, serviceObject.environmentVariables) &&
-        Objects.equals(this.baseDirectory, serviceObject.baseDirectory) &&
+        equalsNullable(this.baseDirectory, serviceObject.baseDirectory) &&
         Objects.equals(this.secretKeys, serviceObject.secretKeys);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, publicDnsEndpoint, liveBuildId, liveCommitHash, pausedAt, requestResponseBodyLoggingEnabled, dockerfilePath, healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, authPathExclusions, blockedPaths, baseInstances, regionReplicas, containerCpu, customDomains, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, githubBranch, currentBuildId, enqueuedBuildIds, environmentVariables, baseDirectory, secretKeys);
+    return Objects.hash(serviceId, serviceName, hashCodeNullable(publicDnsEndpoint), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), hashCodeNullable(pausedAt), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(dockerfilePath), healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), baseInstances, regionReplicas, containerCpu, hashCodeNullable(customDomains), createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), secretKeys);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -32,7 +32,7 @@ export interface ReauthenticationStatusResponse {
      * @type {Date}
      * @memberof ReauthenticationStatusResponse
      */
-    lastReauthenticatedAt?: Date;
+    lastReauthenticatedAt?: Date | null;
     /**
      * 
      * @type {Array<ReauthenticationFactor>}

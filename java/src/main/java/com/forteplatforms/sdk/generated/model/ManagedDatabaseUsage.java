@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -43,20 +47,17 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseUsage {
   public static final String JSON_PROPERTY_USAGE_BYTES = "usageBytes";
-  @javax.annotation.Nullable
-  private Long usageBytes;
+  private JsonNullable<Long> usageBytes = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_PHYSICAL_USAGE_BYTES = "physicalUsageBytes";
-  @javax.annotation.Nullable
-  private Long physicalUsageBytes;
+  private JsonNullable<Long> physicalUsageBytes = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_STORAGE_GB = "storageGb";
   @javax.annotation.Nonnull
   private Integer storageGb;
 
   public static final String JSON_PROPERTY_USAGE_UPDATED_AT = "usageUpdatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime usageUpdatedAt;
+  private JsonNullable<OffsetDateTime> usageUpdatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_READ_ONLY = "readOnly";
   @javax.annotation.Nonnull
@@ -66,7 +67,7 @@ public class ManagedDatabaseUsage {
   }
 
   public ManagedDatabaseUsage usageBytes(@javax.annotation.Nullable Long usageBytes) {
-    this.usageBytes = usageBytes;
+    this.usageBytes = JsonNullable.<Long>of(usageBytes);
     return this;
   }
 
@@ -75,22 +76,30 @@ public class ManagedDatabaseUsage {
    * @return usageBytes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USAGE_BYTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getUsageBytes() {
-    return usageBytes;
+        return usageBytes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USAGE_BYTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsageBytes(@javax.annotation.Nullable Long usageBytes) {
+
+  public JsonNullable<Long> getUsageBytes_JsonNullable() {
+    return usageBytes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USAGE_BYTES)
+  public void setUsageBytes_JsonNullable(JsonNullable<Long> usageBytes) {
     this.usageBytes = usageBytes;
+  }
+
+  public void setUsageBytes(@javax.annotation.Nullable Long usageBytes) {
+    this.usageBytes = JsonNullable.<Long>of(usageBytes);
   }
 
 
   public ManagedDatabaseUsage physicalUsageBytes(@javax.annotation.Nullable Long physicalUsageBytes) {
-    this.physicalUsageBytes = physicalUsageBytes;
+    this.physicalUsageBytes = JsonNullable.<Long>of(physicalUsageBytes);
     return this;
   }
 
@@ -99,17 +108,25 @@ public class ManagedDatabaseUsage {
    * @return physicalUsageBytes
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE_BYTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPhysicalUsageBytes() {
-    return physicalUsageBytes;
+        return physicalUsageBytes.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE_BYTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhysicalUsageBytes(@javax.annotation.Nullable Long physicalUsageBytes) {
+
+  public JsonNullable<Long> getPhysicalUsageBytes_JsonNullable() {
+    return physicalUsageBytes;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHYSICAL_USAGE_BYTES)
+  public void setPhysicalUsageBytes_JsonNullable(JsonNullable<Long> physicalUsageBytes) {
     this.physicalUsageBytes = physicalUsageBytes;
+  }
+
+  public void setPhysicalUsageBytes(@javax.annotation.Nullable Long physicalUsageBytes) {
+    this.physicalUsageBytes = JsonNullable.<Long>of(physicalUsageBytes);
   }
 
 
@@ -138,7 +155,7 @@ public class ManagedDatabaseUsage {
 
 
   public ManagedDatabaseUsage usageUpdatedAt(@javax.annotation.Nullable OffsetDateTime usageUpdatedAt) {
-    this.usageUpdatedAt = usageUpdatedAt;
+    this.usageUpdatedAt = JsonNullable.<OffsetDateTime>of(usageUpdatedAt);
     return this;
   }
 
@@ -147,17 +164,25 @@ public class ManagedDatabaseUsage {
    * @return usageUpdatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USAGE_UPDATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getUsageUpdatedAt() {
-    return usageUpdatedAt;
+        return usageUpdatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USAGE_UPDATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsageUpdatedAt(@javax.annotation.Nullable OffsetDateTime usageUpdatedAt) {
+
+  public JsonNullable<OffsetDateTime> getUsageUpdatedAt_JsonNullable() {
+    return usageUpdatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USAGE_UPDATED_AT)
+  public void setUsageUpdatedAt_JsonNullable(JsonNullable<OffsetDateTime> usageUpdatedAt) {
     this.usageUpdatedAt = usageUpdatedAt;
+  }
+
+  public void setUsageUpdatedAt(@javax.annotation.Nullable OffsetDateTime usageUpdatedAt) {
+    this.usageUpdatedAt = JsonNullable.<OffsetDateTime>of(usageUpdatedAt);
   }
 
 
@@ -197,16 +222,27 @@ public class ManagedDatabaseUsage {
       return false;
     }
     ManagedDatabaseUsage managedDatabaseUsage = (ManagedDatabaseUsage) o;
-    return Objects.equals(this.usageBytes, managedDatabaseUsage.usageBytes) &&
-        Objects.equals(this.physicalUsageBytes, managedDatabaseUsage.physicalUsageBytes) &&
+    return equalsNullable(this.usageBytes, managedDatabaseUsage.usageBytes) &&
+        equalsNullable(this.physicalUsageBytes, managedDatabaseUsage.physicalUsageBytes) &&
         Objects.equals(this.storageGb, managedDatabaseUsage.storageGb) &&
-        Objects.equals(this.usageUpdatedAt, managedDatabaseUsage.usageUpdatedAt) &&
+        equalsNullable(this.usageUpdatedAt, managedDatabaseUsage.usageUpdatedAt) &&
         Objects.equals(this.readOnly, managedDatabaseUsage.readOnly);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(usageBytes, physicalUsageBytes, storageGb, usageUpdatedAt, readOnly);
+    return Objects.hash(hashCodeNullable(usageBytes), hashCodeNullable(physicalUsageBytes), storageGb, hashCodeNullable(usageUpdatedAt), readOnly);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

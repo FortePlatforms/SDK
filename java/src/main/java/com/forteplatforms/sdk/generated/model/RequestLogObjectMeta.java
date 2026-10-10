@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -54,12 +58,10 @@ public class RequestLogObjectMeta {
   private String requestPath;
 
   public static final String JSON_PROPERTY_REQUEST_PATH_ID = "requestPathId";
-  @javax.annotation.Nullable
-  private String requestPathId;
+  private JsonNullable<String> requestPathId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_USER_ID = "userId";
-  @javax.annotation.Nullable
-  private String userId;
+  private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
   public RequestLogObjectMeta() { 
   }
@@ -137,7 +139,7 @@ public class RequestLogObjectMeta {
 
 
   public RequestLogObjectMeta requestPathId(@javax.annotation.Nullable String requestPathId) {
-    this.requestPathId = requestPathId;
+    this.requestPathId = JsonNullable.<String>of(requestPathId);
     return this;
   }
 
@@ -146,22 +148,30 @@ public class RequestLogObjectMeta {
    * @return requestPathId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUEST_PATH_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRequestPathId() {
-    return requestPathId;
+        return requestPathId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REQUEST_PATH_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestPathId(@javax.annotation.Nullable String requestPathId) {
+
+  public JsonNullable<String> getRequestPathId_JsonNullable() {
+    return requestPathId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REQUEST_PATH_ID)
+  public void setRequestPathId_JsonNullable(JsonNullable<String> requestPathId) {
     this.requestPathId = requestPathId;
+  }
+
+  public void setRequestPathId(@javax.annotation.Nullable String requestPathId) {
+    this.requestPathId = JsonNullable.<String>of(requestPathId);
   }
 
 
   public RequestLogObjectMeta userId(@javax.annotation.Nullable String userId) {
-    this.userId = userId;
+    this.userId = JsonNullable.<String>of(userId);
     return this;
   }
 
@@ -170,17 +180,25 @@ public class RequestLogObjectMeta {
    * @return userId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUserId() {
-    return userId;
+        return userId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserId(@javax.annotation.Nullable String userId) {
+
+  public JsonNullable<String> getUserId_JsonNullable() {
+    return userId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_ID)
+  public void setUserId_JsonNullable(JsonNullable<String> userId) {
     this.userId = userId;
+  }
+
+  public void setUserId(@javax.annotation.Nullable String userId) {
+    this.userId = JsonNullable.<String>of(userId);
   }
 
 
@@ -199,13 +217,24 @@ public class RequestLogObjectMeta {
     return Objects.equals(this.serviceId, requestLogObjectMeta.serviceId) &&
         Objects.equals(this.requestMethod, requestLogObjectMeta.requestMethod) &&
         Objects.equals(this.requestPath, requestLogObjectMeta.requestPath) &&
-        Objects.equals(this.requestPathId, requestLogObjectMeta.requestPathId) &&
-        Objects.equals(this.userId, requestLogObjectMeta.userId);
+        equalsNullable(this.requestPathId, requestLogObjectMeta.requestPathId) &&
+        equalsNullable(this.userId, requestLogObjectMeta.userId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, requestMethod, requestPath, requestPathId, userId);
+    return Objects.hash(serviceId, requestMethod, requestPath, hashCodeNullable(requestPathId), hashCodeNullable(userId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

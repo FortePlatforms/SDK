@@ -44,7 +44,7 @@ export interface RotateManagedDatabaseUserPasswordResponse {
      * @type {string}
      * @memberof RotateManagedDatabaseUserPasswordResponse
      */
-    connectionUri?: string;
+    connectionUri?: string | null;
 }
 
 /**

@@ -77,6 +77,21 @@ class CustomEmailTemplateObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if html_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.html_body is None and "html_body" in self.model_fields_set:
+            _dict['htmlBody'] = None
+
+        # set to None if text_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.text_body is None and "text_body" in self.model_fields_set:
+            _dict['textBody'] = None
+
+        # set to None if last_modified_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_modified_timestamp is None and "last_modified_timestamp" in self.model_fields_set:
+            _dict['lastModifiedTimestamp'] = None
+
         return _dict
 
     @classmethod

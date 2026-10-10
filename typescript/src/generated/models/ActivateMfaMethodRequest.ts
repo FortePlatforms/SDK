@@ -24,13 +24,13 @@ export interface ActivateMfaMethodRequest {
      * @type {string}
      * @memberof ActivateMfaMethodRequest
      */
-    code?: string;
+    code?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ActivateMfaMethodRequest
      */
-    webAuthnAttestation?: string;
+    webAuthnAttestation?: string | null;
 }
 
 /**

@@ -38,7 +38,7 @@ export interface ListManagedDatabasesResponse {
      * @type {string}
      * @memberof ListManagedDatabasesResponse
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
 }
 
 /**

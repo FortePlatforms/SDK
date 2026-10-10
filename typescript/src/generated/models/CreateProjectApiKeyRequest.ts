@@ -30,7 +30,7 @@ export interface CreateProjectApiKeyRequest {
      * @type {Date}
      * @memberof CreateProjectApiKeyRequest
      */
-    expirationTime?: Date;
+    expirationTime?: Date | null;
 }
 
 /**

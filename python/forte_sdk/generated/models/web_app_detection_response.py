@@ -104,6 +104,61 @@ class WebAppDetectionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of repository_analysis
         if self.repository_analysis:
             _dict['repositoryAnalysis'] = self.repository_analysis.to_dict()
+        # set to None if web_app_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.web_app_type is None and "web_app_type" in self.model_fields_set:
+            _dict['webAppType'] = None
+
+        # set to None if package_manager (nullable) is None
+        # and model_fields_set contains the field
+        if self.package_manager is None and "package_manager" in self.model_fields_set:
+            _dict['packageManager'] = None
+
+        # set to None if node_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_version is None and "node_version" in self.model_fields_set:
+            _dict['nodeVersion'] = None
+
+        # set to None if build_command (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_command is None and "build_command" in self.model_fields_set:
+            _dict['buildCommand'] = None
+
+        # set to None if build_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_path is None and "build_path" in self.model_fields_set:
+            _dict['buildPath'] = None
+
+        # set to None if install_command (nullable) is None
+        # and model_fields_set contains the field
+        if self.install_command is None and "install_command" in self.model_fields_set:
+            _dict['installCommand'] = None
+
+        # set to None if detected_framework (nullable) is None
+        # and model_fields_set contains the field
+        if self.detected_framework is None and "detected_framework" in self.model_fields_set:
+            _dict['detectedFramework'] = None
+
+        # set to None if subdirectory (nullable) is None
+        # and model_fields_set contains the field
+        if self.subdirectory is None and "subdirectory" in self.model_fields_set:
+            _dict['subdirectory'] = None
+
+        # set to None if monorepo_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.monorepo_type is None and "monorepo_type" in self.model_fields_set:
+            _dict['monorepoType'] = None
+
+        # set to None if workspace_root (nullable) is None
+        # and model_fields_set contains the field
+        if self.workspace_root is None and "workspace_root" in self.model_fields_set:
+            _dict['workspaceRoot'] = None
+
+        # set to None if app_package_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.app_package_name is None and "app_package_name" in self.model_fields_set:
+            _dict['appPackageName'] = None
+
         return _dict
 
     @classmethod

@@ -82,6 +82,31 @@ class ManagedDatabaseMetricLimits(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if pool_size (nullable) is None
+        # and model_fields_set contains the field
+        if self.pool_size is None and "pool_size" in self.model_fields_set:
+            _dict['poolSize'] = None
+
+        # set to None if max_client_connections (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_client_connections is None and "max_client_connections" in self.model_fields_set:
+            _dict['maxClientConnections'] = None
+
+        # set to None if query_wait_timeout_seconds (nullable) is None
+        # and model_fields_set contains the field
+        if self.query_wait_timeout_seconds is None and "query_wait_timeout_seconds" in self.model_fields_set:
+            _dict['queryWaitTimeoutSeconds'] = None
+
+        # set to None if per_user_connection_limit (nullable) is None
+        # and model_fields_set contains the field
+        if self.per_user_connection_limit is None and "per_user_connection_limit" in self.model_fields_set:
+            _dict['perUserConnectionLimit'] = None
+
+        # set to None if user_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_count is None and "user_count" in self.model_fields_set:
+            _dict['userCount'] = None
+
         return _dict
 
     @classmethod

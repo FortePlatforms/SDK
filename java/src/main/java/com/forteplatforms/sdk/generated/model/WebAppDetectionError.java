@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -77,23 +81,21 @@ public class WebAppDetectionError {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_ERROR_TYPE = "errorType";
-  @javax.annotation.Nullable
-  private ErrorTypeEnum errorType;
+  private JsonNullable<ErrorTypeEnum> errorType = JsonNullable.<ErrorTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
-  @javax.annotation.Nullable
-  private String message;
+  private JsonNullable<String> message = JsonNullable.<String>undefined();
 
   public WebAppDetectionError() { 
   }
 
   public WebAppDetectionError errorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
-    this.errorType = errorType;
+    this.errorType = JsonNullable.<ErrorTypeEnum>of(errorType);
     return this;
   }
 
@@ -102,22 +104,30 @@ public class WebAppDetectionError {
    * @return errorType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public ErrorTypeEnum getErrorType() {
-    return errorType;
+        return errorType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
+
+  public JsonNullable<ErrorTypeEnum> getErrorType_JsonNullable() {
+    return errorType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_TYPE)
+  public void setErrorType_JsonNullable(JsonNullable<ErrorTypeEnum> errorType) {
     this.errorType = errorType;
+  }
+
+  public void setErrorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
+    this.errorType = JsonNullable.<ErrorTypeEnum>of(errorType);
   }
 
 
   public WebAppDetectionError message(@javax.annotation.Nullable String message) {
-    this.message = message;
+    this.message = JsonNullable.<String>of(message);
     return this;
   }
 
@@ -126,17 +136,25 @@ public class WebAppDetectionError {
    * @return message
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMessage() {
-    return message;
+        return message.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(@javax.annotation.Nullable String message) {
+
+  public JsonNullable<String> getMessage_JsonNullable() {
+    return message;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  public void setMessage_JsonNullable(JsonNullable<String> message) {
     this.message = message;
+  }
+
+  public void setMessage(@javax.annotation.Nullable String message) {
+    this.message = JsonNullable.<String>of(message);
   }
 
 
@@ -152,13 +170,24 @@ public class WebAppDetectionError {
       return false;
     }
     WebAppDetectionError webAppDetectionError = (WebAppDetectionError) o;
-    return Objects.equals(this.errorType, webAppDetectionError.errorType) &&
-        Objects.equals(this.message, webAppDetectionError.message);
+    return equalsNullable(this.errorType, webAppDetectionError.errorType) &&
+        equalsNullable(this.message, webAppDetectionError.message);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorType, message);
+    return Objects.hash(hashCodeNullable(errorType), hashCodeNullable(message));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

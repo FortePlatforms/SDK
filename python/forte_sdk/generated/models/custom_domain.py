@@ -100,6 +100,31 @@ class CustomDomain(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of last_dns_check_result
         if self.last_dns_check_result:
             _dict['lastDnsCheckResult'] = self.last_dns_check_result.to_dict()
+        # set to None if verified_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.verified_timestamp is None and "verified_timestamp" in self.model_fields_set:
+            _dict['verifiedTimestamp'] = None
+
+        # set to None if activated_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.activated_timestamp is None and "activated_timestamp" in self.model_fields_set:
+            _dict['activatedTimestamp'] = None
+
+        # set to None if failure_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.failure_reason is None and "failure_reason" in self.model_fields_set:
+            _dict['failureReason'] = None
+
+        # set to None if required_dns_records (nullable) is None
+        # and model_fields_set contains the field
+        if self.required_dns_records is None and "required_dns_records" in self.model_fields_set:
+            _dict['requiredDnsRecords'] = None
+
+        # set to None if last_dns_check_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_dns_check_at is None and "last_dns_check_at" in self.model_fields_set:
+            _dict['lastDnsCheckAt'] = None
+
         return _dict
 
     @classmethod

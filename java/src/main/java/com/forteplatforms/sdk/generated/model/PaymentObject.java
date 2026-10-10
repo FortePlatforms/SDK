@@ -35,6 +35,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -137,8 +141,7 @@ public class PaymentObject {
   private Long subtotalCents;
 
   public static final String JSON_PROPERTY_TAX_CENTS = "taxCents";
-  @javax.annotation.Nullable
-  private Long taxCents;
+  private JsonNullable<Long> taxCents = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nonnull
@@ -149,8 +152,7 @@ public class PaymentObject {
   private String currency;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LINE_ITEMS = "lineItems";
   @javax.annotation.Nonnull
@@ -177,24 +179,19 @@ public class PaymentObject {
   private String stripePaymentIntentId;
 
   public static final String JSON_PROPERTY_STRIPE_STATUS = "stripeStatus";
-  @javax.annotation.Nullable
-  private String stripeStatus;
+  private JsonNullable<String> stripeStatus = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID = "stripeTaxCalculationId";
-  @javax.annotation.Nullable
-  private String stripeTaxCalculationId;
+  private JsonNullable<String> stripeTaxCalculationId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID = "stripeTaxTransactionId";
-  @javax.annotation.Nullable
-  private String stripeTaxTransactionId;
+  private JsonNullable<String> stripeTaxTransactionId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
-  @javax.annotation.Nullable
-  private String subscriptionId;
+  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME = "subscriptionRenewalTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime subscriptionRenewalTime;
+  private JsonNullable<OffsetDateTime> subscriptionRenewalTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_STATE_HISTORY = "stateHistory";
   @javax.annotation.Nonnull
@@ -340,7 +337,7 @@ public class PaymentObject {
 
 
   public PaymentObject taxCents(@javax.annotation.Nullable Long taxCents) {
-    this.taxCents = taxCents;
+    this.taxCents = JsonNullable.<Long>of(taxCents);
     return this;
   }
 
@@ -349,17 +346,25 @@ public class PaymentObject {
    * @return taxCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTaxCents() {
-    return taxCents;
+        return taxCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTaxCents(@javax.annotation.Nullable Long taxCents) {
+
+  public JsonNullable<Long> getTaxCents_JsonNullable() {
+    return taxCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_CENTS)
+  public void setTaxCents_JsonNullable(JsonNullable<Long> taxCents) {
     this.taxCents = taxCents;
+  }
+
+  public void setTaxCents(@javax.annotation.Nullable Long taxCents) {
+    this.taxCents = JsonNullable.<Long>of(taxCents);
   }
 
 
@@ -412,7 +417,7 @@ public class PaymentObject {
 
 
   public PaymentObject description(@javax.annotation.Nullable String description) {
-    this.description = description;
+    this.description = JsonNullable.<String>of(description);
     return this;
   }
 
@@ -421,17 +426,25 @@ public class PaymentObject {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
@@ -604,7 +617,7 @@ public class PaymentObject {
 
 
   public PaymentObject stripeStatus(@javax.annotation.Nullable String stripeStatus) {
-    this.stripeStatus = stripeStatus;
+    this.stripeStatus = JsonNullable.<String>of(stripeStatus);
     return this;
   }
 
@@ -613,22 +626,30 @@ public class PaymentObject {
    * @return stripeStatus
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripeStatus() {
-    return stripeStatus;
+        return stripeStatus.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripeStatus(@javax.annotation.Nullable String stripeStatus) {
+
+  public JsonNullable<String> getStripeStatus_JsonNullable() {
+    return stripeStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_STATUS)
+  public void setStripeStatus_JsonNullable(JsonNullable<String> stripeStatus) {
     this.stripeStatus = stripeStatus;
+  }
+
+  public void setStripeStatus(@javax.annotation.Nullable String stripeStatus) {
+    this.stripeStatus = JsonNullable.<String>of(stripeStatus);
   }
 
 
   public PaymentObject stripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
-    this.stripeTaxCalculationId = stripeTaxCalculationId;
+    this.stripeTaxCalculationId = JsonNullable.<String>of(stripeTaxCalculationId);
     return this;
   }
 
@@ -637,22 +658,30 @@ public class PaymentObject {
    * @return stripeTaxCalculationId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripeTaxCalculationId() {
-    return stripeTaxCalculationId;
+        return stripeTaxCalculationId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
+
+  public JsonNullable<String> getStripeTaxCalculationId_JsonNullable() {
+    return stripeTaxCalculationId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID)
+  public void setStripeTaxCalculationId_JsonNullable(JsonNullable<String> stripeTaxCalculationId) {
     this.stripeTaxCalculationId = stripeTaxCalculationId;
+  }
+
+  public void setStripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
+    this.stripeTaxCalculationId = JsonNullable.<String>of(stripeTaxCalculationId);
   }
 
 
   public PaymentObject stripeTaxTransactionId(@javax.annotation.Nullable String stripeTaxTransactionId) {
-    this.stripeTaxTransactionId = stripeTaxTransactionId;
+    this.stripeTaxTransactionId = JsonNullable.<String>of(stripeTaxTransactionId);
     return this;
   }
 
@@ -661,22 +690,30 @@ public class PaymentObject {
    * @return stripeTaxTransactionId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripeTaxTransactionId() {
-    return stripeTaxTransactionId;
+        return stripeTaxTransactionId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripeTaxTransactionId(@javax.annotation.Nullable String stripeTaxTransactionId) {
+
+  public JsonNullable<String> getStripeTaxTransactionId_JsonNullable() {
+    return stripeTaxTransactionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID)
+  public void setStripeTaxTransactionId_JsonNullable(JsonNullable<String> stripeTaxTransactionId) {
     this.stripeTaxTransactionId = stripeTaxTransactionId;
+  }
+
+  public void setStripeTaxTransactionId(@javax.annotation.Nullable String stripeTaxTransactionId) {
+    this.stripeTaxTransactionId = JsonNullable.<String>of(stripeTaxTransactionId);
   }
 
 
   public PaymentObject subscriptionId(@javax.annotation.Nullable String subscriptionId) {
-    this.subscriptionId = subscriptionId;
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
     return this;
   }
 
@@ -685,22 +722,30 @@ public class PaymentObject {
    * @return subscriptionId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubscriptionId() {
-    return subscriptionId;
+        return subscriptionId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscriptionId(@javax.annotation.Nullable String subscriptionId) {
+
+  public JsonNullable<String> getSubscriptionId_JsonNullable() {
+    return subscriptionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
     this.subscriptionId = subscriptionId;
+  }
+
+  public void setSubscriptionId(@javax.annotation.Nullable String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
   }
 
 
   public PaymentObject subscriptionRenewalTime(@javax.annotation.Nullable OffsetDateTime subscriptionRenewalTime) {
-    this.subscriptionRenewalTime = subscriptionRenewalTime;
+    this.subscriptionRenewalTime = JsonNullable.<OffsetDateTime>of(subscriptionRenewalTime);
     return this;
   }
 
@@ -709,17 +754,25 @@ public class PaymentObject {
    * @return subscriptionRenewalTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getSubscriptionRenewalTime() {
-    return subscriptionRenewalTime;
+        return subscriptionRenewalTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscriptionRenewalTime(@javax.annotation.Nullable OffsetDateTime subscriptionRenewalTime) {
+
+  public JsonNullable<OffsetDateTime> getSubscriptionRenewalTime_JsonNullable() {
+    return subscriptionRenewalTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME)
+  public void setSubscriptionRenewalTime_JsonNullable(JsonNullable<OffsetDateTime> subscriptionRenewalTime) {
     this.subscriptionRenewalTime = subscriptionRenewalTime;
+  }
+
+  public void setSubscriptionRenewalTime(@javax.annotation.Nullable OffsetDateTime subscriptionRenewalTime) {
+    this.subscriptionRenewalTime = JsonNullable.<OffsetDateTime>of(subscriptionRenewalTime);
   }
 
 
@@ -876,21 +929,21 @@ public class PaymentObject {
         Objects.equals(this.userId, paymentObject.userId) &&
         Objects.equals(this.state, paymentObject.state) &&
         Objects.equals(this.subtotalCents, paymentObject.subtotalCents) &&
-        Objects.equals(this.taxCents, paymentObject.taxCents) &&
+        equalsNullable(this.taxCents, paymentObject.taxCents) &&
         Objects.equals(this.amountCents, paymentObject.amountCents) &&
         Objects.equals(this.currency, paymentObject.currency) &&
-        Objects.equals(this.description, paymentObject.description) &&
+        equalsNullable(this.description, paymentObject.description) &&
         Objects.equals(this.lineItems, paymentObject.lineItems) &&
         Objects.equals(this.metadata, paymentObject.metadata) &&
         Objects.equals(this.customerAddress, paymentObject.customerAddress) &&
         Objects.equals(this.shippingAddress, paymentObject.shippingAddress) &&
         Objects.equals(this.supportedPaymentMethods, paymentObject.supportedPaymentMethods) &&
         Objects.equals(this.stripePaymentIntentId, paymentObject.stripePaymentIntentId) &&
-        Objects.equals(this.stripeStatus, paymentObject.stripeStatus) &&
-        Objects.equals(this.stripeTaxCalculationId, paymentObject.stripeTaxCalculationId) &&
-        Objects.equals(this.stripeTaxTransactionId, paymentObject.stripeTaxTransactionId) &&
-        Objects.equals(this.subscriptionId, paymentObject.subscriptionId) &&
-        Objects.equals(this.subscriptionRenewalTime, paymentObject.subscriptionRenewalTime) &&
+        equalsNullable(this.stripeStatus, paymentObject.stripeStatus) &&
+        equalsNullable(this.stripeTaxCalculationId, paymentObject.stripeTaxCalculationId) &&
+        equalsNullable(this.stripeTaxTransactionId, paymentObject.stripeTaxTransactionId) &&
+        equalsNullable(this.subscriptionId, paymentObject.subscriptionId) &&
+        equalsNullable(this.subscriptionRenewalTime, paymentObject.subscriptionRenewalTime) &&
         Objects.equals(this.stateHistory, paymentObject.stateHistory) &&
         Objects.equals(this.refundHistory, paymentObject.refundHistory) &&
         Objects.equals(this.createdAt, paymentObject.createdAt) &&
@@ -898,9 +951,20 @@ public class PaymentObject {
         Objects.equals(this.refundedAmountCents, paymentObject.refundedAmountCents);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, taxCents, amountCents, currency, description, lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, stripeStatus, stripeTaxCalculationId, stripeTaxTransactionId, subscriptionId, subscriptionRenewalTime, stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionId), hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -24,31 +24,31 @@ export interface AdminOverrideContactMethodRequest {
      * @type {string}
      * @memberof AdminOverrideContactMethodRequest
      */
-    email?: string;
+    email?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AdminOverrideContactMethodRequest
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof AdminOverrideContactMethodRequest
      */
-    verified?: boolean;
+    verified?: boolean | null;
     /**
      * 
      * @type {string}
      * @memberof AdminOverrideContactMethodRequest
      */
-    fixedVerificationCode?: string;
+    fixedVerificationCode?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof AdminOverrideContactMethodRequest
      */
-    removeFixedVerificationCode?: boolean;
+    removeFixedVerificationCode?: boolean | null;
 }
 
 /**

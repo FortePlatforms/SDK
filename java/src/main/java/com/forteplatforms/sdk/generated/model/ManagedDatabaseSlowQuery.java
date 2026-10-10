@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -56,8 +60,7 @@ public class ManagedDatabaseSlowQuery {
   private OffsetDateTime timestamp;
 
   public static final String JSON_PROPERTY_DURATION_MS = "durationMs";
-  @javax.annotation.Nullable
-  private Double durationMs;
+  private JsonNullable<Double> durationMs = JsonNullable.<Double>undefined();
 
   /**
    * Gets or Sets kind
@@ -101,12 +104,10 @@ public class ManagedDatabaseSlowQuery {
   private KindEnum kind;
 
   public static final String JSON_PROPERTY_QUERY_TEXT = "queryText";
-  @javax.annotation.Nullable
-  private String queryText;
+  private JsonNullable<String> queryText = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_USER_NAME = "userName";
-  @javax.annotation.Nullable
-  private String userName;
+  private JsonNullable<String> userName = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets queryLanguage
@@ -139,25 +140,21 @@ public class ManagedDatabaseSlowQuery {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_QUERY_LANGUAGE = "queryLanguage";
-  @javax.annotation.Nullable
-  private QueryLanguageEnum queryLanguage;
+  private JsonNullable<QueryLanguageEnum> queryLanguage = JsonNullable.<QueryLanguageEnum>undefined();
 
   public static final String JSON_PROPERTY_OPERATION = "operation";
-  @javax.annotation.Nullable
-  private String operation;
+  private JsonNullable<String> operation = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_COLLECTION = "collection";
-  @javax.annotation.Nullable
-  private String collection;
+  private JsonNullable<String> collection = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_QUERY_TEXT_TRUNCATED = "queryTextTruncated";
-  @javax.annotation.Nullable
-  private Boolean queryTextTruncated;
+  private JsonNullable<Boolean> queryTextTruncated = JsonNullable.<Boolean>undefined();
 
   public ManagedDatabaseSlowQuery() { 
   }
@@ -211,7 +208,7 @@ public class ManagedDatabaseSlowQuery {
 
 
   public ManagedDatabaseSlowQuery durationMs(@javax.annotation.Nullable Double durationMs) {
-    this.durationMs = durationMs;
+    this.durationMs = JsonNullable.<Double>of(durationMs);
     return this;
   }
 
@@ -220,17 +217,25 @@ public class ManagedDatabaseSlowQuery {
    * @return durationMs
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DURATION_MS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Double getDurationMs() {
-    return durationMs;
+        return durationMs.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DURATION_MS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDurationMs(@javax.annotation.Nullable Double durationMs) {
+
+  public JsonNullable<Double> getDurationMs_JsonNullable() {
+    return durationMs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DURATION_MS)
+  public void setDurationMs_JsonNullable(JsonNullable<Double> durationMs) {
     this.durationMs = durationMs;
+  }
+
+  public void setDurationMs(@javax.annotation.Nullable Double durationMs) {
+    this.durationMs = JsonNullable.<Double>of(durationMs);
   }
 
 
@@ -259,7 +264,7 @@ public class ManagedDatabaseSlowQuery {
 
 
   public ManagedDatabaseSlowQuery queryText(@javax.annotation.Nullable String queryText) {
-    this.queryText = queryText;
+    this.queryText = JsonNullable.<String>of(queryText);
     return this;
   }
 
@@ -268,22 +273,30 @@ public class ManagedDatabaseSlowQuery {
    * @return queryText
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_QUERY_TEXT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getQueryText() {
-    return queryText;
+        return queryText.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_QUERY_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQueryText(@javax.annotation.Nullable String queryText) {
+
+  public JsonNullable<String> getQueryText_JsonNullable() {
+    return queryText;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_QUERY_TEXT)
+  public void setQueryText_JsonNullable(JsonNullable<String> queryText) {
     this.queryText = queryText;
+  }
+
+  public void setQueryText(@javax.annotation.Nullable String queryText) {
+    this.queryText = JsonNullable.<String>of(queryText);
   }
 
 
   public ManagedDatabaseSlowQuery userName(@javax.annotation.Nullable String userName) {
-    this.userName = userName;
+    this.userName = JsonNullable.<String>of(userName);
     return this;
   }
 
@@ -292,22 +305,30 @@ public class ManagedDatabaseSlowQuery {
    * @return userName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUserName() {
-    return userName;
+        return userName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USER_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserName(@javax.annotation.Nullable String userName) {
+
+  public JsonNullable<String> getUserName_JsonNullable() {
+    return userName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_NAME)
+  public void setUserName_JsonNullable(JsonNullable<String> userName) {
     this.userName = userName;
+  }
+
+  public void setUserName(@javax.annotation.Nullable String userName) {
+    this.userName = JsonNullable.<String>of(userName);
   }
 
 
   public ManagedDatabaseSlowQuery queryLanguage(@javax.annotation.Nullable QueryLanguageEnum queryLanguage) {
-    this.queryLanguage = queryLanguage;
+    this.queryLanguage = JsonNullable.<QueryLanguageEnum>of(queryLanguage);
     return this;
   }
 
@@ -316,22 +337,30 @@ public class ManagedDatabaseSlowQuery {
    * @return queryLanguage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_QUERY_LANGUAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public QueryLanguageEnum getQueryLanguage() {
-    return queryLanguage;
+        return queryLanguage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_QUERY_LANGUAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQueryLanguage(@javax.annotation.Nullable QueryLanguageEnum queryLanguage) {
+
+  public JsonNullable<QueryLanguageEnum> getQueryLanguage_JsonNullable() {
+    return queryLanguage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_QUERY_LANGUAGE)
+  public void setQueryLanguage_JsonNullable(JsonNullable<QueryLanguageEnum> queryLanguage) {
     this.queryLanguage = queryLanguage;
+  }
+
+  public void setQueryLanguage(@javax.annotation.Nullable QueryLanguageEnum queryLanguage) {
+    this.queryLanguage = JsonNullable.<QueryLanguageEnum>of(queryLanguage);
   }
 
 
   public ManagedDatabaseSlowQuery operation(@javax.annotation.Nullable String operation) {
-    this.operation = operation;
+    this.operation = JsonNullable.<String>of(operation);
     return this;
   }
 
@@ -340,22 +369,30 @@ public class ManagedDatabaseSlowQuery {
    * @return operation
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OPERATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOperation() {
-    return operation;
+        return operation.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OPERATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOperation(@javax.annotation.Nullable String operation) {
+
+  public JsonNullable<String> getOperation_JsonNullable() {
+    return operation;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OPERATION)
+  public void setOperation_JsonNullable(JsonNullable<String> operation) {
     this.operation = operation;
+  }
+
+  public void setOperation(@javax.annotation.Nullable String operation) {
+    this.operation = JsonNullable.<String>of(operation);
   }
 
 
   public ManagedDatabaseSlowQuery collection(@javax.annotation.Nullable String collection) {
-    this.collection = collection;
+    this.collection = JsonNullable.<String>of(collection);
     return this;
   }
 
@@ -364,22 +401,30 @@ public class ManagedDatabaseSlowQuery {
    * @return collection
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_COLLECTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCollection() {
-    return collection;
+        return collection.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_COLLECTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCollection(@javax.annotation.Nullable String collection) {
+
+  public JsonNullable<String> getCollection_JsonNullable() {
+    return collection;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COLLECTION)
+  public void setCollection_JsonNullable(JsonNullable<String> collection) {
     this.collection = collection;
+  }
+
+  public void setCollection(@javax.annotation.Nullable String collection) {
+    this.collection = JsonNullable.<String>of(collection);
   }
 
 
   public ManagedDatabaseSlowQuery queryTextTruncated(@javax.annotation.Nullable Boolean queryTextTruncated) {
-    this.queryTextTruncated = queryTextTruncated;
+    this.queryTextTruncated = JsonNullable.<Boolean>of(queryTextTruncated);
     return this;
   }
 
@@ -388,17 +433,25 @@ public class ManagedDatabaseSlowQuery {
    * @return queryTextTruncated
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_QUERY_TEXT_TRUNCATED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getQueryTextTruncated() {
-    return queryTextTruncated;
+        return queryTextTruncated.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_QUERY_TEXT_TRUNCATED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQueryTextTruncated(@javax.annotation.Nullable Boolean queryTextTruncated) {
+
+  public JsonNullable<Boolean> getQueryTextTruncated_JsonNullable() {
+    return queryTextTruncated;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_QUERY_TEXT_TRUNCATED)
+  public void setQueryTextTruncated_JsonNullable(JsonNullable<Boolean> queryTextTruncated) {
     this.queryTextTruncated = queryTextTruncated;
+  }
+
+  public void setQueryTextTruncated(@javax.annotation.Nullable Boolean queryTextTruncated) {
+    this.queryTextTruncated = JsonNullable.<Boolean>of(queryTextTruncated);
   }
 
 
@@ -416,19 +469,30 @@ public class ManagedDatabaseSlowQuery {
     ManagedDatabaseSlowQuery managedDatabaseSlowQuery = (ManagedDatabaseSlowQuery) o;
     return Objects.equals(this.slowQueryId, managedDatabaseSlowQuery.slowQueryId) &&
         Objects.equals(this.timestamp, managedDatabaseSlowQuery.timestamp) &&
-        Objects.equals(this.durationMs, managedDatabaseSlowQuery.durationMs) &&
+        equalsNullable(this.durationMs, managedDatabaseSlowQuery.durationMs) &&
         Objects.equals(this.kind, managedDatabaseSlowQuery.kind) &&
-        Objects.equals(this.queryText, managedDatabaseSlowQuery.queryText) &&
-        Objects.equals(this.userName, managedDatabaseSlowQuery.userName) &&
-        Objects.equals(this.queryLanguage, managedDatabaseSlowQuery.queryLanguage) &&
-        Objects.equals(this.operation, managedDatabaseSlowQuery.operation) &&
-        Objects.equals(this.collection, managedDatabaseSlowQuery.collection) &&
-        Objects.equals(this.queryTextTruncated, managedDatabaseSlowQuery.queryTextTruncated);
+        equalsNullable(this.queryText, managedDatabaseSlowQuery.queryText) &&
+        equalsNullable(this.userName, managedDatabaseSlowQuery.userName) &&
+        equalsNullable(this.queryLanguage, managedDatabaseSlowQuery.queryLanguage) &&
+        equalsNullable(this.operation, managedDatabaseSlowQuery.operation) &&
+        equalsNullable(this.collection, managedDatabaseSlowQuery.collection) &&
+        equalsNullable(this.queryTextTruncated, managedDatabaseSlowQuery.queryTextTruncated);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(slowQueryId, timestamp, durationMs, kind, queryText, userName, queryLanguage, operation, collection, queryTextTruncated);
+    return Objects.hash(slowQueryId, timestamp, hashCodeNullable(durationMs), kind, hashCodeNullable(queryText), hashCodeNullable(userName), hashCodeNullable(queryLanguage), hashCodeNullable(operation), hashCodeNullable(collection), hashCodeNullable(queryTextTruncated));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

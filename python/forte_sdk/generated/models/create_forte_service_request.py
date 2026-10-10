@@ -160,6 +160,46 @@ class CreateForteServiceRequest(BaseModel):
                 if _item_database_connections:
                     _items.append(_item_database_connections.to_dict())
             _dict['databaseConnections'] = _items
+        # set to None if github_branch (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_branch is None and "github_branch" in self.model_fields_set:
+            _dict['githubBranch'] = None
+
+        # set to None if base_instances (nullable) is None
+        # and model_fields_set contains the field
+        if self.base_instances is None and "base_instances" in self.model_fields_set:
+            _dict['baseInstances'] = None
+
+        # set to None if container_cpu (nullable) is None
+        # and model_fields_set contains the field
+        if self.container_cpu is None and "container_cpu" in self.model_fields_set:
+            _dict['containerCpu'] = None
+
+        # set to None if health_check_port (nullable) is None
+        # and model_fields_set contains the field
+        if self.health_check_port is None and "health_check_port" in self.model_fields_set:
+            _dict['healthCheckPort'] = None
+
+        # set to None if health_check_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.health_check_path is None and "health_check_path" in self.model_fields_set:
+            _dict['healthCheckPath'] = None
+
+        # set to None if base_directory (nullable) is None
+        # and model_fields_set contains the field
+        if self.base_directory is None and "base_directory" in self.model_fields_set:
+            _dict['baseDirectory'] = None
+
+        # set to None if request_response_body_logging_enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.request_response_body_logging_enabled is None and "request_response_body_logging_enabled" in self.model_fields_set:
+            _dict['requestResponseBodyLoggingEnabled'] = None
+
+        # set to None if database_connections (nullable) is None
+        # and model_fields_set contains the field
+        if self.database_connections is None and "database_connections" in self.model_fields_set:
+            _dict['databaseConnections'] = None
+
         return _dict
 
     @classmethod

@@ -97,6 +97,21 @@ class ContentObject(BaseModel):
                 if _item_shared_with:
                     _items.append(_item_shared_with.to_dict())
             _dict['sharedWith'] = _items
+        # set to None if file_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.file_name is None and "file_name" in self.model_fields_set:
+            _dict['fileName'] = None
+
+        # set to None if validated_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.validated_at is None and "validated_at" in self.model_fields_set:
+            _dict['validatedAt'] = None
+
+        # set to None if expires_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.expires_at is None and "expires_at" in self.model_fields_set:
+            _dict['expiresAt'] = None
+
         return _dict
 
     @classmethod

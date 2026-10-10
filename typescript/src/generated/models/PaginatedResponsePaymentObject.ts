@@ -44,7 +44,7 @@ export interface PaginatedResponsePaymentObject {
      * @type {string}
      * @memberof PaginatedResponsePaymentObject
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
 }
 
 /**

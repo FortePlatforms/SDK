@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -84,12 +88,10 @@ public class InternalSource {
   private String id;
 
   public static final String JSON_PROPERTY_SUBJECT_ID = "subjectId";
-  @javax.annotation.Nullable
-  private String subjectId;
+  private JsonNullable<String> subjectId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REPLAY = "replay";
-  @javax.annotation.Nullable
-  private Boolean replay;
+  private JsonNullable<Boolean> replay = JsonNullable.<Boolean>undefined();
 
   public InternalSource() { 
   }
@@ -143,7 +145,7 @@ public class InternalSource {
 
 
   public InternalSource subjectId(@javax.annotation.Nullable String subjectId) {
-    this.subjectId = subjectId;
+    this.subjectId = JsonNullable.<String>of(subjectId);
     return this;
   }
 
@@ -152,22 +154,30 @@ public class InternalSource {
    * @return subjectId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBJECT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubjectId() {
-    return subjectId;
+        return subjectId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBJECT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubjectId(@javax.annotation.Nullable String subjectId) {
+
+  public JsonNullable<String> getSubjectId_JsonNullable() {
+    return subjectId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBJECT_ID)
+  public void setSubjectId_JsonNullable(JsonNullable<String> subjectId) {
     this.subjectId = subjectId;
+  }
+
+  public void setSubjectId(@javax.annotation.Nullable String subjectId) {
+    this.subjectId = JsonNullable.<String>of(subjectId);
   }
 
 
   public InternalSource replay(@javax.annotation.Nullable Boolean replay) {
-    this.replay = replay;
+    this.replay = JsonNullable.<Boolean>of(replay);
     return this;
   }
 
@@ -176,17 +186,25 @@ public class InternalSource {
    * @return replay
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REPLAY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getReplay() {
-    return replay;
+        return replay.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REPLAY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReplay(@javax.annotation.Nullable Boolean replay) {
+
+  public JsonNullable<Boolean> getReplay_JsonNullable() {
+    return replay;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REPLAY)
+  public void setReplay_JsonNullable(JsonNullable<Boolean> replay) {
     this.replay = replay;
+  }
+
+  public void setReplay(@javax.annotation.Nullable Boolean replay) {
+    this.replay = JsonNullable.<Boolean>of(replay);
   }
 
 
@@ -204,13 +222,24 @@ public class InternalSource {
     InternalSource internalSource = (InternalSource) o;
     return Objects.equals(this.type, internalSource.type) &&
         Objects.equals(this.id, internalSource.id) &&
-        Objects.equals(this.subjectId, internalSource.subjectId) &&
-        Objects.equals(this.replay, internalSource.replay);
+        equalsNullable(this.subjectId, internalSource.subjectId) &&
+        equalsNullable(this.replay, internalSource.replay);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, subjectId, replay);
+    return Objects.hash(type, id, hashCodeNullable(subjectId), hashCodeNullable(replay));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

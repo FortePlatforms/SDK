@@ -50,7 +50,7 @@ export interface CreateActionRequest {
      * @type {string}
      * @memberof CreateActionRequest
      */
-    requestBody?: string;
+    requestBody?: string | null;
     /**
      * 
      * @type {ActionScheduleType}
@@ -62,43 +62,43 @@ export interface CreateActionRequest {
      * @type {string}
      * @memberof CreateActionRequest
      */
-    cronExpression?: string;
+    cronExpression?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateActionRequest
      */
-    timezone?: string;
+    timezone?: string | null;
     /**
      * 
      * @type {Date}
      * @memberof CreateActionRequest
      */
-    windowStart?: Date;
+    windowStart?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof CreateActionRequest
      */
-    windowEnd?: Date;
+    windowEnd?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof CreateActionRequest
      */
-    scheduledAt?: Date;
+    scheduledAt?: Date | null;
     /**
      * 
      * @type {boolean}
      * @memberof CreateActionRequest
      */
-    retryable?: boolean;
+    retryable?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof CreateActionRequest
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
 }
 
 

@@ -85,6 +85,11 @@ class DockerfileGenerationResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of repository_analysis
         if self.repository_analysis:
             _dict['repositoryAnalysis'] = self.repository_analysis.to_dict()
+        # set to None if detected_languages (nullable) is None
+        # and model_fields_set contains the field
+        if self.detected_languages is None and "detected_languages" in self.model_fields_set:
+            _dict['detectedLanguages'] = None
+
         return _dict
 
     @classmethod

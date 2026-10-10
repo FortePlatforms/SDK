@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -125,16 +129,13 @@ public class CreateManagedDatabaseRequest {
   private TierEnum tier;
 
   public static final String JSON_PROPERTY_CPU = "cpu";
-  @javax.annotation.Nullable
-  private String cpu;
+  private JsonNullable<String> cpu = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MEMORY_GB = "memoryGb";
-  @javax.annotation.Nullable
-  private Integer memoryGb;
+  private JsonNullable<Integer> memoryGb = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_STORAGE_GB = "storageGb";
-  @javax.annotation.Nullable
-  private Integer storageGb;
+  private JsonNullable<Integer> storageGb = JsonNullable.<Integer>undefined();
 
   public CreateManagedDatabaseRequest() { 
   }
@@ -212,7 +213,7 @@ public class CreateManagedDatabaseRequest {
 
 
   public CreateManagedDatabaseRequest cpu(@javax.annotation.Nullable String cpu) {
-    this.cpu = cpu;
+    this.cpu = JsonNullable.<String>of(cpu);
     return this;
   }
 
@@ -221,22 +222,30 @@ public class CreateManagedDatabaseRequest {
    * @return cpu
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CPU, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCpu() {
-    return cpu;
+        return cpu.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CPU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpu(@javax.annotation.Nullable String cpu) {
+
+  public JsonNullable<String> getCpu_JsonNullable() {
+    return cpu;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CPU)
+  public void setCpu_JsonNullable(JsonNullable<String> cpu) {
     this.cpu = cpu;
+  }
+
+  public void setCpu(@javax.annotation.Nullable String cpu) {
+    this.cpu = JsonNullable.<String>of(cpu);
   }
 
 
   public CreateManagedDatabaseRequest memoryGb(@javax.annotation.Nullable Integer memoryGb) {
-    this.memoryGb = memoryGb;
+    this.memoryGb = JsonNullable.<Integer>of(memoryGb);
     return this;
   }
 
@@ -245,22 +254,30 @@ public class CreateManagedDatabaseRequest {
    * @return memoryGb
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MEMORY_GB, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getMemoryGb() {
-    return memoryGb;
+        return memoryGb.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MEMORY_GB, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemoryGb(@javax.annotation.Nullable Integer memoryGb) {
+
+  public JsonNullable<Integer> getMemoryGb_JsonNullable() {
+    return memoryGb;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MEMORY_GB)
+  public void setMemoryGb_JsonNullable(JsonNullable<Integer> memoryGb) {
     this.memoryGb = memoryGb;
+  }
+
+  public void setMemoryGb(@javax.annotation.Nullable Integer memoryGb) {
+    this.memoryGb = JsonNullable.<Integer>of(memoryGb);
   }
 
 
   public CreateManagedDatabaseRequest storageGb(@javax.annotation.Nullable Integer storageGb) {
-    this.storageGb = storageGb;
+    this.storageGb = JsonNullable.<Integer>of(storageGb);
     return this;
   }
 
@@ -270,17 +287,25 @@ public class CreateManagedDatabaseRequest {
    * @return storageGb
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STORAGE_GB, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getStorageGb() {
-    return storageGb;
+        return storageGb.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STORAGE_GB, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStorageGb(@javax.annotation.Nullable Integer storageGb) {
+
+  public JsonNullable<Integer> getStorageGb_JsonNullable() {
+    return storageGb;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STORAGE_GB)
+  public void setStorageGb_JsonNullable(JsonNullable<Integer> storageGb) {
     this.storageGb = storageGb;
+  }
+
+  public void setStorageGb(@javax.annotation.Nullable Integer storageGb) {
+    this.storageGb = JsonNullable.<Integer>of(storageGb);
   }
 
 
@@ -299,14 +324,25 @@ public class CreateManagedDatabaseRequest {
     return Objects.equals(this.name, createManagedDatabaseRequest.name) &&
         Objects.equals(this.type, createManagedDatabaseRequest.type) &&
         Objects.equals(this.tier, createManagedDatabaseRequest.tier) &&
-        Objects.equals(this.cpu, createManagedDatabaseRequest.cpu) &&
-        Objects.equals(this.memoryGb, createManagedDatabaseRequest.memoryGb) &&
-        Objects.equals(this.storageGb, createManagedDatabaseRequest.storageGb);
+        equalsNullable(this.cpu, createManagedDatabaseRequest.cpu) &&
+        equalsNullable(this.memoryGb, createManagedDatabaseRequest.memoryGb) &&
+        equalsNullable(this.storageGb, createManagedDatabaseRequest.storageGb);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type, tier, cpu, memoryGb, storageGb);
+    return Objects.hash(name, type, tier, hashCodeNullable(cpu), hashCodeNullable(memoryGb), hashCodeNullable(storageGb));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

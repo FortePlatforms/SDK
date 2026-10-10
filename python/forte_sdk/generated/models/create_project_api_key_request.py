@@ -71,6 +71,11 @@ class CreateProjectApiKeyRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if expiration_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.expiration_time is None and "expiration_time" in self.model_fields_set:
+            _dict['expirationTime'] = None
+
         return _dict
 
     @classmethod

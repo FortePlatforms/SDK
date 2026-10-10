@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,18 +44,16 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class MfaChallengeResponse {
   public static final String JSON_PROPERTY_CODE_EXPIRATION_TIME = "codeExpirationTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime codeExpirationTime;
+  private JsonNullable<OffsetDateTime> codeExpirationTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_WEB_AUTHN_REQUEST_OPTIONS = "webAuthnRequestOptions";
-  @javax.annotation.Nullable
-  private String webAuthnRequestOptions;
+  private JsonNullable<String> webAuthnRequestOptions = JsonNullable.<String>undefined();
 
   public MfaChallengeResponse() { 
   }
 
   public MfaChallengeResponse codeExpirationTime(@javax.annotation.Nullable OffsetDateTime codeExpirationTime) {
-    this.codeExpirationTime = codeExpirationTime;
+    this.codeExpirationTime = JsonNullable.<OffsetDateTime>of(codeExpirationTime);
     return this;
   }
 
@@ -60,22 +62,30 @@ public class MfaChallengeResponse {
    * @return codeExpirationTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CODE_EXPIRATION_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCodeExpirationTime() {
-    return codeExpirationTime;
+        return codeExpirationTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CODE_EXPIRATION_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCodeExpirationTime(@javax.annotation.Nullable OffsetDateTime codeExpirationTime) {
+
+  public JsonNullable<OffsetDateTime> getCodeExpirationTime_JsonNullable() {
+    return codeExpirationTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODE_EXPIRATION_TIME)
+  public void setCodeExpirationTime_JsonNullable(JsonNullable<OffsetDateTime> codeExpirationTime) {
     this.codeExpirationTime = codeExpirationTime;
+  }
+
+  public void setCodeExpirationTime(@javax.annotation.Nullable OffsetDateTime codeExpirationTime) {
+    this.codeExpirationTime = JsonNullable.<OffsetDateTime>of(codeExpirationTime);
   }
 
 
   public MfaChallengeResponse webAuthnRequestOptions(@javax.annotation.Nullable String webAuthnRequestOptions) {
-    this.webAuthnRequestOptions = webAuthnRequestOptions;
+    this.webAuthnRequestOptions = JsonNullable.<String>of(webAuthnRequestOptions);
     return this;
   }
 
@@ -84,17 +94,25 @@ public class MfaChallengeResponse {
    * @return webAuthnRequestOptions
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEB_AUTHN_REQUEST_OPTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWebAuthnRequestOptions() {
-    return webAuthnRequestOptions;
+        return webAuthnRequestOptions.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WEB_AUTHN_REQUEST_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebAuthnRequestOptions(@javax.annotation.Nullable String webAuthnRequestOptions) {
+
+  public JsonNullable<String> getWebAuthnRequestOptions_JsonNullable() {
+    return webAuthnRequestOptions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WEB_AUTHN_REQUEST_OPTIONS)
+  public void setWebAuthnRequestOptions_JsonNullable(JsonNullable<String> webAuthnRequestOptions) {
     this.webAuthnRequestOptions = webAuthnRequestOptions;
+  }
+
+  public void setWebAuthnRequestOptions(@javax.annotation.Nullable String webAuthnRequestOptions) {
+    this.webAuthnRequestOptions = JsonNullable.<String>of(webAuthnRequestOptions);
   }
 
 
@@ -110,13 +128,24 @@ public class MfaChallengeResponse {
       return false;
     }
     MfaChallengeResponse mfaChallengeResponse = (MfaChallengeResponse) o;
-    return Objects.equals(this.codeExpirationTime, mfaChallengeResponse.codeExpirationTime) &&
-        Objects.equals(this.webAuthnRequestOptions, mfaChallengeResponse.webAuthnRequestOptions);
+    return equalsNullable(this.codeExpirationTime, mfaChallengeResponse.codeExpirationTime) &&
+        equalsNullable(this.webAuthnRequestOptions, mfaChallengeResponse.webAuthnRequestOptions);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codeExpirationTime, webAuthnRequestOptions);
+    return Objects.hash(hashCodeNullable(codeExpirationTime), hashCodeNullable(webAuthnRequestOptions));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

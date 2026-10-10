@@ -79,6 +79,21 @@ class PendingUserInviteObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if inviter_full_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.inviter_full_name is None and "inviter_full_name" in self.model_fields_set:
+            _dict['inviterFullName'] = None
+
+        # set to None if consumed_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.consumed_at is None and "consumed_at" in self.model_fields_set:
+            _dict['consumedAt'] = None
+
+        # set to None if consumed_by_user_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.consumed_by_user_id is None and "consumed_by_user_id" in self.model_fields_set:
+            _dict['consumedByUserId'] = None
+
         return _dict
 
     @classmethod

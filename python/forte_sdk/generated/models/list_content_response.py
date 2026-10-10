@@ -78,6 +78,11 @@ class ListContentResponse(BaseModel):
                 if _item_items:
                     _items.append(_item_items.to_dict())
             _dict['items'] = _items
+        # set to None if next_page_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_page_token is None and "next_page_token" in self.model_fields_set:
+            _dict['nextPageToken'] = None
+
         return _dict
 
     @classmethod

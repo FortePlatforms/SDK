@@ -90,6 +90,16 @@ class RequestLogSort(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sort_by (nullable) is None
+        # and model_fields_set contains the field
+        if self.sort_by is None and "sort_by" in self.model_fields_set:
+            _dict['sortBy'] = None
+
+        # set to None if sort_dir (nullable) is None
+        # and model_fields_set contains the field
+        if self.sort_dir is None and "sort_dir" in self.model_fields_set:
+            _dict['sortDir'] = None
+
         return _dict
 
     @classmethod

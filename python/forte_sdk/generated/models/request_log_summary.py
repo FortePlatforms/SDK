@@ -84,6 +84,11 @@ class RequestLogSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of internal_source
         if self.internal_source:
             _dict['internalSource'] = self.internal_source.to_dict()
+        # set to None if exception_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.exception_type is None and "exception_type" in self.model_fields_set:
+            _dict['exceptionType'] = None
+
         return _dict
 
     @classmethod

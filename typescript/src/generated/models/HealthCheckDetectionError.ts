@@ -24,37 +24,37 @@ export interface HealthCheckDetectionError {
      * @type {HealthCheckDetectionErrorErrorTypeType}
      * @memberof HealthCheckDetectionError
      */
-    errorType?: HealthCheckDetectionErrorErrorTypeType;
+    errorType?: HealthCheckDetectionErrorErrorTypeType | null;
     /**
      * Detailed error message explaining what went wrong
      * @type {string}
      * @memberof HealthCheckDetectionError
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * Port number that was exposed in the Dockerfile (if detected)
      * @type {number}
      * @memberof HealthCheckDetectionError
      */
-    exposedPort?: number;
+    exposedPort?: number | null;
     /**
      * Application framework that was detected (if any)
      * @type {string}
      * @memberof HealthCheckDetectionError
      */
-    detectedFramework?: string;
+    detectedFramework?: string | null;
     /**
      * Health check endpoint paths that were searched
      * @type {Array<string>}
      * @memberof HealthCheckDetectionError
      */
-    searchedPaths?: Array<string>;
+    searchedPaths?: Array<string> | null;
     /**
      * Actionable suggestions for resolving the error
      * @type {Array<string>}
      * @memberof HealthCheckDetectionError
      */
-    suggestions?: Array<string>;
+    suggestions?: Array<string> | null;
 }
 
 

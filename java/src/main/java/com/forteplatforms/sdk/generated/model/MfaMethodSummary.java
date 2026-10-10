@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,8 +45,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class MfaMethodSummary {
   public static final String JSON_PROPERTY_MFA_METHOD_ID = "mfaMethodId";
-  @javax.annotation.Nullable
-  private String mfaMethodId;
+  private JsonNullable<String> mfaMethodId = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets type
@@ -90,18 +93,16 @@ public class MfaMethodSummary {
   private TypeEnum type;
 
   public static final String JSON_PROPERTY_CONTACT_METHOD_ID = "contactMethodId";
-  @javax.annotation.Nullable
-  private String contactMethodId;
+  private JsonNullable<String> contactMethodId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MASKED_TARGET = "maskedTarget";
-  @javax.annotation.Nullable
-  private String maskedTarget;
+  private JsonNullable<String> maskedTarget = JsonNullable.<String>undefined();
 
   public MfaMethodSummary() { 
   }
 
   public MfaMethodSummary mfaMethodId(@javax.annotation.Nullable String mfaMethodId) {
-    this.mfaMethodId = mfaMethodId;
+    this.mfaMethodId = JsonNullable.<String>of(mfaMethodId);
     return this;
   }
 
@@ -110,17 +111,25 @@ public class MfaMethodSummary {
    * @return mfaMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MFA_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMfaMethodId() {
-    return mfaMethodId;
+        return mfaMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MFA_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMfaMethodId(@javax.annotation.Nullable String mfaMethodId) {
+
+  public JsonNullable<String> getMfaMethodId_JsonNullable() {
+    return mfaMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MFA_METHOD_ID)
+  public void setMfaMethodId_JsonNullable(JsonNullable<String> mfaMethodId) {
     this.mfaMethodId = mfaMethodId;
+  }
+
+  public void setMfaMethodId(@javax.annotation.Nullable String mfaMethodId) {
+    this.mfaMethodId = JsonNullable.<String>of(mfaMethodId);
   }
 
 
@@ -149,7 +158,7 @@ public class MfaMethodSummary {
 
 
   public MfaMethodSummary contactMethodId(@javax.annotation.Nullable String contactMethodId) {
-    this.contactMethodId = contactMethodId;
+    this.contactMethodId = JsonNullable.<String>of(contactMethodId);
     return this;
   }
 
@@ -158,22 +167,30 @@ public class MfaMethodSummary {
    * @return contactMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTACT_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getContactMethodId() {
-    return contactMethodId;
+        return contactMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTACT_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContactMethodId(@javax.annotation.Nullable String contactMethodId) {
+
+  public JsonNullable<String> getContactMethodId_JsonNullable() {
+    return contactMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTACT_METHOD_ID)
+  public void setContactMethodId_JsonNullable(JsonNullable<String> contactMethodId) {
     this.contactMethodId = contactMethodId;
+  }
+
+  public void setContactMethodId(@javax.annotation.Nullable String contactMethodId) {
+    this.contactMethodId = JsonNullable.<String>of(contactMethodId);
   }
 
 
   public MfaMethodSummary maskedTarget(@javax.annotation.Nullable String maskedTarget) {
-    this.maskedTarget = maskedTarget;
+    this.maskedTarget = JsonNullable.<String>of(maskedTarget);
     return this;
   }
 
@@ -182,17 +199,25 @@ public class MfaMethodSummary {
    * @return maskedTarget
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MASKED_TARGET, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMaskedTarget() {
-    return maskedTarget;
+        return maskedTarget.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MASKED_TARGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaskedTarget(@javax.annotation.Nullable String maskedTarget) {
+
+  public JsonNullable<String> getMaskedTarget_JsonNullable() {
+    return maskedTarget;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MASKED_TARGET)
+  public void setMaskedTarget_JsonNullable(JsonNullable<String> maskedTarget) {
     this.maskedTarget = maskedTarget;
+  }
+
+  public void setMaskedTarget(@javax.annotation.Nullable String maskedTarget) {
+    this.maskedTarget = JsonNullable.<String>of(maskedTarget);
   }
 
 
@@ -208,15 +233,26 @@ public class MfaMethodSummary {
       return false;
     }
     MfaMethodSummary mfaMethodSummary = (MfaMethodSummary) o;
-    return Objects.equals(this.mfaMethodId, mfaMethodSummary.mfaMethodId) &&
+    return equalsNullable(this.mfaMethodId, mfaMethodSummary.mfaMethodId) &&
         Objects.equals(this.type, mfaMethodSummary.type) &&
-        Objects.equals(this.contactMethodId, mfaMethodSummary.contactMethodId) &&
-        Objects.equals(this.maskedTarget, mfaMethodSummary.maskedTarget);
+        equalsNullable(this.contactMethodId, mfaMethodSummary.contactMethodId) &&
+        equalsNullable(this.maskedTarget, mfaMethodSummary.maskedTarget);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mfaMethodId, type, contactMethodId, maskedTarget);
+    return Objects.hash(hashCodeNullable(mfaMethodId), type, hashCodeNullable(contactMethodId), hashCodeNullable(maskedTarget));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

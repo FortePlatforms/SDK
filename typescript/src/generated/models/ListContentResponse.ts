@@ -38,7 +38,7 @@ export interface ListContentResponse {
      * @type {string}
      * @memberof ListContentResponse
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
 }
 
 /**

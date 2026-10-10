@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,8 +48,7 @@ public class BodyRef {
   private Long fullSizeBytes;
 
   public static final String JSON_PROPERTY_CONTENT_TYPE = "contentType";
-  @javax.annotation.Nullable
-  private String contentType;
+  private JsonNullable<String> contentType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DOWNLOADABLE = "downloadable";
   @javax.annotation.Nonnull
@@ -79,7 +82,7 @@ public class BodyRef {
 
 
   public BodyRef contentType(@javax.annotation.Nullable String contentType) {
-    this.contentType = contentType;
+    this.contentType = JsonNullable.<String>of(contentType);
     return this;
   }
 
@@ -88,17 +91,25 @@ public class BodyRef {
    * @return contentType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTENT_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getContentType() {
-    return contentType;
+        return contentType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTENT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContentType(@javax.annotation.Nullable String contentType) {
+
+  public JsonNullable<String> getContentType_JsonNullable() {
+    return contentType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTENT_TYPE)
+  public void setContentType_JsonNullable(JsonNullable<String> contentType) {
     this.contentType = contentType;
+  }
+
+  public void setContentType(@javax.annotation.Nullable String contentType) {
+    this.contentType = JsonNullable.<String>of(contentType);
   }
 
 
@@ -139,13 +150,24 @@ public class BodyRef {
     }
     BodyRef bodyRef = (BodyRef) o;
     return Objects.equals(this.fullSizeBytes, bodyRef.fullSizeBytes) &&
-        Objects.equals(this.contentType, bodyRef.contentType) &&
+        equalsNullable(this.contentType, bodyRef.contentType) &&
         Objects.equals(this.downloadable, bodyRef.downloadable);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fullSizeBytes, contentType, downloadable);
+    return Objects.hash(fullSizeBytes, hashCodeNullable(contentType), downloadable);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

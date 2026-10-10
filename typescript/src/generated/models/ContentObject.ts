@@ -68,7 +68,7 @@ export interface ContentObject {
      * @type {string}
      * @memberof ContentObject
      */
-    fileName?: string;
+    fileName?: string | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
@@ -98,13 +98,13 @@ export interface ContentObject {
      * @type {Date}
      * @memberof ContentObject
      */
-    validatedAt?: Date;
+    validatedAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof ContentObject
      */
-    expiresAt?: Date;
+    expiresAt?: Date | null;
 }
 
 

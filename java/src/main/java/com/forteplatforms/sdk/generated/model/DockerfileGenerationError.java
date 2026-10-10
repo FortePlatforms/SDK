@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -84,27 +88,24 @@ public class DockerfileGenerationError {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_ERROR_TYPE = "errorType";
-  @javax.annotation.Nullable
-  private ErrorTypeEnum errorType;
+  private JsonNullable<ErrorTypeEnum> errorType = JsonNullable.<ErrorTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
-  @javax.annotation.Nullable
-  private String errorMessage;
+  private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUGGESTIONS = "suggestions";
-  @javax.annotation.Nullable
-  private List<String> suggestions = new ArrayList<>();
+  private JsonNullable<List<String>> suggestions = JsonNullable.<List<String>>undefined();
 
   public DockerfileGenerationError() { 
   }
 
   public DockerfileGenerationError errorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
-    this.errorType = errorType;
+    this.errorType = JsonNullable.<ErrorTypeEnum>of(errorType);
     return this;
   }
 
@@ -113,22 +114,30 @@ public class DockerfileGenerationError {
    * @return errorType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public ErrorTypeEnum getErrorType() {
-    return errorType;
+        return errorType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
+
+  public JsonNullable<ErrorTypeEnum> getErrorType_JsonNullable() {
+    return errorType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_TYPE)
+  public void setErrorType_JsonNullable(JsonNullable<ErrorTypeEnum> errorType) {
     this.errorType = errorType;
+  }
+
+  public void setErrorType(@javax.annotation.Nullable ErrorTypeEnum errorType) {
+    this.errorType = JsonNullable.<ErrorTypeEnum>of(errorType);
   }
 
 
   public DockerfileGenerationError errorMessage(@javax.annotation.Nullable String errorMessage) {
-    this.errorMessage = errorMessage;
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
     return this;
   }
 
@@ -137,30 +146,42 @@ public class DockerfileGenerationError {
    * @return errorMessage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getErrorMessage() {
-    return errorMessage;
+        return errorMessage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+
+  public JsonNullable<String> getErrorMessage_JsonNullable() {
+    return errorMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  public void setErrorMessage_JsonNullable(JsonNullable<String> errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
   }
 
 
   public DockerfileGenerationError suggestions(@javax.annotation.Nullable List<String> suggestions) {
-    this.suggestions = suggestions;
+    this.suggestions = JsonNullable.<List<String>>of(suggestions);
     return this;
   }
 
   public DockerfileGenerationError addSuggestionsItem(String suggestionsItem) {
-    if (this.suggestions == null) {
-      this.suggestions = new ArrayList<>();
+    if (this.suggestions == null || !this.suggestions.isPresent()) {
+      this.suggestions = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.suggestions.add(suggestionsItem);
+    try {
+      this.suggestions.get().add(suggestionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -169,17 +190,25 @@ public class DockerfileGenerationError {
    * @return suggestions
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUGGESTIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getSuggestions() {
-    return suggestions;
+        return suggestions.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUGGESTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSuggestions(@javax.annotation.Nullable List<String> suggestions) {
+
+  public JsonNullable<List<String>> getSuggestions_JsonNullable() {
+    return suggestions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUGGESTIONS)
+  public void setSuggestions_JsonNullable(JsonNullable<List<String>> suggestions) {
     this.suggestions = suggestions;
+  }
+
+  public void setSuggestions(@javax.annotation.Nullable List<String> suggestions) {
+    this.suggestions = JsonNullable.<List<String>>of(suggestions);
   }
 
 
@@ -195,14 +224,25 @@ public class DockerfileGenerationError {
       return false;
     }
     DockerfileGenerationError dockerfileGenerationError = (DockerfileGenerationError) o;
-    return Objects.equals(this.errorType, dockerfileGenerationError.errorType) &&
-        Objects.equals(this.errorMessage, dockerfileGenerationError.errorMessage) &&
-        Objects.equals(this.suggestions, dockerfileGenerationError.suggestions);
+    return equalsNullable(this.errorType, dockerfileGenerationError.errorType) &&
+        equalsNullable(this.errorMessage, dockerfileGenerationError.errorMessage) &&
+        equalsNullable(this.suggestions, dockerfileGenerationError.suggestions);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorType, errorMessage, suggestions);
+    return Objects.hash(hashCodeNullable(errorType), hashCodeNullable(errorMessage), hashCodeNullable(suggestions));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

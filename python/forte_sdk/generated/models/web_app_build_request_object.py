@@ -167,6 +167,126 @@ class WebAppBuildRequestObject(BaseModel):
                 if _item_build_step_logs:
                     _items.append(_item_build_step_logs.to_dict())
             _dict['buildStepLogs'] = _items
+        # set to None if package_manager (nullable) is None
+        # and model_fields_set contains the field
+        if self.package_manager is None and "package_manager" in self.model_fields_set:
+            _dict['packageManager'] = None
+
+        # set to None if node_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.node_version is None and "node_version" in self.model_fields_set:
+            _dict['nodeVersion'] = None
+
+        # set to None if build_command (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_command is None and "build_command" in self.model_fields_set:
+            _dict['buildCommand'] = None
+
+        # set to None if build_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_path is None and "build_path" in self.model_fields_set:
+            _dict['buildPath'] = None
+
+        # set to None if detected_framework (nullable) is None
+        # and model_fields_set contains the field
+        if self.detected_framework is None and "detected_framework" in self.model_fields_set:
+            _dict['detectedFramework'] = None
+
+        # set to None if install_command (nullable) is None
+        # and model_fields_set contains the field
+        if self.install_command is None and "install_command" in self.model_fields_set:
+            _dict['installCommand'] = None
+
+        # set to None if subdirectory (nullable) is None
+        # and model_fields_set contains the field
+        if self.subdirectory is None and "subdirectory" in self.model_fields_set:
+            _dict['subdirectory'] = None
+
+        # set to None if monorepo_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.monorepo_type is None and "monorepo_type" in self.model_fields_set:
+            _dict['monorepoType'] = None
+
+        # set to None if workspace_root (nullable) is None
+        # and model_fields_set contains the field
+        if self.workspace_root is None and "workspace_root" in self.model_fields_set:
+            _dict['workspaceRoot'] = None
+
+        # set to None if app_package_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.app_package_name is None and "app_package_name" in self.model_fields_set:
+            _dict['appPackageName'] = None
+
+        # set to None if container_image_uri (nullable) is None
+        # and model_fields_set contains the field
+        if self.container_image_uri is None and "container_image_uri" in self.model_fields_set:
+            _dict['containerImageUri'] = None
+
+        # set to None if dockerfile_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.dockerfile_path is None and "dockerfile_path" in self.model_fields_set:
+            _dict['dockerfilePath'] = None
+
+        # set to None if output_zip_s3_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.output_zip_s3_key is None and "output_zip_s3_key" in self.model_fields_set:
+            _dict['outputZipS3Key'] = None
+
+        # set to None if hosting_deployment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.hosting_deployment_id is None and "hosting_deployment_id" in self.model_fields_set:
+            _dict['hostingDeploymentId'] = None
+
+        # set to None if hosting_deployment_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.hosting_deployment_status is None and "hosting_deployment_status" in self.model_fields_set:
+            _dict['hostingDeploymentStatus'] = None
+
+        # set to None if all_build_logs_received (nullable) is None
+        # and model_fields_set contains the field
+        if self.all_build_logs_received is None and "all_build_logs_received" in self.model_fields_set:
+            _dict['allBuildLogsReceived'] = None
+
+        # set to None if cancellation_requested (nullable) is None
+        # and model_fields_set contains the field
+        if self.cancellation_requested is None and "cancellation_requested" in self.model_fields_set:
+            _dict['cancellationRequested'] = None
+
+        # set to None if git_ref (nullable) is None
+        # and model_fields_set contains the field
+        if self.git_ref is None and "git_ref" in self.model_fields_set:
+            _dict['gitRef'] = None
+
+        # set to None if release_tag_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.release_tag_name is None and "release_tag_name" in self.model_fields_set:
+            _dict['releaseTagName'] = None
+
+        # set to None if origin (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin is None and "origin" in self.model_fields_set:
+            _dict['origin'] = None
+
+        # set to None if origin_detail (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin_detail is None and "origin_detail" in self.model_fields_set:
+            _dict['originDetail'] = None
+
+        # set to None if triggered_by_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.triggered_by_account_id is None and "triggered_by_account_id" in self.model_fields_set:
+            _dict['triggeredByAccountId'] = None
+
+        # set to None if build_tier (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_tier is None and "build_tier" in self.model_fields_set:
+            _dict['buildTier'] = None
+
+        # set to None if failure_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.failure_reason is None and "failure_reason" in self.model_fields_set:
+            _dict['failureReason'] = None
+
         return _dict
 
     @classmethod

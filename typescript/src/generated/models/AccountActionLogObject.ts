@@ -32,7 +32,7 @@ export interface AccountActionLogObject {
      * @type {string}
      * @memberof AccountActionLogObject
      */
-    id?: string;
+    id?: string | null;
     /**
      * 
      * @type {Date}
@@ -56,13 +56,13 @@ export interface AccountActionLogObject {
      * @type {string}
      * @memberof AccountActionLogObject
      */
-    performedByAccountId?: string;
+    performedByAccountId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof AccountActionLogObject
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -74,7 +74,7 @@ export interface AccountActionLogObject {
      * @type {Array<FieldChange>}
      * @memberof AccountActionLogObject
      */
-    fieldChanges?: Array<FieldChange>;
+    fieldChanges?: Array<FieldChange> | null;
 }
 
 

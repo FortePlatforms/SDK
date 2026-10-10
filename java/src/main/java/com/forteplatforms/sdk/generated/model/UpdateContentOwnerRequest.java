@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -73,13 +77,12 @@ public class UpdateContentOwnerRequest {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_GRANT_PREVIOUS_OWNER_PERMISSION = "grantPreviousOwnerPermission";
-  @javax.annotation.Nullable
-  private GrantPreviousOwnerPermissionEnum grantPreviousOwnerPermission;
+  private JsonNullable<GrantPreviousOwnerPermissionEnum> grantPreviousOwnerPermission = JsonNullable.<GrantPreviousOwnerPermissionEnum>undefined();
 
   public UpdateContentOwnerRequest() { 
   }
@@ -109,7 +112,7 @@ public class UpdateContentOwnerRequest {
 
 
   public UpdateContentOwnerRequest grantPreviousOwnerPermission(@javax.annotation.Nullable GrantPreviousOwnerPermissionEnum grantPreviousOwnerPermission) {
-    this.grantPreviousOwnerPermission = grantPreviousOwnerPermission;
+    this.grantPreviousOwnerPermission = JsonNullable.<GrantPreviousOwnerPermissionEnum>of(grantPreviousOwnerPermission);
     return this;
   }
 
@@ -118,17 +121,25 @@ public class UpdateContentOwnerRequest {
    * @return grantPreviousOwnerPermission
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GRANT_PREVIOUS_OWNER_PERMISSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public GrantPreviousOwnerPermissionEnum getGrantPreviousOwnerPermission() {
-    return grantPreviousOwnerPermission;
+        return grantPreviousOwnerPermission.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GRANT_PREVIOUS_OWNER_PERMISSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGrantPreviousOwnerPermission(@javax.annotation.Nullable GrantPreviousOwnerPermissionEnum grantPreviousOwnerPermission) {
+
+  public JsonNullable<GrantPreviousOwnerPermissionEnum> getGrantPreviousOwnerPermission_JsonNullable() {
+    return grantPreviousOwnerPermission;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GRANT_PREVIOUS_OWNER_PERMISSION)
+  public void setGrantPreviousOwnerPermission_JsonNullable(JsonNullable<GrantPreviousOwnerPermissionEnum> grantPreviousOwnerPermission) {
     this.grantPreviousOwnerPermission = grantPreviousOwnerPermission;
+  }
+
+  public void setGrantPreviousOwnerPermission(@javax.annotation.Nullable GrantPreviousOwnerPermissionEnum grantPreviousOwnerPermission) {
+    this.grantPreviousOwnerPermission = JsonNullable.<GrantPreviousOwnerPermissionEnum>of(grantPreviousOwnerPermission);
   }
 
 
@@ -145,12 +156,23 @@ public class UpdateContentOwnerRequest {
     }
     UpdateContentOwnerRequest updateContentOwnerRequest = (UpdateContentOwnerRequest) o;
     return Objects.equals(this.newOwnerUserId, updateContentOwnerRequest.newOwnerUserId) &&
-        Objects.equals(this.grantPreviousOwnerPermission, updateContentOwnerRequest.grantPreviousOwnerPermission);
+        equalsNullable(this.grantPreviousOwnerPermission, updateContentOwnerRequest.grantPreviousOwnerPermission);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(newOwnerUserId, grantPreviousOwnerPermission);
+    return Objects.hash(newOwnerUserId, hashCodeNullable(grantPreviousOwnerPermission));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

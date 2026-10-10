@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -57,32 +61,25 @@ public class SessionSummary {
   private OffsetDateTime creationTime;
 
   public static final String JSON_PROPERTY_EXPIRATION_TIME = "expirationTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime expirationTime;
+  private JsonNullable<OffsetDateTime> expirationTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_LAST_ACTIVITY_AT = "lastActivityAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastActivityAt;
+  private JsonNullable<OffsetDateTime> lastActivityAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_LAST_REAUTHENTICATED_AT = "lastReauthenticatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastReauthenticatedAt;
+  private JsonNullable<OffsetDateTime> lastReauthenticatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_SOURCE_IP_ADDRESS = "sourceIpAddress";
-  @javax.annotation.Nullable
-  private String sourceIpAddress;
+  private JsonNullable<String> sourceIpAddress = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_APPROXIMATE_LOCATION = "approximateLocation";
-  @javax.annotation.Nullable
-  private String approximateLocation;
+  private JsonNullable<String> approximateLocation = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_USER_AGENT = "userAgent";
-  @javax.annotation.Nullable
-  private String userAgent;
+  private JsonNullable<String> userAgent = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DEVICE_DESCRIPTION = "deviceDescription";
-  @javax.annotation.Nullable
-  private String deviceDescription;
+  private JsonNullable<String> deviceDescription = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CURRENT = "current";
   @javax.annotation.Nullable
@@ -144,7 +141,7 @@ public class SessionSummary {
 
 
   public SessionSummary expirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
-    this.expirationTime = expirationTime;
+    this.expirationTime = JsonNullable.<OffsetDateTime>of(expirationTime);
     return this;
   }
 
@@ -153,22 +150,30 @@ public class SessionSummary {
    * @return expirationTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPIRATION_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getExpirationTime() {
-    return expirationTime;
+        return expirationTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXPIRATION_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
+
+  public JsonNullable<OffsetDateTime> getExpirationTime_JsonNullable() {
+    return expirationTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPIRATION_TIME)
+  public void setExpirationTime_JsonNullable(JsonNullable<OffsetDateTime> expirationTime) {
     this.expirationTime = expirationTime;
+  }
+
+  public void setExpirationTime(@javax.annotation.Nullable OffsetDateTime expirationTime) {
+    this.expirationTime = JsonNullable.<OffsetDateTime>of(expirationTime);
   }
 
 
   public SessionSummary lastActivityAt(@javax.annotation.Nullable OffsetDateTime lastActivityAt) {
-    this.lastActivityAt = lastActivityAt;
+    this.lastActivityAt = JsonNullable.<OffsetDateTime>of(lastActivityAt);
     return this;
   }
 
@@ -177,22 +182,30 @@ public class SessionSummary {
    * @return lastActivityAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_ACTIVITY_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastActivityAt() {
-    return lastActivityAt;
+        return lastActivityAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_ACTIVITY_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastActivityAt(@javax.annotation.Nullable OffsetDateTime lastActivityAt) {
+
+  public JsonNullable<OffsetDateTime> getLastActivityAt_JsonNullable() {
+    return lastActivityAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_ACTIVITY_AT)
+  public void setLastActivityAt_JsonNullable(JsonNullable<OffsetDateTime> lastActivityAt) {
     this.lastActivityAt = lastActivityAt;
+  }
+
+  public void setLastActivityAt(@javax.annotation.Nullable OffsetDateTime lastActivityAt) {
+    this.lastActivityAt = JsonNullable.<OffsetDateTime>of(lastActivityAt);
   }
 
 
   public SessionSummary lastReauthenticatedAt(@javax.annotation.Nullable OffsetDateTime lastReauthenticatedAt) {
-    this.lastReauthenticatedAt = lastReauthenticatedAt;
+    this.lastReauthenticatedAt = JsonNullable.<OffsetDateTime>of(lastReauthenticatedAt);
     return this;
   }
 
@@ -201,22 +214,30 @@ public class SessionSummary {
    * @return lastReauthenticatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_REAUTHENTICATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastReauthenticatedAt() {
-    return lastReauthenticatedAt;
+        return lastReauthenticatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_REAUTHENTICATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastReauthenticatedAt(@javax.annotation.Nullable OffsetDateTime lastReauthenticatedAt) {
+
+  public JsonNullable<OffsetDateTime> getLastReauthenticatedAt_JsonNullable() {
+    return lastReauthenticatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_REAUTHENTICATED_AT)
+  public void setLastReauthenticatedAt_JsonNullable(JsonNullable<OffsetDateTime> lastReauthenticatedAt) {
     this.lastReauthenticatedAt = lastReauthenticatedAt;
+  }
+
+  public void setLastReauthenticatedAt(@javax.annotation.Nullable OffsetDateTime lastReauthenticatedAt) {
+    this.lastReauthenticatedAt = JsonNullable.<OffsetDateTime>of(lastReauthenticatedAt);
   }
 
 
   public SessionSummary sourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
-    this.sourceIpAddress = sourceIpAddress;
+    this.sourceIpAddress = JsonNullable.<String>of(sourceIpAddress);
     return this;
   }
 
@@ -225,22 +246,30 @@ public class SessionSummary {
    * @return sourceIpAddress
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSourceIpAddress() {
-    return sourceIpAddress;
+        return sourceIpAddress.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+
+  public JsonNullable<String> getSourceIpAddress_JsonNullable() {
+    return sourceIpAddress;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SOURCE_IP_ADDRESS)
+  public void setSourceIpAddress_JsonNullable(JsonNullable<String> sourceIpAddress) {
     this.sourceIpAddress = sourceIpAddress;
+  }
+
+  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+    this.sourceIpAddress = JsonNullable.<String>of(sourceIpAddress);
   }
 
 
   public SessionSummary approximateLocation(@javax.annotation.Nullable String approximateLocation) {
-    this.approximateLocation = approximateLocation;
+    this.approximateLocation = JsonNullable.<String>of(approximateLocation);
     return this;
   }
 
@@ -249,22 +278,30 @@ public class SessionSummary {
    * @return approximateLocation
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_APPROXIMATE_LOCATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getApproximateLocation() {
-    return approximateLocation;
+        return approximateLocation.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_APPROXIMATE_LOCATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApproximateLocation(@javax.annotation.Nullable String approximateLocation) {
+
+  public JsonNullable<String> getApproximateLocation_JsonNullable() {
+    return approximateLocation;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_APPROXIMATE_LOCATION)
+  public void setApproximateLocation_JsonNullable(JsonNullable<String> approximateLocation) {
     this.approximateLocation = approximateLocation;
+  }
+
+  public void setApproximateLocation(@javax.annotation.Nullable String approximateLocation) {
+    this.approximateLocation = JsonNullable.<String>of(approximateLocation);
   }
 
 
   public SessionSummary userAgent(@javax.annotation.Nullable String userAgent) {
-    this.userAgent = userAgent;
+    this.userAgent = JsonNullable.<String>of(userAgent);
     return this;
   }
 
@@ -273,22 +310,30 @@ public class SessionSummary {
    * @return userAgent
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_AGENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUserAgent() {
-    return userAgent;
+        return userAgent.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USER_AGENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserAgent(@javax.annotation.Nullable String userAgent) {
+
+  public JsonNullable<String> getUserAgent_JsonNullable() {
+    return userAgent;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_AGENT)
+  public void setUserAgent_JsonNullable(JsonNullable<String> userAgent) {
     this.userAgent = userAgent;
+  }
+
+  public void setUserAgent(@javax.annotation.Nullable String userAgent) {
+    this.userAgent = JsonNullable.<String>of(userAgent);
   }
 
 
   public SessionSummary deviceDescription(@javax.annotation.Nullable String deviceDescription) {
-    this.deviceDescription = deviceDescription;
+    this.deviceDescription = JsonNullable.<String>of(deviceDescription);
     return this;
   }
 
@@ -297,17 +342,25 @@ public class SessionSummary {
    * @return deviceDescription
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DEVICE_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDeviceDescription() {
-    return deviceDescription;
+        return deviceDescription.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DEVICE_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeviceDescription(@javax.annotation.Nullable String deviceDescription) {
+
+  public JsonNullable<String> getDeviceDescription_JsonNullable() {
+    return deviceDescription;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DEVICE_DESCRIPTION)
+  public void setDeviceDescription_JsonNullable(JsonNullable<String> deviceDescription) {
     this.deviceDescription = deviceDescription;
+  }
+
+  public void setDeviceDescription(@javax.annotation.Nullable String deviceDescription) {
+    this.deviceDescription = JsonNullable.<String>of(deviceDescription);
   }
 
 
@@ -373,20 +426,31 @@ public class SessionSummary {
     SessionSummary sessionSummary = (SessionSummary) o;
     return Objects.equals(this.sessionId, sessionSummary.sessionId) &&
         Objects.equals(this.creationTime, sessionSummary.creationTime) &&
-        Objects.equals(this.expirationTime, sessionSummary.expirationTime) &&
-        Objects.equals(this.lastActivityAt, sessionSummary.lastActivityAt) &&
-        Objects.equals(this.lastReauthenticatedAt, sessionSummary.lastReauthenticatedAt) &&
-        Objects.equals(this.sourceIpAddress, sessionSummary.sourceIpAddress) &&
-        Objects.equals(this.approximateLocation, sessionSummary.approximateLocation) &&
-        Objects.equals(this.userAgent, sessionSummary.userAgent) &&
-        Objects.equals(this.deviceDescription, sessionSummary.deviceDescription) &&
+        equalsNullable(this.expirationTime, sessionSummary.expirationTime) &&
+        equalsNullable(this.lastActivityAt, sessionSummary.lastActivityAt) &&
+        equalsNullable(this.lastReauthenticatedAt, sessionSummary.lastReauthenticatedAt) &&
+        equalsNullable(this.sourceIpAddress, sessionSummary.sourceIpAddress) &&
+        equalsNullable(this.approximateLocation, sessionSummary.approximateLocation) &&
+        equalsNullable(this.userAgent, sessionSummary.userAgent) &&
+        equalsNullable(this.deviceDescription, sessionSummary.deviceDescription) &&
         Objects.equals(this.current, sessionSummary.current) &&
         Objects.equals(this.impersonation, sessionSummary.impersonation);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(sessionId, creationTime, expirationTime, lastActivityAt, lastReauthenticatedAt, sourceIpAddress, approximateLocation, userAgent, deviceDescription, current, impersonation);
+    return Objects.hash(sessionId, creationTime, hashCodeNullable(expirationTime), hashCodeNullable(lastActivityAt), hashCodeNullable(lastReauthenticatedAt), hashCodeNullable(sourceIpAddress), hashCodeNullable(approximateLocation), hashCodeNullable(userAgent), hashCodeNullable(deviceDescription), current, impersonation);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

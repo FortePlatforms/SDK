@@ -30,19 +30,19 @@ export interface LoginHistoryEntry {
      * @type {string}
      * @memberof LoginHistoryEntry
      */
-    sourceIpAddress?: string;
+    sourceIpAddress?: string | null;
     /**
      * 
      * @type {string}
      * @memberof LoginHistoryEntry
      */
-    userAgent?: string;
+    userAgent?: string | null;
     /**
      * 
      * @type {string}
      * @memberof LoginHistoryEntry
      */
-    deviceDescription?: string;
+    deviceDescription?: string | null;
 }
 
 /**

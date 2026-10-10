@@ -62,7 +62,7 @@ export interface PaymentTriggerConfig {
      * @type {boolean}
      * @memberof PaymentTriggerConfig
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * 
      * @type {Date}

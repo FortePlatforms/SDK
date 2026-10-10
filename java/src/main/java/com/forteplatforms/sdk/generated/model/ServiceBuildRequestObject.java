@@ -31,6 +31,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -68,8 +72,7 @@ public class ServiceBuildRequestObject {
   private String buildId;
 
   public static final String JSON_PROPERTY_CONTAINER_IMAGE_URI = "containerImageUri";
-  @javax.annotation.Nullable
-  private String containerImageUri;
+  private JsonNullable<String> containerImageUri = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR = "dockerfileGenerationError";
   @javax.annotation.Nullable
@@ -80,12 +83,10 @@ public class ServiceBuildRequestObject {
   private HealthCheckDetectionError healthCheckDetectionError;
 
   public static final String JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED = "allBuildLogsReceived";
-  @javax.annotation.Nullable
-  private Boolean allBuildLogsReceived;
+  private JsonNullable<Boolean> allBuildLogsReceived = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_CANCELLATION_REQUESTED = "cancellationRequested";
-  @javax.annotation.Nullable
-  private Boolean cancellationRequested;
+  private JsonNullable<Boolean> cancellationRequested = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_START_TIME = "startTime";
   @javax.annotation.Nonnull
@@ -112,12 +113,10 @@ public class ServiceBuildRequestObject {
   private String commitAuthorName;
 
   public static final String JSON_PROPERTY_GIT_REF = "gitRef";
-  @javax.annotation.Nullable
-  private String gitRef;
+  private JsonNullable<String> gitRef = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RELEASE_TAG_NAME = "releaseTagName";
-  @javax.annotation.Nullable
-  private String releaseTagName;
+  private JsonNullable<String> releaseTagName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_STEP_LOGS = "buildStepLogs";
   @javax.annotation.Nullable
@@ -257,21 +256,18 @@ public class ServiceBuildRequestObject {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_ORIGIN = "origin";
-  @javax.annotation.Nullable
-  private OriginEnum origin;
+  private JsonNullable<OriginEnum> origin = JsonNullable.<OriginEnum>undefined();
 
   public static final String JSON_PROPERTY_ORIGIN_DETAIL = "originDetail";
-  @javax.annotation.Nullable
-  private String originDetail;
+  private JsonNullable<String> originDetail = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID = "triggeredByAccountId";
-  @javax.annotation.Nullable
-  private String triggeredByAccountId;
+  private JsonNullable<String> triggeredByAccountId = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets buildTier
@@ -304,13 +300,12 @@ public class ServiceBuildRequestObject {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_BUILD_TIER = "buildTier";
-  @javax.annotation.Nullable
-  private BuildTierEnum buildTier;
+  private JsonNullable<BuildTierEnum> buildTier = JsonNullable.<BuildTierEnum>undefined();
 
   /**
    * Gets or Sets failureReason
@@ -345,13 +340,12 @@ public class ServiceBuildRequestObject {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_FAILURE_REASON = "failureReason";
-  @javax.annotation.Nullable
-  private FailureReasonEnum failureReason;
+  private JsonNullable<FailureReasonEnum> failureReason = JsonNullable.<FailureReasonEnum>undefined();
 
   public ServiceBuildRequestObject() { 
   }
@@ -381,7 +375,7 @@ public class ServiceBuildRequestObject {
 
 
   public ServiceBuildRequestObject containerImageUri(@javax.annotation.Nullable String containerImageUri) {
-    this.containerImageUri = containerImageUri;
+    this.containerImageUri = JsonNullable.<String>of(containerImageUri);
     return this;
   }
 
@@ -390,17 +384,25 @@ public class ServiceBuildRequestObject {
    * @return containerImageUri
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getContainerImageUri() {
-    return containerImageUri;
+        return containerImageUri.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONTAINER_IMAGE_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerImageUri(@javax.annotation.Nullable String containerImageUri) {
+
+  public JsonNullable<String> getContainerImageUri_JsonNullable() {
+    return containerImageUri;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONTAINER_IMAGE_URI)
+  public void setContainerImageUri_JsonNullable(JsonNullable<String> containerImageUri) {
     this.containerImageUri = containerImageUri;
+  }
+
+  public void setContainerImageUri(@javax.annotation.Nullable String containerImageUri) {
+    this.containerImageUri = JsonNullable.<String>of(containerImageUri);
   }
 
 
@@ -453,7 +455,7 @@ public class ServiceBuildRequestObject {
 
 
   public ServiceBuildRequestObject allBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
-    this.allBuildLogsReceived = allBuildLogsReceived;
+    this.allBuildLogsReceived = JsonNullable.<Boolean>of(allBuildLogsReceived);
     return this;
   }
 
@@ -462,22 +464,30 @@ public class ServiceBuildRequestObject {
    * @return allBuildLogsReceived
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getAllBuildLogsReceived() {
-    return allBuildLogsReceived;
+        return allBuildLogsReceived.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAllBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
+
+  public JsonNullable<Boolean> getAllBuildLogsReceived_JsonNullable() {
+    return allBuildLogsReceived;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED)
+  public void setAllBuildLogsReceived_JsonNullable(JsonNullable<Boolean> allBuildLogsReceived) {
     this.allBuildLogsReceived = allBuildLogsReceived;
+  }
+
+  public void setAllBuildLogsReceived(@javax.annotation.Nullable Boolean allBuildLogsReceived) {
+    this.allBuildLogsReceived = JsonNullable.<Boolean>of(allBuildLogsReceived);
   }
 
 
   public ServiceBuildRequestObject cancellationRequested(@javax.annotation.Nullable Boolean cancellationRequested) {
-    this.cancellationRequested = cancellationRequested;
+    this.cancellationRequested = JsonNullable.<Boolean>of(cancellationRequested);
     return this;
   }
 
@@ -486,17 +496,25 @@ public class ServiceBuildRequestObject {
    * @return cancellationRequested
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CANCELLATION_REQUESTED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getCancellationRequested() {
-    return cancellationRequested;
+        return cancellationRequested.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CANCELLATION_REQUESTED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCancellationRequested(@javax.annotation.Nullable Boolean cancellationRequested) {
+
+  public JsonNullable<Boolean> getCancellationRequested_JsonNullable() {
+    return cancellationRequested;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CANCELLATION_REQUESTED)
+  public void setCancellationRequested_JsonNullable(JsonNullable<Boolean> cancellationRequested) {
     this.cancellationRequested = cancellationRequested;
+  }
+
+  public void setCancellationRequested(@javax.annotation.Nullable Boolean cancellationRequested) {
+    this.cancellationRequested = JsonNullable.<Boolean>of(cancellationRequested);
   }
 
 
@@ -645,7 +663,7 @@ public class ServiceBuildRequestObject {
 
 
   public ServiceBuildRequestObject gitRef(@javax.annotation.Nullable String gitRef) {
-    this.gitRef = gitRef;
+    this.gitRef = JsonNullable.<String>of(gitRef);
     return this;
   }
 
@@ -654,22 +672,30 @@ public class ServiceBuildRequestObject {
    * @return gitRef
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GIT_REF, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGitRef() {
-    return gitRef;
+        return gitRef.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GIT_REF, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGitRef(@javax.annotation.Nullable String gitRef) {
+
+  public JsonNullable<String> getGitRef_JsonNullable() {
+    return gitRef;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GIT_REF)
+  public void setGitRef_JsonNullable(JsonNullable<String> gitRef) {
     this.gitRef = gitRef;
+  }
+
+  public void setGitRef(@javax.annotation.Nullable String gitRef) {
+    this.gitRef = JsonNullable.<String>of(gitRef);
   }
 
 
   public ServiceBuildRequestObject releaseTagName(@javax.annotation.Nullable String releaseTagName) {
-    this.releaseTagName = releaseTagName;
+    this.releaseTagName = JsonNullable.<String>of(releaseTagName);
     return this;
   }
 
@@ -678,17 +704,25 @@ public class ServiceBuildRequestObject {
    * @return releaseTagName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RELEASE_TAG_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getReleaseTagName() {
-    return releaseTagName;
+        return releaseTagName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RELEASE_TAG_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReleaseTagName(@javax.annotation.Nullable String releaseTagName) {
+
+  public JsonNullable<String> getReleaseTagName_JsonNullable() {
+    return releaseTagName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RELEASE_TAG_NAME)
+  public void setReleaseTagName_JsonNullable(JsonNullable<String> releaseTagName) {
     this.releaseTagName = releaseTagName;
+  }
+
+  public void setReleaseTagName(@javax.annotation.Nullable String releaseTagName) {
+    this.releaseTagName = JsonNullable.<String>of(releaseTagName);
   }
 
 
@@ -749,7 +783,7 @@ public class ServiceBuildRequestObject {
 
 
   public ServiceBuildRequestObject origin(@javax.annotation.Nullable OriginEnum origin) {
-    this.origin = origin;
+    this.origin = JsonNullable.<OriginEnum>of(origin);
     return this;
   }
 
@@ -758,22 +792,30 @@ public class ServiceBuildRequestObject {
    * @return origin
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ORIGIN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OriginEnum getOrigin() {
-    return origin;
+        return origin.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ORIGIN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrigin(@javax.annotation.Nullable OriginEnum origin) {
+
+  public JsonNullable<OriginEnum> getOrigin_JsonNullable() {
+    return origin;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ORIGIN)
+  public void setOrigin_JsonNullable(JsonNullable<OriginEnum> origin) {
     this.origin = origin;
+  }
+
+  public void setOrigin(@javax.annotation.Nullable OriginEnum origin) {
+    this.origin = JsonNullable.<OriginEnum>of(origin);
   }
 
 
   public ServiceBuildRequestObject originDetail(@javax.annotation.Nullable String originDetail) {
-    this.originDetail = originDetail;
+    this.originDetail = JsonNullable.<String>of(originDetail);
     return this;
   }
 
@@ -782,22 +824,30 @@ public class ServiceBuildRequestObject {
    * @return originDetail
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ORIGIN_DETAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOriginDetail() {
-    return originDetail;
+        return originDetail.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ORIGIN_DETAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOriginDetail(@javax.annotation.Nullable String originDetail) {
+
+  public JsonNullable<String> getOriginDetail_JsonNullable() {
+    return originDetail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ORIGIN_DETAIL)
+  public void setOriginDetail_JsonNullable(JsonNullable<String> originDetail) {
     this.originDetail = originDetail;
+  }
+
+  public void setOriginDetail(@javax.annotation.Nullable String originDetail) {
+    this.originDetail = JsonNullable.<String>of(originDetail);
   }
 
 
   public ServiceBuildRequestObject triggeredByAccountId(@javax.annotation.Nullable String triggeredByAccountId) {
-    this.triggeredByAccountId = triggeredByAccountId;
+    this.triggeredByAccountId = JsonNullable.<String>of(triggeredByAccountId);
     return this;
   }
 
@@ -806,22 +856,30 @@ public class ServiceBuildRequestObject {
    * @return triggeredByAccountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTriggeredByAccountId() {
-    return triggeredByAccountId;
+        return triggeredByAccountId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTriggeredByAccountId(@javax.annotation.Nullable String triggeredByAccountId) {
+
+  public JsonNullable<String> getTriggeredByAccountId_JsonNullable() {
+    return triggeredByAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TRIGGERED_BY_ACCOUNT_ID)
+  public void setTriggeredByAccountId_JsonNullable(JsonNullable<String> triggeredByAccountId) {
     this.triggeredByAccountId = triggeredByAccountId;
+  }
+
+  public void setTriggeredByAccountId(@javax.annotation.Nullable String triggeredByAccountId) {
+    this.triggeredByAccountId = JsonNullable.<String>of(triggeredByAccountId);
   }
 
 
   public ServiceBuildRequestObject buildTier(@javax.annotation.Nullable BuildTierEnum buildTier) {
-    this.buildTier = buildTier;
+    this.buildTier = JsonNullable.<BuildTierEnum>of(buildTier);
     return this;
   }
 
@@ -830,22 +888,30 @@ public class ServiceBuildRequestObject {
    * @return buildTier
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BUILD_TIER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BuildTierEnum getBuildTier() {
-    return buildTier;
+        return buildTier.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BUILD_TIER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildTier(@javax.annotation.Nullable BuildTierEnum buildTier) {
+
+  public JsonNullable<BuildTierEnum> getBuildTier_JsonNullable() {
+    return buildTier;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_TIER)
+  public void setBuildTier_JsonNullable(JsonNullable<BuildTierEnum> buildTier) {
     this.buildTier = buildTier;
+  }
+
+  public void setBuildTier(@javax.annotation.Nullable BuildTierEnum buildTier) {
+    this.buildTier = JsonNullable.<BuildTierEnum>of(buildTier);
   }
 
 
   public ServiceBuildRequestObject failureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
-    this.failureReason = failureReason;
+    this.failureReason = JsonNullable.<FailureReasonEnum>of(failureReason);
     return this;
   }
 
@@ -854,17 +920,25 @@ public class ServiceBuildRequestObject {
    * @return failureReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public FailureReasonEnum getFailureReason() {
-    return failureReason;
+        return failureReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFailureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
+
+  public JsonNullable<FailureReasonEnum> getFailureReason_JsonNullable() {
+    return failureReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FAILURE_REASON)
+  public void setFailureReason_JsonNullable(JsonNullable<FailureReasonEnum> failureReason) {
     this.failureReason = failureReason;
+  }
+
+  public void setFailureReason(@javax.annotation.Nullable FailureReasonEnum failureReason) {
+    this.failureReason = JsonNullable.<FailureReasonEnum>of(failureReason);
   }
 
 
@@ -881,31 +955,42 @@ public class ServiceBuildRequestObject {
     }
     ServiceBuildRequestObject serviceBuildRequestObject = (ServiceBuildRequestObject) o;
     return Objects.equals(this.buildId, serviceBuildRequestObject.buildId) &&
-        Objects.equals(this.containerImageUri, serviceBuildRequestObject.containerImageUri) &&
+        equalsNullable(this.containerImageUri, serviceBuildRequestObject.containerImageUri) &&
         Objects.equals(this.dockerfileGenerationError, serviceBuildRequestObject.dockerfileGenerationError) &&
         Objects.equals(this.healthCheckDetectionError, serviceBuildRequestObject.healthCheckDetectionError) &&
-        Objects.equals(this.allBuildLogsReceived, serviceBuildRequestObject.allBuildLogsReceived) &&
-        Objects.equals(this.cancellationRequested, serviceBuildRequestObject.cancellationRequested) &&
+        equalsNullable(this.allBuildLogsReceived, serviceBuildRequestObject.allBuildLogsReceived) &&
+        equalsNullable(this.cancellationRequested, serviceBuildRequestObject.cancellationRequested) &&
         Objects.equals(this.startTime, serviceBuildRequestObject.startTime) &&
         Objects.equals(this.lastUpdatedTime, serviceBuildRequestObject.lastUpdatedTime) &&
         Objects.equals(this.serviceId, serviceBuildRequestObject.serviceId) &&
         Objects.equals(this.commitHash, serviceBuildRequestObject.commitHash) &&
         Objects.equals(this.commitMessage, serviceBuildRequestObject.commitMessage) &&
         Objects.equals(this.commitAuthorName, serviceBuildRequestObject.commitAuthorName) &&
-        Objects.equals(this.gitRef, serviceBuildRequestObject.gitRef) &&
-        Objects.equals(this.releaseTagName, serviceBuildRequestObject.releaseTagName) &&
+        equalsNullable(this.gitRef, serviceBuildRequestObject.gitRef) &&
+        equalsNullable(this.releaseTagName, serviceBuildRequestObject.releaseTagName) &&
         Objects.equals(this.buildStepLogs, serviceBuildRequestObject.buildStepLogs) &&
         Objects.equals(this.status, serviceBuildRequestObject.status) &&
-        Objects.equals(this.origin, serviceBuildRequestObject.origin) &&
-        Objects.equals(this.originDetail, serviceBuildRequestObject.originDetail) &&
-        Objects.equals(this.triggeredByAccountId, serviceBuildRequestObject.triggeredByAccountId) &&
-        Objects.equals(this.buildTier, serviceBuildRequestObject.buildTier) &&
-        Objects.equals(this.failureReason, serviceBuildRequestObject.failureReason);
+        equalsNullable(this.origin, serviceBuildRequestObject.origin) &&
+        equalsNullable(this.originDetail, serviceBuildRequestObject.originDetail) &&
+        equalsNullable(this.triggeredByAccountId, serviceBuildRequestObject.triggeredByAccountId) &&
+        equalsNullable(this.buildTier, serviceBuildRequestObject.buildTier) &&
+        equalsNullable(this.failureReason, serviceBuildRequestObject.failureReason);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, containerImageUri, dockerfileGenerationError, healthCheckDetectionError, allBuildLogsReceived, cancellationRequested, startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, gitRef, releaseTagName, buildStepLogs, status, origin, originDetail, triggeredByAccountId, buildTier, failureReason);
+    return Objects.hash(buildId, hashCodeNullable(containerImageUri), dockerfileGenerationError, healthCheckDetectionError, hashCodeNullable(allBuildLogsReceived), hashCodeNullable(cancellationRequested), startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, hashCodeNullable(gitRef), hashCodeNullable(releaseTagName), buildStepLogs, status, hashCodeNullable(origin), hashCodeNullable(originDetail), hashCodeNullable(triggeredByAccountId), hashCodeNullable(buildTier), hashCodeNullable(failureReason));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

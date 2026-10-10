@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseUser;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -49,8 +53,7 @@ public class CreateManagedDatabaseUserResponse {
   private String password;
 
   public static final String JSON_PROPERTY_CONNECTION_URI = "connectionUri";
-  @javax.annotation.Nullable
-  private String connectionUri;
+  private JsonNullable<String> connectionUri = JsonNullable.<String>undefined();
 
   public CreateManagedDatabaseUserResponse() { 
   }
@@ -104,7 +107,7 @@ public class CreateManagedDatabaseUserResponse {
 
 
   public CreateManagedDatabaseUserResponse connectionUri(@javax.annotation.Nullable String connectionUri) {
-    this.connectionUri = connectionUri;
+    this.connectionUri = JsonNullable.<String>of(connectionUri);
     return this;
   }
 
@@ -113,17 +116,25 @@ public class CreateManagedDatabaseUserResponse {
    * @return connectionUri
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONNECTION_URI, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getConnectionUri() {
-    return connectionUri;
+        return connectionUri.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONNECTION_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionUri(@javax.annotation.Nullable String connectionUri) {
+
+  public JsonNullable<String> getConnectionUri_JsonNullable() {
+    return connectionUri;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONNECTION_URI)
+  public void setConnectionUri_JsonNullable(JsonNullable<String> connectionUri) {
     this.connectionUri = connectionUri;
+  }
+
+  public void setConnectionUri(@javax.annotation.Nullable String connectionUri) {
+    this.connectionUri = JsonNullable.<String>of(connectionUri);
   }
 
 
@@ -141,12 +152,23 @@ public class CreateManagedDatabaseUserResponse {
     CreateManagedDatabaseUserResponse createManagedDatabaseUserResponse = (CreateManagedDatabaseUserResponse) o;
     return Objects.equals(this.databaseUser, createManagedDatabaseUserResponse.databaseUser) &&
         Objects.equals(this.password, createManagedDatabaseUserResponse.password) &&
-        Objects.equals(this.connectionUri, createManagedDatabaseUserResponse.connectionUri);
+        equalsNullable(this.connectionUri, createManagedDatabaseUserResponse.connectionUri);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(databaseUser, password, connectionUri);
+    return Objects.hash(databaseUser, password, hashCodeNullable(connectionUri));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

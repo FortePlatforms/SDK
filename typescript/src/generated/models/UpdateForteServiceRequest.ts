@@ -24,37 +24,37 @@ export interface UpdateForteServiceRequest {
      * @type {boolean}
      * @memberof UpdateForteServiceRequest
      */
-    resetDockerfile?: boolean;
+    resetDockerfile?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateForteServiceRequest
      */
-    resetHealthCheckConfig?: boolean;
+    resetHealthCheckConfig?: boolean | null;
     /**
      * 
      * @type {UpdateForteServiceRequestGithubBuildTriggerType}
      * @memberof UpdateForteServiceRequest
      */
-    githubBuildTrigger?: UpdateForteServiceRequestGithubBuildTriggerType;
+    githubBuildTrigger?: UpdateForteServiceRequestGithubBuildTriggerType | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateForteServiceRequest
      */
-    githubBranch?: string;
+    githubBranch?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateForteServiceRequest
      */
-    baseDirectory?: string;
+    baseDirectory?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateForteServiceRequest
      */
-    serviceName?: string;
+    serviceName?: string | null;
     /**
      * 
      * @type {{ [key: string]: string; }}
@@ -72,25 +72,25 @@ export interface UpdateForteServiceRequest {
      * @type {Set<string>}
      * @memberof UpdateForteServiceRequest
      */
-    secretKeysToDelete?: Set<string>;
+    secretKeysToDelete?: Set<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof UpdateForteServiceRequest
      */
-    authPathExclusions?: Array<string>;
+    authPathExclusions?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof UpdateForteServiceRequest
      */
-    blockedPaths?: Array<string>;
+    blockedPaths?: Array<string> | null;
     /**
      * 
      * @type {number}
      * @memberof UpdateForteServiceRequest
      */
-    baseInstances?: number;
+    baseInstances?: number | null;
     /**
      * 
      * @type {{ [key: string]: number; }}
@@ -102,25 +102,25 @@ export interface UpdateForteServiceRequest {
      * @type {string}
      * @memberof UpdateForteServiceRequest
      */
-    containerCpu?: string;
+    containerCpu?: string | null;
     /**
      * 
      * @type {number}
      * @memberof UpdateForteServiceRequest
      */
-    healthCheckPort?: number;
+    healthCheckPort?: number | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateForteServiceRequest
      */
-    healthCheckPath?: string;
+    healthCheckPath?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateForteServiceRequest
      */
-    requestResponseBodyLoggingEnabled?: boolean;
+    requestResponseBodyLoggingEnabled?: boolean | null;
 }
 
 

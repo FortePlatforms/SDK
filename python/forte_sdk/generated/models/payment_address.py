@@ -74,6 +74,16 @@ class PaymentAddress(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if line2 (nullable) is None
+        # and model_fields_set contains the field
+        if self.line2 is None and "line2" in self.model_fields_set:
+            _dict['line2'] = None
+
+        # set to None if state (nullable) is None
+        # and model_fields_set contains the field
+        if self.state is None and "state" in self.model_fields_set:
+            _dict['state'] = None
+
         return _dict
 
     @classmethod

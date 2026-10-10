@@ -85,6 +85,11 @@ class UpdatePaymentTriggerRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if enabled (nullable) is None
+        # and model_fields_set contains the field
+        if self.enabled is None and "enabled" in self.model_fields_set:
+            _dict['enabled'] = None
+
         return _dict
 
     @classmethod

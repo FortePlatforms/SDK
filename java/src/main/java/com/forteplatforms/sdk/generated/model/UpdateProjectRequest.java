@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.MfaConfig;
 import com.forteplatforms.sdk.generated.model.PasswordConfig;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -48,28 +52,22 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID = "googleOAuthClientId";
-  @javax.annotation.Nullable
-  private String googleOAuthClientId;
+  private JsonNullable<String> googleOAuthClientId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RECAPTCHA_SECRET_KEY = "recaptchaSecretKey";
-  @javax.annotation.Nullable
-  private String recaptchaSecretKey;
+  private JsonNullable<String> recaptchaSecretKey = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PHONE_LOGIN_ENABLED = "phoneLoginEnabled";
-  @javax.annotation.Nullable
-  private Boolean phoneLoginEnabled;
+  private JsonNullable<Boolean> phoneLoginEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_EMAIL_LOGIN_ENABLED = "emailLoginEnabled";
-  @javax.annotation.Nullable
-  private Boolean emailLoginEnabled;
+  private JsonNullable<Boolean> emailLoginEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_GOOGLE_LOGIN_ENABLED = "googleLoginEnabled";
-  @javax.annotation.Nullable
-  private Boolean googleLoginEnabled;
+  private JsonNullable<Boolean> googleLoginEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_LOGIN_ENABLED = "passwordLoginEnabled";
-  @javax.annotation.Nullable
-  private Boolean passwordLoginEnabled;
+  private JsonNullable<Boolean> passwordLoginEnabled = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_CONFIG = "passwordConfig";
   @javax.annotation.Nullable
@@ -110,19 +108,18 @@ public class UpdateProjectRequest {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_EMAIL_SENDER = "emailSender";
-  @javax.annotation.Nullable
-  private EmailSenderEnum emailSender;
+  private JsonNullable<EmailSenderEnum> emailSender = JsonNullable.<EmailSenderEnum>undefined();
 
   public UpdateProjectRequest() { 
   }
 
   public UpdateProjectRequest googleOAuthClientId(@javax.annotation.Nullable String googleOAuthClientId) {
-    this.googleOAuthClientId = googleOAuthClientId;
+    this.googleOAuthClientId = JsonNullable.<String>of(googleOAuthClientId);
     return this;
   }
 
@@ -131,22 +128,30 @@ public class UpdateProjectRequest {
    * @return googleOAuthClientId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGoogleOAuthClientId() {
-    return googleOAuthClientId;
+        return googleOAuthClientId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGoogleOAuthClientId(@javax.annotation.Nullable String googleOAuthClientId) {
+
+  public JsonNullable<String> getGoogleOAuthClientId_JsonNullable() {
+    return googleOAuthClientId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GOOGLE_O_AUTH_CLIENT_ID)
+  public void setGoogleOAuthClientId_JsonNullable(JsonNullable<String> googleOAuthClientId) {
     this.googleOAuthClientId = googleOAuthClientId;
+  }
+
+  public void setGoogleOAuthClientId(@javax.annotation.Nullable String googleOAuthClientId) {
+    this.googleOAuthClientId = JsonNullable.<String>of(googleOAuthClientId);
   }
 
 
   public UpdateProjectRequest recaptchaSecretKey(@javax.annotation.Nullable String recaptchaSecretKey) {
-    this.recaptchaSecretKey = recaptchaSecretKey;
+    this.recaptchaSecretKey = JsonNullable.<String>of(recaptchaSecretKey);
     return this;
   }
 
@@ -155,22 +160,30 @@ public class UpdateProjectRequest {
    * @return recaptchaSecretKey
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_SECRET_KEY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRecaptchaSecretKey() {
-    return recaptchaSecretKey;
+        return recaptchaSecretKey.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_SECRET_KEY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRecaptchaSecretKey(@javax.annotation.Nullable String recaptchaSecretKey) {
+
+  public JsonNullable<String> getRecaptchaSecretKey_JsonNullable() {
+    return recaptchaSecretKey;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RECAPTCHA_SECRET_KEY)
+  public void setRecaptchaSecretKey_JsonNullable(JsonNullable<String> recaptchaSecretKey) {
     this.recaptchaSecretKey = recaptchaSecretKey;
+  }
+
+  public void setRecaptchaSecretKey(@javax.annotation.Nullable String recaptchaSecretKey) {
+    this.recaptchaSecretKey = JsonNullable.<String>of(recaptchaSecretKey);
   }
 
 
   public UpdateProjectRequest phoneLoginEnabled(@javax.annotation.Nullable Boolean phoneLoginEnabled) {
-    this.phoneLoginEnabled = phoneLoginEnabled;
+    this.phoneLoginEnabled = JsonNullable.<Boolean>of(phoneLoginEnabled);
     return this;
   }
 
@@ -179,22 +192,30 @@ public class UpdateProjectRequest {
    * @return phoneLoginEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHONE_LOGIN_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getPhoneLoginEnabled() {
-    return phoneLoginEnabled;
+        return phoneLoginEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHONE_LOGIN_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneLoginEnabled(@javax.annotation.Nullable Boolean phoneLoginEnabled) {
+
+  public JsonNullable<Boolean> getPhoneLoginEnabled_JsonNullable() {
+    return phoneLoginEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE_LOGIN_ENABLED)
+  public void setPhoneLoginEnabled_JsonNullable(JsonNullable<Boolean> phoneLoginEnabled) {
     this.phoneLoginEnabled = phoneLoginEnabled;
+  }
+
+  public void setPhoneLoginEnabled(@javax.annotation.Nullable Boolean phoneLoginEnabled) {
+    this.phoneLoginEnabled = JsonNullable.<Boolean>of(phoneLoginEnabled);
   }
 
 
   public UpdateProjectRequest emailLoginEnabled(@javax.annotation.Nullable Boolean emailLoginEnabled) {
-    this.emailLoginEnabled = emailLoginEnabled;
+    this.emailLoginEnabled = JsonNullable.<Boolean>of(emailLoginEnabled);
     return this;
   }
 
@@ -203,22 +224,30 @@ public class UpdateProjectRequest {
    * @return emailLoginEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL_LOGIN_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getEmailLoginEnabled() {
-    return emailLoginEnabled;
+        return emailLoginEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EMAIL_LOGIN_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmailLoginEnabled(@javax.annotation.Nullable Boolean emailLoginEnabled) {
+
+  public JsonNullable<Boolean> getEmailLoginEnabled_JsonNullable() {
+    return emailLoginEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL_LOGIN_ENABLED)
+  public void setEmailLoginEnabled_JsonNullable(JsonNullable<Boolean> emailLoginEnabled) {
     this.emailLoginEnabled = emailLoginEnabled;
+  }
+
+  public void setEmailLoginEnabled(@javax.annotation.Nullable Boolean emailLoginEnabled) {
+    this.emailLoginEnabled = JsonNullable.<Boolean>of(emailLoginEnabled);
   }
 
 
   public UpdateProjectRequest googleLoginEnabled(@javax.annotation.Nullable Boolean googleLoginEnabled) {
-    this.googleLoginEnabled = googleLoginEnabled;
+    this.googleLoginEnabled = JsonNullable.<Boolean>of(googleLoginEnabled);
     return this;
   }
 
@@ -227,22 +256,30 @@ public class UpdateProjectRequest {
    * @return googleLoginEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GOOGLE_LOGIN_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getGoogleLoginEnabled() {
-    return googleLoginEnabled;
+        return googleLoginEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GOOGLE_LOGIN_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGoogleLoginEnabled(@javax.annotation.Nullable Boolean googleLoginEnabled) {
+
+  public JsonNullable<Boolean> getGoogleLoginEnabled_JsonNullable() {
+    return googleLoginEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GOOGLE_LOGIN_ENABLED)
+  public void setGoogleLoginEnabled_JsonNullable(JsonNullable<Boolean> googleLoginEnabled) {
     this.googleLoginEnabled = googleLoginEnabled;
+  }
+
+  public void setGoogleLoginEnabled(@javax.annotation.Nullable Boolean googleLoginEnabled) {
+    this.googleLoginEnabled = JsonNullable.<Boolean>of(googleLoginEnabled);
   }
 
 
   public UpdateProjectRequest passwordLoginEnabled(@javax.annotation.Nullable Boolean passwordLoginEnabled) {
-    this.passwordLoginEnabled = passwordLoginEnabled;
+    this.passwordLoginEnabled = JsonNullable.<Boolean>of(passwordLoginEnabled);
     return this;
   }
 
@@ -251,17 +288,25 @@ public class UpdateProjectRequest {
    * @return passwordLoginEnabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD_LOGIN_ENABLED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getPasswordLoginEnabled() {
-    return passwordLoginEnabled;
+        return passwordLoginEnabled.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD_LOGIN_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordLoginEnabled(@javax.annotation.Nullable Boolean passwordLoginEnabled) {
+
+  public JsonNullable<Boolean> getPasswordLoginEnabled_JsonNullable() {
+    return passwordLoginEnabled;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_LOGIN_ENABLED)
+  public void setPasswordLoginEnabled_JsonNullable(JsonNullable<Boolean> passwordLoginEnabled) {
     this.passwordLoginEnabled = passwordLoginEnabled;
+  }
+
+  public void setPasswordLoginEnabled(@javax.annotation.Nullable Boolean passwordLoginEnabled) {
+    this.passwordLoginEnabled = JsonNullable.<Boolean>of(passwordLoginEnabled);
   }
 
 
@@ -314,7 +359,7 @@ public class UpdateProjectRequest {
 
 
   public UpdateProjectRequest emailSender(@javax.annotation.Nullable EmailSenderEnum emailSender) {
-    this.emailSender = emailSender;
+    this.emailSender = JsonNullable.<EmailSenderEnum>of(emailSender);
     return this;
   }
 
@@ -323,17 +368,25 @@ public class UpdateProjectRequest {
    * @return emailSender
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL_SENDER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public EmailSenderEnum getEmailSender() {
-    return emailSender;
+        return emailSender.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EMAIL_SENDER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmailSender(@javax.annotation.Nullable EmailSenderEnum emailSender) {
+
+  public JsonNullable<EmailSenderEnum> getEmailSender_JsonNullable() {
+    return emailSender;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL_SENDER)
+  public void setEmailSender_JsonNullable(JsonNullable<EmailSenderEnum> emailSender) {
     this.emailSender = emailSender;
+  }
+
+  public void setEmailSender(@javax.annotation.Nullable EmailSenderEnum emailSender) {
+    this.emailSender = JsonNullable.<EmailSenderEnum>of(emailSender);
   }
 
 
@@ -349,20 +402,31 @@ public class UpdateProjectRequest {
       return false;
     }
     UpdateProjectRequest updateProjectRequest = (UpdateProjectRequest) o;
-    return Objects.equals(this.googleOAuthClientId, updateProjectRequest.googleOAuthClientId) &&
-        Objects.equals(this.recaptchaSecretKey, updateProjectRequest.recaptchaSecretKey) &&
-        Objects.equals(this.phoneLoginEnabled, updateProjectRequest.phoneLoginEnabled) &&
-        Objects.equals(this.emailLoginEnabled, updateProjectRequest.emailLoginEnabled) &&
-        Objects.equals(this.googleLoginEnabled, updateProjectRequest.googleLoginEnabled) &&
-        Objects.equals(this.passwordLoginEnabled, updateProjectRequest.passwordLoginEnabled) &&
+    return equalsNullable(this.googleOAuthClientId, updateProjectRequest.googleOAuthClientId) &&
+        equalsNullable(this.recaptchaSecretKey, updateProjectRequest.recaptchaSecretKey) &&
+        equalsNullable(this.phoneLoginEnabled, updateProjectRequest.phoneLoginEnabled) &&
+        equalsNullable(this.emailLoginEnabled, updateProjectRequest.emailLoginEnabled) &&
+        equalsNullable(this.googleLoginEnabled, updateProjectRequest.googleLoginEnabled) &&
+        equalsNullable(this.passwordLoginEnabled, updateProjectRequest.passwordLoginEnabled) &&
         Objects.equals(this.passwordConfig, updateProjectRequest.passwordConfig) &&
         Objects.equals(this.mfaConfig, updateProjectRequest.mfaConfig) &&
-        Objects.equals(this.emailSender, updateProjectRequest.emailSender);
+        equalsNullable(this.emailSender, updateProjectRequest.emailSender);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(googleOAuthClientId, recaptchaSecretKey, phoneLoginEnabled, emailLoginEnabled, googleLoginEnabled, passwordLoginEnabled, passwordConfig, mfaConfig, emailSender);
+    return Objects.hash(hashCodeNullable(googleOAuthClientId), hashCodeNullable(recaptchaSecretKey), hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(emailSender));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

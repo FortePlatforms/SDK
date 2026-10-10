@@ -30,6 +30,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -55,8 +59,7 @@ public class CreateSubscriptionPreviewResponse {
   private Long subtotalCents;
 
   public static final String JSON_PROPERTY_TAX_CENTS = "taxCents";
-  @javax.annotation.Nullable
-  private Long taxCents;
+  private JsonNullable<Long> taxCents = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nonnull
@@ -118,8 +121,7 @@ public class CreateSubscriptionPreviewResponse {
   private OffsetDateTime nextRenewalAt;
 
   public static final String JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID = "stripeTaxCalculationId";
-  @javax.annotation.Nullable
-  private String stripeTaxCalculationId;
+  private JsonNullable<String> stripeTaxCalculationId = JsonNullable.<String>undefined();
 
   public CreateSubscriptionPreviewResponse() { 
   }
@@ -149,7 +151,7 @@ public class CreateSubscriptionPreviewResponse {
 
 
   public CreateSubscriptionPreviewResponse taxCents(@javax.annotation.Nullable Long taxCents) {
-    this.taxCents = taxCents;
+    this.taxCents = JsonNullable.<Long>of(taxCents);
     return this;
   }
 
@@ -158,17 +160,25 @@ public class CreateSubscriptionPreviewResponse {
    * @return taxCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTaxCents() {
-    return taxCents;
+        return taxCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTaxCents(@javax.annotation.Nullable Long taxCents) {
+
+  public JsonNullable<Long> getTaxCents_JsonNullable() {
+    return taxCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_CENTS)
+  public void setTaxCents_JsonNullable(JsonNullable<Long> taxCents) {
     this.taxCents = taxCents;
+  }
+
+  public void setTaxCents(@javax.annotation.Nullable Long taxCents) {
+    this.taxCents = JsonNullable.<Long>of(taxCents);
   }
 
 
@@ -325,7 +335,7 @@ public class CreateSubscriptionPreviewResponse {
 
 
   public CreateSubscriptionPreviewResponse stripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
-    this.stripeTaxCalculationId = stripeTaxCalculationId;
+    this.stripeTaxCalculationId = JsonNullable.<String>of(stripeTaxCalculationId);
     return this;
   }
 
@@ -334,17 +344,25 @@ public class CreateSubscriptionPreviewResponse {
    * @return stripeTaxCalculationId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripeTaxCalculationId() {
-    return stripeTaxCalculationId;
+        return stripeTaxCalculationId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
+
+  public JsonNullable<String> getStripeTaxCalculationId_JsonNullable() {
+    return stripeTaxCalculationId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID)
+  public void setStripeTaxCalculationId_JsonNullable(JsonNullable<String> stripeTaxCalculationId) {
     this.stripeTaxCalculationId = stripeTaxCalculationId;
+  }
+
+  public void setStripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
+    this.stripeTaxCalculationId = JsonNullable.<String>of(stripeTaxCalculationId);
   }
 
 
@@ -361,19 +379,30 @@ public class CreateSubscriptionPreviewResponse {
     }
     CreateSubscriptionPreviewResponse createSubscriptionPreviewResponse = (CreateSubscriptionPreviewResponse) o;
     return Objects.equals(this.subtotalCents, createSubscriptionPreviewResponse.subtotalCents) &&
-        Objects.equals(this.taxCents, createSubscriptionPreviewResponse.taxCents) &&
+        equalsNullable(this.taxCents, createSubscriptionPreviewResponse.taxCents) &&
         Objects.equals(this.amountCents, createSubscriptionPreviewResponse.amountCents) &&
         Objects.equals(this.currency, createSubscriptionPreviewResponse.currency) &&
         Objects.equals(this.lineItems, createSubscriptionPreviewResponse.lineItems) &&
         Objects.equals(this.customerAddress, createSubscriptionPreviewResponse.customerAddress) &&
         Objects.equals(this.interval, createSubscriptionPreviewResponse.interval) &&
         Objects.equals(this.nextRenewalAt, createSubscriptionPreviewResponse.nextRenewalAt) &&
-        Objects.equals(this.stripeTaxCalculationId, createSubscriptionPreviewResponse.stripeTaxCalculationId);
+        equalsNullable(this.stripeTaxCalculationId, createSubscriptionPreviewResponse.stripeTaxCalculationId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subtotalCents, taxCents, amountCents, currency, lineItems, customerAddress, interval, nextRenewalAt, stripeTaxCalculationId);
+    return Objects.hash(subtotalCents, hashCodeNullable(taxCents), amountCents, currency, lineItems, customerAddress, interval, nextRenewalAt, hashCodeNullable(stripeTaxCalculationId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

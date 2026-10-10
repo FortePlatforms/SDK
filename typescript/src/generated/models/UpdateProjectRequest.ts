@@ -39,37 +39,37 @@ export interface UpdateProjectRequest {
      * @type {string}
      * @memberof UpdateProjectRequest
      */
-    googleOAuthClientId?: string;
+    googleOAuthClientId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateProjectRequest
      */
-    recaptchaSecretKey?: string;
+    recaptchaSecretKey?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateProjectRequest
      */
-    phoneLoginEnabled?: boolean;
+    phoneLoginEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateProjectRequest
      */
-    emailLoginEnabled?: boolean;
+    emailLoginEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateProjectRequest
      */
-    googleLoginEnabled?: boolean;
+    googleLoginEnabled?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateProjectRequest
      */
-    passwordLoginEnabled?: boolean;
+    passwordLoginEnabled?: boolean | null;
     /**
      * 
      * @type {PasswordConfig}
@@ -87,7 +87,7 @@ export interface UpdateProjectRequest {
      * @type {UpdateProjectRequestEmailSenderType}
      * @memberof UpdateProjectRequest
      */
-    emailSender?: UpdateProjectRequestEmailSenderType;
+    emailSender?: UpdateProjectRequestEmailSenderType | null;
 }
 
 

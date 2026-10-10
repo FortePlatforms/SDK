@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,8 +43,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ChangePasswordRequest {
   public static final String JSON_PROPERTY_CURRENT_PASSWORD = "currentPassword";
-  @javax.annotation.Nullable
-  private String currentPassword;
+  private JsonNullable<String> currentPassword = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NEW_PASSWORD = "newPassword";
   @javax.annotation.Nonnull
@@ -50,7 +53,7 @@ public class ChangePasswordRequest {
   }
 
   public ChangePasswordRequest currentPassword(@javax.annotation.Nullable String currentPassword) {
-    this.currentPassword = currentPassword;
+    this.currentPassword = JsonNullable.<String>of(currentPassword);
     return this;
   }
 
@@ -59,17 +62,25 @@ public class ChangePasswordRequest {
    * @return currentPassword
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CURRENT_PASSWORD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCurrentPassword() {
-    return currentPassword;
+        return currentPassword.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CURRENT_PASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrentPassword(@javax.annotation.Nullable String currentPassword) {
+
+  public JsonNullable<String> getCurrentPassword_JsonNullable() {
+    return currentPassword;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CURRENT_PASSWORD)
+  public void setCurrentPassword_JsonNullable(JsonNullable<String> currentPassword) {
     this.currentPassword = currentPassword;
+  }
+
+  public void setCurrentPassword(@javax.annotation.Nullable String currentPassword) {
+    this.currentPassword = JsonNullable.<String>of(currentPassword);
   }
 
 
@@ -109,13 +120,24 @@ public class ChangePasswordRequest {
       return false;
     }
     ChangePasswordRequest changePasswordRequest = (ChangePasswordRequest) o;
-    return Objects.equals(this.currentPassword, changePasswordRequest.currentPassword) &&
+    return equalsNullable(this.currentPassword, changePasswordRequest.currentPassword) &&
         Objects.equals(this.newPassword, changePasswordRequest.newPassword);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currentPassword, newPassword);
+    return Objects.hash(hashCodeNullable(currentPassword), newPassword);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

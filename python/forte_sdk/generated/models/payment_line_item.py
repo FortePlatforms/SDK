@@ -87,6 +87,16 @@ class PaymentLineItem(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if tax_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_code is None and "tax_code" in self.model_fields_set:
+            _dict['taxCode'] = None
+
+        # set to None if tax_amount_cents (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_amount_cents is None and "tax_amount_cents" in self.model_fields_set:
+            _dict['taxAmountCents'] = None
+
         return _dict
 
     @classmethod

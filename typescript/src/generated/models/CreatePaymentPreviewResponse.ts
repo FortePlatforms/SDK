@@ -45,7 +45,7 @@ export interface CreatePaymentPreviewResponse {
      * @type {number}
      * @memberof CreatePaymentPreviewResponse
      */
-    taxCents?: number;
+    taxCents?: number | null;
     /**
      * 
      * @type {number}
@@ -75,7 +75,7 @@ export interface CreatePaymentPreviewResponse {
      * @type {string}
      * @memberof CreatePaymentPreviewResponse
      */
-    stripeTaxCalculationId?: string;
+    stripeTaxCalculationId?: string | null;
 }
 
 /**

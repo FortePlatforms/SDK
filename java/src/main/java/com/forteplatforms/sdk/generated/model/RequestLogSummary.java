@@ -28,6 +28,10 @@ import com.forteplatforms.sdk.generated.model.InternalSource;
 import com.forteplatforms.sdk.generated.model.RequestLogObjectMeta;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -67,8 +71,7 @@ public class RequestLogSummary {
   private Long totalLatencyMilliseconds;
 
   public static final String JSON_PROPERTY_EXCEPTION_TYPE = "exceptionType";
-  @javax.annotation.Nullable
-  private String exceptionType;
+  private JsonNullable<String> exceptionType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INTERNAL_SOURCE = "internalSource";
   @javax.annotation.Nullable
@@ -198,7 +201,7 @@ public class RequestLogSummary {
 
 
   public RequestLogSummary exceptionType(@javax.annotation.Nullable String exceptionType) {
-    this.exceptionType = exceptionType;
+    this.exceptionType = JsonNullable.<String>of(exceptionType);
     return this;
   }
 
@@ -207,17 +210,25 @@ public class RequestLogSummary {
    * @return exceptionType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXCEPTION_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getExceptionType() {
-    return exceptionType;
+        return exceptionType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXCEPTION_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExceptionType(@javax.annotation.Nullable String exceptionType) {
+
+  public JsonNullable<String> getExceptionType_JsonNullable() {
+    return exceptionType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXCEPTION_TYPE)
+  public void setExceptionType_JsonNullable(JsonNullable<String> exceptionType) {
     this.exceptionType = exceptionType;
+  }
+
+  public void setExceptionType(@javax.annotation.Nullable String exceptionType) {
+    this.exceptionType = JsonNullable.<String>of(exceptionType);
   }
 
 
@@ -262,13 +273,24 @@ public class RequestLogSummary {
         Objects.equals(this.requestLogObjectMeta, requestLogSummary.requestLogObjectMeta) &&
         Objects.equals(this.statusCode, requestLogSummary.statusCode) &&
         Objects.equals(this.totalLatencyMilliseconds, requestLogSummary.totalLatencyMilliseconds) &&
-        Objects.equals(this.exceptionType, requestLogSummary.exceptionType) &&
+        equalsNullable(this.exceptionType, requestLogSummary.exceptionType) &&
         Objects.equals(this.internalSource, requestLogSummary.internalSource);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, timestamp, requestLogObjectMeta, statusCode, totalLatencyMilliseconds, exceptionType, internalSource);
+    return Objects.hash(requestId, timestamp, requestLogObjectMeta, statusCode, totalLatencyMilliseconds, hashCodeNullable(exceptionType), internalSource);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

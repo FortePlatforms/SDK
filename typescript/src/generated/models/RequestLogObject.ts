@@ -58,7 +58,7 @@ export interface RequestLogObject {
      * @type {string}
      * @memberof RequestLogObject
      */
-    sourceIpAddress?: string;
+    sourceIpAddress?: string | null;
     /**
      * 
      * @type {RequestLogObjectMeta}
@@ -88,19 +88,19 @@ export interface RequestLogObject {
      * @type {number}
      * @memberof RequestLogObject
      */
-    firstByteLatencyMilliseconds?: number;
+    firstByteLatencyMilliseconds?: number | null;
     /**
      * 
      * @type {string}
      * @memberof RequestLogObject
      */
-    requestBody?: string;
+    requestBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RequestLogObject
      */
-    responseBody?: string;
+    responseBody?: string | null;
     /**
      * 
      * @type {BodyRef}
@@ -136,7 +136,7 @@ export interface RequestLogObject {
      * @type {number}
      * @memberof RequestLogObject
      */
-    retryCount?: number;
+    retryCount?: number | null;
     /**
      * 
      * @type {InternalSource}
@@ -148,31 +148,31 @@ export interface RequestLogObject {
      * @type {string}
      * @memberof RequestLogObject
      */
-    exceptionType?: string;
+    exceptionType?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RequestLogObject
      */
-    exceptionMessage?: string;
+    exceptionMessage?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RequestLogObject
      */
-    exceptionStackTrace?: string;
+    exceptionStackTrace?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RequestLogObject
      */
-    ownerAccountId?: string;
+    ownerAccountId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RequestLogObject
      */
-    environment?: string;
+    environment?: string | null;
 }
 
 /**

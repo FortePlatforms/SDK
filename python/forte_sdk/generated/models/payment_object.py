@@ -133,6 +133,41 @@ class PaymentObject(BaseModel):
                 if _item_refund_history:
                     _items.append(_item_refund_history.to_dict())
             _dict['refundHistory'] = _items
+        # set to None if tax_cents (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_cents is None and "tax_cents" in self.model_fields_set:
+            _dict['taxCents'] = None
+
+        # set to None if description (nullable) is None
+        # and model_fields_set contains the field
+        if self.description is None and "description" in self.model_fields_set:
+            _dict['description'] = None
+
+        # set to None if stripe_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_status is None and "stripe_status" in self.model_fields_set:
+            _dict['stripeStatus'] = None
+
+        # set to None if stripe_tax_calculation_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_tax_calculation_id is None and "stripe_tax_calculation_id" in self.model_fields_set:
+            _dict['stripeTaxCalculationId'] = None
+
+        # set to None if stripe_tax_transaction_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_tax_transaction_id is None and "stripe_tax_transaction_id" in self.model_fields_set:
+            _dict['stripeTaxTransactionId'] = None
+
+        # set to None if subscription_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscription_id is None and "subscription_id" in self.model_fields_set:
+            _dict['subscriptionId'] = None
+
+        # set to None if subscription_renewal_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscription_renewal_time is None and "subscription_renewal_time" in self.model_fields_set:
+            _dict['subscriptionRenewalTime'] = None
+
         return _dict
 
     @classmethod

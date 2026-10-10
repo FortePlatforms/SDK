@@ -72,6 +72,11 @@ class CreateContentUploadLinkRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if file_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.file_name is None and "file_name" in self.model_fields_set:
+            _dict['fileName'] = None
+
         return _dict
 
     @classmethod

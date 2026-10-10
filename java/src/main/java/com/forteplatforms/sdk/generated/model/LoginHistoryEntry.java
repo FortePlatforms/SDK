@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,16 +50,13 @@ public class LoginHistoryEntry {
   private OffsetDateTime timestamp;
 
   public static final String JSON_PROPERTY_SOURCE_IP_ADDRESS = "sourceIpAddress";
-  @javax.annotation.Nullable
-  private String sourceIpAddress;
+  private JsonNullable<String> sourceIpAddress = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_USER_AGENT = "userAgent";
-  @javax.annotation.Nullable
-  private String userAgent;
+  private JsonNullable<String> userAgent = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DEVICE_DESCRIPTION = "deviceDescription";
-  @javax.annotation.Nullable
-  private String deviceDescription;
+  private JsonNullable<String> deviceDescription = JsonNullable.<String>undefined();
 
   public LoginHistoryEntry() { 
   }
@@ -85,7 +86,7 @@ public class LoginHistoryEntry {
 
 
   public LoginHistoryEntry sourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
-    this.sourceIpAddress = sourceIpAddress;
+    this.sourceIpAddress = JsonNullable.<String>of(sourceIpAddress);
     return this;
   }
 
@@ -94,22 +95,30 @@ public class LoginHistoryEntry {
    * @return sourceIpAddress
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSourceIpAddress() {
-    return sourceIpAddress;
+        return sourceIpAddress.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SOURCE_IP_ADDRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+
+  public JsonNullable<String> getSourceIpAddress_JsonNullable() {
+    return sourceIpAddress;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SOURCE_IP_ADDRESS)
+  public void setSourceIpAddress_JsonNullable(JsonNullable<String> sourceIpAddress) {
     this.sourceIpAddress = sourceIpAddress;
+  }
+
+  public void setSourceIpAddress(@javax.annotation.Nullable String sourceIpAddress) {
+    this.sourceIpAddress = JsonNullable.<String>of(sourceIpAddress);
   }
 
 
   public LoginHistoryEntry userAgent(@javax.annotation.Nullable String userAgent) {
-    this.userAgent = userAgent;
+    this.userAgent = JsonNullable.<String>of(userAgent);
     return this;
   }
 
@@ -118,22 +127,30 @@ public class LoginHistoryEntry {
    * @return userAgent
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_AGENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUserAgent() {
-    return userAgent;
+        return userAgent.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USER_AGENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserAgent(@javax.annotation.Nullable String userAgent) {
+
+  public JsonNullable<String> getUserAgent_JsonNullable() {
+    return userAgent;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_AGENT)
+  public void setUserAgent_JsonNullable(JsonNullable<String> userAgent) {
     this.userAgent = userAgent;
+  }
+
+  public void setUserAgent(@javax.annotation.Nullable String userAgent) {
+    this.userAgent = JsonNullable.<String>of(userAgent);
   }
 
 
   public LoginHistoryEntry deviceDescription(@javax.annotation.Nullable String deviceDescription) {
-    this.deviceDescription = deviceDescription;
+    this.deviceDescription = JsonNullable.<String>of(deviceDescription);
     return this;
   }
 
@@ -142,17 +159,25 @@ public class LoginHistoryEntry {
    * @return deviceDescription
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DEVICE_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDeviceDescription() {
-    return deviceDescription;
+        return deviceDescription.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DEVICE_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeviceDescription(@javax.annotation.Nullable String deviceDescription) {
+
+  public JsonNullable<String> getDeviceDescription_JsonNullable() {
+    return deviceDescription;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DEVICE_DESCRIPTION)
+  public void setDeviceDescription_JsonNullable(JsonNullable<String> deviceDescription) {
     this.deviceDescription = deviceDescription;
+  }
+
+  public void setDeviceDescription(@javax.annotation.Nullable String deviceDescription) {
+    this.deviceDescription = JsonNullable.<String>of(deviceDescription);
   }
 
 
@@ -169,14 +194,25 @@ public class LoginHistoryEntry {
     }
     LoginHistoryEntry loginHistoryEntry = (LoginHistoryEntry) o;
     return Objects.equals(this.timestamp, loginHistoryEntry.timestamp) &&
-        Objects.equals(this.sourceIpAddress, loginHistoryEntry.sourceIpAddress) &&
-        Objects.equals(this.userAgent, loginHistoryEntry.userAgent) &&
-        Objects.equals(this.deviceDescription, loginHistoryEntry.deviceDescription);
+        equalsNullable(this.sourceIpAddress, loginHistoryEntry.sourceIpAddress) &&
+        equalsNullable(this.userAgent, loginHistoryEntry.userAgent) &&
+        equalsNullable(this.deviceDescription, loginHistoryEntry.deviceDescription);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, sourceIpAddress, userAgent, deviceDescription);
+    return Objects.hash(timestamp, hashCodeNullable(sourceIpAddress), hashCodeNullable(userAgent), hashCodeNullable(deviceDescription));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

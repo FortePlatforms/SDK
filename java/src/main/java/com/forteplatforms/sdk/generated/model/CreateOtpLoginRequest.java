@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,22 +44,19 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateOtpLoginRequest {
   public static final String JSON_PROPERTY_EMAIL = "email";
-  @javax.annotation.Nullable
-  private String email;
+  private JsonNullable<String> email = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
-  @javax.annotation.Nullable
-  private String phoneNumber;
+  private JsonNullable<String> phoneNumber = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RECAPTCHA_TOKEN = "recaptchaToken";
-  @javax.annotation.Nullable
-  private String recaptchaToken;
+  private JsonNullable<String> recaptchaToken = JsonNullable.<String>undefined();
 
   public CreateOtpLoginRequest() { 
   }
 
   public CreateOtpLoginRequest email(@javax.annotation.Nullable String email) {
-    this.email = email;
+    this.email = JsonNullable.<String>of(email);
     return this;
   }
 
@@ -64,22 +65,30 @@ public class CreateOtpLoginRequest {
    * @return email
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEmail() {
-    return email;
+        return email.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmail(@javax.annotation.Nullable String email) {
+
+  public JsonNullable<String> getEmail_JsonNullable() {
+    return email;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  public void setEmail_JsonNullable(JsonNullable<String> email) {
     this.email = email;
+  }
+
+  public void setEmail(@javax.annotation.Nullable String email) {
+    this.email = JsonNullable.<String>of(email);
   }
 
 
   public CreateOtpLoginRequest phoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
     return this;
   }
 
@@ -88,22 +97,30 @@ public class CreateOtpLoginRequest {
    * @return phoneNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPhoneNumber() {
-    return phoneNumber;
+        return phoneNumber.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+
+  public JsonNullable<String> getPhoneNumber_JsonNullable() {
+    return phoneNumber;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
+  public void setPhoneNumber_JsonNullable(JsonNullable<String> phoneNumber) {
     this.phoneNumber = phoneNumber;
+  }
+
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
   }
 
 
   public CreateOtpLoginRequest recaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
-    this.recaptchaToken = recaptchaToken;
+    this.recaptchaToken = JsonNullable.<String>of(recaptchaToken);
     return this;
   }
 
@@ -112,17 +129,25 @@ public class CreateOtpLoginRequest {
    * @return recaptchaToken
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRecaptchaToken() {
-    return recaptchaToken;
+        return recaptchaToken.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RECAPTCHA_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRecaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
+
+  public JsonNullable<String> getRecaptchaToken_JsonNullable() {
+    return recaptchaToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RECAPTCHA_TOKEN)
+  public void setRecaptchaToken_JsonNullable(JsonNullable<String> recaptchaToken) {
     this.recaptchaToken = recaptchaToken;
+  }
+
+  public void setRecaptchaToken(@javax.annotation.Nullable String recaptchaToken) {
+    this.recaptchaToken = JsonNullable.<String>of(recaptchaToken);
   }
 
 
@@ -138,14 +163,25 @@ public class CreateOtpLoginRequest {
       return false;
     }
     CreateOtpLoginRequest createOtpLoginRequest = (CreateOtpLoginRequest) o;
-    return Objects.equals(this.email, createOtpLoginRequest.email) &&
-        Objects.equals(this.phoneNumber, createOtpLoginRequest.phoneNumber) &&
-        Objects.equals(this.recaptchaToken, createOtpLoginRequest.recaptchaToken);
+    return equalsNullable(this.email, createOtpLoginRequest.email) &&
+        equalsNullable(this.phoneNumber, createOtpLoginRequest.phoneNumber) &&
+        equalsNullable(this.recaptchaToken, createOtpLoginRequest.recaptchaToken);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, phoneNumber, recaptchaToken);
+    return Objects.hash(hashCodeNullable(email), hashCodeNullable(phoneNumber), hashCodeNullable(recaptchaToken));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

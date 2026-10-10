@@ -36,13 +36,13 @@ export interface InternalSource {
      * @type {string}
      * @memberof InternalSource
      */
-    subjectId?: string;
+    subjectId?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof InternalSource
      */
-    replay?: boolean;
+    replay?: boolean | null;
 }
 
 

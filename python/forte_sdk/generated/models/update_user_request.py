@@ -69,6 +69,11 @@ class UpdateUserRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if full_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.full_name is None and "full_name" in self.model_fields_set:
+            _dict['fullName'] = None
+
         return _dict
 
     @classmethod

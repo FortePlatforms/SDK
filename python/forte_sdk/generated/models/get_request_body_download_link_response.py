@@ -73,6 +73,11 @@ class GetRequestBodyDownloadLinkResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if content_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.content_type is None and "content_type" in self.model_fields_set:
+            _dict['contentType'] = None
+
         return _dict
 
     @classmethod

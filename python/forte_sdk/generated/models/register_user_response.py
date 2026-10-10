@@ -107,6 +107,21 @@ class RegisterUserResponse(BaseModel):
                 if _item_pending_contact_methods:
                     _items.append(_item_pending_contact_methods.to_dict())
             _dict['pendingContactMethods'] = _items
+        # set to None if mfa_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.mfa_status is None and "mfa_status" in self.model_fields_set:
+            _dict['mfaStatus'] = None
+
+        # set to None if available_mfa_methods (nullable) is None
+        # and model_fields_set contains the field
+        if self.available_mfa_methods is None and "available_mfa_methods" in self.model_fields_set:
+            _dict['availableMfaMethods'] = None
+
+        # set to None if pending_contact_methods (nullable) is None
+        # and model_fields_set contains the field
+        if self.pending_contact_methods is None and "pending_contact_methods" in self.model_fields_set:
+            _dict['pendingContactMethods'] = None
+
         return _dict
 
     @classmethod

@@ -90,6 +90,51 @@ class ActionObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if request_body (nullable) is None
+        # and model_fields_set contains the field
+        if self.request_body is None and "request_body" in self.model_fields_set:
+            _dict['requestBody'] = None
+
+        # set to None if cron_expression (nullable) is None
+        # and model_fields_set contains the field
+        if self.cron_expression is None and "cron_expression" in self.model_fields_set:
+            _dict['cronExpression'] = None
+
+        # set to None if timezone (nullable) is None
+        # and model_fields_set contains the field
+        if self.timezone is None and "timezone" in self.model_fields_set:
+            _dict['timezone'] = None
+
+        # set to None if window_start (nullable) is None
+        # and model_fields_set contains the field
+        if self.window_start is None and "window_start" in self.model_fields_set:
+            _dict['windowStart'] = None
+
+        # set to None if window_end (nullable) is None
+        # and model_fields_set contains the field
+        if self.window_end is None and "window_end" in self.model_fields_set:
+            _dict['windowEnd'] = None
+
+        # set to None if scheduled_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.scheduled_at is None and "scheduled_at" in self.model_fields_set:
+            _dict['scheduledAt'] = None
+
+        # set to None if next_invocation_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.next_invocation_at is None and "next_invocation_at" in self.model_fields_set:
+            _dict['nextInvocationAt'] = None
+
+        # set to None if last_invocation_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_invocation_at is None and "last_invocation_at" in self.model_fields_set:
+            _dict['lastInvocationAt'] = None
+
+        # set to None if last_modified_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_modified_timestamp is None and "last_modified_timestamp" in self.model_fields_set:
+            _dict['lastModifiedTimestamp'] = None
+
         return _dict
 
     @classmethod

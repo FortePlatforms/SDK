@@ -48,13 +48,13 @@ export interface CustomEmailTemplateObject {
      * @type {string}
      * @memberof CustomEmailTemplateObject
      */
-    htmlBody?: string;
+    htmlBody?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CustomEmailTemplateObject
      */
-    textBody?: string;
+    textBody?: string | null;
     /**
      * 
      * @type {Date}
@@ -66,7 +66,7 @@ export interface CustomEmailTemplateObject {
      * @type {Date}
      * @memberof CustomEmailTemplateObject
      */
-    lastModifiedTimestamp?: Date;
+    lastModifiedTimestamp?: Date | null;
 }
 
 /**

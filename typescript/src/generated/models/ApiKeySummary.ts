@@ -42,7 +42,7 @@ export interface ApiKeySummary {
      * @type {Date}
      * @memberof ApiKeySummary
      */
-    expirationTime?: Date;
+    expirationTime?: Date | null;
 }
 
 /**

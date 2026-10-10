@@ -33,6 +33,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -141,8 +145,7 @@ public class SubscriptionObject {
   private Long subtotalCents;
 
   public static final String JSON_PROPERTY_TAX_CENTS = "taxCents";
-  @javax.annotation.Nullable
-  private Long taxCents;
+  private JsonNullable<Long> taxCents = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nonnull
@@ -153,8 +156,7 @@ public class SubscriptionObject {
   private String currency;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nonnull
@@ -208,44 +210,34 @@ public class SubscriptionObject {
   private IntervalEnum interval;
 
   public static final String JSON_PROPERTY_START_TIME = "startTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime startTime;
+  private JsonNullable<OffsetDateTime> startTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_END_TIME = "endTime";
-  @javax.annotation.Nullable
-  private OffsetDateTime endTime;
+  private JsonNullable<OffsetDateTime> endTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_STRIPE_PAYMENT_METHOD_ID = "stripePaymentMethodId";
-  @javax.annotation.Nullable
-  private String stripePaymentMethodId;
+  private JsonNullable<String> stripePaymentMethodId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CARD_BRAND = "cardBrand";
-  @javax.annotation.Nullable
-  private String cardBrand;
+  private JsonNullable<String> cardBrand = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CARD_LAST4 = "cardLast4";
-  @javax.annotation.Nullable
-  private String cardLast4;
+  private JsonNullable<String> cardLast4 = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CARD_EXP_MONTH = "cardExpMonth";
-  @javax.annotation.Nullable
-  private Long cardExpMonth;
+  private JsonNullable<Long> cardExpMonth = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_CARD_EXP_YEAR = "cardExpYear";
-  @javax.annotation.Nullable
-  private Long cardExpYear;
+  private JsonNullable<Long> cardExpYear = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_CURRENT_PERIOD_START = "currentPeriodStart";
-  @javax.annotation.Nullable
-  private OffsetDateTime currentPeriodStart;
+  private JsonNullable<OffsetDateTime> currentPeriodStart = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CURRENT_PERIOD_END = "currentPeriodEnd";
-  @javax.annotation.Nullable
-  private OffsetDateTime currentPeriodEnd;
+  private JsonNullable<OffsetDateTime> currentPeriodEnd = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_NEXT_RENEWAL_AT = "nextRenewalAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime nextRenewalAt;
+  private JsonNullable<OffsetDateTime> nextRenewalAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_PERIOD_INDEX = "periodIndex";
   @javax.annotation.Nonnull
@@ -256,36 +248,29 @@ public class SubscriptionObject {
   private Integer failedRenewalAttempts;
 
   public static final String JSON_PROPERTY_PENDING_LINE_ITEMS = "pendingLineItems";
-  @javax.annotation.Nullable
-  private List<PaymentLineItem> pendingLineItems = new ArrayList<>();
+  private JsonNullable<List<PaymentLineItem>> pendingLineItems = JsonNullable.<List<PaymentLineItem>>undefined();
 
   public static final String JSON_PROPERTY_PENDING_SUBTOTAL_CENTS = "pendingSubtotalCents";
-  @javax.annotation.Nullable
-  private Long pendingSubtotalCents;
+  private JsonNullable<Long> pendingSubtotalCents = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_PENDING_AMOUNT_CENTS = "pendingAmountCents";
-  @javax.annotation.Nullable
-  private Long pendingAmountCents;
+  private JsonNullable<Long> pendingAmountCents = JsonNullable.<Long>undefined();
 
   public static final String JSON_PROPERTY_CANCEL_AT_PERIOD_END = "cancelAtPeriodEnd";
   @javax.annotation.Nonnull
   private Boolean cancelAtPeriodEnd;
 
   public static final String JSON_PROPERTY_CANCELED_AT = "canceledAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime canceledAt;
+  private JsonNullable<OffsetDateTime> canceledAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_PAST_DUE_SINCE = "pastDueSince";
-  @javax.annotation.Nullable
-  private OffsetDateTime pastDueSince;
+  private JsonNullable<OffsetDateTime> pastDueSince = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_ACTIVATION_PAYMENT_ID = "activationPaymentId";
-  @javax.annotation.Nullable
-  private String activationPaymentId;
+  private JsonNullable<String> activationPaymentId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LAST_PAYMENT_ID = "lastPaymentId";
-  @javax.annotation.Nullable
-  private String lastPaymentId;
+  private JsonNullable<String> lastPaymentId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STATE_HISTORY = "stateHistory";
   @javax.annotation.Nonnull
@@ -427,7 +412,7 @@ public class SubscriptionObject {
 
 
   public SubscriptionObject taxCents(@javax.annotation.Nullable Long taxCents) {
-    this.taxCents = taxCents;
+    this.taxCents = JsonNullable.<Long>of(taxCents);
     return this;
   }
 
@@ -436,17 +421,25 @@ public class SubscriptionObject {
    * @return taxCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getTaxCents() {
-    return taxCents;
+        return taxCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TAX_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTaxCents(@javax.annotation.Nullable Long taxCents) {
+
+  public JsonNullable<Long> getTaxCents_JsonNullable() {
+    return taxCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_CENTS)
+  public void setTaxCents_JsonNullable(JsonNullable<Long> taxCents) {
     this.taxCents = taxCents;
+  }
+
+  public void setTaxCents(@javax.annotation.Nullable Long taxCents) {
+    this.taxCents = JsonNullable.<Long>of(taxCents);
   }
 
 
@@ -499,7 +492,7 @@ public class SubscriptionObject {
 
 
   public SubscriptionObject description(@javax.annotation.Nullable String description) {
-    this.description = description;
+    this.description = JsonNullable.<String>of(description);
     return this;
   }
 
@@ -508,17 +501,25 @@ public class SubscriptionObject {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
@@ -635,7 +636,7 @@ public class SubscriptionObject {
 
 
   public SubscriptionObject startTime(@javax.annotation.Nullable OffsetDateTime startTime) {
-    this.startTime = startTime;
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
     return this;
   }
 
@@ -644,22 +645,30 @@ public class SubscriptionObject {
    * @return startTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getStartTime() {
-    return startTime;
+        return startTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+
+  public JsonNullable<OffsetDateTime> getStartTime_JsonNullable() {
+    return startTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_START_TIME)
+  public void setStartTime_JsonNullable(JsonNullable<OffsetDateTime> startTime) {
     this.startTime = startTime;
+  }
+
+  public void setStartTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
   }
 
 
   public SubscriptionObject endTime(@javax.annotation.Nullable OffsetDateTime endTime) {
-    this.endTime = endTime;
+    this.endTime = JsonNullable.<OffsetDateTime>of(endTime);
     return this;
   }
 
@@ -668,22 +677,30 @@ public class SubscriptionObject {
    * @return endTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_END_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getEndTime() {
-    return endTime;
+        return endTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_END_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndTime(@javax.annotation.Nullable OffsetDateTime endTime) {
+
+  public JsonNullable<OffsetDateTime> getEndTime_JsonNullable() {
+    return endTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_END_TIME)
+  public void setEndTime_JsonNullable(JsonNullable<OffsetDateTime> endTime) {
     this.endTime = endTime;
+  }
+
+  public void setEndTime(@javax.annotation.Nullable OffsetDateTime endTime) {
+    this.endTime = JsonNullable.<OffsetDateTime>of(endTime);
   }
 
 
   public SubscriptionObject stripePaymentMethodId(@javax.annotation.Nullable String stripePaymentMethodId) {
-    this.stripePaymentMethodId = stripePaymentMethodId;
+    this.stripePaymentMethodId = JsonNullable.<String>of(stripePaymentMethodId);
     return this;
   }
 
@@ -692,22 +709,30 @@ public class SubscriptionObject {
    * @return stripePaymentMethodId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_PAYMENT_METHOD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStripePaymentMethodId() {
-    return stripePaymentMethodId;
+        return stripePaymentMethodId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STRIPE_PAYMENT_METHOD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStripePaymentMethodId(@javax.annotation.Nullable String stripePaymentMethodId) {
+
+  public JsonNullable<String> getStripePaymentMethodId_JsonNullable() {
+    return stripePaymentMethodId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_PAYMENT_METHOD_ID)
+  public void setStripePaymentMethodId_JsonNullable(JsonNullable<String> stripePaymentMethodId) {
     this.stripePaymentMethodId = stripePaymentMethodId;
+  }
+
+  public void setStripePaymentMethodId(@javax.annotation.Nullable String stripePaymentMethodId) {
+    this.stripePaymentMethodId = JsonNullable.<String>of(stripePaymentMethodId);
   }
 
 
   public SubscriptionObject cardBrand(@javax.annotation.Nullable String cardBrand) {
-    this.cardBrand = cardBrand;
+    this.cardBrand = JsonNullable.<String>of(cardBrand);
     return this;
   }
 
@@ -716,22 +741,30 @@ public class SubscriptionObject {
    * @return cardBrand
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CARD_BRAND, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCardBrand() {
-    return cardBrand;
+        return cardBrand.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CARD_BRAND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCardBrand(@javax.annotation.Nullable String cardBrand) {
+
+  public JsonNullable<String> getCardBrand_JsonNullable() {
+    return cardBrand;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CARD_BRAND)
+  public void setCardBrand_JsonNullable(JsonNullable<String> cardBrand) {
     this.cardBrand = cardBrand;
+  }
+
+  public void setCardBrand(@javax.annotation.Nullable String cardBrand) {
+    this.cardBrand = JsonNullable.<String>of(cardBrand);
   }
 
 
   public SubscriptionObject cardLast4(@javax.annotation.Nullable String cardLast4) {
-    this.cardLast4 = cardLast4;
+    this.cardLast4 = JsonNullable.<String>of(cardLast4);
     return this;
   }
 
@@ -740,22 +773,30 @@ public class SubscriptionObject {
    * @return cardLast4
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CARD_LAST4, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCardLast4() {
-    return cardLast4;
+        return cardLast4.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CARD_LAST4, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCardLast4(@javax.annotation.Nullable String cardLast4) {
+
+  public JsonNullable<String> getCardLast4_JsonNullable() {
+    return cardLast4;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CARD_LAST4)
+  public void setCardLast4_JsonNullable(JsonNullable<String> cardLast4) {
     this.cardLast4 = cardLast4;
+  }
+
+  public void setCardLast4(@javax.annotation.Nullable String cardLast4) {
+    this.cardLast4 = JsonNullable.<String>of(cardLast4);
   }
 
 
   public SubscriptionObject cardExpMonth(@javax.annotation.Nullable Long cardExpMonth) {
-    this.cardExpMonth = cardExpMonth;
+    this.cardExpMonth = JsonNullable.<Long>of(cardExpMonth);
     return this;
   }
 
@@ -764,22 +805,30 @@ public class SubscriptionObject {
    * @return cardExpMonth
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CARD_EXP_MONTH, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getCardExpMonth() {
-    return cardExpMonth;
+        return cardExpMonth.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CARD_EXP_MONTH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCardExpMonth(@javax.annotation.Nullable Long cardExpMonth) {
+
+  public JsonNullable<Long> getCardExpMonth_JsonNullable() {
+    return cardExpMonth;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CARD_EXP_MONTH)
+  public void setCardExpMonth_JsonNullable(JsonNullable<Long> cardExpMonth) {
     this.cardExpMonth = cardExpMonth;
+  }
+
+  public void setCardExpMonth(@javax.annotation.Nullable Long cardExpMonth) {
+    this.cardExpMonth = JsonNullable.<Long>of(cardExpMonth);
   }
 
 
   public SubscriptionObject cardExpYear(@javax.annotation.Nullable Long cardExpYear) {
-    this.cardExpYear = cardExpYear;
+    this.cardExpYear = JsonNullable.<Long>of(cardExpYear);
     return this;
   }
 
@@ -788,22 +837,30 @@ public class SubscriptionObject {
    * @return cardExpYear
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CARD_EXP_YEAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getCardExpYear() {
-    return cardExpYear;
+        return cardExpYear.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CARD_EXP_YEAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCardExpYear(@javax.annotation.Nullable Long cardExpYear) {
+
+  public JsonNullable<Long> getCardExpYear_JsonNullable() {
+    return cardExpYear;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CARD_EXP_YEAR)
+  public void setCardExpYear_JsonNullable(JsonNullable<Long> cardExpYear) {
     this.cardExpYear = cardExpYear;
+  }
+
+  public void setCardExpYear(@javax.annotation.Nullable Long cardExpYear) {
+    this.cardExpYear = JsonNullable.<Long>of(cardExpYear);
   }
 
 
   public SubscriptionObject currentPeriodStart(@javax.annotation.Nullable OffsetDateTime currentPeriodStart) {
-    this.currentPeriodStart = currentPeriodStart;
+    this.currentPeriodStart = JsonNullable.<OffsetDateTime>of(currentPeriodStart);
     return this;
   }
 
@@ -812,22 +869,30 @@ public class SubscriptionObject {
    * @return currentPeriodStart
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CURRENT_PERIOD_START, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCurrentPeriodStart() {
-    return currentPeriodStart;
+        return currentPeriodStart.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CURRENT_PERIOD_START, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrentPeriodStart(@javax.annotation.Nullable OffsetDateTime currentPeriodStart) {
+
+  public JsonNullable<OffsetDateTime> getCurrentPeriodStart_JsonNullable() {
+    return currentPeriodStart;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CURRENT_PERIOD_START)
+  public void setCurrentPeriodStart_JsonNullable(JsonNullable<OffsetDateTime> currentPeriodStart) {
     this.currentPeriodStart = currentPeriodStart;
+  }
+
+  public void setCurrentPeriodStart(@javax.annotation.Nullable OffsetDateTime currentPeriodStart) {
+    this.currentPeriodStart = JsonNullable.<OffsetDateTime>of(currentPeriodStart);
   }
 
 
   public SubscriptionObject currentPeriodEnd(@javax.annotation.Nullable OffsetDateTime currentPeriodEnd) {
-    this.currentPeriodEnd = currentPeriodEnd;
+    this.currentPeriodEnd = JsonNullable.<OffsetDateTime>of(currentPeriodEnd);
     return this;
   }
 
@@ -836,22 +901,30 @@ public class SubscriptionObject {
    * @return currentPeriodEnd
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CURRENT_PERIOD_END, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCurrentPeriodEnd() {
-    return currentPeriodEnd;
+        return currentPeriodEnd.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CURRENT_PERIOD_END, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrentPeriodEnd(@javax.annotation.Nullable OffsetDateTime currentPeriodEnd) {
+
+  public JsonNullable<OffsetDateTime> getCurrentPeriodEnd_JsonNullable() {
+    return currentPeriodEnd;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CURRENT_PERIOD_END)
+  public void setCurrentPeriodEnd_JsonNullable(JsonNullable<OffsetDateTime> currentPeriodEnd) {
     this.currentPeriodEnd = currentPeriodEnd;
+  }
+
+  public void setCurrentPeriodEnd(@javax.annotation.Nullable OffsetDateTime currentPeriodEnd) {
+    this.currentPeriodEnd = JsonNullable.<OffsetDateTime>of(currentPeriodEnd);
   }
 
 
   public SubscriptionObject nextRenewalAt(@javax.annotation.Nullable OffsetDateTime nextRenewalAt) {
-    this.nextRenewalAt = nextRenewalAt;
+    this.nextRenewalAt = JsonNullable.<OffsetDateTime>of(nextRenewalAt);
     return this;
   }
 
@@ -860,17 +933,25 @@ public class SubscriptionObject {
    * @return nextRenewalAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_RENEWAL_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getNextRenewalAt() {
-    return nextRenewalAt;
+        return nextRenewalAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEXT_RENEWAL_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextRenewalAt(@javax.annotation.Nullable OffsetDateTime nextRenewalAt) {
+
+  public JsonNullable<OffsetDateTime> getNextRenewalAt_JsonNullable() {
+    return nextRenewalAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_RENEWAL_AT)
+  public void setNextRenewalAt_JsonNullable(JsonNullable<OffsetDateTime> nextRenewalAt) {
     this.nextRenewalAt = nextRenewalAt;
+  }
+
+  public void setNextRenewalAt(@javax.annotation.Nullable OffsetDateTime nextRenewalAt) {
+    this.nextRenewalAt = JsonNullable.<OffsetDateTime>of(nextRenewalAt);
   }
 
 
@@ -923,15 +1004,19 @@ public class SubscriptionObject {
 
 
   public SubscriptionObject pendingLineItems(@javax.annotation.Nullable List<PaymentLineItem> pendingLineItems) {
-    this.pendingLineItems = pendingLineItems;
+    this.pendingLineItems = JsonNullable.<List<PaymentLineItem>>of(pendingLineItems);
     return this;
   }
 
   public SubscriptionObject addPendingLineItemsItem(PaymentLineItem pendingLineItemsItem) {
-    if (this.pendingLineItems == null) {
-      this.pendingLineItems = new ArrayList<>();
+    if (this.pendingLineItems == null || !this.pendingLineItems.isPresent()) {
+      this.pendingLineItems = JsonNullable.<List<PaymentLineItem>>of(new ArrayList<>());
     }
-    this.pendingLineItems.add(pendingLineItemsItem);
+    try {
+      this.pendingLineItems.get().add(pendingLineItemsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -940,22 +1025,30 @@ public class SubscriptionObject {
    * @return pendingLineItems
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PENDING_LINE_ITEMS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<PaymentLineItem> getPendingLineItems() {
-    return pendingLineItems;
+        return pendingLineItems.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PENDING_LINE_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPendingLineItems(@javax.annotation.Nullable List<PaymentLineItem> pendingLineItems) {
+
+  public JsonNullable<List<PaymentLineItem>> getPendingLineItems_JsonNullable() {
+    return pendingLineItems;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PENDING_LINE_ITEMS)
+  public void setPendingLineItems_JsonNullable(JsonNullable<List<PaymentLineItem>> pendingLineItems) {
     this.pendingLineItems = pendingLineItems;
+  }
+
+  public void setPendingLineItems(@javax.annotation.Nullable List<PaymentLineItem> pendingLineItems) {
+    this.pendingLineItems = JsonNullable.<List<PaymentLineItem>>of(pendingLineItems);
   }
 
 
   public SubscriptionObject pendingSubtotalCents(@javax.annotation.Nullable Long pendingSubtotalCents) {
-    this.pendingSubtotalCents = pendingSubtotalCents;
+    this.pendingSubtotalCents = JsonNullable.<Long>of(pendingSubtotalCents);
     return this;
   }
 
@@ -964,22 +1057,30 @@ public class SubscriptionObject {
    * @return pendingSubtotalCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PENDING_SUBTOTAL_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPendingSubtotalCents() {
-    return pendingSubtotalCents;
+        return pendingSubtotalCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PENDING_SUBTOTAL_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPendingSubtotalCents(@javax.annotation.Nullable Long pendingSubtotalCents) {
+
+  public JsonNullable<Long> getPendingSubtotalCents_JsonNullable() {
+    return pendingSubtotalCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PENDING_SUBTOTAL_CENTS)
+  public void setPendingSubtotalCents_JsonNullable(JsonNullable<Long> pendingSubtotalCents) {
     this.pendingSubtotalCents = pendingSubtotalCents;
+  }
+
+  public void setPendingSubtotalCents(@javax.annotation.Nullable Long pendingSubtotalCents) {
+    this.pendingSubtotalCents = JsonNullable.<Long>of(pendingSubtotalCents);
   }
 
 
   public SubscriptionObject pendingAmountCents(@javax.annotation.Nullable Long pendingAmountCents) {
-    this.pendingAmountCents = pendingAmountCents;
+    this.pendingAmountCents = JsonNullable.<Long>of(pendingAmountCents);
     return this;
   }
 
@@ -988,17 +1089,25 @@ public class SubscriptionObject {
    * @return pendingAmountCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PENDING_AMOUNT_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Long getPendingAmountCents() {
-    return pendingAmountCents;
+        return pendingAmountCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PENDING_AMOUNT_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPendingAmountCents(@javax.annotation.Nullable Long pendingAmountCents) {
+
+  public JsonNullable<Long> getPendingAmountCents_JsonNullable() {
+    return pendingAmountCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PENDING_AMOUNT_CENTS)
+  public void setPendingAmountCents_JsonNullable(JsonNullable<Long> pendingAmountCents) {
     this.pendingAmountCents = pendingAmountCents;
+  }
+
+  public void setPendingAmountCents(@javax.annotation.Nullable Long pendingAmountCents) {
+    this.pendingAmountCents = JsonNullable.<Long>of(pendingAmountCents);
   }
 
 
@@ -1027,7 +1136,7 @@ public class SubscriptionObject {
 
 
   public SubscriptionObject canceledAt(@javax.annotation.Nullable OffsetDateTime canceledAt) {
-    this.canceledAt = canceledAt;
+    this.canceledAt = JsonNullable.<OffsetDateTime>of(canceledAt);
     return this;
   }
 
@@ -1036,22 +1145,30 @@ public class SubscriptionObject {
    * @return canceledAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CANCELED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCanceledAt() {
-    return canceledAt;
+        return canceledAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CANCELED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCanceledAt(@javax.annotation.Nullable OffsetDateTime canceledAt) {
+
+  public JsonNullable<OffsetDateTime> getCanceledAt_JsonNullable() {
+    return canceledAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CANCELED_AT)
+  public void setCanceledAt_JsonNullable(JsonNullable<OffsetDateTime> canceledAt) {
     this.canceledAt = canceledAt;
+  }
+
+  public void setCanceledAt(@javax.annotation.Nullable OffsetDateTime canceledAt) {
+    this.canceledAt = JsonNullable.<OffsetDateTime>of(canceledAt);
   }
 
 
   public SubscriptionObject pastDueSince(@javax.annotation.Nullable OffsetDateTime pastDueSince) {
-    this.pastDueSince = pastDueSince;
+    this.pastDueSince = JsonNullable.<OffsetDateTime>of(pastDueSince);
     return this;
   }
 
@@ -1060,22 +1177,30 @@ public class SubscriptionObject {
    * @return pastDueSince
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PAST_DUE_SINCE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPastDueSince() {
-    return pastDueSince;
+        return pastDueSince.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PAST_DUE_SINCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPastDueSince(@javax.annotation.Nullable OffsetDateTime pastDueSince) {
+
+  public JsonNullable<OffsetDateTime> getPastDueSince_JsonNullable() {
+    return pastDueSince;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PAST_DUE_SINCE)
+  public void setPastDueSince_JsonNullable(JsonNullable<OffsetDateTime> pastDueSince) {
     this.pastDueSince = pastDueSince;
+  }
+
+  public void setPastDueSince(@javax.annotation.Nullable OffsetDateTime pastDueSince) {
+    this.pastDueSince = JsonNullable.<OffsetDateTime>of(pastDueSince);
   }
 
 
   public SubscriptionObject activationPaymentId(@javax.annotation.Nullable String activationPaymentId) {
-    this.activationPaymentId = activationPaymentId;
+    this.activationPaymentId = JsonNullable.<String>of(activationPaymentId);
     return this;
   }
 
@@ -1084,22 +1209,30 @@ public class SubscriptionObject {
    * @return activationPaymentId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACTIVATION_PAYMENT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getActivationPaymentId() {
-    return activationPaymentId;
+        return activationPaymentId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACTIVATION_PAYMENT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActivationPaymentId(@javax.annotation.Nullable String activationPaymentId) {
+
+  public JsonNullable<String> getActivationPaymentId_JsonNullable() {
+    return activationPaymentId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACTIVATION_PAYMENT_ID)
+  public void setActivationPaymentId_JsonNullable(JsonNullable<String> activationPaymentId) {
     this.activationPaymentId = activationPaymentId;
+  }
+
+  public void setActivationPaymentId(@javax.annotation.Nullable String activationPaymentId) {
+    this.activationPaymentId = JsonNullable.<String>of(activationPaymentId);
   }
 
 
   public SubscriptionObject lastPaymentId(@javax.annotation.Nullable String lastPaymentId) {
-    this.lastPaymentId = lastPaymentId;
+    this.lastPaymentId = JsonNullable.<String>of(lastPaymentId);
     return this;
   }
 
@@ -1108,17 +1241,25 @@ public class SubscriptionObject {
    * @return lastPaymentId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_PAYMENT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLastPaymentId() {
-    return lastPaymentId;
+        return lastPaymentId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_PAYMENT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastPaymentId(@javax.annotation.Nullable String lastPaymentId) {
+
+  public JsonNullable<String> getLastPaymentId_JsonNullable() {
+    return lastPaymentId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_PAYMENT_ID)
+  public void setLastPaymentId_JsonNullable(JsonNullable<String> lastPaymentId) {
     this.lastPaymentId = lastPaymentId;
+  }
+
+  public void setLastPaymentId(@javax.annotation.Nullable String lastPaymentId) {
+    this.lastPaymentId = JsonNullable.<String>of(lastPaymentId);
   }
 
 
@@ -1243,43 +1384,54 @@ public class SubscriptionObject {
         Objects.equals(this.userId, subscriptionObject.userId) &&
         Objects.equals(this.state, subscriptionObject.state) &&
         Objects.equals(this.subtotalCents, subscriptionObject.subtotalCents) &&
-        Objects.equals(this.taxCents, subscriptionObject.taxCents) &&
+        equalsNullable(this.taxCents, subscriptionObject.taxCents) &&
         Objects.equals(this.amountCents, subscriptionObject.amountCents) &&
         Objects.equals(this.currency, subscriptionObject.currency) &&
-        Objects.equals(this.description, subscriptionObject.description) &&
+        equalsNullable(this.description, subscriptionObject.description) &&
         Objects.equals(this.metadata, subscriptionObject.metadata) &&
         Objects.equals(this.lineItems, subscriptionObject.lineItems) &&
         Objects.equals(this.customerAddress, subscriptionObject.customerAddress) &&
         Objects.equals(this.interval, subscriptionObject.interval) &&
-        Objects.equals(this.startTime, subscriptionObject.startTime) &&
-        Objects.equals(this.endTime, subscriptionObject.endTime) &&
-        Objects.equals(this.stripePaymentMethodId, subscriptionObject.stripePaymentMethodId) &&
-        Objects.equals(this.cardBrand, subscriptionObject.cardBrand) &&
-        Objects.equals(this.cardLast4, subscriptionObject.cardLast4) &&
-        Objects.equals(this.cardExpMonth, subscriptionObject.cardExpMonth) &&
-        Objects.equals(this.cardExpYear, subscriptionObject.cardExpYear) &&
-        Objects.equals(this.currentPeriodStart, subscriptionObject.currentPeriodStart) &&
-        Objects.equals(this.currentPeriodEnd, subscriptionObject.currentPeriodEnd) &&
-        Objects.equals(this.nextRenewalAt, subscriptionObject.nextRenewalAt) &&
+        equalsNullable(this.startTime, subscriptionObject.startTime) &&
+        equalsNullable(this.endTime, subscriptionObject.endTime) &&
+        equalsNullable(this.stripePaymentMethodId, subscriptionObject.stripePaymentMethodId) &&
+        equalsNullable(this.cardBrand, subscriptionObject.cardBrand) &&
+        equalsNullable(this.cardLast4, subscriptionObject.cardLast4) &&
+        equalsNullable(this.cardExpMonth, subscriptionObject.cardExpMonth) &&
+        equalsNullable(this.cardExpYear, subscriptionObject.cardExpYear) &&
+        equalsNullable(this.currentPeriodStart, subscriptionObject.currentPeriodStart) &&
+        equalsNullable(this.currentPeriodEnd, subscriptionObject.currentPeriodEnd) &&
+        equalsNullable(this.nextRenewalAt, subscriptionObject.nextRenewalAt) &&
         Objects.equals(this.periodIndex, subscriptionObject.periodIndex) &&
         Objects.equals(this.failedRenewalAttempts, subscriptionObject.failedRenewalAttempts) &&
-        Objects.equals(this.pendingLineItems, subscriptionObject.pendingLineItems) &&
-        Objects.equals(this.pendingSubtotalCents, subscriptionObject.pendingSubtotalCents) &&
-        Objects.equals(this.pendingAmountCents, subscriptionObject.pendingAmountCents) &&
+        equalsNullable(this.pendingLineItems, subscriptionObject.pendingLineItems) &&
+        equalsNullable(this.pendingSubtotalCents, subscriptionObject.pendingSubtotalCents) &&
+        equalsNullable(this.pendingAmountCents, subscriptionObject.pendingAmountCents) &&
         Objects.equals(this.cancelAtPeriodEnd, subscriptionObject.cancelAtPeriodEnd) &&
-        Objects.equals(this.canceledAt, subscriptionObject.canceledAt) &&
-        Objects.equals(this.pastDueSince, subscriptionObject.pastDueSince) &&
-        Objects.equals(this.activationPaymentId, subscriptionObject.activationPaymentId) &&
-        Objects.equals(this.lastPaymentId, subscriptionObject.lastPaymentId) &&
+        equalsNullable(this.canceledAt, subscriptionObject.canceledAt) &&
+        equalsNullable(this.pastDueSince, subscriptionObject.pastDueSince) &&
+        equalsNullable(this.activationPaymentId, subscriptionObject.activationPaymentId) &&
+        equalsNullable(this.lastPaymentId, subscriptionObject.lastPaymentId) &&
         Objects.equals(this.stateHistory, subscriptionObject.stateHistory) &&
         Objects.equals(this.createdAt, subscriptionObject.createdAt) &&
         Objects.equals(this.updatedAt, subscriptionObject.updatedAt) &&
         Objects.equals(this.paymentMethodExpiresBeforeNextRenewal, subscriptionObject.paymentMethodExpiresBeforeNextRenewal);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, taxCents, amountCents, currency, description, metadata, lineItems, customerAddress, interval, startTime, endTime, stripePaymentMethodId, cardBrand, cardLast4, cardExpMonth, cardExpYear, currentPeriodStart, currentPeriodEnd, nextRenewalAt, periodIndex, failedRenewalAttempts, pendingLineItems, pendingSubtotalCents, pendingAmountCents, cancelAtPeriodEnd, canceledAt, pastDueSince, activationPaymentId, lastPaymentId, stateHistory, createdAt, updatedAt, paymentMethodExpiresBeforeNextRenewal);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), amountCents, currency, hashCodeNullable(description), metadata, lineItems, customerAddress, interval, hashCodeNullable(startTime), hashCodeNullable(endTime), hashCodeNullable(stripePaymentMethodId), hashCodeNullable(cardBrand), hashCodeNullable(cardLast4), hashCodeNullable(cardExpMonth), hashCodeNullable(cardExpYear), hashCodeNullable(currentPeriodStart), hashCodeNullable(currentPeriodEnd), hashCodeNullable(nextRenewalAt), periodIndex, failedRenewalAttempts, hashCodeNullable(pendingLineItems), hashCodeNullable(pendingSubtotalCents), hashCodeNullable(pendingAmountCents), cancelAtPeriodEnd, hashCodeNullable(canceledAt), hashCodeNullable(pastDueSince), hashCodeNullable(activationPaymentId), hashCodeNullable(lastPaymentId), stateHistory, createdAt, updatedAt, paymentMethodExpiresBeforeNextRenewal);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

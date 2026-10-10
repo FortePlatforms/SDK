@@ -44,7 +44,7 @@ export interface CreateForteServiceRequest {
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
-    githubBranch?: string;
+    githubBranch?: string | null;
     /**
      * 
      * @type {string}
@@ -68,7 +68,7 @@ export interface CreateForteServiceRequest {
      * @type {number}
      * @memberof CreateForteServiceRequest
      */
-    baseInstances?: number;
+    baseInstances?: number | null;
     /**
      * 
      * @type {{ [key: string]: number; }}
@@ -80,37 +80,37 @@ export interface CreateForteServiceRequest {
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
-    containerCpu?: string;
+    containerCpu?: string | null;
     /**
      * 
      * @type {number}
      * @memberof CreateForteServiceRequest
      */
-    healthCheckPort?: number;
+    healthCheckPort?: number | null;
     /**
      * 
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
-    healthCheckPath?: string;
+    healthCheckPath?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
-    baseDirectory?: string;
+    baseDirectory?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof CreateForteServiceRequest
      */
-    requestResponseBodyLoggingEnabled?: boolean;
+    requestResponseBodyLoggingEnabled?: boolean | null;
     /**
      * 
      * @type {Array<CreateServiceDatabaseConnectionRequest>}
      * @memberof CreateForteServiceRequest
      */
-    databaseConnections?: Array<CreateServiceDatabaseConnectionRequest>;
+    databaseConnections?: Array<CreateServiceDatabaseConnectionRequest> | null;
 }
 
 

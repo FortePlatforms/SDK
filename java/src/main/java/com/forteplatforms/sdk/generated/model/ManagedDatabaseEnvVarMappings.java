@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,28 +49,22 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseEnvVarMappings {
   public static final String JSON_PROPERTY_CONNECTION_STRING_ENV_VAR = "connectionStringEnvVar";
-  @javax.annotation.Nullable
-  private String connectionStringEnvVar;
+  private JsonNullable<String> connectionStringEnvVar = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HOST_ENV_VAR = "hostEnvVar";
-  @javax.annotation.Nullable
-  private String hostEnvVar;
+  private JsonNullable<String> hostEnvVar = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PORT_ENV_VAR = "portEnvVar";
-  @javax.annotation.Nullable
-  private String portEnvVar;
+  private JsonNullable<String> portEnvVar = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DATABASE_ENV_VAR = "databaseEnvVar";
-  @javax.annotation.Nullable
-  private String databaseEnvVar;
+  private JsonNullable<String> databaseEnvVar = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_USERNAME_ENV_VAR = "usernameEnvVar";
-  @javax.annotation.Nullable
-  private String usernameEnvVar;
+  private JsonNullable<String> usernameEnvVar = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PASSWORD_ENV_VAR = "passwordEnvVar";
-  @javax.annotation.Nullable
-  private String passwordEnvVar;
+  private JsonNullable<String> passwordEnvVar = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets connectionStringFormat
@@ -109,23 +107,21 @@ public class ManagedDatabaseEnvVarMappings {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_CONNECTION_STRING_FORMAT = "connectionStringFormat";
-  @javax.annotation.Nullable
-  private ConnectionStringFormatEnum connectionStringFormat;
+  private JsonNullable<ConnectionStringFormatEnum> connectionStringFormat = JsonNullable.<ConnectionStringFormatEnum>undefined();
 
   public static final String JSON_PROPERTY_CONNECTION_STRING_TEMPLATE = "connectionStringTemplate";
-  @javax.annotation.Nullable
-  private String connectionStringTemplate;
+  private JsonNullable<String> connectionStringTemplate = JsonNullable.<String>undefined();
 
   public ManagedDatabaseEnvVarMappings() { 
   }
 
   public ManagedDatabaseEnvVarMappings connectionStringEnvVar(@javax.annotation.Nullable String connectionStringEnvVar) {
-    this.connectionStringEnvVar = connectionStringEnvVar;
+    this.connectionStringEnvVar = JsonNullable.<String>of(connectionStringEnvVar);
     return this;
   }
 
@@ -134,22 +130,30 @@ public class ManagedDatabaseEnvVarMappings {
    * @return connectionStringEnvVar
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_ENV_VAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getConnectionStringEnvVar() {
-    return connectionStringEnvVar;
+        return connectionStringEnvVar.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_ENV_VAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionStringEnvVar(@javax.annotation.Nullable String connectionStringEnvVar) {
+
+  public JsonNullable<String> getConnectionStringEnvVar_JsonNullable() {
+    return connectionStringEnvVar;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING_ENV_VAR)
+  public void setConnectionStringEnvVar_JsonNullable(JsonNullable<String> connectionStringEnvVar) {
     this.connectionStringEnvVar = connectionStringEnvVar;
+  }
+
+  public void setConnectionStringEnvVar(@javax.annotation.Nullable String connectionStringEnvVar) {
+    this.connectionStringEnvVar = JsonNullable.<String>of(connectionStringEnvVar);
   }
 
 
   public ManagedDatabaseEnvVarMappings hostEnvVar(@javax.annotation.Nullable String hostEnvVar) {
-    this.hostEnvVar = hostEnvVar;
+    this.hostEnvVar = JsonNullable.<String>of(hostEnvVar);
     return this;
   }
 
@@ -158,22 +162,30 @@ public class ManagedDatabaseEnvVarMappings {
    * @return hostEnvVar
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HOST_ENV_VAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getHostEnvVar() {
-    return hostEnvVar;
+        return hostEnvVar.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_HOST_ENV_VAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostEnvVar(@javax.annotation.Nullable String hostEnvVar) {
+
+  public JsonNullable<String> getHostEnvVar_JsonNullable() {
+    return hostEnvVar;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HOST_ENV_VAR)
+  public void setHostEnvVar_JsonNullable(JsonNullable<String> hostEnvVar) {
     this.hostEnvVar = hostEnvVar;
+  }
+
+  public void setHostEnvVar(@javax.annotation.Nullable String hostEnvVar) {
+    this.hostEnvVar = JsonNullable.<String>of(hostEnvVar);
   }
 
 
   public ManagedDatabaseEnvVarMappings portEnvVar(@javax.annotation.Nullable String portEnvVar) {
-    this.portEnvVar = portEnvVar;
+    this.portEnvVar = JsonNullable.<String>of(portEnvVar);
     return this;
   }
 
@@ -182,22 +194,30 @@ public class ManagedDatabaseEnvVarMappings {
    * @return portEnvVar
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PORT_ENV_VAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPortEnvVar() {
-    return portEnvVar;
+        return portEnvVar.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PORT_ENV_VAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPortEnvVar(@javax.annotation.Nullable String portEnvVar) {
+
+  public JsonNullable<String> getPortEnvVar_JsonNullable() {
+    return portEnvVar;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PORT_ENV_VAR)
+  public void setPortEnvVar_JsonNullable(JsonNullable<String> portEnvVar) {
     this.portEnvVar = portEnvVar;
+  }
+
+  public void setPortEnvVar(@javax.annotation.Nullable String portEnvVar) {
+    this.portEnvVar = JsonNullable.<String>of(portEnvVar);
   }
 
 
   public ManagedDatabaseEnvVarMappings databaseEnvVar(@javax.annotation.Nullable String databaseEnvVar) {
-    this.databaseEnvVar = databaseEnvVar;
+    this.databaseEnvVar = JsonNullable.<String>of(databaseEnvVar);
     return this;
   }
 
@@ -206,22 +226,30 @@ public class ManagedDatabaseEnvVarMappings {
    * @return databaseEnvVar
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DATABASE_ENV_VAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDatabaseEnvVar() {
-    return databaseEnvVar;
+        return databaseEnvVar.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DATABASE_ENV_VAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDatabaseEnvVar(@javax.annotation.Nullable String databaseEnvVar) {
+
+  public JsonNullable<String> getDatabaseEnvVar_JsonNullable() {
+    return databaseEnvVar;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DATABASE_ENV_VAR)
+  public void setDatabaseEnvVar_JsonNullable(JsonNullable<String> databaseEnvVar) {
     this.databaseEnvVar = databaseEnvVar;
+  }
+
+  public void setDatabaseEnvVar(@javax.annotation.Nullable String databaseEnvVar) {
+    this.databaseEnvVar = JsonNullable.<String>of(databaseEnvVar);
   }
 
 
   public ManagedDatabaseEnvVarMappings usernameEnvVar(@javax.annotation.Nullable String usernameEnvVar) {
-    this.usernameEnvVar = usernameEnvVar;
+    this.usernameEnvVar = JsonNullable.<String>of(usernameEnvVar);
     return this;
   }
 
@@ -230,22 +258,30 @@ public class ManagedDatabaseEnvVarMappings {
    * @return usernameEnvVar
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USERNAME_ENV_VAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUsernameEnvVar() {
-    return usernameEnvVar;
+        return usernameEnvVar.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USERNAME_ENV_VAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsernameEnvVar(@javax.annotation.Nullable String usernameEnvVar) {
+
+  public JsonNullable<String> getUsernameEnvVar_JsonNullable() {
+    return usernameEnvVar;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USERNAME_ENV_VAR)
+  public void setUsernameEnvVar_JsonNullable(JsonNullable<String> usernameEnvVar) {
     this.usernameEnvVar = usernameEnvVar;
+  }
+
+  public void setUsernameEnvVar(@javax.annotation.Nullable String usernameEnvVar) {
+    this.usernameEnvVar = JsonNullable.<String>of(usernameEnvVar);
   }
 
 
   public ManagedDatabaseEnvVarMappings passwordEnvVar(@javax.annotation.Nullable String passwordEnvVar) {
-    this.passwordEnvVar = passwordEnvVar;
+    this.passwordEnvVar = JsonNullable.<String>of(passwordEnvVar);
     return this;
   }
 
@@ -254,22 +290,30 @@ public class ManagedDatabaseEnvVarMappings {
    * @return passwordEnvVar
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PASSWORD_ENV_VAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPasswordEnvVar() {
-    return passwordEnvVar;
+        return passwordEnvVar.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PASSWORD_ENV_VAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswordEnvVar(@javax.annotation.Nullable String passwordEnvVar) {
+
+  public JsonNullable<String> getPasswordEnvVar_JsonNullable() {
+    return passwordEnvVar;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PASSWORD_ENV_VAR)
+  public void setPasswordEnvVar_JsonNullable(JsonNullable<String> passwordEnvVar) {
     this.passwordEnvVar = passwordEnvVar;
+  }
+
+  public void setPasswordEnvVar(@javax.annotation.Nullable String passwordEnvVar) {
+    this.passwordEnvVar = JsonNullable.<String>of(passwordEnvVar);
   }
 
 
   public ManagedDatabaseEnvVarMappings connectionStringFormat(@javax.annotation.Nullable ConnectionStringFormatEnum connectionStringFormat) {
-    this.connectionStringFormat = connectionStringFormat;
+    this.connectionStringFormat = JsonNullable.<ConnectionStringFormatEnum>of(connectionStringFormat);
     return this;
   }
 
@@ -278,22 +322,30 @@ public class ManagedDatabaseEnvVarMappings {
    * @return connectionStringFormat
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_FORMAT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public ConnectionStringFormatEnum getConnectionStringFormat() {
-    return connectionStringFormat;
+        return connectionStringFormat.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_FORMAT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionStringFormat(@javax.annotation.Nullable ConnectionStringFormatEnum connectionStringFormat) {
+
+  public JsonNullable<ConnectionStringFormatEnum> getConnectionStringFormat_JsonNullable() {
+    return connectionStringFormat;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING_FORMAT)
+  public void setConnectionStringFormat_JsonNullable(JsonNullable<ConnectionStringFormatEnum> connectionStringFormat) {
     this.connectionStringFormat = connectionStringFormat;
+  }
+
+  public void setConnectionStringFormat(@javax.annotation.Nullable ConnectionStringFormatEnum connectionStringFormat) {
+    this.connectionStringFormat = JsonNullable.<ConnectionStringFormatEnum>of(connectionStringFormat);
   }
 
 
   public ManagedDatabaseEnvVarMappings connectionStringTemplate(@javax.annotation.Nullable String connectionStringTemplate) {
-    this.connectionStringTemplate = connectionStringTemplate;
+    this.connectionStringTemplate = JsonNullable.<String>of(connectionStringTemplate);
     return this;
   }
 
@@ -302,17 +354,25 @@ public class ManagedDatabaseEnvVarMappings {
    * @return connectionStringTemplate
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_TEMPLATE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getConnectionStringTemplate() {
-    return connectionStringTemplate;
+        return connectionStringTemplate.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONNECTION_STRING_TEMPLATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectionStringTemplate(@javax.annotation.Nullable String connectionStringTemplate) {
+
+  public JsonNullable<String> getConnectionStringTemplate_JsonNullable() {
+    return connectionStringTemplate;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONNECTION_STRING_TEMPLATE)
+  public void setConnectionStringTemplate_JsonNullable(JsonNullable<String> connectionStringTemplate) {
     this.connectionStringTemplate = connectionStringTemplate;
+  }
+
+  public void setConnectionStringTemplate(@javax.annotation.Nullable String connectionStringTemplate) {
+    this.connectionStringTemplate = JsonNullable.<String>of(connectionStringTemplate);
   }
 
 
@@ -328,19 +388,30 @@ public class ManagedDatabaseEnvVarMappings {
       return false;
     }
     ManagedDatabaseEnvVarMappings managedDatabaseEnvVarMappings = (ManagedDatabaseEnvVarMappings) o;
-    return Objects.equals(this.connectionStringEnvVar, managedDatabaseEnvVarMappings.connectionStringEnvVar) &&
-        Objects.equals(this.hostEnvVar, managedDatabaseEnvVarMappings.hostEnvVar) &&
-        Objects.equals(this.portEnvVar, managedDatabaseEnvVarMappings.portEnvVar) &&
-        Objects.equals(this.databaseEnvVar, managedDatabaseEnvVarMappings.databaseEnvVar) &&
-        Objects.equals(this.usernameEnvVar, managedDatabaseEnvVarMappings.usernameEnvVar) &&
-        Objects.equals(this.passwordEnvVar, managedDatabaseEnvVarMappings.passwordEnvVar) &&
-        Objects.equals(this.connectionStringFormat, managedDatabaseEnvVarMappings.connectionStringFormat) &&
-        Objects.equals(this.connectionStringTemplate, managedDatabaseEnvVarMappings.connectionStringTemplate);
+    return equalsNullable(this.connectionStringEnvVar, managedDatabaseEnvVarMappings.connectionStringEnvVar) &&
+        equalsNullable(this.hostEnvVar, managedDatabaseEnvVarMappings.hostEnvVar) &&
+        equalsNullable(this.portEnvVar, managedDatabaseEnvVarMappings.portEnvVar) &&
+        equalsNullable(this.databaseEnvVar, managedDatabaseEnvVarMappings.databaseEnvVar) &&
+        equalsNullable(this.usernameEnvVar, managedDatabaseEnvVarMappings.usernameEnvVar) &&
+        equalsNullable(this.passwordEnvVar, managedDatabaseEnvVarMappings.passwordEnvVar) &&
+        equalsNullable(this.connectionStringFormat, managedDatabaseEnvVarMappings.connectionStringFormat) &&
+        equalsNullable(this.connectionStringTemplate, managedDatabaseEnvVarMappings.connectionStringTemplate);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectionStringEnvVar, hostEnvVar, portEnvVar, databaseEnvVar, usernameEnvVar, passwordEnvVar, connectionStringFormat, connectionStringTemplate);
+    return Objects.hash(hashCodeNullable(connectionStringEnvVar), hashCodeNullable(hostEnvVar), hashCodeNullable(portEnvVar), hashCodeNullable(databaseEnvVar), hashCodeNullable(usernameEnvVar), hashCodeNullable(passwordEnvVar), hashCodeNullable(connectionStringFormat), hashCodeNullable(connectionStringTemplate));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -64,19 +64,19 @@ export interface RegisterUserResponse {
      * @type {RegisterUserResponseMfaStatusType}
      * @memberof RegisterUserResponse
      */
-    mfaStatus?: RegisterUserResponseMfaStatusType;
+    mfaStatus?: RegisterUserResponseMfaStatusType | null;
     /**
      * 
      * @type {Array<MfaMethodSummary>}
      * @memberof RegisterUserResponse
      */
-    availableMfaMethods?: Array<MfaMethodSummary>;
+    availableMfaMethods?: Array<MfaMethodSummary> | null;
     /**
      * 
      * @type {Array<MfaMethodSummary>}
      * @memberof RegisterUserResponse
      */
-    pendingContactMethods?: Array<MfaMethodSummary>;
+    pendingContactMethods?: Array<MfaMethodSummary> | null;
 }
 
 
