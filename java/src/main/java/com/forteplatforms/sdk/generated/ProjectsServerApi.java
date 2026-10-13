@@ -59,6 +59,7 @@ import com.forteplatforms.sdk.generated.model.CustomDomainResponse;
 import com.forteplatforms.sdk.generated.model.CustomEmailTemplateObject;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.GetRequestBodyDownloadLinkResponse;
+import com.forteplatforms.sdk.generated.model.GetServiceCodeSourceStatusResponse;
 import com.forteplatforms.sdk.generated.model.GetServiceRouteTimeMetricsResponse;
 import com.forteplatforms.sdk.generated.model.ImpersonationTokenResponse;
 import com.forteplatforms.sdk.generated.model.ListContentResponse;
@@ -8118,6 +8119,133 @@ public class ProjectsServerApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @return GetServiceCodeSourceStatusResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetServiceCodeSourceStatusResponse getServiceCodeSourceStatus(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId) throws ApiException {
+    return getServiceCodeSourceStatus(projectId, serviceId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetServiceCodeSourceStatusResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetServiceCodeSourceStatusResponse getServiceCodeSourceStatus(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetServiceCodeSourceStatusResponse> localVarResponse = getServiceCodeSourceStatusWithHttpInfo(projectId, serviceId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @return ApiResponse&lt;GetServiceCodeSourceStatusResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetServiceCodeSourceStatusResponse> getServiceCodeSourceStatusWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId) throws ApiException {
+    return getServiceCodeSourceStatusWithHttpInfo(projectId, serviceId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetServiceCodeSourceStatusResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetServiceCodeSourceStatusResponse> getServiceCodeSourceStatusWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getServiceCodeSourceStatusRequestBuilder(projectId, serviceId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getServiceCodeSourceStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetServiceCodeSourceStatusResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetServiceCodeSourceStatusResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetServiceCodeSourceStatusResponse>() {});
+        
+
+        return new ApiResponse<GetServiceCodeSourceStatusResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getServiceCodeSourceStatusRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getServiceCodeSourceStatus");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling getServiceCodeSourceStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/code-source-status"
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
 

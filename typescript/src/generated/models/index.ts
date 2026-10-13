@@ -72,6 +72,7 @@ export * from './FieldChange';
 export * from './ForteApiException';
 export * from './GetContentDownloadLinkResponse';
 export * from './GetRequestBodyDownloadLinkResponse';
+export * from './GetServiceCodeSourceStatusResponse';
 export * from './GetServiceRouteTimeMetricsResponse';
 export * from './HealthCheckConfig';
 export * from './HealthCheckDetectionError';

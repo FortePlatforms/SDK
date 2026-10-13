@@ -219,6 +219,11 @@ import {
     GetRequestBodyDownloadLinkResponseToJSON,
 } from '../models/GetRequestBodyDownloadLinkResponse';
 import {
+    type GetServiceCodeSourceStatusResponse,
+    GetServiceCodeSourceStatusResponseFromJSON,
+    GetServiceCodeSourceStatusResponseToJSON,
+} from '../models/GetServiceCodeSourceStatusResponse';
+import {
     type GetServiceRouteTimeMetricsResponse,
     GetServiceRouteTimeMetricsResponseFromJSON,
     GetServiceRouteTimeMetricsResponseToJSON,
@@ -927,6 +932,11 @@ export interface GetRequestInvocationLogRequest {
 }
 
 export interface GetServiceRequest {
+    projectId: string;
+    serviceId: string;
+}
+
+export interface GetServiceCodeSourceStatusRequest {
     projectId: string;
     serviceId: string;
 }
@@ -4884,6 +4894,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getService(requestParameters: GetServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceObject> {
         const response = await this.getServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getServiceCodeSourceStatus without sending the request
+     */
+    async getServiceCodeSourceStatusRequestOpts(requestParameters: GetServiceCodeSourceStatusRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getServiceCodeSourceStatus().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling getServiceCodeSourceStatus().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/code-source-status`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getServiceCodeSourceStatusRaw(requestParameters: GetServiceCodeSourceStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetServiceCodeSourceStatusResponse>> {
+        const requestOptions = await this.getServiceCodeSourceStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetServiceCodeSourceStatusResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getServiceCodeSourceStatus(requestParameters: GetServiceCodeSourceStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetServiceCodeSourceStatusResponse> {
+        const response = await this.getServiceCodeSourceStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
