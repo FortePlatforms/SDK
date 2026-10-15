@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.managed_database_env_var_mappings import ManagedDatabaseEnvVarMappings
 from typing import Optional, Set
@@ -35,7 +35,18 @@ class ManagedDatabaseConnection(BaseModel):
     built_in_username: StrictStr = Field(alias="builtInUsername")
     created_timestamp: datetime = Field(alias="createdTimestamp")
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
-    __properties: ClassVar[List[str]] = ["connectionId", "serviceId", "environmentVariableMappings", "builtInUsername", "createdTimestamp", "lastModifiedTimestamp"]
+    status: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["connectionId", "serviceId", "environmentVariableMappings", "builtInUsername", "createdTimestamp", "lastModifiedTimestamp", "status"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['PENDING_DEPLOY', 'ACTIVE', 'PENDING_REMOVAL']):
+            raise ValueError("must be one of enum values ('PENDING_DEPLOY', 'ACTIVE', 'PENDING_REMOVAL')")
+        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -84,6 +95,11 @@ class ManagedDatabaseConnection(BaseModel):
         if self.last_modified_timestamp is None and "last_modified_timestamp" in self.model_fields_set:
             _dict['lastModifiedTimestamp'] = None
 
+        # set to None if status (nullable) is None
+        # and model_fields_set contains the field
+        if self.status is None and "status" in self.model_fields_set:
+            _dict['status'] = None
+
         return _dict
 
     @classmethod
@@ -101,7 +117,8 @@ class ManagedDatabaseConnection(BaseModel):
             "environmentVariableMappings": ManagedDatabaseEnvVarMappings.from_dict(obj["environmentVariableMappings"]) if obj.get("environmentVariableMappings") is not None else None,
             "builtInUsername": obj.get("builtInUsername"),
             "createdTimestamp": obj.get("createdTimestamp"),
-            "lastModifiedTimestamp": obj.get("lastModifiedTimestamp")
+            "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
+            "status": obj.get("status")
         })
         return _obj
 

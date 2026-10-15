@@ -63,7 +63,25 @@ export interface ManagedDatabaseConnection {
      * @memberof ManagedDatabaseConnection
      */
     lastModifiedTimestamp?: Date | null;
+    /**
+     * 
+     * @type {ManagedDatabaseConnectionStatusType}
+     * @memberof ManagedDatabaseConnection
+     */
+    status?: ManagedDatabaseConnectionStatusType | null;
 }
+
+
+/**
+ * @export
+ */
+export const ManagedDatabaseConnectionStatusType = {
+    PENDING_DEPLOY: 'PENDING_DEPLOY',
+    ACTIVE: 'ACTIVE',
+    PENDING_REMOVAL: 'PENDING_REMOVAL'
+} as const;
+export type ManagedDatabaseConnectionStatusType = typeof ManagedDatabaseConnectionStatusType[keyof typeof ManagedDatabaseConnectionStatusType];
+
 
 /**
  * Check if a given object implements the ManagedDatabaseConnection interface.
@@ -93,6 +111,7 @@ export function ManagedDatabaseConnectionFromJSONTyped(json: any, ignoreDiscrimi
         'builtInUsername': json['builtInUsername'],
         'createdTimestamp': (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
+        'status': json['status'] == null ? undefined : json['status'],
     };
 }
 
@@ -113,6 +132,7 @@ export function ManagedDatabaseConnectionToJSONTyped(value?: ManagedDatabaseConn
         'builtInUsername': value['builtInUsername'],
         'createdTimestamp': value['createdTimestamp'].toISOString(),
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
+        'status': value['status'],
     };
 }
 

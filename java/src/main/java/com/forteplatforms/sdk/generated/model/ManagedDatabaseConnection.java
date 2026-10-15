@@ -44,7 +44,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ManagedDatabaseConnection.JSON_PROPERTY_ENVIRONMENT_VARIABLE_MAPPINGS,
   ManagedDatabaseConnection.JSON_PROPERTY_BUILT_IN_USERNAME,
   ManagedDatabaseConnection.JSON_PROPERTY_CREATED_TIMESTAMP,
-  ManagedDatabaseConnection.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP
+  ManagedDatabaseConnection.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
+  ManagedDatabaseConnection.JSON_PROPERTY_STATUS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseConnection {
@@ -70,6 +71,46 @@ public class ManagedDatabaseConnection {
 
   public static final String JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP = "lastModifiedTimestamp";
   private JsonNullable<OffsetDateTime> lastModifiedTimestamp = JsonNullable.<OffsetDateTime>undefined();
+
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    PENDING_DEPLOY(String.valueOf("PENDING_DEPLOY")),
+    
+    ACTIVE(String.valueOf("ACTIVE")),
+    
+    PENDING_REMOVAL(String.valueOf("PENDING_REMOVAL"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private JsonNullable<StatusEnum> status = JsonNullable.<StatusEnum>undefined();
 
   public ManagedDatabaseConnection() { 
   }
@@ -226,6 +267,38 @@ public class ManagedDatabaseConnection {
   }
 
 
+  public ManagedDatabaseConnection status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = JsonNullable.<StatusEnum>of(status);
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public StatusEnum getStatus() {
+        return status.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<StatusEnum> getStatus_JsonNullable() {
+    return status;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  public void setStatus_JsonNullable(JsonNullable<StatusEnum> status) {
+    this.status = status;
+  }
+
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = JsonNullable.<StatusEnum>of(status);
+  }
+
+
   /**
    * Return true if this ManagedDatabaseConnection object is equal to o.
    */
@@ -243,7 +316,8 @@ public class ManagedDatabaseConnection {
         Objects.equals(this.environmentVariableMappings, managedDatabaseConnection.environmentVariableMappings) &&
         Objects.equals(this.builtInUsername, managedDatabaseConnection.builtInUsername) &&
         Objects.equals(this.createdTimestamp, managedDatabaseConnection.createdTimestamp) &&
-        equalsNullable(this.lastModifiedTimestamp, managedDatabaseConnection.lastModifiedTimestamp);
+        equalsNullable(this.lastModifiedTimestamp, managedDatabaseConnection.lastModifiedTimestamp) &&
+        equalsNullable(this.status, managedDatabaseConnection.status);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -252,7 +326,7 @@ public class ManagedDatabaseConnection {
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectionId, serviceId, environmentVariableMappings, builtInUsername, createdTimestamp, hashCodeNullable(lastModifiedTimestamp));
+    return Objects.hash(connectionId, serviceId, environmentVariableMappings, builtInUsername, createdTimestamp, hashCodeNullable(lastModifiedTimestamp), hashCodeNullable(status));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -272,6 +346,7 @@ public class ManagedDatabaseConnection {
     sb.append("    builtInUsername: ").append(toIndentedString(builtInUsername)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
     sb.append("    lastModifiedTimestamp: ").append(toIndentedString(lastModifiedTimestamp)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -344,6 +419,11 @@ public class ManagedDatabaseConnection {
     // add `lastModifiedTimestamp` to the URL query string
     if (getLastModifiedTimestamp() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slastModifiedTimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastModifiedTimestamp()))));
+    }
+
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     return joiner.toString();
