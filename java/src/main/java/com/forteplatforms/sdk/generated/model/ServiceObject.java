@@ -75,6 +75,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_ENQUEUED_BUILD_IDS,
   ServiceObject.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
   ServiceObject.JSON_PROPERTY_BASE_DIRECTORY,
+  ServiceObject.JSON_PROPERTY_CLONED_FROM_RESOURCE_ID,
   ServiceObject.JSON_PROPERTY_SECRET_KEYS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -204,6 +205,9 @@ public class ServiceObject {
 
   public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
   private JsonNullable<String> baseDirectory = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CLONED_FROM_RESOURCE_ID = "clonedFromResourceId";
+  private JsonNullable<String> clonedFromResourceId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SECRET_KEYS = "secretKeys";
   @javax.annotation.Nullable
@@ -1004,6 +1008,38 @@ public class ServiceObject {
   }
 
 
+  public ServiceObject clonedFromResourceId(@javax.annotation.Nullable String clonedFromResourceId) {
+    this.clonedFromResourceId = JsonNullable.<String>of(clonedFromResourceId);
+    return this;
+  }
+
+  /**
+   * Get clonedFromResourceId
+   * @return clonedFromResourceId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getClonedFromResourceId() {
+        return clonedFromResourceId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CLONED_FROM_RESOURCE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getClonedFromResourceId_JsonNullable() {
+    return clonedFromResourceId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLONED_FROM_RESOURCE_ID)
+  public void setClonedFromResourceId_JsonNullable(JsonNullable<String> clonedFromResourceId) {
+    this.clonedFromResourceId = clonedFromResourceId;
+  }
+
+  public void setClonedFromResourceId(@javax.annotation.Nullable String clonedFromResourceId) {
+    this.clonedFromResourceId = JsonNullable.<String>of(clonedFromResourceId);
+  }
+
+
   public ServiceObject secretKeys(@javax.annotation.Nullable Set<String> secretKeys) {
     this.secretKeys = secretKeys;
     return this;
@@ -1075,6 +1111,7 @@ public class ServiceObject {
         equalsNullable(this.enqueuedBuildIds, serviceObject.enqueuedBuildIds) &&
         Objects.equals(this.environmentVariables, serviceObject.environmentVariables) &&
         equalsNullable(this.baseDirectory, serviceObject.baseDirectory) &&
+        equalsNullable(this.clonedFromResourceId, serviceObject.clonedFromResourceId) &&
         Objects.equals(this.secretKeys, serviceObject.secretKeys);
   }
 
@@ -1084,7 +1121,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, hashCodeNullable(publicDnsEndpoint), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), hashCodeNullable(pausedAt), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(dockerfilePath), healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), baseInstances, regionReplicas, containerCpu, hashCodeNullable(customDomains), createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), secretKeys);
+    return Objects.hash(serviceId, serviceName, hashCodeNullable(publicDnsEndpoint), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), hashCodeNullable(pausedAt), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(dockerfilePath), healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), baseInstances, regionReplicas, containerCpu, hashCodeNullable(customDomains), createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), hashCodeNullable(clonedFromResourceId), secretKeys);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1124,6 +1161,7 @@ public class ServiceObject {
     sb.append("    enqueuedBuildIds: ").append(toIndentedString(enqueuedBuildIds)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
     sb.append("    baseDirectory: ").append(toIndentedString(baseDirectory)).append("\n");
+    sb.append("    clonedFromResourceId: ").append(toIndentedString(clonedFromResourceId)).append("\n");
     sb.append("    secretKeys: ").append(toIndentedString(secretKeys)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -1322,6 +1360,11 @@ public class ServiceObject {
     // add `baseDirectory` to the URL query string
     if (getBaseDirectory() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbaseDirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseDirectory()))));
+    }
+
+    // add `clonedFromResourceId` to the URL query string
+    if (getClonedFromResourceId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclonedFromResourceId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClonedFromResourceId()))));
     }
 
     // add `secretKeys` to the URL query string

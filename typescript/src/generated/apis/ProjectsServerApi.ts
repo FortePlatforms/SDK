@@ -69,6 +69,16 @@ import {
     CreateActionRequestToJSON,
 } from '../models/CreateActionRequest';
 import {
+    type CreateCloneEnvironmentRequest,
+    CreateCloneEnvironmentRequestFromJSON,
+    CreateCloneEnvironmentRequestToJSON,
+} from '../models/CreateCloneEnvironmentRequest';
+import {
+    type CreateCloneEnvironmentResponse,
+    CreateCloneEnvironmentResponseFromJSON,
+    CreateCloneEnvironmentResponseToJSON,
+} from '../models/CreateCloneEnvironmentResponse';
+import {
     type CreateContentUploadLinkRequest,
     CreateContentUploadLinkRequestFromJSON,
     CreateContentUploadLinkRequestToJSON,
@@ -173,6 +183,16 @@ import {
     CreateServiceRequestProxyResponseFromJSON,
     CreateServiceRequestProxyResponseToJSON,
 } from '../models/CreateServiceRequestProxyResponse';
+import {
+    type CreateServiceUrlConnectionRequest,
+    CreateServiceUrlConnectionRequestFromJSON,
+    CreateServiceUrlConnectionRequestToJSON,
+} from '../models/CreateServiceUrlConnectionRequest';
+import {
+    type CreateServiceUrlConnectionResponse,
+    CreateServiceUrlConnectionResponseFromJSON,
+    CreateServiceUrlConnectionResponseToJSON,
+} from '../models/CreateServiceUrlConnectionResponse';
 import {
     type CreateSubscriptionPreviewRequest,
     CreateSubscriptionPreviewRequestFromJSON,
@@ -534,6 +554,16 @@ import {
     UpdateProjectRequestToJSON,
 } from '../models/UpdateProjectRequest';
 import {
+    type UpdateServiceUrlConnectionRequest,
+    UpdateServiceUrlConnectionRequestFromJSON,
+    UpdateServiceUrlConnectionRequestToJSON,
+} from '../models/UpdateServiceUrlConnectionRequest';
+import {
+    type UpdateServiceUrlConnectionResponse,
+    UpdateServiceUrlConnectionResponseFromJSON,
+    UpdateServiceUrlConnectionResponseToJSON,
+} from '../models/UpdateServiceUrlConnectionResponse';
+import {
     type UpdateSubscriptionPreviewRequest,
     UpdateSubscriptionPreviewRequestFromJSON,
     UpdateSubscriptionPreviewRequestToJSON,
@@ -688,6 +718,11 @@ export interface CreateActionInvocationRequest {
     actionId: string;
 }
 
+export interface CreateCloneEnvironmentOperationRequest {
+    projectId: string;
+    createCloneEnvironmentRequest: CreateCloneEnvironmentRequest;
+}
+
 export interface CreateCustomDomainOperationRequest {
     projectId: string;
     webAppId: string;
@@ -761,6 +796,12 @@ export interface CreateServiceRequestProxyOperationRequest {
     createServiceRequestProxyRequest: CreateServiceRequestProxyRequest;
 }
 
+export interface CreateServiceUrlConnectionOperationRequest {
+    projectId: string;
+    webAppId: string;
+    createServiceUrlConnectionRequest: CreateServiceUrlConnectionRequest;
+}
+
 export interface CreateWebAppOperationRequest {
     projectId: string;
     createWebAppRequest: CreateWebAppRequest;
@@ -829,6 +870,12 @@ export interface DeleteServiceCustomDomainRequest {
     projectId: string;
     serviceId: string;
     customDomainId: string;
+}
+
+export interface DeleteServiceUrlConnectionRequest {
+    projectId: string;
+    webAppId: string;
+    connectionId: string;
 }
 
 export interface DeleteUserRequest {
@@ -1514,6 +1561,13 @@ export interface UpdateServiceRequest {
     projectId: string;
     serviceId: string;
     updateForteServiceRequest: UpdateForteServiceRequest;
+}
+
+export interface UpdateServiceUrlConnectionOperationRequest {
+    projectId: string;
+    webAppId: string;
+    connectionId: string;
+    updateServiceUrlConnectionRequest: UpdateServiceUrlConnectionRequest;
 }
 
 export interface UpdateUserSubscriptionRequest {
@@ -2427,6 +2481,63 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createCloneEnvironment without sending the request
+     */
+    async createCloneEnvironmentRequestOpts(requestParameters: CreateCloneEnvironmentOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createCloneEnvironment().'
+            );
+        }
+
+        if (requestParameters['createCloneEnvironmentRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCloneEnvironmentRequest',
+                'Required parameter "createCloneEnvironmentRequest" was null or undefined when calling createCloneEnvironment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/clone-environments`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCloneEnvironmentRequestToJSON(requestParameters['createCloneEnvironmentRequest']),
+        };
+    }
+
+    /**
+     */
+    async createCloneEnvironmentRaw(requestParameters: CreateCloneEnvironmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCloneEnvironmentResponse>> {
+        const requestOptions = await this.createCloneEnvironmentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCloneEnvironmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createCloneEnvironment(requestParameters: CreateCloneEnvironmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCloneEnvironmentResponse> {
+        const response = await this.createCloneEnvironmentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createCustomDomain without sending the request
      */
     async createCustomDomainRequestOpts(requestParameters: CreateCustomDomainOperationRequest): Promise<runtime.RequestOpts> {
@@ -3215,6 +3326,71 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createServiceUrlConnection without sending the request
+     */
+    async createServiceUrlConnectionRequestOpts(requestParameters: CreateServiceUrlConnectionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createServiceUrlConnection().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling createServiceUrlConnection().'
+            );
+        }
+
+        if (requestParameters['createServiceUrlConnectionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createServiceUrlConnectionRequest',
+                'Required parameter "createServiceUrlConnectionRequest" was null or undefined when calling createServiceUrlConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/service-url-connections`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateServiceUrlConnectionRequestToJSON(requestParameters['createServiceUrlConnectionRequest']),
+        };
+    }
+
+    /**
+     */
+    async createServiceUrlConnectionRaw(requestParameters: CreateServiceUrlConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateServiceUrlConnectionResponse>> {
+        const requestOptions = await this.createServiceUrlConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateServiceUrlConnectionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createServiceUrlConnection(requestParameters: CreateServiceUrlConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateServiceUrlConnectionResponse> {
+        const response = await this.createServiceUrlConnectionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createWebApp without sending the request
      */
     async createWebAppRequestOpts(requestParameters: CreateWebAppOperationRequest): Promise<runtime.RequestOpts> {
@@ -3907,6 +4083,64 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteServiceCustomDomain(requestParameters: DeleteServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteServiceCustomDomainRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteServiceUrlConnection without sending the request
+     */
+    async deleteServiceUrlConnectionRequestOpts(requestParameters: DeleteServiceUrlConnectionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteServiceUrlConnection().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling deleteServiceUrlConnection().'
+            );
+        }
+
+        if (requestParameters['connectionId'] == null) {
+            throw new runtime.RequiredError(
+                'connectionId',
+                'Required parameter "connectionId" was null or undefined when calling deleteServiceUrlConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/service-url-connections/{connectionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{connectionId}', encodeURIComponent(String(requestParameters['connectionId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteServiceUrlConnectionRaw(requestParameters: DeleteServiceUrlConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteServiceUrlConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteServiceUrlConnection(requestParameters: DeleteServiceUrlConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteServiceUrlConnectionRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -10250,6 +10484,75 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async updateService(requestParameters: UpdateServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateForteServiceResponse> {
         const response = await this.updateServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for updateServiceUrlConnection without sending the request
+     */
+    async updateServiceUrlConnectionRequestOpts(requestParameters: UpdateServiceUrlConnectionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateServiceUrlConnection().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling updateServiceUrlConnection().'
+            );
+        }
+
+        if (requestParameters['connectionId'] == null) {
+            throw new runtime.RequiredError(
+                'connectionId',
+                'Required parameter "connectionId" was null or undefined when calling updateServiceUrlConnection().'
+            );
+        }
+
+        if (requestParameters['updateServiceUrlConnectionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateServiceUrlConnectionRequest',
+                'Required parameter "updateServiceUrlConnectionRequest" was null or undefined when calling updateServiceUrlConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/service-url-connections/{connectionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{connectionId}', encodeURIComponent(String(requestParameters['connectionId'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateServiceUrlConnectionRequestToJSON(requestParameters['updateServiceUrlConnectionRequest']),
+        };
+    }
+
+    /**
+     */
+    async updateServiceUrlConnectionRaw(requestParameters: UpdateServiceUrlConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateServiceUrlConnectionResponse>> {
+        const requestOptions = await this.updateServiceUrlConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateServiceUrlConnectionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateServiceUrlConnection(requestParameters: UpdateServiceUrlConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateServiceUrlConnectionResponse> {
+        const response = await this.updateServiceUrlConnectionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

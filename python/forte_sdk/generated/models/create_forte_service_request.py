@@ -42,8 +42,10 @@ class CreateForteServiceRequest(BaseModel):
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
     base_directory: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="baseDirectory")
     request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
+    auth_path_exclusions: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="authPathExclusions")
+    blocked_paths: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="blockedPaths")
     database_connections: Optional[Annotated[List[CreateServiceDatabaseConnectionRequest], Field(min_length=0, max_length=5)]] = Field(default=None, alias="databaseConnections")
-    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled", "databaseConnections"]
+    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled", "authPathExclusions", "blockedPaths", "databaseConnections"]
 
     @field_validator('build_trigger')
     def build_trigger_validate_enum(cls, value):
@@ -195,6 +197,16 @@ class CreateForteServiceRequest(BaseModel):
         if self.request_response_body_logging_enabled is None and "request_response_body_logging_enabled" in self.model_fields_set:
             _dict['requestResponseBodyLoggingEnabled'] = None
 
+        # set to None if auth_path_exclusions (nullable) is None
+        # and model_fields_set contains the field
+        if self.auth_path_exclusions is None and "auth_path_exclusions" in self.model_fields_set:
+            _dict['authPathExclusions'] = None
+
+        # set to None if blocked_paths (nullable) is None
+        # and model_fields_set contains the field
+        if self.blocked_paths is None and "blocked_paths" in self.model_fields_set:
+            _dict['blockedPaths'] = None
+
         # set to None if database_connections (nullable) is None
         # and model_fields_set contains the field
         if self.database_connections is None and "database_connections" in self.model_fields_set:
@@ -225,6 +237,8 @@ class CreateForteServiceRequest(BaseModel):
             "healthCheckPath": obj.get("healthCheckPath"),
             "baseDirectory": obj.get("baseDirectory"),
             "requestResponseBodyLoggingEnabled": obj.get("requestResponseBodyLoggingEnabled"),
+            "authPathExclusions": obj.get("authPathExclusions"),
+            "blockedPaths": obj.get("blockedPaths"),
             "databaseConnections": [CreateServiceDatabaseConnectionRequest.from_dict(_item) for _item in obj["databaseConnections"]] if obj.get("databaseConnections") is not None else None
         })
         return _obj

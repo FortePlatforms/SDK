@@ -107,6 +107,18 @@ export interface CreateForteServiceRequest {
     requestResponseBodyLoggingEnabled?: boolean | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof CreateForteServiceRequest
+     */
+    authPathExclusions?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateForteServiceRequest
+     */
+    blockedPaths?: Array<string> | null;
+    /**
+     * 
      * @type {Array<CreateServiceDatabaseConnectionRequest>}
      * @memberof CreateForteServiceRequest
      */
@@ -157,6 +169,8 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'healthCheckPath': json['healthCheckPath'] == null ? undefined : json['healthCheckPath'],
         'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
         'requestResponseBodyLoggingEnabled': json['requestResponseBodyLoggingEnabled'] == null ? undefined : json['requestResponseBodyLoggingEnabled'],
+        'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
+        'blockedPaths': json['blockedPaths'] == null ? undefined : json['blockedPaths'],
         'databaseConnections': json['databaseConnections'] == null ? undefined : ((json['databaseConnections'] as Array<any>).map(CreateServiceDatabaseConnectionRequestFromJSON)),
     };
 }
@@ -185,6 +199,8 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
         'healthCheckPath': value['healthCheckPath'],
         'baseDirectory': value['baseDirectory'],
         'requestResponseBodyLoggingEnabled': value['requestResponseBodyLoggingEnabled'],
+        'authPathExclusions': value['authPathExclusions'],
+        'blockedPaths': value['blockedPaths'],
         'databaseConnections': value['databaseConnections'] == null ? undefined : ((value['databaseConnections'] as Array<any>).map(CreateServiceDatabaseConnectionRequestToJSON)),
     };
 }

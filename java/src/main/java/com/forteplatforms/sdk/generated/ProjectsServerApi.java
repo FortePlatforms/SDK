@@ -29,6 +29,8 @@ import com.forteplatforms.sdk.generated.model.ApiKeySummary;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.ContentObject;
 import com.forteplatforms.sdk.generated.model.CreateActionRequest;
+import com.forteplatforms.sdk.generated.model.CreateCloneEnvironmentRequest;
+import com.forteplatforms.sdk.generated.model.CreateCloneEnvironmentResponse;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkRequest;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkResponse;
 import com.forteplatforms.sdk.generated.model.CreateCustomDomainRequest;
@@ -50,6 +52,8 @@ import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyRequest;
 import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyResponse;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyRequest;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyResponse;
+import com.forteplatforms.sdk.generated.model.CreateServiceUrlConnectionRequest;
+import com.forteplatforms.sdk.generated.model.CreateServiceUrlConnectionResponse;
 import com.forteplatforms.sdk.generated.model.CreateSubscriptionPreviewRequest;
 import com.forteplatforms.sdk.generated.model.CreateSubscriptionPreviewResponse;
 import com.forteplatforms.sdk.generated.model.CreateSubscriptionRequest;
@@ -124,6 +128,8 @@ import com.forteplatforms.sdk.generated.model.UpdateNotificationTemplatesRequest
 import com.forteplatforms.sdk.generated.model.UpdatePaymentMethodRequest;
 import com.forteplatforms.sdk.generated.model.UpdatePaymentTriggerRequest;
 import com.forteplatforms.sdk.generated.model.UpdateProjectRequest;
+import com.forteplatforms.sdk.generated.model.UpdateServiceUrlConnectionRequest;
+import com.forteplatforms.sdk.generated.model.UpdateServiceUrlConnectionResponse;
 import com.forteplatforms.sdk.generated.model.UpdateSubscriptionPreviewRequest;
 import com.forteplatforms.sdk.generated.model.UpdateSubscriptionRequest;
 import com.forteplatforms.sdk.generated.model.UpdateUserRequest;
@@ -2326,6 +2332,142 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param createCloneEnvironmentRequest  (required)
+   * @return CreateCloneEnvironmentResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCloneEnvironmentResponse createCloneEnvironment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCloneEnvironmentRequest createCloneEnvironmentRequest) throws ApiException {
+    return createCloneEnvironment(projectId, createCloneEnvironmentRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCloneEnvironmentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateCloneEnvironmentResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCloneEnvironmentResponse createCloneEnvironment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCloneEnvironmentRequest createCloneEnvironmentRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCloneEnvironmentResponse> localVarResponse = createCloneEnvironmentWithHttpInfo(projectId, createCloneEnvironmentRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCloneEnvironmentRequest  (required)
+   * @return ApiResponse&lt;CreateCloneEnvironmentResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCloneEnvironmentResponse> createCloneEnvironmentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCloneEnvironmentRequest createCloneEnvironmentRequest) throws ApiException {
+    return createCloneEnvironmentWithHttpInfo(projectId, createCloneEnvironmentRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCloneEnvironmentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateCloneEnvironmentResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCloneEnvironmentResponse> createCloneEnvironmentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCloneEnvironmentRequest createCloneEnvironmentRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createCloneEnvironmentRequestBuilder(projectId, createCloneEnvironmentRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createCloneEnvironment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateCloneEnvironmentResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateCloneEnvironmentResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateCloneEnvironmentResponse>() {});
+        
+
+        return new ApiResponse<CreateCloneEnvironmentResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createCloneEnvironmentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCloneEnvironmentRequest createCloneEnvironmentRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createCloneEnvironment");
+    }
+    // verify the required parameter 'createCloneEnvironmentRequest' is set
+    if (createCloneEnvironmentRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCloneEnvironmentRequest' when calling createCloneEnvironment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/clone-environments"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCloneEnvironmentRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param webAppId  (required)
    * @param createCustomDomainRequest  (required)
    * @return CustomDomainResponse
@@ -4170,6 +4312,151 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param createServiceUrlConnectionRequest  (required)
+   * @return CreateServiceUrlConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateServiceUrlConnectionResponse createServiceUrlConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull CreateServiceUrlConnectionRequest createServiceUrlConnectionRequest) throws ApiException {
+    return createServiceUrlConnection(projectId, webAppId, createServiceUrlConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param createServiceUrlConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateServiceUrlConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateServiceUrlConnectionResponse createServiceUrlConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull CreateServiceUrlConnectionRequest createServiceUrlConnectionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateServiceUrlConnectionResponse> localVarResponse = createServiceUrlConnectionWithHttpInfo(projectId, webAppId, createServiceUrlConnectionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param createServiceUrlConnectionRequest  (required)
+   * @return ApiResponse&lt;CreateServiceUrlConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateServiceUrlConnectionResponse> createServiceUrlConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull CreateServiceUrlConnectionRequest createServiceUrlConnectionRequest) throws ApiException {
+    return createServiceUrlConnectionWithHttpInfo(projectId, webAppId, createServiceUrlConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param createServiceUrlConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateServiceUrlConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateServiceUrlConnectionResponse> createServiceUrlConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull CreateServiceUrlConnectionRequest createServiceUrlConnectionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createServiceUrlConnectionRequestBuilder(projectId, webAppId, createServiceUrlConnectionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createServiceUrlConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateServiceUrlConnectionResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateServiceUrlConnectionResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateServiceUrlConnectionResponse>() {});
+        
+
+        return new ApiResponse<CreateServiceUrlConnectionResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createServiceUrlConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull CreateServiceUrlConnectionRequest createServiceUrlConnectionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createServiceUrlConnection");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling createServiceUrlConnection");
+    }
+    // verify the required parameter 'createServiceUrlConnectionRequest' is set
+    if (createServiceUrlConnectionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createServiceUrlConnectionRequest' when calling createServiceUrlConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/service-url-connections"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createServiceUrlConnectionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param createWebAppRequest  (required)
    * @return WebAppObject
    * @throws ApiException if fails to make API call
@@ -5725,6 +6012,128 @@ public class ProjectsServerApi {
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
         .replace("{customDomainId}", ApiClient.urlEncode(customDomainId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param connectionId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServiceUrlConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId) throws ApiException {
+    deleteServiceUrlConnection(projectId, webAppId, connectionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param connectionId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServiceUrlConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    deleteServiceUrlConnectionWithHttpInfo(projectId, webAppId, connectionId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param connectionId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServiceUrlConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId) throws ApiException {
+    return deleteServiceUrlConnectionWithHttpInfo(projectId, webAppId, connectionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param connectionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServiceUrlConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteServiceUrlConnectionRequestBuilder(projectId, webAppId, connectionId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteServiceUrlConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteServiceUrlConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteServiceUrlConnection");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling deleteServiceUrlConnection");
+    }
+    // verify the required parameter 'connectionId' is set
+    if (connectionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectionId' when calling deleteServiceUrlConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/service-url-connections/{connectionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()))
+        .replace("{connectionId}", ApiClient.urlEncode(connectionId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -20921,6 +21330,156 @@ public class ProjectsServerApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateForteServiceRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceUrlConnectionRequest  (required)
+   * @return UpdateServiceUrlConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateServiceUrlConnectionResponse updateServiceUrlConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceUrlConnectionRequest updateServiceUrlConnectionRequest) throws ApiException {
+    return updateServiceUrlConnection(projectId, webAppId, connectionId, updateServiceUrlConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceUrlConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateServiceUrlConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateServiceUrlConnectionResponse updateServiceUrlConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceUrlConnectionRequest updateServiceUrlConnectionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateServiceUrlConnectionResponse> localVarResponse = updateServiceUrlConnectionWithHttpInfo(projectId, webAppId, connectionId, updateServiceUrlConnectionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceUrlConnectionRequest  (required)
+   * @return ApiResponse&lt;UpdateServiceUrlConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateServiceUrlConnectionResponse> updateServiceUrlConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceUrlConnectionRequest updateServiceUrlConnectionRequest) throws ApiException {
+    return updateServiceUrlConnectionWithHttpInfo(projectId, webAppId, connectionId, updateServiceUrlConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param webAppId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceUrlConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateServiceUrlConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateServiceUrlConnectionResponse> updateServiceUrlConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceUrlConnectionRequest updateServiceUrlConnectionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateServiceUrlConnectionRequestBuilder(projectId, webAppId, connectionId, updateServiceUrlConnectionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateServiceUrlConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateServiceUrlConnectionResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateServiceUrlConnectionResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateServiceUrlConnectionResponse>() {});
+        
+
+        return new ApiResponse<UpdateServiceUrlConnectionResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateServiceUrlConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceUrlConnectionRequest updateServiceUrlConnectionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling updateServiceUrlConnection");
+    }
+    // verify the required parameter 'webAppId' is set
+    if (webAppId == null) {
+      throw new ApiException(400, "Missing the required parameter 'webAppId' when calling updateServiceUrlConnection");
+    }
+    // verify the required parameter 'connectionId' is set
+    if (connectionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectionId' when calling updateServiceUrlConnection");
+    }
+    // verify the required parameter 'updateServiceUrlConnectionRequest' is set
+    if (updateServiceUrlConnectionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateServiceUrlConnectionRequest' when calling updateServiceUrlConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/web-apps/{webAppId}/service-url-connections/{connectionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{webAppId}", ApiClient.urlEncode(webAppId.toString()))
+        .replace("{connectionId}", ApiClient.urlEncode(connectionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateServiceUrlConnectionRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

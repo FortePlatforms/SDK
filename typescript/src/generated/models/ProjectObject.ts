@@ -203,6 +203,36 @@ export interface ProjectObject {
     emailSender?: ProjectObjectEmailSenderType | null;
     /**
      * 
+     * @type {string}
+     * @memberof ProjectObject
+     */
+    parentProjectId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProjectObject
+     */
+    clonedFromProjectId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProjectObject
+     */
+    environmentName?: string | null;
+    /**
+     * 
+     * @type {ProjectObjectCloneStatusType}
+     * @memberof ProjectObject
+     */
+    cloneStatus?: ProjectObjectCloneStatusType | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProjectObject
+     */
+    cloneFailureReason?: string | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof ProjectObject
      */
@@ -218,6 +248,19 @@ export const ProjectObjectEmailSenderType = {
     ACCOUNT_DOMAIN: 'ACCOUNT_DOMAIN'
 } as const;
 export type ProjectObjectEmailSenderType = typeof ProjectObjectEmailSenderType[keyof typeof ProjectObjectEmailSenderType];
+
+/**
+ * @export
+ */
+export const ProjectObjectCloneStatusType = {
+    PROVISIONING_DATABASES: 'PROVISIONING_DATABASES',
+    DEPLOYING_SERVICES: 'DEPLOYING_SERVICES',
+    DEPLOYING_WEBSITES: 'DEPLOYING_WEBSITES',
+    ENABLING_ACTIONS: 'ENABLING_ACTIONS',
+    COMPLETED: 'COMPLETED',
+    FAILED: 'FAILED'
+} as const;
+export type ProjectObjectCloneStatusType = typeof ProjectObjectCloneStatusType[keyof typeof ProjectObjectCloneStatusType];
 
 
 /**
@@ -266,6 +309,11 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'notificationTemplatesConfig': json['notificationTemplatesConfig'] == null ? undefined : NotificationTemplatesConfigFromJSON(json['notificationTemplatesConfig']),
         'paymentTriggers': json['paymentTriggers'] == null ? undefined : ((json['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigFromJSON)),
         'emailSender': json['emailSender'] == null ? undefined : json['emailSender'],
+        'parentProjectId': json['parentProjectId'] == null ? undefined : json['parentProjectId'],
+        'clonedFromProjectId': json['clonedFromProjectId'] == null ? undefined : json['clonedFromProjectId'],
+        'environmentName': json['environmentName'] == null ? undefined : json['environmentName'],
+        'cloneStatus': json['cloneStatus'] == null ? undefined : json['cloneStatus'],
+        'cloneFailureReason': json['cloneFailureReason'] == null ? undefined : json['cloneFailureReason'],
         'hasRecaptchaSecretKey': json['hasRecaptchaSecretKey'] == null ? undefined : json['hasRecaptchaSecretKey'],
     };
 }
@@ -303,6 +351,11 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'notificationTemplatesConfig': NotificationTemplatesConfigToJSON(value['notificationTemplatesConfig']),
         'paymentTriggers': value['paymentTriggers'] == null ? undefined : ((value['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigToJSON)),
         'emailSender': value['emailSender'],
+        'parentProjectId': value['parentProjectId'],
+        'clonedFromProjectId': value['clonedFromProjectId'],
+        'environmentName': value['environmentName'],
+        'cloneStatus': value['cloneStatus'],
+        'cloneFailureReason': value['cloneFailureReason'],
         'hasRecaptchaSecretKey': value['hasRecaptchaSecretKey'],
     };
 }

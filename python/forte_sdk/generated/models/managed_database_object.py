@@ -49,7 +49,8 @@ class ManagedDatabaseObject(BaseModel):
     usage_bytes: Optional[StrictInt] = Field(default=None, alias="usageBytes")
     physical_usage_bytes: Optional[StrictInt] = Field(default=None, alias="physicalUsageBytes")
     usage_updated_at: Optional[datetime] = Field(default=None, alias="usageUpdatedAt")
-    __properties: ClassVar[List[str]] = ["managedDatabaseId", "managedDatabaseName", "type", "tier", "cpu", "memoryGb", "storageGb", "status", "connections", "createdTimestamp", "lastModifiedTimestamp", "host", "port", "databaseName", "sslMode", "readOnly", "cleanupUnlockExpiresAt", "usageBytes", "physicalUsageBytes", "usageUpdatedAt"]
+    cloned_from_resource_id: Optional[StrictStr] = Field(default=None, alias="clonedFromResourceId")
+    __properties: ClassVar[List[str]] = ["managedDatabaseId", "managedDatabaseName", "type", "tier", "cpu", "memoryGb", "storageGb", "status", "connections", "createdTimestamp", "lastModifiedTimestamp", "host", "port", "databaseName", "sslMode", "readOnly", "cleanupUnlockExpiresAt", "usageBytes", "physicalUsageBytes", "usageUpdatedAt", "clonedFromResourceId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -178,6 +179,11 @@ class ManagedDatabaseObject(BaseModel):
         if self.usage_updated_at is None and "usage_updated_at" in self.model_fields_set:
             _dict['usageUpdatedAt'] = None
 
+        # set to None if cloned_from_resource_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cloned_from_resource_id is None and "cloned_from_resource_id" in self.model_fields_set:
+            _dict['clonedFromResourceId'] = None
+
         return _dict
 
     @classmethod
@@ -209,7 +215,8 @@ class ManagedDatabaseObject(BaseModel):
             "cleanupUnlockExpiresAt": obj.get("cleanupUnlockExpiresAt"),
             "usageBytes": obj.get("usageBytes"),
             "physicalUsageBytes": obj.get("physicalUsageBytes"),
-            "usageUpdatedAt": obj.get("usageUpdatedAt")
+            "usageUpdatedAt": obj.get("usageUpdatedAt"),
+            "clonedFromResourceId": obj.get("clonedFromResourceId")
         })
         return _obj
 

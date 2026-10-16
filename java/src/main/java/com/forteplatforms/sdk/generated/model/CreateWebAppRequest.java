@@ -24,8 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.CreateServiceUrlConnectionRequest;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -50,7 +53,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateWebAppRequest.JSON_PROPERTY_INSTALL_COMMAND,
   CreateWebAppRequest.JSON_PROPERTY_SUBDIRECTORY,
   CreateWebAppRequest.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
-  CreateWebAppRequest.JSON_PROPERTY_SECRETS
+  CreateWebAppRequest.JSON_PROPERTY_SECRETS,
+  CreateWebAppRequest.JSON_PROPERTY_SERVICE_URL_CONNECTIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateWebAppRequest {
@@ -129,6 +133,9 @@ public class CreateWebAppRequest {
   public static final String JSON_PROPERTY_SECRETS = "secrets";
   @javax.annotation.Nullable
   private Map<String, String> secrets = new HashMap<>();
+
+  public static final String JSON_PROPERTY_SERVICE_URL_CONNECTIONS = "serviceUrlConnections";
+  private JsonNullable<List<CreateServiceUrlConnectionRequest>> serviceUrlConnections = JsonNullable.<List<CreateServiceUrlConnectionRequest>>undefined();
 
   public CreateWebAppRequest() { 
   }
@@ -493,6 +500,50 @@ public class CreateWebAppRequest {
   }
 
 
+  public CreateWebAppRequest serviceUrlConnections(@javax.annotation.Nullable List<CreateServiceUrlConnectionRequest> serviceUrlConnections) {
+    this.serviceUrlConnections = JsonNullable.<List<CreateServiceUrlConnectionRequest>>of(serviceUrlConnections);
+    return this;
+  }
+
+  public CreateWebAppRequest addServiceUrlConnectionsItem(CreateServiceUrlConnectionRequest serviceUrlConnectionsItem) {
+    if (this.serviceUrlConnections == null || !this.serviceUrlConnections.isPresent()) {
+      this.serviceUrlConnections = JsonNullable.<List<CreateServiceUrlConnectionRequest>>of(new ArrayList<>());
+    }
+    try {
+      this.serviceUrlConnections.get().add(serviceUrlConnectionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get serviceUrlConnections
+   * @return serviceUrlConnections
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<CreateServiceUrlConnectionRequest> getServiceUrlConnections() {
+        return serviceUrlConnections.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_URL_CONNECTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<CreateServiceUrlConnectionRequest>> getServiceUrlConnections_JsonNullable() {
+    return serviceUrlConnections;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SERVICE_URL_CONNECTIONS)
+  public void setServiceUrlConnections_JsonNullable(JsonNullable<List<CreateServiceUrlConnectionRequest>> serviceUrlConnections) {
+    this.serviceUrlConnections = serviceUrlConnections;
+  }
+
+  public void setServiceUrlConnections(@javax.annotation.Nullable List<CreateServiceUrlConnectionRequest> serviceUrlConnections) {
+    this.serviceUrlConnections = JsonNullable.<List<CreateServiceUrlConnectionRequest>>of(serviceUrlConnections);
+  }
+
+
   /**
    * Return true if this CreateWebAppRequest object is equal to o.
    */
@@ -516,7 +567,8 @@ public class CreateWebAppRequest {
         equalsNullable(this.installCommand, createWebAppRequest.installCommand) &&
         equalsNullable(this.subdirectory, createWebAppRequest.subdirectory) &&
         Objects.equals(this.environmentVariables, createWebAppRequest.environmentVariables) &&
-        Objects.equals(this.secrets, createWebAppRequest.secrets);
+        Objects.equals(this.secrets, createWebAppRequest.secrets) &&
+        equalsNullable(this.serviceUrlConnections, createWebAppRequest.serviceUrlConnections);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -525,7 +577,7 @@ public class CreateWebAppRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppName, githubRepositoryUrl, hashCodeNullable(githubBranch), buildTrigger, hashCodeNullable(buildCommand), hashCodeNullable(buildPath), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), environmentVariables, secrets);
+    return Objects.hash(webAppName, githubRepositoryUrl, hashCodeNullable(githubBranch), buildTrigger, hashCodeNullable(buildCommand), hashCodeNullable(buildPath), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), environmentVariables, secrets, hashCodeNullable(serviceUrlConnections));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -551,6 +603,7 @@ public class CreateWebAppRequest {
     sb.append("    subdirectory: ").append(toIndentedString(subdirectory)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
     sb.append("    secrets: ").append(toIndentedString(secrets)).append("\n");
+    sb.append("    serviceUrlConnections: ").append(toIndentedString(serviceUrlConnections)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -660,6 +713,16 @@ public class CreateWebAppRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%ssecrets%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getSecrets().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getSecrets().get(_key)))));
+      }
+    }
+
+    // add `serviceUrlConnections` to the URL query string
+    if (getServiceUrlConnections() != null) {
+      for (int i = 0; i < getServiceUrlConnections().size(); i++) {
+        if (getServiceUrlConnections().get(i) != null) {
+          joiner.add(getServiceUrlConnections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sserviceUrlConnections%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

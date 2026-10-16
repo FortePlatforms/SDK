@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from forte_sdk.generated.models.custom_domain import CustomDomain
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse
+from forte_sdk.generated.models.service_url_connection import ServiceUrlConnection
 from forte_sdk.generated.models.web_app_detection_response import WebAppDetectionResponse
 from typing import Optional, Set
 from typing_extensions import Self
@@ -37,6 +38,7 @@ class WebAppObject(BaseModel):
     forte_dns_endpoint: Optional[StrictStr] = Field(default=None, alias="forteDnsEndpoint")
     forte_dns_endpoint_enabled: StrictBool = Field(alias="forteDnsEndpointEnabled")
     custom_domains: Optional[List[CustomDomain]] = Field(default=None, alias="customDomains")
+    service_url_connections: List[ServiceUrlConnection] = Field(alias="serviceUrlConnections")
     build_path: Optional[StrictStr] = Field(default=None, alias="buildPath")
     web_app_type: Optional[StrictStr] = Field(default=None, alias="webAppType")
     package_manager: Optional[StrictStr] = Field(default=None, alias="packageManager")
@@ -66,9 +68,10 @@ class WebAppObject(BaseModel):
     enqueued_build_ids: Optional[List[StrictStr]] = Field(default=None, alias="enqueuedBuildIds")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
+    cloned_from_resource_id: Optional[StrictStr] = Field(default=None, alias="clonedFromResourceId")
     site_password_protection_enabled: Optional[StrictBool] = Field(default=None, alias="sitePasswordProtectionEnabled")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "liveBuildId", "liveCommitHash", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "sitePasswordProtectionEnabled", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "serviceUrlConnections", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "liveBuildId", "liveCommitHash", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "clonedFromResourceId", "sitePasswordProtectionEnabled", "secretKeys"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -143,6 +146,13 @@ class WebAppObject(BaseModel):
                 if _item_custom_domains:
                     _items.append(_item_custom_domains.to_dict())
             _dict['customDomains'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in service_url_connections (list)
+        _items = []
+        if self.service_url_connections:
+            for _item_service_url_connections in self.service_url_connections:
+                if _item_service_url_connections:
+                    _items.append(_item_service_url_connections.to_dict())
+            _dict['serviceUrlConnections'] = _items
         # override the default output from pydantic by calling `to_dict()` of detection_response
         if self.detection_response:
             _dict['detectionResponse'] = self.detection_response.to_dict()
@@ -269,6 +279,11 @@ class WebAppObject(BaseModel):
         if self.base_directory is None and "base_directory" in self.model_fields_set:
             _dict['baseDirectory'] = None
 
+        # set to None if cloned_from_resource_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cloned_from_resource_id is None and "cloned_from_resource_id" in self.model_fields_set:
+            _dict['clonedFromResourceId'] = None
+
         return _dict
 
     @classmethod
@@ -286,6 +301,7 @@ class WebAppObject(BaseModel):
             "forteDnsEndpoint": obj.get("forteDnsEndpoint"),
             "forteDnsEndpointEnabled": obj.get("forteDnsEndpointEnabled"),
             "customDomains": [CustomDomain.from_dict(_item) for _item in obj["customDomains"]] if obj.get("customDomains") is not None else None,
+            "serviceUrlConnections": [ServiceUrlConnection.from_dict(_item) for _item in obj["serviceUrlConnections"]] if obj.get("serviceUrlConnections") is not None else None,
             "buildPath": obj.get("buildPath"),
             "webAppType": obj.get("webAppType"),
             "packageManager": obj.get("packageManager"),
@@ -315,6 +331,7 @@ class WebAppObject(BaseModel):
             "enqueuedBuildIds": obj.get("enqueuedBuildIds"),
             "environmentVariables": obj.get("environmentVariables"),
             "baseDirectory": obj.get("baseDirectory"),
+            "clonedFromResourceId": obj.get("clonedFromResourceId"),
             "sitePasswordProtectionEnabled": obj.get("sitePasswordProtectionEnabled"),
             "secretKeys": obj.get("secretKeys")
         })

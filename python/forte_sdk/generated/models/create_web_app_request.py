@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.create_service_url_connection_request import CreateServiceUrlConnectionRequest
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -40,7 +41,8 @@ class CreateWebAppRequest(BaseModel):
     subdirectory: Optional[Annotated[str, Field(strict=True)]] = None
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     secrets: Optional[Dict[str, StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["webAppName", "githubRepositoryUrl", "githubBranch", "buildTrigger", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "subdirectory", "environmentVariables", "secrets"]
+    service_url_connections: Optional[Annotated[List[CreateServiceUrlConnectionRequest], Field(min_length=0, max_length=20)]] = Field(default=None, alias="serviceUrlConnections")
+    __properties: ClassVar[List[str]] = ["webAppName", "githubRepositoryUrl", "githubBranch", "buildTrigger", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "subdirectory", "environmentVariables", "secrets", "serviceUrlConnections"]
 
     @field_validator('web_app_name')
     def web_app_name_validate_regular_expression(cls, value):
@@ -137,6 +139,13 @@ class CreateWebAppRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in service_url_connections (list)
+        _items = []
+        if self.service_url_connections:
+            for _item_service_url_connections in self.service_url_connections:
+                if _item_service_url_connections:
+                    _items.append(_item_service_url_connections.to_dict())
+            _dict['serviceUrlConnections'] = _items
         # set to None if github_branch (nullable) is None
         # and model_fields_set contains the field
         if self.github_branch is None and "github_branch" in self.model_fields_set:
@@ -172,6 +181,11 @@ class CreateWebAppRequest(BaseModel):
         if self.subdirectory is None and "subdirectory" in self.model_fields_set:
             _dict['subdirectory'] = None
 
+        # set to None if service_url_connections (nullable) is None
+        # and model_fields_set contains the field
+        if self.service_url_connections is None and "service_url_connections" in self.model_fields_set:
+            _dict['serviceUrlConnections'] = None
+
         return _dict
 
     @classmethod
@@ -195,7 +209,8 @@ class CreateWebAppRequest(BaseModel):
             "installCommand": obj.get("installCommand"),
             "subdirectory": obj.get("subdirectory"),
             "environmentVariables": obj.get("environmentVariables"),
-            "secrets": obj.get("secrets")
+            "secrets": obj.get("secrets"),
+            "serviceUrlConnections": [CreateServiceUrlConnectionRequest.from_dict(_item) for _item in obj["serviceUrlConnections"]] if obj.get("serviceUrlConnections") is not None else None
         })
         return _obj
 

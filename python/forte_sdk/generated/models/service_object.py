@@ -59,8 +59,9 @@ class ServiceObject(BaseModel):
     enqueued_build_ids: Optional[List[StrictStr]] = Field(default=None, alias="enqueuedBuildIds")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
+    cloned_from_resource_id: Optional[StrictStr] = Field(default=None, alias="clonedFromResourceId")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "liveBuildId", "liveCommitHash", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "blockedPaths", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "liveBuildId", "liveCommitHash", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "blockedPaths", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "clonedFromResourceId", "secretKeys"]
 
     @field_validator('github_build_trigger')
     def github_build_trigger_validate_enum(cls, value):
@@ -189,6 +190,11 @@ class ServiceObject(BaseModel):
         if self.base_directory is None and "base_directory" in self.model_fields_set:
             _dict['baseDirectory'] = None
 
+        # set to None if cloned_from_resource_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cloned_from_resource_id is None and "cloned_from_resource_id" in self.model_fields_set:
+            _dict['clonedFromResourceId'] = None
+
         return _dict
 
     @classmethod
@@ -227,6 +233,7 @@ class ServiceObject(BaseModel):
             "enqueuedBuildIds": obj.get("enqueuedBuildIds"),
             "environmentVariables": obj.get("environmentVariables"),
             "baseDirectory": obj.get("baseDirectory"),
+            "clonedFromResourceId": obj.get("clonedFromResourceId"),
             "secretKeys": obj.get("secretKeys")
         })
         return _obj

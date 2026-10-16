@@ -60,7 +60,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ManagedDatabaseObject.JSON_PROPERTY_CLEANUP_UNLOCK_EXPIRES_AT,
   ManagedDatabaseObject.JSON_PROPERTY_USAGE_BYTES,
   ManagedDatabaseObject.JSON_PROPERTY_PHYSICAL_USAGE_BYTES,
-  ManagedDatabaseObject.JSON_PROPERTY_USAGE_UPDATED_AT
+  ManagedDatabaseObject.JSON_PROPERTY_USAGE_UPDATED_AT,
+  ManagedDatabaseObject.JSON_PROPERTY_CLONED_FROM_RESOURCE_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseObject {
@@ -246,6 +247,9 @@ public class ManagedDatabaseObject {
 
   public static final String JSON_PROPERTY_USAGE_UPDATED_AT = "usageUpdatedAt";
   private JsonNullable<OffsetDateTime> usageUpdatedAt = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_CLONED_FROM_RESOURCE_ID = "clonedFromResourceId";
+  private JsonNullable<String> clonedFromResourceId = JsonNullable.<String>undefined();
 
   public ManagedDatabaseObject() { 
   }
@@ -834,6 +838,38 @@ public class ManagedDatabaseObject {
   }
 
 
+  public ManagedDatabaseObject clonedFromResourceId(@javax.annotation.Nullable String clonedFromResourceId) {
+    this.clonedFromResourceId = JsonNullable.<String>of(clonedFromResourceId);
+    return this;
+  }
+
+  /**
+   * Get clonedFromResourceId
+   * @return clonedFromResourceId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getClonedFromResourceId() {
+        return clonedFromResourceId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CLONED_FROM_RESOURCE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getClonedFromResourceId_JsonNullable() {
+    return clonedFromResourceId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLONED_FROM_RESOURCE_ID)
+  public void setClonedFromResourceId_JsonNullable(JsonNullable<String> clonedFromResourceId) {
+    this.clonedFromResourceId = clonedFromResourceId;
+  }
+
+  public void setClonedFromResourceId(@javax.annotation.Nullable String clonedFromResourceId) {
+    this.clonedFromResourceId = JsonNullable.<String>of(clonedFromResourceId);
+  }
+
+
   /**
    * Return true if this ManagedDatabaseObject object is equal to o.
    */
@@ -865,7 +901,8 @@ public class ManagedDatabaseObject {
         equalsNullable(this.cleanupUnlockExpiresAt, managedDatabaseObject.cleanupUnlockExpiresAt) &&
         equalsNullable(this.usageBytes, managedDatabaseObject.usageBytes) &&
         equalsNullable(this.physicalUsageBytes, managedDatabaseObject.physicalUsageBytes) &&
-        equalsNullable(this.usageUpdatedAt, managedDatabaseObject.usageUpdatedAt);
+        equalsNullable(this.usageUpdatedAt, managedDatabaseObject.usageUpdatedAt) &&
+        equalsNullable(this.clonedFromResourceId, managedDatabaseObject.clonedFromResourceId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -874,7 +911,7 @@ public class ManagedDatabaseObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, hashCodeNullable(cpu), hashCodeNullable(memoryGb), storageGb, status, connections, createdTimestamp, hashCodeNullable(lastModifiedTimestamp), hashCodeNullable(host), hashCodeNullable(port), hashCodeNullable(databaseName), hashCodeNullable(sslMode), hashCodeNullable(readOnly), hashCodeNullable(cleanupUnlockExpiresAt), hashCodeNullable(usageBytes), hashCodeNullable(physicalUsageBytes), hashCodeNullable(usageUpdatedAt));
+    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, hashCodeNullable(cpu), hashCodeNullable(memoryGb), storageGb, status, connections, createdTimestamp, hashCodeNullable(lastModifiedTimestamp), hashCodeNullable(host), hashCodeNullable(port), hashCodeNullable(databaseName), hashCodeNullable(sslMode), hashCodeNullable(readOnly), hashCodeNullable(cleanupUnlockExpiresAt), hashCodeNullable(usageBytes), hashCodeNullable(physicalUsageBytes), hashCodeNullable(usageUpdatedAt), hashCodeNullable(clonedFromResourceId));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -908,6 +945,7 @@ public class ManagedDatabaseObject {
     sb.append("    usageBytes: ").append(toIndentedString(usageBytes)).append("\n");
     sb.append("    physicalUsageBytes: ").append(toIndentedString(physicalUsageBytes)).append("\n");
     sb.append("    usageUpdatedAt: ").append(toIndentedString(usageUpdatedAt)).append("\n");
+    sb.append("    clonedFromResourceId: ").append(toIndentedString(clonedFromResourceId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1055,6 +1093,11 @@ public class ManagedDatabaseObject {
     // add `usageUpdatedAt` to the URL query string
     if (getUsageUpdatedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%susageUpdatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsageUpdatedAt()))));
+    }
+
+    // add `clonedFromResourceId` to the URL query string
+    if (getClonedFromResourceId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclonedFromResourceId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClonedFromResourceId()))));
     }
 
     return joiner.toString();

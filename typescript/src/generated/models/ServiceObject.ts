@@ -206,6 +206,12 @@ export interface ServiceObject {
     baseDirectory?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof ServiceObject
+     */
+    clonedFromResourceId?: string | null;
+    /**
+     * 
      * @type {Set<string>}
      * @memberof ServiceObject
      */
@@ -271,6 +277,7 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'enqueuedBuildIds': json['enqueuedBuildIds'] == null ? undefined : json['enqueuedBuildIds'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
         'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
+        'clonedFromResourceId': json['clonedFromResourceId'] == null ? undefined : json['clonedFromResourceId'],
         'secretKeys': json['secretKeys'] == null ? undefined : new Set(json['secretKeys']),
     };
 }
@@ -312,6 +319,7 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'enqueuedBuildIds': value['enqueuedBuildIds'],
         'environmentVariables': value['environmentVariables'],
         'baseDirectory': value['baseDirectory'],
+        'clonedFromResourceId': value['clonedFromResourceId'],
         'secretKeys': value['secretKeys'] == null ? undefined : Array.from(value['secretKeys'] as Set<any>),
     };
 }

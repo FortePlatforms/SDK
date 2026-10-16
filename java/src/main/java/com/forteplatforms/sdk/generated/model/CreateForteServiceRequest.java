@@ -55,6 +55,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateForteServiceRequest.JSON_PROPERTY_HEALTH_CHECK_PATH,
   CreateForteServiceRequest.JSON_PROPERTY_BASE_DIRECTORY,
   CreateForteServiceRequest.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED,
+  CreateForteServiceRequest.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
+  CreateForteServiceRequest.JSON_PROPERTY_BLOCKED_PATHS,
   CreateForteServiceRequest.JSON_PROPERTY_DATABASE_CONNECTIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -138,6 +140,12 @@ public class CreateForteServiceRequest {
 
   public static final String JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED = "requestResponseBodyLoggingEnabled";
   private JsonNullable<Boolean> requestResponseBodyLoggingEnabled = JsonNullable.<Boolean>undefined();
+
+  public static final String JSON_PROPERTY_AUTH_PATH_EXCLUSIONS = "authPathExclusions";
+  private JsonNullable<List<String>> authPathExclusions = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_BLOCKED_PATHS = "blockedPaths";
+  private JsonNullable<List<String>> blockedPaths = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_DATABASE_CONNECTIONS = "databaseConnections";
   private JsonNullable<List<CreateServiceDatabaseConnectionRequest>> databaseConnections = JsonNullable.<List<CreateServiceDatabaseConnectionRequest>>undefined();
@@ -541,6 +549,94 @@ public class CreateForteServiceRequest {
   }
 
 
+  public CreateForteServiceRequest authPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
+    this.authPathExclusions = JsonNullable.<List<String>>of(authPathExclusions);
+    return this;
+  }
+
+  public CreateForteServiceRequest addAuthPathExclusionsItem(String authPathExclusionsItem) {
+    if (this.authPathExclusions == null || !this.authPathExclusions.isPresent()) {
+      this.authPathExclusions = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.authPathExclusions.get().add(authPathExclusionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get authPathExclusions
+   * @return authPathExclusions
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getAuthPathExclusions() {
+        return authPathExclusions.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_AUTH_PATH_EXCLUSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getAuthPathExclusions_JsonNullable() {
+    return authPathExclusions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUTH_PATH_EXCLUSIONS)
+  public void setAuthPathExclusions_JsonNullable(JsonNullable<List<String>> authPathExclusions) {
+    this.authPathExclusions = authPathExclusions;
+  }
+
+  public void setAuthPathExclusions(@javax.annotation.Nullable List<String> authPathExclusions) {
+    this.authPathExclusions = JsonNullable.<List<String>>of(authPathExclusions);
+  }
+
+
+  public CreateForteServiceRequest blockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+    this.blockedPaths = JsonNullable.<List<String>>of(blockedPaths);
+    return this;
+  }
+
+  public CreateForteServiceRequest addBlockedPathsItem(String blockedPathsItem) {
+    if (this.blockedPaths == null || !this.blockedPaths.isPresent()) {
+      this.blockedPaths = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.blockedPaths.get().add(blockedPathsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get blockedPaths
+   * @return blockedPaths
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getBlockedPaths() {
+        return blockedPaths.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_BLOCKED_PATHS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getBlockedPaths_JsonNullable() {
+    return blockedPaths;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BLOCKED_PATHS)
+  public void setBlockedPaths_JsonNullable(JsonNullable<List<String>> blockedPaths) {
+    this.blockedPaths = blockedPaths;
+  }
+
+  public void setBlockedPaths(@javax.annotation.Nullable List<String> blockedPaths) {
+    this.blockedPaths = JsonNullable.<List<String>>of(blockedPaths);
+  }
+
+
   public CreateForteServiceRequest databaseConnections(@javax.annotation.Nullable List<CreateServiceDatabaseConnectionRequest> databaseConnections) {
     this.databaseConnections = JsonNullable.<List<CreateServiceDatabaseConnectionRequest>>of(databaseConnections);
     return this;
@@ -610,6 +706,8 @@ public class CreateForteServiceRequest {
         equalsNullable(this.healthCheckPath, createForteServiceRequest.healthCheckPath) &&
         equalsNullable(this.baseDirectory, createForteServiceRequest.baseDirectory) &&
         equalsNullable(this.requestResponseBodyLoggingEnabled, createForteServiceRequest.requestResponseBodyLoggingEnabled) &&
+        equalsNullable(this.authPathExclusions, createForteServiceRequest.authPathExclusions) &&
+        equalsNullable(this.blockedPaths, createForteServiceRequest.blockedPaths) &&
         equalsNullable(this.databaseConnections, createForteServiceRequest.databaseConnections);
   }
 
@@ -619,7 +717,7 @@ public class CreateForteServiceRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(githubRepositoryUrl, buildTrigger, hashCodeNullable(githubBranch), serviceName, environmentVariables, secrets, hashCodeNullable(baseInstances), regionReplicas, hashCodeNullable(containerCpu), hashCodeNullable(healthCheckPort), hashCodeNullable(healthCheckPath), hashCodeNullable(baseDirectory), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(databaseConnections));
+    return Objects.hash(githubRepositoryUrl, buildTrigger, hashCodeNullable(githubBranch), serviceName, environmentVariables, secrets, hashCodeNullable(baseInstances), regionReplicas, hashCodeNullable(containerCpu), hashCodeNullable(healthCheckPort), hashCodeNullable(healthCheckPath), hashCodeNullable(baseDirectory), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), hashCodeNullable(databaseConnections));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -646,6 +744,8 @@ public class CreateForteServiceRequest {
     sb.append("    healthCheckPath: ").append(toIndentedString(healthCheckPath)).append("\n");
     sb.append("    baseDirectory: ").append(toIndentedString(baseDirectory)).append("\n");
     sb.append("    requestResponseBodyLoggingEnabled: ").append(toIndentedString(requestResponseBodyLoggingEnabled)).append("\n");
+    sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
+    sb.append("    blockedPaths: ").append(toIndentedString(blockedPaths)).append("\n");
     sb.append("    databaseConnections: ").append(toIndentedString(databaseConnections)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -766,6 +866,24 @@ public class CreateForteServiceRequest {
     // add `requestResponseBodyLoggingEnabled` to the URL query string
     if (getRequestResponseBodyLoggingEnabled() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srequestResponseBodyLoggingEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequestResponseBodyLoggingEnabled()))));
+    }
+
+    // add `authPathExclusions` to the URL query string
+    if (getAuthPathExclusions() != null) {
+      for (int i = 0; i < getAuthPathExclusions().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sauthPathExclusions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getAuthPathExclusions().get(i)))));
+      }
+    }
+
+    // add `blockedPaths` to the URL query string
+    if (getBlockedPaths() != null) {
+      for (int i = 0; i < getBlockedPaths().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sblockedPaths%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getBlockedPaths().get(i)))));
+      }
     }
 
     // add `databaseConnections` to the URL query string

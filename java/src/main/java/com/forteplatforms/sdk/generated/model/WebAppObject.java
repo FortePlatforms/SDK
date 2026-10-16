@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.forteplatforms.sdk.generated.model.CustomDomain;
 import com.forteplatforms.sdk.generated.model.DockerfileGenerationResponse;
+import com.forteplatforms.sdk.generated.model.ServiceUrlConnection;
 import com.forteplatforms.sdk.generated.model.WebAppDetectionResponse;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_FORTE_DNS_ENDPOINT,
   WebAppObject.JSON_PROPERTY_FORTE_DNS_ENDPOINT_ENABLED,
   WebAppObject.JSON_PROPERTY_CUSTOM_DOMAINS,
+  WebAppObject.JSON_PROPERTY_SERVICE_URL_CONNECTIONS,
   WebAppObject.JSON_PROPERTY_BUILD_PATH,
   WebAppObject.JSON_PROPERTY_WEB_APP_TYPE,
   WebAppObject.JSON_PROPERTY_PACKAGE_MANAGER,
@@ -82,6 +84,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_ENQUEUED_BUILD_IDS,
   WebAppObject.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
   WebAppObject.JSON_PROPERTY_BASE_DIRECTORY,
+  WebAppObject.JSON_PROPERTY_CLONED_FROM_RESOURCE_ID,
   WebAppObject.JSON_PROPERTY_SITE_PASSWORD_PROTECTION_ENABLED,
   WebAppObject.JSON_PROPERTY_SECRET_KEYS
 })
@@ -104,6 +107,10 @@ public class WebAppObject {
 
   public static final String JSON_PROPERTY_CUSTOM_DOMAINS = "customDomains";
   private JsonNullable<List<CustomDomain>> customDomains = JsonNullable.<List<CustomDomain>>undefined();
+
+  public static final String JSON_PROPERTY_SERVICE_URL_CONNECTIONS = "serviceUrlConnections";
+  @javax.annotation.Nonnull
+  private List<ServiceUrlConnection> serviceUrlConnections = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BUILD_PATH = "buildPath";
   private JsonNullable<String> buildPath = JsonNullable.<String>undefined();
@@ -308,6 +315,9 @@ public class WebAppObject {
   public static final String JSON_PROPERTY_BASE_DIRECTORY = "baseDirectory";
   private JsonNullable<String> baseDirectory = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_CLONED_FROM_RESOURCE_ID = "clonedFromResourceId";
+  private JsonNullable<String> clonedFromResourceId = JsonNullable.<String>undefined();
+
   public static final String JSON_PROPERTY_SITE_PASSWORD_PROTECTION_ENABLED = "sitePasswordProtectionEnabled";
   @javax.annotation.Nullable
   private Boolean sitePasswordProtectionEnabled;
@@ -464,6 +474,38 @@ public class WebAppObject {
 
   public void setCustomDomains(@javax.annotation.Nullable List<CustomDomain> customDomains) {
     this.customDomains = JsonNullable.<List<CustomDomain>>of(customDomains);
+  }
+
+
+  public WebAppObject serviceUrlConnections(@javax.annotation.Nonnull List<ServiceUrlConnection> serviceUrlConnections) {
+    this.serviceUrlConnections = serviceUrlConnections;
+    return this;
+  }
+
+  public WebAppObject addServiceUrlConnectionsItem(ServiceUrlConnection serviceUrlConnectionsItem) {
+    if (this.serviceUrlConnections == null) {
+      this.serviceUrlConnections = new ArrayList<>();
+    }
+    this.serviceUrlConnections.add(serviceUrlConnectionsItem);
+    return this;
+  }
+
+  /**
+   * Get serviceUrlConnections
+   * @return serviceUrlConnections
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_URL_CONNECTIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<ServiceUrlConnection> getServiceUrlConnections() {
+    return serviceUrlConnections;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_URL_CONNECTIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setServiceUrlConnections(@javax.annotation.Nonnull List<ServiceUrlConnection> serviceUrlConnections) {
+    this.serviceUrlConnections = serviceUrlConnections;
   }
 
 
@@ -1359,6 +1401,38 @@ public class WebAppObject {
   }
 
 
+  public WebAppObject clonedFromResourceId(@javax.annotation.Nullable String clonedFromResourceId) {
+    this.clonedFromResourceId = JsonNullable.<String>of(clonedFromResourceId);
+    return this;
+  }
+
+  /**
+   * Get clonedFromResourceId
+   * @return clonedFromResourceId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getClonedFromResourceId() {
+        return clonedFromResourceId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CLONED_FROM_RESOURCE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getClonedFromResourceId_JsonNullable() {
+    return clonedFromResourceId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLONED_FROM_RESOURCE_ID)
+  public void setClonedFromResourceId_JsonNullable(JsonNullable<String> clonedFromResourceId) {
+    this.clonedFromResourceId = clonedFromResourceId;
+  }
+
+  public void setClonedFromResourceId(@javax.annotation.Nullable String clonedFromResourceId) {
+    this.clonedFromResourceId = JsonNullable.<String>of(clonedFromResourceId);
+  }
+
+
   public WebAppObject sitePasswordProtectionEnabled(@javax.annotation.Nullable Boolean sitePasswordProtectionEnabled) {
     this.sitePasswordProtectionEnabled = sitePasswordProtectionEnabled;
     return this;
@@ -1433,6 +1507,7 @@ public class WebAppObject {
         equalsNullable(this.forteDnsEndpoint, webAppObject.forteDnsEndpoint) &&
         Objects.equals(this.forteDnsEndpointEnabled, webAppObject.forteDnsEndpointEnabled) &&
         equalsNullable(this.customDomains, webAppObject.customDomains) &&
+        Objects.equals(this.serviceUrlConnections, webAppObject.serviceUrlConnections) &&
         equalsNullable(this.buildPath, webAppObject.buildPath) &&
         equalsNullable(this.webAppType, webAppObject.webAppType) &&
         equalsNullable(this.packageManager, webAppObject.packageManager) &&
@@ -1462,6 +1537,7 @@ public class WebAppObject {
         equalsNullable(this.enqueuedBuildIds, webAppObject.enqueuedBuildIds) &&
         Objects.equals(this.environmentVariables, webAppObject.environmentVariables) &&
         equalsNullable(this.baseDirectory, webAppObject.baseDirectory) &&
+        equalsNullable(this.clonedFromResourceId, webAppObject.clonedFromResourceId) &&
         Objects.equals(this.sitePasswordProtectionEnabled, webAppObject.sitePasswordProtectionEnabled) &&
         Objects.equals(this.secretKeys, webAppObject.secretKeys);
   }
@@ -1472,7 +1548,7 @@ public class WebAppObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppId, webAppName, hashCodeNullable(forteDnsEndpoint), forteDnsEndpointEnabled, hashCodeNullable(customDomains), hashCodeNullable(buildPath), hashCodeNullable(webAppType), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), hashCodeNullable(detectedFramework), hashCodeNullable(monorepoType), hashCodeNullable(workspaceRoot), hashCodeNullable(appPackageName), hashCodeNullable(containerImageUri), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), detectionResponse, hashCodeNullable(dockerfilePath), dockerfileDetectionResponse, hashCodeNullable(hostingProviderAppId), hashCodeNullable(hostingProviderBranchName), hashCodeNullable(hostingProviderDomainStatus), hashCodeNullable(hostingProviderDomainAvailableAt), createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), sitePasswordProtectionEnabled, secretKeys);
+    return Objects.hash(webAppId, webAppName, hashCodeNullable(forteDnsEndpoint), forteDnsEndpointEnabled, hashCodeNullable(customDomains), serviceUrlConnections, hashCodeNullable(buildPath), hashCodeNullable(webAppType), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), hashCodeNullable(detectedFramework), hashCodeNullable(monorepoType), hashCodeNullable(workspaceRoot), hashCodeNullable(appPackageName), hashCodeNullable(containerImageUri), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), detectionResponse, hashCodeNullable(dockerfilePath), dockerfileDetectionResponse, hashCodeNullable(hostingProviderAppId), hashCodeNullable(hostingProviderBranchName), hashCodeNullable(hostingProviderDomainStatus), hashCodeNullable(hostingProviderDomainAvailableAt), createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), hashCodeNullable(clonedFromResourceId), sitePasswordProtectionEnabled, secretKeys);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1491,6 +1567,7 @@ public class WebAppObject {
     sb.append("    forteDnsEndpoint: ").append(toIndentedString(forteDnsEndpoint)).append("\n");
     sb.append("    forteDnsEndpointEnabled: ").append(toIndentedString(forteDnsEndpointEnabled)).append("\n");
     sb.append("    customDomains: ").append(toIndentedString(customDomains)).append("\n");
+    sb.append("    serviceUrlConnections: ").append(toIndentedString(serviceUrlConnections)).append("\n");
     sb.append("    buildPath: ").append(toIndentedString(buildPath)).append("\n");
     sb.append("    webAppType: ").append(toIndentedString(webAppType)).append("\n");
     sb.append("    packageManager: ").append(toIndentedString(packageManager)).append("\n");
@@ -1520,6 +1597,7 @@ public class WebAppObject {
     sb.append("    enqueuedBuildIds: ").append(toIndentedString(enqueuedBuildIds)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
     sb.append("    baseDirectory: ").append(toIndentedString(baseDirectory)).append("\n");
+    sb.append("    clonedFromResourceId: ").append(toIndentedString(clonedFromResourceId)).append("\n");
     sb.append("    sitePasswordProtectionEnabled: ").append(toIndentedString(sitePasswordProtectionEnabled)).append("\n");
     sb.append("    secretKeys: ").append(toIndentedString(secretKeys)).append("\n");
     sb.append("}");
@@ -1591,6 +1669,16 @@ public class WebAppObject {
       for (int i = 0; i < getCustomDomains().size(); i++) {
         if (getCustomDomains().get(i) != null) {
           joiner.add(getCustomDomains().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scustomDomains%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `serviceUrlConnections` to the URL query string
+    if (getServiceUrlConnections() != null) {
+      for (int i = 0; i < getServiceUrlConnections().size(); i++) {
+        if (getServiceUrlConnections().get(i) != null) {
+          joiner.add(getServiceUrlConnections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sserviceUrlConnections%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
@@ -1747,6 +1835,11 @@ public class WebAppObject {
     // add `baseDirectory` to the URL query string
     if (getBaseDirectory() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbaseDirectory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBaseDirectory()))));
+    }
+
+    // add `clonedFromResourceId` to the URL query string
+    if (getClonedFromResourceId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclonedFromResourceId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClonedFromResourceId()))));
     }
 
     // add `sitePasswordProtectionEnabled` to the URL query string

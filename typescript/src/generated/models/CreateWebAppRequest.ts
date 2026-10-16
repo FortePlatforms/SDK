@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CreateServiceUrlConnectionRequest } from './CreateServiceUrlConnectionRequest';
+import {
+    CreateServiceUrlConnectionRequestFromJSON,
+    CreateServiceUrlConnectionRequestFromJSONTyped,
+    CreateServiceUrlConnectionRequestToJSON,
+    CreateServiceUrlConnectionRequestToJSONTyped,
+} from './CreateServiceUrlConnectionRequest';
+
 /**
  * 
  * @export
@@ -91,6 +99,12 @@ export interface CreateWebAppRequest {
      * @memberof CreateWebAppRequest
      */
     secrets?: { [key: string]: string; };
+    /**
+     * 
+     * @type {Array<CreateServiceUrlConnectionRequest>}
+     * @memberof CreateWebAppRequest
+     */
+    serviceUrlConnections?: Array<CreateServiceUrlConnectionRequest> | null;
 }
 
 
@@ -136,6 +150,7 @@ export function CreateWebAppRequestFromJSONTyped(json: any, ignoreDiscriminator:
         'subdirectory': json['subdirectory'] == null ? undefined : json['subdirectory'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
         'secrets': json['secrets'] == null ? undefined : json['secrets'],
+        'serviceUrlConnections': json['serviceUrlConnections'] == null ? undefined : ((json['serviceUrlConnections'] as Array<any>).map(CreateServiceUrlConnectionRequestFromJSON)),
     };
 }
 
@@ -162,6 +177,7 @@ export function CreateWebAppRequestToJSONTyped(value?: CreateWebAppRequest | nul
         'subdirectory': value['subdirectory'],
         'environmentVariables': value['environmentVariables'],
         'secrets': value['secrets'],
+        'serviceUrlConnections': value['serviceUrlConnections'] == null ? undefined : ((value['serviceUrlConnections'] as Array<any>).map(CreateServiceUrlConnectionRequestToJSON)),
     };
 }
 

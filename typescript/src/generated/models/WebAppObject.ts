@@ -27,6 +27,13 @@ import {
     WebAppDetectionResponseToJSON,
     WebAppDetectionResponseToJSONTyped,
 } from './WebAppDetectionResponse';
+import type { ServiceUrlConnection } from './ServiceUrlConnection';
+import {
+    ServiceUrlConnectionFromJSON,
+    ServiceUrlConnectionFromJSONTyped,
+    ServiceUrlConnectionToJSON,
+    ServiceUrlConnectionToJSONTyped,
+} from './ServiceUrlConnection';
 import type { DockerfileGenerationResponse } from './DockerfileGenerationResponse';
 import {
     DockerfileGenerationResponseFromJSON,
@@ -71,6 +78,12 @@ export interface WebAppObject {
      * @memberof WebAppObject
      */
     customDomains?: Array<CustomDomain> | null;
+    /**
+     * 
+     * @type {Array<ServiceUrlConnection>}
+     * @memberof WebAppObject
+     */
+    serviceUrlConnections: Array<ServiceUrlConnection>;
     /**
      * 
      * @type {string}
@@ -247,6 +260,12 @@ export interface WebAppObject {
     baseDirectory?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof WebAppObject
+     */
+    clonedFromResourceId?: string | null;
+    /**
+     * 
      * @type {boolean}
      * @memberof WebAppObject
      */
@@ -296,6 +315,7 @@ export type WebAppObjectGithubBuildTriggerType = typeof WebAppObjectGithubBuildT
 export function instanceOfWebAppObject(value: object): value is WebAppObject {
     if (!('webAppName' in value) || value['webAppName'] === undefined) return false;
     if (!('forteDnsEndpointEnabled' in value) || value['forteDnsEndpointEnabled'] === undefined) return false;
+    if (!('serviceUrlConnections' in value) || value['serviceUrlConnections'] === undefined) return false;
     if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
     if (!('githubBuildTrigger' in value) || value['githubBuildTrigger'] === undefined) return false;
     return true;
@@ -316,6 +336,7 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'forteDnsEndpoint': json['forteDnsEndpoint'] == null ? undefined : json['forteDnsEndpoint'],
         'forteDnsEndpointEnabled': json['forteDnsEndpointEnabled'],
         'customDomains': json['customDomains'] == null ? undefined : ((json['customDomains'] as Array<any>).map(CustomDomainFromJSON)),
+        'serviceUrlConnections': ((json['serviceUrlConnections'] as Array<any>).map(ServiceUrlConnectionFromJSON)),
         'buildPath': json['buildPath'] == null ? undefined : json['buildPath'],
         'webAppType': json['webAppType'] == null ? undefined : json['webAppType'],
         'packageManager': json['packageManager'] == null ? undefined : json['packageManager'],
@@ -345,6 +366,7 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'enqueuedBuildIds': json['enqueuedBuildIds'] == null ? undefined : json['enqueuedBuildIds'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
         'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
+        'clonedFromResourceId': json['clonedFromResourceId'] == null ? undefined : json['clonedFromResourceId'],
         'sitePasswordProtectionEnabled': json['sitePasswordProtectionEnabled'] == null ? undefined : json['sitePasswordProtectionEnabled'],
         'secretKeys': json['secretKeys'] == null ? undefined : new Set(json['secretKeys']),
     };
@@ -366,6 +388,7 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'forteDnsEndpoint': value['forteDnsEndpoint'],
         'forteDnsEndpointEnabled': value['forteDnsEndpointEnabled'],
         'customDomains': value['customDomains'] == null ? undefined : ((value['customDomains'] as Array<any>).map(CustomDomainToJSON)),
+        'serviceUrlConnections': ((value['serviceUrlConnections'] as Array<any>).map(ServiceUrlConnectionToJSON)),
         'buildPath': value['buildPath'],
         'webAppType': value['webAppType'],
         'packageManager': value['packageManager'],
@@ -395,6 +418,7 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'enqueuedBuildIds': value['enqueuedBuildIds'],
         'environmentVariables': value['environmentVariables'],
         'baseDirectory': value['baseDirectory'],
+        'clonedFromResourceId': value['clonedFromResourceId'],
         'sitePasswordProtectionEnabled': value['sitePasswordProtectionEnabled'],
         'secretKeys': value['secretKeys'] == null ? undefined : Array.from(value['secretKeys'] as Set<any>),
     };

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.480"
+__version__ = "1.0.487"
 
 # Define package exports
 __all__ = [
@@ -54,6 +54,8 @@ __all__ = [
     "ContentShare",
     "ContentShareRequestItem",
     "CreateActionRequest",
+    "CreateCloneEnvironmentRequest",
+    "CreateCloneEnvironmentResponse",
     "CreateContentUploadLinkRequest",
     "CreateContentUploadLinkResponse",
     "CreateCustomDomainRequest",
@@ -80,6 +82,8 @@ __all__ = [
     "CreateServiceDatabaseConnectionRequest",
     "CreateServiceRequestProxyRequest",
     "CreateServiceRequestProxyResponse",
+    "CreateServiceUrlConnectionRequest",
+    "CreateServiceUrlConnectionResponse",
     "CreateSubscriptionPreviewRequest",
     "CreateSubscriptionPreviewResponse",
     "CreateSubscriptionRequest",
@@ -206,6 +210,7 @@ __all__ = [
     "ServiceMetricsResponse",
     "ServiceObject",
     "ServiceRouteMetricsResponse",
+    "ServiceUrlConnection",
     "SessionSummary",
     "SpenderAggregate",
     "StateCurrencyTotals",
@@ -230,6 +235,8 @@ __all__ = [
     "UpdatePaymentMethodRequest",
     "UpdatePaymentTriggerRequest",
     "UpdateProjectRequest",
+    "UpdateServiceUrlConnectionRequest",
+    "UpdateServiceUrlConnectionResponse",
     "UpdateSubscriptionPreviewRequest",
     "UpdateSubscriptionRequest",
     "UpdateUserRequest",
@@ -288,6 +295,8 @@ from forte_sdk.generated.models.content_object import ContentObject as ContentOb
 from forte_sdk.generated.models.content_share import ContentShare as ContentShare
 from forte_sdk.generated.models.content_share_request_item import ContentShareRequestItem as ContentShareRequestItem
 from forte_sdk.generated.models.create_action_request import CreateActionRequest as CreateActionRequest
+from forte_sdk.generated.models.create_clone_environment_request import CreateCloneEnvironmentRequest as CreateCloneEnvironmentRequest
+from forte_sdk.generated.models.create_clone_environment_response import CreateCloneEnvironmentResponse as CreateCloneEnvironmentResponse
 from forte_sdk.generated.models.create_content_upload_link_request import CreateContentUploadLinkRequest as CreateContentUploadLinkRequest
 from forte_sdk.generated.models.create_content_upload_link_response import CreateContentUploadLinkResponse as CreateContentUploadLinkResponse
 from forte_sdk.generated.models.create_custom_domain_request import CreateCustomDomainRequest as CreateCustomDomainRequest
@@ -314,6 +323,8 @@ from forte_sdk.generated.models.create_project_api_key_response import CreatePro
 from forte_sdk.generated.models.create_service_database_connection_request import CreateServiceDatabaseConnectionRequest as CreateServiceDatabaseConnectionRequest
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
+from forte_sdk.generated.models.create_service_url_connection_request import CreateServiceUrlConnectionRequest as CreateServiceUrlConnectionRequest
+from forte_sdk.generated.models.create_service_url_connection_response import CreateServiceUrlConnectionResponse as CreateServiceUrlConnectionResponse
 from forte_sdk.generated.models.create_subscription_preview_request import CreateSubscriptionPreviewRequest as CreateSubscriptionPreviewRequest
 from forte_sdk.generated.models.create_subscription_preview_response import CreateSubscriptionPreviewResponse as CreateSubscriptionPreviewResponse
 from forte_sdk.generated.models.create_subscription_request import CreateSubscriptionRequest as CreateSubscriptionRequest
@@ -440,6 +451,7 @@ from forte_sdk.generated.models.service_build_request_object import ServiceBuild
 from forte_sdk.generated.models.service_metrics_response import ServiceMetricsResponse as ServiceMetricsResponse
 from forte_sdk.generated.models.service_object import ServiceObject as ServiceObject
 from forte_sdk.generated.models.service_route_metrics_response import ServiceRouteMetricsResponse as ServiceRouteMetricsResponse
+from forte_sdk.generated.models.service_url_connection import ServiceUrlConnection as ServiceUrlConnection
 from forte_sdk.generated.models.session_summary import SessionSummary as SessionSummary
 from forte_sdk.generated.models.spender_aggregate import SpenderAggregate as SpenderAggregate
 from forte_sdk.generated.models.state_currency_totals import StateCurrencyTotals as StateCurrencyTotals
@@ -464,6 +476,8 @@ from forte_sdk.generated.models.update_notification_templates_request import Upd
 from forte_sdk.generated.models.update_payment_method_request import UpdatePaymentMethodRequest as UpdatePaymentMethodRequest
 from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest as UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest as UpdateProjectRequest
+from forte_sdk.generated.models.update_service_url_connection_request import UpdateServiceUrlConnectionRequest as UpdateServiceUrlConnectionRequest
+from forte_sdk.generated.models.update_service_url_connection_response import UpdateServiceUrlConnectionResponse as UpdateServiceUrlConnectionResponse
 from forte_sdk.generated.models.update_subscription_preview_request import UpdateSubscriptionPreviewRequest as UpdateSubscriptionPreviewRequest
 from forte_sdk.generated.models.update_subscription_request import UpdateSubscriptionRequest as UpdateSubscriptionRequest
 from forte_sdk.generated.models.update_user_request import UpdateUserRequest as UpdateUserRequest

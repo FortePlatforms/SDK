@@ -57,8 +57,13 @@ class ProjectObject(BaseModel):
     notification_templates_config: Optional[NotificationTemplatesConfig] = Field(default=None, alias="notificationTemplatesConfig")
     payment_triggers: Optional[List[PaymentTriggerConfig]] = Field(default=None, alias="paymentTriggers")
     email_sender: Optional[StrictStr] = Field(default=None, alias="emailSender")
+    parent_project_id: Optional[StrictStr] = Field(default=None, alias="parentProjectId")
+    cloned_from_project_id: Optional[StrictStr] = Field(default=None, alias="clonedFromProjectId")
+    environment_name: Optional[StrictStr] = Field(default=None, alias="environmentName")
+    clone_status: Optional[StrictStr] = Field(default=None, alias="cloneStatus")
+    clone_failure_reason: Optional[StrictStr] = Field(default=None, alias="cloneFailureReason")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "parentProjectId", "clonedFromProjectId", "environmentName", "cloneStatus", "cloneFailureReason", "hasRecaptchaSecretKey"]
 
     @field_validator('email_sender')
     def email_sender_validate_enum(cls, value):
@@ -68,6 +73,16 @@ class ProjectObject(BaseModel):
 
         if value not in set(['FORTE_SANDBOX', 'ACCOUNT_DOMAIN']):
             raise ValueError("must be one of enum values ('FORTE_SANDBOX', 'ACCOUNT_DOMAIN')")
+        return value
+
+    @field_validator('clone_status')
+    def clone_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['PROVISIONING_DATABASES', 'DEPLOYING_SERVICES', 'DEPLOYING_WEBSITES', 'ENABLING_ACTIONS', 'COMPLETED', 'FAILED']):
+            raise ValueError("must be one of enum values ('PROVISIONING_DATABASES', 'DEPLOYING_SERVICES', 'DEPLOYING_WEBSITES', 'ENABLING_ACTIONS', 'COMPLETED', 'FAILED')")
         return value
 
     model_config = ConfigDict(
@@ -181,6 +196,31 @@ class ProjectObject(BaseModel):
         if self.email_sender is None and "email_sender" in self.model_fields_set:
             _dict['emailSender'] = None
 
+        # set to None if parent_project_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.parent_project_id is None and "parent_project_id" in self.model_fields_set:
+            _dict['parentProjectId'] = None
+
+        # set to None if cloned_from_project_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.cloned_from_project_id is None and "cloned_from_project_id" in self.model_fields_set:
+            _dict['clonedFromProjectId'] = None
+
+        # set to None if environment_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.environment_name is None and "environment_name" in self.model_fields_set:
+            _dict['environmentName'] = None
+
+        # set to None if clone_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.clone_status is None and "clone_status" in self.model_fields_set:
+            _dict['cloneStatus'] = None
+
+        # set to None if clone_failure_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.clone_failure_reason is None and "clone_failure_reason" in self.model_fields_set:
+            _dict['cloneFailureReason'] = None
+
         return _dict
 
     @classmethod
@@ -215,6 +255,11 @@ class ProjectObject(BaseModel):
             "notificationTemplatesConfig": NotificationTemplatesConfig.from_dict(obj["notificationTemplatesConfig"]) if obj.get("notificationTemplatesConfig") is not None else None,
             "paymentTriggers": [PaymentTriggerConfig.from_dict(_item) for _item in obj["paymentTriggers"]] if obj.get("paymentTriggers") is not None else None,
             "emailSender": obj.get("emailSender"),
+            "parentProjectId": obj.get("parentProjectId"),
+            "clonedFromProjectId": obj.get("clonedFromProjectId"),
+            "environmentName": obj.get("environmentName"),
+            "cloneStatus": obj.get("cloneStatus"),
+            "cloneFailureReason": obj.get("cloneFailureReason"),
             "hasRecaptchaSecretKey": obj.get("hasRecaptchaSecretKey")
         })
         return _obj

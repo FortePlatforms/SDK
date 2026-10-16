@@ -147,6 +147,12 @@ export interface ManagedDatabaseObject {
      * @memberof ManagedDatabaseObject
      */
     usageUpdatedAt?: Date | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ManagedDatabaseObject
+     */
+    clonedFromResourceId?: string | null;
 }
 
 
@@ -227,6 +233,7 @@ export function ManagedDatabaseObjectFromJSONTyped(json: any, ignoreDiscriminato
         'usageBytes': json['usageBytes'] == null ? undefined : json['usageBytes'],
         'physicalUsageBytes': json['physicalUsageBytes'] == null ? undefined : json['physicalUsageBytes'],
         'usageUpdatedAt': json['usageUpdatedAt'] == null ? undefined : (new Date(json['usageUpdatedAt'])),
+        'clonedFromResourceId': json['clonedFromResourceId'] == null ? undefined : json['clonedFromResourceId'],
     };
 }
 
@@ -261,6 +268,7 @@ export function ManagedDatabaseObjectToJSONTyped(value?: ManagedDatabaseObject |
         'usageBytes': value['usageBytes'],
         'physicalUsageBytes': value['physicalUsageBytes'],
         'usageUpdatedAt': value['usageUpdatedAt'] == null ? value['usageUpdatedAt'] : value['usageUpdatedAt'].toISOString(),
+        'clonedFromResourceId': value['clonedFromResourceId'],
     };
 }
 

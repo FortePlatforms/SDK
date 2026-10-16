@@ -69,6 +69,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG,
   ProjectObject.JSON_PROPERTY_PAYMENT_TRIGGERS,
   ProjectObject.JSON_PROPERTY_EMAIL_SENDER,
+  ProjectObject.JSON_PROPERTY_PARENT_PROJECT_ID,
+  ProjectObject.JSON_PROPERTY_CLONED_FROM_PROJECT_ID,
+  ProjectObject.JSON_PROPERTY_ENVIRONMENT_NAME,
+  ProjectObject.JSON_PROPERTY_CLONE_STATUS,
+  ProjectObject.JSON_PROPERTY_CLONE_FAILURE_REASON,
   ProjectObject.JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -188,6 +193,64 @@ public class ProjectObject {
 
   public static final String JSON_PROPERTY_EMAIL_SENDER = "emailSender";
   private JsonNullable<EmailSenderEnum> emailSender = JsonNullable.<EmailSenderEnum>undefined();
+
+  public static final String JSON_PROPERTY_PARENT_PROJECT_ID = "parentProjectId";
+  private JsonNullable<String> parentProjectId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CLONED_FROM_PROJECT_ID = "clonedFromProjectId";
+  private JsonNullable<String> clonedFromProjectId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_ENVIRONMENT_NAME = "environmentName";
+  private JsonNullable<String> environmentName = JsonNullable.<String>undefined();
+
+  /**
+   * Gets or Sets cloneStatus
+   */
+  public enum CloneStatusEnum {
+    PROVISIONING_DATABASES(String.valueOf("PROVISIONING_DATABASES")),
+    
+    DEPLOYING_SERVICES(String.valueOf("DEPLOYING_SERVICES")),
+    
+    DEPLOYING_WEBSITES(String.valueOf("DEPLOYING_WEBSITES")),
+    
+    ENABLING_ACTIONS(String.valueOf("ENABLING_ACTIONS")),
+    
+    COMPLETED(String.valueOf("COMPLETED")),
+    
+    FAILED(String.valueOf("FAILED"));
+
+    private String value;
+
+    CloneStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CloneStatusEnum fromValue(String value) {
+      for (CloneStatusEnum b : CloneStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_CLONE_STATUS = "cloneStatus";
+  private JsonNullable<CloneStatusEnum> cloneStatus = JsonNullable.<CloneStatusEnum>undefined();
+
+  public static final String JSON_PROPERTY_CLONE_FAILURE_REASON = "cloneFailureReason";
+  private JsonNullable<String> cloneFailureReason = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HAS_RECAPTCHA_SECRET_KEY = "hasRecaptchaSecretKey";
   @javax.annotation.Nullable
@@ -812,6 +875,166 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject parentProjectId(@javax.annotation.Nullable String parentProjectId) {
+    this.parentProjectId = JsonNullable.<String>of(parentProjectId);
+    return this;
+  }
+
+  /**
+   * Get parentProjectId
+   * @return parentProjectId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getParentProjectId() {
+        return parentProjectId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_PARENT_PROJECT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getParentProjectId_JsonNullable() {
+    return parentProjectId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARENT_PROJECT_ID)
+  public void setParentProjectId_JsonNullable(JsonNullable<String> parentProjectId) {
+    this.parentProjectId = parentProjectId;
+  }
+
+  public void setParentProjectId(@javax.annotation.Nullable String parentProjectId) {
+    this.parentProjectId = JsonNullable.<String>of(parentProjectId);
+  }
+
+
+  public ProjectObject clonedFromProjectId(@javax.annotation.Nullable String clonedFromProjectId) {
+    this.clonedFromProjectId = JsonNullable.<String>of(clonedFromProjectId);
+    return this;
+  }
+
+  /**
+   * Get clonedFromProjectId
+   * @return clonedFromProjectId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getClonedFromProjectId() {
+        return clonedFromProjectId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CLONED_FROM_PROJECT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getClonedFromProjectId_JsonNullable() {
+    return clonedFromProjectId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLONED_FROM_PROJECT_ID)
+  public void setClonedFromProjectId_JsonNullable(JsonNullable<String> clonedFromProjectId) {
+    this.clonedFromProjectId = clonedFromProjectId;
+  }
+
+  public void setClonedFromProjectId(@javax.annotation.Nullable String clonedFromProjectId) {
+    this.clonedFromProjectId = JsonNullable.<String>of(clonedFromProjectId);
+  }
+
+
+  public ProjectObject environmentName(@javax.annotation.Nullable String environmentName) {
+    this.environmentName = JsonNullable.<String>of(environmentName);
+    return this;
+  }
+
+  /**
+   * Get environmentName
+   * @return environmentName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getEnvironmentName() {
+        return environmentName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_ENVIRONMENT_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getEnvironmentName_JsonNullable() {
+    return environmentName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENVIRONMENT_NAME)
+  public void setEnvironmentName_JsonNullable(JsonNullable<String> environmentName) {
+    this.environmentName = environmentName;
+  }
+
+  public void setEnvironmentName(@javax.annotation.Nullable String environmentName) {
+    this.environmentName = JsonNullable.<String>of(environmentName);
+  }
+
+
+  public ProjectObject cloneStatus(@javax.annotation.Nullable CloneStatusEnum cloneStatus) {
+    this.cloneStatus = JsonNullable.<CloneStatusEnum>of(cloneStatus);
+    return this;
+  }
+
+  /**
+   * Get cloneStatus
+   * @return cloneStatus
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public CloneStatusEnum getCloneStatus() {
+        return cloneStatus.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CLONE_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<CloneStatusEnum> getCloneStatus_JsonNullable() {
+    return cloneStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLONE_STATUS)
+  public void setCloneStatus_JsonNullable(JsonNullable<CloneStatusEnum> cloneStatus) {
+    this.cloneStatus = cloneStatus;
+  }
+
+  public void setCloneStatus(@javax.annotation.Nullable CloneStatusEnum cloneStatus) {
+    this.cloneStatus = JsonNullable.<CloneStatusEnum>of(cloneStatus);
+  }
+
+
+  public ProjectObject cloneFailureReason(@javax.annotation.Nullable String cloneFailureReason) {
+    this.cloneFailureReason = JsonNullable.<String>of(cloneFailureReason);
+    return this;
+  }
+
+  /**
+   * Get cloneFailureReason
+   * @return cloneFailureReason
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCloneFailureReason() {
+        return cloneFailureReason.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CLONE_FAILURE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCloneFailureReason_JsonNullable() {
+    return cloneFailureReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLONE_FAILURE_REASON)
+  public void setCloneFailureReason_JsonNullable(JsonNullable<String> cloneFailureReason) {
+    this.cloneFailureReason = cloneFailureReason;
+  }
+
+  public void setCloneFailureReason(@javax.annotation.Nullable String cloneFailureReason) {
+    this.cloneFailureReason = JsonNullable.<String>of(cloneFailureReason);
+  }
+
+
   public ProjectObject hasRecaptchaSecretKey(@javax.annotation.Nullable Boolean hasRecaptchaSecretKey) {
     this.hasRecaptchaSecretKey = hasRecaptchaSecretKey;
     return this;
@@ -870,6 +1093,11 @@ public class ProjectObject {
         Objects.equals(this.notificationTemplatesConfig, projectObject.notificationTemplatesConfig) &&
         Objects.equals(this.paymentTriggers, projectObject.paymentTriggers) &&
         equalsNullable(this.emailSender, projectObject.emailSender) &&
+        equalsNullable(this.parentProjectId, projectObject.parentProjectId) &&
+        equalsNullable(this.clonedFromProjectId, projectObject.clonedFromProjectId) &&
+        equalsNullable(this.environmentName, projectObject.environmentName) &&
+        equalsNullable(this.cloneStatus, projectObject.cloneStatus) &&
+        equalsNullable(this.cloneFailureReason, projectObject.cloneFailureReason) &&
         Objects.equals(this.hasRecaptchaSecretKey, projectObject.hasRecaptchaSecretKey);
   }
 
@@ -879,7 +1107,7 @@ public class ProjectObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, hashCodeNullable(cachedUserCount), googleOAuthClientId, hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(sandboxMode), notificationTemplatesConfig, paymentTriggers, hashCodeNullable(emailSender), hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, hashCodeNullable(cachedUserCount), googleOAuthClientId, hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(sandboxMode), notificationTemplatesConfig, paymentTriggers, hashCodeNullable(emailSender), hashCodeNullable(parentProjectId), hashCodeNullable(clonedFromProjectId), hashCodeNullable(environmentName), hashCodeNullable(cloneStatus), hashCodeNullable(cloneFailureReason), hasRecaptchaSecretKey);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -915,6 +1143,11 @@ public class ProjectObject {
     sb.append("    notificationTemplatesConfig: ").append(toIndentedString(notificationTemplatesConfig)).append("\n");
     sb.append("    paymentTriggers: ").append(toIndentedString(paymentTriggers)).append("\n");
     sb.append("    emailSender: ").append(toIndentedString(emailSender)).append("\n");
+    sb.append("    parentProjectId: ").append(toIndentedString(parentProjectId)).append("\n");
+    sb.append("    clonedFromProjectId: ").append(toIndentedString(clonedFromProjectId)).append("\n");
+    sb.append("    environmentName: ").append(toIndentedString(environmentName)).append("\n");
+    sb.append("    cloneStatus: ").append(toIndentedString(cloneStatus)).append("\n");
+    sb.append("    cloneFailureReason: ").append(toIndentedString(cloneFailureReason)).append("\n");
     sb.append("    hasRecaptchaSecretKey: ").append(toIndentedString(hasRecaptchaSecretKey)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -1088,6 +1321,31 @@ public class ProjectObject {
     // add `emailSender` to the URL query string
     if (getEmailSender() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%semailSender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailSender()))));
+    }
+
+    // add `parentProjectId` to the URL query string
+    if (getParentProjectId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sparentProjectId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParentProjectId()))));
+    }
+
+    // add `clonedFromProjectId` to the URL query string
+    if (getClonedFromProjectId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclonedFromProjectId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClonedFromProjectId()))));
+    }
+
+    // add `environmentName` to the URL query string
+    if (getEnvironmentName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%senvironmentName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnvironmentName()))));
+    }
+
+    // add `cloneStatus` to the URL query string
+    if (getCloneStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scloneStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCloneStatus()))));
+    }
+
+    // add `cloneFailureReason` to the URL query string
+    if (getCloneFailureReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scloneFailureReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCloneFailureReason()))));
     }
 
     // add `hasRecaptchaSecretKey` to the URL query string
