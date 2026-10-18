@@ -55,6 +55,12 @@ export interface ServiceBuildRequestObject {
     containerImageUri?: string | null;
     /**
      * 
+     * @type {Date}
+     * @memberof ServiceBuildRequestObject
+     */
+    deploymentEnvironmentSnapshotTimestamp?: Date | null;
+    /**
+     * 
      * @type {DockerfileGenerationError}
      * @memberof ServiceBuildRequestObject
      */
@@ -262,6 +268,7 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
         
         'buildId': json['buildId'] == null ? undefined : json['buildId'],
         'containerImageUri': json['containerImageUri'] == null ? undefined : json['containerImageUri'],
+        'deploymentEnvironmentSnapshotTimestamp': json['deploymentEnvironmentSnapshotTimestamp'] == null ? undefined : (new Date(json['deploymentEnvironmentSnapshotTimestamp'])),
         'dockerfileGenerationError': json['dockerfileGenerationError'] == null ? undefined : DockerfileGenerationErrorFromJSON(json['dockerfileGenerationError']),
         'healthCheckDetectionError': json['healthCheckDetectionError'] == null ? undefined : HealthCheckDetectionErrorFromJSON(json['healthCheckDetectionError']),
         'allBuildLogsReceived': json['allBuildLogsReceived'] == null ? undefined : json['allBuildLogsReceived'],
@@ -297,6 +304,7 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
         
         'buildId': value['buildId'],
         'containerImageUri': value['containerImageUri'],
+        'deploymentEnvironmentSnapshotTimestamp': value['deploymentEnvironmentSnapshotTimestamp'] == null ? value['deploymentEnvironmentSnapshotTimestamp'] : value['deploymentEnvironmentSnapshotTimestamp'].toISOString(),
         'dockerfileGenerationError': DockerfileGenerationErrorToJSON(value['dockerfileGenerationError']),
         'healthCheckDetectionError': HealthCheckDetectionErrorToJSON(value['healthCheckDetectionError']),
         'allBuildLogsReceived': value['allBuildLogsReceived'],

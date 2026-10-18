@@ -45,6 +45,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   ServiceBuildRequestObject.JSON_PROPERTY_BUILD_ID,
   ServiceBuildRequestObject.JSON_PROPERTY_CONTAINER_IMAGE_URI,
+  ServiceBuildRequestObject.JSON_PROPERTY_DEPLOYMENT_ENVIRONMENT_SNAPSHOT_TIMESTAMP,
   ServiceBuildRequestObject.JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR,
   ServiceBuildRequestObject.JSON_PROPERTY_HEALTH_CHECK_DETECTION_ERROR,
   ServiceBuildRequestObject.JSON_PROPERTY_ALL_BUILD_LOGS_RECEIVED,
@@ -73,6 +74,9 @@ public class ServiceBuildRequestObject {
 
   public static final String JSON_PROPERTY_CONTAINER_IMAGE_URI = "containerImageUri";
   private JsonNullable<String> containerImageUri = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_DEPLOYMENT_ENVIRONMENT_SNAPSHOT_TIMESTAMP = "deploymentEnvironmentSnapshotTimestamp";
+  private JsonNullable<OffsetDateTime> deploymentEnvironmentSnapshotTimestamp = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_DOCKERFILE_GENERATION_ERROR = "dockerfileGenerationError";
   @javax.annotation.Nullable
@@ -403,6 +407,38 @@ public class ServiceBuildRequestObject {
 
   public void setContainerImageUri(@javax.annotation.Nullable String containerImageUri) {
     this.containerImageUri = JsonNullable.<String>of(containerImageUri);
+  }
+
+
+  public ServiceBuildRequestObject deploymentEnvironmentSnapshotTimestamp(@javax.annotation.Nullable OffsetDateTime deploymentEnvironmentSnapshotTimestamp) {
+    this.deploymentEnvironmentSnapshotTimestamp = JsonNullable.<OffsetDateTime>of(deploymentEnvironmentSnapshotTimestamp);
+    return this;
+  }
+
+  /**
+   * Get deploymentEnvironmentSnapshotTimestamp
+   * @return deploymentEnvironmentSnapshotTimestamp
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getDeploymentEnvironmentSnapshotTimestamp() {
+        return deploymentEnvironmentSnapshotTimestamp.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_DEPLOYMENT_ENVIRONMENT_SNAPSHOT_TIMESTAMP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getDeploymentEnvironmentSnapshotTimestamp_JsonNullable() {
+    return deploymentEnvironmentSnapshotTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DEPLOYMENT_ENVIRONMENT_SNAPSHOT_TIMESTAMP)
+  public void setDeploymentEnvironmentSnapshotTimestamp_JsonNullable(JsonNullable<OffsetDateTime> deploymentEnvironmentSnapshotTimestamp) {
+    this.deploymentEnvironmentSnapshotTimestamp = deploymentEnvironmentSnapshotTimestamp;
+  }
+
+  public void setDeploymentEnvironmentSnapshotTimestamp(@javax.annotation.Nullable OffsetDateTime deploymentEnvironmentSnapshotTimestamp) {
+    this.deploymentEnvironmentSnapshotTimestamp = JsonNullable.<OffsetDateTime>of(deploymentEnvironmentSnapshotTimestamp);
   }
 
 
@@ -956,6 +992,7 @@ public class ServiceBuildRequestObject {
     ServiceBuildRequestObject serviceBuildRequestObject = (ServiceBuildRequestObject) o;
     return Objects.equals(this.buildId, serviceBuildRequestObject.buildId) &&
         equalsNullable(this.containerImageUri, serviceBuildRequestObject.containerImageUri) &&
+        equalsNullable(this.deploymentEnvironmentSnapshotTimestamp, serviceBuildRequestObject.deploymentEnvironmentSnapshotTimestamp) &&
         Objects.equals(this.dockerfileGenerationError, serviceBuildRequestObject.dockerfileGenerationError) &&
         Objects.equals(this.healthCheckDetectionError, serviceBuildRequestObject.healthCheckDetectionError) &&
         equalsNullable(this.allBuildLogsReceived, serviceBuildRequestObject.allBuildLogsReceived) &&
@@ -983,7 +1020,7 @@ public class ServiceBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, hashCodeNullable(containerImageUri), dockerfileGenerationError, healthCheckDetectionError, hashCodeNullable(allBuildLogsReceived), hashCodeNullable(cancellationRequested), startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, hashCodeNullable(gitRef), hashCodeNullable(releaseTagName), buildStepLogs, status, hashCodeNullable(origin), hashCodeNullable(originDetail), hashCodeNullable(triggeredByAccountId), hashCodeNullable(buildTier), hashCodeNullable(failureReason));
+    return Objects.hash(buildId, hashCodeNullable(containerImageUri), hashCodeNullable(deploymentEnvironmentSnapshotTimestamp), dockerfileGenerationError, healthCheckDetectionError, hashCodeNullable(allBuildLogsReceived), hashCodeNullable(cancellationRequested), startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, hashCodeNullable(gitRef), hashCodeNullable(releaseTagName), buildStepLogs, status, hashCodeNullable(origin), hashCodeNullable(originDetail), hashCodeNullable(triggeredByAccountId), hashCodeNullable(buildTier), hashCodeNullable(failureReason));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -999,6 +1036,7 @@ public class ServiceBuildRequestObject {
     sb.append("class ServiceBuildRequestObject {\n");
     sb.append("    buildId: ").append(toIndentedString(buildId)).append("\n");
     sb.append("    containerImageUri: ").append(toIndentedString(containerImageUri)).append("\n");
+    sb.append("    deploymentEnvironmentSnapshotTimestamp: ").append(toIndentedString(deploymentEnvironmentSnapshotTimestamp)).append("\n");
     sb.append("    dockerfileGenerationError: ").append(toIndentedString(dockerfileGenerationError)).append("\n");
     sb.append("    healthCheckDetectionError: ").append(toIndentedString(healthCheckDetectionError)).append("\n");
     sb.append("    allBuildLogsReceived: ").append(toIndentedString(allBuildLogsReceived)).append("\n");
@@ -1070,6 +1108,11 @@ public class ServiceBuildRequestObject {
     // add `containerImageUri` to the URL query string
     if (getContainerImageUri() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontainerImageUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContainerImageUri()))));
+    }
+
+    // add `deploymentEnvironmentSnapshotTimestamp` to the URL query string
+    if (getDeploymentEnvironmentSnapshotTimestamp() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdeploymentEnvironmentSnapshotTimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeploymentEnvironmentSnapshotTimestamp()))));
     }
 
     // add `dockerfileGenerationError` to the URL query string

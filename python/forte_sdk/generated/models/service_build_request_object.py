@@ -33,6 +33,7 @@ class ServiceBuildRequestObject(BaseModel):
     """ # noqa: E501
     build_id: Optional[StrictStr] = Field(default=None, alias="buildId")
     container_image_uri: Optional[StrictStr] = Field(default=None, alias="containerImageUri")
+    deployment_environment_snapshot_timestamp: Optional[datetime] = Field(default=None, alias="deploymentEnvironmentSnapshotTimestamp")
     dockerfile_generation_error: Optional[DockerfileGenerationError] = Field(default=None, alias="dockerfileGenerationError")
     health_check_detection_error: Optional[HealthCheckDetectionError] = Field(default=None, alias="healthCheckDetectionError")
     all_build_logs_received: Optional[StrictBool] = Field(default=None, alias="allBuildLogsReceived")
@@ -52,7 +53,7 @@ class ServiceBuildRequestObject(BaseModel):
     triggered_by_account_id: Optional[StrictStr] = Field(default=None, alias="triggeredByAccountId")
     build_tier: Optional[StrictStr] = Field(default=None, alias="buildTier")
     failure_reason: Optional[StrictStr] = Field(default=None, alias="failureReason")
-    __properties: ClassVar[List[str]] = ["buildId", "containerImageUri", "dockerfileGenerationError", "healthCheckDetectionError", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "originDetail", "triggeredByAccountId", "buildTier", "failureReason"]
+    __properties: ClassVar[List[str]] = ["buildId", "containerImageUri", "deploymentEnvironmentSnapshotTimestamp", "dockerfileGenerationError", "healthCheckDetectionError", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "originDetail", "triggeredByAccountId", "buildTier", "failureReason"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -148,6 +149,11 @@ class ServiceBuildRequestObject(BaseModel):
         if self.container_image_uri is None and "container_image_uri" in self.model_fields_set:
             _dict['containerImageUri'] = None
 
+        # set to None if deployment_environment_snapshot_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.deployment_environment_snapshot_timestamp is None and "deployment_environment_snapshot_timestamp" in self.model_fields_set:
+            _dict['deploymentEnvironmentSnapshotTimestamp'] = None
+
         # set to None if all_build_logs_received (nullable) is None
         # and model_fields_set contains the field
         if self.all_build_logs_received is None and "all_build_logs_received" in self.model_fields_set:
@@ -207,6 +213,7 @@ class ServiceBuildRequestObject(BaseModel):
         _obj = cls.model_validate({
             "buildId": obj.get("buildId"),
             "containerImageUri": obj.get("containerImageUri"),
+            "deploymentEnvironmentSnapshotTimestamp": obj.get("deploymentEnvironmentSnapshotTimestamp"),
             "dockerfileGenerationError": DockerfileGenerationError.from_dict(obj["dockerfileGenerationError"]) if obj.get("dockerfileGenerationError") is not None else None,
             "healthCheckDetectionError": HealthCheckDetectionError.from_dict(obj["healthCheckDetectionError"]) if obj.get("healthCheckDetectionError") is not None else None,
             "allBuildLogsReceived": obj.get("allBuildLogsReceived"),

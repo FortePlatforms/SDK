@@ -184,6 +184,26 @@ import {
     CreateServiceRequestProxyResponseToJSON,
 } from '../models/CreateServiceRequestProxyResponse';
 import {
+    type CreateServiceToServiceConnectionRequest,
+    CreateServiceToServiceConnectionRequestFromJSON,
+    CreateServiceToServiceConnectionRequestToJSON,
+} from '../models/CreateServiceToServiceConnectionRequest';
+import {
+    type CreateServiceToServiceConnectionResponse,
+    CreateServiceToServiceConnectionResponseFromJSON,
+    CreateServiceToServiceConnectionResponseToJSON,
+} from '../models/CreateServiceToServiceConnectionResponse';
+import {
+    type CreateServiceToWebAppConnectionRequest,
+    CreateServiceToWebAppConnectionRequestFromJSON,
+    CreateServiceToWebAppConnectionRequestToJSON,
+} from '../models/CreateServiceToWebAppConnectionRequest';
+import {
+    type CreateServiceToWebAppConnectionResponse,
+    CreateServiceToWebAppConnectionResponseFromJSON,
+    CreateServiceToWebAppConnectionResponseToJSON,
+} from '../models/CreateServiceToWebAppConnectionResponse';
+import {
     type CreateServiceUrlConnectionRequest,
     CreateServiceUrlConnectionRequestFromJSON,
     CreateServiceUrlConnectionRequestToJSON,
@@ -554,6 +574,26 @@ import {
     UpdateProjectRequestToJSON,
 } from '../models/UpdateProjectRequest';
 import {
+    type UpdateServiceToServiceConnectionRequest,
+    UpdateServiceToServiceConnectionRequestFromJSON,
+    UpdateServiceToServiceConnectionRequestToJSON,
+} from '../models/UpdateServiceToServiceConnectionRequest';
+import {
+    type UpdateServiceToServiceConnectionResponse,
+    UpdateServiceToServiceConnectionResponseFromJSON,
+    UpdateServiceToServiceConnectionResponseToJSON,
+} from '../models/UpdateServiceToServiceConnectionResponse';
+import {
+    type UpdateServiceToWebAppConnectionRequest,
+    UpdateServiceToWebAppConnectionRequestFromJSON,
+    UpdateServiceToWebAppConnectionRequestToJSON,
+} from '../models/UpdateServiceToWebAppConnectionRequest';
+import {
+    type UpdateServiceToWebAppConnectionResponse,
+    UpdateServiceToWebAppConnectionResponseFromJSON,
+    UpdateServiceToWebAppConnectionResponseToJSON,
+} from '../models/UpdateServiceToWebAppConnectionResponse';
+import {
     type UpdateServiceUrlConnectionRequest,
     UpdateServiceUrlConnectionRequestFromJSON,
     UpdateServiceUrlConnectionRequestToJSON,
@@ -796,6 +836,18 @@ export interface CreateServiceRequestProxyOperationRequest {
     createServiceRequestProxyRequest: CreateServiceRequestProxyRequest;
 }
 
+export interface CreateServiceToServiceConnectionOperationRequest {
+    projectId: string;
+    serviceId: string;
+    createServiceToServiceConnectionRequest: CreateServiceToServiceConnectionRequest;
+}
+
+export interface CreateServiceToWebAppConnectionOperationRequest {
+    projectId: string;
+    serviceId: string;
+    createServiceToWebAppConnectionRequest: CreateServiceToWebAppConnectionRequest;
+}
+
 export interface CreateServiceUrlConnectionOperationRequest {
     projectId: string;
     webAppId: string;
@@ -870,6 +922,18 @@ export interface DeleteServiceCustomDomainRequest {
     projectId: string;
     serviceId: string;
     customDomainId: string;
+}
+
+export interface DeleteServiceToServiceConnectionRequest {
+    projectId: string;
+    serviceId: string;
+    connectionId: string;
+}
+
+export interface DeleteServiceToWebAppConnectionRequest {
+    projectId: string;
+    serviceId: string;
+    connectionId: string;
 }
 
 export interface DeleteServiceUrlConnectionRequest {
@@ -1561,6 +1625,20 @@ export interface UpdateServiceRequest {
     projectId: string;
     serviceId: string;
     updateForteServiceRequest: UpdateForteServiceRequest;
+}
+
+export interface UpdateServiceToServiceConnectionOperationRequest {
+    projectId: string;
+    serviceId: string;
+    connectionId: string;
+    updateServiceToServiceConnectionRequest: UpdateServiceToServiceConnectionRequest;
+}
+
+export interface UpdateServiceToWebAppConnectionOperationRequest {
+    projectId: string;
+    serviceId: string;
+    connectionId: string;
+    updateServiceToWebAppConnectionRequest: UpdateServiceToWebAppConnectionRequest;
 }
 
 export interface UpdateServiceUrlConnectionOperationRequest {
@@ -3326,6 +3404,136 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createServiceToServiceConnection without sending the request
+     */
+    async createServiceToServiceConnectionRequestOpts(requestParameters: CreateServiceToServiceConnectionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createServiceToServiceConnection().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling createServiceToServiceConnection().'
+            );
+        }
+
+        if (requestParameters['createServiceToServiceConnectionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createServiceToServiceConnectionRequest',
+                'Required parameter "createServiceToServiceConnectionRequest" was null or undefined when calling createServiceToServiceConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/service-connections`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateServiceToServiceConnectionRequestToJSON(requestParameters['createServiceToServiceConnectionRequest']),
+        };
+    }
+
+    /**
+     */
+    async createServiceToServiceConnectionRaw(requestParameters: CreateServiceToServiceConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateServiceToServiceConnectionResponse>> {
+        const requestOptions = await this.createServiceToServiceConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateServiceToServiceConnectionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createServiceToServiceConnection(requestParameters: CreateServiceToServiceConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateServiceToServiceConnectionResponse> {
+        const response = await this.createServiceToServiceConnectionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createServiceToWebAppConnection without sending the request
+     */
+    async createServiceToWebAppConnectionRequestOpts(requestParameters: CreateServiceToWebAppConnectionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createServiceToWebAppConnection().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling createServiceToWebAppConnection().'
+            );
+        }
+
+        if (requestParameters['createServiceToWebAppConnectionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createServiceToWebAppConnectionRequest',
+                'Required parameter "createServiceToWebAppConnectionRequest" was null or undefined when calling createServiceToWebAppConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/web-app-connections`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateServiceToWebAppConnectionRequestToJSON(requestParameters['createServiceToWebAppConnectionRequest']),
+        };
+    }
+
+    /**
+     */
+    async createServiceToWebAppConnectionRaw(requestParameters: CreateServiceToWebAppConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateServiceToWebAppConnectionResponse>> {
+        const requestOptions = await this.createServiceToWebAppConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateServiceToWebAppConnectionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createServiceToWebAppConnection(requestParameters: CreateServiceToWebAppConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateServiceToWebAppConnectionResponse> {
+        const response = await this.createServiceToWebAppConnectionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createServiceUrlConnection without sending the request
      */
     async createServiceUrlConnectionRequestOpts(requestParameters: CreateServiceUrlConnectionOperationRequest): Promise<runtime.RequestOpts> {
@@ -4083,6 +4291,122 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async deleteServiceCustomDomain(requestParameters: DeleteServiceCustomDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteServiceCustomDomainRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteServiceToServiceConnection without sending the request
+     */
+    async deleteServiceToServiceConnectionRequestOpts(requestParameters: DeleteServiceToServiceConnectionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteServiceToServiceConnection().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling deleteServiceToServiceConnection().'
+            );
+        }
+
+        if (requestParameters['connectionId'] == null) {
+            throw new runtime.RequiredError(
+                'connectionId',
+                'Required parameter "connectionId" was null or undefined when calling deleteServiceToServiceConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/service-connections/{connectionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{connectionId}', encodeURIComponent(String(requestParameters['connectionId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteServiceToServiceConnectionRaw(requestParameters: DeleteServiceToServiceConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteServiceToServiceConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteServiceToServiceConnection(requestParameters: DeleteServiceToServiceConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteServiceToServiceConnectionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for deleteServiceToWebAppConnection without sending the request
+     */
+    async deleteServiceToWebAppConnectionRequestOpts(requestParameters: DeleteServiceToWebAppConnectionRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling deleteServiceToWebAppConnection().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling deleteServiceToWebAppConnection().'
+            );
+        }
+
+        if (requestParameters['connectionId'] == null) {
+            throw new runtime.RequiredError(
+                'connectionId',
+                'Required parameter "connectionId" was null or undefined when calling deleteServiceToWebAppConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/web-app-connections/{connectionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{connectionId}', encodeURIComponent(String(requestParameters['connectionId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async deleteServiceToWebAppConnectionRaw(requestParameters: DeleteServiceToWebAppConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteServiceToWebAppConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async deleteServiceToWebAppConnection(requestParameters: DeleteServiceToWebAppConnectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteServiceToWebAppConnectionRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -10484,6 +10808,144 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async updateService(requestParameters: UpdateServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateForteServiceResponse> {
         const response = await this.updateServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for updateServiceToServiceConnection without sending the request
+     */
+    async updateServiceToServiceConnectionRequestOpts(requestParameters: UpdateServiceToServiceConnectionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateServiceToServiceConnection().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling updateServiceToServiceConnection().'
+            );
+        }
+
+        if (requestParameters['connectionId'] == null) {
+            throw new runtime.RequiredError(
+                'connectionId',
+                'Required parameter "connectionId" was null or undefined when calling updateServiceToServiceConnection().'
+            );
+        }
+
+        if (requestParameters['updateServiceToServiceConnectionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateServiceToServiceConnectionRequest',
+                'Required parameter "updateServiceToServiceConnectionRequest" was null or undefined when calling updateServiceToServiceConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/service-connections/{connectionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{connectionId}', encodeURIComponent(String(requestParameters['connectionId'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateServiceToServiceConnectionRequestToJSON(requestParameters['updateServiceToServiceConnectionRequest']),
+        };
+    }
+
+    /**
+     */
+    async updateServiceToServiceConnectionRaw(requestParameters: UpdateServiceToServiceConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateServiceToServiceConnectionResponse>> {
+        const requestOptions = await this.updateServiceToServiceConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateServiceToServiceConnectionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateServiceToServiceConnection(requestParameters: UpdateServiceToServiceConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateServiceToServiceConnectionResponse> {
+        const response = await this.updateServiceToServiceConnectionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for updateServiceToWebAppConnection without sending the request
+     */
+    async updateServiceToWebAppConnectionRequestOpts(requestParameters: UpdateServiceToWebAppConnectionOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling updateServiceToWebAppConnection().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling updateServiceToWebAppConnection().'
+            );
+        }
+
+        if (requestParameters['connectionId'] == null) {
+            throw new runtime.RequiredError(
+                'connectionId',
+                'Required parameter "connectionId" was null or undefined when calling updateServiceToWebAppConnection().'
+            );
+        }
+
+        if (requestParameters['updateServiceToWebAppConnectionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateServiceToWebAppConnectionRequest',
+                'Required parameter "updateServiceToWebAppConnectionRequest" was null or undefined when calling updateServiceToWebAppConnection().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/web-app-connections/{connectionId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+        urlPath = urlPath.replace('{connectionId}', encodeURIComponent(String(requestParameters['connectionId'])));
+
+        return {
+            path: urlPath,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateServiceToWebAppConnectionRequestToJSON(requestParameters['updateServiceToWebAppConnectionRequest']),
+        };
+    }
+
+    /**
+     */
+    async updateServiceToWebAppConnectionRaw(requestParameters: UpdateServiceToWebAppConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateServiceToWebAppConnectionResponse>> {
+        const requestOptions = await this.updateServiceToWebAppConnectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateServiceToWebAppConnectionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async updateServiceToWebAppConnection(requestParameters: UpdateServiceToWebAppConnectionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateServiceToWebAppConnectionResponse> {
+        const response = await this.updateServiceToWebAppConnectionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

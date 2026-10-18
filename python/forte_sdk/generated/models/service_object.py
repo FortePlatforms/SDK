@@ -25,6 +25,8 @@ from forte_sdk.generated.models.custom_domain import CustomDomain
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput
 from forte_sdk.generated.models.health_check_detection_response import HealthCheckDetectionResponse
+from forte_sdk.generated.models.service_url_connection import ServiceUrlConnection
+from forte_sdk.generated.models.web_app_url_connection import WebAppUrlConnection
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -50,6 +52,8 @@ class ServiceObject(BaseModel):
     region_replicas: Optional[Dict[str, StrictInt]] = Field(default=None, alias="regionReplicas")
     container_cpu: StrictStr = Field(alias="containerCpu")
     custom_domains: Optional[List[CustomDomain]] = Field(default=None, alias="customDomains")
+    service_url_connections: List[ServiceUrlConnection] = Field(alias="serviceUrlConnections")
+    web_app_url_connections: List[WebAppUrlConnection] = Field(alias="webAppUrlConnections")
     created_timestamp: Optional[datetime] = Field(default=None, alias="createdTimestamp")
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
     github_repository_url: StrictStr = Field(alias="githubRepositoryUrl")
@@ -61,7 +65,7 @@ class ServiceObject(BaseModel):
     base_directory: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="baseDirectory")
     cloned_from_resource_id: Optional[StrictStr] = Field(default=None, alias="clonedFromResourceId")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "liveBuildId", "liveCommitHash", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "blockedPaths", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "clonedFromResourceId", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["serviceId", "serviceName", "publicDnsEndpoint", "liveBuildId", "liveCommitHash", "pausedAt", "requestResponseBodyLoggingEnabled", "dockerfilePath", "healthCheckConfiguration", "dockerfileDetectionResponse", "healthCheckDetectionResponse", "authPathExclusions", "blockedPaths", "baseInstances", "regionReplicas", "containerCpu", "customDomains", "serviceUrlConnections", "webAppUrlConnections", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "clonedFromResourceId", "secretKeys"]
 
     @field_validator('github_build_trigger')
     def github_build_trigger_validate_enum(cls, value):
@@ -125,6 +129,20 @@ class ServiceObject(BaseModel):
                 if _item_custom_domains:
                     _items.append(_item_custom_domains.to_dict())
             _dict['customDomains'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in service_url_connections (list)
+        _items = []
+        if self.service_url_connections:
+            for _item_service_url_connections in self.service_url_connections:
+                if _item_service_url_connections:
+                    _items.append(_item_service_url_connections.to_dict())
+            _dict['serviceUrlConnections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in web_app_url_connections (list)
+        _items = []
+        if self.web_app_url_connections:
+            for _item_web_app_url_connections in self.web_app_url_connections:
+                if _item_web_app_url_connections:
+                    _items.append(_item_web_app_url_connections.to_dict())
+            _dict['webAppUrlConnections'] = _items
         # set to None if public_dns_endpoint (nullable) is None
         # and model_fields_set contains the field
         if self.public_dns_endpoint is None and "public_dns_endpoint" in self.model_fields_set:
@@ -224,6 +242,8 @@ class ServiceObject(BaseModel):
             "regionReplicas": obj.get("regionReplicas"),
             "containerCpu": obj.get("containerCpu"),
             "customDomains": [CustomDomain.from_dict(_item) for _item in obj["customDomains"]] if obj.get("customDomains") is not None else None,
+            "serviceUrlConnections": [ServiceUrlConnection.from_dict(_item) for _item in obj["serviceUrlConnections"]] if obj.get("serviceUrlConnections") is not None else None,
+            "webAppUrlConnections": [WebAppUrlConnection.from_dict(_item) for _item in obj["webAppUrlConnections"]] if obj.get("webAppUrlConnections") is not None else None,
             "createdTimestamp": obj.get("createdTimestamp"),
             "lastModifiedTimestamp": obj.get("lastModifiedTimestamp"),
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),

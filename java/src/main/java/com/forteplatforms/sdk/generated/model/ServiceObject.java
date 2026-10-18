@@ -29,6 +29,8 @@ import com.forteplatforms.sdk.generated.model.CustomDomain;
 import com.forteplatforms.sdk.generated.model.DockerfileGenerationResponse;
 import com.forteplatforms.sdk.generated.model.HealthCheckDetectionOutput;
 import com.forteplatforms.sdk.generated.model.HealthCheckDetectionResponse;
+import com.forteplatforms.sdk.generated.model.ServiceUrlConnection;
+import com.forteplatforms.sdk.generated.model.WebAppUrlConnection;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,6 +68,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_REGION_REPLICAS,
   ServiceObject.JSON_PROPERTY_CONTAINER_CPU,
   ServiceObject.JSON_PROPERTY_CUSTOM_DOMAINS,
+  ServiceObject.JSON_PROPERTY_SERVICE_URL_CONNECTIONS,
+  ServiceObject.JSON_PROPERTY_WEB_APP_URL_CONNECTIONS,
   ServiceObject.JSON_PROPERTY_CREATED_TIMESTAMP,
   ServiceObject.JSON_PROPERTY_LAST_MODIFIED_TIMESTAMP,
   ServiceObject.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
@@ -138,6 +142,14 @@ public class ServiceObject {
 
   public static final String JSON_PROPERTY_CUSTOM_DOMAINS = "customDomains";
   private JsonNullable<List<CustomDomain>> customDomains = JsonNullable.<List<CustomDomain>>undefined();
+
+  public static final String JSON_PROPERTY_SERVICE_URL_CONNECTIONS = "serviceUrlConnections";
+  @javax.annotation.Nonnull
+  private List<ServiceUrlConnection> serviceUrlConnections = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_WEB_APP_URL_CONNECTIONS = "webAppUrlConnections";
+  @javax.annotation.Nonnull
+  private List<WebAppUrlConnection> webAppUrlConnections = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CREATED_TIMESTAMP = "createdTimestamp";
   @javax.annotation.Nullable
@@ -740,6 +752,70 @@ public class ServiceObject {
   }
 
 
+  public ServiceObject serviceUrlConnections(@javax.annotation.Nonnull List<ServiceUrlConnection> serviceUrlConnections) {
+    this.serviceUrlConnections = serviceUrlConnections;
+    return this;
+  }
+
+  public ServiceObject addServiceUrlConnectionsItem(ServiceUrlConnection serviceUrlConnectionsItem) {
+    if (this.serviceUrlConnections == null) {
+      this.serviceUrlConnections = new ArrayList<>();
+    }
+    this.serviceUrlConnections.add(serviceUrlConnectionsItem);
+    return this;
+  }
+
+  /**
+   * Get serviceUrlConnections
+   * @return serviceUrlConnections
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_URL_CONNECTIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<ServiceUrlConnection> getServiceUrlConnections() {
+    return serviceUrlConnections;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_URL_CONNECTIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setServiceUrlConnections(@javax.annotation.Nonnull List<ServiceUrlConnection> serviceUrlConnections) {
+    this.serviceUrlConnections = serviceUrlConnections;
+  }
+
+
+  public ServiceObject webAppUrlConnections(@javax.annotation.Nonnull List<WebAppUrlConnection> webAppUrlConnections) {
+    this.webAppUrlConnections = webAppUrlConnections;
+    return this;
+  }
+
+  public ServiceObject addWebAppUrlConnectionsItem(WebAppUrlConnection webAppUrlConnectionsItem) {
+    if (this.webAppUrlConnections == null) {
+      this.webAppUrlConnections = new ArrayList<>();
+    }
+    this.webAppUrlConnections.add(webAppUrlConnectionsItem);
+    return this;
+  }
+
+  /**
+   * Get webAppUrlConnections
+   * @return webAppUrlConnections
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_WEB_APP_URL_CONNECTIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<WebAppUrlConnection> getWebAppUrlConnections() {
+    return webAppUrlConnections;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WEB_APP_URL_CONNECTIONS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setWebAppUrlConnections(@javax.annotation.Nonnull List<WebAppUrlConnection> webAppUrlConnections) {
+    this.webAppUrlConnections = webAppUrlConnections;
+  }
+
+
   public ServiceObject createdTimestamp(@javax.annotation.Nullable OffsetDateTime createdTimestamp) {
     this.createdTimestamp = createdTimestamp;
     return this;
@@ -1102,6 +1178,8 @@ public class ServiceObject {
         Objects.equals(this.regionReplicas, serviceObject.regionReplicas) &&
         Objects.equals(this.containerCpu, serviceObject.containerCpu) &&
         equalsNullable(this.customDomains, serviceObject.customDomains) &&
+        Objects.equals(this.serviceUrlConnections, serviceObject.serviceUrlConnections) &&
+        Objects.equals(this.webAppUrlConnections, serviceObject.webAppUrlConnections) &&
         Objects.equals(this.createdTimestamp, serviceObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, serviceObject.lastModifiedTimestamp) &&
         Objects.equals(this.githubRepositoryUrl, serviceObject.githubRepositoryUrl) &&
@@ -1121,7 +1199,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, hashCodeNullable(publicDnsEndpoint), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), hashCodeNullable(pausedAt), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(dockerfilePath), healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), baseInstances, regionReplicas, containerCpu, hashCodeNullable(customDomains), createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), hashCodeNullable(clonedFromResourceId), secretKeys);
+    return Objects.hash(serviceId, serviceName, hashCodeNullable(publicDnsEndpoint), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), hashCodeNullable(pausedAt), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(dockerfilePath), healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), baseInstances, regionReplicas, containerCpu, hashCodeNullable(customDomains), serviceUrlConnections, webAppUrlConnections, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), hashCodeNullable(clonedFromResourceId), secretKeys);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1152,6 +1230,8 @@ public class ServiceObject {
     sb.append("    regionReplicas: ").append(toIndentedString(regionReplicas)).append("\n");
     sb.append("    containerCpu: ").append(toIndentedString(containerCpu)).append("\n");
     sb.append("    customDomains: ").append(toIndentedString(customDomains)).append("\n");
+    sb.append("    serviceUrlConnections: ").append(toIndentedString(serviceUrlConnections)).append("\n");
+    sb.append("    webAppUrlConnections: ").append(toIndentedString(webAppUrlConnections)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
     sb.append("    lastModifiedTimestamp: ").append(toIndentedString(lastModifiedTimestamp)).append("\n");
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
@@ -1304,6 +1384,26 @@ public class ServiceObject {
       for (int i = 0; i < getCustomDomains().size(); i++) {
         if (getCustomDomains().get(i) != null) {
           joiner.add(getCustomDomains().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scustomDomains%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `serviceUrlConnections` to the URL query string
+    if (getServiceUrlConnections() != null) {
+      for (int i = 0; i < getServiceUrlConnections().size(); i++) {
+        if (getServiceUrlConnections().get(i) != null) {
+          joiner.add(getServiceUrlConnections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sserviceUrlConnections%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `webAppUrlConnections` to the URL query string
+    if (getWebAppUrlConnections() != null) {
+      for (int i = 0; i < getWebAppUrlConnections().size(); i++) {
+        if (getWebAppUrlConnections().get(i) != null) {
+          joiner.add(getWebAppUrlConnections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%swebAppUrlConnections%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

@@ -52,6 +52,10 @@ import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyRequest;
 import com.forteplatforms.sdk.generated.model.CreateProjectApiKeyResponse;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyRequest;
 import com.forteplatforms.sdk.generated.model.CreateServiceRequestProxyResponse;
+import com.forteplatforms.sdk.generated.model.CreateServiceToServiceConnectionRequest;
+import com.forteplatforms.sdk.generated.model.CreateServiceToServiceConnectionResponse;
+import com.forteplatforms.sdk.generated.model.CreateServiceToWebAppConnectionRequest;
+import com.forteplatforms.sdk.generated.model.CreateServiceToWebAppConnectionResponse;
 import com.forteplatforms.sdk.generated.model.CreateServiceUrlConnectionRequest;
 import com.forteplatforms.sdk.generated.model.CreateServiceUrlConnectionResponse;
 import com.forteplatforms.sdk.generated.model.CreateSubscriptionPreviewRequest;
@@ -128,6 +132,10 @@ import com.forteplatforms.sdk.generated.model.UpdateNotificationTemplatesRequest
 import com.forteplatforms.sdk.generated.model.UpdatePaymentMethodRequest;
 import com.forteplatforms.sdk.generated.model.UpdatePaymentTriggerRequest;
 import com.forteplatforms.sdk.generated.model.UpdateProjectRequest;
+import com.forteplatforms.sdk.generated.model.UpdateServiceToServiceConnectionRequest;
+import com.forteplatforms.sdk.generated.model.UpdateServiceToServiceConnectionResponse;
+import com.forteplatforms.sdk.generated.model.UpdateServiceToWebAppConnectionRequest;
+import com.forteplatforms.sdk.generated.model.UpdateServiceToWebAppConnectionResponse;
 import com.forteplatforms.sdk.generated.model.UpdateServiceUrlConnectionRequest;
 import com.forteplatforms.sdk.generated.model.UpdateServiceUrlConnectionResponse;
 import com.forteplatforms.sdk.generated.model.UpdateSubscriptionPreviewRequest;
@@ -4312,6 +4320,296 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createServiceToServiceConnectionRequest  (required)
+   * @return CreateServiceToServiceConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateServiceToServiceConnectionResponse createServiceToServiceConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToServiceConnectionRequest createServiceToServiceConnectionRequest) throws ApiException {
+    return createServiceToServiceConnection(projectId, serviceId, createServiceToServiceConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createServiceToServiceConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateServiceToServiceConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateServiceToServiceConnectionResponse createServiceToServiceConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToServiceConnectionRequest createServiceToServiceConnectionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateServiceToServiceConnectionResponse> localVarResponse = createServiceToServiceConnectionWithHttpInfo(projectId, serviceId, createServiceToServiceConnectionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createServiceToServiceConnectionRequest  (required)
+   * @return ApiResponse&lt;CreateServiceToServiceConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateServiceToServiceConnectionResponse> createServiceToServiceConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToServiceConnectionRequest createServiceToServiceConnectionRequest) throws ApiException {
+    return createServiceToServiceConnectionWithHttpInfo(projectId, serviceId, createServiceToServiceConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createServiceToServiceConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateServiceToServiceConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateServiceToServiceConnectionResponse> createServiceToServiceConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToServiceConnectionRequest createServiceToServiceConnectionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createServiceToServiceConnectionRequestBuilder(projectId, serviceId, createServiceToServiceConnectionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createServiceToServiceConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateServiceToServiceConnectionResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateServiceToServiceConnectionResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateServiceToServiceConnectionResponse>() {});
+        
+
+        return new ApiResponse<CreateServiceToServiceConnectionResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createServiceToServiceConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToServiceConnectionRequest createServiceToServiceConnectionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createServiceToServiceConnection");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling createServiceToServiceConnection");
+    }
+    // verify the required parameter 'createServiceToServiceConnectionRequest' is set
+    if (createServiceToServiceConnectionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createServiceToServiceConnectionRequest' when calling createServiceToServiceConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/service-connections"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createServiceToServiceConnectionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createServiceToWebAppConnectionRequest  (required)
+   * @return CreateServiceToWebAppConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateServiceToWebAppConnectionResponse createServiceToWebAppConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToWebAppConnectionRequest createServiceToWebAppConnectionRequest) throws ApiException {
+    return createServiceToWebAppConnection(projectId, serviceId, createServiceToWebAppConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createServiceToWebAppConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateServiceToWebAppConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateServiceToWebAppConnectionResponse createServiceToWebAppConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToWebAppConnectionRequest createServiceToWebAppConnectionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateServiceToWebAppConnectionResponse> localVarResponse = createServiceToWebAppConnectionWithHttpInfo(projectId, serviceId, createServiceToWebAppConnectionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createServiceToWebAppConnectionRequest  (required)
+   * @return ApiResponse&lt;CreateServiceToWebAppConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateServiceToWebAppConnectionResponse> createServiceToWebAppConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToWebAppConnectionRequest createServiceToWebAppConnectionRequest) throws ApiException {
+    return createServiceToWebAppConnectionWithHttpInfo(projectId, serviceId, createServiceToWebAppConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param createServiceToWebAppConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateServiceToWebAppConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateServiceToWebAppConnectionResponse> createServiceToWebAppConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToWebAppConnectionRequest createServiceToWebAppConnectionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createServiceToWebAppConnectionRequestBuilder(projectId, serviceId, createServiceToWebAppConnectionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createServiceToWebAppConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateServiceToWebAppConnectionResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateServiceToWebAppConnectionResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateServiceToWebAppConnectionResponse>() {});
+        
+
+        return new ApiResponse<CreateServiceToWebAppConnectionResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createServiceToWebAppConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull CreateServiceToWebAppConnectionRequest createServiceToWebAppConnectionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createServiceToWebAppConnection");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling createServiceToWebAppConnection");
+    }
+    // verify the required parameter 'createServiceToWebAppConnectionRequest' is set
+    if (createServiceToWebAppConnectionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createServiceToWebAppConnectionRequest' when calling createServiceToWebAppConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/web-app-connections"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createServiceToWebAppConnectionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param webAppId  (required)
    * @param createServiceUrlConnectionRequest  (required)
    * @return CreateServiceUrlConnectionResponse
@@ -6012,6 +6310,250 @@ public class ProjectsServerApi {
         .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
         .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
         .replace("{customDomainId}", ApiClient.urlEncode(customDomainId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServiceToServiceConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId) throws ApiException {
+    deleteServiceToServiceConnection(projectId, serviceId, connectionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServiceToServiceConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    deleteServiceToServiceConnectionWithHttpInfo(projectId, serviceId, connectionId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServiceToServiceConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId) throws ApiException {
+    return deleteServiceToServiceConnectionWithHttpInfo(projectId, serviceId, connectionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServiceToServiceConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteServiceToServiceConnectionRequestBuilder(projectId, serviceId, connectionId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteServiceToServiceConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteServiceToServiceConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteServiceToServiceConnection");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling deleteServiceToServiceConnection");
+    }
+    // verify the required parameter 'connectionId' is set
+    if (connectionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectionId' when calling deleteServiceToServiceConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/service-connections/{connectionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
+        .replace("{connectionId}", ApiClient.urlEncode(connectionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServiceToWebAppConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId) throws ApiException {
+    deleteServiceToWebAppConnection(projectId, serviceId, connectionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServiceToWebAppConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    deleteServiceToWebAppConnectionWithHttpInfo(projectId, serviceId, connectionId, headers);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServiceToWebAppConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId) throws ApiException {
+    return deleteServiceToWebAppConnectionWithHttpInfo(projectId, serviceId, connectionId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServiceToWebAppConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteServiceToWebAppConnectionRequestBuilder(projectId, serviceId, connectionId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteServiceToWebAppConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteServiceToWebAppConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling deleteServiceToWebAppConnection");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling deleteServiceToWebAppConnection");
+    }
+    // verify the required parameter 'connectionId' is set
+    if (connectionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectionId' when calling deleteServiceToWebAppConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/web-app-connections/{connectionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
+        .replace("{connectionId}", ApiClient.urlEncode(connectionId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -21330,6 +21872,306 @@ public class ProjectsServerApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateForteServiceRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceToServiceConnectionRequest  (required)
+   * @return UpdateServiceToServiceConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateServiceToServiceConnectionResponse updateServiceToServiceConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToServiceConnectionRequest updateServiceToServiceConnectionRequest) throws ApiException {
+    return updateServiceToServiceConnection(projectId, serviceId, connectionId, updateServiceToServiceConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceToServiceConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateServiceToServiceConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateServiceToServiceConnectionResponse updateServiceToServiceConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToServiceConnectionRequest updateServiceToServiceConnectionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateServiceToServiceConnectionResponse> localVarResponse = updateServiceToServiceConnectionWithHttpInfo(projectId, serviceId, connectionId, updateServiceToServiceConnectionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceToServiceConnectionRequest  (required)
+   * @return ApiResponse&lt;UpdateServiceToServiceConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateServiceToServiceConnectionResponse> updateServiceToServiceConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToServiceConnectionRequest updateServiceToServiceConnectionRequest) throws ApiException {
+    return updateServiceToServiceConnectionWithHttpInfo(projectId, serviceId, connectionId, updateServiceToServiceConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceToServiceConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateServiceToServiceConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateServiceToServiceConnectionResponse> updateServiceToServiceConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToServiceConnectionRequest updateServiceToServiceConnectionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateServiceToServiceConnectionRequestBuilder(projectId, serviceId, connectionId, updateServiceToServiceConnectionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateServiceToServiceConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateServiceToServiceConnectionResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateServiceToServiceConnectionResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateServiceToServiceConnectionResponse>() {});
+        
+
+        return new ApiResponse<UpdateServiceToServiceConnectionResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateServiceToServiceConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToServiceConnectionRequest updateServiceToServiceConnectionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling updateServiceToServiceConnection");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling updateServiceToServiceConnection");
+    }
+    // verify the required parameter 'connectionId' is set
+    if (connectionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectionId' when calling updateServiceToServiceConnection");
+    }
+    // verify the required parameter 'updateServiceToServiceConnectionRequest' is set
+    if (updateServiceToServiceConnectionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateServiceToServiceConnectionRequest' when calling updateServiceToServiceConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/service-connections/{connectionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
+        .replace("{connectionId}", ApiClient.urlEncode(connectionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateServiceToServiceConnectionRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceToWebAppConnectionRequest  (required)
+   * @return UpdateServiceToWebAppConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateServiceToWebAppConnectionResponse updateServiceToWebAppConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToWebAppConnectionRequest updateServiceToWebAppConnectionRequest) throws ApiException {
+    return updateServiceToWebAppConnection(projectId, serviceId, connectionId, updateServiceToWebAppConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceToWebAppConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateServiceToWebAppConnectionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateServiceToWebAppConnectionResponse updateServiceToWebAppConnection(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToWebAppConnectionRequest updateServiceToWebAppConnectionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateServiceToWebAppConnectionResponse> localVarResponse = updateServiceToWebAppConnectionWithHttpInfo(projectId, serviceId, connectionId, updateServiceToWebAppConnectionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceToWebAppConnectionRequest  (required)
+   * @return ApiResponse&lt;UpdateServiceToWebAppConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateServiceToWebAppConnectionResponse> updateServiceToWebAppConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToWebAppConnectionRequest updateServiceToWebAppConnectionRequest) throws ApiException {
+    return updateServiceToWebAppConnectionWithHttpInfo(projectId, serviceId, connectionId, updateServiceToWebAppConnectionRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param serviceId  (required)
+   * @param connectionId  (required)
+   * @param updateServiceToWebAppConnectionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateServiceToWebAppConnectionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateServiceToWebAppConnectionResponse> updateServiceToWebAppConnectionWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToWebAppConnectionRequest updateServiceToWebAppConnectionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateServiceToWebAppConnectionRequestBuilder(projectId, serviceId, connectionId, updateServiceToWebAppConnectionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateServiceToWebAppConnection", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateServiceToWebAppConnectionResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateServiceToWebAppConnectionResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateServiceToWebAppConnectionResponse>() {});
+        
+
+        return new ApiResponse<UpdateServiceToWebAppConnectionResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateServiceToWebAppConnectionRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nonnull String connectionId, @javax.annotation.Nonnull UpdateServiceToWebAppConnectionRequest updateServiceToWebAppConnectionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling updateServiceToWebAppConnection");
+    }
+    // verify the required parameter 'serviceId' is set
+    if (serviceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'serviceId' when calling updateServiceToWebAppConnection");
+    }
+    // verify the required parameter 'connectionId' is set
+    if (connectionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectionId' when calling updateServiceToWebAppConnection");
+    }
+    // verify the required parameter 'updateServiceToWebAppConnectionRequest' is set
+    if (updateServiceToWebAppConnectionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateServiceToWebAppConnectionRequest' when calling updateServiceToWebAppConnection");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services/{serviceId}/web-app-connections/{connectionId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{serviceId}", ApiClient.urlEncode(serviceId.toString()))
+        .replace("{connectionId}", ApiClient.urlEncode(connectionId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateServiceToWebAppConnectionRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

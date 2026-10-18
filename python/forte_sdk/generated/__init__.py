@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.491"
+__version__ = "1.0.492"
 
 # Define package exports
 __all__ = [
@@ -82,6 +82,10 @@ __all__ = [
     "CreateServiceDatabaseConnectionRequest",
     "CreateServiceRequestProxyRequest",
     "CreateServiceRequestProxyResponse",
+    "CreateServiceToServiceConnectionRequest",
+    "CreateServiceToServiceConnectionResponse",
+    "CreateServiceToWebAppConnectionRequest",
+    "CreateServiceToWebAppConnectionResponse",
     "CreateServiceUrlConnectionRequest",
     "CreateServiceUrlConnectionResponse",
     "CreateSubscriptionPreviewRequest",
@@ -235,6 +239,10 @@ __all__ = [
     "UpdatePaymentMethodRequest",
     "UpdatePaymentTriggerRequest",
     "UpdateProjectRequest",
+    "UpdateServiceToServiceConnectionRequest",
+    "UpdateServiceToServiceConnectionResponse",
+    "UpdateServiceToWebAppConnectionRequest",
+    "UpdateServiceToWebAppConnectionResponse",
     "UpdateServiceUrlConnectionRequest",
     "UpdateServiceUrlConnectionResponse",
     "UpdateSubscriptionPreviewRequest",
@@ -252,6 +260,7 @@ __all__ = [
     "WebAppDetectionResponse",
     "WebAppObject",
     "WebAppRuntimeMetricsResponse",
+    "WebAppUrlConnection",
 ]
 
 # import apis into sdk package
@@ -323,6 +332,10 @@ from forte_sdk.generated.models.create_project_api_key_response import CreatePro
 from forte_sdk.generated.models.create_service_database_connection_request import CreateServiceDatabaseConnectionRequest as CreateServiceDatabaseConnectionRequest
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
+from forte_sdk.generated.models.create_service_to_service_connection_request import CreateServiceToServiceConnectionRequest as CreateServiceToServiceConnectionRequest
+from forte_sdk.generated.models.create_service_to_service_connection_response import CreateServiceToServiceConnectionResponse as CreateServiceToServiceConnectionResponse
+from forte_sdk.generated.models.create_service_to_web_app_connection_request import CreateServiceToWebAppConnectionRequest as CreateServiceToWebAppConnectionRequest
+from forte_sdk.generated.models.create_service_to_web_app_connection_response import CreateServiceToWebAppConnectionResponse as CreateServiceToWebAppConnectionResponse
 from forte_sdk.generated.models.create_service_url_connection_request import CreateServiceUrlConnectionRequest as CreateServiceUrlConnectionRequest
 from forte_sdk.generated.models.create_service_url_connection_response import CreateServiceUrlConnectionResponse as CreateServiceUrlConnectionResponse
 from forte_sdk.generated.models.create_subscription_preview_request import CreateSubscriptionPreviewRequest as CreateSubscriptionPreviewRequest
@@ -476,6 +489,10 @@ from forte_sdk.generated.models.update_notification_templates_request import Upd
 from forte_sdk.generated.models.update_payment_method_request import UpdatePaymentMethodRequest as UpdatePaymentMethodRequest
 from forte_sdk.generated.models.update_payment_trigger_request import UpdatePaymentTriggerRequest as UpdatePaymentTriggerRequest
 from forte_sdk.generated.models.update_project_request import UpdateProjectRequest as UpdateProjectRequest
+from forte_sdk.generated.models.update_service_to_service_connection_request import UpdateServiceToServiceConnectionRequest as UpdateServiceToServiceConnectionRequest
+from forte_sdk.generated.models.update_service_to_service_connection_response import UpdateServiceToServiceConnectionResponse as UpdateServiceToServiceConnectionResponse
+from forte_sdk.generated.models.update_service_to_web_app_connection_request import UpdateServiceToWebAppConnectionRequest as UpdateServiceToWebAppConnectionRequest
+from forte_sdk.generated.models.update_service_to_web_app_connection_response import UpdateServiceToWebAppConnectionResponse as UpdateServiceToWebAppConnectionResponse
 from forte_sdk.generated.models.update_service_url_connection_request import UpdateServiceUrlConnectionRequest as UpdateServiceUrlConnectionRequest
 from forte_sdk.generated.models.update_service_url_connection_response import UpdateServiceUrlConnectionResponse as UpdateServiceUrlConnectionResponse
 from forte_sdk.generated.models.update_subscription_preview_request import UpdateSubscriptionPreviewRequest as UpdateSubscriptionPreviewRequest
@@ -493,4 +510,5 @@ from forte_sdk.generated.models.web_app_detection_error import WebAppDetectionEr
 from forte_sdk.generated.models.web_app_detection_response import WebAppDetectionResponse as WebAppDetectionResponse
 from forte_sdk.generated.models.web_app_object import WebAppObject as WebAppObject
 from forte_sdk.generated.models.web_app_runtime_metrics_response import WebAppRuntimeMetricsResponse as WebAppRuntimeMetricsResponse
+from forte_sdk.generated.models.web_app_url_connection import WebAppUrlConnection as WebAppUrlConnection
 

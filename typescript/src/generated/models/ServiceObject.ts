@@ -20,6 +20,13 @@ import {
     CustomDomainToJSON,
     CustomDomainToJSONTyped,
 } from './CustomDomain';
+import type { ServiceUrlConnection } from './ServiceUrlConnection';
+import {
+    ServiceUrlConnectionFromJSON,
+    ServiceUrlConnectionFromJSONTyped,
+    ServiceUrlConnectionToJSON,
+    ServiceUrlConnectionToJSONTyped,
+} from './ServiceUrlConnection';
 import type { DockerfileGenerationResponse } from './DockerfileGenerationResponse';
 import {
     DockerfileGenerationResponseFromJSON,
@@ -27,6 +34,13 @@ import {
     DockerfileGenerationResponseToJSON,
     DockerfileGenerationResponseToJSONTyped,
 } from './DockerfileGenerationResponse';
+import type { WebAppUrlConnection } from './WebAppUrlConnection';
+import {
+    WebAppUrlConnectionFromJSON,
+    WebAppUrlConnectionFromJSONTyped,
+    WebAppUrlConnectionToJSON,
+    WebAppUrlConnectionToJSONTyped,
+} from './WebAppUrlConnection';
 import type { HealthCheckDetectionOutput } from './HealthCheckDetectionOutput';
 import {
     HealthCheckDetectionOutputFromJSON,
@@ -152,6 +166,18 @@ export interface ServiceObject {
     customDomains?: Array<CustomDomain> | null;
     /**
      * 
+     * @type {Array<ServiceUrlConnection>}
+     * @memberof ServiceObject
+     */
+    serviceUrlConnections: Array<ServiceUrlConnection>;
+    /**
+     * 
+     * @type {Array<WebAppUrlConnection>}
+     * @memberof ServiceObject
+     */
+    webAppUrlConnections: Array<WebAppUrlConnection>;
+    /**
+     * 
      * @type {Date}
      * @memberof ServiceObject
      */
@@ -236,6 +262,8 @@ export function instanceOfServiceObject(value: object): value is ServiceObject {
     if (!('serviceName' in value) || value['serviceName'] === undefined) return false;
     if (!('baseInstances' in value) || value['baseInstances'] === undefined) return false;
     if (!('containerCpu' in value) || value['containerCpu'] === undefined) return false;
+    if (!('serviceUrlConnections' in value) || value['serviceUrlConnections'] === undefined) return false;
+    if (!('webAppUrlConnections' in value) || value['webAppUrlConnections'] === undefined) return false;
     if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
     if (!('githubBuildTrigger' in value) || value['githubBuildTrigger'] === undefined) return false;
     return true;
@@ -268,6 +296,8 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'regionReplicas': json['regionReplicas'] == null ? undefined : json['regionReplicas'],
         'containerCpu': json['containerCpu'],
         'customDomains': json['customDomains'] == null ? undefined : ((json['customDomains'] as Array<any>).map(CustomDomainFromJSON)),
+        'serviceUrlConnections': ((json['serviceUrlConnections'] as Array<any>).map(ServiceUrlConnectionFromJSON)),
+        'webAppUrlConnections': ((json['webAppUrlConnections'] as Array<any>).map(WebAppUrlConnectionFromJSON)),
         'createdTimestamp': json['createdTimestamp'] == null ? undefined : (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
         'githubRepositoryUrl': json['githubRepositoryUrl'],
@@ -310,6 +340,8 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'regionReplicas': value['regionReplicas'],
         'containerCpu': value['containerCpu'],
         'customDomains': value['customDomains'] == null ? undefined : ((value['customDomains'] as Array<any>).map(CustomDomainToJSON)),
+        'serviceUrlConnections': ((value['serviceUrlConnections'] as Array<any>).map(ServiceUrlConnectionToJSON)),
+        'webAppUrlConnections': ((value['webAppUrlConnections'] as Array<any>).map(WebAppUrlConnectionToJSON)),
         'createdTimestamp': value['createdTimestamp'] == null ? value['createdTimestamp'] : value['createdTimestamp'].toISOString(),
         'lastModifiedTimestamp': value['lastModifiedTimestamp'] == null ? value['lastModifiedTimestamp'] : value['lastModifiedTimestamp'].toISOString(),
         'githubRepositoryUrl': value['githubRepositoryUrl'],
