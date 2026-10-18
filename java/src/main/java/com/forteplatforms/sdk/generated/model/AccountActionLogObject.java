@@ -319,7 +319,11 @@ public class AccountActionLogObject {
     
     DOMAIN_TRANSFER_FAILED(String.valueOf("DOMAIN_TRANSFER_FAILED")),
     
-    DOMAIN_CONTACT_CHANGED(String.valueOf("DOMAIN_CONTACT_CHANGED"));
+    DOMAIN_CONTACT_CHANGED(String.valueOf("DOMAIN_CONTACT_CHANGED")),
+    
+    OAUTH_GRANT_CREATED(String.valueOf("OAUTH_GRANT_CREATED")),
+    
+    OAUTH_GRANT_DELETED(String.valueOf("OAUTH_GRANT_DELETED"));
 
     private String value;
 
