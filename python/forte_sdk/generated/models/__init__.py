@@ -241,6 +241,7 @@ from forte_sdk.generated.models.update_web_app_response import UpdateWebAppRespo
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject
+from forte_sdk.generated.models.user_risk_signals import UserRiskSignals
 from forte_sdk.generated.models.utilization_data_point import UtilizationDataPoint
 from forte_sdk.generated.models.utilization_series import UtilizationSeries
 from forte_sdk.generated.models.web_app_build_request_object import WebAppBuildRequestObject

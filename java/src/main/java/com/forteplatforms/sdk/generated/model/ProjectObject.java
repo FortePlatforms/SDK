@@ -65,6 +65,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_PASSWORD_LOGIN_ENABLED,
   ProjectObject.JSON_PROPERTY_PASSWORD_CONFIG,
   ProjectObject.JSON_PROPERTY_MFA_CONFIG,
+  ProjectObject.JSON_PROPERTY_BOT_PROTECTION_MODE,
   ProjectObject.JSON_PROPERTY_SANDBOX_MODE,
   ProjectObject.JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG,
   ProjectObject.JSON_PROPERTY_PAYMENT_TRIGGERS,
@@ -144,6 +145,46 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_MFA_CONFIG = "mfaConfig";
   @javax.annotation.Nullable
   private MfaConfig mfaConfig;
+
+  /**
+   * Gets or Sets botProtectionMode
+   */
+  public enum BotProtectionModeEnum {
+    DISABLED(String.valueOf("DISABLED")),
+    
+    STANDARD(String.valueOf("STANDARD")),
+    
+    PROTECTIVE(String.valueOf("PROTECTIVE"));
+
+    private String value;
+
+    BotProtectionModeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BotProtectionModeEnum fromValue(String value) {
+      for (BotProtectionModeEnum b : BotProtectionModeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_BOT_PROTECTION_MODE = "botProtectionMode";
+  private JsonNullable<BotProtectionModeEnum> botProtectionMode = JsonNullable.<BotProtectionModeEnum>undefined();
 
   public static final String JSON_PROPERTY_SANDBOX_MODE = "sandboxMode";
   private JsonNullable<Boolean> sandboxMode = JsonNullable.<Boolean>undefined();
@@ -755,6 +796,38 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject botProtectionMode(@javax.annotation.Nullable BotProtectionModeEnum botProtectionMode) {
+    this.botProtectionMode = JsonNullable.<BotProtectionModeEnum>of(botProtectionMode);
+    return this;
+  }
+
+  /**
+   * Get botProtectionMode
+   * @return botProtectionMode
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public BotProtectionModeEnum getBotProtectionMode() {
+        return botProtectionMode.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_BOT_PROTECTION_MODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<BotProtectionModeEnum> getBotProtectionMode_JsonNullable() {
+    return botProtectionMode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BOT_PROTECTION_MODE)
+  public void setBotProtectionMode_JsonNullable(JsonNullable<BotProtectionModeEnum> botProtectionMode) {
+    this.botProtectionMode = botProtectionMode;
+  }
+
+  public void setBotProtectionMode(@javax.annotation.Nullable BotProtectionModeEnum botProtectionMode) {
+    this.botProtectionMode = JsonNullable.<BotProtectionModeEnum>of(botProtectionMode);
+  }
+
+
   public ProjectObject sandboxMode(@javax.annotation.Nullable Boolean sandboxMode) {
     this.sandboxMode = JsonNullable.<Boolean>of(sandboxMode);
     return this;
@@ -1089,6 +1162,7 @@ public class ProjectObject {
         equalsNullable(this.passwordLoginEnabled, projectObject.passwordLoginEnabled) &&
         Objects.equals(this.passwordConfig, projectObject.passwordConfig) &&
         Objects.equals(this.mfaConfig, projectObject.mfaConfig) &&
+        equalsNullable(this.botProtectionMode, projectObject.botProtectionMode) &&
         equalsNullable(this.sandboxMode, projectObject.sandboxMode) &&
         Objects.equals(this.notificationTemplatesConfig, projectObject.notificationTemplatesConfig) &&
         Objects.equals(this.paymentTriggers, projectObject.paymentTriggers) &&
@@ -1107,7 +1181,7 @@ public class ProjectObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, hashCodeNullable(cachedUserCount), googleOAuthClientId, hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(sandboxMode), notificationTemplatesConfig, paymentTriggers, hashCodeNullable(emailSender), hashCodeNullable(parentProjectId), hashCodeNullable(clonedFromProjectId), hashCodeNullable(environmentName), hashCodeNullable(cloneStatus), hashCodeNullable(cloneFailureReason), hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, hashCodeNullable(cachedUserCount), googleOAuthClientId, hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(botProtectionMode), hashCodeNullable(sandboxMode), notificationTemplatesConfig, paymentTriggers, hashCodeNullable(emailSender), hashCodeNullable(parentProjectId), hashCodeNullable(clonedFromProjectId), hashCodeNullable(environmentName), hashCodeNullable(cloneStatus), hashCodeNullable(cloneFailureReason), hasRecaptchaSecretKey);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1139,6 +1213,7 @@ public class ProjectObject {
     sb.append("    passwordLoginEnabled: ").append(toIndentedString(passwordLoginEnabled)).append("\n");
     sb.append("    passwordConfig: ").append(toIndentedString(passwordConfig)).append("\n");
     sb.append("    mfaConfig: ").append(toIndentedString(mfaConfig)).append("\n");
+    sb.append("    botProtectionMode: ").append(toIndentedString(botProtectionMode)).append("\n");
     sb.append("    sandboxMode: ").append(toIndentedString(sandboxMode)).append("\n");
     sb.append("    notificationTemplatesConfig: ").append(toIndentedString(notificationTemplatesConfig)).append("\n");
     sb.append("    paymentTriggers: ").append(toIndentedString(paymentTriggers)).append("\n");
@@ -1296,6 +1371,11 @@ public class ProjectObject {
     // add `mfaConfig` to the URL query string
     if (getMfaConfig() != null) {
       joiner.add(getMfaConfig().toUrlQueryString(prefix + "mfaConfig" + suffix));
+    }
+
+    // add `botProtectionMode` to the URL query string
+    if (getBotProtectionMode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbotProtectionMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBotProtectionMode()))));
     }
 
     // add `sandboxMode` to the URL query string

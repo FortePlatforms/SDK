@@ -215,7 +215,8 @@ export const AccountActionLogObjectActionTypeType = {
     DOMAIN_TRANSFER_FAILED: 'DOMAIN_TRANSFER_FAILED',
     DOMAIN_CONTACT_CHANGED: 'DOMAIN_CONTACT_CHANGED',
     OAUTH_GRANT_CREATED: 'OAUTH_GRANT_CREATED',
-    OAUTH_GRANT_DELETED: 'OAUTH_GRANT_DELETED'
+    OAUTH_GRANT_DELETED: 'OAUTH_GRANT_DELETED',
+    SUSPICIOUS_USER_ACTIVITY_DETECTED: 'SUSPICIOUS_USER_ACTIVITY_DETECTED'
 } as const;
 export type AccountActionLogObjectActionTypeType = typeof AccountActionLogObjectActionTypeType[keyof typeof AccountActionLogObjectActionTypeType];
 

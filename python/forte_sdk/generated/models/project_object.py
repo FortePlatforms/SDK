@@ -53,6 +53,7 @@ class ProjectObject(BaseModel):
     password_login_enabled: Optional[StrictBool] = Field(default=None, alias="passwordLoginEnabled")
     password_config: Optional[PasswordConfig] = Field(default=None, alias="passwordConfig")
     mfa_config: Optional[MfaConfig] = Field(default=None, alias="mfaConfig")
+    bot_protection_mode: Optional[StrictStr] = Field(default=None, alias="botProtectionMode")
     sandbox_mode: Optional[StrictBool] = Field(default=None, alias="sandboxMode")
     notification_templates_config: Optional[NotificationTemplatesConfig] = Field(default=None, alias="notificationTemplatesConfig")
     payment_triggers: Optional[List[PaymentTriggerConfig]] = Field(default=None, alias="paymentTriggers")
@@ -63,7 +64,17 @@ class ProjectObject(BaseModel):
     clone_status: Optional[StrictStr] = Field(default=None, alias="cloneStatus")
     clone_failure_reason: Optional[StrictStr] = Field(default=None, alias="cloneFailureReason")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "parentProjectId", "clonedFromProjectId", "environmentName", "cloneStatus", "cloneFailureReason", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "botProtectionMode", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "parentProjectId", "clonedFromProjectId", "environmentName", "cloneStatus", "cloneFailureReason", "hasRecaptchaSecretKey"]
+
+    @field_validator('bot_protection_mode')
+    def bot_protection_mode_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['DISABLED', 'STANDARD', 'PROTECTIVE']):
+            raise ValueError("must be one of enum values ('DISABLED', 'STANDARD', 'PROTECTIVE')")
+        return value
 
     @field_validator('email_sender')
     def email_sender_validate_enum(cls, value):
@@ -186,6 +197,11 @@ class ProjectObject(BaseModel):
         if self.password_login_enabled is None and "password_login_enabled" in self.model_fields_set:
             _dict['passwordLoginEnabled'] = None
 
+        # set to None if bot_protection_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.bot_protection_mode is None and "bot_protection_mode" in self.model_fields_set:
+            _dict['botProtectionMode'] = None
+
         # set to None if sandbox_mode (nullable) is None
         # and model_fields_set contains the field
         if self.sandbox_mode is None and "sandbox_mode" in self.model_fields_set:
@@ -251,6 +267,7 @@ class ProjectObject(BaseModel):
             "passwordLoginEnabled": obj.get("passwordLoginEnabled"),
             "passwordConfig": PasswordConfig.from_dict(obj["passwordConfig"]) if obj.get("passwordConfig") is not None else None,
             "mfaConfig": MfaConfig.from_dict(obj["mfaConfig"]) if obj.get("mfaConfig") is not None else None,
+            "botProtectionMode": obj.get("botProtectionMode"),
             "sandboxMode": obj.get("sandboxMode"),
             "notificationTemplatesConfig": NotificationTemplatesConfig.from_dict(obj["notificationTemplatesConfig"]) if obj.get("notificationTemplatesConfig") is not None else None,
             "paymentTriggers": [PaymentTriggerConfig.from_dict(_item) for _item in obj["paymentTriggers"]] if obj.get("paymentTriggers") is not None else None,

@@ -37,8 +37,19 @@ class UpdateProjectRequest(BaseModel):
     password_login_enabled: Optional[StrictBool] = Field(default=None, alias="passwordLoginEnabled")
     password_config: Optional[PasswordConfig] = Field(default=None, alias="passwordConfig")
     mfa_config: Optional[MfaConfig] = Field(default=None, alias="mfaConfig")
+    bot_protection_mode: Optional[StrictStr] = Field(default=None, alias="botProtectionMode")
     email_sender: Optional[StrictStr] = Field(default=None, alias="emailSender")
-    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "emailSender"]
+    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "botProtectionMode", "emailSender"]
+
+    @field_validator('bot_protection_mode')
+    def bot_protection_mode_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['DISABLED', 'STANDARD', 'PROTECTIVE']):
+            raise ValueError("must be one of enum values ('DISABLED', 'STANDARD', 'PROTECTIVE')")
+        return value
 
     @field_validator('email_sender')
     def email_sender_validate_enum(cls, value):
@@ -125,6 +136,11 @@ class UpdateProjectRequest(BaseModel):
         if self.password_login_enabled is None and "password_login_enabled" in self.model_fields_set:
             _dict['passwordLoginEnabled'] = None
 
+        # set to None if bot_protection_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.bot_protection_mode is None and "bot_protection_mode" in self.model_fields_set:
+            _dict['botProtectionMode'] = None
+
         # set to None if email_sender (nullable) is None
         # and model_fields_set contains the field
         if self.email_sender is None and "email_sender" in self.model_fields_set:
@@ -150,6 +166,7 @@ class UpdateProjectRequest(BaseModel):
             "passwordLoginEnabled": obj.get("passwordLoginEnabled"),
             "passwordConfig": PasswordConfig.from_dict(obj["passwordConfig"]) if obj.get("passwordConfig") is not None else None,
             "mfaConfig": MfaConfig.from_dict(obj["mfaConfig"]) if obj.get("mfaConfig") is not None else None,
+            "botProtectionMode": obj.get("botProtectionMode"),
             "emailSender": obj.get("emailSender")
         })
         return _obj

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.UserRiskSignals;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -48,7 +49,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserActionLogObject.JSON_PROPERTY_PERFORMED_BY_ACCOUNT_ID,
   UserActionLogObject.JSON_PROPERTY_SOURCE_IP_ADDRESS,
   UserActionLogObject.JSON_PROPERTY_USER_AGENT,
-  UserActionLogObject.JSON_PROPERTY_METADATA
+  UserActionLogObject.JSON_PROPERTY_METADATA,
+  UserActionLogObject.JSON_PROPERTY_RISK_SIGNALS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UserActionLogObject {
@@ -86,6 +88,8 @@ public class UserActionLogObject {
     
     CONTACT_METHOD_VERIFIED(String.valueOf("CONTACT_METHOD_VERIFIED")),
     
+    CONTACT_METHOD_VERIFICATION_FAILED(String.valueOf("CONTACT_METHOD_VERIFICATION_FAILED")),
+    
     CONTACT_METHOD_ADMIN_OVERRIDE(String.valueOf("CONTACT_METHOD_ADMIN_OVERRIDE")),
     
     CONTACT_METHOD_FIXED_OTP_SET(String.valueOf("CONTACT_METHOD_FIXED_OTP_SET")),
@@ -97,6 +101,8 @@ public class UserActionLogObject {
     USER_LOGOUT(String.valueOf("USER_LOGOUT")),
     
     USER_LOGIN_OTP_SENT(String.valueOf("USER_LOGIN_OTP_SENT")),
+    
+    USER_LOGIN_OTP_FAILED(String.valueOf("USER_LOGIN_OTP_FAILED")),
     
     SESSION_REVOKED(String.valueOf("SESSION_REVOKED")),
     
@@ -166,7 +172,9 @@ public class UserActionLogObject {
     
     REAUTHENTICATED(String.valueOf("REAUTHENTICATED")),
     
-    REAUTHENTICATION_FAILED(String.valueOf("REAUTHENTICATION_FAILED"));
+    REAUTHENTICATION_FAILED(String.valueOf("REAUTHENTICATION_FAILED")),
+    
+    SUSPICIOUS_USER_ACTIVITY_DETECTED(String.valueOf("SUSPICIOUS_USER_ACTIVITY_DETECTED"));
 
     private String value;
 
@@ -217,6 +225,10 @@ public class UserActionLogObject {
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
   private Map<String, String> metadata = new HashMap<>();
+
+  public static final String JSON_PROPERTY_RISK_SIGNALS = "riskSignals";
+  @javax.annotation.Nullable
+  private UserRiskSignals riskSignals;
 
   public UserActionLogObject() { 
   }
@@ -485,6 +497,30 @@ public class UserActionLogObject {
   }
 
 
+  public UserActionLogObject riskSignals(@javax.annotation.Nullable UserRiskSignals riskSignals) {
+    this.riskSignals = riskSignals;
+    return this;
+  }
+
+  /**
+   * Get riskSignals
+   * @return riskSignals
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RISK_SIGNALS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UserRiskSignals getRiskSignals() {
+    return riskSignals;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RISK_SIGNALS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRiskSignals(@javax.annotation.Nullable UserRiskSignals riskSignals) {
+    this.riskSignals = riskSignals;
+  }
+
+
   /**
    * Return true if this UserActionLogObject object is equal to o.
    */
@@ -505,7 +541,8 @@ public class UserActionLogObject {
         equalsNullable(this.performedByAccountId, userActionLogObject.performedByAccountId) &&
         equalsNullable(this.sourceIpAddress, userActionLogObject.sourceIpAddress) &&
         equalsNullable(this.userAgent, userActionLogObject.userAgent) &&
-        Objects.equals(this.metadata, userActionLogObject.metadata);
+        Objects.equals(this.metadata, userActionLogObject.metadata) &&
+        Objects.equals(this.riskSignals, userActionLogObject.riskSignals);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -514,7 +551,7 @@ public class UserActionLogObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, userId, actionType, hashCodeNullable(contactMethodId), hashCodeNullable(paymentMethodId), hashCodeNullable(performedByAccountId), hashCodeNullable(sourceIpAddress), hashCodeNullable(userAgent), metadata);
+    return Objects.hash(timestamp, userId, actionType, hashCodeNullable(contactMethodId), hashCodeNullable(paymentMethodId), hashCodeNullable(performedByAccountId), hashCodeNullable(sourceIpAddress), hashCodeNullable(userAgent), metadata, riskSignals);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -537,6 +574,7 @@ public class UserActionLogObject {
     sb.append("    sourceIpAddress: ").append(toIndentedString(sourceIpAddress)).append("\n");
     sb.append("    userAgent: ").append(toIndentedString(userAgent)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    riskSignals: ").append(toIndentedString(riskSignals)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -628,6 +666,11 @@ public class UserActionLogObject {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
       }
+    }
+
+    // add `riskSignals` to the URL query string
+    if (getRiskSignals() != null) {
+      joiner.add(getRiskSignals().toUrlQueryString(prefix + "riskSignals" + suffix));
     }
 
     return joiner.toString();

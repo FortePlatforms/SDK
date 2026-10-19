@@ -84,12 +84,28 @@ export interface UpdateProjectRequest {
     mfaConfig?: MfaConfig;
     /**
      * 
+     * @type {UpdateProjectRequestBotProtectionModeType}
+     * @memberof UpdateProjectRequest
+     */
+    botProtectionMode?: UpdateProjectRequestBotProtectionModeType | null;
+    /**
+     * 
      * @type {UpdateProjectRequestEmailSenderType}
      * @memberof UpdateProjectRequest
      */
     emailSender?: UpdateProjectRequestEmailSenderType | null;
 }
 
+
+/**
+ * @export
+ */
+export const UpdateProjectRequestBotProtectionModeType = {
+    DISABLED: 'DISABLED',
+    STANDARD: 'STANDARD',
+    PROTECTIVE: 'PROTECTIVE'
+} as const;
+export type UpdateProjectRequestBotProtectionModeType = typeof UpdateProjectRequestBotProtectionModeType[keyof typeof UpdateProjectRequestBotProtectionModeType];
 
 /**
  * @export
@@ -126,6 +142,7 @@ export function UpdateProjectRequestFromJSONTyped(json: any, ignoreDiscriminator
         'passwordLoginEnabled': json['passwordLoginEnabled'] == null ? undefined : json['passwordLoginEnabled'],
         'passwordConfig': json['passwordConfig'] == null ? undefined : PasswordConfigFromJSON(json['passwordConfig']),
         'mfaConfig': json['mfaConfig'] == null ? undefined : MfaConfigFromJSON(json['mfaConfig']),
+        'botProtectionMode': json['botProtectionMode'] == null ? undefined : json['botProtectionMode'],
         'emailSender': json['emailSender'] == null ? undefined : json['emailSender'],
     };
 }
@@ -149,6 +166,7 @@ export function UpdateProjectRequestToJSONTyped(value?: UpdateProjectRequest | n
         'passwordLoginEnabled': value['passwordLoginEnabled'],
         'passwordConfig': PasswordConfigToJSON(value['passwordConfig']),
         'mfaConfig': MfaConfigToJSON(value['mfaConfig']),
+        'botProtectionMode': value['botProtectionMode'],
         'emailSender': value['emailSender'],
     };
 }

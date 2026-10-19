@@ -47,6 +47,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateProjectRequest.JSON_PROPERTY_PASSWORD_LOGIN_ENABLED,
   UpdateProjectRequest.JSON_PROPERTY_PASSWORD_CONFIG,
   UpdateProjectRequest.JSON_PROPERTY_MFA_CONFIG,
+  UpdateProjectRequest.JSON_PROPERTY_BOT_PROTECTION_MODE,
   UpdateProjectRequest.JSON_PROPERTY_EMAIL_SENDER
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -76,6 +77,46 @@ public class UpdateProjectRequest {
   public static final String JSON_PROPERTY_MFA_CONFIG = "mfaConfig";
   @javax.annotation.Nullable
   private MfaConfig mfaConfig;
+
+  /**
+   * Gets or Sets botProtectionMode
+   */
+  public enum BotProtectionModeEnum {
+    DISABLED(String.valueOf("DISABLED")),
+    
+    STANDARD(String.valueOf("STANDARD")),
+    
+    PROTECTIVE(String.valueOf("PROTECTIVE"));
+
+    private String value;
+
+    BotProtectionModeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BotProtectionModeEnum fromValue(String value) {
+      for (BotProtectionModeEnum b : BotProtectionModeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_BOT_PROTECTION_MODE = "botProtectionMode";
+  private JsonNullable<BotProtectionModeEnum> botProtectionMode = JsonNullable.<BotProtectionModeEnum>undefined();
 
   /**
    * Gets or Sets emailSender
@@ -358,6 +399,38 @@ public class UpdateProjectRequest {
   }
 
 
+  public UpdateProjectRequest botProtectionMode(@javax.annotation.Nullable BotProtectionModeEnum botProtectionMode) {
+    this.botProtectionMode = JsonNullable.<BotProtectionModeEnum>of(botProtectionMode);
+    return this;
+  }
+
+  /**
+   * Get botProtectionMode
+   * @return botProtectionMode
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public BotProtectionModeEnum getBotProtectionMode() {
+        return botProtectionMode.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_BOT_PROTECTION_MODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<BotProtectionModeEnum> getBotProtectionMode_JsonNullable() {
+    return botProtectionMode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BOT_PROTECTION_MODE)
+  public void setBotProtectionMode_JsonNullable(JsonNullable<BotProtectionModeEnum> botProtectionMode) {
+    this.botProtectionMode = botProtectionMode;
+  }
+
+  public void setBotProtectionMode(@javax.annotation.Nullable BotProtectionModeEnum botProtectionMode) {
+    this.botProtectionMode = JsonNullable.<BotProtectionModeEnum>of(botProtectionMode);
+  }
+
+
   public UpdateProjectRequest emailSender(@javax.annotation.Nullable EmailSenderEnum emailSender) {
     this.emailSender = JsonNullable.<EmailSenderEnum>of(emailSender);
     return this;
@@ -410,6 +483,7 @@ public class UpdateProjectRequest {
         equalsNullable(this.passwordLoginEnabled, updateProjectRequest.passwordLoginEnabled) &&
         Objects.equals(this.passwordConfig, updateProjectRequest.passwordConfig) &&
         Objects.equals(this.mfaConfig, updateProjectRequest.mfaConfig) &&
+        equalsNullable(this.botProtectionMode, updateProjectRequest.botProtectionMode) &&
         equalsNullable(this.emailSender, updateProjectRequest.emailSender);
   }
 
@@ -419,7 +493,7 @@ public class UpdateProjectRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(googleOAuthClientId), hashCodeNullable(recaptchaSecretKey), hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(emailSender));
+    return Objects.hash(hashCodeNullable(googleOAuthClientId), hashCodeNullable(recaptchaSecretKey), hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(botProtectionMode), hashCodeNullable(emailSender));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -441,6 +515,7 @@ public class UpdateProjectRequest {
     sb.append("    passwordLoginEnabled: ").append(toIndentedString(passwordLoginEnabled)).append("\n");
     sb.append("    passwordConfig: ").append(toIndentedString(passwordConfig)).append("\n");
     sb.append("    mfaConfig: ").append(toIndentedString(mfaConfig)).append("\n");
+    sb.append("    botProtectionMode: ").append(toIndentedString(botProtectionMode)).append("\n");
     sb.append("    emailSender: ").append(toIndentedString(emailSender)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -524,6 +599,11 @@ public class UpdateProjectRequest {
     // add `mfaConfig` to the URL query string
     if (getMfaConfig() != null) {
       joiner.add(getMfaConfig().toUrlQueryString(prefix + "mfaConfig" + suffix));
+    }
+
+    // add `botProtectionMode` to the URL query string
+    if (getBotProtectionMode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbotProtectionMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBotProtectionMode()))));
     }
 
     // add `emailSender` to the URL query string

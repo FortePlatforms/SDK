@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { UserRiskSignals } from './UserRiskSignals';
+import {
+    UserRiskSignalsFromJSON,
+    UserRiskSignalsFromJSONTyped,
+    UserRiskSignalsToJSON,
+    UserRiskSignalsToJSONTyped,
+} from './UserRiskSignals';
+
 /**
  * 
  * @export
@@ -73,6 +81,12 @@ export interface UserActionLogObject {
      * @memberof UserActionLogObject
      */
     metadata?: { [key: string]: string; };
+    /**
+     * 
+     * @type {UserRiskSignals}
+     * @memberof UserActionLogObject
+     */
+    riskSignals?: UserRiskSignals;
 }
 
 
@@ -91,12 +105,14 @@ export const UserActionLogObjectActionTypeType = {
     CONTACT_METHOD_VERIFICATION_CODE_SENT: 'CONTACT_METHOD_VERIFICATION_CODE_SENT',
     CONTACT_METHOD_VERIFICATION_CODE_RE_SENT: 'CONTACT_METHOD_VERIFICATION_CODE_RE_SENT',
     CONTACT_METHOD_VERIFIED: 'CONTACT_METHOD_VERIFIED',
+    CONTACT_METHOD_VERIFICATION_FAILED: 'CONTACT_METHOD_VERIFICATION_FAILED',
     CONTACT_METHOD_ADMIN_OVERRIDE: 'CONTACT_METHOD_ADMIN_OVERRIDE',
     CONTACT_METHOD_FIXED_OTP_SET: 'CONTACT_METHOD_FIXED_OTP_SET',
     CONTACT_METHOD_FIXED_OTP_REMOVED: 'CONTACT_METHOD_FIXED_OTP_REMOVED',
     USER_LOGIN: 'USER_LOGIN',
     USER_LOGOUT: 'USER_LOGOUT',
     USER_LOGIN_OTP_SENT: 'USER_LOGIN_OTP_SENT',
+    USER_LOGIN_OTP_FAILED: 'USER_LOGIN_OTP_FAILED',
     SESSION_REVOKED: 'SESSION_REVOKED',
     ALL_OTHER_SESSIONS_REVOKED: 'ALL_OTHER_SESSIONS_REVOKED',
     PAYMENT_CREATED: 'PAYMENT_CREATED',
@@ -131,7 +147,8 @@ export const UserActionLogObjectActionTypeType = {
     MFA_ADMIN_RESET: 'MFA_ADMIN_RESET',
     REAUTHENTICATION_CHALLENGE_SENT: 'REAUTHENTICATION_CHALLENGE_SENT',
     REAUTHENTICATED: 'REAUTHENTICATED',
-    REAUTHENTICATION_FAILED: 'REAUTHENTICATION_FAILED'
+    REAUTHENTICATION_FAILED: 'REAUTHENTICATION_FAILED',
+    SUSPICIOUS_USER_ACTIVITY_DETECTED: 'SUSPICIOUS_USER_ACTIVITY_DETECTED'
 } as const;
 export type UserActionLogObjectActionTypeType = typeof UserActionLogObjectActionTypeType[keyof typeof UserActionLogObjectActionTypeType];
 
@@ -165,6 +182,7 @@ export function UserActionLogObjectFromJSONTyped(json: any, ignoreDiscriminator:
         'sourceIpAddress': json['sourceIpAddress'] == null ? undefined : json['sourceIpAddress'],
         'userAgent': json['userAgent'] == null ? undefined : json['userAgent'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'riskSignals': json['riskSignals'] == null ? undefined : UserRiskSignalsFromJSON(json['riskSignals']),
     };
 }
 
@@ -188,6 +206,7 @@ export function UserActionLogObjectToJSONTyped(value?: UserActionLogObject | nul
         'sourceIpAddress': value['sourceIpAddress'],
         'userAgent': value['userAgent'],
         'metadata': value['metadata'],
+        'riskSignals': UserRiskSignalsToJSON(value['riskSignals']),
     };
 }
 

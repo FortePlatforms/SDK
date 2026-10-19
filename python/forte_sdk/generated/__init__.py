@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.494"
+__version__ = "1.0.496"
 
 # Define package exports
 __all__ = [
@@ -257,6 +257,7 @@ __all__ = [
     "UserActionLogObject",
     "UserMetricsResponse",
     "UserObject",
+    "UserRiskSignals",
     "UtilizationDataPoint",
     "UtilizationSeries",
     "WebAppBuildRequestObject",
@@ -511,6 +512,7 @@ from forte_sdk.generated.models.update_web_app_response import UpdateWebAppRespo
 from forte_sdk.generated.models.user_action_log_object import UserActionLogObject as UserActionLogObject
 from forte_sdk.generated.models.user_metrics_response import UserMetricsResponse as UserMetricsResponse
 from forte_sdk.generated.models.user_object import UserObject as UserObject
+from forte_sdk.generated.models.user_risk_signals import UserRiskSignals as UserRiskSignals
 from forte_sdk.generated.models.utilization_data_point import UtilizationDataPoint as UtilizationDataPoint
 from forte_sdk.generated.models.utilization_series import UtilizationSeries as UtilizationSeries
 from forte_sdk.generated.models.web_app_build_request_object import WebAppBuildRequestObject as WebAppBuildRequestObject
