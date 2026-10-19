@@ -29,6 +29,8 @@ import com.forteplatforms.sdk.generated.model.ApiKeySummary;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.ContentObject;
 import com.forteplatforms.sdk.generated.model.CreateActionRequest;
+import com.forteplatforms.sdk.generated.model.CreateBuildArtifactRequest;
+import com.forteplatforms.sdk.generated.model.CreateBuildArtifactResponse;
 import com.forteplatforms.sdk.generated.model.CreateCloneEnvironmentRequest;
 import com.forteplatforms.sdk.generated.model.CreateCloneEnvironmentResponse;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkRequest;
@@ -65,6 +67,7 @@ import com.forteplatforms.sdk.generated.model.CreateSubscriptionResponse;
 import com.forteplatforms.sdk.generated.model.CreateWebAppRequest;
 import com.forteplatforms.sdk.generated.model.CustomDomainResponse;
 import com.forteplatforms.sdk.generated.model.CustomEmailTemplateObject;
+import com.forteplatforms.sdk.generated.model.GetBuildArtifactResponse;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.GetRequestBodyDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.GetServiceCodeSourceStatusResponse;
@@ -2340,6 +2343,142 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param createBuildArtifactRequest  (required)
+   * @return CreateBuildArtifactResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateBuildArtifactResponse createBuildArtifact(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateBuildArtifactRequest createBuildArtifactRequest) throws ApiException {
+    return createBuildArtifact(projectId, createBuildArtifactRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createBuildArtifactRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateBuildArtifactResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateBuildArtifactResponse createBuildArtifact(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateBuildArtifactRequest createBuildArtifactRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateBuildArtifactResponse> localVarResponse = createBuildArtifactWithHttpInfo(projectId, createBuildArtifactRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createBuildArtifactRequest  (required)
+   * @return ApiResponse&lt;CreateBuildArtifactResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateBuildArtifactResponse> createBuildArtifactWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateBuildArtifactRequest createBuildArtifactRequest) throws ApiException {
+    return createBuildArtifactWithHttpInfo(projectId, createBuildArtifactRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createBuildArtifactRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateBuildArtifactResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateBuildArtifactResponse> createBuildArtifactWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateBuildArtifactRequest createBuildArtifactRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createBuildArtifactRequestBuilder(projectId, createBuildArtifactRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createBuildArtifact", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateBuildArtifactResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateBuildArtifactResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateBuildArtifactResponse>() {});
+        
+
+        return new ApiResponse<CreateBuildArtifactResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createBuildArtifactRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateBuildArtifactRequest createBuildArtifactRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createBuildArtifact");
+    }
+    // verify the required parameter 'createBuildArtifactRequest' is set
+    if (createBuildArtifactRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createBuildArtifactRequest' when calling createBuildArtifact");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/artifacts"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createBuildArtifactRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param createCloneEnvironmentRequest  (required)
    * @return CreateCloneEnvironmentResponse
    * @throws ApiException if fails to make API call
@@ -4026,11 +4165,12 @@ public class ProjectsServerApi {
    * @param serviceId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
+   * @param artifactId  (optional)
    * @return ServiceBuildRequestObject
    * @throws ApiException if fails to make API call
    */
-  public ServiceBuildRequestObject createServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName) throws ApiException {
-    return createServiceDeployment(projectId, serviceId, commitSha, releaseTagName, null);
+  public ServiceBuildRequestObject createServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId) throws ApiException {
+    return createServiceDeployment(projectId, serviceId, commitSha, releaseTagName, artifactId, null);
   }
 
   /**
@@ -4040,12 +4180,13 @@ public class ProjectsServerApi {
    * @param serviceId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
+   * @param artifactId  (optional)
    * @param headers Optional headers to include in the request
    * @return ServiceBuildRequestObject
    * @throws ApiException if fails to make API call
    */
-  public ServiceBuildRequestObject createServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
-    ApiResponse<ServiceBuildRequestObject> localVarResponse = createServiceDeploymentWithHttpInfo(projectId, serviceId, commitSha, releaseTagName, headers);
+  public ServiceBuildRequestObject createServiceDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ServiceBuildRequestObject> localVarResponse = createServiceDeploymentWithHttpInfo(projectId, serviceId, commitSha, releaseTagName, artifactId, headers);
     return localVarResponse.getData();
   }
 
@@ -4056,11 +4197,12 @@ public class ProjectsServerApi {
    * @param serviceId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
+   * @param artifactId  (optional)
    * @return ApiResponse&lt;ServiceBuildRequestObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ServiceBuildRequestObject> createServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName) throws ApiException {
-    return createServiceDeploymentWithHttpInfo(projectId, serviceId, commitSha, releaseTagName, null);
+  public ApiResponse<ServiceBuildRequestObject> createServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId) throws ApiException {
+    return createServiceDeploymentWithHttpInfo(projectId, serviceId, commitSha, releaseTagName, artifactId, null);
   }
 
   /**
@@ -4070,12 +4212,13 @@ public class ProjectsServerApi {
    * @param serviceId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
+   * @param artifactId  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ServiceBuildRequestObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ServiceBuildRequestObject> createServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createServiceDeploymentRequestBuilder(projectId, serviceId, commitSha, releaseTagName, headers);
+  public ApiResponse<ServiceBuildRequestObject> createServiceDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createServiceDeploymentRequestBuilder(projectId, serviceId, commitSha, releaseTagName, artifactId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4122,7 +4265,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder createServiceDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createServiceDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String serviceId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling createServiceDeployment");
@@ -4145,6 +4288,8 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("commitSha", commitSha));
     localVarQueryParameterBaseName = "releaseTagName";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("releaseTagName", releaseTagName));
+    localVarQueryParameterBaseName = "artifactId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("artifactId", artifactId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -4894,11 +5039,12 @@ public class ProjectsServerApi {
    * @param webAppId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
+   * @param artifactId  (optional)
    * @return WebAppBuildRequestObject
    * @throws ApiException if fails to make API call
    */
-  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName) throws ApiException {
-    return createWebAppDeployment(projectId, webAppId, commitSha, releaseTagName, null);
+  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId) throws ApiException {
+    return createWebAppDeployment(projectId, webAppId, commitSha, releaseTagName, artifactId, null);
   }
 
   /**
@@ -4908,12 +5054,13 @@ public class ProjectsServerApi {
    * @param webAppId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
+   * @param artifactId  (optional)
    * @param headers Optional headers to include in the request
    * @return WebAppBuildRequestObject
    * @throws ApiException if fails to make API call
    */
-  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
-    ApiResponse<WebAppBuildRequestObject> localVarResponse = createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, releaseTagName, headers);
+  public WebAppBuildRequestObject createWebAppDeployment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId, Map<String, String> headers) throws ApiException {
+    ApiResponse<WebAppBuildRequestObject> localVarResponse = createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, releaseTagName, artifactId, headers);
     return localVarResponse.getData();
   }
 
@@ -4924,11 +5071,12 @@ public class ProjectsServerApi {
    * @param webAppId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
+   * @param artifactId  (optional)
    * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName) throws ApiException {
-    return createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, releaseTagName, null);
+  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId) throws ApiException {
+    return createWebAppDeploymentWithHttpInfo(projectId, webAppId, commitSha, releaseTagName, artifactId, null);
   }
 
   /**
@@ -4938,12 +5086,13 @@ public class ProjectsServerApi {
    * @param webAppId  (required)
    * @param commitSha  (optional)
    * @param releaseTagName  (optional)
+   * @param artifactId  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;WebAppBuildRequestObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createWebAppDeploymentRequestBuilder(projectId, webAppId, commitSha, releaseTagName, headers);
+  public ApiResponse<WebAppBuildRequestObject> createWebAppDeploymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createWebAppDeploymentRequestBuilder(projectId, webAppId, commitSha, releaseTagName, artifactId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4990,7 +5139,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder createWebAppDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createWebAppDeploymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable String commitSha, @javax.annotation.Nullable String releaseTagName, @javax.annotation.Nullable String artifactId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling createWebAppDeployment");
@@ -5013,6 +5162,8 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("commitSha", commitSha));
     localVarQueryParameterBaseName = "releaseTagName";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("releaseTagName", releaseTagName));
+    localVarQueryParameterBaseName = "artifactId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("artifactId", artifactId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -7322,6 +7473,133 @@ public class ProjectsServerApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param artifactId  (required)
+   * @return GetBuildArtifactResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetBuildArtifactResponse getBuildArtifact(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String artifactId) throws ApiException {
+    return getBuildArtifact(projectId, artifactId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param artifactId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetBuildArtifactResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetBuildArtifactResponse getBuildArtifact(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String artifactId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetBuildArtifactResponse> localVarResponse = getBuildArtifactWithHttpInfo(projectId, artifactId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param artifactId  (required)
+   * @return ApiResponse&lt;GetBuildArtifactResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetBuildArtifactResponse> getBuildArtifactWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String artifactId) throws ApiException {
+    return getBuildArtifactWithHttpInfo(projectId, artifactId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param artifactId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetBuildArtifactResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetBuildArtifactResponse> getBuildArtifactWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String artifactId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getBuildArtifactRequestBuilder(projectId, artifactId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getBuildArtifact", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetBuildArtifactResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetBuildArtifactResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetBuildArtifactResponse>() {});
+        
+
+        return new ApiResponse<GetBuildArtifactResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getBuildArtifactRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String artifactId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getBuildArtifact");
+    }
+    // verify the required parameter 'artifactId' is set
+    if (artifactId == null) {
+      throw new ApiException(400, "Missing the required parameter 'artifactId' when calling getBuildArtifact");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/artifacts/{artifactId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{artifactId}", ApiClient.urlEncode(artifactId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
 

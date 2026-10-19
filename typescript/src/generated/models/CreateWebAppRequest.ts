@@ -38,7 +38,7 @@ export interface CreateWebAppRequest {
      * @type {string}
      * @memberof CreateWebAppRequest
      */
-    githubRepositoryUrl: string;
+    githubRepositoryUrl?: string | null;
     /**
      * 
      * @type {string}
@@ -50,7 +50,19 @@ export interface CreateWebAppRequest {
      * @type {CreateWebAppRequestBuildTriggerType}
      * @memberof CreateWebAppRequest
      */
-    buildTrigger: CreateWebAppRequestBuildTriggerType;
+    buildTrigger?: CreateWebAppRequestBuildTriggerType | null;
+    /**
+     * 
+     * @type {CreateWebAppRequestCodeSourceTypeType}
+     * @memberof CreateWebAppRequest
+     */
+    codeSourceType?: CreateWebAppRequestCodeSourceTypeType | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateWebAppRequest
+     */
+    artifactId?: string | null;
     /**
      * 
      * @type {string}
@@ -117,14 +129,21 @@ export const CreateWebAppRequestBuildTriggerType = {
 } as const;
 export type CreateWebAppRequestBuildTriggerType = typeof CreateWebAppRequestBuildTriggerType[keyof typeof CreateWebAppRequestBuildTriggerType];
 
+/**
+ * @export
+ */
+export const CreateWebAppRequestCodeSourceTypeType = {
+    GITHUB: 'GITHUB',
+    ARTIFACT: 'ARTIFACT'
+} as const;
+export type CreateWebAppRequestCodeSourceTypeType = typeof CreateWebAppRequestCodeSourceTypeType[keyof typeof CreateWebAppRequestCodeSourceTypeType];
+
 
 /**
  * Check if a given object implements the CreateWebAppRequest interface.
  */
 export function instanceOfCreateWebAppRequest(value: object): value is CreateWebAppRequest {
     if (!('webAppName' in value) || value['webAppName'] === undefined) return false;
-    if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
-    if (!('buildTrigger' in value) || value['buildTrigger'] === undefined) return false;
     return true;
 }
 
@@ -139,9 +158,11 @@ export function CreateWebAppRequestFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'webAppName': json['webAppName'],
-        'githubRepositoryUrl': json['githubRepositoryUrl'],
+        'githubRepositoryUrl': json['githubRepositoryUrl'] == null ? undefined : json['githubRepositoryUrl'],
         'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
-        'buildTrigger': json['buildTrigger'],
+        'buildTrigger': json['buildTrigger'] == null ? undefined : json['buildTrigger'],
+        'codeSourceType': json['codeSourceType'] == null ? undefined : json['codeSourceType'],
+        'artifactId': json['artifactId'] == null ? undefined : json['artifactId'],
         'buildCommand': json['buildCommand'] == null ? undefined : json['buildCommand'],
         'buildPath': json['buildPath'] == null ? undefined : json['buildPath'],
         'packageManager': json['packageManager'] == null ? undefined : json['packageManager'],
@@ -169,6 +190,8 @@ export function CreateWebAppRequestToJSONTyped(value?: CreateWebAppRequest | nul
         'githubRepositoryUrl': value['githubRepositoryUrl'],
         'githubBranch': value['githubBranch'],
         'buildTrigger': value['buildTrigger'],
+        'codeSourceType': value['codeSourceType'],
+        'artifactId': value['artifactId'],
         'buildCommand': value['buildCommand'],
         'buildPath': value['buildPath'],
         'packageManager': value['packageManager'],

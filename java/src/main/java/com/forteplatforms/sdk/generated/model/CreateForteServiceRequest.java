@@ -44,6 +44,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   CreateForteServiceRequest.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
   CreateForteServiceRequest.JSON_PROPERTY_BUILD_TRIGGER,
+  CreateForteServiceRequest.JSON_PROPERTY_CODE_SOURCE_TYPE,
+  CreateForteServiceRequest.JSON_PROPERTY_ARTIFACT_ID,
   CreateForteServiceRequest.JSON_PROPERTY_GITHUB_BRANCH,
   CreateForteServiceRequest.JSON_PROPERTY_SERVICE_NAME,
   CreateForteServiceRequest.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
@@ -62,8 +64,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateForteServiceRequest {
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
-  @javax.annotation.Nonnull
-  private String githubRepositoryUrl;
+  private JsonNullable<String> githubRepositoryUrl = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets buildTrigger
@@ -96,13 +97,53 @@ public class CreateForteServiceRequest {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_BUILD_TRIGGER = "buildTrigger";
-  @javax.annotation.Nonnull
-  private BuildTriggerEnum buildTrigger;
+  private JsonNullable<BuildTriggerEnum> buildTrigger = JsonNullable.<BuildTriggerEnum>undefined();
+
+  /**
+   * Gets or Sets codeSourceType
+   */
+  public enum CodeSourceTypeEnum {
+    GITHUB(String.valueOf("GITHUB")),
+    
+    ARTIFACT(String.valueOf("ARTIFACT"));
+
+    private String value;
+
+    CodeSourceTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CodeSourceTypeEnum fromValue(String value) {
+      for (CodeSourceTypeEnum b : CodeSourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_CODE_SOURCE_TYPE = "codeSourceType";
+  private JsonNullable<CodeSourceTypeEnum> codeSourceType = JsonNullable.<CodeSourceTypeEnum>undefined();
+
+  public static final String JSON_PROPERTY_ARTIFACT_ID = "artifactId";
+  private JsonNullable<String> artifactId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
   private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
@@ -153,8 +194,8 @@ public class CreateForteServiceRequest {
   public CreateForteServiceRequest() { 
   }
 
-  public CreateForteServiceRequest githubRepositoryUrl(@javax.annotation.Nonnull String githubRepositoryUrl) {
-    this.githubRepositoryUrl = githubRepositoryUrl;
+  public CreateForteServiceRequest githubRepositoryUrl(@javax.annotation.Nullable String githubRepositoryUrl) {
+    this.githubRepositoryUrl = JsonNullable.<String>of(githubRepositoryUrl);
     return this;
   }
 
@@ -162,23 +203,31 @@ public class CreateForteServiceRequest {
    * Get githubRepositoryUrl
    * @return githubRepositoryUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public String getGithubRepositoryUrl() {
-    return githubRepositoryUrl;
+        return githubRepositoryUrl.orElse(null);
   }
 
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGithubRepositoryUrl(@javax.annotation.Nonnull String githubRepositoryUrl) {
+  public JsonNullable<String> getGithubRepositoryUrl_JsonNullable() {
+    return githubRepositoryUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_REPOSITORY_URL)
+  public void setGithubRepositoryUrl_JsonNullable(JsonNullable<String> githubRepositoryUrl) {
     this.githubRepositoryUrl = githubRepositoryUrl;
   }
 
+  public void setGithubRepositoryUrl(@javax.annotation.Nullable String githubRepositoryUrl) {
+    this.githubRepositoryUrl = JsonNullable.<String>of(githubRepositoryUrl);
+  }
 
-  public CreateForteServiceRequest buildTrigger(@javax.annotation.Nonnull BuildTriggerEnum buildTrigger) {
-    this.buildTrigger = buildTrigger;
+
+  public CreateForteServiceRequest buildTrigger(@javax.annotation.Nullable BuildTriggerEnum buildTrigger) {
+    this.buildTrigger = JsonNullable.<BuildTriggerEnum>of(buildTrigger);
     return this;
   }
 
@@ -186,18 +235,90 @@ public class CreateForteServiceRequest {
    * Get buildTrigger
    * @return buildTrigger
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BUILD_TRIGGER, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public BuildTriggerEnum getBuildTrigger() {
+        return buildTrigger.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_BUILD_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<BuildTriggerEnum> getBuildTrigger_JsonNullable() {
     return buildTrigger;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_TRIGGER)
+  public void setBuildTrigger_JsonNullable(JsonNullable<BuildTriggerEnum> buildTrigger) {
+    this.buildTrigger = buildTrigger;
+  }
+
+  public void setBuildTrigger(@javax.annotation.Nullable BuildTriggerEnum buildTrigger) {
+    this.buildTrigger = JsonNullable.<BuildTriggerEnum>of(buildTrigger);
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BUILD_TRIGGER, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBuildTrigger(@javax.annotation.Nonnull BuildTriggerEnum buildTrigger) {
-    this.buildTrigger = buildTrigger;
+  public CreateForteServiceRequest codeSourceType(@javax.annotation.Nullable CodeSourceTypeEnum codeSourceType) {
+    this.codeSourceType = JsonNullable.<CodeSourceTypeEnum>of(codeSourceType);
+    return this;
+  }
+
+  /**
+   * Get codeSourceType
+   * @return codeSourceType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public CodeSourceTypeEnum getCodeSourceType() {
+        return codeSourceType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CODE_SOURCE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<CodeSourceTypeEnum> getCodeSourceType_JsonNullable() {
+    return codeSourceType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODE_SOURCE_TYPE)
+  public void setCodeSourceType_JsonNullable(JsonNullable<CodeSourceTypeEnum> codeSourceType) {
+    this.codeSourceType = codeSourceType;
+  }
+
+  public void setCodeSourceType(@javax.annotation.Nullable CodeSourceTypeEnum codeSourceType) {
+    this.codeSourceType = JsonNullable.<CodeSourceTypeEnum>of(codeSourceType);
+  }
+
+
+  public CreateForteServiceRequest artifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = JsonNullable.<String>of(artifactId);
+    return this;
+  }
+
+  /**
+   * Get artifactId
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getArtifactId() {
+        return artifactId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_ARTIFACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getArtifactId_JsonNullable() {
+    return artifactId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_ID)
+  public void setArtifactId_JsonNullable(JsonNullable<String> artifactId) {
+    this.artifactId = artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = JsonNullable.<String>of(artifactId);
   }
 
 
@@ -693,8 +814,10 @@ public class CreateForteServiceRequest {
       return false;
     }
     CreateForteServiceRequest createForteServiceRequest = (CreateForteServiceRequest) o;
-    return Objects.equals(this.githubRepositoryUrl, createForteServiceRequest.githubRepositoryUrl) &&
-        Objects.equals(this.buildTrigger, createForteServiceRequest.buildTrigger) &&
+    return equalsNullable(this.githubRepositoryUrl, createForteServiceRequest.githubRepositoryUrl) &&
+        equalsNullable(this.buildTrigger, createForteServiceRequest.buildTrigger) &&
+        equalsNullable(this.codeSourceType, createForteServiceRequest.codeSourceType) &&
+        equalsNullable(this.artifactId, createForteServiceRequest.artifactId) &&
         equalsNullable(this.githubBranch, createForteServiceRequest.githubBranch) &&
         Objects.equals(this.serviceName, createForteServiceRequest.serviceName) &&
         Objects.equals(this.environmentVariables, createForteServiceRequest.environmentVariables) &&
@@ -717,7 +840,7 @@ public class CreateForteServiceRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(githubRepositoryUrl, buildTrigger, hashCodeNullable(githubBranch), serviceName, environmentVariables, secrets, hashCodeNullable(baseInstances), regionReplicas, hashCodeNullable(containerCpu), hashCodeNullable(healthCheckPort), hashCodeNullable(healthCheckPath), hashCodeNullable(baseDirectory), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), hashCodeNullable(databaseConnections));
+    return Objects.hash(hashCodeNullable(githubRepositoryUrl), hashCodeNullable(buildTrigger), hashCodeNullable(codeSourceType), hashCodeNullable(artifactId), hashCodeNullable(githubBranch), serviceName, environmentVariables, secrets, hashCodeNullable(baseInstances), regionReplicas, hashCodeNullable(containerCpu), hashCodeNullable(healthCheckPort), hashCodeNullable(healthCheckPath), hashCodeNullable(baseDirectory), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), hashCodeNullable(databaseConnections));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -733,6 +856,8 @@ public class CreateForteServiceRequest {
     sb.append("class CreateForteServiceRequest {\n");
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
     sb.append("    buildTrigger: ").append(toIndentedString(buildTrigger)).append("\n");
+    sb.append("    codeSourceType: ").append(toIndentedString(codeSourceType)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
     sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
     sb.append("    serviceName: ").append(toIndentedString(serviceName)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
@@ -799,6 +924,16 @@ public class CreateForteServiceRequest {
     // add `buildTrigger` to the URL query string
     if (getBuildTrigger() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbuildTrigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuildTrigger()))));
+    }
+
+    // add `codeSourceType` to the URL query string
+    if (getCodeSourceType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scodeSourceType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCodeSourceType()))));
+    }
+
+    // add `artifactId` to the URL query string
+    if (getArtifactId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sartifactId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getArtifactId()))));
     }
 
     // add `githubBranch` to the URL query string

@@ -69,6 +69,16 @@ import {
     CreateActionRequestToJSON,
 } from '../models/CreateActionRequest';
 import {
+    type CreateBuildArtifactRequest,
+    CreateBuildArtifactRequestFromJSON,
+    CreateBuildArtifactRequestToJSON,
+} from '../models/CreateBuildArtifactRequest';
+import {
+    type CreateBuildArtifactResponse,
+    CreateBuildArtifactResponseFromJSON,
+    CreateBuildArtifactResponseToJSON,
+} from '../models/CreateBuildArtifactResponse';
+import {
     type CreateCloneEnvironmentRequest,
     CreateCloneEnvironmentRequestFromJSON,
     CreateCloneEnvironmentRequestToJSON,
@@ -248,6 +258,11 @@ import {
     CustomEmailTemplateObjectFromJSON,
     CustomEmailTemplateObjectToJSON,
 } from '../models/CustomEmailTemplateObject';
+import {
+    type GetBuildArtifactResponse,
+    GetBuildArtifactResponseFromJSON,
+    GetBuildArtifactResponseToJSON,
+} from '../models/GetBuildArtifactResponse';
 import {
     type GetContentDownloadLinkResponse,
     GetContentDownloadLinkResponseFromJSON,
@@ -758,6 +773,11 @@ export interface CreateActionInvocationRequest {
     actionId: string;
 }
 
+export interface CreateBuildArtifactOperationRequest {
+    projectId: string;
+    createBuildArtifactRequest: CreateBuildArtifactRequest;
+}
+
 export interface CreateCloneEnvironmentOperationRequest {
     projectId: string;
     createCloneEnvironmentRequest: CreateCloneEnvironmentRequest;
@@ -828,6 +848,7 @@ export interface CreateServiceDeploymentRequest {
     serviceId: string;
     commitSha?: string;
     releaseTagName?: string;
+    artifactId?: string;
 }
 
 export interface CreateServiceRequestProxyOperationRequest {
@@ -864,6 +885,7 @@ export interface CreateWebAppDeploymentRequest {
     webAppId: string;
     commitSha?: string;
     releaseTagName?: string;
+    artifactId?: string;
 }
 
 export interface DeleteActionRequest {
@@ -969,6 +991,11 @@ export interface GetActionsMetricsRequest {
     maxTime?: Date;
     granularity?: GetActionsMetricsGranularityType;
     actionId?: string;
+}
+
+export interface GetBuildArtifactRequest {
+    projectId: string;
+    artifactId: string;
 }
 
 export interface GetCustomDomainRequest {
@@ -2559,6 +2586,63 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createBuildArtifact without sending the request
+     */
+    async createBuildArtifactRequestOpts(requestParameters: CreateBuildArtifactOperationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createBuildArtifact().'
+            );
+        }
+
+        if (requestParameters['createBuildArtifactRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createBuildArtifactRequest',
+                'Required parameter "createBuildArtifactRequest" was null or undefined when calling createBuildArtifact().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/artifacts`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateBuildArtifactRequestToJSON(requestParameters['createBuildArtifactRequest']),
+        };
+    }
+
+    /**
+     */
+    async createBuildArtifactRaw(requestParameters: CreateBuildArtifactOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateBuildArtifactResponse>> {
+        const requestOptions = await this.createBuildArtifactRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateBuildArtifactResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createBuildArtifact(requestParameters: CreateBuildArtifactOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateBuildArtifactResponse> {
+        const response = await this.createBuildArtifactRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createCloneEnvironment without sending the request
      */
     async createCloneEnvironmentRequestOpts(requestParameters: CreateCloneEnvironmentOperationRequest): Promise<runtime.RequestOpts> {
@@ -3307,6 +3391,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['releaseTagName'] = requestParameters['releaseTagName'];
         }
 
+        if (requestParameters['artifactId'] != null) {
+            queryParameters['artifactId'] = requestParameters['artifactId'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (headerParameters['Idempotency-Key'] == null) {
@@ -3681,6 +3769,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['releaseTagName'] != null) {
             queryParameters['releaseTagName'] = requestParameters['releaseTagName'];
+        }
+
+        if (requestParameters['artifactId'] != null) {
+            queryParameters['artifactId'] = requestParameters['artifactId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -4733,6 +4825,57 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getActionsMetrics(requestParameters: GetActionsMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ActionsMetricsResponse> {
         const response = await this.getActionsMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getBuildArtifact without sending the request
+     */
+    async getBuildArtifactRequestOpts(requestParameters: GetBuildArtifactRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getBuildArtifact().'
+            );
+        }
+
+        if (requestParameters['artifactId'] == null) {
+            throw new runtime.RequiredError(
+                'artifactId',
+                'Required parameter "artifactId" was null or undefined when calling getBuildArtifact().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/artifacts/{artifactId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{artifactId}', encodeURIComponent(String(requestParameters['artifactId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getBuildArtifactRaw(requestParameters: GetBuildArtifactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBuildArtifactResponse>> {
+        const requestOptions = await this.getBuildArtifactRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetBuildArtifactResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getBuildArtifact(requestParameters: GetBuildArtifactRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBuildArtifactResponse> {
+        const response = await this.getBuildArtifactRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

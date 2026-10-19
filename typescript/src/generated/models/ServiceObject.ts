@@ -193,7 +193,7 @@ export interface ServiceObject {
      * @type {string}
      * @memberof ServiceObject
      */
-    githubRepositoryUrl: string;
+    githubRepositoryUrl?: string | null;
     /**
      * 
      * @type {ServiceObjectGithubBuildTriggerType}
@@ -206,6 +206,12 @@ export interface ServiceObject {
      * @memberof ServiceObject
      */
     githubBranch?: string | null;
+    /**
+     * 
+     * @type {ServiceObjectCodeSourceTypeType}
+     * @memberof ServiceObject
+     */
+    codeSourceType?: ServiceObjectCodeSourceTypeType | null;
     /**
      * 
      * @type {string}
@@ -254,6 +260,15 @@ export const ServiceObjectGithubBuildTriggerType = {
 } as const;
 export type ServiceObjectGithubBuildTriggerType = typeof ServiceObjectGithubBuildTriggerType[keyof typeof ServiceObjectGithubBuildTriggerType];
 
+/**
+ * @export
+ */
+export const ServiceObjectCodeSourceTypeType = {
+    GITHUB: 'GITHUB',
+    ARTIFACT: 'ARTIFACT'
+} as const;
+export type ServiceObjectCodeSourceTypeType = typeof ServiceObjectCodeSourceTypeType[keyof typeof ServiceObjectCodeSourceTypeType];
+
 
 /**
  * Check if a given object implements the ServiceObject interface.
@@ -264,7 +279,6 @@ export function instanceOfServiceObject(value: object): value is ServiceObject {
     if (!('containerCpu' in value) || value['containerCpu'] === undefined) return false;
     if (!('serviceUrlConnections' in value) || value['serviceUrlConnections'] === undefined) return false;
     if (!('webAppUrlConnections' in value) || value['webAppUrlConnections'] === undefined) return false;
-    if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
     if (!('githubBuildTrigger' in value) || value['githubBuildTrigger'] === undefined) return false;
     return true;
 }
@@ -300,9 +314,10 @@ export function ServiceObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'webAppUrlConnections': ((json['webAppUrlConnections'] as Array<any>).map(WebAppUrlConnectionFromJSON)),
         'createdTimestamp': json['createdTimestamp'] == null ? undefined : (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
-        'githubRepositoryUrl': json['githubRepositoryUrl'],
+        'githubRepositoryUrl': json['githubRepositoryUrl'] == null ? undefined : json['githubRepositoryUrl'],
         'githubBuildTrigger': json['githubBuildTrigger'],
         'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
+        'codeSourceType': json['codeSourceType'] == null ? undefined : json['codeSourceType'],
         'currentBuildId': json['currentBuildId'] == null ? undefined : json['currentBuildId'],
         'enqueuedBuildIds': json['enqueuedBuildIds'] == null ? undefined : json['enqueuedBuildIds'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
@@ -347,6 +362,7 @@ export function ServiceObjectToJSONTyped(value?: ServiceObject | null, ignoreDis
         'githubRepositoryUrl': value['githubRepositoryUrl'],
         'githubBuildTrigger': value['githubBuildTrigger'],
         'githubBranch': value['githubBranch'],
+        'codeSourceType': value['codeSourceType'],
         'currentBuildId': value['currentBuildId'],
         'enqueuedBuildIds': value['enqueuedBuildIds'],
         'environmentVariables': value['environmentVariables'],

@@ -221,7 +221,7 @@ export interface WebAppObject {
      * @type {string}
      * @memberof WebAppObject
      */
-    githubRepositoryUrl: string;
+    githubRepositoryUrl?: string | null;
     /**
      * 
      * @type {WebAppObjectGithubBuildTriggerType}
@@ -234,6 +234,12 @@ export interface WebAppObject {
      * @memberof WebAppObject
      */
     githubBranch?: string | null;
+    /**
+     * 
+     * @type {WebAppObjectCodeSourceTypeType}
+     * @memberof WebAppObject
+     */
+    codeSourceType?: WebAppObjectCodeSourceTypeType | null;
     /**
      * 
      * @type {string}
@@ -308,6 +314,15 @@ export const WebAppObjectGithubBuildTriggerType = {
 } as const;
 export type WebAppObjectGithubBuildTriggerType = typeof WebAppObjectGithubBuildTriggerType[keyof typeof WebAppObjectGithubBuildTriggerType];
 
+/**
+ * @export
+ */
+export const WebAppObjectCodeSourceTypeType = {
+    GITHUB: 'GITHUB',
+    ARTIFACT: 'ARTIFACT'
+} as const;
+export type WebAppObjectCodeSourceTypeType = typeof WebAppObjectCodeSourceTypeType[keyof typeof WebAppObjectCodeSourceTypeType];
+
 
 /**
  * Check if a given object implements the WebAppObject interface.
@@ -316,7 +331,6 @@ export function instanceOfWebAppObject(value: object): value is WebAppObject {
     if (!('webAppName' in value) || value['webAppName'] === undefined) return false;
     if (!('forteDnsEndpointEnabled' in value) || value['forteDnsEndpointEnabled'] === undefined) return false;
     if (!('serviceUrlConnections' in value) || value['serviceUrlConnections'] === undefined) return false;
-    if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
     if (!('githubBuildTrigger' in value) || value['githubBuildTrigger'] === undefined) return false;
     return true;
 }
@@ -359,9 +373,10 @@ export function WebAppObjectFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'hostingProviderDomainAvailableAt': json['hostingProviderDomainAvailableAt'] == null ? undefined : (new Date(json['hostingProviderDomainAvailableAt'])),
         'createdTimestamp': json['createdTimestamp'] == null ? undefined : (new Date(json['createdTimestamp'])),
         'lastModifiedTimestamp': json['lastModifiedTimestamp'] == null ? undefined : (new Date(json['lastModifiedTimestamp'])),
-        'githubRepositoryUrl': json['githubRepositoryUrl'],
+        'githubRepositoryUrl': json['githubRepositoryUrl'] == null ? undefined : json['githubRepositoryUrl'],
         'githubBuildTrigger': json['githubBuildTrigger'],
         'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
+        'codeSourceType': json['codeSourceType'] == null ? undefined : json['codeSourceType'],
         'currentBuildId': json['currentBuildId'] == null ? undefined : json['currentBuildId'],
         'enqueuedBuildIds': json['enqueuedBuildIds'] == null ? undefined : json['enqueuedBuildIds'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
@@ -414,6 +429,7 @@ export function WebAppObjectToJSONTyped(value?: WebAppObject | null, ignoreDiscr
         'githubRepositoryUrl': value['githubRepositoryUrl'],
         'githubBuildTrigger': value['githubBuildTrigger'],
         'githubBranch': value['githubBranch'],
+        'codeSourceType': value['codeSourceType'],
         'currentBuildId': value['currentBuildId'],
         'enqueuedBuildIds': value['enqueuedBuildIds'],
         'environmentVariables': value['environmentVariables'],

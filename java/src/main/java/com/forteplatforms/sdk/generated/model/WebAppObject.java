@@ -80,6 +80,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppObject.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
   WebAppObject.JSON_PROPERTY_GITHUB_BUILD_TRIGGER,
   WebAppObject.JSON_PROPERTY_GITHUB_BRANCH,
+  WebAppObject.JSON_PROPERTY_CODE_SOURCE_TYPE,
   WebAppObject.JSON_PROPERTY_CURRENT_BUILD_ID,
   WebAppObject.JSON_PROPERTY_ENQUEUED_BUILD_IDS,
   WebAppObject.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
@@ -257,8 +258,7 @@ public class WebAppObject {
   private OffsetDateTime lastModifiedTimestamp;
 
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
-  @javax.annotation.Nonnull
-  private String githubRepositoryUrl;
+  private JsonNullable<String> githubRepositoryUrl = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets githubBuildTrigger
@@ -301,6 +301,44 @@ public class WebAppObject {
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
   private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
+
+  /**
+   * Gets or Sets codeSourceType
+   */
+  public enum CodeSourceTypeEnum {
+    GITHUB(String.valueOf("GITHUB")),
+    
+    ARTIFACT(String.valueOf("ARTIFACT"));
+
+    private String value;
+
+    CodeSourceTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CodeSourceTypeEnum fromValue(String value) {
+      for (CodeSourceTypeEnum b : CodeSourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_CODE_SOURCE_TYPE = "codeSourceType";
+  private JsonNullable<CodeSourceTypeEnum> codeSourceType = JsonNullable.<CodeSourceTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_CURRENT_BUILD_ID = "currentBuildId";
   private JsonNullable<String> currentBuildId = JsonNullable.<String>undefined();
@@ -1181,8 +1219,8 @@ public class WebAppObject {
   }
 
 
-  public WebAppObject githubRepositoryUrl(@javax.annotation.Nonnull String githubRepositoryUrl) {
-    this.githubRepositoryUrl = githubRepositoryUrl;
+  public WebAppObject githubRepositoryUrl(@javax.annotation.Nullable String githubRepositoryUrl) {
+    this.githubRepositoryUrl = JsonNullable.<String>of(githubRepositoryUrl);
     return this;
   }
 
@@ -1190,18 +1228,26 @@ public class WebAppObject {
    * Get githubRepositoryUrl
    * @return githubRepositoryUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public String getGithubRepositoryUrl() {
-    return githubRepositoryUrl;
+        return githubRepositoryUrl.orElse(null);
   }
 
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGithubRepositoryUrl(@javax.annotation.Nonnull String githubRepositoryUrl) {
+  public JsonNullable<String> getGithubRepositoryUrl_JsonNullable() {
+    return githubRepositoryUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_REPOSITORY_URL)
+  public void setGithubRepositoryUrl_JsonNullable(JsonNullable<String> githubRepositoryUrl) {
     this.githubRepositoryUrl = githubRepositoryUrl;
+  }
+
+  public void setGithubRepositoryUrl(@javax.annotation.Nullable String githubRepositoryUrl) {
+    this.githubRepositoryUrl = JsonNullable.<String>of(githubRepositoryUrl);
   }
 
 
@@ -1258,6 +1304,38 @@ public class WebAppObject {
 
   public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
     this.githubBranch = JsonNullable.<String>of(githubBranch);
+  }
+
+
+  public WebAppObject codeSourceType(@javax.annotation.Nullable CodeSourceTypeEnum codeSourceType) {
+    this.codeSourceType = JsonNullable.<CodeSourceTypeEnum>of(codeSourceType);
+    return this;
+  }
+
+  /**
+   * Get codeSourceType
+   * @return codeSourceType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public CodeSourceTypeEnum getCodeSourceType() {
+        return codeSourceType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CODE_SOURCE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<CodeSourceTypeEnum> getCodeSourceType_JsonNullable() {
+    return codeSourceType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODE_SOURCE_TYPE)
+  public void setCodeSourceType_JsonNullable(JsonNullable<CodeSourceTypeEnum> codeSourceType) {
+    this.codeSourceType = codeSourceType;
+  }
+
+  public void setCodeSourceType(@javax.annotation.Nullable CodeSourceTypeEnum codeSourceType) {
+    this.codeSourceType = JsonNullable.<CodeSourceTypeEnum>of(codeSourceType);
   }
 
 
@@ -1530,9 +1608,10 @@ public class WebAppObject {
         equalsNullable(this.hostingProviderDomainAvailableAt, webAppObject.hostingProviderDomainAvailableAt) &&
         Objects.equals(this.createdTimestamp, webAppObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, webAppObject.lastModifiedTimestamp) &&
-        Objects.equals(this.githubRepositoryUrl, webAppObject.githubRepositoryUrl) &&
+        equalsNullable(this.githubRepositoryUrl, webAppObject.githubRepositoryUrl) &&
         Objects.equals(this.githubBuildTrigger, webAppObject.githubBuildTrigger) &&
         equalsNullable(this.githubBranch, webAppObject.githubBranch) &&
+        equalsNullable(this.codeSourceType, webAppObject.codeSourceType) &&
         equalsNullable(this.currentBuildId, webAppObject.currentBuildId) &&
         equalsNullable(this.enqueuedBuildIds, webAppObject.enqueuedBuildIds) &&
         Objects.equals(this.environmentVariables, webAppObject.environmentVariables) &&
@@ -1548,7 +1627,7 @@ public class WebAppObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppId, webAppName, hashCodeNullable(forteDnsEndpoint), forteDnsEndpointEnabled, hashCodeNullable(customDomains), serviceUrlConnections, hashCodeNullable(buildPath), hashCodeNullable(webAppType), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), hashCodeNullable(detectedFramework), hashCodeNullable(monorepoType), hashCodeNullable(workspaceRoot), hashCodeNullable(appPackageName), hashCodeNullable(containerImageUri), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), detectionResponse, hashCodeNullable(dockerfilePath), dockerfileDetectionResponse, hashCodeNullable(hostingProviderAppId), hashCodeNullable(hostingProviderBranchName), hashCodeNullable(hostingProviderDomainStatus), hashCodeNullable(hostingProviderDomainAvailableAt), createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), hashCodeNullable(clonedFromResourceId), sitePasswordProtectionEnabled, secretKeys);
+    return Objects.hash(webAppId, webAppName, hashCodeNullable(forteDnsEndpoint), forteDnsEndpointEnabled, hashCodeNullable(customDomains), serviceUrlConnections, hashCodeNullable(buildPath), hashCodeNullable(webAppType), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), hashCodeNullable(detectedFramework), hashCodeNullable(monorepoType), hashCodeNullable(workspaceRoot), hashCodeNullable(appPackageName), hashCodeNullable(containerImageUri), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), detectionResponse, hashCodeNullable(dockerfilePath), dockerfileDetectionResponse, hashCodeNullable(hostingProviderAppId), hashCodeNullable(hostingProviderBranchName), hashCodeNullable(hostingProviderDomainStatus), hashCodeNullable(hostingProviderDomainAvailableAt), createdTimestamp, lastModifiedTimestamp, hashCodeNullable(githubRepositoryUrl), githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(codeSourceType), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), hashCodeNullable(clonedFromResourceId), sitePasswordProtectionEnabled, secretKeys);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1593,6 +1672,7 @@ public class WebAppObject {
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
     sb.append("    githubBuildTrigger: ").append(toIndentedString(githubBuildTrigger)).append("\n");
     sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
+    sb.append("    codeSourceType: ").append(toIndentedString(codeSourceType)).append("\n");
     sb.append("    currentBuildId: ").append(toIndentedString(currentBuildId)).append("\n");
     sb.append("    enqueuedBuildIds: ").append(toIndentedString(enqueuedBuildIds)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
@@ -1807,6 +1887,11 @@ public class WebAppObject {
     // add `githubBranch` to the URL query string
     if (getGithubBranch() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgithubBranch%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubBranch()))));
+    }
+
+    // add `codeSourceType` to the URL query string
+    if (getCodeSourceType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scodeSourceType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCodeSourceType()))));
     }
 
     // add `currentBuildId` to the URL query string

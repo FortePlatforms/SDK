@@ -29,8 +29,10 @@ class CreateForteServiceRequest(BaseModel):
     """
     CreateForteServiceRequest
     """ # noqa: E501
-    github_repository_url: StrictStr = Field(alias="githubRepositoryUrl")
-    build_trigger: StrictStr = Field(alias="buildTrigger")
+    github_repository_url: Optional[StrictStr] = Field(default=None, alias="githubRepositoryUrl")
+    build_trigger: Optional[StrictStr] = Field(default=None, alias="buildTrigger")
+    code_source_type: Optional[StrictStr] = Field(default=None, alias="codeSourceType")
+    artifact_id: Optional[StrictStr] = Field(default=None, alias="artifactId")
     github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="githubBranch")
     service_name: Annotated[str, Field(strict=True)] = Field(alias="serviceName")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
@@ -45,13 +47,26 @@ class CreateForteServiceRequest(BaseModel):
     auth_path_exclusions: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="authPathExclusions")
     blocked_paths: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="blockedPaths")
     database_connections: Optional[Annotated[List[CreateServiceDatabaseConnectionRequest], Field(min_length=0, max_length=5)]] = Field(default=None, alias="databaseConnections")
-    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled", "authPathExclusions", "blockedPaths", "databaseConnections"]
+    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "codeSourceType", "artifactId", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled", "authPathExclusions", "blockedPaths", "databaseConnections"]
 
     @field_validator('build_trigger')
     def build_trigger_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['PUSH', 'RELEASE_PUBLISHED']):
             raise ValueError("must be one of enum values ('PUSH', 'RELEASE_PUBLISHED')")
+        return value
+
+    @field_validator('code_source_type')
+    def code_source_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['GITHUB', 'ARTIFACT']):
+            raise ValueError("must be one of enum values ('GITHUB', 'ARTIFACT')")
         return value
 
     @field_validator('github_branch')
@@ -162,6 +177,26 @@ class CreateForteServiceRequest(BaseModel):
                 if _item_database_connections:
                     _items.append(_item_database_connections.to_dict())
             _dict['databaseConnections'] = _items
+        # set to None if github_repository_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_repository_url is None and "github_repository_url" in self.model_fields_set:
+            _dict['githubRepositoryUrl'] = None
+
+        # set to None if build_trigger (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_trigger is None and "build_trigger" in self.model_fields_set:
+            _dict['buildTrigger'] = None
+
+        # set to None if code_source_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.code_source_type is None and "code_source_type" in self.model_fields_set:
+            _dict['codeSourceType'] = None
+
+        # set to None if artifact_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.artifact_id is None and "artifact_id" in self.model_fields_set:
+            _dict['artifactId'] = None
+
         # set to None if github_branch (nullable) is None
         # and model_fields_set contains the field
         if self.github_branch is None and "github_branch" in self.model_fields_set:
@@ -226,6 +261,8 @@ class CreateForteServiceRequest(BaseModel):
         _obj = cls.model_validate({
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),
             "buildTrigger": obj.get("buildTrigger"),
+            "codeSourceType": obj.get("codeSourceType"),
+            "artifactId": obj.get("artifactId"),
             "githubBranch": obj.get("githubBranch"),
             "serviceName": obj.get("serviceName"),
             "environmentVariables": obj.get("environmentVariables"),

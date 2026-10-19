@@ -46,6 +46,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateWebAppRequest.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
   CreateWebAppRequest.JSON_PROPERTY_GITHUB_BRANCH,
   CreateWebAppRequest.JSON_PROPERTY_BUILD_TRIGGER,
+  CreateWebAppRequest.JSON_PROPERTY_CODE_SOURCE_TYPE,
+  CreateWebAppRequest.JSON_PROPERTY_ARTIFACT_ID,
   CreateWebAppRequest.JSON_PROPERTY_BUILD_COMMAND,
   CreateWebAppRequest.JSON_PROPERTY_BUILD_PATH,
   CreateWebAppRequest.JSON_PROPERTY_PACKAGE_MANAGER,
@@ -63,8 +65,7 @@ public class CreateWebAppRequest {
   private String webAppName;
 
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
-  @javax.annotation.Nonnull
-  private String githubRepositoryUrl;
+  private JsonNullable<String> githubRepositoryUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
   private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
@@ -100,13 +101,53 @@ public class CreateWebAppRequest {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_BUILD_TRIGGER = "buildTrigger";
-  @javax.annotation.Nonnull
-  private BuildTriggerEnum buildTrigger;
+  private JsonNullable<BuildTriggerEnum> buildTrigger = JsonNullable.<BuildTriggerEnum>undefined();
+
+  /**
+   * Gets or Sets codeSourceType
+   */
+  public enum CodeSourceTypeEnum {
+    GITHUB(String.valueOf("GITHUB")),
+    
+    ARTIFACT(String.valueOf("ARTIFACT"));
+
+    private String value;
+
+    CodeSourceTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CodeSourceTypeEnum fromValue(String value) {
+      for (CodeSourceTypeEnum b : CodeSourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_CODE_SOURCE_TYPE = "codeSourceType";
+  private JsonNullable<CodeSourceTypeEnum> codeSourceType = JsonNullable.<CodeSourceTypeEnum>undefined();
+
+  public static final String JSON_PROPERTY_ARTIFACT_ID = "artifactId";
+  private JsonNullable<String> artifactId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUILD_COMMAND = "buildCommand";
   private JsonNullable<String> buildCommand = JsonNullable.<String>undefined();
@@ -164,8 +205,8 @@ public class CreateWebAppRequest {
   }
 
 
-  public CreateWebAppRequest githubRepositoryUrl(@javax.annotation.Nonnull String githubRepositoryUrl) {
-    this.githubRepositoryUrl = githubRepositoryUrl;
+  public CreateWebAppRequest githubRepositoryUrl(@javax.annotation.Nullable String githubRepositoryUrl) {
+    this.githubRepositoryUrl = JsonNullable.<String>of(githubRepositoryUrl);
     return this;
   }
 
@@ -173,18 +214,26 @@ public class CreateWebAppRequest {
    * Get githubRepositoryUrl
    * @return githubRepositoryUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public String getGithubRepositoryUrl() {
-    return githubRepositoryUrl;
+        return githubRepositoryUrl.orElse(null);
   }
 
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGithubRepositoryUrl(@javax.annotation.Nonnull String githubRepositoryUrl) {
+  public JsonNullable<String> getGithubRepositoryUrl_JsonNullable() {
+    return githubRepositoryUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_REPOSITORY_URL)
+  public void setGithubRepositoryUrl_JsonNullable(JsonNullable<String> githubRepositoryUrl) {
     this.githubRepositoryUrl = githubRepositoryUrl;
+  }
+
+  public void setGithubRepositoryUrl(@javax.annotation.Nullable String githubRepositoryUrl) {
+    this.githubRepositoryUrl = JsonNullable.<String>of(githubRepositoryUrl);
   }
 
 
@@ -220,8 +269,8 @@ public class CreateWebAppRequest {
   }
 
 
-  public CreateWebAppRequest buildTrigger(@javax.annotation.Nonnull BuildTriggerEnum buildTrigger) {
-    this.buildTrigger = buildTrigger;
+  public CreateWebAppRequest buildTrigger(@javax.annotation.Nullable BuildTriggerEnum buildTrigger) {
+    this.buildTrigger = JsonNullable.<BuildTriggerEnum>of(buildTrigger);
     return this;
   }
 
@@ -229,18 +278,90 @@ public class CreateWebAppRequest {
    * Get buildTrigger
    * @return buildTrigger
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BUILD_TRIGGER, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public BuildTriggerEnum getBuildTrigger() {
+        return buildTrigger.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_BUILD_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<BuildTriggerEnum> getBuildTrigger_JsonNullable() {
     return buildTrigger;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BUILD_TRIGGER)
+  public void setBuildTrigger_JsonNullable(JsonNullable<BuildTriggerEnum> buildTrigger) {
+    this.buildTrigger = buildTrigger;
+  }
+
+  public void setBuildTrigger(@javax.annotation.Nullable BuildTriggerEnum buildTrigger) {
+    this.buildTrigger = JsonNullable.<BuildTriggerEnum>of(buildTrigger);
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BUILD_TRIGGER, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBuildTrigger(@javax.annotation.Nonnull BuildTriggerEnum buildTrigger) {
-    this.buildTrigger = buildTrigger;
+  public CreateWebAppRequest codeSourceType(@javax.annotation.Nullable CodeSourceTypeEnum codeSourceType) {
+    this.codeSourceType = JsonNullable.<CodeSourceTypeEnum>of(codeSourceType);
+    return this;
+  }
+
+  /**
+   * Get codeSourceType
+   * @return codeSourceType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public CodeSourceTypeEnum getCodeSourceType() {
+        return codeSourceType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CODE_SOURCE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<CodeSourceTypeEnum> getCodeSourceType_JsonNullable() {
+    return codeSourceType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODE_SOURCE_TYPE)
+  public void setCodeSourceType_JsonNullable(JsonNullable<CodeSourceTypeEnum> codeSourceType) {
+    this.codeSourceType = codeSourceType;
+  }
+
+  public void setCodeSourceType(@javax.annotation.Nullable CodeSourceTypeEnum codeSourceType) {
+    this.codeSourceType = JsonNullable.<CodeSourceTypeEnum>of(codeSourceType);
+  }
+
+
+  public CreateWebAppRequest artifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = JsonNullable.<String>of(artifactId);
+    return this;
+  }
+
+  /**
+   * Get artifactId
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getArtifactId() {
+        return artifactId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_ARTIFACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getArtifactId_JsonNullable() {
+    return artifactId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_ID)
+  public void setArtifactId_JsonNullable(JsonNullable<String> artifactId) {
+    this.artifactId = artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = JsonNullable.<String>of(artifactId);
   }
 
 
@@ -557,9 +678,11 @@ public class CreateWebAppRequest {
     }
     CreateWebAppRequest createWebAppRequest = (CreateWebAppRequest) o;
     return Objects.equals(this.webAppName, createWebAppRequest.webAppName) &&
-        Objects.equals(this.githubRepositoryUrl, createWebAppRequest.githubRepositoryUrl) &&
+        equalsNullable(this.githubRepositoryUrl, createWebAppRequest.githubRepositoryUrl) &&
         equalsNullable(this.githubBranch, createWebAppRequest.githubBranch) &&
-        Objects.equals(this.buildTrigger, createWebAppRequest.buildTrigger) &&
+        equalsNullable(this.buildTrigger, createWebAppRequest.buildTrigger) &&
+        equalsNullable(this.codeSourceType, createWebAppRequest.codeSourceType) &&
+        equalsNullable(this.artifactId, createWebAppRequest.artifactId) &&
         equalsNullable(this.buildCommand, createWebAppRequest.buildCommand) &&
         equalsNullable(this.buildPath, createWebAppRequest.buildPath) &&
         equalsNullable(this.packageManager, createWebAppRequest.packageManager) &&
@@ -577,7 +700,7 @@ public class CreateWebAppRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(webAppName, githubRepositoryUrl, hashCodeNullable(githubBranch), buildTrigger, hashCodeNullable(buildCommand), hashCodeNullable(buildPath), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), environmentVariables, secrets, hashCodeNullable(serviceUrlConnections));
+    return Objects.hash(webAppName, hashCodeNullable(githubRepositoryUrl), hashCodeNullable(githubBranch), hashCodeNullable(buildTrigger), hashCodeNullable(codeSourceType), hashCodeNullable(artifactId), hashCodeNullable(buildCommand), hashCodeNullable(buildPath), hashCodeNullable(packageManager), hashCodeNullable(nodeVersion), hashCodeNullable(installCommand), hashCodeNullable(subdirectory), environmentVariables, secrets, hashCodeNullable(serviceUrlConnections));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -595,6 +718,8 @@ public class CreateWebAppRequest {
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
     sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
     sb.append("    buildTrigger: ").append(toIndentedString(buildTrigger)).append("\n");
+    sb.append("    codeSourceType: ").append(toIndentedString(codeSourceType)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
     sb.append("    buildCommand: ").append(toIndentedString(buildCommand)).append("\n");
     sb.append("    buildPath: ").append(toIndentedString(buildPath)).append("\n");
     sb.append("    packageManager: ").append(toIndentedString(packageManager)).append("\n");
@@ -666,6 +791,16 @@ public class CreateWebAppRequest {
     // add `buildTrigger` to the URL query string
     if (getBuildTrigger() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbuildTrigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuildTrigger()))));
+    }
+
+    // add `codeSourceType` to the URL query string
+    if (getCodeSourceType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scodeSourceType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCodeSourceType()))));
+    }
+
+    // add `artifactId` to the URL query string
+    if (getArtifactId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sartifactId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getArtifactId()))));
     }
 
     // add `buildCommand` to the URL query string

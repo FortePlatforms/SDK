@@ -75,6 +75,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceObject.JSON_PROPERTY_GITHUB_REPOSITORY_URL,
   ServiceObject.JSON_PROPERTY_GITHUB_BUILD_TRIGGER,
   ServiceObject.JSON_PROPERTY_GITHUB_BRANCH,
+  ServiceObject.JSON_PROPERTY_CODE_SOURCE_TYPE,
   ServiceObject.JSON_PROPERTY_CURRENT_BUILD_ID,
   ServiceObject.JSON_PROPERTY_ENQUEUED_BUILD_IDS,
   ServiceObject.JSON_PROPERTY_ENVIRONMENT_VARIABLES,
@@ -160,8 +161,7 @@ public class ServiceObject {
   private OffsetDateTime lastModifiedTimestamp;
 
   public static final String JSON_PROPERTY_GITHUB_REPOSITORY_URL = "githubRepositoryUrl";
-  @javax.annotation.Nonnull
-  private String githubRepositoryUrl;
+  private JsonNullable<String> githubRepositoryUrl = JsonNullable.<String>undefined();
 
   /**
    * Gets or Sets githubBuildTrigger
@@ -204,6 +204,44 @@ public class ServiceObject {
 
   public static final String JSON_PROPERTY_GITHUB_BRANCH = "githubBranch";
   private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
+
+  /**
+   * Gets or Sets codeSourceType
+   */
+  public enum CodeSourceTypeEnum {
+    GITHUB(String.valueOf("GITHUB")),
+    
+    ARTIFACT(String.valueOf("ARTIFACT"));
+
+    private String value;
+
+    CodeSourceTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CodeSourceTypeEnum fromValue(String value) {
+      for (CodeSourceTypeEnum b : CodeSourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_CODE_SOURCE_TYPE = "codeSourceType";
+  private JsonNullable<CodeSourceTypeEnum> codeSourceType = JsonNullable.<CodeSourceTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_CURRENT_BUILD_ID = "currentBuildId";
   private JsonNullable<String> currentBuildId = JsonNullable.<String>undefined();
@@ -864,8 +902,8 @@ public class ServiceObject {
   }
 
 
-  public ServiceObject githubRepositoryUrl(@javax.annotation.Nonnull String githubRepositoryUrl) {
-    this.githubRepositoryUrl = githubRepositoryUrl;
+  public ServiceObject githubRepositoryUrl(@javax.annotation.Nullable String githubRepositoryUrl) {
+    this.githubRepositoryUrl = JsonNullable.<String>of(githubRepositoryUrl);
     return this;
   }
 
@@ -873,18 +911,26 @@ public class ServiceObject {
    * Get githubRepositoryUrl
    * @return githubRepositoryUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public String getGithubRepositoryUrl() {
-    return githubRepositoryUrl;
+        return githubRepositoryUrl.orElse(null);
   }
 
+  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  @JsonProperty(value = JSON_PROPERTY_GITHUB_REPOSITORY_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGithubRepositoryUrl(@javax.annotation.Nonnull String githubRepositoryUrl) {
+  public JsonNullable<String> getGithubRepositoryUrl_JsonNullable() {
+    return githubRepositoryUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GITHUB_REPOSITORY_URL)
+  public void setGithubRepositoryUrl_JsonNullable(JsonNullable<String> githubRepositoryUrl) {
     this.githubRepositoryUrl = githubRepositoryUrl;
+  }
+
+  public void setGithubRepositoryUrl(@javax.annotation.Nullable String githubRepositoryUrl) {
+    this.githubRepositoryUrl = JsonNullable.<String>of(githubRepositoryUrl);
   }
 
 
@@ -941,6 +987,38 @@ public class ServiceObject {
 
   public void setGithubBranch(@javax.annotation.Nullable String githubBranch) {
     this.githubBranch = JsonNullable.<String>of(githubBranch);
+  }
+
+
+  public ServiceObject codeSourceType(@javax.annotation.Nullable CodeSourceTypeEnum codeSourceType) {
+    this.codeSourceType = JsonNullable.<CodeSourceTypeEnum>of(codeSourceType);
+    return this;
+  }
+
+  /**
+   * Get codeSourceType
+   * @return codeSourceType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public CodeSourceTypeEnum getCodeSourceType() {
+        return codeSourceType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CODE_SOURCE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<CodeSourceTypeEnum> getCodeSourceType_JsonNullable() {
+    return codeSourceType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODE_SOURCE_TYPE)
+  public void setCodeSourceType_JsonNullable(JsonNullable<CodeSourceTypeEnum> codeSourceType) {
+    this.codeSourceType = codeSourceType;
+  }
+
+  public void setCodeSourceType(@javax.annotation.Nullable CodeSourceTypeEnum codeSourceType) {
+    this.codeSourceType = JsonNullable.<CodeSourceTypeEnum>of(codeSourceType);
   }
 
 
@@ -1182,9 +1260,10 @@ public class ServiceObject {
         Objects.equals(this.webAppUrlConnections, serviceObject.webAppUrlConnections) &&
         Objects.equals(this.createdTimestamp, serviceObject.createdTimestamp) &&
         Objects.equals(this.lastModifiedTimestamp, serviceObject.lastModifiedTimestamp) &&
-        Objects.equals(this.githubRepositoryUrl, serviceObject.githubRepositoryUrl) &&
+        equalsNullable(this.githubRepositoryUrl, serviceObject.githubRepositoryUrl) &&
         Objects.equals(this.githubBuildTrigger, serviceObject.githubBuildTrigger) &&
         equalsNullable(this.githubBranch, serviceObject.githubBranch) &&
+        equalsNullable(this.codeSourceType, serviceObject.codeSourceType) &&
         equalsNullable(this.currentBuildId, serviceObject.currentBuildId) &&
         equalsNullable(this.enqueuedBuildIds, serviceObject.enqueuedBuildIds) &&
         Objects.equals(this.environmentVariables, serviceObject.environmentVariables) &&
@@ -1199,7 +1278,7 @@ public class ServiceObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(serviceId, serviceName, hashCodeNullable(publicDnsEndpoint), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), hashCodeNullable(pausedAt), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(dockerfilePath), healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), baseInstances, regionReplicas, containerCpu, hashCodeNullable(customDomains), serviceUrlConnections, webAppUrlConnections, createdTimestamp, lastModifiedTimestamp, githubRepositoryUrl, githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), hashCodeNullable(clonedFromResourceId), secretKeys);
+    return Objects.hash(serviceId, serviceName, hashCodeNullable(publicDnsEndpoint), hashCodeNullable(liveBuildId), hashCodeNullable(liveCommitHash), hashCodeNullable(pausedAt), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(dockerfilePath), healthCheckConfiguration, dockerfileDetectionResponse, healthCheckDetectionResponse, hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), baseInstances, regionReplicas, containerCpu, hashCodeNullable(customDomains), serviceUrlConnections, webAppUrlConnections, createdTimestamp, lastModifiedTimestamp, hashCodeNullable(githubRepositoryUrl), githubBuildTrigger, hashCodeNullable(githubBranch), hashCodeNullable(codeSourceType), hashCodeNullable(currentBuildId), hashCodeNullable(enqueuedBuildIds), environmentVariables, hashCodeNullable(baseDirectory), hashCodeNullable(clonedFromResourceId), secretKeys);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1237,6 +1316,7 @@ public class ServiceObject {
     sb.append("    githubRepositoryUrl: ").append(toIndentedString(githubRepositoryUrl)).append("\n");
     sb.append("    githubBuildTrigger: ").append(toIndentedString(githubBuildTrigger)).append("\n");
     sb.append("    githubBranch: ").append(toIndentedString(githubBranch)).append("\n");
+    sb.append("    codeSourceType: ").append(toIndentedString(codeSourceType)).append("\n");
     sb.append("    currentBuildId: ").append(toIndentedString(currentBuildId)).append("\n");
     sb.append("    enqueuedBuildIds: ").append(toIndentedString(enqueuedBuildIds)).append("\n");
     sb.append("    environmentVariables: ").append(toIndentedString(environmentVariables)).append("\n");
@@ -1432,6 +1512,11 @@ public class ServiceObject {
     // add `githubBranch` to the URL query string
     if (getGithubBranch() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgithubBranch%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGithubBranch()))));
+    }
+
+    // add `codeSourceType` to the URL query string
+    if (getCodeSourceType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scodeSourceType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCodeSourceType()))));
     }
 
     // add `currentBuildId` to the URL query string

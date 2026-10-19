@@ -30,6 +30,8 @@ from forte_sdk.generated.models.api_key_summary import ApiKeySummary
 from forte_sdk.generated.models.contact_method import ContactMethod
 from forte_sdk.generated.models.content_object import ContentObject
 from forte_sdk.generated.models.create_action_request import CreateActionRequest
+from forte_sdk.generated.models.create_build_artifact_request import CreateBuildArtifactRequest
+from forte_sdk.generated.models.create_build_artifact_response import CreateBuildArtifactResponse
 from forte_sdk.generated.models.create_clone_environment_request import CreateCloneEnvironmentRequest
 from forte_sdk.generated.models.create_clone_environment_response import CreateCloneEnvironmentResponse
 from forte_sdk.generated.models.create_content_upload_link_request import CreateContentUploadLinkRequest
@@ -66,6 +68,7 @@ from forte_sdk.generated.models.create_subscription_response import CreateSubscr
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest
 from forte_sdk.generated.models.custom_domain_response import CustomDomainResponse
 from forte_sdk.generated.models.custom_email_template_object import CustomEmailTemplateObject
+from forte_sdk.generated.models.get_build_artifact_response import GetBuildArtifactResponse
 from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse
 from forte_sdk.generated.models.get_request_body_download_link_response import GetRequestBodyDownloadLinkResponse
 from forte_sdk.generated.models.get_service_code_source_status_response import GetServiceCodeSourceStatusResponse
@@ -4507,6 +4510,295 @@ class ProjectsServerApi:
 
 
     @validate_call
+    def create_build_artifact(
+        self,
+        project_id: StrictStr,
+        create_build_artifact_request: CreateBuildArtifactRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreateBuildArtifactResponse:
+        """create_build_artifact
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param create_build_artifact_request: (required)
+        :type create_build_artifact_request: CreateBuildArtifactRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_build_artifact_serialize(
+            project_id=project_id,
+            create_build_artifact_request=create_build_artifact_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateBuildArtifactResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_build_artifact_with_http_info(
+        self,
+        project_id: StrictStr,
+        create_build_artifact_request: CreateBuildArtifactRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreateBuildArtifactResponse]:
+        """create_build_artifact
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param create_build_artifact_request: (required)
+        :type create_build_artifact_request: CreateBuildArtifactRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_build_artifact_serialize(
+            project_id=project_id,
+            create_build_artifact_request=create_build_artifact_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateBuildArtifactResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_build_artifact_without_preload_content(
+        self,
+        project_id: StrictStr,
+        create_build_artifact_request: CreateBuildArtifactRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """create_build_artifact
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param create_build_artifact_request: (required)
+        :type create_build_artifact_request: CreateBuildArtifactRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_build_artifact_serialize(
+            project_id=project_id,
+            create_build_artifact_request=create_build_artifact_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CreateBuildArtifactResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_build_artifact_serialize(
+        self,
+        project_id,
+        create_build_artifact_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_build_artifact_request is not None:
+            _body_params = create_build_artifact_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+        if 'Idempotency-Key' not in _header_params:
+            _header_params['Idempotency-Key'] = str(uuid.uuid4())
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/v1/projects/{projectId}/artifacts',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_clone_environment(
         self,
         project_id: StrictStr,
@@ -8047,6 +8339,7 @@ class ProjectsServerApi:
         service_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
         release_tag_name: Optional[StrictStr] = None,
+        artifact_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8071,6 +8364,8 @@ class ProjectsServerApi:
         :type commit_sha: str
         :param release_tag_name:
         :type release_tag_name: str
+        :param artifact_id:
+        :type artifact_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8098,6 +8393,7 @@ class ProjectsServerApi:
             service_id=service_id,
             commit_sha=commit_sha,
             release_tag_name=release_tag_name,
+            artifact_id=artifact_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8125,6 +8421,7 @@ class ProjectsServerApi:
         service_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
         release_tag_name: Optional[StrictStr] = None,
+        artifact_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8149,6 +8446,8 @@ class ProjectsServerApi:
         :type commit_sha: str
         :param release_tag_name:
         :type release_tag_name: str
+        :param artifact_id:
+        :type artifact_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8176,6 +8475,7 @@ class ProjectsServerApi:
             service_id=service_id,
             commit_sha=commit_sha,
             release_tag_name=release_tag_name,
+            artifact_id=artifact_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8203,6 +8503,7 @@ class ProjectsServerApi:
         service_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
         release_tag_name: Optional[StrictStr] = None,
+        artifact_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8227,6 +8528,8 @@ class ProjectsServerApi:
         :type commit_sha: str
         :param release_tag_name:
         :type release_tag_name: str
+        :param artifact_id:
+        :type artifact_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8254,6 +8557,7 @@ class ProjectsServerApi:
             service_id=service_id,
             commit_sha=commit_sha,
             release_tag_name=release_tag_name,
+            artifact_id=artifact_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -8276,6 +8580,7 @@ class ProjectsServerApi:
         service_id,
         commit_sha,
         release_tag_name,
+        artifact_id,
         _request_auth,
         _content_type,
         _headers,
@@ -8309,6 +8614,10 @@ class ProjectsServerApi:
         if release_tag_name is not None:
             
             _query_params.append(('releaseTagName', release_tag_name))
+            
+        if artifact_id is not None:
+            
+            _query_params.append(('artifactId', artifact_id))
             
         # process the header parameters
         # process the form parameters
@@ -9858,6 +10167,7 @@ class ProjectsServerApi:
         web_app_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
         release_tag_name: Optional[StrictStr] = None,
+        artifact_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9882,6 +10192,8 @@ class ProjectsServerApi:
         :type commit_sha: str
         :param release_tag_name:
         :type release_tag_name: str
+        :param artifact_id:
+        :type artifact_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9909,6 +10221,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             commit_sha=commit_sha,
             release_tag_name=release_tag_name,
+            artifact_id=artifact_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -9936,6 +10249,7 @@ class ProjectsServerApi:
         web_app_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
         release_tag_name: Optional[StrictStr] = None,
+        artifact_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9960,6 +10274,8 @@ class ProjectsServerApi:
         :type commit_sha: str
         :param release_tag_name:
         :type release_tag_name: str
+        :param artifact_id:
+        :type artifact_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -9987,6 +10303,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             commit_sha=commit_sha,
             release_tag_name=release_tag_name,
+            artifact_id=artifact_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10014,6 +10331,7 @@ class ProjectsServerApi:
         web_app_id: StrictStr,
         commit_sha: Optional[StrictStr] = None,
         release_tag_name: Optional[StrictStr] = None,
+        artifact_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10038,6 +10356,8 @@ class ProjectsServerApi:
         :type commit_sha: str
         :param release_tag_name:
         :type release_tag_name: str
+        :param artifact_id:
+        :type artifact_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -10065,6 +10385,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             commit_sha=commit_sha,
             release_tag_name=release_tag_name,
+            artifact_id=artifact_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -10087,6 +10408,7 @@ class ProjectsServerApi:
         web_app_id,
         commit_sha,
         release_tag_name,
+        artifact_id,
         _request_auth,
         _content_type,
         _headers,
@@ -10120,6 +10442,10 @@ class ProjectsServerApi:
         if release_tag_name is not None:
             
             _query_params.append(('releaseTagName', release_tag_name))
+            
+        if artifact_id is not None:
+            
+            _query_params.append(('artifactId', artifact_id))
             
         # process the header parameters
         # process the form parameters
@@ -15385,6 +15711,278 @@ class ProjectsServerApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/api/v1/projects/{projectId}/actions/metrics',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_build_artifact(
+        self,
+        project_id: StrictStr,
+        artifact_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetBuildArtifactResponse:
+        """get_build_artifact
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param artifact_id: (required)
+        :type artifact_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_build_artifact_serialize(
+            project_id=project_id,
+            artifact_id=artifact_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetBuildArtifactResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_build_artifact_with_http_info(
+        self,
+        project_id: StrictStr,
+        artifact_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetBuildArtifactResponse]:
+        """get_build_artifact
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param artifact_id: (required)
+        :type artifact_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_build_artifact_serialize(
+            project_id=project_id,
+            artifact_id=artifact_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetBuildArtifactResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_build_artifact_without_preload_content(
+        self,
+        project_id: StrictStr,
+        artifact_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_build_artifact
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param artifact_id: (required)
+        :type artifact_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_build_artifact_serialize(
+            project_id=project_id,
+            artifact_id=artifact_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetBuildArtifactResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_build_artifact_serialize(
+        self,
+        project_id,
+        artifact_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if artifact_id is not None:
+            _path_params['artifactId'] = artifact_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/v1/projects/{projectId}/artifacts/{artifactId}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

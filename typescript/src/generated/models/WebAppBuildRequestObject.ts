@@ -211,6 +211,18 @@ export interface WebAppBuildRequestObject {
     releaseTagName?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof WebAppBuildRequestObject
+     */
+    artifactId?: string | null;
+    /**
+     * 
+     * @type {WebAppBuildRequestObjectArtifactTypeType}
+     * @memberof WebAppBuildRequestObject
+     */
+    artifactType?: WebAppBuildRequestObjectArtifactTypeType | null;
+    /**
+     * 
      * @type {Array<BuildStepLog>}
      * @memberof WebAppBuildRequestObject
      */
@@ -268,9 +280,19 @@ export type WebAppBuildRequestObjectMonorepoTypeType = typeof WebAppBuildRequest
 /**
  * @export
  */
+export const WebAppBuildRequestObjectArtifactTypeType = {
+    SOURCE_ZIP: 'SOURCE_ZIP',
+    OCI_IMAGE_ARCHIVE: 'OCI_IMAGE_ARCHIVE'
+} as const;
+export type WebAppBuildRequestObjectArtifactTypeType = typeof WebAppBuildRequestObjectArtifactTypeType[keyof typeof WebAppBuildRequestObjectArtifactTypeType];
+
+/**
+ * @export
+ */
 export const WebAppBuildRequestObjectStatusType = {
     PENDING: 'PENDING',
     CLONING_REPOSITORY: 'CLONING_REPOSITORY',
+    EXTRACTING_ARTIFACT: 'EXTRACTING_ARTIFACT',
     GENERATING_DOCKERFILE: 'GENERATING_DOCKERFILE',
     DOCKERFILE_GENERATION_FAILURE: 'DOCKERFILE_GENERATION_FAILURE',
     VALIDATING_GENERATED_DOCKERFILE: 'VALIDATING_GENERATED_DOCKERFILE',
@@ -311,7 +333,8 @@ export const WebAppBuildRequestObjectOriginType = {
     TRIGGERED_BY_RELEASE: 'TRIGGERED_BY_RELEASE',
     MANUAL_TRIGGER_FROM_DASHBOARD: 'MANUAL_TRIGGER_FROM_DASHBOARD',
     CONFIG_CHANGE: 'CONFIG_CHANGE',
-    SHADOW_VALIDATION_BUILD: 'SHADOW_VALIDATION_BUILD'
+    SHADOW_VALIDATION_BUILD: 'SHADOW_VALIDATION_BUILD',
+    ARTIFACT_DEPLOYMENT: 'ARTIFACT_DEPLOYMENT'
 } as const;
 export type WebAppBuildRequestObjectOriginType = typeof WebAppBuildRequestObjectOriginType[keyof typeof WebAppBuildRequestObjectOriginType];
 
@@ -383,6 +406,8 @@ export function WebAppBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimin
         'commitAuthorName': json['commitAuthorName'] == null ? undefined : json['commitAuthorName'],
         'gitRef': json['gitRef'] == null ? undefined : json['gitRef'],
         'releaseTagName': json['releaseTagName'] == null ? undefined : json['releaseTagName'],
+        'artifactId': json['artifactId'] == null ? undefined : json['artifactId'],
+        'artifactType': json['artifactType'] == null ? undefined : json['artifactType'],
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
@@ -432,6 +457,8 @@ export function WebAppBuildRequestObjectToJSONTyped(value?: WebAppBuildRequestOb
         'commitAuthorName': value['commitAuthorName'],
         'gitRef': value['gitRef'],
         'releaseTagName': value['releaseTagName'],
+        'artifactId': value['artifactId'],
+        'artifactType': value['artifactType'],
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],

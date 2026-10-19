@@ -46,6 +46,8 @@ class ServiceBuildRequestObject(BaseModel):
     commit_author_name: Optional[StrictStr] = Field(default=None, alias="commitAuthorName")
     git_ref: Optional[StrictStr] = Field(default=None, alias="gitRef")
     release_tag_name: Optional[StrictStr] = Field(default=None, alias="releaseTagName")
+    artifact_id: Optional[StrictStr] = Field(default=None, alias="artifactId")
+    artifact_type: Optional[StrictStr] = Field(default=None, alias="artifactType")
     build_step_logs: Optional[List[BuildStepLog]] = Field(default=None, alias="buildStepLogs")
     status: StrictStr
     origin: Optional[StrictStr] = None
@@ -53,13 +55,23 @@ class ServiceBuildRequestObject(BaseModel):
     triggered_by_account_id: Optional[StrictStr] = Field(default=None, alias="triggeredByAccountId")
     build_tier: Optional[StrictStr] = Field(default=None, alias="buildTier")
     failure_reason: Optional[StrictStr] = Field(default=None, alias="failureReason")
-    __properties: ClassVar[List[str]] = ["buildId", "containerImageUri", "deploymentEnvironmentSnapshotTimestamp", "dockerfileGenerationError", "healthCheckDetectionError", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "buildStepLogs", "status", "origin", "originDetail", "triggeredByAccountId", "buildTier", "failureReason"]
+    __properties: ClassVar[List[str]] = ["buildId", "containerImageUri", "deploymentEnvironmentSnapshotTimestamp", "dockerfileGenerationError", "healthCheckDetectionError", "allBuildLogsReceived", "cancellationRequested", "startTime", "lastUpdatedTime", "serviceId", "commitHash", "commitMessage", "commitAuthorName", "gitRef", "releaseTagName", "artifactId", "artifactType", "buildStepLogs", "status", "origin", "originDetail", "triggeredByAccountId", "buildTier", "failureReason"]
+
+    @field_validator('artifact_type')
+    def artifact_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['SOURCE_ZIP', 'OCI_IMAGE_ARCHIVE']):
+            raise ValueError("must be one of enum values ('SOURCE_ZIP', 'OCI_IMAGE_ARCHIVE')")
+        return value
 
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['PENDING', 'CLONING_REPOSITORY', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'SERVICE_STARTUP_FAILURE', 'DETECTING_WEB_APP_CONFIG', 'WEB_APP_CONFIG_DETECTION_FAILURE', 'BUILDING_WEB_APP', 'WEB_APP_BUILD_FAILURE', 'DEPLOYING_STATIC_SITE', 'STATIC_SITE_DEPLOYMENT_FAILURE', 'DEPLOYING_SERVER_SIDE_SITE', 'SERVER_SIDE_SITE_DEPLOYMENT_FAILURE', 'CONFIGURING_CUSTOM_DOMAIN', 'CUSTOM_DOMAIN_CONFIGURATION_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED']):
-            raise ValueError("must be one of enum values ('PENDING', 'CLONING_REPOSITORY', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'SERVICE_STARTUP_FAILURE', 'DETECTING_WEB_APP_CONFIG', 'WEB_APP_CONFIG_DETECTION_FAILURE', 'BUILDING_WEB_APP', 'WEB_APP_BUILD_FAILURE', 'DEPLOYING_STATIC_SITE', 'STATIC_SITE_DEPLOYMENT_FAILURE', 'DEPLOYING_SERVER_SIDE_SITE', 'SERVER_SIDE_SITE_DEPLOYMENT_FAILURE', 'CONFIGURING_CUSTOM_DOMAIN', 'CUSTOM_DOMAIN_CONFIGURATION_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED')")
+        if value not in set(['PENDING', 'CLONING_REPOSITORY', 'EXTRACTING_ARTIFACT', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'SERVICE_STARTUP_FAILURE', 'DETECTING_WEB_APP_CONFIG', 'WEB_APP_CONFIG_DETECTION_FAILURE', 'BUILDING_WEB_APP', 'WEB_APP_BUILD_FAILURE', 'DEPLOYING_STATIC_SITE', 'STATIC_SITE_DEPLOYMENT_FAILURE', 'DEPLOYING_SERVER_SIDE_SITE', 'SERVER_SIDE_SITE_DEPLOYMENT_FAILURE', 'CONFIGURING_CUSTOM_DOMAIN', 'CUSTOM_DOMAIN_CONFIGURATION_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED']):
+            raise ValueError("must be one of enum values ('PENDING', 'CLONING_REPOSITORY', 'EXTRACTING_ARTIFACT', 'GENERATING_DOCKERFILE', 'DOCKERFILE_GENERATION_FAILURE', 'VALIDATING_GENERATED_DOCKERFILE', 'VALIDATED_GENERATED_DOCKERFILE', 'BUILDING_DOCKER_IMAGE', 'DOCKER_IMAGE_BUILD_FAILURE', 'DETECTING_HEALTH_CHECK_CONFIG', 'HEALTH_CHECK_DETECTION_FAILURE', 'DEPLOYMENT_PENDING', 'DEPLOYMENT_IN_PROGRESS', 'CONFIGURING_NETWORK', 'VALIDATING_SERVICE_HEALTH', 'DEPLOYMENT_FAILURE', 'VALIDATION_HEALTH_CHECK_FAILURE', 'SERVICE_STARTUP_FAILURE', 'DETECTING_WEB_APP_CONFIG', 'WEB_APP_CONFIG_DETECTION_FAILURE', 'BUILDING_WEB_APP', 'WEB_APP_BUILD_FAILURE', 'DEPLOYING_STATIC_SITE', 'STATIC_SITE_DEPLOYMENT_FAILURE', 'DEPLOYING_SERVER_SIDE_SITE', 'SERVER_SIDE_SITE_DEPLOYMENT_FAILURE', 'CONFIGURING_CUSTOM_DOMAIN', 'CUSTOM_DOMAIN_CONFIGURATION_FAILURE', 'CANCELLED', 'FAILED', 'SUCCEEDED')")
         return value
 
     @field_validator('origin')
@@ -68,8 +80,8 @@ class ServiceBuildRequestObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'TRIGGERED_BY_RELEASE', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD']):
-            raise ValueError("must be one of enum values ('INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'TRIGGERED_BY_RELEASE', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD')")
+        if value not in set(['INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'TRIGGERED_BY_RELEASE', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD', 'ARTIFACT_DEPLOYMENT']):
+            raise ValueError("must be one of enum values ('INITIAL_BUILD', 'TRIGGERED_BY_PUSH', 'TRIGGERED_BY_RELEASE', 'MANUAL_TRIGGER_FROM_DASHBOARD', 'CONFIG_CHANGE', 'SHADOW_VALIDATION_BUILD', 'ARTIFACT_DEPLOYMENT')")
         return value
 
     @field_validator('build_tier')
@@ -174,6 +186,16 @@ class ServiceBuildRequestObject(BaseModel):
         if self.release_tag_name is None and "release_tag_name" in self.model_fields_set:
             _dict['releaseTagName'] = None
 
+        # set to None if artifact_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.artifact_id is None and "artifact_id" in self.model_fields_set:
+            _dict['artifactId'] = None
+
+        # set to None if artifact_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.artifact_type is None and "artifact_type" in self.model_fields_set:
+            _dict['artifactType'] = None
+
         # set to None if origin (nullable) is None
         # and model_fields_set contains the field
         if self.origin is None and "origin" in self.model_fields_set:
@@ -226,6 +248,8 @@ class ServiceBuildRequestObject(BaseModel):
             "commitAuthorName": obj.get("commitAuthorName"),
             "gitRef": obj.get("gitRef"),
             "releaseTagName": obj.get("releaseTagName"),
+            "artifactId": obj.get("artifactId"),
+            "artifactType": obj.get("artifactType"),
             "buildStepLogs": [BuildStepLog.from_dict(_item) for _item in obj["buildStepLogs"]] if obj.get("buildStepLogs") is not None else None,
             "status": obj.get("status"),
             "origin": obj.get("origin"),

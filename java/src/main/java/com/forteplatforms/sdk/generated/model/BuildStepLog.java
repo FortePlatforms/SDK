@@ -61,6 +61,8 @@ public class BuildStepLog {
     
     CLONING_REPOSITORY(String.valueOf("CLONING_REPOSITORY")),
     
+    EXTRACTING_ARTIFACT(String.valueOf("EXTRACTING_ARTIFACT")),
+    
     GENERATING_DOCKERFILE(String.valueOf("GENERATING_DOCKERFILE")),
     
     DOCKERFILE_GENERATION_FAILURE(String.valueOf("DOCKERFILE_GENERATION_FAILURE")),
@@ -154,6 +156,8 @@ public class BuildStepLog {
     PENDING(String.valueOf("PENDING")),
     
     CLONING_REPOSITORY(String.valueOf("CLONING_REPOSITORY")),
+    
+    EXTRACTING_ARTIFACT(String.valueOf("EXTRACTING_ARTIFACT")),
     
     GENERATING_DOCKERFILE(String.valueOf("GENERATING_DOCKERFILE")),
     

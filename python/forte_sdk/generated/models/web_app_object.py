@@ -61,9 +61,10 @@ class WebAppObject(BaseModel):
     hosting_provider_domain_available_at: Optional[datetime] = Field(default=None, alias="hostingProviderDomainAvailableAt")
     created_timestamp: Optional[datetime] = Field(default=None, alias="createdTimestamp")
     last_modified_timestamp: Optional[datetime] = Field(default=None, alias="lastModifiedTimestamp")
-    github_repository_url: StrictStr = Field(alias="githubRepositoryUrl")
+    github_repository_url: Optional[StrictStr] = Field(default=None, alias="githubRepositoryUrl")
     github_build_trigger: StrictStr = Field(alias="githubBuildTrigger")
     github_branch: Optional[StrictStr] = Field(default=None, alias="githubBranch")
+    code_source_type: Optional[StrictStr] = Field(default=None, alias="codeSourceType")
     current_build_id: Optional[StrictStr] = Field(default=None, alias="currentBuildId")
     enqueued_build_ids: Optional[List[StrictStr]] = Field(default=None, alias="enqueuedBuildIds")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
@@ -71,7 +72,7 @@ class WebAppObject(BaseModel):
     cloned_from_resource_id: Optional[StrictStr] = Field(default=None, alias="clonedFromResourceId")
     site_password_protection_enabled: Optional[StrictBool] = Field(default=None, alias="sitePasswordProtectionEnabled")
     secret_keys: Optional[List[StrictStr]] = Field(default=None, alias="secretKeys")
-    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "serviceUrlConnections", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "liveBuildId", "liveCommitHash", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "clonedFromResourceId", "sitePasswordProtectionEnabled", "secretKeys"]
+    __properties: ClassVar[List[str]] = ["webAppId", "webAppName", "forteDnsEndpoint", "forteDnsEndpointEnabled", "customDomains", "serviceUrlConnections", "buildPath", "webAppType", "packageManager", "nodeVersion", "installCommand", "subdirectory", "detectedFramework", "monorepoType", "workspaceRoot", "appPackageName", "containerImageUri", "liveBuildId", "liveCommitHash", "detectionResponse", "dockerfilePath", "dockerfileDetectionResponse", "hostingProviderAppId", "hostingProviderBranchName", "hostingProviderDomainStatus", "hostingProviderDomainAvailableAt", "createdTimestamp", "lastModifiedTimestamp", "githubRepositoryUrl", "githubBuildTrigger", "githubBranch", "codeSourceType", "currentBuildId", "enqueuedBuildIds", "environmentVariables", "baseDirectory", "clonedFromResourceId", "sitePasswordProtectionEnabled", "secretKeys"]
 
     @field_validator('web_app_type')
     def web_app_type_validate_enum(cls, value):
@@ -98,6 +99,16 @@ class WebAppObject(BaseModel):
         """Validates the enum"""
         if value not in set(['PUSH', 'RELEASE_PUBLISHED']):
             raise ValueError("must be one of enum values ('PUSH', 'RELEASE_PUBLISHED')")
+        return value
+
+    @field_validator('code_source_type')
+    def code_source_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['GITHUB', 'ARTIFACT']):
+            raise ValueError("must be one of enum values ('GITHUB', 'ARTIFACT')")
         return value
 
     model_config = ConfigDict(
@@ -259,10 +270,20 @@ class WebAppObject(BaseModel):
         if self.hosting_provider_domain_available_at is None and "hosting_provider_domain_available_at" in self.model_fields_set:
             _dict['hostingProviderDomainAvailableAt'] = None
 
+        # set to None if github_repository_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_repository_url is None and "github_repository_url" in self.model_fields_set:
+            _dict['githubRepositoryUrl'] = None
+
         # set to None if github_branch (nullable) is None
         # and model_fields_set contains the field
         if self.github_branch is None and "github_branch" in self.model_fields_set:
             _dict['githubBranch'] = None
+
+        # set to None if code_source_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.code_source_type is None and "code_source_type" in self.model_fields_set:
+            _dict['codeSourceType'] = None
 
         # set to None if current_build_id (nullable) is None
         # and model_fields_set contains the field
@@ -327,6 +348,7 @@ class WebAppObject(BaseModel):
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),
             "githubBuildTrigger": obj.get("githubBuildTrigger"),
             "githubBranch": obj.get("githubBranch"),
+            "codeSourceType": obj.get("codeSourceType"),
             "currentBuildId": obj.get("currentBuildId"),
             "enqueuedBuildIds": obj.get("enqueuedBuildIds"),
             "environmentVariables": obj.get("environmentVariables"),

@@ -133,6 +133,18 @@ export interface ServiceBuildRequestObject {
     releaseTagName?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof ServiceBuildRequestObject
+     */
+    artifactId?: string | null;
+    /**
+     * 
+     * @type {ServiceBuildRequestObjectArtifactTypeType}
+     * @memberof ServiceBuildRequestObject
+     */
+    artifactType?: ServiceBuildRequestObjectArtifactTypeType | null;
+    /**
+     * 
      * @type {Array<BuildStepLog>}
      * @memberof ServiceBuildRequestObject
      */
@@ -179,9 +191,19 @@ export interface ServiceBuildRequestObject {
 /**
  * @export
  */
+export const ServiceBuildRequestObjectArtifactTypeType = {
+    SOURCE_ZIP: 'SOURCE_ZIP',
+    OCI_IMAGE_ARCHIVE: 'OCI_IMAGE_ARCHIVE'
+} as const;
+export type ServiceBuildRequestObjectArtifactTypeType = typeof ServiceBuildRequestObjectArtifactTypeType[keyof typeof ServiceBuildRequestObjectArtifactTypeType];
+
+/**
+ * @export
+ */
 export const ServiceBuildRequestObjectStatusType = {
     PENDING: 'PENDING',
     CLONING_REPOSITORY: 'CLONING_REPOSITORY',
+    EXTRACTING_ARTIFACT: 'EXTRACTING_ARTIFACT',
     GENERATING_DOCKERFILE: 'GENERATING_DOCKERFILE',
     DOCKERFILE_GENERATION_FAILURE: 'DOCKERFILE_GENERATION_FAILURE',
     VALIDATING_GENERATED_DOCKERFILE: 'VALIDATING_GENERATED_DOCKERFILE',
@@ -222,7 +244,8 @@ export const ServiceBuildRequestObjectOriginType = {
     TRIGGERED_BY_RELEASE: 'TRIGGERED_BY_RELEASE',
     MANUAL_TRIGGER_FROM_DASHBOARD: 'MANUAL_TRIGGER_FROM_DASHBOARD',
     CONFIG_CHANGE: 'CONFIG_CHANGE',
-    SHADOW_VALIDATION_BUILD: 'SHADOW_VALIDATION_BUILD'
+    SHADOW_VALIDATION_BUILD: 'SHADOW_VALIDATION_BUILD',
+    ARTIFACT_DEPLOYMENT: 'ARTIFACT_DEPLOYMENT'
 } as const;
 export type ServiceBuildRequestObjectOriginType = typeof ServiceBuildRequestObjectOriginType[keyof typeof ServiceBuildRequestObjectOriginType];
 
@@ -281,6 +304,8 @@ export function ServiceBuildRequestObjectFromJSONTyped(json: any, ignoreDiscrimi
         'commitAuthorName': json['commitAuthorName'] == null ? undefined : json['commitAuthorName'],
         'gitRef': json['gitRef'] == null ? undefined : json['gitRef'],
         'releaseTagName': json['releaseTagName'] == null ? undefined : json['releaseTagName'],
+        'artifactId': json['artifactId'] == null ? undefined : json['artifactId'],
+        'artifactType': json['artifactType'] == null ? undefined : json['artifactType'],
         'buildStepLogs': json['buildStepLogs'] == null ? undefined : ((json['buildStepLogs'] as Array<any>).map(BuildStepLogFromJSON)),
         'status': json['status'],
         'origin': json['origin'] == null ? undefined : json['origin'],
@@ -317,6 +342,8 @@ export function ServiceBuildRequestObjectToJSONTyped(value?: ServiceBuildRequest
         'commitAuthorName': value['commitAuthorName'],
         'gitRef': value['gitRef'],
         'releaseTagName': value['releaseTagName'],
+        'artifactId': value['artifactId'],
+        'artifactType': value['artifactType'],
         'buildStepLogs': value['buildStepLogs'] == null ? undefined : ((value['buildStepLogs'] as Array<any>).map(BuildStepLogToJSON)),
         'status': value['status'],
         'origin': value['origin'],

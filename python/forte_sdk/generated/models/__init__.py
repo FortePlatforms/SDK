@@ -29,6 +29,7 @@ from forte_sdk.generated.models.admin_password_reset_response import AdminPasswo
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary
 from forte_sdk.generated.models.backup_codes_response import BackupCodesResponse
 from forte_sdk.generated.models.body_ref import BodyRef
+from forte_sdk.generated.models.build_artifact_object import BuildArtifactObject
 from forte_sdk.generated.models.build_step_log import BuildStepLog
 from forte_sdk.generated.models.change_password_request import ChangePasswordRequest
 from forte_sdk.generated.models.complete_otp_login_request import CompleteOtpLoginRequest
@@ -38,6 +39,8 @@ from forte_sdk.generated.models.content_object import ContentObject
 from forte_sdk.generated.models.content_share import ContentShare
 from forte_sdk.generated.models.content_share_request_item import ContentShareRequestItem
 from forte_sdk.generated.models.create_action_request import CreateActionRequest
+from forte_sdk.generated.models.create_build_artifact_request import CreateBuildArtifactRequest
+from forte_sdk.generated.models.create_build_artifact_response import CreateBuildArtifactResponse
 from forte_sdk.generated.models.create_clone_environment_request import CreateCloneEnvironmentRequest
 from forte_sdk.generated.models.create_clone_environment_response import CreateCloneEnvironmentResponse
 from forte_sdk.generated.models.create_content_upload_link_request import CreateContentUploadLinkRequest
@@ -91,6 +94,7 @@ from forte_sdk.generated.models.dockerfile_generation_error import DockerfileGen
 from forte_sdk.generated.models.dockerfile_generation_response import DockerfileGenerationResponse
 from forte_sdk.generated.models.field_change import FieldChange
 from forte_sdk.generated.models.forte_api_exception import ForteApiException
+from forte_sdk.generated.models.get_build_artifact_response import GetBuildArtifactResponse
 from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse
 from forte_sdk.generated.models.get_request_body_download_link_response import GetRequestBodyDownloadLinkResponse
 from forte_sdk.generated.models.get_service_code_source_status_response import GetServiceCodeSourceStatusResponse

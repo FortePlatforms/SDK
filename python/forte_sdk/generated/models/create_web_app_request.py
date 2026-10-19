@@ -30,9 +30,11 @@ class CreateWebAppRequest(BaseModel):
     CreateWebAppRequest
     """ # noqa: E501
     web_app_name: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="webAppName")
-    github_repository_url: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="githubRepositoryUrl")
+    github_repository_url: Optional[StrictStr] = Field(default=None, alias="githubRepositoryUrl")
     github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="githubBranch")
-    build_trigger: StrictStr = Field(alias="buildTrigger")
+    build_trigger: Optional[StrictStr] = Field(default=None, alias="buildTrigger")
+    code_source_type: Optional[StrictStr] = Field(default=None, alias="codeSourceType")
+    artifact_id: Optional[StrictStr] = Field(default=None, alias="artifactId")
     build_command: Optional[StrictStr] = Field(default=None, alias="buildCommand")
     build_path: Optional[StrictStr] = Field(default=None, alias="buildPath")
     package_manager: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="packageManager")
@@ -42,7 +44,7 @@ class CreateWebAppRequest(BaseModel):
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     secrets: Optional[Dict[str, StrictStr]] = None
     service_url_connections: Optional[Annotated[List[CreateServiceUrlConnectionRequest], Field(min_length=0, max_length=20)]] = Field(default=None, alias="serviceUrlConnections")
-    __properties: ClassVar[List[str]] = ["webAppName", "githubRepositoryUrl", "githubBranch", "buildTrigger", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "subdirectory", "environmentVariables", "secrets", "serviceUrlConnections"]
+    __properties: ClassVar[List[str]] = ["webAppName", "githubRepositoryUrl", "githubBranch", "buildTrigger", "codeSourceType", "artifactId", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "subdirectory", "environmentVariables", "secrets", "serviceUrlConnections"]
 
     @field_validator('web_app_name')
     def web_app_name_validate_regular_expression(cls, value):
@@ -70,8 +72,21 @@ class CreateWebAppRequest(BaseModel):
     @field_validator('build_trigger')
     def build_trigger_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['PUSH', 'RELEASE_PUBLISHED']):
             raise ValueError("must be one of enum values ('PUSH', 'RELEASE_PUBLISHED')")
+        return value
+
+    @field_validator('code_source_type')
+    def code_source_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['GITHUB', 'ARTIFACT']):
+            raise ValueError("must be one of enum values ('GITHUB', 'ARTIFACT')")
         return value
 
     @field_validator('package_manager')
@@ -146,10 +161,30 @@ class CreateWebAppRequest(BaseModel):
                 if _item_service_url_connections:
                     _items.append(_item_service_url_connections.to_dict())
             _dict['serviceUrlConnections'] = _items
+        # set to None if github_repository_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.github_repository_url is None and "github_repository_url" in self.model_fields_set:
+            _dict['githubRepositoryUrl'] = None
+
         # set to None if github_branch (nullable) is None
         # and model_fields_set contains the field
         if self.github_branch is None and "github_branch" in self.model_fields_set:
             _dict['githubBranch'] = None
+
+        # set to None if build_trigger (nullable) is None
+        # and model_fields_set contains the field
+        if self.build_trigger is None and "build_trigger" in self.model_fields_set:
+            _dict['buildTrigger'] = None
+
+        # set to None if code_source_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.code_source_type is None and "code_source_type" in self.model_fields_set:
+            _dict['codeSourceType'] = None
+
+        # set to None if artifact_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.artifact_id is None and "artifact_id" in self.model_fields_set:
+            _dict['artifactId'] = None
 
         # set to None if build_command (nullable) is None
         # and model_fields_set contains the field
@@ -202,6 +237,8 @@ class CreateWebAppRequest(BaseModel):
             "githubRepositoryUrl": obj.get("githubRepositoryUrl"),
             "githubBranch": obj.get("githubBranch"),
             "buildTrigger": obj.get("buildTrigger"),
+            "codeSourceType": obj.get("codeSourceType"),
+            "artifactId": obj.get("artifactId"),
             "buildCommand": obj.get("buildCommand"),
             "buildPath": obj.get("buildPath"),
             "packageManager": obj.get("packageManager"),

@@ -32,13 +32,25 @@ export interface CreateForteServiceRequest {
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
-    githubRepositoryUrl: string;
+    githubRepositoryUrl?: string | null;
     /**
      * 
      * @type {CreateForteServiceRequestBuildTriggerType}
      * @memberof CreateForteServiceRequest
      */
-    buildTrigger: CreateForteServiceRequestBuildTriggerType;
+    buildTrigger?: CreateForteServiceRequestBuildTriggerType | null;
+    /**
+     * 
+     * @type {CreateForteServiceRequestCodeSourceTypeType}
+     * @memberof CreateForteServiceRequest
+     */
+    codeSourceType?: CreateForteServiceRequestCodeSourceTypeType | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateForteServiceRequest
+     */
+    artifactId?: string | null;
     /**
      * 
      * @type {string}
@@ -135,13 +147,20 @@ export const CreateForteServiceRequestBuildTriggerType = {
 } as const;
 export type CreateForteServiceRequestBuildTriggerType = typeof CreateForteServiceRequestBuildTriggerType[keyof typeof CreateForteServiceRequestBuildTriggerType];
 
+/**
+ * @export
+ */
+export const CreateForteServiceRequestCodeSourceTypeType = {
+    GITHUB: 'GITHUB',
+    ARTIFACT: 'ARTIFACT'
+} as const;
+export type CreateForteServiceRequestCodeSourceTypeType = typeof CreateForteServiceRequestCodeSourceTypeType[keyof typeof CreateForteServiceRequestCodeSourceTypeType];
+
 
 /**
  * Check if a given object implements the CreateForteServiceRequest interface.
  */
 export function instanceOfCreateForteServiceRequest(value: object): value is CreateForteServiceRequest {
-    if (!('githubRepositoryUrl' in value) || value['githubRepositoryUrl'] === undefined) return false;
-    if (!('buildTrigger' in value) || value['buildTrigger'] === undefined) return false;
     if (!('serviceName' in value) || value['serviceName'] === undefined) return false;
     return true;
 }
@@ -156,8 +175,10 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'githubRepositoryUrl': json['githubRepositoryUrl'],
-        'buildTrigger': json['buildTrigger'],
+        'githubRepositoryUrl': json['githubRepositoryUrl'] == null ? undefined : json['githubRepositoryUrl'],
+        'buildTrigger': json['buildTrigger'] == null ? undefined : json['buildTrigger'],
+        'codeSourceType': json['codeSourceType'] == null ? undefined : json['codeSourceType'],
+        'artifactId': json['artifactId'] == null ? undefined : json['artifactId'],
         'githubBranch': json['githubBranch'] == null ? undefined : json['githubBranch'],
         'serviceName': json['serviceName'],
         'environmentVariables': json['environmentVariables'] == null ? undefined : json['environmentVariables'],
@@ -188,6 +209,8 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
         
         'githubRepositoryUrl': value['githubRepositoryUrl'],
         'buildTrigger': value['buildTrigger'],
+        'codeSourceType': value['codeSourceType'],
+        'artifactId': value['artifactId'],
         'githubBranch': value['githubBranch'],
         'serviceName': value['serviceName'],
         'environmentVariables': value['environmentVariables'],

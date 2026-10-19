@@ -58,6 +58,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ServiceBuildRequestObject.JSON_PROPERTY_COMMIT_AUTHOR_NAME,
   ServiceBuildRequestObject.JSON_PROPERTY_GIT_REF,
   ServiceBuildRequestObject.JSON_PROPERTY_RELEASE_TAG_NAME,
+  ServiceBuildRequestObject.JSON_PROPERTY_ARTIFACT_ID,
+  ServiceBuildRequestObject.JSON_PROPERTY_ARTIFACT_TYPE,
   ServiceBuildRequestObject.JSON_PROPERTY_BUILD_STEP_LOGS,
   ServiceBuildRequestObject.JSON_PROPERTY_STATUS,
   ServiceBuildRequestObject.JSON_PROPERTY_ORIGIN,
@@ -122,6 +124,47 @@ public class ServiceBuildRequestObject {
   public static final String JSON_PROPERTY_RELEASE_TAG_NAME = "releaseTagName";
   private JsonNullable<String> releaseTagName = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_ARTIFACT_ID = "artifactId";
+  private JsonNullable<String> artifactId = JsonNullable.<String>undefined();
+
+  /**
+   * Gets or Sets artifactType
+   */
+  public enum ArtifactTypeEnum {
+    SOURCE_ZIP(String.valueOf("SOURCE_ZIP")),
+    
+    OCI_IMAGE_ARCHIVE(String.valueOf("OCI_IMAGE_ARCHIVE"));
+
+    private String value;
+
+    ArtifactTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ArtifactTypeEnum fromValue(String value) {
+      for (ArtifactTypeEnum b : ArtifactTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_ARTIFACT_TYPE = "artifactType";
+  private JsonNullable<ArtifactTypeEnum> artifactType = JsonNullable.<ArtifactTypeEnum>undefined();
+
   public static final String JSON_PROPERTY_BUILD_STEP_LOGS = "buildStepLogs";
   @javax.annotation.Nullable
   private List<BuildStepLog> buildStepLogs = new ArrayList<>();
@@ -133,6 +176,8 @@ public class ServiceBuildRequestObject {
     PENDING(String.valueOf("PENDING")),
     
     CLONING_REPOSITORY(String.valueOf("CLONING_REPOSITORY")),
+    
+    EXTRACTING_ARTIFACT(String.valueOf("EXTRACTING_ARTIFACT")),
     
     GENERATING_DOCKERFILE(String.valueOf("GENERATING_DOCKERFILE")),
     
@@ -235,7 +280,9 @@ public class ServiceBuildRequestObject {
     
     CONFIG_CHANGE(String.valueOf("CONFIG_CHANGE")),
     
-    SHADOW_VALIDATION_BUILD(String.valueOf("SHADOW_VALIDATION_BUILD"));
+    SHADOW_VALIDATION_BUILD(String.valueOf("SHADOW_VALIDATION_BUILD")),
+    
+    ARTIFACT_DEPLOYMENT(String.valueOf("ARTIFACT_DEPLOYMENT"));
 
     private String value;
 
@@ -762,6 +809,70 @@ public class ServiceBuildRequestObject {
   }
 
 
+  public ServiceBuildRequestObject artifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = JsonNullable.<String>of(artifactId);
+    return this;
+  }
+
+  /**
+   * Get artifactId
+   * @return artifactId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getArtifactId() {
+        return artifactId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_ARTIFACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getArtifactId_JsonNullable() {
+    return artifactId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_ID)
+  public void setArtifactId_JsonNullable(JsonNullable<String> artifactId) {
+    this.artifactId = artifactId;
+  }
+
+  public void setArtifactId(@javax.annotation.Nullable String artifactId) {
+    this.artifactId = JsonNullable.<String>of(artifactId);
+  }
+
+
+  public ServiceBuildRequestObject artifactType(@javax.annotation.Nullable ArtifactTypeEnum artifactType) {
+    this.artifactType = JsonNullable.<ArtifactTypeEnum>of(artifactType);
+    return this;
+  }
+
+  /**
+   * Get artifactType
+   * @return artifactType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public ArtifactTypeEnum getArtifactType() {
+        return artifactType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_ARTIFACT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<ArtifactTypeEnum> getArtifactType_JsonNullable() {
+    return artifactType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_TYPE)
+  public void setArtifactType_JsonNullable(JsonNullable<ArtifactTypeEnum> artifactType) {
+    this.artifactType = artifactType;
+  }
+
+  public void setArtifactType(@javax.annotation.Nullable ArtifactTypeEnum artifactType) {
+    this.artifactType = JsonNullable.<ArtifactTypeEnum>of(artifactType);
+  }
+
+
   public ServiceBuildRequestObject buildStepLogs(@javax.annotation.Nullable List<BuildStepLog> buildStepLogs) {
     this.buildStepLogs = buildStepLogs;
     return this;
@@ -1005,6 +1116,8 @@ public class ServiceBuildRequestObject {
         Objects.equals(this.commitAuthorName, serviceBuildRequestObject.commitAuthorName) &&
         equalsNullable(this.gitRef, serviceBuildRequestObject.gitRef) &&
         equalsNullable(this.releaseTagName, serviceBuildRequestObject.releaseTagName) &&
+        equalsNullable(this.artifactId, serviceBuildRequestObject.artifactId) &&
+        equalsNullable(this.artifactType, serviceBuildRequestObject.artifactType) &&
         Objects.equals(this.buildStepLogs, serviceBuildRequestObject.buildStepLogs) &&
         Objects.equals(this.status, serviceBuildRequestObject.status) &&
         equalsNullable(this.origin, serviceBuildRequestObject.origin) &&
@@ -1020,7 +1133,7 @@ public class ServiceBuildRequestObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(buildId, hashCodeNullable(containerImageUri), hashCodeNullable(deploymentEnvironmentSnapshotTimestamp), dockerfileGenerationError, healthCheckDetectionError, hashCodeNullable(allBuildLogsReceived), hashCodeNullable(cancellationRequested), startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, hashCodeNullable(gitRef), hashCodeNullable(releaseTagName), buildStepLogs, status, hashCodeNullable(origin), hashCodeNullable(originDetail), hashCodeNullable(triggeredByAccountId), hashCodeNullable(buildTier), hashCodeNullable(failureReason));
+    return Objects.hash(buildId, hashCodeNullable(containerImageUri), hashCodeNullable(deploymentEnvironmentSnapshotTimestamp), dockerfileGenerationError, healthCheckDetectionError, hashCodeNullable(allBuildLogsReceived), hashCodeNullable(cancellationRequested), startTime, lastUpdatedTime, serviceId, commitHash, commitMessage, commitAuthorName, hashCodeNullable(gitRef), hashCodeNullable(releaseTagName), hashCodeNullable(artifactId), hashCodeNullable(artifactType), buildStepLogs, status, hashCodeNullable(origin), hashCodeNullable(originDetail), hashCodeNullable(triggeredByAccountId), hashCodeNullable(buildTier), hashCodeNullable(failureReason));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1049,6 +1162,8 @@ public class ServiceBuildRequestObject {
     sb.append("    commitAuthorName: ").append(toIndentedString(commitAuthorName)).append("\n");
     sb.append("    gitRef: ").append(toIndentedString(gitRef)).append("\n");
     sb.append("    releaseTagName: ").append(toIndentedString(releaseTagName)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
+    sb.append("    artifactType: ").append(toIndentedString(artifactType)).append("\n");
     sb.append("    buildStepLogs: ").append(toIndentedString(buildStepLogs)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
@@ -1173,6 +1288,16 @@ public class ServiceBuildRequestObject {
     // add `releaseTagName` to the URL query string
     if (getReleaseTagName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreleaseTagName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReleaseTagName()))));
+    }
+
+    // add `artifactId` to the URL query string
+    if (getArtifactId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sartifactId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getArtifactId()))));
+    }
+
+    // add `artifactType` to the URL query string
+    if (getArtifactType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sartifactType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getArtifactType()))));
     }
 
     // add `buildStepLogs` to the URL query string
