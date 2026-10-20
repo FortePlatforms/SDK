@@ -55,7 +55,7 @@ public class CreateServiceToWebAppConnectionRequest {
   private String environmentVariableName;
 
   /**
-   * Gets or Sets domainType
+   * FORTE_DOMAIN uses the Forte URL; CUSTOM_DOMAIN uses customDomainId.
    */
   public enum DomainTypeEnum {
     FORTE_DOMAIN(String.valueOf("FORTE_DOMAIN")),
@@ -111,7 +111,7 @@ public class CreateServiceToWebAppConnectionRequest {
   }
 
   /**
-   * Get webAppId
+   * The web app whose URL is set; same project.
    * @return webAppId
    */
   @javax.annotation.Nonnull
@@ -135,7 +135,7 @@ public class CreateServiceToWebAppConnectionRequest {
   }
 
   /**
-   * Get environmentVariableName
+   * Environment variable that receives the URL.
    * @return environmentVariableName
    */
   @javax.annotation.Nonnull
@@ -159,7 +159,7 @@ public class CreateServiceToWebAppConnectionRequest {
   }
 
   /**
-   * Get domainType
+   * FORTE_DOMAIN uses the Forte URL; CUSTOM_DOMAIN uses customDomainId.
    * @return domainType
    */
   @javax.annotation.Nonnull
@@ -183,7 +183,7 @@ public class CreateServiceToWebAppConnectionRequest {
   }
 
   /**
-   * Get customDomainId
+   * An ACTIVE custom domain of the target; required for CUSTOM_DOMAIN.
    * @return customDomainId
    */
   @javax.annotation.Nullable
@@ -215,7 +215,7 @@ public class CreateServiceToWebAppConnectionRequest {
   }
 
   /**
-   * Get pathSuffix
+   * Appended to the URL, e.g. /api.
    * @return pathSuffix
    */
   @javax.annotation.Nullable
@@ -247,7 +247,7 @@ public class CreateServiceToWebAppConnectionRequest {
   }
 
   /**
-   * Get replaceEnvironmentVariable
+   * Set true to replace a plain environment variable of the same name.
    * @return replaceEnvironmentVariable
    */
   @javax.annotation.Nullable

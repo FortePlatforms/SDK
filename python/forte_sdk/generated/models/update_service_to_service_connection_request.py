@@ -28,11 +28,11 @@ class UpdateServiceToServiceConnectionRequest(BaseModel):
     """
     UpdateServiceToServiceConnectionRequest
     """ # noqa: E501
-    service_id: StrictStr = Field(alias="serviceId")
-    environment_variable_name: Annotated[str, Field(min_length=0, strict=True, max_length=256)] = Field(alias="environmentVariableName")
-    domain_type: StrictStr = Field(alias="domainType")
-    custom_domain_id: Optional[StrictStr] = Field(default=None, alias="customDomainId")
-    path_suffix: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=256)]] = Field(default=None, alias="pathSuffix")
+    service_id: StrictStr = Field(description="The target service whose URL is set; same project.", alias="serviceId")
+    environment_variable_name: Annotated[str, Field(min_length=0, strict=True, max_length=256)] = Field(description="Environment variable that receives the URL.", alias="environmentVariableName")
+    domain_type: StrictStr = Field(description="FORTE_DOMAIN uses the Forte URL; CUSTOM_DOMAIN uses customDomainId.", alias="domainType")
+    custom_domain_id: Optional[StrictStr] = Field(default=None, description="An ACTIVE custom domain of the target; required for CUSTOM_DOMAIN.", alias="customDomainId")
+    path_suffix: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=256)]] = Field(default=None, description="Appended to the URL, e.g. /api.", alias="pathSuffix")
     __properties: ClassVar[List[str]] = ["serviceId", "environmentVariableName", "domainType", "customDomainId", "pathSuffix"]
 
     @field_validator('environment_variable_name')

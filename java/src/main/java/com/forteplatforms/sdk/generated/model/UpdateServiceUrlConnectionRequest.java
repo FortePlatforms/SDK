@@ -54,7 +54,7 @@ public class UpdateServiceUrlConnectionRequest {
   private String environmentVariableName;
 
   /**
-   * Gets or Sets domainType
+   * FORTE_DOMAIN uses the Forte URL; CUSTOM_DOMAIN uses customDomainId.
    */
   public enum DomainTypeEnum {
     FORTE_DOMAIN(String.valueOf("FORTE_DOMAIN")),
@@ -107,7 +107,7 @@ public class UpdateServiceUrlConnectionRequest {
   }
 
   /**
-   * Get serviceId
+   * The backend service whose URL is set; same project.
    * @return serviceId
    */
   @javax.annotation.Nonnull
@@ -131,7 +131,7 @@ public class UpdateServiceUrlConnectionRequest {
   }
 
   /**
-   * Get environmentVariableName
+   * Environment variable that receives the URL.
    * @return environmentVariableName
    */
   @javax.annotation.Nonnull
@@ -155,7 +155,7 @@ public class UpdateServiceUrlConnectionRequest {
   }
 
   /**
-   * Get domainType
+   * FORTE_DOMAIN uses the Forte URL; CUSTOM_DOMAIN uses customDomainId.
    * @return domainType
    */
   @javax.annotation.Nonnull
@@ -179,7 +179,7 @@ public class UpdateServiceUrlConnectionRequest {
   }
 
   /**
-   * Get customDomainId
+   * An ACTIVE custom domain of the target; required for CUSTOM_DOMAIN.
    * @return customDomainId
    */
   @javax.annotation.Nullable
@@ -211,7 +211,7 @@ public class UpdateServiceUrlConnectionRequest {
   }
 
   /**
-   * Get pathSuffix
+   * Appended to the URL, e.g. /api.
    * @return pathSuffix
    */
   @javax.annotation.Nullable

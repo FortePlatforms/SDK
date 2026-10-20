@@ -20,31 +20,31 @@ import { mapValues } from '../runtime';
  */
 export interface UpdateServiceToWebAppConnectionRequest {
     /**
-     * 
+     * The web app whose URL is set; same project.
      * @type {string}
      * @memberof UpdateServiceToWebAppConnectionRequest
      */
     webAppId: string;
     /**
-     * 
+     * Environment variable that receives the URL.
      * @type {string}
      * @memberof UpdateServiceToWebAppConnectionRequest
      */
     environmentVariableName: string;
     /**
-     * 
+     * FORTE_DOMAIN uses the Forte URL; CUSTOM_DOMAIN uses customDomainId.
      * @type {UpdateServiceToWebAppConnectionRequestDomainTypeType}
      * @memberof UpdateServiceToWebAppConnectionRequest
      */
     domainType: UpdateServiceToWebAppConnectionRequestDomainTypeType;
     /**
-     * 
+     * An ACTIVE custom domain of the target; required for CUSTOM_DOMAIN.
      * @type {string}
      * @memberof UpdateServiceToWebAppConnectionRequest
      */
     customDomainId?: string | null;
     /**
-     * 
+     * Appended to the URL, e.g. /api.
      * @type {string}
      * @memberof UpdateServiceToWebAppConnectionRequest
      */

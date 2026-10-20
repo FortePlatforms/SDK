@@ -1262,6 +1262,10 @@ export interface ListServiceHistoryRequest {
     nextToken?: string;
 }
 
+export interface ListServicesRequest {
+    projectId: string;
+}
+
 export interface ListUserActionLogsRequest {
     projectId: string;
     userId: string;
@@ -7269,6 +7273,49 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listServiceHistory(requestParameters: ListServiceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseAccountActionLogObject> {
         const response = await this.listServiceHistoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listServices without sending the request
+     */
+    async listServicesRequestOpts(requestParameters: ListServicesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listServices().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listServicesRaw(requestParameters: ListServicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ServiceObject>>> {
+        const requestOptions = await this.listServicesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ServiceObjectFromJSON));
+    }
+
+    /**
+     */
+    async listServices(requestParameters: ListServicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ServiceObject>> {
+        const response = await this.listServicesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

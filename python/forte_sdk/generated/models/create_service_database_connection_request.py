@@ -28,7 +28,7 @@ class CreateServiceDatabaseConnectionRequest(BaseModel):
     """
     CreateServiceDatabaseConnectionRequest
     """ # noqa: E501
-    managed_database_id: StrictStr = Field(alias="managedDatabaseId")
+    managed_database_id: StrictStr = Field(description="An ACTIVE managed database in the same project.", alias="managedDatabaseId")
     environment_variable_mappings: ManagedDatabaseEnvVarMappings = Field(alias="environmentVariableMappings")
     __properties: ClassVar[List[str]] = ["managedDatabaseId", "environmentVariableMappings"]
 

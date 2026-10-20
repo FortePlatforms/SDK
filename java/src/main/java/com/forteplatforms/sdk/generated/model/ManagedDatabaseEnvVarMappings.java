@@ -67,7 +67,7 @@ public class ManagedDatabaseEnvVarMappings {
   private JsonNullable<String> passwordEnvVar = JsonNullable.<String>undefined();
 
   /**
-   * Gets or Sets connectionStringFormat
+   * Connection string dialect for the consuming driver. Defaults to URI; CUSTOM uses connectionStringTemplate.
    */
   public enum ConnectionStringFormatEnum {
     URI(String.valueOf("URI")),
@@ -126,7 +126,7 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
   /**
-   * Get connectionStringEnvVar
+   * Environment variable that receives the full connection string, e.g. DATABASE_URL.
    * @return connectionStringEnvVar
    */
   @javax.annotation.Nullable
@@ -158,7 +158,7 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
   /**
-   * Get hostEnvVar
+   * Environment variable that receives the host.
    * @return hostEnvVar
    */
   @javax.annotation.Nullable
@@ -190,7 +190,7 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
   /**
-   * Get portEnvVar
+   * Environment variable that receives the port.
    * @return portEnvVar
    */
   @javax.annotation.Nullable
@@ -222,7 +222,7 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
   /**
-   * Get databaseEnvVar
+   * Environment variable that receives the database name.
    * @return databaseEnvVar
    */
   @javax.annotation.Nullable
@@ -254,7 +254,7 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
   /**
-   * Get usernameEnvVar
+   * Environment variable that receives the username.
    * @return usernameEnvVar
    */
   @javax.annotation.Nullable
@@ -286,7 +286,7 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
   /**
-   * Get passwordEnvVar
+   * Environment variable that receives the password.
    * @return passwordEnvVar
    */
   @javax.annotation.Nullable
@@ -318,7 +318,7 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
   /**
-   * Get connectionStringFormat
+   * Connection string dialect for the consuming driver. Defaults to URI; CUSTOM uses connectionStringTemplate.
    * @return connectionStringFormat
    */
   @javax.annotation.Nullable
@@ -350,7 +350,7 @@ public class ManagedDatabaseEnvVarMappings {
   }
 
   /**
-   * Get connectionStringTemplate
+   * CUSTOM format only. Placeholders: {host} {port} {database} {username} {password} {sslmode}.
    * @return connectionStringTemplate
    */
   @javax.annotation.Nullable

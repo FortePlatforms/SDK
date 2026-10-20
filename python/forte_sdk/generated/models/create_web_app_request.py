@@ -30,20 +30,20 @@ class CreateWebAppRequest(BaseModel):
     CreateWebAppRequest
     """ # noqa: E501
     web_app_name: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="webAppName")
-    github_repository_url: Optional[StrictStr] = Field(default=None, alias="githubRepositoryUrl")
-    github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="githubBranch")
-    build_trigger: Optional[StrictStr] = Field(default=None, alias="buildTrigger")
+    github_repository_url: Optional[StrictStr] = Field(default=None, description="GitHub repository URL; the Forte GitHub App must be installed on its owner. Required unless codeSourceType is ARTIFACT.", alias="githubRepositoryUrl")
+    github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Branch to build; required for PUSH.", alias="githubBranch")
+    build_trigger: Optional[StrictStr] = Field(default=None, description="PUSH deploys on every push to githubBranch; RELEASE_PUBLISHED deploys on GitHub releases. Required unless codeSourceType is ARTIFACT.", alias="buildTrigger")
     code_source_type: Optional[StrictStr] = Field(default=None, alias="codeSourceType")
     artifact_id: Optional[StrictStr] = Field(default=None, alias="artifactId")
-    build_command: Optional[StrictStr] = Field(default=None, alias="buildCommand")
-    build_path: Optional[StrictStr] = Field(default=None, alias="buildPath")
-    package_manager: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="packageManager")
-    node_version: Optional[StrictStr] = Field(default=None, alias="nodeVersion")
-    install_command: Optional[StrictStr] = Field(default=None, alias="installCommand")
-    subdirectory: Optional[Annotated[str, Field(strict=True)]] = None
+    build_command: Optional[StrictStr] = Field(default=None, description="Auto-detected when omitted.", alias="buildCommand")
+    build_path: Optional[StrictStr] = Field(default=None, description="Build output directory. Auto-detected when omitted.", alias="buildPath")
+    package_manager: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Auto-detected when omitted.", alias="packageManager")
+    node_version: Optional[StrictStr] = Field(default=None, description="Auto-detected when omitted.", alias="nodeVersion")
+    install_command: Optional[StrictStr] = Field(default=None, description="Auto-detected when omitted.", alias="installCommand")
+    subdirectory: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Path of the app inside a monorepo.")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     secrets: Optional[Dict[str, StrictStr]] = None
-    service_url_connections: Optional[Annotated[List[CreateServiceUrlConnectionRequest], Field(min_length=0, max_length=20)]] = Field(default=None, alias="serviceUrlConnections")
+    service_url_connections: Optional[Annotated[List[CreateServiceUrlConnectionRequest], Field(min_length=0, max_length=20)]] = Field(default=None, description="Backend service URLs to set as environment variables from the first build.", alias="serviceUrlConnections")
     __properties: ClassVar[List[str]] = ["webAppName", "githubRepositoryUrl", "githubBranch", "buildTrigger", "codeSourceType", "artifactId", "buildCommand", "buildPath", "packageManager", "nodeVersion", "installCommand", "subdirectory", "environmentVariables", "secrets", "serviceUrlConnections"]
 
     @field_validator('web_app_name')

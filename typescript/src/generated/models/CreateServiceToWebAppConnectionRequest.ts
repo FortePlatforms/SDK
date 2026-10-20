@@ -20,37 +20,37 @@ import { mapValues } from '../runtime';
  */
 export interface CreateServiceToWebAppConnectionRequest {
     /**
-     * 
+     * The web app whose URL is set; same project.
      * @type {string}
      * @memberof CreateServiceToWebAppConnectionRequest
      */
     webAppId: string;
     /**
-     * 
+     * Environment variable that receives the URL.
      * @type {string}
      * @memberof CreateServiceToWebAppConnectionRequest
      */
     environmentVariableName: string;
     /**
-     * 
+     * FORTE_DOMAIN uses the Forte URL; CUSTOM_DOMAIN uses customDomainId.
      * @type {CreateServiceToWebAppConnectionRequestDomainTypeType}
      * @memberof CreateServiceToWebAppConnectionRequest
      */
     domainType: CreateServiceToWebAppConnectionRequestDomainTypeType;
     /**
-     * 
+     * An ACTIVE custom domain of the target; required for CUSTOM_DOMAIN.
      * @type {string}
      * @memberof CreateServiceToWebAppConnectionRequest
      */
     customDomainId?: string | null;
     /**
-     * 
+     * Appended to the URL, e.g. /api.
      * @type {string}
      * @memberof CreateServiceToWebAppConnectionRequest
      */
     pathSuffix?: string | null;
     /**
-     * 
+     * Set true to replace a plain environment variable of the same name.
      * @type {boolean}
      * @memberof CreateServiceToWebAppConnectionRequest
      */

@@ -13607,6 +13607,124 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @return List&lt;ServiceObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<ServiceObject> listServices(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listServices(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return List&lt;ServiceObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<ServiceObject> listServices(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<List<ServiceObject>> localVarResponse = listServicesWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;List&lt;ServiceObject&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<ServiceObject>> listServicesWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return listServicesWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;List&lt;ServiceObject&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<ServiceObject>> listServicesWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listServicesRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listServices", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<List<ServiceObject>>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        List<ServiceObject> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<ServiceObject>>() {});
+        
+
+        return new ApiResponse<List<ServiceObject>>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listServicesRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling listServices");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/services"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param userId  (required)
    * @param actionType  (optional)
    * @param minTime  (optional)

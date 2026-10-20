@@ -71,7 +71,7 @@ public class CreateWebAppRequest {
   private JsonNullable<String> githubBranch = JsonNullable.<String>undefined();
 
   /**
-   * Gets or Sets buildTrigger
+   * PUSH deploys on every push to githubBranch; RELEASE_PUBLISHED deploys on GitHub releases. Required unless codeSourceType is ARTIFACT.
    */
   public enum BuildTriggerEnum {
     PUSH(String.valueOf("PUSH")),
@@ -211,7 +211,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get githubRepositoryUrl
+   * GitHub repository URL; the Forte GitHub App must be installed on its owner. Required unless codeSourceType is ARTIFACT.
    * @return githubRepositoryUrl
    */
   @javax.annotation.Nullable
@@ -243,7 +243,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get githubBranch
+   * Branch to build; required for PUSH.
    * @return githubBranch
    */
   @javax.annotation.Nullable
@@ -275,7 +275,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get buildTrigger
+   * PUSH deploys on every push to githubBranch; RELEASE_PUBLISHED deploys on GitHub releases. Required unless codeSourceType is ARTIFACT.
    * @return buildTrigger
    */
   @javax.annotation.Nullable
@@ -371,7 +371,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get buildCommand
+   * Auto-detected when omitted.
    * @return buildCommand
    */
   @javax.annotation.Nullable
@@ -403,7 +403,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get buildPath
+   * Build output directory. Auto-detected when omitted.
    * @return buildPath
    */
   @javax.annotation.Nullable
@@ -435,7 +435,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get packageManager
+   * Auto-detected when omitted.
    * @return packageManager
    */
   @javax.annotation.Nullable
@@ -467,7 +467,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get nodeVersion
+   * Auto-detected when omitted.
    * @return nodeVersion
    */
   @javax.annotation.Nullable
@@ -499,7 +499,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get installCommand
+   * Auto-detected when omitted.
    * @return installCommand
    */
   @javax.annotation.Nullable
@@ -531,7 +531,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get subdirectory
+   * Path of the app inside a monorepo.
    * @return subdirectory
    */
   @javax.annotation.Nullable
@@ -639,7 +639,7 @@ public class CreateWebAppRequest {
   }
 
   /**
-   * Get serviceUrlConnections
+   * Backend service URLs to set as environment variables from the first build.
    * @return serviceUrlConnections
    */
   @javax.annotation.Nullable

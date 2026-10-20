@@ -38,19 +38,19 @@ export interface CreateManagedDatabaseRequest {
      */
     tier: CreateManagedDatabaseRequestTierType;
     /**
-     * 
+     * Ignored on the SHARED tier.
      * @type {string}
      * @memberof CreateManagedDatabaseRequest
      */
     cpu?: string | null;
     /**
-     * 
+     * Ignored on the SHARED tier.
      * @type {number}
      * @memberof CreateManagedDatabaseRequest
      */
     memoryGb?: number | null;
     /**
-     * 
+     * Defaults to 2 GB.
      * @type {number}
      * @memberof CreateManagedDatabaseRequest
      */

@@ -28,13 +28,13 @@ import {
  */
 export interface CreateForteServiceRequest {
     /**
-     * 
+     * GitHub repository URL; the Forte GitHub App must be installed on its owner. Required unless codeSourceType is ARTIFACT.
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
     githubRepositoryUrl?: string | null;
     /**
-     * 
+     * PUSH deploys on every push to githubBranch; RELEASE_PUBLISHED deploys on GitHub releases. Required unless codeSourceType is ARTIFACT.
      * @type {CreateForteServiceRequestBuildTriggerType}
      * @memberof CreateForteServiceRequest
      */
@@ -52,7 +52,7 @@ export interface CreateForteServiceRequest {
      */
     artifactId?: string | null;
     /**
-     * 
+     * Branch to build; required for PUSH.
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
@@ -106,7 +106,7 @@ export interface CreateForteServiceRequest {
      */
     healthCheckPath?: string | null;
     /**
-     * 
+     * Path of the app inside a monorepo.
      * @type {string}
      * @memberof CreateForteServiceRequest
      */
@@ -118,19 +118,19 @@ export interface CreateForteServiceRequest {
      */
     requestResponseBodyLoggingEnabled?: boolean | null;
     /**
-     * 
+     * Ant-style path patterns (e.g. /public/**) that skip Forte user auth.
      * @type {Array<string>}
      * @memberof CreateForteServiceRequest
      */
     authPathExclusions?: Array<string> | null;
     /**
-     * 
+     * Ant-style path patterns that return 404.
      * @type {Array<string>}
      * @memberof CreateForteServiceRequest
      */
     blockedPaths?: Array<string> | null;
     /**
-     * 
+     * Managed databases to connect from the first deployment.
      * @type {Array<CreateServiceDatabaseConnectionRequest>}
      * @memberof CreateForteServiceRequest
      */

@@ -20,31 +20,31 @@ import { mapValues } from '../runtime';
  */
 export interface UpdateServiceUrlConnectionRequest {
     /**
-     * 
+     * The backend service whose URL is set; same project.
      * @type {string}
      * @memberof UpdateServiceUrlConnectionRequest
      */
     serviceId: string;
     /**
-     * 
+     * Environment variable that receives the URL.
      * @type {string}
      * @memberof UpdateServiceUrlConnectionRequest
      */
     environmentVariableName: string;
     /**
-     * 
+     * FORTE_DOMAIN uses the Forte URL; CUSTOM_DOMAIN uses customDomainId.
      * @type {UpdateServiceUrlConnectionRequestDomainTypeType}
      * @memberof UpdateServiceUrlConnectionRequest
      */
     domainType: UpdateServiceUrlConnectionRequestDomainTypeType;
     /**
-     * 
+     * An ACTIVE custom domain of the target; required for CUSTOM_DOMAIN.
      * @type {string}
      * @memberof UpdateServiceUrlConnectionRequest
      */
     customDomainId?: string | null;
     /**
-     * 
+     * Appended to the URL, e.g. /api.
      * @type {string}
      * @memberof UpdateServiceUrlConnectionRequest
      */

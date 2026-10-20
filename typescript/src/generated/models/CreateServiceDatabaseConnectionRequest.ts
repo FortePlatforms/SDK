@@ -28,7 +28,7 @@ import {
  */
 export interface CreateServiceDatabaseConnectionRequest {
     /**
-     * 
+     * An ACTIVE managed database in the same project.
      * @type {string}
      * @memberof CreateServiceDatabaseConnectionRequest
      */

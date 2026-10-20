@@ -20,49 +20,49 @@ import { mapValues } from '../runtime';
  */
 export interface ManagedDatabaseEnvVarMappings {
     /**
-     * 
+     * Environment variable that receives the full connection string, e.g. DATABASE_URL.
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
     connectionStringEnvVar?: string | null;
     /**
-     * 
+     * Environment variable that receives the host.
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
     hostEnvVar?: string | null;
     /**
-     * 
+     * Environment variable that receives the port.
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
     portEnvVar?: string | null;
     /**
-     * 
+     * Environment variable that receives the database name.
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
     databaseEnvVar?: string | null;
     /**
-     * 
+     * Environment variable that receives the username.
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
     usernameEnvVar?: string | null;
     /**
-     * 
+     * Environment variable that receives the password.
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */
     passwordEnvVar?: string | null;
     /**
-     * 
+     * Connection string dialect for the consuming driver. Defaults to URI; CUSTOM uses connectionStringTemplate.
      * @type {ManagedDatabaseEnvVarMappingsConnectionStringFormatType}
      * @memberof ManagedDatabaseEnvVarMappings
      */
     connectionStringFormat?: ManagedDatabaseEnvVarMappingsConnectionStringFormatType | null;
     /**
-     * 
+     * CUSTOM format only. Placeholders: {host} {port} {database} {username} {password} {sslmode}.
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
      */

@@ -31,9 +31,9 @@ class CreateManagedDatabaseRequest(BaseModel):
     name: Annotated[str, Field(strict=True)]
     type: StrictStr
     tier: StrictStr
-    cpu: Optional[StrictStr] = None
-    memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
-    storage_gb: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, alias="storageGb")
+    cpu: Optional[StrictStr] = Field(default=None, description="Ignored on the SHARED tier.")
+    memory_gb: Optional[StrictInt] = Field(default=None, description="Ignored on the SHARED tier.", alias="memoryGb")
+    storage_gb: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="Defaults to 2 GB.", alias="storageGb")
     __properties: ClassVar[List[str]] = ["name", "type", "tier", "cpu", "memoryGb", "storageGb"]
 
     @field_validator('name')

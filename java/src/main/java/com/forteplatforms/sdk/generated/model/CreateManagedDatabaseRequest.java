@@ -218,7 +218,7 @@ public class CreateManagedDatabaseRequest {
   }
 
   /**
-   * Get cpu
+   * Ignored on the SHARED tier.
    * @return cpu
    */
   @javax.annotation.Nullable
@@ -250,7 +250,7 @@ public class CreateManagedDatabaseRequest {
   }
 
   /**
-   * Get memoryGb
+   * Ignored on the SHARED tier.
    * @return memoryGb
    */
   @javax.annotation.Nullable
@@ -282,7 +282,7 @@ public class CreateManagedDatabaseRequest {
   }
 
   /**
-   * Get storageGb
+   * Defaults to 2 GB.
    * minimum: 1
    * @return storageGb
    */

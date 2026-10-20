@@ -56,7 +56,7 @@ public class CreateServiceDatabaseConnectionRequest {
   }
 
   /**
-   * Get managedDatabaseId
+   * An ACTIVE managed database in the same project.
    * @return managedDatabaseId
    */
   @javax.annotation.Nonnull

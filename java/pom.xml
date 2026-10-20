@@ -5,7 +5,7 @@
     <artifactId>sdk</artifactId>
     <packaging>jar</packaging>
     <name>sdk</name>
-    <version>1.0.496</version>
+    <version>1.0.497</version>
     <url>https://forteplatforms.com</url>
     <description>Official Java SDK for Forte Platforms</description>
     <scm>

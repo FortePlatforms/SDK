@@ -29,11 +29,11 @@ class CreateForteServiceRequest(BaseModel):
     """
     CreateForteServiceRequest
     """ # noqa: E501
-    github_repository_url: Optional[StrictStr] = Field(default=None, alias="githubRepositoryUrl")
-    build_trigger: Optional[StrictStr] = Field(default=None, alias="buildTrigger")
+    github_repository_url: Optional[StrictStr] = Field(default=None, description="GitHub repository URL; the Forte GitHub App must be installed on its owner. Required unless codeSourceType is ARTIFACT.", alias="githubRepositoryUrl")
+    build_trigger: Optional[StrictStr] = Field(default=None, description="PUSH deploys on every push to githubBranch; RELEASE_PUBLISHED deploys on GitHub releases. Required unless codeSourceType is ARTIFACT.", alias="buildTrigger")
     code_source_type: Optional[StrictStr] = Field(default=None, alias="codeSourceType")
     artifact_id: Optional[StrictStr] = Field(default=None, alias="artifactId")
-    github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="githubBranch")
+    github_branch: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Branch to build; required for PUSH.", alias="githubBranch")
     service_name: Annotated[str, Field(strict=True)] = Field(alias="serviceName")
     environment_variables: Optional[Dict[str, StrictStr]] = Field(default=None, alias="environmentVariables")
     secrets: Optional[Dict[str, StrictStr]] = None
@@ -42,11 +42,11 @@ class CreateForteServiceRequest(BaseModel):
     container_cpu: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="containerCpu")
     health_check_port: Optional[Annotated[int, Field(le=65535, strict=True, ge=1)]] = Field(default=None, alias="healthCheckPort")
     health_check_path: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="healthCheckPath")
-    base_directory: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="baseDirectory")
+    base_directory: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Path of the app inside a monorepo.", alias="baseDirectory")
     request_response_body_logging_enabled: Optional[StrictBool] = Field(default=None, alias="requestResponseBodyLoggingEnabled")
-    auth_path_exclusions: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="authPathExclusions")
-    blocked_paths: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, alias="blockedPaths")
-    database_connections: Optional[Annotated[List[CreateServiceDatabaseConnectionRequest], Field(min_length=0, max_length=5)]] = Field(default=None, alias="databaseConnections")
+    auth_path_exclusions: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, description="Ant-style path patterns (e.g. /public/**) that skip Forte user auth.", alias="authPathExclusions")
+    blocked_paths: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, description="Ant-style path patterns that return 404.", alias="blockedPaths")
+    database_connections: Optional[Annotated[List[CreateServiceDatabaseConnectionRequest], Field(min_length=0, max_length=5)]] = Field(default=None, description="Managed databases to connect from the first deployment.", alias="databaseConnections")
     __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "codeSourceType", "artifactId", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled", "authPathExclusions", "blockedPaths", "databaseConnections"]
 
     @field_validator('build_trigger')

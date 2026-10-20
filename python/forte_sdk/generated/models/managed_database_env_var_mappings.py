@@ -28,14 +28,14 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
     """
     ManagedDatabaseEnvVarMappings
     """ # noqa: E501
-    connection_string_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="connectionStringEnvVar")
-    host_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="hostEnvVar")
-    port_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="portEnvVar")
-    database_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="databaseEnvVar")
-    username_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="usernameEnvVar")
-    password_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="passwordEnvVar")
-    connection_string_format: Optional[StrictStr] = Field(default=None, alias="connectionStringFormat")
-    connection_string_template: Optional[StrictStr] = Field(default=None, alias="connectionStringTemplate")
+    connection_string_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the full connection string, e.g. DATABASE_URL.", alias="connectionStringEnvVar")
+    host_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the host.", alias="hostEnvVar")
+    port_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the port.", alias="portEnvVar")
+    database_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the database name.", alias="databaseEnvVar")
+    username_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the username.", alias="usernameEnvVar")
+    password_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the password.", alias="passwordEnvVar")
+    connection_string_format: Optional[StrictStr] = Field(default=None, description="Connection string dialect for the consuming driver. Defaults to URI; CUSTOM uses connectionStringTemplate.", alias="connectionStringFormat")
+    connection_string_template: Optional[StrictStr] = Field(default=None, description="CUSTOM format only. Placeholders: {host} {port} {database} {username} {password} {sslmode}.", alias="connectionStringTemplate")
     __properties: ClassVar[List[str]] = ["connectionStringEnvVar", "hostEnvVar", "portEnvVar", "databaseEnvVar", "usernameEnvVar", "passwordEnvVar", "connectionStringFormat", "connectionStringTemplate"]
 
     @field_validator('connection_string_env_var')

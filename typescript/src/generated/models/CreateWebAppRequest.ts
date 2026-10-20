@@ -34,19 +34,19 @@ export interface CreateWebAppRequest {
      */
     webAppName: string;
     /**
-     * 
+     * GitHub repository URL; the Forte GitHub App must be installed on its owner. Required unless codeSourceType is ARTIFACT.
      * @type {string}
      * @memberof CreateWebAppRequest
      */
     githubRepositoryUrl?: string | null;
     /**
-     * 
+     * Branch to build; required for PUSH.
      * @type {string}
      * @memberof CreateWebAppRequest
      */
     githubBranch?: string | null;
     /**
-     * 
+     * PUSH deploys on every push to githubBranch; RELEASE_PUBLISHED deploys on GitHub releases. Required unless codeSourceType is ARTIFACT.
      * @type {CreateWebAppRequestBuildTriggerType}
      * @memberof CreateWebAppRequest
      */
@@ -64,37 +64,37 @@ export interface CreateWebAppRequest {
      */
     artifactId?: string | null;
     /**
-     * 
+     * Auto-detected when omitted.
      * @type {string}
      * @memberof CreateWebAppRequest
      */
     buildCommand?: string | null;
     /**
-     * 
+     * Build output directory. Auto-detected when omitted.
      * @type {string}
      * @memberof CreateWebAppRequest
      */
     buildPath?: string | null;
     /**
-     * 
+     * Auto-detected when omitted.
      * @type {string}
      * @memberof CreateWebAppRequest
      */
     packageManager?: string | null;
     /**
-     * 
+     * Auto-detected when omitted.
      * @type {string}
      * @memberof CreateWebAppRequest
      */
     nodeVersion?: string | null;
     /**
-     * 
+     * Auto-detected when omitted.
      * @type {string}
      * @memberof CreateWebAppRequest
      */
     installCommand?: string | null;
     /**
-     * 
+     * Path of the app inside a monorepo.
      * @type {string}
      * @memberof CreateWebAppRequest
      */
@@ -112,7 +112,7 @@ export interface CreateWebAppRequest {
      */
     secrets?: { [key: string]: string; };
     /**
-     * 
+     * Backend service URLs to set as environment variables from the first build.
      * @type {Array<CreateServiceUrlConnectionRequest>}
      * @memberof CreateWebAppRequest
      */

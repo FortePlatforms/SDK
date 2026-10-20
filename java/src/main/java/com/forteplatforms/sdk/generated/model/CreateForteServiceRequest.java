@@ -67,7 +67,7 @@ public class CreateForteServiceRequest {
   private JsonNullable<String> githubRepositoryUrl = JsonNullable.<String>undefined();
 
   /**
-   * Gets or Sets buildTrigger
+   * PUSH deploys on every push to githubBranch; RELEASE_PUBLISHED deploys on GitHub releases. Required unless codeSourceType is ARTIFACT.
    */
   public enum BuildTriggerEnum {
     PUSH(String.valueOf("PUSH")),
@@ -200,7 +200,7 @@ public class CreateForteServiceRequest {
   }
 
   /**
-   * Get githubRepositoryUrl
+   * GitHub repository URL; the Forte GitHub App must be installed on its owner. Required unless codeSourceType is ARTIFACT.
    * @return githubRepositoryUrl
    */
   @javax.annotation.Nullable
@@ -232,7 +232,7 @@ public class CreateForteServiceRequest {
   }
 
   /**
-   * Get buildTrigger
+   * PUSH deploys on every push to githubBranch; RELEASE_PUBLISHED deploys on GitHub releases. Required unless codeSourceType is ARTIFACT.
    * @return buildTrigger
    */
   @javax.annotation.Nullable
@@ -328,7 +328,7 @@ public class CreateForteServiceRequest {
   }
 
   /**
-   * Get githubBranch
+   * Branch to build; required for PUSH.
    * @return githubBranch
    */
   @javax.annotation.Nullable
@@ -612,7 +612,7 @@ public class CreateForteServiceRequest {
   }
 
   /**
-   * Get baseDirectory
+   * Path of the app inside a monorepo.
    * @return baseDirectory
    */
   @javax.annotation.Nullable
@@ -688,7 +688,7 @@ public class CreateForteServiceRequest {
   }
 
   /**
-   * Get authPathExclusions
+   * Ant-style path patterns (e.g. /public/_**) that skip Forte user auth.
    * @return authPathExclusions
    */
   @javax.annotation.Nullable
@@ -732,7 +732,7 @@ public class CreateForteServiceRequest {
   }
 
   /**
-   * Get blockedPaths
+   * Ant-style path patterns that return 404.
    * @return blockedPaths
    */
   @javax.annotation.Nullable
@@ -776,7 +776,7 @@ public class CreateForteServiceRequest {
   }
 
   /**
-   * Get databaseConnections
+   * Managed databases to connect from the first deployment.
    * @return databaseConnections
    */
   @javax.annotation.Nullable
