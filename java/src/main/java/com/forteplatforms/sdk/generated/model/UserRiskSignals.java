@@ -64,7 +64,13 @@ public class UserRiskSignals {
     
     DISPOSABLE_EMAIL_DOMAIN(String.valueOf("DISPOSABLE_EMAIL_DOMAIN")),
     
-    BREACHED_PASSWORD(String.valueOf("BREACHED_PASSWORD"));
+    BREACHED_PASSWORD(String.valueOf("BREACHED_PASSWORD")),
+    
+    SESSION_LOCATION_CHANGED(String.valueOf("SESSION_LOCATION_CHANGED")),
+    
+    IMPOSSIBLE_TRAVEL(String.valueOf("IMPOSSIBLE_TRAVEL")),
+    
+    CONCURRENT_SESSION_LOCATIONS(String.valueOf("CONCURRENT_SESSION_LOCATIONS"));
 
     private String value;
 

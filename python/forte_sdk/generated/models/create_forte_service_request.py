@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from forte_sdk.generated.models.create_service_database_connection_request import CreateServiceDatabaseConnectionRequest
+from forte_sdk.generated.models.create_service_to_service_connection_request import CreateServiceToServiceConnectionRequest
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -47,7 +48,8 @@ class CreateForteServiceRequest(BaseModel):
     auth_path_exclusions: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, description="Ant-style path patterns (e.g. /public/**) that skip Forte user auth.", alias="authPathExclusions")
     blocked_paths: Optional[List[Annotated[str, Field(strict=True)]]] = Field(default=None, description="Ant-style path patterns that return 404.", alias="blockedPaths")
     database_connections: Optional[Annotated[List[CreateServiceDatabaseConnectionRequest], Field(min_length=0, max_length=5)]] = Field(default=None, description="Managed databases to connect from the first deployment.", alias="databaseConnections")
-    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "codeSourceType", "artifactId", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled", "authPathExclusions", "blockedPaths", "databaseConnections"]
+    service_url_connections: Optional[Annotated[List[CreateServiceToServiceConnectionRequest], Field(min_length=0, max_length=20)]] = Field(default=None, description="Service URLs to set as environment variables from the first deployment. Explicit variables are never replaced.", alias="serviceUrlConnections")
+    __properties: ClassVar[List[str]] = ["githubRepositoryUrl", "buildTrigger", "codeSourceType", "artifactId", "githubBranch", "serviceName", "environmentVariables", "secrets", "baseInstances", "regionReplicas", "containerCpu", "healthCheckPort", "healthCheckPath", "baseDirectory", "requestResponseBodyLoggingEnabled", "authPathExclusions", "blockedPaths", "databaseConnections", "serviceUrlConnections"]
 
     @field_validator('build_trigger')
     def build_trigger_validate_enum(cls, value):
@@ -177,6 +179,13 @@ class CreateForteServiceRequest(BaseModel):
                 if _item_database_connections:
                     _items.append(_item_database_connections.to_dict())
             _dict['databaseConnections'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in service_url_connections (list)
+        _items = []
+        if self.service_url_connections:
+            for _item_service_url_connections in self.service_url_connections:
+                if _item_service_url_connections:
+                    _items.append(_item_service_url_connections.to_dict())
+            _dict['serviceUrlConnections'] = _items
         # set to None if github_repository_url (nullable) is None
         # and model_fields_set contains the field
         if self.github_repository_url is None and "github_repository_url" in self.model_fields_set:
@@ -247,6 +256,11 @@ class CreateForteServiceRequest(BaseModel):
         if self.database_connections is None and "database_connections" in self.model_fields_set:
             _dict['databaseConnections'] = None
 
+        # set to None if service_url_connections (nullable) is None
+        # and model_fields_set contains the field
+        if self.service_url_connections is None and "service_url_connections" in self.model_fields_set:
+            _dict['serviceUrlConnections'] = None
+
         return _dict
 
     @classmethod
@@ -276,7 +290,8 @@ class CreateForteServiceRequest(BaseModel):
             "requestResponseBodyLoggingEnabled": obj.get("requestResponseBodyLoggingEnabled"),
             "authPathExclusions": obj.get("authPathExclusions"),
             "blockedPaths": obj.get("blockedPaths"),
-            "databaseConnections": [CreateServiceDatabaseConnectionRequest.from_dict(_item) for _item in obj["databaseConnections"]] if obj.get("databaseConnections") is not None else None
+            "databaseConnections": [CreateServiceDatabaseConnectionRequest.from_dict(_item) for _item in obj["databaseConnections"]] if obj.get("databaseConnections") is not None else None,
+            "serviceUrlConnections": [CreateServiceToServiceConnectionRequest.from_dict(_item) for _item in obj["serviceUrlConnections"]] if obj.get("serviceUrlConnections") is not None else None
         })
         return _obj
 

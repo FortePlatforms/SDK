@@ -20,6 +20,13 @@ import {
     CreateServiceDatabaseConnectionRequestToJSON,
     CreateServiceDatabaseConnectionRequestToJSONTyped,
 } from './CreateServiceDatabaseConnectionRequest';
+import type { CreateServiceToServiceConnectionRequest } from './CreateServiceToServiceConnectionRequest';
+import {
+    CreateServiceToServiceConnectionRequestFromJSON,
+    CreateServiceToServiceConnectionRequestFromJSONTyped,
+    CreateServiceToServiceConnectionRequestToJSON,
+    CreateServiceToServiceConnectionRequestToJSONTyped,
+} from './CreateServiceToServiceConnectionRequest';
 
 /**
  * 
@@ -135,6 +142,12 @@ export interface CreateForteServiceRequest {
      * @memberof CreateForteServiceRequest
      */
     databaseConnections?: Array<CreateServiceDatabaseConnectionRequest> | null;
+    /**
+     * Service URLs to set as environment variables from the first deployment. Explicit variables are never replaced.
+     * @type {Array<CreateServiceToServiceConnectionRequest>}
+     * @memberof CreateForteServiceRequest
+     */
+    serviceUrlConnections?: Array<CreateServiceToServiceConnectionRequest> | null;
 }
 
 
@@ -193,6 +206,7 @@ export function CreateForteServiceRequestFromJSONTyped(json: any, ignoreDiscrimi
         'authPathExclusions': json['authPathExclusions'] == null ? undefined : json['authPathExclusions'],
         'blockedPaths': json['blockedPaths'] == null ? undefined : json['blockedPaths'],
         'databaseConnections': json['databaseConnections'] == null ? undefined : ((json['databaseConnections'] as Array<any>).map(CreateServiceDatabaseConnectionRequestFromJSON)),
+        'serviceUrlConnections': json['serviceUrlConnections'] == null ? undefined : ((json['serviceUrlConnections'] as Array<any>).map(CreateServiceToServiceConnectionRequestFromJSON)),
     };
 }
 
@@ -225,6 +239,7 @@ export function CreateForteServiceRequestToJSONTyped(value?: CreateForteServiceR
         'authPathExclusions': value['authPathExclusions'],
         'blockedPaths': value['blockedPaths'],
         'databaseConnections': value['databaseConnections'] == null ? undefined : ((value['databaseConnections'] as Array<any>).map(CreateServiceDatabaseConnectionRequestToJSON)),
+        'serviceUrlConnections': value['serviceUrlConnections'] == null ? undefined : ((value['serviceUrlConnections'] as Array<any>).map(CreateServiceToServiceConnectionRequestToJSON)),
     };
 }
 

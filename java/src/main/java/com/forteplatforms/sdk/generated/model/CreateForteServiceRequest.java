@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.CreateServiceDatabaseConnectionRequest;
+import com.forteplatforms.sdk.generated.model.CreateServiceToServiceConnectionRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -59,7 +60,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateForteServiceRequest.JSON_PROPERTY_REQUEST_RESPONSE_BODY_LOGGING_ENABLED,
   CreateForteServiceRequest.JSON_PROPERTY_AUTH_PATH_EXCLUSIONS,
   CreateForteServiceRequest.JSON_PROPERTY_BLOCKED_PATHS,
-  CreateForteServiceRequest.JSON_PROPERTY_DATABASE_CONNECTIONS
+  CreateForteServiceRequest.JSON_PROPERTY_DATABASE_CONNECTIONS,
+  CreateForteServiceRequest.JSON_PROPERTY_SERVICE_URL_CONNECTIONS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateForteServiceRequest {
@@ -190,6 +192,9 @@ public class CreateForteServiceRequest {
 
   public static final String JSON_PROPERTY_DATABASE_CONNECTIONS = "databaseConnections";
   private JsonNullable<List<CreateServiceDatabaseConnectionRequest>> databaseConnections = JsonNullable.<List<CreateServiceDatabaseConnectionRequest>>undefined();
+
+  public static final String JSON_PROPERTY_SERVICE_URL_CONNECTIONS = "serviceUrlConnections";
+  private JsonNullable<List<CreateServiceToServiceConnectionRequest>> serviceUrlConnections = JsonNullable.<List<CreateServiceToServiceConnectionRequest>>undefined();
 
   public CreateForteServiceRequest() { 
   }
@@ -802,6 +807,50 @@ public class CreateForteServiceRequest {
   }
 
 
+  public CreateForteServiceRequest serviceUrlConnections(@javax.annotation.Nullable List<CreateServiceToServiceConnectionRequest> serviceUrlConnections) {
+    this.serviceUrlConnections = JsonNullable.<List<CreateServiceToServiceConnectionRequest>>of(serviceUrlConnections);
+    return this;
+  }
+
+  public CreateForteServiceRequest addServiceUrlConnectionsItem(CreateServiceToServiceConnectionRequest serviceUrlConnectionsItem) {
+    if (this.serviceUrlConnections == null || !this.serviceUrlConnections.isPresent()) {
+      this.serviceUrlConnections = JsonNullable.<List<CreateServiceToServiceConnectionRequest>>of(new ArrayList<>());
+    }
+    try {
+      this.serviceUrlConnections.get().add(serviceUrlConnectionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Service URLs to set as environment variables from the first deployment. Explicit variables are never replaced.
+   * @return serviceUrlConnections
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<CreateServiceToServiceConnectionRequest> getServiceUrlConnections() {
+        return serviceUrlConnections.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_URL_CONNECTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<CreateServiceToServiceConnectionRequest>> getServiceUrlConnections_JsonNullable() {
+    return serviceUrlConnections;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SERVICE_URL_CONNECTIONS)
+  public void setServiceUrlConnections_JsonNullable(JsonNullable<List<CreateServiceToServiceConnectionRequest>> serviceUrlConnections) {
+    this.serviceUrlConnections = serviceUrlConnections;
+  }
+
+  public void setServiceUrlConnections(@javax.annotation.Nullable List<CreateServiceToServiceConnectionRequest> serviceUrlConnections) {
+    this.serviceUrlConnections = JsonNullable.<List<CreateServiceToServiceConnectionRequest>>of(serviceUrlConnections);
+  }
+
+
   /**
    * Return true if this CreateForteServiceRequest object is equal to o.
    */
@@ -831,7 +880,8 @@ public class CreateForteServiceRequest {
         equalsNullable(this.requestResponseBodyLoggingEnabled, createForteServiceRequest.requestResponseBodyLoggingEnabled) &&
         equalsNullable(this.authPathExclusions, createForteServiceRequest.authPathExclusions) &&
         equalsNullable(this.blockedPaths, createForteServiceRequest.blockedPaths) &&
-        equalsNullable(this.databaseConnections, createForteServiceRequest.databaseConnections);
+        equalsNullable(this.databaseConnections, createForteServiceRequest.databaseConnections) &&
+        equalsNullable(this.serviceUrlConnections, createForteServiceRequest.serviceUrlConnections);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -840,7 +890,7 @@ public class CreateForteServiceRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(githubRepositoryUrl), hashCodeNullable(buildTrigger), hashCodeNullable(codeSourceType), hashCodeNullable(artifactId), hashCodeNullable(githubBranch), serviceName, environmentVariables, secrets, hashCodeNullable(baseInstances), regionReplicas, hashCodeNullable(containerCpu), hashCodeNullable(healthCheckPort), hashCodeNullable(healthCheckPath), hashCodeNullable(baseDirectory), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), hashCodeNullable(databaseConnections));
+    return Objects.hash(hashCodeNullable(githubRepositoryUrl), hashCodeNullable(buildTrigger), hashCodeNullable(codeSourceType), hashCodeNullable(artifactId), hashCodeNullable(githubBranch), serviceName, environmentVariables, secrets, hashCodeNullable(baseInstances), regionReplicas, hashCodeNullable(containerCpu), hashCodeNullable(healthCheckPort), hashCodeNullable(healthCheckPath), hashCodeNullable(baseDirectory), hashCodeNullable(requestResponseBodyLoggingEnabled), hashCodeNullable(authPathExclusions), hashCodeNullable(blockedPaths), hashCodeNullable(databaseConnections), hashCodeNullable(serviceUrlConnections));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -872,6 +922,7 @@ public class CreateForteServiceRequest {
     sb.append("    authPathExclusions: ").append(toIndentedString(authPathExclusions)).append("\n");
     sb.append("    blockedPaths: ").append(toIndentedString(blockedPaths)).append("\n");
     sb.append("    databaseConnections: ").append(toIndentedString(databaseConnections)).append("\n");
+    sb.append("    serviceUrlConnections: ").append(toIndentedString(serviceUrlConnections)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1026,6 +1077,16 @@ public class CreateForteServiceRequest {
       for (int i = 0; i < getDatabaseConnections().size(); i++) {
         if (getDatabaseConnections().get(i) != null) {
           joiner.add(getDatabaseConnections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdatabaseConnections%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `serviceUrlConnections` to the URL query string
+    if (getServiceUrlConnections() != null) {
+      for (int i = 0; i < getServiceUrlConnections().size(); i++) {
+        if (getServiceUrlConnections().get(i) != null) {
+          joiner.add(getServiceUrlConnections().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sserviceUrlConnections%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

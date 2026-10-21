@@ -35,8 +35,8 @@ class UserRiskSignals(BaseModel):
     def detected_signals_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
-            if i not in set(['TOR_EXIT_NODE_IP', 'HOSTING_PROVIDER_IP', 'VPN_IP', 'NEW_COUNTRY_FOR_USER', 'AUTOMATED_USER_AGENT', 'DISPOSABLE_EMAIL_DOMAIN', 'BREACHED_PASSWORD']):
-                raise ValueError("each list item must be one of ('TOR_EXIT_NODE_IP', 'HOSTING_PROVIDER_IP', 'VPN_IP', 'NEW_COUNTRY_FOR_USER', 'AUTOMATED_USER_AGENT', 'DISPOSABLE_EMAIL_DOMAIN', 'BREACHED_PASSWORD')")
+            if i not in set(['TOR_EXIT_NODE_IP', 'HOSTING_PROVIDER_IP', 'VPN_IP', 'NEW_COUNTRY_FOR_USER', 'AUTOMATED_USER_AGENT', 'DISPOSABLE_EMAIL_DOMAIN', 'BREACHED_PASSWORD', 'SESSION_LOCATION_CHANGED', 'IMPOSSIBLE_TRAVEL', 'CONCURRENT_SESSION_LOCATIONS']):
+                raise ValueError("each list item must be one of ('TOR_EXIT_NODE_IP', 'HOSTING_PROVIDER_IP', 'VPN_IP', 'NEW_COUNTRY_FOR_USER', 'AUTOMATED_USER_AGENT', 'DISPOSABLE_EMAIL_DOMAIN', 'BREACHED_PASSWORD', 'SESSION_LOCATION_CHANGED', 'IMPOSSIBLE_TRAVEL', 'CONCURRENT_SESSION_LOCATIONS')")
         return value
 
     model_config = ConfigDict(
