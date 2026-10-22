@@ -63,6 +63,8 @@ public class DockerfileGenerationError {
     
     BASE_IMAGE_ERROR(String.valueOf("BASE_IMAGE_ERROR")),
     
+    RUNTIME_SYSTEM_PACKAGES_REQUIRED(String.valueOf("RUNTIME_SYSTEM_PACKAGES_REQUIRED")),
+    
     INTERNAL_ERROR(String.valueOf("INTERNAL_ERROR"));
 
     private String value;

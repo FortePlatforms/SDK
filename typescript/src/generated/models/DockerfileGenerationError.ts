@@ -51,6 +51,7 @@ export const DockerfileGenerationErrorErrorTypeType = {
     AMBIGUOUS_PROJECT_STRUCTURE: 'AMBIGUOUS_PROJECT_STRUCTURE',
     DOCKERFILE_WRITE_FAILED: 'DOCKERFILE_WRITE_FAILED',
     BASE_IMAGE_ERROR: 'BASE_IMAGE_ERROR',
+    RUNTIME_SYSTEM_PACKAGES_REQUIRED: 'RUNTIME_SYSTEM_PACKAGES_REQUIRED',
     INTERNAL_ERROR: 'INTERNAL_ERROR'
 } as const;
 export type DockerfileGenerationErrorErrorTypeType = typeof DockerfileGenerationErrorErrorTypeType[keyof typeof DockerfileGenerationErrorErrorTypeType];
