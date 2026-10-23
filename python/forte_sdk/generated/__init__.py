@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.503"
+__version__ = "1.0.504"
 
 # Define package exports
 __all__ = [
