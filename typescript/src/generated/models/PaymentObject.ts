@@ -156,6 +156,18 @@ export interface PaymentObject {
      * @type {string}
      * @memberof PaymentObject
      */
+    lastPaymentErrorMessage?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentObject
+     */
+    lastPaymentErrorCode?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentObject
+     */
     stripeTaxCalculationId?: string | null;
     /**
      * 
@@ -269,6 +281,8 @@ export function PaymentObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'supportedPaymentMethods': ((json['supportedPaymentMethods'] as Array<any>).map(PaymentMethodTypeFromJSON)),
         'stripePaymentIntentId': json['stripePaymentIntentId'],
         'stripeStatus': json['stripeStatus'] == null ? undefined : json['stripeStatus'],
+        'lastPaymentErrorMessage': json['lastPaymentErrorMessage'] == null ? undefined : json['lastPaymentErrorMessage'],
+        'lastPaymentErrorCode': json['lastPaymentErrorCode'] == null ? undefined : json['lastPaymentErrorCode'],
         'stripeTaxCalculationId': json['stripeTaxCalculationId'] == null ? undefined : json['stripeTaxCalculationId'],
         'stripeTaxTransactionId': json['stripeTaxTransactionId'] == null ? undefined : json['stripeTaxTransactionId'],
         'subscriptionId': json['subscriptionId'] == null ? undefined : json['subscriptionId'],
@@ -308,6 +322,8 @@ export function PaymentObjectToJSONTyped(value?: PaymentObject | null, ignoreDis
         'supportedPaymentMethods': ((value['supportedPaymentMethods'] as Array<any>).map(PaymentMethodTypeToJSON)),
         'stripePaymentIntentId': value['stripePaymentIntentId'],
         'stripeStatus': value['stripeStatus'],
+        'lastPaymentErrorMessage': value['lastPaymentErrorMessage'],
+        'lastPaymentErrorCode': value['lastPaymentErrorCode'],
         'stripeTaxCalculationId': value['stripeTaxCalculationId'],
         'stripeTaxTransactionId': value['stripeTaxTransactionId'],
         'subscriptionId': value['subscriptionId'],

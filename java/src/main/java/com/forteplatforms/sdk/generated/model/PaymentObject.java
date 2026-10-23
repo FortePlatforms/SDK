@@ -63,6 +63,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentObject.JSON_PROPERTY_SUPPORTED_PAYMENT_METHODS,
   PaymentObject.JSON_PROPERTY_STRIPE_PAYMENT_INTENT_ID,
   PaymentObject.JSON_PROPERTY_STRIPE_STATUS,
+  PaymentObject.JSON_PROPERTY_LAST_PAYMENT_ERROR_MESSAGE,
+  PaymentObject.JSON_PROPERTY_LAST_PAYMENT_ERROR_CODE,
   PaymentObject.JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID,
   PaymentObject.JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID,
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_ID,
@@ -180,6 +182,12 @@ public class PaymentObject {
 
   public static final String JSON_PROPERTY_STRIPE_STATUS = "stripeStatus";
   private JsonNullable<String> stripeStatus = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_LAST_PAYMENT_ERROR_MESSAGE = "lastPaymentErrorMessage";
+  private JsonNullable<String> lastPaymentErrorMessage = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_LAST_PAYMENT_ERROR_CODE = "lastPaymentErrorCode";
+  private JsonNullable<String> lastPaymentErrorCode = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID = "stripeTaxCalculationId";
   private JsonNullable<String> stripeTaxCalculationId = JsonNullable.<String>undefined();
@@ -648,6 +656,70 @@ public class PaymentObject {
   }
 
 
+  public PaymentObject lastPaymentErrorMessage(@javax.annotation.Nullable String lastPaymentErrorMessage) {
+    this.lastPaymentErrorMessage = JsonNullable.<String>of(lastPaymentErrorMessage);
+    return this;
+  }
+
+  /**
+   * Get lastPaymentErrorMessage
+   * @return lastPaymentErrorMessage
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getLastPaymentErrorMessage() {
+        return lastPaymentErrorMessage.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LAST_PAYMENT_ERROR_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getLastPaymentErrorMessage_JsonNullable() {
+    return lastPaymentErrorMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_PAYMENT_ERROR_MESSAGE)
+  public void setLastPaymentErrorMessage_JsonNullable(JsonNullable<String> lastPaymentErrorMessage) {
+    this.lastPaymentErrorMessage = lastPaymentErrorMessage;
+  }
+
+  public void setLastPaymentErrorMessage(@javax.annotation.Nullable String lastPaymentErrorMessage) {
+    this.lastPaymentErrorMessage = JsonNullable.<String>of(lastPaymentErrorMessage);
+  }
+
+
+  public PaymentObject lastPaymentErrorCode(@javax.annotation.Nullable String lastPaymentErrorCode) {
+    this.lastPaymentErrorCode = JsonNullable.<String>of(lastPaymentErrorCode);
+    return this;
+  }
+
+  /**
+   * Get lastPaymentErrorCode
+   * @return lastPaymentErrorCode
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getLastPaymentErrorCode() {
+        return lastPaymentErrorCode.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LAST_PAYMENT_ERROR_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getLastPaymentErrorCode_JsonNullable() {
+    return lastPaymentErrorCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_PAYMENT_ERROR_CODE)
+  public void setLastPaymentErrorCode_JsonNullable(JsonNullable<String> lastPaymentErrorCode) {
+    this.lastPaymentErrorCode = lastPaymentErrorCode;
+  }
+
+  public void setLastPaymentErrorCode(@javax.annotation.Nullable String lastPaymentErrorCode) {
+    this.lastPaymentErrorCode = JsonNullable.<String>of(lastPaymentErrorCode);
+  }
+
+
   public PaymentObject stripeTaxCalculationId(@javax.annotation.Nullable String stripeTaxCalculationId) {
     this.stripeTaxCalculationId = JsonNullable.<String>of(stripeTaxCalculationId);
     return this;
@@ -940,6 +1012,8 @@ public class PaymentObject {
         Objects.equals(this.supportedPaymentMethods, paymentObject.supportedPaymentMethods) &&
         Objects.equals(this.stripePaymentIntentId, paymentObject.stripePaymentIntentId) &&
         equalsNullable(this.stripeStatus, paymentObject.stripeStatus) &&
+        equalsNullable(this.lastPaymentErrorMessage, paymentObject.lastPaymentErrorMessage) &&
+        equalsNullable(this.lastPaymentErrorCode, paymentObject.lastPaymentErrorCode) &&
         equalsNullable(this.stripeTaxCalculationId, paymentObject.stripeTaxCalculationId) &&
         equalsNullable(this.stripeTaxTransactionId, paymentObject.stripeTaxTransactionId) &&
         equalsNullable(this.subscriptionId, paymentObject.subscriptionId) &&
@@ -957,7 +1031,7 @@ public class PaymentObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionId), hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(lastPaymentErrorMessage), hashCodeNullable(lastPaymentErrorCode), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionId), hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -987,6 +1061,8 @@ public class PaymentObject {
     sb.append("    supportedPaymentMethods: ").append(toIndentedString(supportedPaymentMethods)).append("\n");
     sb.append("    stripePaymentIntentId: ").append(toIndentedString(stripePaymentIntentId)).append("\n");
     sb.append("    stripeStatus: ").append(toIndentedString(stripeStatus)).append("\n");
+    sb.append("    lastPaymentErrorMessage: ").append(toIndentedString(lastPaymentErrorMessage)).append("\n");
+    sb.append("    lastPaymentErrorCode: ").append(toIndentedString(lastPaymentErrorCode)).append("\n");
     sb.append("    stripeTaxCalculationId: ").append(toIndentedString(stripeTaxCalculationId)).append("\n");
     sb.append("    stripeTaxTransactionId: ").append(toIndentedString(stripeTaxTransactionId)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
@@ -1133,6 +1209,16 @@ public class PaymentObject {
     // add `stripeStatus` to the URL query string
     if (getStripeStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstripeStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStripeStatus()))));
+    }
+
+    // add `lastPaymentErrorMessage` to the URL query string
+    if (getLastPaymentErrorMessage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slastPaymentErrorMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastPaymentErrorMessage()))));
+    }
+
+    // add `lastPaymentErrorCode` to the URL query string
+    if (getLastPaymentErrorCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slastPaymentErrorCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastPaymentErrorCode()))));
     }
 
     // add `stripeTaxCalculationId` to the URL query string

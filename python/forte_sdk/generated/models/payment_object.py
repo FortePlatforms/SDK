@@ -49,6 +49,8 @@ class PaymentObject(BaseModel):
     supported_payment_methods: List[PaymentMethodType] = Field(alias="supportedPaymentMethods")
     stripe_payment_intent_id: StrictStr = Field(alias="stripePaymentIntentId")
     stripe_status: Optional[StrictStr] = Field(default=None, alias="stripeStatus")
+    last_payment_error_message: Optional[StrictStr] = Field(default=None, alias="lastPaymentErrorMessage")
+    last_payment_error_code: Optional[StrictStr] = Field(default=None, alias="lastPaymentErrorCode")
     stripe_tax_calculation_id: Optional[StrictStr] = Field(default=None, alias="stripeTaxCalculationId")
     stripe_tax_transaction_id: Optional[StrictStr] = Field(default=None, alias="stripeTaxTransactionId")
     subscription_id: Optional[StrictStr] = Field(default=None, alias="subscriptionId")
@@ -58,7 +60,7 @@ class PaymentObject(BaseModel):
     created_at: datetime = Field(alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
     refunded_amount_cents: Optional[StrictInt] = Field(default=None, alias="refundedAmountCents")
-    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionId", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
+    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "lastPaymentErrorMessage", "lastPaymentErrorCode", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionId", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -148,6 +150,16 @@ class PaymentObject(BaseModel):
         if self.stripe_status is None and "stripe_status" in self.model_fields_set:
             _dict['stripeStatus'] = None
 
+        # set to None if last_payment_error_message (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_payment_error_message is None and "last_payment_error_message" in self.model_fields_set:
+            _dict['lastPaymentErrorMessage'] = None
+
+        # set to None if last_payment_error_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.last_payment_error_code is None and "last_payment_error_code" in self.model_fields_set:
+            _dict['lastPaymentErrorCode'] = None
+
         # set to None if stripe_tax_calculation_id (nullable) is None
         # and model_fields_set contains the field
         if self.stripe_tax_calculation_id is None and "stripe_tax_calculation_id" in self.model_fields_set:
@@ -196,6 +208,8 @@ class PaymentObject(BaseModel):
             "supportedPaymentMethods": obj.get("supportedPaymentMethods"),
             "stripePaymentIntentId": obj.get("stripePaymentIntentId"),
             "stripeStatus": obj.get("stripeStatus"),
+            "lastPaymentErrorMessage": obj.get("lastPaymentErrorMessage"),
+            "lastPaymentErrorCode": obj.get("lastPaymentErrorCode"),
             "stripeTaxCalculationId": obj.get("stripeTaxCalculationId"),
             "stripeTaxTransactionId": obj.get("stripeTaxTransactionId"),
             "subscriptionId": obj.get("subscriptionId"),
