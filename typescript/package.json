@@ -1,6 +1,6 @@
 {
   "name": "@forteplatforms/sdk",
-  "version": "1.0.505",
+  "version": "1.0.507",
   "description": "Official TypeScript SDK for Forte Platforms",
   "author": "Forte Platforms <support@forteplatforms.com>",
   "repository": {
