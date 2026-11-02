@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ManagedDatabaseMaintenanceWindow } from './ManagedDatabaseMaintenanceWindow';
+import {
+    ManagedDatabaseMaintenanceWindowFromJSON,
+    ManagedDatabaseMaintenanceWindowFromJSONTyped,
+    ManagedDatabaseMaintenanceWindowToJSON,
+    ManagedDatabaseMaintenanceWindowToJSONTyped,
+} from './ManagedDatabaseMaintenanceWindow';
+import type { ManagedDatabaseRestoreSource } from './ManagedDatabaseRestoreSource';
+import {
+    ManagedDatabaseRestoreSourceFromJSON,
+    ManagedDatabaseRestoreSourceFromJSONTyped,
+    ManagedDatabaseRestoreSourceToJSON,
+    ManagedDatabaseRestoreSourceToJSONTyped,
+} from './ManagedDatabaseRestoreSource';
 import type { ManagedDatabaseConnection } from './ManagedDatabaseConnection';
 import {
     ManagedDatabaseConnectionFromJSON,
@@ -69,6 +83,54 @@ export interface ManagedDatabaseObject {
      * @memberof ManagedDatabaseObject
      */
     storageGb: number;
+    /**
+     * 
+     * @type {ManagedDatabaseObjectSizeType}
+     * @memberof ManagedDatabaseObject
+     */
+    size?: ManagedDatabaseObjectSizeType | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseObject
+     */
+    postgresVersion?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseObject
+     */
+    directPort?: number | null;
+    /**
+     * 
+     * @type {ManagedDatabaseMaintenanceWindow}
+     * @memberof ManagedDatabaseObject
+     */
+    maintenanceWindow?: ManagedDatabaseMaintenanceWindow;
+    /**
+     * 
+     * @type {number}
+     * @memberof ManagedDatabaseObject
+     */
+    backupRetentionDays?: number | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof ManagedDatabaseObject
+     */
+    earliestRestorableTimestamp?: Date | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof ManagedDatabaseObject
+     */
+    latestRestorableTimestamp?: Date | null;
+    /**
+     * 
+     * @type {ManagedDatabaseRestoreSource}
+     * @memberof ManagedDatabaseObject
+     */
+    restoredFrom?: ManagedDatabaseRestoreSource;
     /**
      * 
      * @type {ManagedDatabaseObjectStatusType}
@@ -177,6 +239,16 @@ export type ManagedDatabaseObjectTierType = typeof ManagedDatabaseObjectTierType
 /**
  * @export
  */
+export const ManagedDatabaseObjectSizeType = {
+    MEDIUM: 'MEDIUM',
+    LARGE: 'LARGE',
+    XLARGE: 'XLARGE'
+} as const;
+export type ManagedDatabaseObjectSizeType = typeof ManagedDatabaseObjectSizeType[keyof typeof ManagedDatabaseObjectSizeType];
+
+/**
+ * @export
+ */
 export const ManagedDatabaseObjectStatusType = {
     CREATING: 'CREATING',
     ACTIVE: 'ACTIVE',
@@ -220,6 +292,14 @@ export function ManagedDatabaseObjectFromJSONTyped(json: any, ignoreDiscriminato
         'cpu': json['cpu'] == null ? undefined : json['cpu'],
         'memoryGb': json['memoryGb'] == null ? undefined : json['memoryGb'],
         'storageGb': json['storageGb'],
+        'size': json['size'] == null ? undefined : json['size'],
+        'postgresVersion': json['postgresVersion'] == null ? undefined : json['postgresVersion'],
+        'directPort': json['directPort'] == null ? undefined : json['directPort'],
+        'maintenanceWindow': json['maintenanceWindow'] == null ? undefined : ManagedDatabaseMaintenanceWindowFromJSON(json['maintenanceWindow']),
+        'backupRetentionDays': json['backupRetentionDays'] == null ? undefined : json['backupRetentionDays'],
+        'earliestRestorableTimestamp': json['earliestRestorableTimestamp'] == null ? undefined : (new Date(json['earliestRestorableTimestamp'])),
+        'latestRestorableTimestamp': json['latestRestorableTimestamp'] == null ? undefined : (new Date(json['latestRestorableTimestamp'])),
+        'restoredFrom': json['restoredFrom'] == null ? undefined : ManagedDatabaseRestoreSourceFromJSON(json['restoredFrom']),
         'status': json['status'],
         'connections': ((json['connections'] as Array<any>).map(ManagedDatabaseConnectionFromJSON)),
         'createdTimestamp': (new Date(json['createdTimestamp'])),
@@ -255,6 +335,14 @@ export function ManagedDatabaseObjectToJSONTyped(value?: ManagedDatabaseObject |
         'cpu': value['cpu'],
         'memoryGb': value['memoryGb'],
         'storageGb': value['storageGb'],
+        'size': value['size'],
+        'postgresVersion': value['postgresVersion'],
+        'directPort': value['directPort'],
+        'maintenanceWindow': ManagedDatabaseMaintenanceWindowToJSON(value['maintenanceWindow']),
+        'backupRetentionDays': value['backupRetentionDays'],
+        'earliestRestorableTimestamp': value['earliestRestorableTimestamp'] == null ? value['earliestRestorableTimestamp'] : value['earliestRestorableTimestamp'].toISOString(),
+        'latestRestorableTimestamp': value['latestRestorableTimestamp'] == null ? value['latestRestorableTimestamp'] : value['latestRestorableTimestamp'].toISOString(),
+        'restoredFrom': ManagedDatabaseRestoreSourceToJSON(value['restoredFrom']),
         'status': value['status'],
         'connections': ((value['connections'] as Array<any>).map(ManagedDatabaseConnectionToJSON)),
         'createdTimestamp': value['createdTimestamp'].toISOString(),

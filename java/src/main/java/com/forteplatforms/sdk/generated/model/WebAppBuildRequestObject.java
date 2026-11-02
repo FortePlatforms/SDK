@@ -373,7 +373,11 @@ public class WebAppBuildRequestObject {
     
     SHADOW_VALIDATION_BUILD(String.valueOf("SHADOW_VALIDATION_BUILD")),
     
-    ARTIFACT_DEPLOYMENT(String.valueOf("ARTIFACT_DEPLOYMENT"));
+    ARTIFACT_DEPLOYMENT(String.valueOf("ARTIFACT_DEPLOYMENT")),
+    
+    MANUAL_RESTART(String.valueOf("MANUAL_RESTART")),
+    
+    SYSTEM_RESTART(String.valueOf("SYSTEM_RESTART"));
 
     private String value;
 

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.510"
+__version__ = "1.0.520"
 
 # Define package exports
 __all__ = [
@@ -44,6 +44,9 @@ __all__ = [
     "AdminPasswordResetResponse",
     "ApiKeySummary",
     "BackupCodesResponse",
+    "BlockedRequestGroup",
+    "BlockedRequestMetricsPoint",
+    "BlockedRequestSample",
     "BodyRef",
     "BuildArtifactObject",
     "BuildStepLog",
@@ -85,6 +88,7 @@ __all__ = [
     "CreateServiceDatabaseConnectionRequest",
     "CreateServiceRequestProxyRequest",
     "CreateServiceRequestProxyResponse",
+    "CreateServiceRestartResponse",
     "CreateServiceToServiceConnectionRequest",
     "CreateServiceToServiceConnectionResponse",
     "CreateServiceToWebAppConnectionRequest",
@@ -97,6 +101,7 @@ __all__ = [
     "CreateSubscriptionResponse",
     "CreateUserInviteRequest",
     "CreateWebAppRequest",
+    "CreateWebAppRestartResponse",
     "CurrencyTotals",
     "CurrencyVolumeSeries",
     "CustomDomain",
@@ -112,9 +117,13 @@ __all__ = [
     "ForteApiException",
     "GetBuildArtifactResponse",
     "GetContentDownloadLinkResponse",
+    "GetManagedDatabaseBackupResponse",
+    "GetManagedDatabaseBackupSourceResponse",
     "GetRequestBodyDownloadLinkResponse",
+    "GetServiceBlockedRequestMetricsResponse",
     "GetServiceCodeSourceStatusResponse",
     "GetServiceRouteTimeMetricsResponse",
+    "GetWebAppBlockedRequestMetricsResponse",
     "HealthCheckConfig",
     "HealthCheckDetectionError",
     "HealthCheckDetectionOutput",
@@ -127,6 +136,8 @@ __all__ = [
     "LatencyStats",
     "ListContentResponse",
     "ListCustomDomainsResponse",
+    "ListManagedDatabaseBackupSourcesResponse",
+    "ListManagedDatabaseBackupsResponse",
     "ListManagedDatabaseSlowQueriesResponse",
     "ListManagedDatabaseUsersResponse",
     "ListManagedDatabasesResponse",
@@ -136,12 +147,17 @@ __all__ = [
     "LogLineObject",
     "LoginHistoryEntry",
     "LoginUserResponse",
+    "ManagedDatabaseBackupObject",
+    "ManagedDatabaseBackupSourceObject",
     "ManagedDatabaseConnection",
     "ManagedDatabaseEnvVarMappings",
+    "ManagedDatabaseHostMetricPoint",
+    "ManagedDatabaseMaintenanceWindow",
     "ManagedDatabaseMetricLimits",
     "ManagedDatabaseMetricPoint",
     "ManagedDatabaseMetricsResponse",
     "ManagedDatabaseObject",
+    "ManagedDatabaseRestoreSource",
     "ManagedDatabaseSlowQuery",
     "ManagedDatabaseUsage",
     "ManagedDatabaseUser",
@@ -155,6 +171,8 @@ __all__ = [
     "NotificationTemplatesResponse",
     "PaginatedResponseAccountActionLogObject",
     "PaginatedResponseActionInvocationObject",
+    "PaginatedResponseBlockedRequestGroup",
+    "PaginatedResponseBlockedRequestSample",
     "PaginatedResponseLogLineObject",
     "PaginatedResponseLoginHistoryEntry",
     "PaginatedResponsePaymentObject",
@@ -299,6 +317,9 @@ from forte_sdk.generated.models.admin_override_contact_method_request import Adm
 from forte_sdk.generated.models.admin_password_reset_response import AdminPasswordResetResponse as AdminPasswordResetResponse
 from forte_sdk.generated.models.api_key_summary import ApiKeySummary as ApiKeySummary
 from forte_sdk.generated.models.backup_codes_response import BackupCodesResponse as BackupCodesResponse
+from forte_sdk.generated.models.blocked_request_group import BlockedRequestGroup as BlockedRequestGroup
+from forte_sdk.generated.models.blocked_request_metrics_point import BlockedRequestMetricsPoint as BlockedRequestMetricsPoint
+from forte_sdk.generated.models.blocked_request_sample import BlockedRequestSample as BlockedRequestSample
 from forte_sdk.generated.models.body_ref import BodyRef as BodyRef
 from forte_sdk.generated.models.build_artifact_object import BuildArtifactObject as BuildArtifactObject
 from forte_sdk.generated.models.build_step_log import BuildStepLog as BuildStepLog
@@ -340,6 +361,7 @@ from forte_sdk.generated.models.create_project_api_key_response import CreatePro
 from forte_sdk.generated.models.create_service_database_connection_request import CreateServiceDatabaseConnectionRequest as CreateServiceDatabaseConnectionRequest
 from forte_sdk.generated.models.create_service_request_proxy_request import CreateServiceRequestProxyRequest as CreateServiceRequestProxyRequest
 from forte_sdk.generated.models.create_service_request_proxy_response import CreateServiceRequestProxyResponse as CreateServiceRequestProxyResponse
+from forte_sdk.generated.models.create_service_restart_response import CreateServiceRestartResponse as CreateServiceRestartResponse
 from forte_sdk.generated.models.create_service_to_service_connection_request import CreateServiceToServiceConnectionRequest as CreateServiceToServiceConnectionRequest
 from forte_sdk.generated.models.create_service_to_service_connection_response import CreateServiceToServiceConnectionResponse as CreateServiceToServiceConnectionResponse
 from forte_sdk.generated.models.create_service_to_web_app_connection_request import CreateServiceToWebAppConnectionRequest as CreateServiceToWebAppConnectionRequest
@@ -352,6 +374,7 @@ from forte_sdk.generated.models.create_subscription_request import CreateSubscri
 from forte_sdk.generated.models.create_subscription_response import CreateSubscriptionResponse as CreateSubscriptionResponse
 from forte_sdk.generated.models.create_user_invite_request import CreateUserInviteRequest as CreateUserInviteRequest
 from forte_sdk.generated.models.create_web_app_request import CreateWebAppRequest as CreateWebAppRequest
+from forte_sdk.generated.models.create_web_app_restart_response import CreateWebAppRestartResponse as CreateWebAppRestartResponse
 from forte_sdk.generated.models.currency_totals import CurrencyTotals as CurrencyTotals
 from forte_sdk.generated.models.currency_volume_series import CurrencyVolumeSeries as CurrencyVolumeSeries
 from forte_sdk.generated.models.custom_domain import CustomDomain as CustomDomain
@@ -367,9 +390,13 @@ from forte_sdk.generated.models.field_change import FieldChange as FieldChange
 from forte_sdk.generated.models.forte_api_exception import ForteApiException as ForteApiException
 from forte_sdk.generated.models.get_build_artifact_response import GetBuildArtifactResponse as GetBuildArtifactResponse
 from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse as GetContentDownloadLinkResponse
+from forte_sdk.generated.models.get_managed_database_backup_response import GetManagedDatabaseBackupResponse as GetManagedDatabaseBackupResponse
+from forte_sdk.generated.models.get_managed_database_backup_source_response import GetManagedDatabaseBackupSourceResponse as GetManagedDatabaseBackupSourceResponse
 from forte_sdk.generated.models.get_request_body_download_link_response import GetRequestBodyDownloadLinkResponse as GetRequestBodyDownloadLinkResponse
+from forte_sdk.generated.models.get_service_blocked_request_metrics_response import GetServiceBlockedRequestMetricsResponse as GetServiceBlockedRequestMetricsResponse
 from forte_sdk.generated.models.get_service_code_source_status_response import GetServiceCodeSourceStatusResponse as GetServiceCodeSourceStatusResponse
 from forte_sdk.generated.models.get_service_route_time_metrics_response import GetServiceRouteTimeMetricsResponse as GetServiceRouteTimeMetricsResponse
+from forte_sdk.generated.models.get_web_app_blocked_request_metrics_response import GetWebAppBlockedRequestMetricsResponse as GetWebAppBlockedRequestMetricsResponse
 from forte_sdk.generated.models.health_check_config import HealthCheckConfig as HealthCheckConfig
 from forte_sdk.generated.models.health_check_detection_error import HealthCheckDetectionError as HealthCheckDetectionError
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput as HealthCheckDetectionOutput
@@ -382,6 +409,8 @@ from forte_sdk.generated.models.latency_percentile_series import LatencyPercenti
 from forte_sdk.generated.models.latency_stats import LatencyStats as LatencyStats
 from forte_sdk.generated.models.list_content_response import ListContentResponse as ListContentResponse
 from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse as ListCustomDomainsResponse
+from forte_sdk.generated.models.list_managed_database_backup_sources_response import ListManagedDatabaseBackupSourcesResponse as ListManagedDatabaseBackupSourcesResponse
+from forte_sdk.generated.models.list_managed_database_backups_response import ListManagedDatabaseBackupsResponse as ListManagedDatabaseBackupsResponse
 from forte_sdk.generated.models.list_managed_database_slow_queries_response import ListManagedDatabaseSlowQueriesResponse as ListManagedDatabaseSlowQueriesResponse
 from forte_sdk.generated.models.list_managed_database_users_response import ListManagedDatabaseUsersResponse as ListManagedDatabaseUsersResponse
 from forte_sdk.generated.models.list_managed_databases_response import ListManagedDatabasesResponse as ListManagedDatabasesResponse
@@ -391,12 +420,17 @@ from forte_sdk.generated.models.list_user_invites_response import ListUserInvite
 from forte_sdk.generated.models.log_line_object import LogLineObject as LogLineObject
 from forte_sdk.generated.models.login_history_entry import LoginHistoryEntry as LoginHistoryEntry
 from forte_sdk.generated.models.login_user_response import LoginUserResponse as LoginUserResponse
+from forte_sdk.generated.models.managed_database_backup_object import ManagedDatabaseBackupObject as ManagedDatabaseBackupObject
+from forte_sdk.generated.models.managed_database_backup_source_object import ManagedDatabaseBackupSourceObject as ManagedDatabaseBackupSourceObject
 from forte_sdk.generated.models.managed_database_connection import ManagedDatabaseConnection as ManagedDatabaseConnection
 from forte_sdk.generated.models.managed_database_env_var_mappings import ManagedDatabaseEnvVarMappings as ManagedDatabaseEnvVarMappings
+from forte_sdk.generated.models.managed_database_host_metric_point import ManagedDatabaseHostMetricPoint as ManagedDatabaseHostMetricPoint
+from forte_sdk.generated.models.managed_database_maintenance_window import ManagedDatabaseMaintenanceWindow as ManagedDatabaseMaintenanceWindow
 from forte_sdk.generated.models.managed_database_metric_limits import ManagedDatabaseMetricLimits as ManagedDatabaseMetricLimits
 from forte_sdk.generated.models.managed_database_metric_point import ManagedDatabaseMetricPoint as ManagedDatabaseMetricPoint
 from forte_sdk.generated.models.managed_database_metrics_response import ManagedDatabaseMetricsResponse as ManagedDatabaseMetricsResponse
 from forte_sdk.generated.models.managed_database_object import ManagedDatabaseObject as ManagedDatabaseObject
+from forte_sdk.generated.models.managed_database_restore_source import ManagedDatabaseRestoreSource as ManagedDatabaseRestoreSource
 from forte_sdk.generated.models.managed_database_slow_query import ManagedDatabaseSlowQuery as ManagedDatabaseSlowQuery
 from forte_sdk.generated.models.managed_database_usage import ManagedDatabaseUsage as ManagedDatabaseUsage
 from forte_sdk.generated.models.managed_database_user import ManagedDatabaseUser as ManagedDatabaseUser
@@ -410,6 +444,8 @@ from forte_sdk.generated.models.notification_templates_config import Notificatio
 from forte_sdk.generated.models.notification_templates_response import NotificationTemplatesResponse as NotificationTemplatesResponse
 from forte_sdk.generated.models.paginated_response_account_action_log_object import PaginatedResponseAccountActionLogObject as PaginatedResponseAccountActionLogObject
 from forte_sdk.generated.models.paginated_response_action_invocation_object import PaginatedResponseActionInvocationObject as PaginatedResponseActionInvocationObject
+from forte_sdk.generated.models.paginated_response_blocked_request_group import PaginatedResponseBlockedRequestGroup as PaginatedResponseBlockedRequestGroup
+from forte_sdk.generated.models.paginated_response_blocked_request_sample import PaginatedResponseBlockedRequestSample as PaginatedResponseBlockedRequestSample
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject as PaginatedResponseLogLineObject
 from forte_sdk.generated.models.paginated_response_login_history_entry import PaginatedResponseLoginHistoryEntry as PaginatedResponseLoginHistoryEntry
 from forte_sdk.generated.models.paginated_response_payment_object import PaginatedResponsePaymentObject as PaginatedResponsePaymentObject

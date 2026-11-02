@@ -28,73 +28,73 @@ import {
  */
 export interface UpdateActionRequest {
     /**
-     * 
+     * Display name.
      * @type {string}
      * @memberof UpdateActionRequest
      */
     name?: string | null;
     /**
-     * 
+     * The service in this project that Forte calls.
      * @type {string}
      * @memberof UpdateActionRequest
      */
     targetServiceId?: string | null;
     /**
-     * 
+     * Path on the target service to POST to, starting with /, e.g. /jobs/nightly.
      * @type {string}
      * @memberof UpdateActionRequest
      */
     targetPath?: string | null;
     /**
-     * 
+     * Request body sent with every invocation.
      * @type {string}
      * @memberof UpdateActionRequest
      */
     requestBody?: string | null;
     /**
-     * 
+     * RECURRING runs on cronExpression; ONE_TIME runs once at scheduledAt.
      * @type {ActionScheduleType}
      * @memberof UpdateActionRequest
      */
     scheduleType?: ActionScheduleType;
     /**
-     * 
+     * RECURRING only: standard 5-field cron, e.g. "0,15,30,45 * * * *" for every 15 minutes, or 6-field with seconds first.
      * @type {string}
      * @memberof UpdateActionRequest
      */
     cronExpression?: string | null;
     /**
-     * 
+     * RECURRING only: IANA timezone the cron expression runs in, e.g. America/New_York.
      * @type {string}
      * @memberof UpdateActionRequest
      */
     timezone?: string | null;
     /**
-     * 
+     * RECURRING only: no invocations before this time, ISO-8601 UTC.
      * @type {Date}
      * @memberof UpdateActionRequest
      */
     windowStart?: Date | null;
     /**
-     * 
+     * RECURRING only: no invocations after this time, ISO-8601 UTC.
      * @type {Date}
      * @memberof UpdateActionRequest
      */
     windowEnd?: Date | null;
     /**
-     * 
+     * ONE_TIME only: when to run, ISO-8601 UTC, in the future.
      * @type {Date}
      * @memberof UpdateActionRequest
      */
     scheduledAt?: Date | null;
     /**
-     * 
+     * Set true to retry failed invocations.
      * @type {boolean}
      * @memberof UpdateActionRequest
      */
     retryable?: boolean | null;
     /**
-     * 
+     * false pauses the schedule without deleting the action.
      * @type {boolean}
      * @memberof UpdateActionRequest
      */

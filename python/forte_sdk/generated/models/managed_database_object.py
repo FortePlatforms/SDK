@@ -21,6 +21,8 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.managed_database_connection import ManagedDatabaseConnection
+from forte_sdk.generated.models.managed_database_maintenance_window import ManagedDatabaseMaintenanceWindow
+from forte_sdk.generated.models.managed_database_restore_source import ManagedDatabaseRestoreSource
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -36,6 +38,14 @@ class ManagedDatabaseObject(BaseModel):
     cpu: Optional[StrictStr] = None
     memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
     storage_gb: StrictInt = Field(alias="storageGb")
+    size: Optional[StrictStr] = None
+    postgres_version: Optional[StrictInt] = Field(default=None, alias="postgresVersion")
+    direct_port: Optional[StrictInt] = Field(default=None, alias="directPort")
+    maintenance_window: Optional[ManagedDatabaseMaintenanceWindow] = Field(default=None, alias="maintenanceWindow")
+    backup_retention_days: Optional[StrictInt] = Field(default=None, alias="backupRetentionDays")
+    earliest_restorable_timestamp: Optional[datetime] = Field(default=None, alias="earliestRestorableTimestamp")
+    latest_restorable_timestamp: Optional[datetime] = Field(default=None, alias="latestRestorableTimestamp")
+    restored_from: Optional[ManagedDatabaseRestoreSource] = Field(default=None, alias="restoredFrom")
     status: StrictStr
     connections: List[ManagedDatabaseConnection]
     created_timestamp: datetime = Field(alias="createdTimestamp")
@@ -50,7 +60,7 @@ class ManagedDatabaseObject(BaseModel):
     physical_usage_bytes: Optional[StrictInt] = Field(default=None, alias="physicalUsageBytes")
     usage_updated_at: Optional[datetime] = Field(default=None, alias="usageUpdatedAt")
     cloned_from_resource_id: Optional[StrictStr] = Field(default=None, alias="clonedFromResourceId")
-    __properties: ClassVar[List[str]] = ["managedDatabaseId", "managedDatabaseName", "type", "tier", "cpu", "memoryGb", "storageGb", "status", "connections", "createdTimestamp", "lastModifiedTimestamp", "host", "port", "databaseName", "sslMode", "readOnly", "cleanupUnlockExpiresAt", "usageBytes", "physicalUsageBytes", "usageUpdatedAt", "clonedFromResourceId"]
+    __properties: ClassVar[List[str]] = ["managedDatabaseId", "managedDatabaseName", "type", "tier", "cpu", "memoryGb", "storageGb", "size", "postgresVersion", "directPort", "maintenanceWindow", "backupRetentionDays", "earliestRestorableTimestamp", "latestRestorableTimestamp", "restoredFrom", "status", "connections", "createdTimestamp", "lastModifiedTimestamp", "host", "port", "databaseName", "sslMode", "readOnly", "cleanupUnlockExpiresAt", "usageBytes", "physicalUsageBytes", "usageUpdatedAt", "clonedFromResourceId"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -64,6 +74,16 @@ class ManagedDatabaseObject(BaseModel):
         """Validates the enum"""
         if value not in set(['SHARED', 'DEDICATED']):
             raise ValueError("must be one of enum values ('SHARED', 'DEDICATED')")
+        return value
+
+    @field_validator('size')
+    def size_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['MEDIUM', 'LARGE', 'XLARGE']):
+            raise ValueError("must be one of enum values ('MEDIUM', 'LARGE', 'XLARGE')")
         return value
 
     @field_validator('status')
@@ -112,6 +132,12 @@ class ManagedDatabaseObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of maintenance_window
+        if self.maintenance_window:
+            _dict['maintenanceWindow'] = self.maintenance_window.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of restored_from
+        if self.restored_from:
+            _dict['restoredFrom'] = self.restored_from.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in connections (list)
         _items = []
         if self.connections:
@@ -128,6 +154,36 @@ class ManagedDatabaseObject(BaseModel):
         # and model_fields_set contains the field
         if self.memory_gb is None and "memory_gb" in self.model_fields_set:
             _dict['memoryGb'] = None
+
+        # set to None if size (nullable) is None
+        # and model_fields_set contains the field
+        if self.size is None and "size" in self.model_fields_set:
+            _dict['size'] = None
+
+        # set to None if postgres_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.postgres_version is None and "postgres_version" in self.model_fields_set:
+            _dict['postgresVersion'] = None
+
+        # set to None if direct_port (nullable) is None
+        # and model_fields_set contains the field
+        if self.direct_port is None and "direct_port" in self.model_fields_set:
+            _dict['directPort'] = None
+
+        # set to None if backup_retention_days (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_retention_days is None and "backup_retention_days" in self.model_fields_set:
+            _dict['backupRetentionDays'] = None
+
+        # set to None if earliest_restorable_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.earliest_restorable_timestamp is None and "earliest_restorable_timestamp" in self.model_fields_set:
+            _dict['earliestRestorableTimestamp'] = None
+
+        # set to None if latest_restorable_timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.latest_restorable_timestamp is None and "latest_restorable_timestamp" in self.model_fields_set:
+            _dict['latestRestorableTimestamp'] = None
 
         # set to None if last_modified_timestamp (nullable) is None
         # and model_fields_set contains the field
@@ -203,6 +259,14 @@ class ManagedDatabaseObject(BaseModel):
             "cpu": obj.get("cpu"),
             "memoryGb": obj.get("memoryGb"),
             "storageGb": obj.get("storageGb"),
+            "size": obj.get("size"),
+            "postgresVersion": obj.get("postgresVersion"),
+            "directPort": obj.get("directPort"),
+            "maintenanceWindow": ManagedDatabaseMaintenanceWindow.from_dict(obj["maintenanceWindow"]) if obj.get("maintenanceWindow") is not None else None,
+            "backupRetentionDays": obj.get("backupRetentionDays"),
+            "earliestRestorableTimestamp": obj.get("earliestRestorableTimestamp"),
+            "latestRestorableTimestamp": obj.get("latestRestorableTimestamp"),
+            "restoredFrom": ManagedDatabaseRestoreSource.from_dict(obj["restoredFrom"]) if obj.get("restoredFrom") is not None else None,
             "status": obj.get("status"),
             "connections": [ManagedDatabaseConnection.from_dict(_item) for _item in obj["connections"]] if obj.get("connections") is not None else None,
             "createdTimestamp": obj.get("createdTimestamp"),

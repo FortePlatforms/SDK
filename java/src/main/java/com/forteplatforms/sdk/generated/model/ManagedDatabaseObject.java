@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseConnection;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseMaintenanceWindow;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseRestoreSource;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +50,14 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ManagedDatabaseObject.JSON_PROPERTY_CPU,
   ManagedDatabaseObject.JSON_PROPERTY_MEMORY_GB,
   ManagedDatabaseObject.JSON_PROPERTY_STORAGE_GB,
+  ManagedDatabaseObject.JSON_PROPERTY_SIZE,
+  ManagedDatabaseObject.JSON_PROPERTY_POSTGRES_VERSION,
+  ManagedDatabaseObject.JSON_PROPERTY_DIRECT_PORT,
+  ManagedDatabaseObject.JSON_PROPERTY_MAINTENANCE_WINDOW,
+  ManagedDatabaseObject.JSON_PROPERTY_BACKUP_RETENTION_DAYS,
+  ManagedDatabaseObject.JSON_PROPERTY_EARLIEST_RESTORABLE_TIMESTAMP,
+  ManagedDatabaseObject.JSON_PROPERTY_LATEST_RESTORABLE_TIMESTAMP,
+  ManagedDatabaseObject.JSON_PROPERTY_RESTORED_FROM,
   ManagedDatabaseObject.JSON_PROPERTY_STATUS,
   ManagedDatabaseObject.JSON_PROPERTY_CONNECTIONS,
   ManagedDatabaseObject.JSON_PROPERTY_CREATED_TIMESTAMP,
@@ -160,6 +170,69 @@ public class ManagedDatabaseObject {
   public static final String JSON_PROPERTY_STORAGE_GB = "storageGb";
   @javax.annotation.Nonnull
   private Integer storageGb;
+
+  /**
+   * Gets or Sets size
+   */
+  public enum SizeEnum {
+    MEDIUM(String.valueOf("MEDIUM")),
+    
+    LARGE(String.valueOf("LARGE")),
+    
+    XLARGE(String.valueOf("XLARGE"));
+
+    private String value;
+
+    SizeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SizeEnum fromValue(String value) {
+      for (SizeEnum b : SizeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_SIZE = "size";
+  private JsonNullable<SizeEnum> size = JsonNullable.<SizeEnum>undefined();
+
+  public static final String JSON_PROPERTY_POSTGRES_VERSION = "postgresVersion";
+  private JsonNullable<Integer> postgresVersion = JsonNullable.<Integer>undefined();
+
+  public static final String JSON_PROPERTY_DIRECT_PORT = "directPort";
+  private JsonNullable<Integer> directPort = JsonNullable.<Integer>undefined();
+
+  public static final String JSON_PROPERTY_MAINTENANCE_WINDOW = "maintenanceWindow";
+  @javax.annotation.Nullable
+  private ManagedDatabaseMaintenanceWindow maintenanceWindow;
+
+  public static final String JSON_PROPERTY_BACKUP_RETENTION_DAYS = "backupRetentionDays";
+  private JsonNullable<Integer> backupRetentionDays = JsonNullable.<Integer>undefined();
+
+  public static final String JSON_PROPERTY_EARLIEST_RESTORABLE_TIMESTAMP = "earliestRestorableTimestamp";
+  private JsonNullable<OffsetDateTime> earliestRestorableTimestamp = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_LATEST_RESTORABLE_TIMESTAMP = "latestRestorableTimestamp";
+  private JsonNullable<OffsetDateTime> latestRestorableTimestamp = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_RESTORED_FROM = "restoredFrom";
+  @javax.annotation.Nullable
+  private ManagedDatabaseRestoreSource restoredFrom;
 
   /**
    * Gets or Sets status
@@ -435,6 +508,246 @@ public class ManagedDatabaseObject {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStorageGb(@javax.annotation.Nonnull Integer storageGb) {
     this.storageGb = storageGb;
+  }
+
+
+  public ManagedDatabaseObject size(@javax.annotation.Nullable SizeEnum size) {
+    this.size = JsonNullable.<SizeEnum>of(size);
+    return this;
+  }
+
+  /**
+   * Get size
+   * @return size
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public SizeEnum getSize() {
+        return size.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<SizeEnum> getSize_JsonNullable() {
+    return size;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  public void setSize_JsonNullable(JsonNullable<SizeEnum> size) {
+    this.size = size;
+  }
+
+  public void setSize(@javax.annotation.Nullable SizeEnum size) {
+    this.size = JsonNullable.<SizeEnum>of(size);
+  }
+
+
+  public ManagedDatabaseObject postgresVersion(@javax.annotation.Nullable Integer postgresVersion) {
+    this.postgresVersion = JsonNullable.<Integer>of(postgresVersion);
+    return this;
+  }
+
+  /**
+   * Get postgresVersion
+   * @return postgresVersion
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Integer getPostgresVersion() {
+        return postgresVersion.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_POSTGRES_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Integer> getPostgresVersion_JsonNullable() {
+    return postgresVersion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_POSTGRES_VERSION)
+  public void setPostgresVersion_JsonNullable(JsonNullable<Integer> postgresVersion) {
+    this.postgresVersion = postgresVersion;
+  }
+
+  public void setPostgresVersion(@javax.annotation.Nullable Integer postgresVersion) {
+    this.postgresVersion = JsonNullable.<Integer>of(postgresVersion);
+  }
+
+
+  public ManagedDatabaseObject directPort(@javax.annotation.Nullable Integer directPort) {
+    this.directPort = JsonNullable.<Integer>of(directPort);
+    return this;
+  }
+
+  /**
+   * Get directPort
+   * @return directPort
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Integer getDirectPort() {
+        return directPort.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_DIRECT_PORT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Integer> getDirectPort_JsonNullable() {
+    return directPort;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DIRECT_PORT)
+  public void setDirectPort_JsonNullable(JsonNullable<Integer> directPort) {
+    this.directPort = directPort;
+  }
+
+  public void setDirectPort(@javax.annotation.Nullable Integer directPort) {
+    this.directPort = JsonNullable.<Integer>of(directPort);
+  }
+
+
+  public ManagedDatabaseObject maintenanceWindow(@javax.annotation.Nullable ManagedDatabaseMaintenanceWindow maintenanceWindow) {
+    this.maintenanceWindow = maintenanceWindow;
+    return this;
+  }
+
+  /**
+   * Get maintenanceWindow
+   * @return maintenanceWindow
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MAINTENANCE_WINDOW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ManagedDatabaseMaintenanceWindow getMaintenanceWindow() {
+    return maintenanceWindow;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MAINTENANCE_WINDOW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMaintenanceWindow(@javax.annotation.Nullable ManagedDatabaseMaintenanceWindow maintenanceWindow) {
+    this.maintenanceWindow = maintenanceWindow;
+  }
+
+
+  public ManagedDatabaseObject backupRetentionDays(@javax.annotation.Nullable Integer backupRetentionDays) {
+    this.backupRetentionDays = JsonNullable.<Integer>of(backupRetentionDays);
+    return this;
+  }
+
+  /**
+   * Get backupRetentionDays
+   * @return backupRetentionDays
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Integer getBackupRetentionDays() {
+        return backupRetentionDays.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_RETENTION_DAYS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Integer> getBackupRetentionDays_JsonNullable() {
+    return backupRetentionDays;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BACKUP_RETENTION_DAYS)
+  public void setBackupRetentionDays_JsonNullable(JsonNullable<Integer> backupRetentionDays) {
+    this.backupRetentionDays = backupRetentionDays;
+  }
+
+  public void setBackupRetentionDays(@javax.annotation.Nullable Integer backupRetentionDays) {
+    this.backupRetentionDays = JsonNullable.<Integer>of(backupRetentionDays);
+  }
+
+
+  public ManagedDatabaseObject earliestRestorableTimestamp(@javax.annotation.Nullable OffsetDateTime earliestRestorableTimestamp) {
+    this.earliestRestorableTimestamp = JsonNullable.<OffsetDateTime>of(earliestRestorableTimestamp);
+    return this;
+  }
+
+  /**
+   * Get earliestRestorableTimestamp
+   * @return earliestRestorableTimestamp
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getEarliestRestorableTimestamp() {
+        return earliestRestorableTimestamp.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_EARLIEST_RESTORABLE_TIMESTAMP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getEarliestRestorableTimestamp_JsonNullable() {
+    return earliestRestorableTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EARLIEST_RESTORABLE_TIMESTAMP)
+  public void setEarliestRestorableTimestamp_JsonNullable(JsonNullable<OffsetDateTime> earliestRestorableTimestamp) {
+    this.earliestRestorableTimestamp = earliestRestorableTimestamp;
+  }
+
+  public void setEarliestRestorableTimestamp(@javax.annotation.Nullable OffsetDateTime earliestRestorableTimestamp) {
+    this.earliestRestorableTimestamp = JsonNullable.<OffsetDateTime>of(earliestRestorableTimestamp);
+  }
+
+
+  public ManagedDatabaseObject latestRestorableTimestamp(@javax.annotation.Nullable OffsetDateTime latestRestorableTimestamp) {
+    this.latestRestorableTimestamp = JsonNullable.<OffsetDateTime>of(latestRestorableTimestamp);
+    return this;
+  }
+
+  /**
+   * Get latestRestorableTimestamp
+   * @return latestRestorableTimestamp
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getLatestRestorableTimestamp() {
+        return latestRestorableTimestamp.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LATEST_RESTORABLE_TIMESTAMP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getLatestRestorableTimestamp_JsonNullable() {
+    return latestRestorableTimestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LATEST_RESTORABLE_TIMESTAMP)
+  public void setLatestRestorableTimestamp_JsonNullable(JsonNullable<OffsetDateTime> latestRestorableTimestamp) {
+    this.latestRestorableTimestamp = latestRestorableTimestamp;
+  }
+
+  public void setLatestRestorableTimestamp(@javax.annotation.Nullable OffsetDateTime latestRestorableTimestamp) {
+    this.latestRestorableTimestamp = JsonNullable.<OffsetDateTime>of(latestRestorableTimestamp);
+  }
+
+
+  public ManagedDatabaseObject restoredFrom(@javax.annotation.Nullable ManagedDatabaseRestoreSource restoredFrom) {
+    this.restoredFrom = restoredFrom;
+    return this;
+  }
+
+  /**
+   * Get restoredFrom
+   * @return restoredFrom
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RESTORED_FROM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ManagedDatabaseRestoreSource getRestoredFrom() {
+    return restoredFrom;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RESTORED_FROM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRestoredFrom(@javax.annotation.Nullable ManagedDatabaseRestoreSource restoredFrom) {
+    this.restoredFrom = restoredFrom;
   }
 
 
@@ -889,6 +1202,14 @@ public class ManagedDatabaseObject {
         equalsNullable(this.cpu, managedDatabaseObject.cpu) &&
         equalsNullable(this.memoryGb, managedDatabaseObject.memoryGb) &&
         Objects.equals(this.storageGb, managedDatabaseObject.storageGb) &&
+        equalsNullable(this.size, managedDatabaseObject.size) &&
+        equalsNullable(this.postgresVersion, managedDatabaseObject.postgresVersion) &&
+        equalsNullable(this.directPort, managedDatabaseObject.directPort) &&
+        Objects.equals(this.maintenanceWindow, managedDatabaseObject.maintenanceWindow) &&
+        equalsNullable(this.backupRetentionDays, managedDatabaseObject.backupRetentionDays) &&
+        equalsNullable(this.earliestRestorableTimestamp, managedDatabaseObject.earliestRestorableTimestamp) &&
+        equalsNullable(this.latestRestorableTimestamp, managedDatabaseObject.latestRestorableTimestamp) &&
+        Objects.equals(this.restoredFrom, managedDatabaseObject.restoredFrom) &&
         Objects.equals(this.status, managedDatabaseObject.status) &&
         Objects.equals(this.connections, managedDatabaseObject.connections) &&
         Objects.equals(this.createdTimestamp, managedDatabaseObject.createdTimestamp) &&
@@ -911,7 +1232,7 @@ public class ManagedDatabaseObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, hashCodeNullable(cpu), hashCodeNullable(memoryGb), storageGb, status, connections, createdTimestamp, hashCodeNullable(lastModifiedTimestamp), hashCodeNullable(host), hashCodeNullable(port), hashCodeNullable(databaseName), hashCodeNullable(sslMode), hashCodeNullable(readOnly), hashCodeNullable(cleanupUnlockExpiresAt), hashCodeNullable(usageBytes), hashCodeNullable(physicalUsageBytes), hashCodeNullable(usageUpdatedAt), hashCodeNullable(clonedFromResourceId));
+    return Objects.hash(managedDatabaseId, managedDatabaseName, type, tier, hashCodeNullable(cpu), hashCodeNullable(memoryGb), storageGb, hashCodeNullable(size), hashCodeNullable(postgresVersion), hashCodeNullable(directPort), maintenanceWindow, hashCodeNullable(backupRetentionDays), hashCodeNullable(earliestRestorableTimestamp), hashCodeNullable(latestRestorableTimestamp), restoredFrom, status, connections, createdTimestamp, hashCodeNullable(lastModifiedTimestamp), hashCodeNullable(host), hashCodeNullable(port), hashCodeNullable(databaseName), hashCodeNullable(sslMode), hashCodeNullable(readOnly), hashCodeNullable(cleanupUnlockExpiresAt), hashCodeNullable(usageBytes), hashCodeNullable(physicalUsageBytes), hashCodeNullable(usageUpdatedAt), hashCodeNullable(clonedFromResourceId));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -932,6 +1253,14 @@ public class ManagedDatabaseObject {
     sb.append("    cpu: ").append(toIndentedString(cpu)).append("\n");
     sb.append("    memoryGb: ").append(toIndentedString(memoryGb)).append("\n");
     sb.append("    storageGb: ").append(toIndentedString(storageGb)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    postgresVersion: ").append(toIndentedString(postgresVersion)).append("\n");
+    sb.append("    directPort: ").append(toIndentedString(directPort)).append("\n");
+    sb.append("    maintenanceWindow: ").append(toIndentedString(maintenanceWindow)).append("\n");
+    sb.append("    backupRetentionDays: ").append(toIndentedString(backupRetentionDays)).append("\n");
+    sb.append("    earliestRestorableTimestamp: ").append(toIndentedString(earliestRestorableTimestamp)).append("\n");
+    sb.append("    latestRestorableTimestamp: ").append(toIndentedString(latestRestorableTimestamp)).append("\n");
+    sb.append("    restoredFrom: ").append(toIndentedString(restoredFrom)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    connections: ").append(toIndentedString(connections)).append("\n");
     sb.append("    createdTimestamp: ").append(toIndentedString(createdTimestamp)).append("\n");
@@ -1023,6 +1352,46 @@ public class ManagedDatabaseObject {
     // add `storageGb` to the URL query string
     if (getStorageGb() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstorageGb%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStorageGb()))));
+    }
+
+    // add `size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+    }
+
+    // add `postgresVersion` to the URL query string
+    if (getPostgresVersion() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spostgresVersion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPostgresVersion()))));
+    }
+
+    // add `directPort` to the URL query string
+    if (getDirectPort() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdirectPort%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDirectPort()))));
+    }
+
+    // add `maintenanceWindow` to the URL query string
+    if (getMaintenanceWindow() != null) {
+      joiner.add(getMaintenanceWindow().toUrlQueryString(prefix + "maintenanceWindow" + suffix));
+    }
+
+    // add `backupRetentionDays` to the URL query string
+    if (getBackupRetentionDays() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackupRetentionDays%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupRetentionDays()))));
+    }
+
+    // add `earliestRestorableTimestamp` to the URL query string
+    if (getEarliestRestorableTimestamp() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%searliestRestorableTimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEarliestRestorableTimestamp()))));
+    }
+
+    // add `latestRestorableTimestamp` to the URL query string
+    if (getLatestRestorableTimestamp() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slatestRestorableTimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLatestRestorableTimestamp()))));
+    }
+
+    // add `restoredFrom` to the URL query string
+    if (getRestoredFrom() != null) {
+      joiner.add(getRestoredFrom().toUrlQueryString(prefix + "restoredFrom" + suffix));
     }
 
     // add `status` to the URL query string

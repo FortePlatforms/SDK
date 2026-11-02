@@ -34,14 +34,18 @@ class PaymentFilter(BaseModel):
     states: Optional[Annotated[List[StrictStr], Field(min_length=0, max_length=20)]] = None
     not_states: Optional[Annotated[List[StrictStr], Field(min_length=0, max_length=20)]] = Field(default=None, alias="notStates")
     user_id: Optional[StrictStr] = Field(default=None, alias="userId")
+    user_ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="userIds")
+    not_user_ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="notUserIds")
     ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = None
     not_ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="notIds")
     subscription: Optional[StrictBool] = None
     line_item_description: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=512)]] = Field(default=None, alias="lineItemDescription")
+    line_item_descriptions: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=512)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="lineItemDescriptions")
+    not_line_item_descriptions: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=512)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="notLineItemDescriptions")
     product_group_by: Optional[StrictStr] = Field(default=None, alias="productGroupBy")
     product_key: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=512)]] = Field(default=None, alias="productKey")
     product_metadata_key: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=256)]] = Field(default=None, alias="productMetadataKey")
-    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "states", "notStates", "userId", "ids", "notIds", "subscription", "lineItemDescription", "productGroupBy", "productKey", "productMetadataKey"]
+    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "states", "notStates", "userId", "userIds", "notUserIds", "ids", "notIds", "subscription", "lineItemDescription", "lineItemDescriptions", "notLineItemDescriptions", "productGroupBy", "productKey", "productMetadataKey"]
 
     @field_validator('states')
     def states_validate_enum(cls, value):
@@ -139,6 +143,16 @@ class PaymentFilter(BaseModel):
         if self.user_id is None and "user_id" in self.model_fields_set:
             _dict['userId'] = None
 
+        # set to None if user_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_ids is None and "user_ids" in self.model_fields_set:
+            _dict['userIds'] = None
+
+        # set to None if not_user_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_user_ids is None and "not_user_ids" in self.model_fields_set:
+            _dict['notUserIds'] = None
+
         # set to None if ids (nullable) is None
         # and model_fields_set contains the field
         if self.ids is None and "ids" in self.model_fields_set:
@@ -158,6 +172,16 @@ class PaymentFilter(BaseModel):
         # and model_fields_set contains the field
         if self.line_item_description is None and "line_item_description" in self.model_fields_set:
             _dict['lineItemDescription'] = None
+
+        # set to None if line_item_descriptions (nullable) is None
+        # and model_fields_set contains the field
+        if self.line_item_descriptions is None and "line_item_descriptions" in self.model_fields_set:
+            _dict['lineItemDescriptions'] = None
+
+        # set to None if not_line_item_descriptions (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_line_item_descriptions is None and "not_line_item_descriptions" in self.model_fields_set:
+            _dict['notLineItemDescriptions'] = None
 
         # set to None if product_group_by (nullable) is None
         # and model_fields_set contains the field
@@ -191,10 +215,14 @@ class PaymentFilter(BaseModel):
             "states": obj.get("states"),
             "notStates": obj.get("notStates"),
             "userId": obj.get("userId"),
+            "userIds": obj.get("userIds"),
+            "notUserIds": obj.get("notUserIds"),
             "ids": obj.get("ids"),
             "notIds": obj.get("notIds"),
             "subscription": obj.get("subscription"),
             "lineItemDescription": obj.get("lineItemDescription"),
+            "lineItemDescriptions": obj.get("lineItemDescriptions"),
+            "notLineItemDescriptions": obj.get("notLineItemDescriptions"),
             "productGroupBy": obj.get("productGroupBy"),
             "productKey": obj.get("productKey"),
             "productMetadataKey": obj.get("productMetadataKey")

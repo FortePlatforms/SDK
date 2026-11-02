@@ -30,18 +30,18 @@ class CreateActionRequest(BaseModel):
     """
     CreateActionRequest
     """ # noqa: E501
-    name: Annotated[str, Field(min_length=0, strict=True, max_length=120)]
-    target_service_id: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="targetServiceId")
-    target_path: Annotated[str, Field(min_length=0, strict=True, max_length=500)] = Field(alias="targetPath")
-    request_body: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=65536)]] = Field(default=None, alias="requestBody")
-    schedule_type: ActionScheduleType = Field(alias="scheduleType")
-    cron_expression: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, alias="cronExpression")
-    timezone: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=64)]] = None
-    window_start: Optional[datetime] = Field(default=None, alias="windowStart")
-    window_end: Optional[datetime] = Field(default=None, alias="windowEnd")
-    scheduled_at: Optional[datetime] = Field(default=None, alias="scheduledAt")
-    retryable: Optional[StrictBool] = None
-    enabled: Optional[StrictBool] = None
+    name: Annotated[str, Field(min_length=0, strict=True, max_length=120)] = Field(description="Display name.")
+    target_service_id: Annotated[str, Field(min_length=1, strict=True)] = Field(description="The service in this project that Forte calls.", alias="targetServiceId")
+    target_path: Annotated[str, Field(min_length=0, strict=True, max_length=500)] = Field(description="Path on the target service to POST to, starting with /, e.g. /jobs/nightly.", alias="targetPath")
+    request_body: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=65536)]] = Field(default=None, description="Request body sent with every invocation.", alias="requestBody")
+    schedule_type: ActionScheduleType = Field(description="RECURRING runs on cronExpression; ONE_TIME runs once at scheduledAt.", alias="scheduleType")
+    cron_expression: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=200)]] = Field(default=None, description="RECURRING only: standard 5-field cron, e.g. \"0,15,30,45 * * * *\" for every 15 minutes, or 6-field with seconds first.", alias="cronExpression")
+    timezone: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=64)]] = Field(default=None, description="RECURRING only: IANA timezone the cron expression runs in, e.g. America/New_York.")
+    window_start: Optional[datetime] = Field(default=None, description="RECURRING only: no invocations before this time, ISO-8601 UTC.", alias="windowStart")
+    window_end: Optional[datetime] = Field(default=None, description="RECURRING only: no invocations after this time, ISO-8601 UTC.", alias="windowEnd")
+    scheduled_at: Optional[datetime] = Field(default=None, description="ONE_TIME only: when to run, ISO-8601 UTC, in the future.", alias="scheduledAt")
+    retryable: Optional[StrictBool] = Field(default=None, description="Set true to retry failed invocations.")
+    enabled: Optional[StrictBool] = Field(default=None, description="Defaults to true; false creates the action paused.")
     __properties: ClassVar[List[str]] = ["name", "targetServiceId", "targetPath", "requestBody", "scheduleType", "cronExpression", "timezone", "windowStart", "windowEnd", "scheduledAt", "retryable", "enabled"]
 
     @field_validator('target_path')

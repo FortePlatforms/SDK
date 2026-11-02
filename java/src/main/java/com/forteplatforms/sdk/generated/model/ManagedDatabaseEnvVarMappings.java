@@ -38,6 +38,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   ManagedDatabaseEnvVarMappings.JSON_PROPERTY_CONNECTION_STRING_ENV_VAR,
+  ManagedDatabaseEnvVarMappings.JSON_PROPERTY_DIRECT_CONNECTION_STRING_ENV_VAR,
   ManagedDatabaseEnvVarMappings.JSON_PROPERTY_HOST_ENV_VAR,
   ManagedDatabaseEnvVarMappings.JSON_PROPERTY_PORT_ENV_VAR,
   ManagedDatabaseEnvVarMappings.JSON_PROPERTY_DATABASE_ENV_VAR,
@@ -50,6 +51,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 public class ManagedDatabaseEnvVarMappings {
   public static final String JSON_PROPERTY_CONNECTION_STRING_ENV_VAR = "connectionStringEnvVar";
   private JsonNullable<String> connectionStringEnvVar = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_DIRECT_CONNECTION_STRING_ENV_VAR = "directConnectionStringEnvVar";
+  private JsonNullable<String> directConnectionStringEnvVar = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_HOST_ENV_VAR = "hostEnvVar";
   private JsonNullable<String> hostEnvVar = JsonNullable.<String>undefined();
@@ -149,6 +153,38 @@ public class ManagedDatabaseEnvVarMappings {
 
   public void setConnectionStringEnvVar(@javax.annotation.Nullable String connectionStringEnvVar) {
     this.connectionStringEnvVar = JsonNullable.<String>of(connectionStringEnvVar);
+  }
+
+
+  public ManagedDatabaseEnvVarMappings directConnectionStringEnvVar(@javax.annotation.Nullable String directConnectionStringEnvVar) {
+    this.directConnectionStringEnvVar = JsonNullable.<String>of(directConnectionStringEnvVar);
+    return this;
+  }
+
+  /**
+   * Dedicated Postgres only. Receives the connection string in the same format, on the direct (unpooled) endpoint.
+   * @return directConnectionStringEnvVar
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getDirectConnectionStringEnvVar() {
+        return directConnectionStringEnvVar.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_DIRECT_CONNECTION_STRING_ENV_VAR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getDirectConnectionStringEnvVar_JsonNullable() {
+    return directConnectionStringEnvVar;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DIRECT_CONNECTION_STRING_ENV_VAR)
+  public void setDirectConnectionStringEnvVar_JsonNullable(JsonNullable<String> directConnectionStringEnvVar) {
+    this.directConnectionStringEnvVar = directConnectionStringEnvVar;
+  }
+
+  public void setDirectConnectionStringEnvVar(@javax.annotation.Nullable String directConnectionStringEnvVar) {
+    this.directConnectionStringEnvVar = JsonNullable.<String>of(directConnectionStringEnvVar);
   }
 
 
@@ -389,6 +425,7 @@ public class ManagedDatabaseEnvVarMappings {
     }
     ManagedDatabaseEnvVarMappings managedDatabaseEnvVarMappings = (ManagedDatabaseEnvVarMappings) o;
     return equalsNullable(this.connectionStringEnvVar, managedDatabaseEnvVarMappings.connectionStringEnvVar) &&
+        equalsNullable(this.directConnectionStringEnvVar, managedDatabaseEnvVarMappings.directConnectionStringEnvVar) &&
         equalsNullable(this.hostEnvVar, managedDatabaseEnvVarMappings.hostEnvVar) &&
         equalsNullable(this.portEnvVar, managedDatabaseEnvVarMappings.portEnvVar) &&
         equalsNullable(this.databaseEnvVar, managedDatabaseEnvVarMappings.databaseEnvVar) &&
@@ -404,7 +441,7 @@ public class ManagedDatabaseEnvVarMappings {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(connectionStringEnvVar), hashCodeNullable(hostEnvVar), hashCodeNullable(portEnvVar), hashCodeNullable(databaseEnvVar), hashCodeNullable(usernameEnvVar), hashCodeNullable(passwordEnvVar), hashCodeNullable(connectionStringFormat), hashCodeNullable(connectionStringTemplate));
+    return Objects.hash(hashCodeNullable(connectionStringEnvVar), hashCodeNullable(directConnectionStringEnvVar), hashCodeNullable(hostEnvVar), hashCodeNullable(portEnvVar), hashCodeNullable(databaseEnvVar), hashCodeNullable(usernameEnvVar), hashCodeNullable(passwordEnvVar), hashCodeNullable(connectionStringFormat), hashCodeNullable(connectionStringTemplate));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -419,6 +456,7 @@ public class ManagedDatabaseEnvVarMappings {
     StringBuilder sb = new StringBuilder();
     sb.append("class ManagedDatabaseEnvVarMappings {\n");
     sb.append("    connectionStringEnvVar: ").append(toIndentedString(connectionStringEnvVar)).append("\n");
+    sb.append("    directConnectionStringEnvVar: ").append(toIndentedString(directConnectionStringEnvVar)).append("\n");
     sb.append("    hostEnvVar: ").append(toIndentedString(hostEnvVar)).append("\n");
     sb.append("    portEnvVar: ").append(toIndentedString(portEnvVar)).append("\n");
     sb.append("    databaseEnvVar: ").append(toIndentedString(databaseEnvVar)).append("\n");
@@ -473,6 +511,11 @@ public class ManagedDatabaseEnvVarMappings {
     // add `connectionStringEnvVar` to the URL query string
     if (getConnectionStringEnvVar() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconnectionStringEnvVar%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectionStringEnvVar()))));
+    }
+
+    // add `directConnectionStringEnvVar` to the URL query string
+    if (getDirectConnectionStringEnvVar() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdirectConnectionStringEnvVar%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDirectConnectionStringEnvVar()))));
     }
 
     // add `hostEnvVar` to the URL query string

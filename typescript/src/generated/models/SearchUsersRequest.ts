@@ -25,6 +25,72 @@ export interface SearchUsersRequest {
      * @memberof SearchUsersRequest
      */
     q: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    email?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    notEmail?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    phone?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    notPhone?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    fullName?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    notFullName?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    fullNameLike?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    metadataKey?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchUsersRequest
+     */
+    metadataValue?: Array<string> | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof SearchUsersRequest
+     */
+    minTime?: Date | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof SearchUsersRequest
+     */
+    maxTime?: Date | null;
 }
 
 /**
@@ -46,6 +112,17 @@ export function SearchUsersRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'q': json['q'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'notEmail': json['notEmail'] == null ? undefined : json['notEmail'],
+        'phone': json['phone'] == null ? undefined : json['phone'],
+        'notPhone': json['notPhone'] == null ? undefined : json['notPhone'],
+        'fullName': json['fullName'] == null ? undefined : json['fullName'],
+        'notFullName': json['notFullName'] == null ? undefined : json['notFullName'],
+        'fullNameLike': json['fullNameLike'] == null ? undefined : json['fullNameLike'],
+        'metadataKey': json['metadataKey'] == null ? undefined : json['metadataKey'],
+        'metadataValue': json['metadataValue'] == null ? undefined : json['metadataValue'],
+        'minTime': json['minTime'] == null ? undefined : (new Date(json['minTime'])),
+        'maxTime': json['maxTime'] == null ? undefined : (new Date(json['maxTime'])),
     };
 }
 
@@ -61,6 +138,17 @@ export function SearchUsersRequestToJSONTyped(value?: SearchUsersRequest | null,
     return {
         
         'q': value['q'],
+        'email': value['email'],
+        'notEmail': value['notEmail'],
+        'phone': value['phone'],
+        'notPhone': value['notPhone'],
+        'fullName': value['fullName'],
+        'notFullName': value['notFullName'],
+        'fullNameLike': value['fullNameLike'],
+        'metadataKey': value['metadataKey'],
+        'metadataValue': value['metadataValue'],
+        'minTime': value['minTime'] == null ? value['minTime'] : value['minTime'].toISOString(),
+        'maxTime': value['maxTime'] == null ? value['maxTime'] : value['maxTime'].toISOString(),
     };
 }
 

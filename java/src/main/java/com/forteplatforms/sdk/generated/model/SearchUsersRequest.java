@@ -24,7 +24,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -33,13 +40,57 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * SearchUsersRequest
  */
 @JsonPropertyOrder({
-  SearchUsersRequest.JSON_PROPERTY_Q
+  SearchUsersRequest.JSON_PROPERTY_Q,
+  SearchUsersRequest.JSON_PROPERTY_EMAIL,
+  SearchUsersRequest.JSON_PROPERTY_NOT_EMAIL,
+  SearchUsersRequest.JSON_PROPERTY_PHONE,
+  SearchUsersRequest.JSON_PROPERTY_NOT_PHONE,
+  SearchUsersRequest.JSON_PROPERTY_FULL_NAME,
+  SearchUsersRequest.JSON_PROPERTY_NOT_FULL_NAME,
+  SearchUsersRequest.JSON_PROPERTY_FULL_NAME_LIKE,
+  SearchUsersRequest.JSON_PROPERTY_METADATA_KEY,
+  SearchUsersRequest.JSON_PROPERTY_METADATA_VALUE,
+  SearchUsersRequest.JSON_PROPERTY_MIN_TIME,
+  SearchUsersRequest.JSON_PROPERTY_MAX_TIME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class SearchUsersRequest {
   public static final String JSON_PROPERTY_Q = "q";
   @javax.annotation.Nonnull
   private String q;
+
+  public static final String JSON_PROPERTY_EMAIL = "email";
+  private JsonNullable<List<String>> email = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_NOT_EMAIL = "notEmail";
+  private JsonNullable<List<String>> notEmail = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_PHONE = "phone";
+  private JsonNullable<List<String>> phone = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_NOT_PHONE = "notPhone";
+  private JsonNullable<List<String>> notPhone = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_FULL_NAME = "fullName";
+  private JsonNullable<List<String>> fullName = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_NOT_FULL_NAME = "notFullName";
+  private JsonNullable<List<String>> notFullName = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_FULL_NAME_LIKE = "fullNameLike";
+  private JsonNullable<List<String>> fullNameLike = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_METADATA_KEY = "metadataKey";
+  private JsonNullable<List<String>> metadataKey = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_METADATA_VALUE = "metadataValue";
+  private JsonNullable<List<String>> metadataValue = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_MIN_TIME = "minTime";
+  private JsonNullable<OffsetDateTime> minTime = JsonNullable.<OffsetDateTime>undefined();
+
+  public static final String JSON_PROPERTY_MAX_TIME = "maxTime";
+  private JsonNullable<OffsetDateTime> maxTime = JsonNullable.<OffsetDateTime>undefined();
 
   public SearchUsersRequest() { 
   }
@@ -68,6 +119,466 @@ public class SearchUsersRequest {
   }
 
 
+  public SearchUsersRequest email(@javax.annotation.Nullable List<String> email) {
+    this.email = JsonNullable.<List<String>>of(email);
+    return this;
+  }
+
+  public SearchUsersRequest addEmailItem(String emailItem) {
+    if (this.email == null || !this.email.isPresent()) {
+      this.email = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.email.get().add(emailItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get email
+   * @return email
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getEmail() {
+        return email.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getEmail_JsonNullable() {
+    return email;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  public void setEmail_JsonNullable(JsonNullable<List<String>> email) {
+    this.email = email;
+  }
+
+  public void setEmail(@javax.annotation.Nullable List<String> email) {
+    this.email = JsonNullable.<List<String>>of(email);
+  }
+
+
+  public SearchUsersRequest notEmail(@javax.annotation.Nullable List<String> notEmail) {
+    this.notEmail = JsonNullable.<List<String>>of(notEmail);
+    return this;
+  }
+
+  public SearchUsersRequest addNotEmailItem(String notEmailItem) {
+    if (this.notEmail == null || !this.notEmail.isPresent()) {
+      this.notEmail = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.notEmail.get().add(notEmailItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get notEmail
+   * @return notEmail
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getNotEmail() {
+        return notEmail.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NOT_EMAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getNotEmail_JsonNullable() {
+    return notEmail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_EMAIL)
+  public void setNotEmail_JsonNullable(JsonNullable<List<String>> notEmail) {
+    this.notEmail = notEmail;
+  }
+
+  public void setNotEmail(@javax.annotation.Nullable List<String> notEmail) {
+    this.notEmail = JsonNullable.<List<String>>of(notEmail);
+  }
+
+
+  public SearchUsersRequest phone(@javax.annotation.Nullable List<String> phone) {
+    this.phone = JsonNullable.<List<String>>of(phone);
+    return this;
+  }
+
+  public SearchUsersRequest addPhoneItem(String phoneItem) {
+    if (this.phone == null || !this.phone.isPresent()) {
+      this.phone = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.phone.get().add(phoneItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get phone
+   * @return phone
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getPhone() {
+        return phone.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getPhone_JsonNullable() {
+    return phone;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE)
+  public void setPhone_JsonNullable(JsonNullable<List<String>> phone) {
+    this.phone = phone;
+  }
+
+  public void setPhone(@javax.annotation.Nullable List<String> phone) {
+    this.phone = JsonNullable.<List<String>>of(phone);
+  }
+
+
+  public SearchUsersRequest notPhone(@javax.annotation.Nullable List<String> notPhone) {
+    this.notPhone = JsonNullable.<List<String>>of(notPhone);
+    return this;
+  }
+
+  public SearchUsersRequest addNotPhoneItem(String notPhoneItem) {
+    if (this.notPhone == null || !this.notPhone.isPresent()) {
+      this.notPhone = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.notPhone.get().add(notPhoneItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get notPhone
+   * @return notPhone
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getNotPhone() {
+        return notPhone.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NOT_PHONE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getNotPhone_JsonNullable() {
+    return notPhone;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_PHONE)
+  public void setNotPhone_JsonNullable(JsonNullable<List<String>> notPhone) {
+    this.notPhone = notPhone;
+  }
+
+  public void setNotPhone(@javax.annotation.Nullable List<String> notPhone) {
+    this.notPhone = JsonNullable.<List<String>>of(notPhone);
+  }
+
+
+  public SearchUsersRequest fullName(@javax.annotation.Nullable List<String> fullName) {
+    this.fullName = JsonNullable.<List<String>>of(fullName);
+    return this;
+  }
+
+  public SearchUsersRequest addFullNameItem(String fullNameItem) {
+    if (this.fullName == null || !this.fullName.isPresent()) {
+      this.fullName = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.fullName.get().add(fullNameItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get fullName
+   * @return fullName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getFullName() {
+        return fullName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_FULL_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getFullName_JsonNullable() {
+    return fullName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FULL_NAME)
+  public void setFullName_JsonNullable(JsonNullable<List<String>> fullName) {
+    this.fullName = fullName;
+  }
+
+  public void setFullName(@javax.annotation.Nullable List<String> fullName) {
+    this.fullName = JsonNullable.<List<String>>of(fullName);
+  }
+
+
+  public SearchUsersRequest notFullName(@javax.annotation.Nullable List<String> notFullName) {
+    this.notFullName = JsonNullable.<List<String>>of(notFullName);
+    return this;
+  }
+
+  public SearchUsersRequest addNotFullNameItem(String notFullNameItem) {
+    if (this.notFullName == null || !this.notFullName.isPresent()) {
+      this.notFullName = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.notFullName.get().add(notFullNameItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get notFullName
+   * @return notFullName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getNotFullName() {
+        return notFullName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NOT_FULL_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getNotFullName_JsonNullable() {
+    return notFullName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_FULL_NAME)
+  public void setNotFullName_JsonNullable(JsonNullable<List<String>> notFullName) {
+    this.notFullName = notFullName;
+  }
+
+  public void setNotFullName(@javax.annotation.Nullable List<String> notFullName) {
+    this.notFullName = JsonNullable.<List<String>>of(notFullName);
+  }
+
+
+  public SearchUsersRequest fullNameLike(@javax.annotation.Nullable List<String> fullNameLike) {
+    this.fullNameLike = JsonNullable.<List<String>>of(fullNameLike);
+    return this;
+  }
+
+  public SearchUsersRequest addFullNameLikeItem(String fullNameLikeItem) {
+    if (this.fullNameLike == null || !this.fullNameLike.isPresent()) {
+      this.fullNameLike = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.fullNameLike.get().add(fullNameLikeItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get fullNameLike
+   * @return fullNameLike
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getFullNameLike() {
+        return fullNameLike.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_FULL_NAME_LIKE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getFullNameLike_JsonNullable() {
+    return fullNameLike;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FULL_NAME_LIKE)
+  public void setFullNameLike_JsonNullable(JsonNullable<List<String>> fullNameLike) {
+    this.fullNameLike = fullNameLike;
+  }
+
+  public void setFullNameLike(@javax.annotation.Nullable List<String> fullNameLike) {
+    this.fullNameLike = JsonNullable.<List<String>>of(fullNameLike);
+  }
+
+
+  public SearchUsersRequest metadataKey(@javax.annotation.Nullable List<String> metadataKey) {
+    this.metadataKey = JsonNullable.<List<String>>of(metadataKey);
+    return this;
+  }
+
+  public SearchUsersRequest addMetadataKeyItem(String metadataKeyItem) {
+    if (this.metadataKey == null || !this.metadataKey.isPresent()) {
+      this.metadataKey = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.metadataKey.get().add(metadataKeyItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get metadataKey
+   * @return metadataKey
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getMetadataKey() {
+        return metadataKey.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getMetadataKey_JsonNullable() {
+    return metadataKey;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_METADATA_KEY)
+  public void setMetadataKey_JsonNullable(JsonNullable<List<String>> metadataKey) {
+    this.metadataKey = metadataKey;
+  }
+
+  public void setMetadataKey(@javax.annotation.Nullable List<String> metadataKey) {
+    this.metadataKey = JsonNullable.<List<String>>of(metadataKey);
+  }
+
+
+  public SearchUsersRequest metadataValue(@javax.annotation.Nullable List<String> metadataValue) {
+    this.metadataValue = JsonNullable.<List<String>>of(metadataValue);
+    return this;
+  }
+
+  public SearchUsersRequest addMetadataValueItem(String metadataValueItem) {
+    if (this.metadataValue == null || !this.metadataValue.isPresent()) {
+      this.metadataValue = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.metadataValue.get().add(metadataValueItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get metadataValue
+   * @return metadataValue
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getMetadataValue() {
+        return metadataValue.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA_VALUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getMetadataValue_JsonNullable() {
+    return metadataValue;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_METADATA_VALUE)
+  public void setMetadataValue_JsonNullable(JsonNullable<List<String>> metadataValue) {
+    this.metadataValue = metadataValue;
+  }
+
+  public void setMetadataValue(@javax.annotation.Nullable List<String> metadataValue) {
+    this.metadataValue = JsonNullable.<List<String>>of(metadataValue);
+  }
+
+
+  public SearchUsersRequest minTime(@javax.annotation.Nullable OffsetDateTime minTime) {
+    this.minTime = JsonNullable.<OffsetDateTime>of(minTime);
+    return this;
+  }
+
+  /**
+   * Get minTime
+   * @return minTime
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getMinTime() {
+        return minTime.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_MIN_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getMinTime_JsonNullable() {
+    return minTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MIN_TIME)
+  public void setMinTime_JsonNullable(JsonNullable<OffsetDateTime> minTime) {
+    this.minTime = minTime;
+  }
+
+  public void setMinTime(@javax.annotation.Nullable OffsetDateTime minTime) {
+    this.minTime = JsonNullable.<OffsetDateTime>of(minTime);
+  }
+
+
+  public SearchUsersRequest maxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
+    this.maxTime = JsonNullable.<OffsetDateTime>of(maxTime);
+    return this;
+  }
+
+  /**
+   * Get maxTime
+   * @return maxTime
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getMaxTime() {
+        return maxTime.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_MAX_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getMaxTime_JsonNullable() {
+    return maxTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAX_TIME)
+  public void setMaxTime_JsonNullable(JsonNullable<OffsetDateTime> maxTime) {
+    this.maxTime = maxTime;
+  }
+
+  public void setMaxTime(@javax.annotation.Nullable OffsetDateTime maxTime) {
+    this.maxTime = JsonNullable.<OffsetDateTime>of(maxTime);
+  }
+
+
   /**
    * Return true if this SearchUsersRequest object is equal to o.
    */
@@ -80,12 +591,34 @@ public class SearchUsersRequest {
       return false;
     }
     SearchUsersRequest searchUsersRequest = (SearchUsersRequest) o;
-    return Objects.equals(this.q, searchUsersRequest.q);
+    return Objects.equals(this.q, searchUsersRequest.q) &&
+        equalsNullable(this.email, searchUsersRequest.email) &&
+        equalsNullable(this.notEmail, searchUsersRequest.notEmail) &&
+        equalsNullable(this.phone, searchUsersRequest.phone) &&
+        equalsNullable(this.notPhone, searchUsersRequest.notPhone) &&
+        equalsNullable(this.fullName, searchUsersRequest.fullName) &&
+        equalsNullable(this.notFullName, searchUsersRequest.notFullName) &&
+        equalsNullable(this.fullNameLike, searchUsersRequest.fullNameLike) &&
+        equalsNullable(this.metadataKey, searchUsersRequest.metadataKey) &&
+        equalsNullable(this.metadataValue, searchUsersRequest.metadataValue) &&
+        equalsNullable(this.minTime, searchUsersRequest.minTime) &&
+        equalsNullable(this.maxTime, searchUsersRequest.maxTime);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(q);
+    return Objects.hash(q, hashCodeNullable(email), hashCodeNullable(notEmail), hashCodeNullable(phone), hashCodeNullable(notPhone), hashCodeNullable(fullName), hashCodeNullable(notFullName), hashCodeNullable(fullNameLike), hashCodeNullable(metadataKey), hashCodeNullable(metadataValue), hashCodeNullable(minTime), hashCodeNullable(maxTime));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -93,6 +626,17 @@ public class SearchUsersRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchUsersRequest {\n");
     sb.append("    q: ").append(toIndentedString(q)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    notEmail: ").append(toIndentedString(notEmail)).append("\n");
+    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
+    sb.append("    notPhone: ").append(toIndentedString(notPhone)).append("\n");
+    sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
+    sb.append("    notFullName: ").append(toIndentedString(notFullName)).append("\n");
+    sb.append("    fullNameLike: ").append(toIndentedString(fullNameLike)).append("\n");
+    sb.append("    metadataKey: ").append(toIndentedString(metadataKey)).append("\n");
+    sb.append("    metadataValue: ").append(toIndentedString(metadataValue)).append("\n");
+    sb.append("    minTime: ").append(toIndentedString(minTime)).append("\n");
+    sb.append("    maxTime: ").append(toIndentedString(maxTime)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -140,6 +684,97 @@ public class SearchUsersRequest {
     // add `q` to the URL query string
     if (getQ() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sq%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQ()))));
+    }
+
+    // add `email` to the URL query string
+    if (getEmail() != null) {
+      for (int i = 0; i < getEmail().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%semail%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getEmail().get(i)))));
+      }
+    }
+
+    // add `notEmail` to the URL query string
+    if (getNotEmail() != null) {
+      for (int i = 0; i < getNotEmail().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%snotEmail%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getNotEmail().get(i)))));
+      }
+    }
+
+    // add `phone` to the URL query string
+    if (getPhone() != null) {
+      for (int i = 0; i < getPhone().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sphone%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getPhone().get(i)))));
+      }
+    }
+
+    // add `notPhone` to the URL query string
+    if (getNotPhone() != null) {
+      for (int i = 0; i < getNotPhone().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%snotPhone%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getNotPhone().get(i)))));
+      }
+    }
+
+    // add `fullName` to the URL query string
+    if (getFullName() != null) {
+      for (int i = 0; i < getFullName().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sfullName%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getFullName().get(i)))));
+      }
+    }
+
+    // add `notFullName` to the URL query string
+    if (getNotFullName() != null) {
+      for (int i = 0; i < getNotFullName().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%snotFullName%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getNotFullName().get(i)))));
+      }
+    }
+
+    // add `fullNameLike` to the URL query string
+    if (getFullNameLike() != null) {
+      for (int i = 0; i < getFullNameLike().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sfullNameLike%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getFullNameLike().get(i)))));
+      }
+    }
+
+    // add `metadataKey` to the URL query string
+    if (getMetadataKey() != null) {
+      for (int i = 0; i < getMetadataKey().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smetadataKey%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getMetadataKey().get(i)))));
+      }
+    }
+
+    // add `metadataValue` to the URL query string
+    if (getMetadataValue() != null) {
+      for (int i = 0; i < getMetadataValue().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smetadataValue%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getMetadataValue().get(i)))));
+      }
+    }
+
+    // add `minTime` to the URL query string
+    if (getMinTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sminTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMinTime()))));
+    }
+
+    // add `maxTime` to the URL query string
+    if (getMaxTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smaxTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaxTime()))));
     }
 
     return joiner.toString();

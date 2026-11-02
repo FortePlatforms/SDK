@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ManagedDatabaseMaintenanceWindow } from './ManagedDatabaseMaintenanceWindow';
+import {
+    ManagedDatabaseMaintenanceWindowFromJSON,
+    ManagedDatabaseMaintenanceWindowFromJSONTyped,
+    ManagedDatabaseMaintenanceWindowToJSON,
+    ManagedDatabaseMaintenanceWindowToJSONTyped,
+} from './ManagedDatabaseMaintenanceWindow';
+
 /**
  * 
  * @export
@@ -43,7 +51,37 @@ export interface UpdateManagedDatabaseRequest {
      * @memberof UpdateManagedDatabaseRequest
      */
     storageGb?: number | null;
+    /**
+     * 
+     * @type {UpdateManagedDatabaseRequestSizeType}
+     * @memberof UpdateManagedDatabaseRequest
+     */
+    size?: UpdateManagedDatabaseRequestSizeType | null;
+    /**
+     * 
+     * @type {ManagedDatabaseMaintenanceWindow}
+     * @memberof UpdateManagedDatabaseRequest
+     */
+    maintenanceWindow?: ManagedDatabaseMaintenanceWindow;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateManagedDatabaseRequest
+     */
+    backupRetentionDays?: number | null;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateManagedDatabaseRequestSizeType = {
+    MEDIUM: 'MEDIUM',
+    LARGE: 'LARGE',
+    XLARGE: 'XLARGE'
+} as const;
+export type UpdateManagedDatabaseRequestSizeType = typeof UpdateManagedDatabaseRequestSizeType[keyof typeof UpdateManagedDatabaseRequestSizeType];
+
 
 /**
  * Check if a given object implements the UpdateManagedDatabaseRequest interface.
@@ -66,6 +104,9 @@ export function UpdateManagedDatabaseRequestFromJSONTyped(json: any, ignoreDiscr
         'cpu': json['cpu'] == null ? undefined : json['cpu'],
         'memoryGb': json['memoryGb'] == null ? undefined : json['memoryGb'],
         'storageGb': json['storageGb'] == null ? undefined : json['storageGb'],
+        'size': json['size'] == null ? undefined : json['size'],
+        'maintenanceWindow': json['maintenanceWindow'] == null ? undefined : ManagedDatabaseMaintenanceWindowFromJSON(json['maintenanceWindow']),
+        'backupRetentionDays': json['backupRetentionDays'] == null ? undefined : json['backupRetentionDays'],
     };
 }
 
@@ -84,6 +125,9 @@ export function UpdateManagedDatabaseRequestToJSONTyped(value?: UpdateManagedDat
         'cpu': value['cpu'],
         'memoryGb': value['memoryGb'],
         'storageGb': value['storageGb'],
+        'size': value['size'],
+        'maintenanceWindow': ManagedDatabaseMaintenanceWindowToJSON(value['maintenanceWindow']),
+        'backupRetentionDays': value['backupRetentionDays'],
     };
 }
 

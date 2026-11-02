@@ -45,10 +45,14 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentFilter.JSON_PROPERTY_STATES,
   PaymentFilter.JSON_PROPERTY_NOT_STATES,
   PaymentFilter.JSON_PROPERTY_USER_ID,
+  PaymentFilter.JSON_PROPERTY_USER_IDS,
+  PaymentFilter.JSON_PROPERTY_NOT_USER_IDS,
   PaymentFilter.JSON_PROPERTY_IDS,
   PaymentFilter.JSON_PROPERTY_NOT_IDS,
   PaymentFilter.JSON_PROPERTY_SUBSCRIPTION,
   PaymentFilter.JSON_PROPERTY_LINE_ITEM_DESCRIPTION,
+  PaymentFilter.JSON_PROPERTY_LINE_ITEM_DESCRIPTIONS,
+  PaymentFilter.JSON_PROPERTY_NOT_LINE_ITEM_DESCRIPTIONS,
   PaymentFilter.JSON_PROPERTY_PRODUCT_GROUP_BY,
   PaymentFilter.JSON_PROPERTY_PRODUCT_KEY,
   PaymentFilter.JSON_PROPERTY_PRODUCT_METADATA_KEY
@@ -160,6 +164,12 @@ public class PaymentFilter {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_USER_IDS = "userIds";
+  private JsonNullable<List<String>> userIds = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_NOT_USER_IDS = "notUserIds";
+  private JsonNullable<List<String>> notUserIds = JsonNullable.<List<String>>undefined();
+
   public static final String JSON_PROPERTY_IDS = "ids";
   private JsonNullable<List<String>> ids = JsonNullable.<List<String>>undefined();
 
@@ -171,6 +181,12 @@ public class PaymentFilter {
 
   public static final String JSON_PROPERTY_LINE_ITEM_DESCRIPTION = "lineItemDescription";
   private JsonNullable<String> lineItemDescription = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_LINE_ITEM_DESCRIPTIONS = "lineItemDescriptions";
+  private JsonNullable<List<String>> lineItemDescriptions = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_NOT_LINE_ITEM_DESCRIPTIONS = "notLineItemDescriptions";
+  private JsonNullable<List<String>> notLineItemDescriptions = JsonNullable.<List<String>>undefined();
 
   /**
    * Gets or Sets productGroupBy
@@ -405,6 +421,94 @@ public class PaymentFilter {
   }
 
 
+  public PaymentFilter userIds(@javax.annotation.Nullable List<String> userIds) {
+    this.userIds = JsonNullable.<List<String>>of(userIds);
+    return this;
+  }
+
+  public PaymentFilter addUserIdsItem(String userIdsItem) {
+    if (this.userIds == null || !this.userIds.isPresent()) {
+      this.userIds = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.userIds.get().add(userIdsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get userIds
+   * @return userIds
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getUserIds() {
+        return userIds.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_USER_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getUserIds_JsonNullable() {
+    return userIds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_IDS)
+  public void setUserIds_JsonNullable(JsonNullable<List<String>> userIds) {
+    this.userIds = userIds;
+  }
+
+  public void setUserIds(@javax.annotation.Nullable List<String> userIds) {
+    this.userIds = JsonNullable.<List<String>>of(userIds);
+  }
+
+
+  public PaymentFilter notUserIds(@javax.annotation.Nullable List<String> notUserIds) {
+    this.notUserIds = JsonNullable.<List<String>>of(notUserIds);
+    return this;
+  }
+
+  public PaymentFilter addNotUserIdsItem(String notUserIdsItem) {
+    if (this.notUserIds == null || !this.notUserIds.isPresent()) {
+      this.notUserIds = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.notUserIds.get().add(notUserIdsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get notUserIds
+   * @return notUserIds
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getNotUserIds() {
+        return notUserIds.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NOT_USER_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getNotUserIds_JsonNullable() {
+    return notUserIds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_USER_IDS)
+  public void setNotUserIds_JsonNullable(JsonNullable<List<String>> notUserIds) {
+    this.notUserIds = notUserIds;
+  }
+
+  public void setNotUserIds(@javax.annotation.Nullable List<String> notUserIds) {
+    this.notUserIds = JsonNullable.<List<String>>of(notUserIds);
+  }
+
+
   public PaymentFilter ids(@javax.annotation.Nullable List<String> ids) {
     this.ids = JsonNullable.<List<String>>of(ids);
     return this;
@@ -557,6 +661,94 @@ public class PaymentFilter {
   }
 
 
+  public PaymentFilter lineItemDescriptions(@javax.annotation.Nullable List<String> lineItemDescriptions) {
+    this.lineItemDescriptions = JsonNullable.<List<String>>of(lineItemDescriptions);
+    return this;
+  }
+
+  public PaymentFilter addLineItemDescriptionsItem(String lineItemDescriptionsItem) {
+    if (this.lineItemDescriptions == null || !this.lineItemDescriptions.isPresent()) {
+      this.lineItemDescriptions = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.lineItemDescriptions.get().add(lineItemDescriptionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get lineItemDescriptions
+   * @return lineItemDescriptions
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getLineItemDescriptions() {
+        return lineItemDescriptions.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LINE_ITEM_DESCRIPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getLineItemDescriptions_JsonNullable() {
+    return lineItemDescriptions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LINE_ITEM_DESCRIPTIONS)
+  public void setLineItemDescriptions_JsonNullable(JsonNullable<List<String>> lineItemDescriptions) {
+    this.lineItemDescriptions = lineItemDescriptions;
+  }
+
+  public void setLineItemDescriptions(@javax.annotation.Nullable List<String> lineItemDescriptions) {
+    this.lineItemDescriptions = JsonNullable.<List<String>>of(lineItemDescriptions);
+  }
+
+
+  public PaymentFilter notLineItemDescriptions(@javax.annotation.Nullable List<String> notLineItemDescriptions) {
+    this.notLineItemDescriptions = JsonNullable.<List<String>>of(notLineItemDescriptions);
+    return this;
+  }
+
+  public PaymentFilter addNotLineItemDescriptionsItem(String notLineItemDescriptionsItem) {
+    if (this.notLineItemDescriptions == null || !this.notLineItemDescriptions.isPresent()) {
+      this.notLineItemDescriptions = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.notLineItemDescriptions.get().add(notLineItemDescriptionsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get notLineItemDescriptions
+   * @return notLineItemDescriptions
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getNotLineItemDescriptions() {
+        return notLineItemDescriptions.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NOT_LINE_ITEM_DESCRIPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getNotLineItemDescriptions_JsonNullable() {
+    return notLineItemDescriptions;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_LINE_ITEM_DESCRIPTIONS)
+  public void setNotLineItemDescriptions_JsonNullable(JsonNullable<List<String>> notLineItemDescriptions) {
+    this.notLineItemDescriptions = notLineItemDescriptions;
+  }
+
+  public void setNotLineItemDescriptions(@javax.annotation.Nullable List<String> notLineItemDescriptions) {
+    this.notLineItemDescriptions = JsonNullable.<List<String>>of(notLineItemDescriptions);
+  }
+
+
   public PaymentFilter productGroupBy(@javax.annotation.Nullable ProductGroupByEnum productGroupBy) {
     this.productGroupBy = JsonNullable.<ProductGroupByEnum>of(productGroupBy);
     return this;
@@ -670,10 +862,14 @@ public class PaymentFilter {
         equalsNullable(this.states, paymentFilter.states) &&
         equalsNullable(this.notStates, paymentFilter.notStates) &&
         equalsNullable(this.userId, paymentFilter.userId) &&
+        equalsNullable(this.userIds, paymentFilter.userIds) &&
+        equalsNullable(this.notUserIds, paymentFilter.notUserIds) &&
         equalsNullable(this.ids, paymentFilter.ids) &&
         equalsNullable(this.notIds, paymentFilter.notIds) &&
         equalsNullable(this.subscription, paymentFilter.subscription) &&
         equalsNullable(this.lineItemDescription, paymentFilter.lineItemDescription) &&
+        equalsNullable(this.lineItemDescriptions, paymentFilter.lineItemDescriptions) &&
+        equalsNullable(this.notLineItemDescriptions, paymentFilter.notLineItemDescriptions) &&
         equalsNullable(this.productGroupBy, paymentFilter.productGroupBy) &&
         equalsNullable(this.productKey, paymentFilter.productKey) &&
         equalsNullable(this.productMetadataKey, paymentFilter.productMetadataKey);
@@ -685,7 +881,7 @@ public class PaymentFilter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(minTime), hashCodeNullable(maxTime), hashCodeNullable(states), hashCodeNullable(notStates), hashCodeNullable(userId), hashCodeNullable(ids), hashCodeNullable(notIds), hashCodeNullable(subscription), hashCodeNullable(lineItemDescription), hashCodeNullable(productGroupBy), hashCodeNullable(productKey), hashCodeNullable(productMetadataKey));
+    return Objects.hash(hashCodeNullable(minTime), hashCodeNullable(maxTime), hashCodeNullable(states), hashCodeNullable(notStates), hashCodeNullable(userId), hashCodeNullable(userIds), hashCodeNullable(notUserIds), hashCodeNullable(ids), hashCodeNullable(notIds), hashCodeNullable(subscription), hashCodeNullable(lineItemDescription), hashCodeNullable(lineItemDescriptions), hashCodeNullable(notLineItemDescriptions), hashCodeNullable(productGroupBy), hashCodeNullable(productKey), hashCodeNullable(productMetadataKey));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -704,10 +900,14 @@ public class PaymentFilter {
     sb.append("    states: ").append(toIndentedString(states)).append("\n");
     sb.append("    notStates: ").append(toIndentedString(notStates)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    userIds: ").append(toIndentedString(userIds)).append("\n");
+    sb.append("    notUserIds: ").append(toIndentedString(notUserIds)).append("\n");
     sb.append("    ids: ").append(toIndentedString(ids)).append("\n");
     sb.append("    notIds: ").append(toIndentedString(notIds)).append("\n");
     sb.append("    subscription: ").append(toIndentedString(subscription)).append("\n");
     sb.append("    lineItemDescription: ").append(toIndentedString(lineItemDescription)).append("\n");
+    sb.append("    lineItemDescriptions: ").append(toIndentedString(lineItemDescriptions)).append("\n");
+    sb.append("    notLineItemDescriptions: ").append(toIndentedString(notLineItemDescriptions)).append("\n");
     sb.append("    productGroupBy: ").append(toIndentedString(productGroupBy)).append("\n");
     sb.append("    productKey: ").append(toIndentedString(productKey)).append("\n");
     sb.append("    productMetadataKey: ").append(toIndentedString(productMetadataKey)).append("\n");
@@ -788,6 +988,24 @@ public class PaymentFilter {
       joiner.add(String.format(java.util.Locale.ROOT, "%suserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
     }
 
+    // add `userIds` to the URL query string
+    if (getUserIds() != null) {
+      for (int i = 0; i < getUserIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%suserIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getUserIds().get(i)))));
+      }
+    }
+
+    // add `notUserIds` to the URL query string
+    if (getNotUserIds() != null) {
+      for (int i = 0; i < getNotUserIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%snotUserIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getNotUserIds().get(i)))));
+      }
+    }
+
     // add `ids` to the URL query string
     if (getIds() != null) {
       for (int i = 0; i < getIds().size(); i++) {
@@ -814,6 +1032,24 @@ public class PaymentFilter {
     // add `lineItemDescription` to the URL query string
     if (getLineItemDescription() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slineItemDescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLineItemDescription()))));
+    }
+
+    // add `lineItemDescriptions` to the URL query string
+    if (getLineItemDescriptions() != null) {
+      for (int i = 0; i < getLineItemDescriptions().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%slineItemDescriptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getLineItemDescriptions().get(i)))));
+      }
+    }
+
+    // add `notLineItemDescriptions` to the URL query string
+    if (getNotLineItemDescriptions() != null) {
+      for (int i = 0; i < getNotLineItemDescriptions().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%snotLineItemDescriptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getNotLineItemDescriptions().get(i)))));
+      }
     }
 
     // add `productGroupBy` to the URL query string

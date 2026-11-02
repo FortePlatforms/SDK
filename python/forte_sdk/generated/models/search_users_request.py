@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +30,18 @@ class SearchUsersRequest(BaseModel):
     SearchUsersRequest
     """ # noqa: E501
     q: Annotated[str, Field(min_length=1, strict=True)]
-    __properties: ClassVar[List[str]] = ["q"]
+    email: Optional[List[StrictStr]] = None
+    not_email: Optional[List[StrictStr]] = Field(default=None, alias="notEmail")
+    phone: Optional[List[StrictStr]] = None
+    not_phone: Optional[List[StrictStr]] = Field(default=None, alias="notPhone")
+    full_name: Optional[List[StrictStr]] = Field(default=None, alias="fullName")
+    not_full_name: Optional[List[StrictStr]] = Field(default=None, alias="notFullName")
+    full_name_like: Optional[List[StrictStr]] = Field(default=None, alias="fullNameLike")
+    metadata_key: Optional[List[StrictStr]] = Field(default=None, alias="metadataKey")
+    metadata_value: Optional[List[StrictStr]] = Field(default=None, alias="metadataValue")
+    min_time: Optional[datetime] = Field(default=None, alias="minTime")
+    max_time: Optional[datetime] = Field(default=None, alias="maxTime")
+    __properties: ClassVar[List[str]] = ["q", "email", "notEmail", "phone", "notPhone", "fullName", "notFullName", "fullNameLike", "metadataKey", "metadataValue", "minTime", "maxTime"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -70,6 +82,61 @@ class SearchUsersRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if email (nullable) is None
+        # and model_fields_set contains the field
+        if self.email is None and "email" in self.model_fields_set:
+            _dict['email'] = None
+
+        # set to None if not_email (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_email is None and "not_email" in self.model_fields_set:
+            _dict['notEmail'] = None
+
+        # set to None if phone (nullable) is None
+        # and model_fields_set contains the field
+        if self.phone is None and "phone" in self.model_fields_set:
+            _dict['phone'] = None
+
+        # set to None if not_phone (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_phone is None and "not_phone" in self.model_fields_set:
+            _dict['notPhone'] = None
+
+        # set to None if full_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.full_name is None and "full_name" in self.model_fields_set:
+            _dict['fullName'] = None
+
+        # set to None if not_full_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_full_name is None and "not_full_name" in self.model_fields_set:
+            _dict['notFullName'] = None
+
+        # set to None if full_name_like (nullable) is None
+        # and model_fields_set contains the field
+        if self.full_name_like is None and "full_name_like" in self.model_fields_set:
+            _dict['fullNameLike'] = None
+
+        # set to None if metadata_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata_key is None and "metadata_key" in self.model_fields_set:
+            _dict['metadataKey'] = None
+
+        # set to None if metadata_value (nullable) is None
+        # and model_fields_set contains the field
+        if self.metadata_value is None and "metadata_value" in self.model_fields_set:
+            _dict['metadataValue'] = None
+
+        # set to None if min_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.min_time is None and "min_time" in self.model_fields_set:
+            _dict['minTime'] = None
+
+        # set to None if max_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.max_time is None and "max_time" in self.model_fields_set:
+            _dict['maxTime'] = None
+
         return _dict
 
     @classmethod
@@ -82,7 +149,18 @@ class SearchUsersRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "q": obj.get("q")
+            "q": obj.get("q"),
+            "email": obj.get("email"),
+            "notEmail": obj.get("notEmail"),
+            "phone": obj.get("phone"),
+            "notPhone": obj.get("notPhone"),
+            "fullName": obj.get("fullName"),
+            "notFullName": obj.get("notFullName"),
+            "fullNameLike": obj.get("fullNameLike"),
+            "metadataKey": obj.get("metadataKey"),
+            "metadataValue": obj.get("metadataValue"),
+            "minTime": obj.get("minTime"),
+            "maxTime": obj.get("maxTime")
         })
         return _obj
 

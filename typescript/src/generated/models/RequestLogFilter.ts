@@ -88,6 +88,18 @@ export interface RequestLogFilter {
      * @memberof RequestLogFilter
      */
     userId?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RequestLogFilter
+     */
+    userIds?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RequestLogFilter
+     */
+    notUserIds?: Array<string> | null;
 }
 
 /**
@@ -116,6 +128,8 @@ export function RequestLogFilterFromJSONTyped(json: any, ignoreDiscriminator: bo
         'minLatencyMilliseconds': json['minLatencyMilliseconds'] == null ? undefined : json['minLatencyMilliseconds'],
         'maxLatencyMilliseconds': json['maxLatencyMilliseconds'] == null ? undefined : json['maxLatencyMilliseconds'],
         'userId': json['userId'] == null ? undefined : json['userId'],
+        'userIds': json['userIds'] == null ? undefined : json['userIds'],
+        'notUserIds': json['notUserIds'] == null ? undefined : json['notUserIds'],
     };
 }
 
@@ -139,6 +153,8 @@ export function RequestLogFilterToJSONTyped(value?: RequestLogFilter | null, ign
         'minLatencyMilliseconds': value['minLatencyMilliseconds'],
         'maxLatencyMilliseconds': value['maxLatencyMilliseconds'],
         'userId': value['userId'],
+        'userIds': value['userIds'],
+        'notUserIds': value['notUserIds'],
     };
 }
 

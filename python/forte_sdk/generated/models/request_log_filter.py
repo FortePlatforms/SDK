@@ -40,7 +40,9 @@ class RequestLogFilter(BaseModel):
     min_latency_milliseconds: Optional[StrictInt] = Field(default=None, alias="minLatencyMilliseconds")
     max_latency_milliseconds: Optional[StrictInt] = Field(default=None, alias="maxLatencyMilliseconds")
     user_id: Optional[StrictStr] = Field(default=None, alias="userId")
-    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "status", "path", "methods", "notMethods", "minLatencyMilliseconds", "maxLatencyMilliseconds", "userId"]
+    user_ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="userIds")
+    not_user_ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="notUserIds")
+    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "status", "path", "methods", "notMethods", "minLatencyMilliseconds", "maxLatencyMilliseconds", "userId", "userIds", "notUserIds"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -122,6 +124,16 @@ class RequestLogFilter(BaseModel):
         if self.user_id is None and "user_id" in self.model_fields_set:
             _dict['userId'] = None
 
+        # set to None if user_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_ids is None and "user_ids" in self.model_fields_set:
+            _dict['userIds'] = None
+
+        # set to None if not_user_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.not_user_ids is None and "not_user_ids" in self.model_fields_set:
+            _dict['notUserIds'] = None
+
         return _dict
 
     @classmethod
@@ -142,7 +154,9 @@ class RequestLogFilter(BaseModel):
             "notMethods": obj.get("notMethods"),
             "minLatencyMilliseconds": obj.get("minLatencyMilliseconds"),
             "maxLatencyMilliseconds": obj.get("maxLatencyMilliseconds"),
-            "userId": obj.get("userId")
+            "userId": obj.get("userId"),
+            "userIds": obj.get("userIds"),
+            "notUserIds": obj.get("notUserIds")
         })
         return _obj
 

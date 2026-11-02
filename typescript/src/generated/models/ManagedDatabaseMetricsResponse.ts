@@ -20,6 +20,13 @@ import {
     ManagedDatabaseMetricPointToJSON,
     ManagedDatabaseMetricPointToJSONTyped,
 } from './ManagedDatabaseMetricPoint';
+import type { ManagedDatabaseHostMetricPoint } from './ManagedDatabaseHostMetricPoint';
+import {
+    ManagedDatabaseHostMetricPointFromJSON,
+    ManagedDatabaseHostMetricPointFromJSONTyped,
+    ManagedDatabaseHostMetricPointToJSON,
+    ManagedDatabaseHostMetricPointToJSONTyped,
+} from './ManagedDatabaseHostMetricPoint';
 import type { ManagedDatabaseMetricLimits } from './ManagedDatabaseMetricLimits';
 import {
     ManagedDatabaseMetricLimitsFromJSON,
@@ -59,6 +66,12 @@ export interface ManagedDatabaseMetricsResponse {
      * @memberof ManagedDatabaseMetricsResponse
      */
     limits: ManagedDatabaseMetricLimits;
+    /**
+     * 
+     * @type {Array<ManagedDatabaseHostMetricPoint>}
+     * @memberof ManagedDatabaseMetricsResponse
+     */
+    hostPoints?: Array<ManagedDatabaseHostMetricPoint> | null;
 }
 
 /**
@@ -84,6 +97,7 @@ export function ManagedDatabaseMetricsResponseFromJSONTyped(json: any, ignoreDis
         'points': ((json['points'] as Array<any>).map(ManagedDatabaseMetricPointFromJSON)),
         'usage': ManagedDatabaseUsageFromJSON(json['usage']),
         'limits': ManagedDatabaseMetricLimitsFromJSON(json['limits']),
+        'hostPoints': json['hostPoints'] == null ? undefined : ((json['hostPoints'] as Array<any>).map(ManagedDatabaseHostMetricPointFromJSON)),
     };
 }
 
@@ -101,6 +115,7 @@ export function ManagedDatabaseMetricsResponseToJSONTyped(value?: ManagedDatabas
         'points': ((value['points'] as Array<any>).map(ManagedDatabaseMetricPointToJSON)),
         'usage': ManagedDatabaseUsageToJSON(value['usage']),
         'limits': ManagedDatabaseMetricLimitsToJSON(value['limits']),
+        'hostPoints': value['hostPoints'] == null ? undefined : ((value['hostPoints'] as Array<any>).map(ManagedDatabaseHostMetricPointToJSON)),
     };
 }
 

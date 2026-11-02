@@ -26,6 +26,12 @@ export interface ManagedDatabaseEnvVarMappings {
      */
     connectionStringEnvVar?: string | null;
     /**
+     * Dedicated Postgres only. Receives the connection string in the same format, on the direct (unpooled) endpoint.
+     * @type {string}
+     * @memberof ManagedDatabaseEnvVarMappings
+     */
+    directConnectionStringEnvVar?: string | null;
+    /**
      * Environment variable that receives the host.
      * @type {string}
      * @memberof ManagedDatabaseEnvVarMappings
@@ -103,6 +109,7 @@ export function ManagedDatabaseEnvVarMappingsFromJSONTyped(json: any, ignoreDisc
     return {
         
         'connectionStringEnvVar': json['connectionStringEnvVar'] == null ? undefined : json['connectionStringEnvVar'],
+        'directConnectionStringEnvVar': json['directConnectionStringEnvVar'] == null ? undefined : json['directConnectionStringEnvVar'],
         'hostEnvVar': json['hostEnvVar'] == null ? undefined : json['hostEnvVar'],
         'portEnvVar': json['portEnvVar'] == null ? undefined : json['portEnvVar'],
         'databaseEnvVar': json['databaseEnvVar'] == null ? undefined : json['databaseEnvVar'],
@@ -125,6 +132,7 @@ export function ManagedDatabaseEnvVarMappingsToJSONTyped(value?: ManagedDatabase
     return {
         
         'connectionStringEnvVar': value['connectionStringEnvVar'],
+        'directConnectionStringEnvVar': value['directConnectionStringEnvVar'],
         'hostEnvVar': value['hostEnvVar'],
         'portEnvVar': value['portEnvVar'],
         'databaseEnvVar': value['databaseEnvVar'],

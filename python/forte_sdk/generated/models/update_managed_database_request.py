@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.managed_database_maintenance_window import ManagedDatabaseMaintenanceWindow
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,7 +33,10 @@ class UpdateManagedDatabaseRequest(BaseModel):
     cpu: Optional[StrictStr] = None
     memory_gb: Optional[StrictInt] = Field(default=None, alias="memoryGb")
     storage_gb: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, alias="storageGb")
-    __properties: ClassVar[List[str]] = ["name", "cpu", "memoryGb", "storageGb"]
+    size: Optional[StrictStr] = None
+    maintenance_window: Optional[ManagedDatabaseMaintenanceWindow] = Field(default=None, alias="maintenanceWindow")
+    backup_retention_days: Optional[Annotated[int, Field(le=35, strict=True, ge=1)]] = Field(default=None, alias="backupRetentionDays")
+    __properties: ClassVar[List[str]] = ["name", "cpu", "memoryGb", "storageGb", "size", "maintenanceWindow", "backupRetentionDays"]
 
     @field_validator('name')
     def name_validate_regular_expression(cls, value):
@@ -45,6 +49,16 @@ class UpdateManagedDatabaseRequest(BaseModel):
 
         if not re.match(r"^[a-zA-Z0-9-_]{3,30}$", value):
             raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-_]{3,30}$/")
+        return value
+
+    @field_validator('size')
+    def size_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['MEDIUM', 'LARGE', 'XLARGE']):
+            raise ValueError("must be one of enum values ('MEDIUM', 'LARGE', 'XLARGE')")
         return value
 
     model_config = ConfigDict(
@@ -86,6 +100,9 @@ class UpdateManagedDatabaseRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of maintenance_window
+        if self.maintenance_window:
+            _dict['maintenanceWindow'] = self.maintenance_window.to_dict()
         # set to None if name (nullable) is None
         # and model_fields_set contains the field
         if self.name is None and "name" in self.model_fields_set:
@@ -106,6 +123,16 @@ class UpdateManagedDatabaseRequest(BaseModel):
         if self.storage_gb is None and "storage_gb" in self.model_fields_set:
             _dict['storageGb'] = None
 
+        # set to None if size (nullable) is None
+        # and model_fields_set contains the field
+        if self.size is None and "size" in self.model_fields_set:
+            _dict['size'] = None
+
+        # set to None if backup_retention_days (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_retention_days is None and "backup_retention_days" in self.model_fields_set:
+            _dict['backupRetentionDays'] = None
+
         return _dict
 
     @classmethod
@@ -121,7 +148,10 @@ class UpdateManagedDatabaseRequest(BaseModel):
             "name": obj.get("name"),
             "cpu": obj.get("cpu"),
             "memoryGb": obj.get("memoryGb"),
-            "storageGb": obj.get("storageGb")
+            "storageGb": obj.get("storageGb"),
+            "size": obj.get("size"),
+            "maintenanceWindow": ManagedDatabaseMaintenanceWindow.from_dict(obj["maintenanceWindow"]) if obj.get("maintenanceWindow") is not None else None,
+            "backupRetentionDays": obj.get("backupRetentionDays")
         })
         return _obj
 

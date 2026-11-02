@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseMaintenanceWindow;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseRestoreSource;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,7 +44,11 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateManagedDatabaseRequest.JSON_PROPERTY_TIER,
   CreateManagedDatabaseRequest.JSON_PROPERTY_CPU,
   CreateManagedDatabaseRequest.JSON_PROPERTY_MEMORY_GB,
-  CreateManagedDatabaseRequest.JSON_PROPERTY_STORAGE_GB
+  CreateManagedDatabaseRequest.JSON_PROPERTY_STORAGE_GB,
+  CreateManagedDatabaseRequest.JSON_PROPERTY_SIZE,
+  CreateManagedDatabaseRequest.JSON_PROPERTY_MAINTENANCE_WINDOW,
+  CreateManagedDatabaseRequest.JSON_PROPERTY_RESTORE_FROM,
+  CreateManagedDatabaseRequest.JSON_PROPERTY_BACKUP_RETENTION_DAYS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateManagedDatabaseRequest {
@@ -136,6 +142,57 @@ public class CreateManagedDatabaseRequest {
 
   public static final String JSON_PROPERTY_STORAGE_GB = "storageGb";
   private JsonNullable<Integer> storageGb = JsonNullable.<Integer>undefined();
+
+  /**
+   * Gets or Sets size
+   */
+  public enum SizeEnum {
+    MEDIUM(String.valueOf("MEDIUM")),
+    
+    LARGE(String.valueOf("LARGE")),
+    
+    XLARGE(String.valueOf("XLARGE"));
+
+    private String value;
+
+    SizeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SizeEnum fromValue(String value) {
+      for (SizeEnum b : SizeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_SIZE = "size";
+  private JsonNullable<SizeEnum> size = JsonNullable.<SizeEnum>undefined();
+
+  public static final String JSON_PROPERTY_MAINTENANCE_WINDOW = "maintenanceWindow";
+  @javax.annotation.Nullable
+  private ManagedDatabaseMaintenanceWindow maintenanceWindow;
+
+  public static final String JSON_PROPERTY_RESTORE_FROM = "restoreFrom";
+  @javax.annotation.Nullable
+  private ManagedDatabaseRestoreSource restoreFrom;
+
+  public static final String JSON_PROPERTY_BACKUP_RETENTION_DAYS = "backupRetentionDays";
+  private JsonNullable<Integer> backupRetentionDays = JsonNullable.<Integer>undefined();
 
   public CreateManagedDatabaseRequest() { 
   }
@@ -309,6 +366,120 @@ public class CreateManagedDatabaseRequest {
   }
 
 
+  public CreateManagedDatabaseRequest size(@javax.annotation.Nullable SizeEnum size) {
+    this.size = JsonNullable.<SizeEnum>of(size);
+    return this;
+  }
+
+  /**
+   * Get size
+   * @return size
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public SizeEnum getSize() {
+        return size.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<SizeEnum> getSize_JsonNullable() {
+    return size;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  public void setSize_JsonNullable(JsonNullable<SizeEnum> size) {
+    this.size = size;
+  }
+
+  public void setSize(@javax.annotation.Nullable SizeEnum size) {
+    this.size = JsonNullable.<SizeEnum>of(size);
+  }
+
+
+  public CreateManagedDatabaseRequest maintenanceWindow(@javax.annotation.Nullable ManagedDatabaseMaintenanceWindow maintenanceWindow) {
+    this.maintenanceWindow = maintenanceWindow;
+    return this;
+  }
+
+  /**
+   * Get maintenanceWindow
+   * @return maintenanceWindow
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MAINTENANCE_WINDOW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ManagedDatabaseMaintenanceWindow getMaintenanceWindow() {
+    return maintenanceWindow;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MAINTENANCE_WINDOW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMaintenanceWindow(@javax.annotation.Nullable ManagedDatabaseMaintenanceWindow maintenanceWindow) {
+    this.maintenanceWindow = maintenanceWindow;
+  }
+
+
+  public CreateManagedDatabaseRequest restoreFrom(@javax.annotation.Nullable ManagedDatabaseRestoreSource restoreFrom) {
+    this.restoreFrom = restoreFrom;
+    return this;
+  }
+
+  /**
+   * Get restoreFrom
+   * @return restoreFrom
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RESTORE_FROM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ManagedDatabaseRestoreSource getRestoreFrom() {
+    return restoreFrom;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RESTORE_FROM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRestoreFrom(@javax.annotation.Nullable ManagedDatabaseRestoreSource restoreFrom) {
+    this.restoreFrom = restoreFrom;
+  }
+
+
+  public CreateManagedDatabaseRequest backupRetentionDays(@javax.annotation.Nullable Integer backupRetentionDays) {
+    this.backupRetentionDays = JsonNullable.<Integer>of(backupRetentionDays);
+    return this;
+  }
+
+  /**
+   * Get backupRetentionDays
+   * minimum: 1
+   * maximum: 35
+   * @return backupRetentionDays
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Integer getBackupRetentionDays() {
+        return backupRetentionDays.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_RETENTION_DAYS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Integer> getBackupRetentionDays_JsonNullable() {
+    return backupRetentionDays;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BACKUP_RETENTION_DAYS)
+  public void setBackupRetentionDays_JsonNullable(JsonNullable<Integer> backupRetentionDays) {
+    this.backupRetentionDays = backupRetentionDays;
+  }
+
+  public void setBackupRetentionDays(@javax.annotation.Nullable Integer backupRetentionDays) {
+    this.backupRetentionDays = JsonNullable.<Integer>of(backupRetentionDays);
+  }
+
+
   /**
    * Return true if this CreateManagedDatabaseRequest object is equal to o.
    */
@@ -326,7 +497,11 @@ public class CreateManagedDatabaseRequest {
         Objects.equals(this.tier, createManagedDatabaseRequest.tier) &&
         equalsNullable(this.cpu, createManagedDatabaseRequest.cpu) &&
         equalsNullable(this.memoryGb, createManagedDatabaseRequest.memoryGb) &&
-        equalsNullable(this.storageGb, createManagedDatabaseRequest.storageGb);
+        equalsNullable(this.storageGb, createManagedDatabaseRequest.storageGb) &&
+        equalsNullable(this.size, createManagedDatabaseRequest.size) &&
+        Objects.equals(this.maintenanceWindow, createManagedDatabaseRequest.maintenanceWindow) &&
+        Objects.equals(this.restoreFrom, createManagedDatabaseRequest.restoreFrom) &&
+        equalsNullable(this.backupRetentionDays, createManagedDatabaseRequest.backupRetentionDays);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -335,7 +510,7 @@ public class CreateManagedDatabaseRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type, tier, hashCodeNullable(cpu), hashCodeNullable(memoryGb), hashCodeNullable(storageGb));
+    return Objects.hash(name, type, tier, hashCodeNullable(cpu), hashCodeNullable(memoryGb), hashCodeNullable(storageGb), hashCodeNullable(size), maintenanceWindow, restoreFrom, hashCodeNullable(backupRetentionDays));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -355,6 +530,10 @@ public class CreateManagedDatabaseRequest {
     sb.append("    cpu: ").append(toIndentedString(cpu)).append("\n");
     sb.append("    memoryGb: ").append(toIndentedString(memoryGb)).append("\n");
     sb.append("    storageGb: ").append(toIndentedString(storageGb)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    maintenanceWindow: ").append(toIndentedString(maintenanceWindow)).append("\n");
+    sb.append("    restoreFrom: ").append(toIndentedString(restoreFrom)).append("\n");
+    sb.append("    backupRetentionDays: ").append(toIndentedString(backupRetentionDays)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -427,6 +606,26 @@ public class CreateManagedDatabaseRequest {
     // add `storageGb` to the URL query string
     if (getStorageGb() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstorageGb%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStorageGb()))));
+    }
+
+    // add `size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+    }
+
+    // add `maintenanceWindow` to the URL query string
+    if (getMaintenanceWindow() != null) {
+      joiner.add(getMaintenanceWindow().toUrlQueryString(prefix + "maintenanceWindow" + suffix));
+    }
+
+    // add `restoreFrom` to the URL query string
+    if (getRestoreFrom() != null) {
+      joiner.add(getRestoreFrom().toUrlQueryString(prefix + "restoreFrom" + suffix));
+    }
+
+    // add `backupRetentionDays` to the URL query string
+    if (getBackupRetentionDays() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackupRetentionDays%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupRetentionDays()))));
     }
 
     return joiner.toString();

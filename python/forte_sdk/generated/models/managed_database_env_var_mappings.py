@@ -29,6 +29,7 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
     ManagedDatabaseEnvVarMappings
     """ # noqa: E501
     connection_string_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the full connection string, e.g. DATABASE_URL.", alias="connectionStringEnvVar")
+    direct_connection_string_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Dedicated Postgres only. Receives the connection string in the same format, on the direct (unpooled) endpoint.", alias="directConnectionStringEnvVar")
     host_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the host.", alias="hostEnvVar")
     port_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the port.", alias="portEnvVar")
     database_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the database name.", alias="databaseEnvVar")
@@ -36,10 +37,23 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
     password_env_var: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Environment variable that receives the password.", alias="passwordEnvVar")
     connection_string_format: Optional[StrictStr] = Field(default=None, description="Connection string dialect for the consuming driver. Defaults to URI; CUSTOM uses connectionStringTemplate.", alias="connectionStringFormat")
     connection_string_template: Optional[StrictStr] = Field(default=None, description="CUSTOM format only. Placeholders: {host} {port} {database} {username} {password} {sslmode}.", alias="connectionStringTemplate")
-    __properties: ClassVar[List[str]] = ["connectionStringEnvVar", "hostEnvVar", "portEnvVar", "databaseEnvVar", "usernameEnvVar", "passwordEnvVar", "connectionStringFormat", "connectionStringTemplate"]
+    __properties: ClassVar[List[str]] = ["connectionStringEnvVar", "directConnectionStringEnvVar", "hostEnvVar", "portEnvVar", "databaseEnvVar", "usernameEnvVar", "passwordEnvVar", "connectionStringFormat", "connectionStringTemplate"]
 
     @field_validator('connection_string_env_var')
     def connection_string_env_var_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not isinstance(value, str):
+            value = str(value)
+
+        if not re.match(r"^[a-zA-Z][a-zA-Z0-9_]*$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z][a-zA-Z0-9_]*$/")
+        return value
+
+    @field_validator('direct_connection_string_env_var')
+    def direct_connection_string_env_var_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
             return value
@@ -170,6 +184,11 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
         if self.connection_string_env_var is None and "connection_string_env_var" in self.model_fields_set:
             _dict['connectionStringEnvVar'] = None
 
+        # set to None if direct_connection_string_env_var (nullable) is None
+        # and model_fields_set contains the field
+        if self.direct_connection_string_env_var is None and "direct_connection_string_env_var" in self.model_fields_set:
+            _dict['directConnectionStringEnvVar'] = None
+
         # set to None if host_env_var (nullable) is None
         # and model_fields_set contains the field
         if self.host_env_var is None and "host_env_var" in self.model_fields_set:
@@ -218,6 +237,7 @@ class ManagedDatabaseEnvVarMappings(BaseModel):
 
         _obj = cls.model_validate({
             "connectionStringEnvVar": obj.get("connectionStringEnvVar"),
+            "directConnectionStringEnvVar": obj.get("directConnectionStringEnvVar"),
             "hostEnvVar": obj.get("hostEnvVar"),
             "portEnvVar": obj.get("portEnvVar"),
             "databaseEnvVar": obj.get("databaseEnvVar"),

@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.managed_database_host_metric_point import ManagedDatabaseHostMetricPoint
 from forte_sdk.generated.models.managed_database_metric_limits import ManagedDatabaseMetricLimits
 from forte_sdk.generated.models.managed_database_metric_point import ManagedDatabaseMetricPoint
 from forte_sdk.generated.models.managed_database_usage import ManagedDatabaseUsage
@@ -33,7 +34,8 @@ class ManagedDatabaseMetricsResponse(BaseModel):
     points: List[ManagedDatabaseMetricPoint]
     usage: ManagedDatabaseUsage
     limits: ManagedDatabaseMetricLimits
-    __properties: ClassVar[List[str]] = ["points", "usage", "limits"]
+    host_points: Optional[List[ManagedDatabaseHostMetricPoint]] = Field(default=None, alias="hostPoints")
+    __properties: ClassVar[List[str]] = ["points", "usage", "limits", "hostPoints"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -87,6 +89,18 @@ class ManagedDatabaseMetricsResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of limits
         if self.limits:
             _dict['limits'] = self.limits.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in host_points (list)
+        _items = []
+        if self.host_points:
+            for _item_host_points in self.host_points:
+                if _item_host_points:
+                    _items.append(_item_host_points.to_dict())
+            _dict['hostPoints'] = _items
+        # set to None if host_points (nullable) is None
+        # and model_fields_set contains the field
+        if self.host_points is None and "host_points" in self.model_fields_set:
+            _dict['hostPoints'] = None
+
         return _dict
 
     @classmethod
@@ -101,7 +115,8 @@ class ManagedDatabaseMetricsResponse(BaseModel):
         _obj = cls.model_validate({
             "points": [ManagedDatabaseMetricPoint.from_dict(_item) for _item in obj["points"]] if obj.get("points") is not None else None,
             "usage": ManagedDatabaseUsage.from_dict(obj["usage"]) if obj.get("usage") is not None else None,
-            "limits": ManagedDatabaseMetricLimits.from_dict(obj["limits"]) if obj.get("limits") is not None else None
+            "limits": ManagedDatabaseMetricLimits.from_dict(obj["limits"]) if obj.get("limits") is not None else None,
+            "hostPoints": [ManagedDatabaseHostMetricPoint.from_dict(_item) for _item in obj["hostPoints"]] if obj.get("hostPoints") is not None else None
         })
         return _obj
 

@@ -13,6 +13,21 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ManagedDatabaseMaintenanceWindow } from './ManagedDatabaseMaintenanceWindow';
+import {
+    ManagedDatabaseMaintenanceWindowFromJSON,
+    ManagedDatabaseMaintenanceWindowFromJSONTyped,
+    ManagedDatabaseMaintenanceWindowToJSON,
+    ManagedDatabaseMaintenanceWindowToJSONTyped,
+} from './ManagedDatabaseMaintenanceWindow';
+import type { ManagedDatabaseRestoreSource } from './ManagedDatabaseRestoreSource';
+import {
+    ManagedDatabaseRestoreSourceFromJSON,
+    ManagedDatabaseRestoreSourceFromJSONTyped,
+    ManagedDatabaseRestoreSourceToJSON,
+    ManagedDatabaseRestoreSourceToJSONTyped,
+} from './ManagedDatabaseRestoreSource';
+
 /**
  * 
  * @export
@@ -55,6 +70,30 @@ export interface CreateManagedDatabaseRequest {
      * @memberof CreateManagedDatabaseRequest
      */
     storageGb?: number | null;
+    /**
+     * 
+     * @type {CreateManagedDatabaseRequestSizeType}
+     * @memberof CreateManagedDatabaseRequest
+     */
+    size?: CreateManagedDatabaseRequestSizeType | null;
+    /**
+     * 
+     * @type {ManagedDatabaseMaintenanceWindow}
+     * @memberof CreateManagedDatabaseRequest
+     */
+    maintenanceWindow?: ManagedDatabaseMaintenanceWindow;
+    /**
+     * 
+     * @type {ManagedDatabaseRestoreSource}
+     * @memberof CreateManagedDatabaseRequest
+     */
+    restoreFrom?: ManagedDatabaseRestoreSource;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateManagedDatabaseRequest
+     */
+    backupRetentionDays?: number | null;
 }
 
 
@@ -75,6 +114,16 @@ export const CreateManagedDatabaseRequestTierType = {
     DEDICATED: 'DEDICATED'
 } as const;
 export type CreateManagedDatabaseRequestTierType = typeof CreateManagedDatabaseRequestTierType[keyof typeof CreateManagedDatabaseRequestTierType];
+
+/**
+ * @export
+ */
+export const CreateManagedDatabaseRequestSizeType = {
+    MEDIUM: 'MEDIUM',
+    LARGE: 'LARGE',
+    XLARGE: 'XLARGE'
+} as const;
+export type CreateManagedDatabaseRequestSizeType = typeof CreateManagedDatabaseRequestSizeType[keyof typeof CreateManagedDatabaseRequestSizeType];
 
 
 /**
@@ -103,6 +152,10 @@ export function CreateManagedDatabaseRequestFromJSONTyped(json: any, ignoreDiscr
         'cpu': json['cpu'] == null ? undefined : json['cpu'],
         'memoryGb': json['memoryGb'] == null ? undefined : json['memoryGb'],
         'storageGb': json['storageGb'] == null ? undefined : json['storageGb'],
+        'size': json['size'] == null ? undefined : json['size'],
+        'maintenanceWindow': json['maintenanceWindow'] == null ? undefined : ManagedDatabaseMaintenanceWindowFromJSON(json['maintenanceWindow']),
+        'restoreFrom': json['restoreFrom'] == null ? undefined : ManagedDatabaseRestoreSourceFromJSON(json['restoreFrom']),
+        'backupRetentionDays': json['backupRetentionDays'] == null ? undefined : json['backupRetentionDays'],
     };
 }
 
@@ -123,6 +176,10 @@ export function CreateManagedDatabaseRequestToJSONTyped(value?: CreateManagedDat
         'cpu': value['cpu'],
         'memoryGb': value['memoryGb'],
         'storageGb': value['storageGb'],
+        'size': value['size'],
+        'maintenanceWindow': ManagedDatabaseMaintenanceWindowToJSON(value['maintenanceWindow']),
+        'restoreFrom': ManagedDatabaseRestoreSourceToJSON(value['restoreFrom']),
+        'backupRetentionDays': value['backupRetentionDays'],
     };
 }
 

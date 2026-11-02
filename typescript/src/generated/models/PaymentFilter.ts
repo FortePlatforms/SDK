@@ -54,6 +54,18 @@ export interface PaymentFilter {
      * @type {Array<string>}
      * @memberof PaymentFilter
      */
+    userIds?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PaymentFilter
+     */
+    notUserIds?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PaymentFilter
+     */
     ids?: Array<string> | null;
     /**
      * 
@@ -73,6 +85,18 @@ export interface PaymentFilter {
      * @memberof PaymentFilter
      */
     lineItemDescription?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PaymentFilter
+     */
+    lineItemDescriptions?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PaymentFilter
+     */
+    notLineItemDescriptions?: Array<string> | null;
     /**
      * 
      * @type {PaymentFilterProductGroupByType}
@@ -155,10 +179,14 @@ export function PaymentFilterFromJSONTyped(json: any, ignoreDiscriminator: boole
         'states': json['states'] == null ? undefined : json['states'],
         'notStates': json['notStates'] == null ? undefined : json['notStates'],
         'userId': json['userId'] == null ? undefined : json['userId'],
+        'userIds': json['userIds'] == null ? undefined : json['userIds'],
+        'notUserIds': json['notUserIds'] == null ? undefined : json['notUserIds'],
         'ids': json['ids'] == null ? undefined : json['ids'],
         'notIds': json['notIds'] == null ? undefined : json['notIds'],
         'subscription': json['subscription'] == null ? undefined : json['subscription'],
         'lineItemDescription': json['lineItemDescription'] == null ? undefined : json['lineItemDescription'],
+        'lineItemDescriptions': json['lineItemDescriptions'] == null ? undefined : json['lineItemDescriptions'],
+        'notLineItemDescriptions': json['notLineItemDescriptions'] == null ? undefined : json['notLineItemDescriptions'],
         'productGroupBy': json['productGroupBy'] == null ? undefined : json['productGroupBy'],
         'productKey': json['productKey'] == null ? undefined : json['productKey'],
         'productMetadataKey': json['productMetadataKey'] == null ? undefined : json['productMetadataKey'],
@@ -181,10 +209,14 @@ export function PaymentFilterToJSONTyped(value?: PaymentFilter | null, ignoreDis
         'states': value['states'],
         'notStates': value['notStates'],
         'userId': value['userId'],
+        'userIds': value['userIds'],
+        'notUserIds': value['notUserIds'],
         'ids': value['ids'],
         'notIds': value['notIds'],
         'subscription': value['subscription'],
         'lineItemDescription': value['lineItemDescription'],
+        'lineItemDescriptions': value['lineItemDescriptions'],
+        'notLineItemDescriptions': value['notLineItemDescriptions'],
         'productGroupBy': value['productGroupBy'],
         'productKey': value['productKey'],
         'productMetadataKey': value['productMetadataKey'],

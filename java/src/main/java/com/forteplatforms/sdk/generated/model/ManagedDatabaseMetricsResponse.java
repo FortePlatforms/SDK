@@ -24,12 +24,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.ManagedDatabaseHostMetricPoint;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseMetricLimits;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseMetricPoint;
 import com.forteplatforms.sdk.generated.model.ManagedDatabaseUsage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,7 +45,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   ManagedDatabaseMetricsResponse.JSON_PROPERTY_POINTS,
   ManagedDatabaseMetricsResponse.JSON_PROPERTY_USAGE,
-  ManagedDatabaseMetricsResponse.JSON_PROPERTY_LIMITS
+  ManagedDatabaseMetricsResponse.JSON_PROPERTY_LIMITS,
+  ManagedDatabaseMetricsResponse.JSON_PROPERTY_HOST_POINTS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ManagedDatabaseMetricsResponse {
@@ -55,6 +61,9 @@ public class ManagedDatabaseMetricsResponse {
   public static final String JSON_PROPERTY_LIMITS = "limits";
   @javax.annotation.Nonnull
   private ManagedDatabaseMetricLimits limits;
+
+  public static final String JSON_PROPERTY_HOST_POINTS = "hostPoints";
+  private JsonNullable<List<ManagedDatabaseHostMetricPoint>> hostPoints = JsonNullable.<List<ManagedDatabaseHostMetricPoint>>undefined();
 
   public ManagedDatabaseMetricsResponse() { 
   }
@@ -139,6 +148,50 @@ public class ManagedDatabaseMetricsResponse {
   }
 
 
+  public ManagedDatabaseMetricsResponse hostPoints(@javax.annotation.Nullable List<ManagedDatabaseHostMetricPoint> hostPoints) {
+    this.hostPoints = JsonNullable.<List<ManagedDatabaseHostMetricPoint>>of(hostPoints);
+    return this;
+  }
+
+  public ManagedDatabaseMetricsResponse addHostPointsItem(ManagedDatabaseHostMetricPoint hostPointsItem) {
+    if (this.hostPoints == null || !this.hostPoints.isPresent()) {
+      this.hostPoints = JsonNullable.<List<ManagedDatabaseHostMetricPoint>>of(new ArrayList<>());
+    }
+    try {
+      this.hostPoints.get().add(hostPointsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get hostPoints
+   * @return hostPoints
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<ManagedDatabaseHostMetricPoint> getHostPoints() {
+        return hostPoints.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_HOST_POINTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<ManagedDatabaseHostMetricPoint>> getHostPoints_JsonNullable() {
+    return hostPoints;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_HOST_POINTS)
+  public void setHostPoints_JsonNullable(JsonNullable<List<ManagedDatabaseHostMetricPoint>> hostPoints) {
+    this.hostPoints = hostPoints;
+  }
+
+  public void setHostPoints(@javax.annotation.Nullable List<ManagedDatabaseHostMetricPoint> hostPoints) {
+    this.hostPoints = JsonNullable.<List<ManagedDatabaseHostMetricPoint>>of(hostPoints);
+  }
+
+
   /**
    * Return true if this ManagedDatabaseMetricsResponse object is equal to o.
    */
@@ -153,12 +206,24 @@ public class ManagedDatabaseMetricsResponse {
     ManagedDatabaseMetricsResponse managedDatabaseMetricsResponse = (ManagedDatabaseMetricsResponse) o;
     return Objects.equals(this.points, managedDatabaseMetricsResponse.points) &&
         Objects.equals(this.usage, managedDatabaseMetricsResponse.usage) &&
-        Objects.equals(this.limits, managedDatabaseMetricsResponse.limits);
+        Objects.equals(this.limits, managedDatabaseMetricsResponse.limits) &&
+        equalsNullable(this.hostPoints, managedDatabaseMetricsResponse.hostPoints);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(points, usage, limits);
+    return Objects.hash(points, usage, limits, hashCodeNullable(hostPoints));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -168,6 +233,7 @@ public class ManagedDatabaseMetricsResponse {
     sb.append("    points: ").append(toIndentedString(points)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    limits: ").append(toIndentedString(limits)).append("\n");
+    sb.append("    hostPoints: ").append(toIndentedString(hostPoints)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -230,6 +296,16 @@ public class ManagedDatabaseMetricsResponse {
     // add `limits` to the URL query string
     if (getLimits() != null) {
       joiner.add(getLimits().toUrlQueryString(prefix + "limits" + suffix));
+    }
+
+    // add `hostPoints` to the URL query string
+    if (getHostPoints() != null) {
+      for (int i = 0; i < getHostPoints().size(); i++) {
+        if (getHostPoints().get(i) != null) {
+          joiner.add(getHostPoints().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%shostPoints%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

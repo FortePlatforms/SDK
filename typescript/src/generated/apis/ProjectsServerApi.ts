@@ -194,6 +194,11 @@ import {
     CreateServiceRequestProxyResponseToJSON,
 } from '../models/CreateServiceRequestProxyResponse';
 import {
+    type CreateServiceRestartResponse,
+    CreateServiceRestartResponseFromJSON,
+    CreateServiceRestartResponseToJSON,
+} from '../models/CreateServiceRestartResponse';
+import {
     type CreateServiceToServiceConnectionRequest,
     CreateServiceToServiceConnectionRequestFromJSON,
     CreateServiceToServiceConnectionRequestToJSON,
@@ -249,6 +254,11 @@ import {
     CreateWebAppRequestToJSON,
 } from '../models/CreateWebAppRequest';
 import {
+    type CreateWebAppRestartResponse,
+    CreateWebAppRestartResponseFromJSON,
+    CreateWebAppRestartResponseToJSON,
+} from '../models/CreateWebAppRestartResponse';
+import {
     type CustomDomainResponse,
     CustomDomainResponseFromJSON,
     CustomDomainResponseToJSON,
@@ -269,10 +279,25 @@ import {
     GetContentDownloadLinkResponseToJSON,
 } from '../models/GetContentDownloadLinkResponse';
 import {
+    type GetManagedDatabaseBackupResponse,
+    GetManagedDatabaseBackupResponseFromJSON,
+    GetManagedDatabaseBackupResponseToJSON,
+} from '../models/GetManagedDatabaseBackupResponse';
+import {
+    type GetManagedDatabaseBackupSourceResponse,
+    GetManagedDatabaseBackupSourceResponseFromJSON,
+    GetManagedDatabaseBackupSourceResponseToJSON,
+} from '../models/GetManagedDatabaseBackupSourceResponse';
+import {
     type GetRequestBodyDownloadLinkResponse,
     GetRequestBodyDownloadLinkResponseFromJSON,
     GetRequestBodyDownloadLinkResponseToJSON,
 } from '../models/GetRequestBodyDownloadLinkResponse';
+import {
+    type GetServiceBlockedRequestMetricsResponse,
+    GetServiceBlockedRequestMetricsResponseFromJSON,
+    GetServiceBlockedRequestMetricsResponseToJSON,
+} from '../models/GetServiceBlockedRequestMetricsResponse';
 import {
     type GetServiceCodeSourceStatusResponse,
     GetServiceCodeSourceStatusResponseFromJSON,
@@ -283,6 +308,11 @@ import {
     GetServiceRouteTimeMetricsResponseFromJSON,
     GetServiceRouteTimeMetricsResponseToJSON,
 } from '../models/GetServiceRouteTimeMetricsResponse';
+import {
+    type GetWebAppBlockedRequestMetricsResponse,
+    GetWebAppBlockedRequestMetricsResponseFromJSON,
+    GetWebAppBlockedRequestMetricsResponseToJSON,
+} from '../models/GetWebAppBlockedRequestMetricsResponse';
 import {
     type ImpersonationTokenResponse,
     ImpersonationTokenResponseFromJSON,
@@ -298,6 +328,16 @@ import {
     ListCustomDomainsResponseFromJSON,
     ListCustomDomainsResponseToJSON,
 } from '../models/ListCustomDomainsResponse';
+import {
+    type ListManagedDatabaseBackupSourcesResponse,
+    ListManagedDatabaseBackupSourcesResponseFromJSON,
+    ListManagedDatabaseBackupSourcesResponseToJSON,
+} from '../models/ListManagedDatabaseBackupSourcesResponse';
+import {
+    type ListManagedDatabaseBackupsResponse,
+    ListManagedDatabaseBackupsResponseFromJSON,
+    ListManagedDatabaseBackupsResponseToJSON,
+} from '../models/ListManagedDatabaseBackupsResponse';
 import {
     type ListManagedDatabaseSlowQueriesResponse,
     ListManagedDatabaseSlowQueriesResponseFromJSON,
@@ -353,6 +393,16 @@ import {
     PaginatedResponseActionInvocationObjectFromJSON,
     PaginatedResponseActionInvocationObjectToJSON,
 } from '../models/PaginatedResponseActionInvocationObject';
+import {
+    type PaginatedResponseBlockedRequestGroup,
+    PaginatedResponseBlockedRequestGroupFromJSON,
+    PaginatedResponseBlockedRequestGroupToJSON,
+} from '../models/PaginatedResponseBlockedRequestGroup';
+import {
+    type PaginatedResponseBlockedRequestSample,
+    PaginatedResponseBlockedRequestSampleFromJSON,
+    PaginatedResponseBlockedRequestSampleToJSON,
+} from '../models/PaginatedResponseBlockedRequestSample';
 import {
     type PaginatedResponseLogLineObject,
     PaginatedResponseLogLineObjectFromJSON,
@@ -857,6 +907,11 @@ export interface CreateServiceRequestProxyOperationRequest {
     createServiceRequestProxyRequest: CreateServiceRequestProxyRequest;
 }
 
+export interface CreateServiceRestartRequest {
+    projectId: string;
+    serviceId: string;
+}
+
 export interface CreateServiceToServiceConnectionOperationRequest {
     projectId: string;
     serviceId: string;
@@ -886,6 +941,11 @@ export interface CreateWebAppDeploymentRequest {
     commitSha?: string;
     releaseTagName?: string;
     artifactId?: string;
+}
+
+export interface CreateWebAppRestartRequest {
+    projectId: string;
+    webAppId: string;
 }
 
 export interface DeleteActionRequest {
@@ -1014,6 +1074,17 @@ export interface GetManagedDatabaseRequest {
     databaseId: string;
 }
 
+export interface GetManagedDatabaseBackupRequest {
+    projectId: string;
+    databaseId: string;
+    backupId: string;
+}
+
+export interface GetManagedDatabaseBackupSourceRequest {
+    projectId: string;
+    databaseId: string;
+}
+
 export interface GetManagedDatabaseMetricsRequest {
     projectId: string;
     databaseId: string;
@@ -1072,6 +1143,13 @@ export interface GetRequestInvocationLogRequest {
 export interface GetServiceRequest {
     projectId: string;
     serviceId: string;
+}
+
+export interface GetServiceBlockedRequestMetricsRequest {
+    projectId: string;
+    serviceId: string;
+    minTime?: Date;
+    maxTime?: Date;
 }
 
 export interface GetServiceCodeSourceStatusRequest {
@@ -1138,6 +1216,13 @@ export interface GetWebAppRequest {
     webAppId: string;
 }
 
+export interface GetWebAppBlockedRequestMetricsRequest {
+    projectId: string;
+    webAppId: string;
+    minTime?: Date;
+    maxTime?: Date;
+}
+
 export interface GetWebAppDeploymentRequest {
     projectId: string;
     webAppId: string;
@@ -1182,10 +1267,27 @@ export interface ListLogLinesRequest {
     serviceId: string;
     minTime?: Date;
     maxTime?: Date;
-    requestId?: string;
+    requestId?: Array<string>;
+    notRequestId?: Array<string>;
     buildId?: string;
     level?: string;
+    levels?: Array<string>;
+    notLevels?: Array<string>;
     nextToken?: string;
+}
+
+export interface ListManagedDatabaseBackupSourcesRequest {
+    projectId: string;
+    deleted?: boolean;
+    nextToken?: string;
+    pageSize?: number;
+}
+
+export interface ListManagedDatabaseBackupsRequest {
+    projectId: string;
+    databaseId: string;
+    nextToken?: string;
+    pageSize?: number;
 }
 
 export interface ListManagedDatabaseHistoryRequest {
@@ -1241,6 +1343,26 @@ export interface ListProjectPaymentsRequest {
     nextToken?: string;
 }
 
+export interface ListServiceBlockedRequestGroupsRequest {
+    projectId: string;
+    serviceId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    category?: ListServiceBlockedRequestGroupsCategoryType;
+    pageSize?: number;
+    nextPageToken?: string;
+}
+
+export interface ListServiceBlockedRequestSamplesRequest {
+    projectId: string;
+    serviceId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    groupKey?: string;
+    pageSize?: number;
+    nextPageToken?: string;
+}
+
 export interface ListServiceCustomDomainsRequest {
     projectId: string;
     serviceId: string;
@@ -1269,7 +1391,8 @@ export interface ListServicesRequest {
 export interface ListUserActionLogsRequest {
     projectId: string;
     userId: string;
-    actionType?: ListUserActionLogsActionTypeType;
+    actionType?: Array<ListUserActionLogsActionTypeType>;
+    notActionType?: Array<ListUserActionLogsNotActionTypeType>;
     minTime?: Date;
     maxTime?: Date;
     nextToken?: string;
@@ -1300,15 +1423,38 @@ export interface ListUserSubscriptionsRequest {
 
 export interface ListUsersRequest {
     projectId: string;
-    email?: string;
-    phone?: string;
-    fullName?: string;
-    fullNameLike?: string;
-    metadataKey?: string;
-    metadataValue?: string;
+    email?: Array<string>;
+    notEmail?: Array<string>;
+    phone?: Array<string>;
+    notPhone?: Array<string>;
+    fullName?: Array<string>;
+    notFullName?: Array<string>;
+    fullNameLike?: Array<string>;
+    metadataKey?: Array<string>;
+    metadataValue?: Array<string>;
     minTime?: Date;
     maxTime?: Date;
     nextToken?: string;
+}
+
+export interface ListWebAppBlockedRequestGroupsRequest {
+    projectId: string;
+    webAppId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    category?: ListWebAppBlockedRequestGroupsCategoryType;
+    pageSize?: number;
+    nextPageToken?: string;
+}
+
+export interface ListWebAppBlockedRequestSamplesRequest {
+    projectId: string;
+    webAppId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    groupKey?: string;
+    pageSize?: number;
+    nextPageToken?: string;
 }
 
 export interface ListWebAppBuildLogLinesRequest {
@@ -1343,6 +1489,7 @@ export interface ListWebAppLogLinesRequest {
     minTime?: Date;
     maxTime?: Date;
     level?: string;
+    levels?: Array<string>;
     nextToken?: string;
 }
 
@@ -1533,8 +1680,11 @@ export interface SearchLogLinesRequest {
     query: string;
     minTime?: Date;
     maxTime?: Date;
-    requestId?: string;
+    requestId?: Array<string>;
+    notRequestId?: Array<string>;
     level?: string;
+    levels?: Array<string>;
+    notLevels?: Array<string>;
     nextToken?: string;
 }
 
@@ -1561,6 +1711,7 @@ export interface SearchWebAppLogLinesRequest {
     minTime?: Date;
     maxTime?: Date;
     level?: string;
+    levels?: Array<string>;
     nextToken?: string;
 }
 
@@ -3496,6 +3647,61 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for createServiceRestart without sending the request
+     */
+    async createServiceRestartRequestOpts(requestParameters: CreateServiceRestartRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createServiceRestart().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling createServiceRestart().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/restarts`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async createServiceRestartRaw(requestParameters: CreateServiceRestartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateServiceRestartResponse>> {
+        const requestOptions = await this.createServiceRestartRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateServiceRestartResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createServiceRestart(requestParameters: CreateServiceRestartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateServiceRestartResponse> {
+        const response = await this.createServiceRestartRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for createServiceToServiceConnection without sending the request
      */
     async createServiceToServiceConnectionRequestOpts(requestParameters: CreateServiceToServiceConnectionOperationRequest): Promise<runtime.RequestOpts> {
@@ -3811,6 +4017,61 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async createWebAppDeployment(requestParameters: CreateWebAppDeploymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebAppBuildRequestObject> {
         const response = await this.createWebAppDeploymentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createWebAppRestart without sending the request
+     */
+    async createWebAppRestartRequestOpts(requestParameters: CreateWebAppRestartRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createWebAppRestart().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling createWebAppRestart().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/restarts`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async createWebAppRestartRaw(requestParameters: CreateWebAppRestartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateWebAppRestartResponse>> {
+        const requestOptions = await this.createWebAppRestartRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateWebAppRestartResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createWebAppRestart(requestParameters: CreateWebAppRestartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateWebAppRestartResponse> {
+        const response = await this.createWebAppRestartRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5045,6 +5306,116 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getManagedDatabaseBackup without sending the request
+     */
+    async getManagedDatabaseBackupRequestOpts(requestParameters: GetManagedDatabaseBackupRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getManagedDatabaseBackup().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling getManagedDatabaseBackup().'
+            );
+        }
+
+        if (requestParameters['backupId'] == null) {
+            throw new runtime.RequiredError(
+                'backupId',
+                'Required parameter "backupId" was null or undefined when calling getManagedDatabaseBackup().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/backups/{backupId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+        urlPath = urlPath.replace('{backupId}', encodeURIComponent(String(requestParameters['backupId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getManagedDatabaseBackupRaw(requestParameters: GetManagedDatabaseBackupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetManagedDatabaseBackupResponse>> {
+        const requestOptions = await this.getManagedDatabaseBackupRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetManagedDatabaseBackupResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getManagedDatabaseBackup(requestParameters: GetManagedDatabaseBackupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetManagedDatabaseBackupResponse> {
+        const response = await this.getManagedDatabaseBackupRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getManagedDatabaseBackupSource without sending the request
+     */
+    async getManagedDatabaseBackupSourceRequestOpts(requestParameters: GetManagedDatabaseBackupSourceRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getManagedDatabaseBackupSource().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling getManagedDatabaseBackupSource().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/database-backup-sources/{databaseId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getManagedDatabaseBackupSourceRaw(requestParameters: GetManagedDatabaseBackupSourceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetManagedDatabaseBackupSourceResponse>> {
+        const requestOptions = await this.getManagedDatabaseBackupSourceRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetManagedDatabaseBackupSourceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getManagedDatabaseBackupSource(requestParameters: GetManagedDatabaseBackupSourceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetManagedDatabaseBackupSourceResponse> {
+        const response = await this.getManagedDatabaseBackupSourceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getManagedDatabaseMetrics without sending the request
      */
     async getManagedDatabaseMetricsRequestOpts(requestParameters: GetManagedDatabaseMetricsRequest): Promise<runtime.RequestOpts> {
@@ -5599,6 +5970,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getService(requestParameters: GetServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServiceObject> {
         const response = await this.getServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getServiceBlockedRequestMetrics without sending the request
+     */
+    async getServiceBlockedRequestMetricsRequestOpts(requestParameters: GetServiceBlockedRequestMetricsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getServiceBlockedRequestMetrics().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling getServiceBlockedRequestMetrics().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/blocked-requests/metrics`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getServiceBlockedRequestMetricsRaw(requestParameters: GetServiceBlockedRequestMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetServiceBlockedRequestMetricsResponse>> {
+        const requestOptions = await this.getServiceBlockedRequestMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetServiceBlockedRequestMetricsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getServiceBlockedRequestMetrics(requestParameters: GetServiceBlockedRequestMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetServiceBlockedRequestMetricsResponse> {
+        const response = await this.getServiceBlockedRequestMetricsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6177,6 +6607,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getWebAppBlockedRequestMetrics without sending the request
+     */
+    async getWebAppBlockedRequestMetricsRequestOpts(requestParameters: GetWebAppBlockedRequestMetricsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getWebAppBlockedRequestMetrics().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling getWebAppBlockedRequestMetrics().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/blocked-requests/metrics`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getWebAppBlockedRequestMetricsRaw(requestParameters: GetWebAppBlockedRequestMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWebAppBlockedRequestMetricsResponse>> {
+        const requestOptions = await this.getWebAppBlockedRequestMetricsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetWebAppBlockedRequestMetricsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getWebAppBlockedRequestMetrics(requestParameters: GetWebAppBlockedRequestMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWebAppBlockedRequestMetricsResponse> {
+        const response = await this.getWebAppBlockedRequestMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getWebAppDeployment without sending the request
      */
     async getWebAppDeploymentRequestOpts(requestParameters: GetWebAppDeploymentRequest): Promise<runtime.RequestOpts> {
@@ -6577,12 +7066,24 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['requestId'] = requestParameters['requestId'];
         }
 
+        if (requestParameters['notRequestId'] != null) {
+            queryParameters['notRequestId'] = requestParameters['notRequestId'];
+        }
+
         if (requestParameters['buildId'] != null) {
             queryParameters['buildId'] = requestParameters['buildId'];
         }
 
         if (requestParameters['level'] != null) {
             queryParameters['level'] = requestParameters['level'];
+        }
+
+        if (requestParameters['levels'] != null) {
+            queryParameters['levels'] = requestParameters['levels'];
+        }
+
+        if (requestParameters['notLevels'] != null) {
+            queryParameters['notLevels'] = requestParameters['notLevels'];
         }
 
         if (requestParameters['nextToken'] != null) {
@@ -6617,6 +7118,120 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listLogLines(requestParameters: ListLogLinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseLogLineObject> {
         const response = await this.listLogLinesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listManagedDatabaseBackupSources without sending the request
+     */
+    async listManagedDatabaseBackupSourcesRequestOpts(requestParameters: ListManagedDatabaseBackupSourcesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listManagedDatabaseBackupSources().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['deleted'] != null) {
+            queryParameters['deleted'] = requestParameters['deleted'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/database-backup-sources`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listManagedDatabaseBackupSourcesRaw(requestParameters: ListManagedDatabaseBackupSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListManagedDatabaseBackupSourcesResponse>> {
+        const requestOptions = await this.listManagedDatabaseBackupSourcesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListManagedDatabaseBackupSourcesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listManagedDatabaseBackupSources(requestParameters: ListManagedDatabaseBackupSourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListManagedDatabaseBackupSourcesResponse> {
+        const response = await this.listManagedDatabaseBackupSourcesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listManagedDatabaseBackups without sending the request
+     */
+    async listManagedDatabaseBackupsRequestOpts(requestParameters: ListManagedDatabaseBackupsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listManagedDatabaseBackups().'
+            );
+        }
+
+        if (requestParameters['databaseId'] == null) {
+            throw new runtime.RequiredError(
+                'databaseId',
+                'Required parameter "databaseId" was null or undefined when calling listManagedDatabaseBackups().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/databases/{databaseId}/backups`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{databaseId}', encodeURIComponent(String(requestParameters['databaseId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listManagedDatabaseBackupsRaw(requestParameters: ListManagedDatabaseBackupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListManagedDatabaseBackupsResponse>> {
+        const requestOptions = await this.listManagedDatabaseBackupsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListManagedDatabaseBackupsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listManagedDatabaseBackups(requestParameters: ListManagedDatabaseBackupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListManagedDatabaseBackupsResponse> {
+        const response = await this.listManagedDatabaseBackupsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7100,6 +7715,148 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listServiceBlockedRequestGroups without sending the request
+     */
+    async listServiceBlockedRequestGroupsRequestOpts(requestParameters: ListServiceBlockedRequestGroupsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listServiceBlockedRequestGroups().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling listServiceBlockedRequestGroups().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['category'] != null) {
+            queryParameters['category'] = requestParameters['category'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['nextPageToken'] != null) {
+            queryParameters['nextPageToken'] = requestParameters['nextPageToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/blocked-requests/groups`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listServiceBlockedRequestGroupsRaw(requestParameters: ListServiceBlockedRequestGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseBlockedRequestGroup>> {
+        const requestOptions = await this.listServiceBlockedRequestGroupsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseBlockedRequestGroupFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listServiceBlockedRequestGroups(requestParameters: ListServiceBlockedRequestGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseBlockedRequestGroup> {
+        const response = await this.listServiceBlockedRequestGroupsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listServiceBlockedRequestSamples without sending the request
+     */
+    async listServiceBlockedRequestSamplesRequestOpts(requestParameters: ListServiceBlockedRequestSamplesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listServiceBlockedRequestSamples().'
+            );
+        }
+
+        if (requestParameters['serviceId'] == null) {
+            throw new runtime.RequiredError(
+                'serviceId',
+                'Required parameter "serviceId" was null or undefined when calling listServiceBlockedRequestSamples().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['groupKey'] != null) {
+            queryParameters['groupKey'] = requestParameters['groupKey'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['nextPageToken'] != null) {
+            queryParameters['nextPageToken'] = requestParameters['nextPageToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/services/{serviceId}/blocked-requests/samples`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{serviceId}', encodeURIComponent(String(requestParameters['serviceId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listServiceBlockedRequestSamplesRaw(requestParameters: ListServiceBlockedRequestSamplesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseBlockedRequestSample>> {
+        const requestOptions = await this.listServiceBlockedRequestSamplesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseBlockedRequestSampleFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listServiceBlockedRequestSamples(requestParameters: ListServiceBlockedRequestSamplesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseBlockedRequestSample> {
+        const response = await this.listServiceBlockedRequestSamplesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listServiceCustomDomains without sending the request
      */
     async listServiceCustomDomainsRequestOpts(requestParameters: ListServiceCustomDomainsRequest): Promise<runtime.RequestOpts> {
@@ -7341,6 +8098,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['actionType'] != null) {
             queryParameters['actionType'] = requestParameters['actionType'];
+        }
+
+        if (requestParameters['notActionType'] != null) {
+            queryParameters['notActionType'] = requestParameters['notActionType'];
         }
 
         if (requestParameters['minTime'] != null) {
@@ -7588,12 +8349,24 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['email'] = requestParameters['email'];
         }
 
+        if (requestParameters['notEmail'] != null) {
+            queryParameters['notEmail'] = requestParameters['notEmail'];
+        }
+
         if (requestParameters['phone'] != null) {
             queryParameters['phone'] = requestParameters['phone'];
         }
 
+        if (requestParameters['notPhone'] != null) {
+            queryParameters['notPhone'] = requestParameters['notPhone'];
+        }
+
         if (requestParameters['fullName'] != null) {
             queryParameters['fullName'] = requestParameters['fullName'];
+        }
+
+        if (requestParameters['notFullName'] != null) {
+            queryParameters['notFullName'] = requestParameters['notFullName'];
         }
 
         if (requestParameters['fullNameLike'] != null) {
@@ -7647,6 +8420,148 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async listUsers(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseUserObject> {
         const response = await this.listUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listWebAppBlockedRequestGroups without sending the request
+     */
+    async listWebAppBlockedRequestGroupsRequestOpts(requestParameters: ListWebAppBlockedRequestGroupsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listWebAppBlockedRequestGroups().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling listWebAppBlockedRequestGroups().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['category'] != null) {
+            queryParameters['category'] = requestParameters['category'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['nextPageToken'] != null) {
+            queryParameters['nextPageToken'] = requestParameters['nextPageToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/blocked-requests/groups`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listWebAppBlockedRequestGroupsRaw(requestParameters: ListWebAppBlockedRequestGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseBlockedRequestGroup>> {
+        const requestOptions = await this.listWebAppBlockedRequestGroupsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseBlockedRequestGroupFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listWebAppBlockedRequestGroups(requestParameters: ListWebAppBlockedRequestGroupsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseBlockedRequestGroup> {
+        const response = await this.listWebAppBlockedRequestGroupsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for listWebAppBlockedRequestSamples without sending the request
+     */
+    async listWebAppBlockedRequestSamplesRequestOpts(requestParameters: ListWebAppBlockedRequestSamplesRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listWebAppBlockedRequestSamples().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling listWebAppBlockedRequestSamples().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['groupKey'] != null) {
+            queryParameters['groupKey'] = requestParameters['groupKey'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        if (requestParameters['nextPageToken'] != null) {
+            queryParameters['nextPageToken'] = requestParameters['nextPageToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/blocked-requests/samples`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listWebAppBlockedRequestSamplesRaw(requestParameters: ListWebAppBlockedRequestSamplesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseBlockedRequestSample>> {
+        const requestOptions = await this.listWebAppBlockedRequestSamplesRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseBlockedRequestSampleFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listWebAppBlockedRequestSamples(requestParameters: ListWebAppBlockedRequestSamplesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseBlockedRequestSample> {
+        const response = await this.listWebAppBlockedRequestSamplesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7881,6 +8796,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['level'] != null) {
             queryParameters['level'] = requestParameters['level'];
+        }
+
+        if (requestParameters['levels'] != null) {
+            queryParameters['levels'] = requestParameters['levels'];
         }
 
         if (requestParameters['nextToken'] != null) {
@@ -9757,8 +10676,20 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['requestId'] = requestParameters['requestId'];
         }
 
+        if (requestParameters['notRequestId'] != null) {
+            queryParameters['notRequestId'] = requestParameters['notRequestId'];
+        }
+
         if (requestParameters['level'] != null) {
             queryParameters['level'] = requestParameters['level'];
+        }
+
+        if (requestParameters['levels'] != null) {
+            queryParameters['levels'] = requestParameters['levels'];
+        }
+
+        if (requestParameters['notLevels'] != null) {
+            queryParameters['notLevels'] = requestParameters['notLevels'];
         }
 
         if (requestParameters['nextToken'] != null) {
@@ -10004,6 +10935,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['level'] != null) {
             queryParameters['level'] = requestParameters['level'];
+        }
+
+        if (requestParameters['levels'] != null) {
+            queryParameters['levels'] = requestParameters['levels'];
         }
 
         if (requestParameters['nextToken'] != null) {
@@ -11444,6 +12379,15 @@ export type ListProjectPaymentsStateType = typeof ListProjectPaymentsStateType[k
 /**
  * @export
  */
+export const ListServiceBlockedRequestGroupsCategoryType = {
+    POSSIBLE_FALSE_POSITIVE: 'POSSIBLE_FALSE_POSITIVE',
+    ATTACK_TRAFFIC: 'ATTACK_TRAFFIC',
+    RATE_LIMITED: 'RATE_LIMITED'
+} as const;
+export type ListServiceBlockedRequestGroupsCategoryType = typeof ListServiceBlockedRequestGroupsCategoryType[keyof typeof ListServiceBlockedRequestGroupsCategoryType];
+/**
+ * @export
+ */
 export const ListUserActionLogsActionTypeType = {
     USER_CREATED: 'USER_CREATED',
     USER_SUSPENDED: 'USER_SUSPENDED',
@@ -11506,6 +12450,68 @@ export type ListUserActionLogsActionTypeType = typeof ListUserActionLogsActionTy
 /**
  * @export
  */
+export const ListUserActionLogsNotActionTypeType = {
+    USER_CREATED: 'USER_CREATED',
+    USER_SUSPENDED: 'USER_SUSPENDED',
+    USER_DELETED: 'USER_DELETED',
+    USER_HARD_DELETED: 'USER_HARD_DELETED',
+    USER_ADMIN_UPDATED: 'USER_ADMIN_UPDATED',
+    CONTACT_METHOD_ADDED: 'CONTACT_METHOD_ADDED',
+    CONTACT_METHOD_REMOVED: 'CONTACT_METHOD_REMOVED',
+    CONTACT_METHOD_DISPLACED: 'CONTACT_METHOD_DISPLACED',
+    CONTACT_METHOD_VERIFICATION_CODE_SENT: 'CONTACT_METHOD_VERIFICATION_CODE_SENT',
+    CONTACT_METHOD_VERIFICATION_CODE_RE_SENT: 'CONTACT_METHOD_VERIFICATION_CODE_RE_SENT',
+    CONTACT_METHOD_VERIFIED: 'CONTACT_METHOD_VERIFIED',
+    CONTACT_METHOD_VERIFICATION_FAILED: 'CONTACT_METHOD_VERIFICATION_FAILED',
+    CONTACT_METHOD_ADMIN_OVERRIDE: 'CONTACT_METHOD_ADMIN_OVERRIDE',
+    CONTACT_METHOD_FIXED_OTP_SET: 'CONTACT_METHOD_FIXED_OTP_SET',
+    CONTACT_METHOD_FIXED_OTP_REMOVED: 'CONTACT_METHOD_FIXED_OTP_REMOVED',
+    USER_LOGIN: 'USER_LOGIN',
+    USER_LOGOUT: 'USER_LOGOUT',
+    USER_LOGIN_OTP_SENT: 'USER_LOGIN_OTP_SENT',
+    USER_LOGIN_OTP_FAILED: 'USER_LOGIN_OTP_FAILED',
+    SESSION_REVOKED: 'SESSION_REVOKED',
+    ALL_OTHER_SESSIONS_REVOKED: 'ALL_OTHER_SESSIONS_REVOKED',
+    PAYMENT_CREATED: 'PAYMENT_CREATED',
+    PAYMENT_REFUNDED: 'PAYMENT_REFUNDED',
+    PAYMENT_METHOD_SETUP_STARTED: 'PAYMENT_METHOD_SETUP_STARTED',
+    PAYMENT_METHOD_DEFAULT_CHANGED: 'PAYMENT_METHOD_DEFAULT_CHANGED',
+    PAYMENT_METHOD_REMOVED: 'PAYMENT_METHOD_REMOVED',
+    WELCOME_MESSAGE_SENT: 'WELCOME_MESSAGE_SENT',
+    CONTENT_OWNERSHIP_TRANSFERRED: 'CONTENT_OWNERSHIP_TRANSFERRED',
+    USER_INVITE_CREATED: 'USER_INVITE_CREATED',
+    USER_INVITE_REVOKED: 'USER_INVITE_REVOKED',
+    USER_INVITE_ACCEPTED: 'USER_INVITE_ACCEPTED',
+    EMAIL_SENT: 'EMAIL_SENT',
+    SMS_SENT: 'SMS_SENT',
+    IMPERSONATION_TOKEN_ISSUED: 'IMPERSONATION_TOKEN_ISSUED',
+    PASSWORD_SET: 'PASSWORD_SET',
+    PASSWORD_CHANGED: 'PASSWORD_CHANGED',
+    PASSWORD_RESET_REQUESTED: 'PASSWORD_RESET_REQUESTED',
+    PASSWORD_RESET_COMPLETED: 'PASSWORD_RESET_COMPLETED',
+    PASSWORD_LOGIN_SUCCESS: 'PASSWORD_LOGIN_SUCCESS',
+    PASSWORD_LOGIN_FAILED: 'PASSWORD_LOGIN_FAILED',
+    PASSWORD_ADMIN_RESET: 'PASSWORD_ADMIN_RESET',
+    PASSWORD_ADMIN_FORCE_SET: 'PASSWORD_ADMIN_FORCE_SET',
+    MFA_METHOD_ENROLLED: 'MFA_METHOD_ENROLLED',
+    MFA_METHOD_ACTIVATED: 'MFA_METHOD_ACTIVATED',
+    MFA_METHOD_REMOVED: 'MFA_METHOD_REMOVED',
+    MFA_CHALLENGE_SENT: 'MFA_CHALLENGE_SENT',
+    MFA_CHALLENGE_SUCCEEDED: 'MFA_CHALLENGE_SUCCEEDED',
+    MFA_CHALLENGE_FAILED: 'MFA_CHALLENGE_FAILED',
+    MFA_BACKUP_CODES_GENERATED: 'MFA_BACKUP_CODES_GENERATED',
+    MFA_BACKUP_CODE_USED: 'MFA_BACKUP_CODE_USED',
+    MFA_ADMIN_RESET: 'MFA_ADMIN_RESET',
+    REAUTHENTICATION_CHALLENGE_SENT: 'REAUTHENTICATION_CHALLENGE_SENT',
+    REAUTHENTICATED: 'REAUTHENTICATED',
+    REAUTHENTICATION_FAILED: 'REAUTHENTICATION_FAILED',
+    SUSPICIOUS_USER_ACTIVITY_DETECTED: 'SUSPICIOUS_USER_ACTIVITY_DETECTED',
+    SESSION_LOCATION_RISK_DETECTED: 'SESSION_LOCATION_RISK_DETECTED'
+} as const;
+export type ListUserActionLogsNotActionTypeType = typeof ListUserActionLogsNotActionTypeType[keyof typeof ListUserActionLogsNotActionTypeType];
+/**
+ * @export
+ */
 export const ListUserPaymentsStateType = {
     DRAFT: 'DRAFT',
     PROCESSING: 'PROCESSING',
@@ -11516,6 +12522,15 @@ export const ListUserPaymentsStateType = {
     REFUNDED: 'REFUNDED'
 } as const;
 export type ListUserPaymentsStateType = typeof ListUserPaymentsStateType[keyof typeof ListUserPaymentsStateType];
+/**
+ * @export
+ */
+export const ListWebAppBlockedRequestGroupsCategoryType = {
+    POSSIBLE_FALSE_POSITIVE: 'POSSIBLE_FALSE_POSITIVE',
+    ATTACK_TRAFFIC: 'ATTACK_TRAFFIC',
+    RATE_LIMITED: 'RATE_LIMITED'
+} as const;
+export type ListWebAppBlockedRequestGroupsCategoryType = typeof ListWebAppBlockedRequestGroupsCategoryType[keyof typeof ListWebAppBlockedRequestGroupsCategoryType];
 /**
  * @export
  */

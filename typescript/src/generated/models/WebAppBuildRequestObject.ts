@@ -334,7 +334,9 @@ export const WebAppBuildRequestObjectOriginType = {
     MANUAL_TRIGGER_FROM_DASHBOARD: 'MANUAL_TRIGGER_FROM_DASHBOARD',
     CONFIG_CHANGE: 'CONFIG_CHANGE',
     SHADOW_VALIDATION_BUILD: 'SHADOW_VALIDATION_BUILD',
-    ARTIFACT_DEPLOYMENT: 'ARTIFACT_DEPLOYMENT'
+    ARTIFACT_DEPLOYMENT: 'ARTIFACT_DEPLOYMENT',
+    MANUAL_RESTART: 'MANUAL_RESTART',
+    SYSTEM_RESTART: 'SYSTEM_RESTART'
 } as const;
 export type WebAppBuildRequestObjectOriginType = typeof WebAppBuildRequestObjectOriginType[keyof typeof WebAppBuildRequestObjectOriginType];
 

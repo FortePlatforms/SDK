@@ -100,7 +100,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get name
+   * Display name.
    * @return name
    */
   @javax.annotation.Nullable
@@ -132,7 +132,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get targetServiceId
+   * The service in this project that Forte calls.
    * @return targetServiceId
    */
   @javax.annotation.Nullable
@@ -164,7 +164,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get targetPath
+   * Path on the target service to POST to, starting with /, e.g. /jobs/nightly.
    * @return targetPath
    */
   @javax.annotation.Nullable
@@ -196,7 +196,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get requestBody
+   * Request body sent with every invocation.
    * @return requestBody
    */
   @javax.annotation.Nullable
@@ -228,7 +228,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get scheduleType
+   * RECURRING runs on cronExpression; ONE_TIME runs once at scheduledAt.
    * @return scheduleType
    */
   @javax.annotation.Nullable
@@ -252,7 +252,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get cronExpression
+   * RECURRING only: standard 5-field cron, e.g. \&quot;0,15,30,45 * * * *\&quot; for every 15 minutes, or 6-field with seconds first.
    * @return cronExpression
    */
   @javax.annotation.Nullable
@@ -284,7 +284,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get timezone
+   * RECURRING only: IANA timezone the cron expression runs in, e.g. America/New_York.
    * @return timezone
    */
   @javax.annotation.Nullable
@@ -316,7 +316,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get windowStart
+   * RECURRING only: no invocations before this time, ISO-8601 UTC.
    * @return windowStart
    */
   @javax.annotation.Nullable
@@ -348,7 +348,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get windowEnd
+   * RECURRING only: no invocations after this time, ISO-8601 UTC.
    * @return windowEnd
    */
   @javax.annotation.Nullable
@@ -380,7 +380,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get scheduledAt
+   * ONE_TIME only: when to run, ISO-8601 UTC, in the future.
    * @return scheduledAt
    */
   @javax.annotation.Nullable
@@ -412,7 +412,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get retryable
+   * Set true to retry failed invocations.
    * @return retryable
    */
   @javax.annotation.Nullable
@@ -444,7 +444,7 @@ public class UpdateActionRequest {
   }
 
   /**
-   * Get enabled
+   * false pauses the schedule without deleting the action.
    * @return enabled
    */
   @javax.annotation.Nullable

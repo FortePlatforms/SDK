@@ -20,6 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.managed_database_maintenance_window import ManagedDatabaseMaintenanceWindow
+from forte_sdk.generated.models.managed_database_restore_source import ManagedDatabaseRestoreSource
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -34,7 +36,11 @@ class CreateManagedDatabaseRequest(BaseModel):
     cpu: Optional[StrictStr] = Field(default=None, description="Ignored on the SHARED tier.")
     memory_gb: Optional[StrictInt] = Field(default=None, description="Ignored on the SHARED tier.", alias="memoryGb")
     storage_gb: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(default=None, description="Defaults to 2 GB.", alias="storageGb")
-    __properties: ClassVar[List[str]] = ["name", "type", "tier", "cpu", "memoryGb", "storageGb"]
+    size: Optional[StrictStr] = None
+    maintenance_window: Optional[ManagedDatabaseMaintenanceWindow] = Field(default=None, alias="maintenanceWindow")
+    restore_from: Optional[ManagedDatabaseRestoreSource] = Field(default=None, alias="restoreFrom")
+    backup_retention_days: Optional[Annotated[int, Field(le=35, strict=True, ge=1)]] = Field(default=None, alias="backupRetentionDays")
+    __properties: ClassVar[List[str]] = ["name", "type", "tier", "cpu", "memoryGb", "storageGb", "size", "maintenanceWindow", "restoreFrom", "backupRetentionDays"]
 
     @field_validator('name')
     def name_validate_regular_expression(cls, value):
@@ -58,6 +64,16 @@ class CreateManagedDatabaseRequest(BaseModel):
         """Validates the enum"""
         if value not in set(['SHARED', 'DEDICATED']):
             raise ValueError("must be one of enum values ('SHARED', 'DEDICATED')")
+        return value
+
+    @field_validator('size')
+    def size_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['MEDIUM', 'LARGE', 'XLARGE']):
+            raise ValueError("must be one of enum values ('MEDIUM', 'LARGE', 'XLARGE')")
         return value
 
     model_config = ConfigDict(
@@ -99,6 +115,12 @@ class CreateManagedDatabaseRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of maintenance_window
+        if self.maintenance_window:
+            _dict['maintenanceWindow'] = self.maintenance_window.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of restore_from
+        if self.restore_from:
+            _dict['restoreFrom'] = self.restore_from.to_dict()
         # set to None if cpu (nullable) is None
         # and model_fields_set contains the field
         if self.cpu is None and "cpu" in self.model_fields_set:
@@ -113,6 +135,16 @@ class CreateManagedDatabaseRequest(BaseModel):
         # and model_fields_set contains the field
         if self.storage_gb is None and "storage_gb" in self.model_fields_set:
             _dict['storageGb'] = None
+
+        # set to None if size (nullable) is None
+        # and model_fields_set contains the field
+        if self.size is None and "size" in self.model_fields_set:
+            _dict['size'] = None
+
+        # set to None if backup_retention_days (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_retention_days is None and "backup_retention_days" in self.model_fields_set:
+            _dict['backupRetentionDays'] = None
 
         return _dict
 
@@ -131,7 +163,11 @@ class CreateManagedDatabaseRequest(BaseModel):
             "tier": obj.get("tier"),
             "cpu": obj.get("cpu"),
             "memoryGb": obj.get("memoryGb"),
-            "storageGb": obj.get("storageGb")
+            "storageGb": obj.get("storageGb"),
+            "size": obj.get("size"),
+            "maintenanceWindow": ManagedDatabaseMaintenanceWindow.from_dict(obj["maintenanceWindow"]) if obj.get("maintenanceWindow") is not None else None,
+            "restoreFrom": ManagedDatabaseRestoreSource.from_dict(obj["restoreFrom"]) if obj.get("restoreFrom") is not None else None,
+            "backupRetentionDays": obj.get("backupRetentionDays")
         })
         return _obj
 

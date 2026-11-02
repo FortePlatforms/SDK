@@ -50,7 +50,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   RequestLogFilter.JSON_PROPERTY_NOT_METHODS,
   RequestLogFilter.JSON_PROPERTY_MIN_LATENCY_MILLISECONDS,
   RequestLogFilter.JSON_PROPERTY_MAX_LATENCY_MILLISECONDS,
-  RequestLogFilter.JSON_PROPERTY_USER_ID
+  RequestLogFilter.JSON_PROPERTY_USER_ID,
+  RequestLogFilter.JSON_PROPERTY_USER_IDS,
+  RequestLogFilter.JSON_PROPERTY_NOT_USER_IDS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RequestLogFilter {
@@ -82,6 +84,12 @@ public class RequestLogFilter {
 
   public static final String JSON_PROPERTY_USER_ID = "userId";
   private JsonNullable<String> userId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_USER_IDS = "userIds";
+  private JsonNullable<List<String>> userIds = JsonNullable.<List<String>>undefined();
+
+  public static final String JSON_PROPERTY_NOT_USER_IDS = "notUserIds";
+  private JsonNullable<List<String>> notUserIds = JsonNullable.<List<String>>undefined();
 
   public RequestLogFilter() { 
   }
@@ -382,6 +390,94 @@ public class RequestLogFilter {
   }
 
 
+  public RequestLogFilter userIds(@javax.annotation.Nullable List<String> userIds) {
+    this.userIds = JsonNullable.<List<String>>of(userIds);
+    return this;
+  }
+
+  public RequestLogFilter addUserIdsItem(String userIdsItem) {
+    if (this.userIds == null || !this.userIds.isPresent()) {
+      this.userIds = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.userIds.get().add(userIdsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get userIds
+   * @return userIds
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getUserIds() {
+        return userIds.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_USER_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getUserIds_JsonNullable() {
+    return userIds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USER_IDS)
+  public void setUserIds_JsonNullable(JsonNullable<List<String>> userIds) {
+    this.userIds = userIds;
+  }
+
+  public void setUserIds(@javax.annotation.Nullable List<String> userIds) {
+    this.userIds = JsonNullable.<List<String>>of(userIds);
+  }
+
+
+  public RequestLogFilter notUserIds(@javax.annotation.Nullable List<String> notUserIds) {
+    this.notUserIds = JsonNullable.<List<String>>of(notUserIds);
+    return this;
+  }
+
+  public RequestLogFilter addNotUserIdsItem(String notUserIdsItem) {
+    if (this.notUserIds == null || !this.notUserIds.isPresent()) {
+      this.notUserIds = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.notUserIds.get().add(notUserIdsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get notUserIds
+   * @return notUserIds
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getNotUserIds() {
+        return notUserIds.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NOT_USER_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getNotUserIds_JsonNullable() {
+    return notUserIds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NOT_USER_IDS)
+  public void setNotUserIds_JsonNullable(JsonNullable<List<String>> notUserIds) {
+    this.notUserIds = notUserIds;
+  }
+
+  public void setNotUserIds(@javax.annotation.Nullable List<String> notUserIds) {
+    this.notUserIds = JsonNullable.<List<String>>of(notUserIds);
+  }
+
+
   /**
    * Return true if this RequestLogFilter object is equal to o.
    */
@@ -402,7 +498,9 @@ public class RequestLogFilter {
         equalsNullable(this.notMethods, requestLogFilter.notMethods) &&
         equalsNullable(this.minLatencyMilliseconds, requestLogFilter.minLatencyMilliseconds) &&
         equalsNullable(this.maxLatencyMilliseconds, requestLogFilter.maxLatencyMilliseconds) &&
-        equalsNullable(this.userId, requestLogFilter.userId);
+        equalsNullable(this.userId, requestLogFilter.userId) &&
+        equalsNullable(this.userIds, requestLogFilter.userIds) &&
+        equalsNullable(this.notUserIds, requestLogFilter.notUserIds);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -411,7 +509,7 @@ public class RequestLogFilter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(minTime), hashCodeNullable(maxTime), status, path, hashCodeNullable(methods), hashCodeNullable(notMethods), hashCodeNullable(minLatencyMilliseconds), hashCodeNullable(maxLatencyMilliseconds), hashCodeNullable(userId));
+    return Objects.hash(hashCodeNullable(minTime), hashCodeNullable(maxTime), status, path, hashCodeNullable(methods), hashCodeNullable(notMethods), hashCodeNullable(minLatencyMilliseconds), hashCodeNullable(maxLatencyMilliseconds), hashCodeNullable(userId), hashCodeNullable(userIds), hashCodeNullable(notUserIds));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -434,6 +532,8 @@ public class RequestLogFilter {
     sb.append("    minLatencyMilliseconds: ").append(toIndentedString(minLatencyMilliseconds)).append("\n");
     sb.append("    maxLatencyMilliseconds: ").append(toIndentedString(maxLatencyMilliseconds)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    userIds: ").append(toIndentedString(userIds)).append("\n");
+    sb.append("    notUserIds: ").append(toIndentedString(notUserIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -529,6 +629,24 @@ public class RequestLogFilter {
     // add `userId` to the URL query string
     if (getUserId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%suserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
+    }
+
+    // add `userIds` to the URL query string
+    if (getUserIds() != null) {
+      for (int i = 0; i < getUserIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%suserIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getUserIds().get(i)))));
+      }
+    }
+
+    // add `notUserIds` to the URL query string
+    if (getNotUserIds() != null) {
+      for (int i = 0; i < getNotUserIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%snotUserIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getNotUserIds().get(i)))));
+      }
     }
 
     return joiner.toString();
