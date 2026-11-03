@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from forte_sdk.generated.models.user_risk_signal_type import UserRiskSignalType
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,16 +29,8 @@ class UserRiskSignals(BaseModel):
     UserRiskSignals
     """ # noqa: E501
     ip_country_code: Optional[StrictStr] = Field(default=None, alias="ipCountryCode")
-    detected_signals: List[StrictStr] = Field(alias="detectedSignals")
+    detected_signals: List[UserRiskSignalType] = Field(alias="detectedSignals")
     __properties: ClassVar[List[str]] = ["ipCountryCode", "detectedSignals"]
-
-    @field_validator('detected_signals')
-    def detected_signals_validate_enum(cls, value):
-        """Validates the enum"""
-        for i in value:
-            if i not in set(['TOR_EXIT_NODE_IP', 'HOSTING_PROVIDER_IP', 'VPN_IP', 'NEW_COUNTRY_FOR_USER', 'AUTOMATED_USER_AGENT', 'DISPOSABLE_EMAIL_DOMAIN', 'BREACHED_PASSWORD', 'SESSION_LOCATION_CHANGED', 'IMPOSSIBLE_TRAVEL', 'CONCURRENT_SESSION_LOCATIONS']):
-                raise ValueError("each list item must be one of ('TOR_EXIT_NODE_IP', 'HOSTING_PROVIDER_IP', 'VPN_IP', 'NEW_COUNTRY_FOR_USER', 'AUTOMATED_USER_AGENT', 'DISPOSABLE_EMAIL_DOMAIN', 'BREACHED_PASSWORD', 'SESSION_LOCATION_CHANGED', 'IMPOSSIBLE_TRAVEL', 'CONCURRENT_SESSION_LOCATIONS')")
-        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.forteplatforms.sdk.generated.model.UserRiskSignalType;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -48,60 +49,9 @@ public class UserRiskSignals {
   public static final String JSON_PROPERTY_IP_COUNTRY_CODE = "ipCountryCode";
   private JsonNullable<String> ipCountryCode = JsonNullable.<String>undefined();
 
-  /**
-   * Gets or Sets detectedSignals
-   */
-  public enum DetectedSignalsEnum {
-    TOR_EXIT_NODE_IP(String.valueOf("TOR_EXIT_NODE_IP")),
-    
-    HOSTING_PROVIDER_IP(String.valueOf("HOSTING_PROVIDER_IP")),
-    
-    VPN_IP(String.valueOf("VPN_IP")),
-    
-    NEW_COUNTRY_FOR_USER(String.valueOf("NEW_COUNTRY_FOR_USER")),
-    
-    AUTOMATED_USER_AGENT(String.valueOf("AUTOMATED_USER_AGENT")),
-    
-    DISPOSABLE_EMAIL_DOMAIN(String.valueOf("DISPOSABLE_EMAIL_DOMAIN")),
-    
-    BREACHED_PASSWORD(String.valueOf("BREACHED_PASSWORD")),
-    
-    SESSION_LOCATION_CHANGED(String.valueOf("SESSION_LOCATION_CHANGED")),
-    
-    IMPOSSIBLE_TRAVEL(String.valueOf("IMPOSSIBLE_TRAVEL")),
-    
-    CONCURRENT_SESSION_LOCATIONS(String.valueOf("CONCURRENT_SESSION_LOCATIONS"));
-
-    private String value;
-
-    DetectedSignalsEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static DetectedSignalsEnum fromValue(String value) {
-      for (DetectedSignalsEnum b : DetectedSignalsEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_DETECTED_SIGNALS = "detectedSignals";
   @javax.annotation.Nonnull
-  private Set<DetectedSignalsEnum> detectedSignals = new LinkedHashSet<>();
+  private Set<UserRiskSignalType> detectedSignals = new LinkedHashSet<>();
 
   public UserRiskSignals() { 
   }
@@ -138,12 +88,12 @@ public class UserRiskSignals {
   }
 
 
-  public UserRiskSignals detectedSignals(@javax.annotation.Nonnull Set<DetectedSignalsEnum> detectedSignals) {
+  public UserRiskSignals detectedSignals(@javax.annotation.Nonnull Set<UserRiskSignalType> detectedSignals) {
     this.detectedSignals = detectedSignals;
     return this;
   }
 
-  public UserRiskSignals addDetectedSignalsItem(DetectedSignalsEnum detectedSignalsItem) {
+  public UserRiskSignals addDetectedSignalsItem(UserRiskSignalType detectedSignalsItem) {
     if (this.detectedSignals == null) {
       this.detectedSignals = new LinkedHashSet<>();
     }
@@ -158,7 +108,7 @@ public class UserRiskSignals {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_DETECTED_SIGNALS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Set<DetectedSignalsEnum> getDetectedSignals() {
+  public Set<UserRiskSignalType> getDetectedSignals() {
     return detectedSignals;
   }
 
@@ -166,7 +116,7 @@ public class UserRiskSignals {
   @JsonDeserialize(as = LinkedHashSet.class)
   @JsonProperty(value = JSON_PROPERTY_DETECTED_SIGNALS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDetectedSignals(@javax.annotation.Nonnull Set<DetectedSignalsEnum> detectedSignals) {
+  public void setDetectedSignals(@javax.annotation.Nonnull Set<UserRiskSignalType> detectedSignals) {
     this.detectedSignals = detectedSignals;
   }
 
@@ -261,12 +211,14 @@ public class UserRiskSignals {
     // add `detectedSignals` to the URL query string
     if (getDetectedSignals() != null) {
       int i = 0;
-      for (String _item : getDetectedSignals()) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sdetectedSignals%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(_item))));
+      for (UserRiskSignalType _item : getDetectedSignals()) {
+        if (_item != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%sdetectedSignals%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(_item))));
+        }
+        i++;
       }
-      i++;
     }
 
     return joiner.toString();

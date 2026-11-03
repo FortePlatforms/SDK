@@ -255,6 +255,7 @@ export * from './UpdateWebAppResponse';
 export * from './UserActionLogObject';
 export * from './UserMetricsResponse';
 export * from './UserObject';
+export * from './UserRiskSignalType';
 export * from './UserRiskSignals';
 export * from './UtilizationDataPoint';
 export * from './UtilizationSeries';

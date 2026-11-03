@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { UserRiskSignalType } from './UserRiskSignalType';
+import {
+    UserRiskSignalTypeFromJSON,
+    UserRiskSignalTypeFromJSONTyped,
+    UserRiskSignalTypeToJSON,
+    UserRiskSignalTypeToJSONTyped,
+} from './UserRiskSignalType';
+
 /**
  * 
  * @export
@@ -27,30 +35,11 @@ export interface UserRiskSignals {
     ipCountryCode?: string | null;
     /**
      * 
-     * @type {Set<UserRiskSignalsDetectedSignalsType>}
+     * @type {Set<UserRiskSignalType>}
      * @memberof UserRiskSignals
      */
-    detectedSignals: Set<UserRiskSignalsDetectedSignalsType>;
+    detectedSignals: Set<UserRiskSignalType>;
 }
-
-
-/**
- * @export
- */
-export const UserRiskSignalsDetectedSignalsType = {
-    TOR_EXIT_NODE_IP: 'TOR_EXIT_NODE_IP',
-    HOSTING_PROVIDER_IP: 'HOSTING_PROVIDER_IP',
-    VPN_IP: 'VPN_IP',
-    NEW_COUNTRY_FOR_USER: 'NEW_COUNTRY_FOR_USER',
-    AUTOMATED_USER_AGENT: 'AUTOMATED_USER_AGENT',
-    DISPOSABLE_EMAIL_DOMAIN: 'DISPOSABLE_EMAIL_DOMAIN',
-    BREACHED_PASSWORD: 'BREACHED_PASSWORD',
-    SESSION_LOCATION_CHANGED: 'SESSION_LOCATION_CHANGED',
-    IMPOSSIBLE_TRAVEL: 'IMPOSSIBLE_TRAVEL',
-    CONCURRENT_SESSION_LOCATIONS: 'CONCURRENT_SESSION_LOCATIONS'
-} as const;
-export type UserRiskSignalsDetectedSignalsType = typeof UserRiskSignalsDetectedSignalsType[keyof typeof UserRiskSignalsDetectedSignalsType];
-
 
 /**
  * Check if a given object implements the UserRiskSignals interface.
@@ -71,7 +60,7 @@ export function UserRiskSignalsFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'ipCountryCode': json['ipCountryCode'] == null ? undefined : json['ipCountryCode'],
-        'detectedSignals': new Set(json['detectedSignals']),
+        'detectedSignals': (new Set((json['detectedSignals'] as Array<any>).map(UserRiskSignalTypeFromJSON))),
     };
 }
 
@@ -87,7 +76,7 @@ export function UserRiskSignalsToJSONTyped(value?: UserRiskSignals | null, ignor
     return {
         
         'ipCountryCode': value['ipCountryCode'],
-        'detectedSignals': Array.from(value['detectedSignals'] as Set<any>),
+        'detectedSignals': (Array.from(value['detectedSignals'] as Set<any>).map(UserRiskSignalTypeToJSON)),
     };
 }
 
