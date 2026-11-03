@@ -79,6 +79,26 @@ import {
     CreateBuildArtifactResponseToJSON,
 } from '../models/CreateBuildArtifactResponse';
 import {
+    type CreateCheckoutPreviewRequest,
+    CreateCheckoutPreviewRequestFromJSON,
+    CreateCheckoutPreviewRequestToJSON,
+} from '../models/CreateCheckoutPreviewRequest';
+import {
+    type CreateCheckoutPreviewResponse,
+    CreateCheckoutPreviewResponseFromJSON,
+    CreateCheckoutPreviewResponseToJSON,
+} from '../models/CreateCheckoutPreviewResponse';
+import {
+    type CreateCheckoutRequest,
+    CreateCheckoutRequestFromJSON,
+    CreateCheckoutRequestToJSON,
+} from '../models/CreateCheckoutRequest';
+import {
+    type CreateCheckoutResponse,
+    CreateCheckoutResponseFromJSON,
+    CreateCheckoutResponseToJSON,
+} from '../models/CreateCheckoutResponse';
+import {
     type CreateCloneEnvironmentRequest,
     CreateCloneEnvironmentRequestFromJSON,
     CreateCloneEnvironmentRequestToJSON,
@@ -148,6 +168,11 @@ import {
     CreatePaymentPreviewResponseFromJSON,
     CreatePaymentPreviewResponseToJSON,
 } from '../models/CreatePaymentPreviewResponse';
+import {
+    type CreatePaymentRefundRequest,
+    CreatePaymentRefundRequestFromJSON,
+    CreatePaymentRefundRequestToJSON,
+} from '../models/CreatePaymentRefundRequest';
 import {
     type CreatePaymentRequest,
     CreatePaymentRequestFromJSON,
@@ -1509,6 +1534,18 @@ export interface PreviewUserSubscriptionUpdateRequest {
     updateSubscriptionPreviewRequest: UpdateSubscriptionPreviewRequest;
 }
 
+export interface ProjectsCreateCheckoutRequest {
+    projectId: string;
+    userId: string;
+    createCheckoutRequest: CreateCheckoutRequest;
+}
+
+export interface ProjectsCreateCheckoutPreviewRequest {
+    projectId: string;
+    userId: string;
+    createCheckoutPreviewRequest: CreateCheckoutPreviewRequest;
+}
+
 export interface ProjectsCreateContentUploadLinkRequest {
     projectId: string;
     userId: string;
@@ -1632,6 +1669,7 @@ export interface RefundPaymentRequest {
     paymentId: string;
     keepSubscriptionActive?: boolean;
     refundAmountCents?: number;
+    createPaymentRefundRequest?: CreatePaymentRefundRequest;
 }
 
 export interface ResumeServiceRequest {
@@ -9001,6 +9039,132 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for projectsCreateCheckout without sending the request
+     */
+    async projectsCreateCheckoutRequestOpts(requestParameters: ProjectsCreateCheckoutRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsCreateCheckout().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsCreateCheckout().'
+            );
+        }
+
+        if (requestParameters['createCheckoutRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCheckoutRequest',
+                'Required parameter "createCheckoutRequest" was null or undefined when calling projectsCreateCheckout().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/checkouts`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCheckoutRequestToJSON(requestParameters['createCheckoutRequest']),
+        };
+    }
+
+    /**
+     */
+    async projectsCreateCheckoutRaw(requestParameters: ProjectsCreateCheckoutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCheckoutResponse>> {
+        const requestOptions = await this.projectsCreateCheckoutRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCheckoutResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsCreateCheckout(requestParameters: ProjectsCreateCheckoutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCheckoutResponse> {
+        const response = await this.projectsCreateCheckoutRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for projectsCreateCheckoutPreview without sending the request
+     */
+    async projectsCreateCheckoutPreviewRequestOpts(requestParameters: ProjectsCreateCheckoutPreviewRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling projectsCreateCheckoutPreview().'
+            );
+        }
+
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling projectsCreateCheckoutPreview().'
+            );
+        }
+
+        if (requestParameters['createCheckoutPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCheckoutPreviewRequest',
+                'Required parameter "createCheckoutPreviewRequest" was null or undefined when calling projectsCreateCheckoutPreview().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/{userId}/checkouts/preview`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{userId}', encodeURIComponent(String(requestParameters['userId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCheckoutPreviewRequestToJSON(requestParameters['createCheckoutPreviewRequest']),
+        };
+    }
+
+    /**
+     */
+    async projectsCreateCheckoutPreviewRaw(requestParameters: ProjectsCreateCheckoutPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCheckoutPreviewResponse>> {
+        const requestOptions = await this.projectsCreateCheckoutPreviewRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCheckoutPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async projectsCreateCheckoutPreview(requestParameters: ProjectsCreateCheckoutPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCheckoutPreviewResponse> {
+        const response = await this.projectsCreateCheckoutPreviewRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for projectsCreateContentUploadLink without sending the request
      */
     async projectsCreateContentUploadLinkRequestOpts(requestParameters: ProjectsCreateContentUploadLinkRequest): Promise<runtime.RequestOpts> {
@@ -10204,6 +10368,8 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        headerParameters['Content-Type'] = 'application/json';
+
         if (headerParameters['Idempotency-Key'] == null) {
             headerParameters['Idempotency-Key'] = forteIdempotencyKey();
         }
@@ -10219,6 +10385,7 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: CreatePaymentRefundRequestToJSON(requestParameters['createPaymentRefundRequest']),
         };
     }
 

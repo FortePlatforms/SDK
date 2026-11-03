@@ -54,6 +54,26 @@ import {
     ContentObjectToJSON,
 } from '../models/ContentObject';
 import {
+    type CreateCheckoutPreviewRequest,
+    CreateCheckoutPreviewRequestFromJSON,
+    CreateCheckoutPreviewRequestToJSON,
+} from '../models/CreateCheckoutPreviewRequest';
+import {
+    type CreateCheckoutPreviewResponse,
+    CreateCheckoutPreviewResponseFromJSON,
+    CreateCheckoutPreviewResponseToJSON,
+} from '../models/CreateCheckoutPreviewResponse';
+import {
+    type CreateCheckoutRequest,
+    CreateCheckoutRequestFromJSON,
+    CreateCheckoutRequestToJSON,
+} from '../models/CreateCheckoutRequest';
+import {
+    type CreateCheckoutResponse,
+    CreateCheckoutResponseFromJSON,
+    CreateCheckoutResponseToJSON,
+} from '../models/CreateCheckoutResponse';
+import {
     type CreateContentUploadLinkRequest,
     CreateContentUploadLinkRequestFromJSON,
     CreateContentUploadLinkRequestToJSON,
@@ -535,6 +555,18 @@ export interface UpdateMySubscriptionRequest {
     projectId: string;
     subscriptionId: string;
     updateSubscriptionRequest: UpdateSubscriptionRequest;
+    authorization?: string;
+}
+
+export interface UsersCreateCheckoutRequest {
+    projectId: string;
+    createCheckoutRequest: CreateCheckoutRequest;
+    authorization?: string;
+}
+
+export interface UsersCreateCheckoutPreviewRequest {
+    projectId: string;
+    createCheckoutPreviewRequest: CreateCheckoutPreviewRequest;
     authorization?: string;
 }
 
@@ -2823,6 +2855,124 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async updateMySubscription(requestParameters: UpdateMySubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionObject> {
         const response = await this.updateMySubscriptionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for usersCreateCheckout without sending the request
+     */
+    async usersCreateCheckoutRequestOpts(requestParameters: UsersCreateCheckoutRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersCreateCheckout().'
+            );
+        }
+
+        if (requestParameters['createCheckoutRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCheckoutRequest',
+                'Required parameter "createCheckoutRequest" was null or undefined when calling usersCreateCheckout().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/checkouts`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCheckoutRequestToJSON(requestParameters['createCheckoutRequest']),
+        };
+    }
+
+    /**
+     */
+    async usersCreateCheckoutRaw(requestParameters: UsersCreateCheckoutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCheckoutResponse>> {
+        const requestOptions = await this.usersCreateCheckoutRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCheckoutResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersCreateCheckout(requestParameters: UsersCreateCheckoutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCheckoutResponse> {
+        const response = await this.usersCreateCheckoutRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for usersCreateCheckoutPreview without sending the request
+     */
+    async usersCreateCheckoutPreviewRequestOpts(requestParameters: UsersCreateCheckoutPreviewRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersCreateCheckoutPreview().'
+            );
+        }
+
+        if (requestParameters['createCheckoutPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCheckoutPreviewRequest',
+                'Required parameter "createCheckoutPreviewRequest" was null or undefined when calling usersCreateCheckoutPreview().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/checkouts/preview`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCheckoutPreviewRequestToJSON(requestParameters['createCheckoutPreviewRequest']),
+        };
+    }
+
+    /**
+     */
+    async usersCreateCheckoutPreviewRaw(requestParameters: UsersCreateCheckoutPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCheckoutPreviewResponse>> {
+        const requestOptions = await this.usersCreateCheckoutPreviewRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCheckoutPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersCreateCheckoutPreview(requestParameters: UsersCreateCheckoutPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCheckoutPreviewResponse> {
+        const response = await this.usersCreateCheckoutPreviewRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

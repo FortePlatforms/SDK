@@ -26,6 +26,10 @@ import com.forteplatforms.sdk.generated.model.CompleteOtpLoginRequest;
 import com.forteplatforms.sdk.generated.model.CompletePasswordResetRequest;
 import com.forteplatforms.sdk.generated.model.ContactMethod;
 import com.forteplatforms.sdk.generated.model.ContentObject;
+import com.forteplatforms.sdk.generated.model.CreateCheckoutPreviewRequest;
+import com.forteplatforms.sdk.generated.model.CreateCheckoutPreviewResponse;
+import com.forteplatforms.sdk.generated.model.CreateCheckoutRequest;
+import com.forteplatforms.sdk.generated.model.CreateCheckoutResponse;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkRequest;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkResponse;
 import com.forteplatforms.sdk.generated.model.CreateMfaMethodRequest;
@@ -5426,6 +5430,288 @@ public class UsersServerApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateSubscriptionRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutRequest  (required)
+   * @param authorization  (optional)
+   * @return CreateCheckoutResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutResponse usersCreateCheckout(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateCheckout(projectId, createCheckoutRequest, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutRequest  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateCheckoutResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutResponse usersCreateCheckout(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCheckoutResponse> localVarResponse = usersCreateCheckoutWithHttpInfo(projectId, createCheckoutRequest, authorization, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutRequest  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;CreateCheckoutResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutResponse> usersCreateCheckoutWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateCheckoutWithHttpInfo(projectId, createCheckoutRequest, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutRequest  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateCheckoutResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutResponse> usersCreateCheckoutWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersCreateCheckoutRequestBuilder(projectId, createCheckoutRequest, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("usersCreateCheckout", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateCheckoutResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateCheckoutResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateCheckoutResponse>() {});
+        
+
+        return new ApiResponse<CreateCheckoutResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder usersCreateCheckoutRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersCreateCheckout");
+    }
+    // verify the required parameter 'createCheckoutRequest' is set
+    if (createCheckoutRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCheckoutRequest' when calling usersCreateCheckout");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/checkouts"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCheckoutRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @param authorization  (optional)
+   * @return CreateCheckoutPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutPreviewResponse usersCreateCheckoutPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateCheckoutPreview(projectId, createCheckoutPreviewRequest, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateCheckoutPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutPreviewResponse usersCreateCheckoutPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCheckoutPreviewResponse> localVarResponse = usersCreateCheckoutPreviewWithHttpInfo(projectId, createCheckoutPreviewRequest, authorization, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;CreateCheckoutPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutPreviewResponse> usersCreateCheckoutPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersCreateCheckoutPreviewWithHttpInfo(projectId, createCheckoutPreviewRequest, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateCheckoutPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutPreviewResponse> usersCreateCheckoutPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersCreateCheckoutPreviewRequestBuilder(projectId, createCheckoutPreviewRequest, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("usersCreateCheckoutPreview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateCheckoutPreviewResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateCheckoutPreviewResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateCheckoutPreviewResponse>() {});
+        
+
+        return new ApiResponse<CreateCheckoutPreviewResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder usersCreateCheckoutPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersCreateCheckoutPreview");
+    }
+    // verify the required parameter 'createCheckoutPreviewRequest' is set
+    if (createCheckoutPreviewRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCheckoutPreviewRequest' when calling usersCreateCheckoutPreview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/checkouts/preview"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCheckoutPreviewRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

@@ -53,14 +53,17 @@ class PaymentObject(BaseModel):
     last_payment_error_code: Optional[StrictStr] = Field(default=None, alias="lastPaymentErrorCode")
     stripe_tax_calculation_id: Optional[StrictStr] = Field(default=None, alias="stripeTaxCalculationId")
     stripe_tax_transaction_id: Optional[StrictStr] = Field(default=None, alias="stripeTaxTransactionId")
+    subscription_stripe_tax_calculation_id: Optional[StrictStr] = Field(default=None, alias="subscriptionStripeTaxCalculationId")
+    subscription_stripe_tax_transaction_id: Optional[StrictStr] = Field(default=None, alias="subscriptionStripeTaxTransactionId")
     subscription_id: Optional[StrictStr] = Field(default=None, alias="subscriptionId")
+    subscription_ids: List[StrictStr] = Field(alias="subscriptionIds")
     subscription_renewal_time: Optional[datetime] = Field(default=None, alias="subscriptionRenewalTime")
     state_history: List[StateHistory] = Field(alias="stateHistory")
     refund_history: List[RefundRecord] = Field(alias="refundHistory")
     created_at: datetime = Field(alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
     refunded_amount_cents: Optional[StrictInt] = Field(default=None, alias="refundedAmountCents")
-    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "lastPaymentErrorMessage", "lastPaymentErrorCode", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionId", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
+    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "lastPaymentErrorMessage", "lastPaymentErrorCode", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionStripeTaxCalculationId", "subscriptionStripeTaxTransactionId", "subscriptionId", "subscriptionIds", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -170,6 +173,16 @@ class PaymentObject(BaseModel):
         if self.stripe_tax_transaction_id is None and "stripe_tax_transaction_id" in self.model_fields_set:
             _dict['stripeTaxTransactionId'] = None
 
+        # set to None if subscription_stripe_tax_calculation_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscription_stripe_tax_calculation_id is None and "subscription_stripe_tax_calculation_id" in self.model_fields_set:
+            _dict['subscriptionStripeTaxCalculationId'] = None
+
+        # set to None if subscription_stripe_tax_transaction_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscription_stripe_tax_transaction_id is None and "subscription_stripe_tax_transaction_id" in self.model_fields_set:
+            _dict['subscriptionStripeTaxTransactionId'] = None
+
         # set to None if subscription_id (nullable) is None
         # and model_fields_set contains the field
         if self.subscription_id is None and "subscription_id" in self.model_fields_set:
@@ -212,7 +225,10 @@ class PaymentObject(BaseModel):
             "lastPaymentErrorCode": obj.get("lastPaymentErrorCode"),
             "stripeTaxCalculationId": obj.get("stripeTaxCalculationId"),
             "stripeTaxTransactionId": obj.get("stripeTaxTransactionId"),
+            "subscriptionStripeTaxCalculationId": obj.get("subscriptionStripeTaxCalculationId"),
+            "subscriptionStripeTaxTransactionId": obj.get("subscriptionStripeTaxTransactionId"),
             "subscriptionId": obj.get("subscriptionId"),
+            "subscriptionIds": obj.get("subscriptionIds"),
             "subscriptionRenewalTime": obj.get("subscriptionRenewalTime"),
             "stateHistory": [StateHistory.from_dict(_item) for _item in obj["stateHistory"]] if obj.get("stateHistory") is not None else None,
             "refundHistory": [RefundRecord.from_dict(_item) for _item in obj["refundHistory"]] if obj.get("refundHistory") is not None else None,

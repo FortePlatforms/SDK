@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -33,7 +33,9 @@ class PaymentLineItem(BaseModel):
     quantity: Annotated[int, Field(strict=True, ge=1)]
     tax_code: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="taxCode")
     tax_amount_cents: Optional[StrictInt] = Field(default=None, alias="taxAmountCents")
-    __properties: ClassVar[List[str]] = ["description", "unitAmountCents", "quantity", "taxCode", "taxAmountCents"]
+    line_item_id: Optional[StrictStr] = Field(default=None, alias="lineItemId")
+    subscription_id: Optional[StrictStr] = Field(default=None, alias="subscriptionId")
+    __properties: ClassVar[List[str]] = ["description", "unitAmountCents", "quantity", "taxCode", "taxAmountCents", "lineItemId", "subscriptionId"]
 
     @field_validator('tax_code')
     def tax_code_validate_regular_expression(cls, value):
@@ -97,6 +99,16 @@ class PaymentLineItem(BaseModel):
         if self.tax_amount_cents is None and "tax_amount_cents" in self.model_fields_set:
             _dict['taxAmountCents'] = None
 
+        # set to None if line_item_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.line_item_id is None and "line_item_id" in self.model_fields_set:
+            _dict['lineItemId'] = None
+
+        # set to None if subscription_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscription_id is None and "subscription_id" in self.model_fields_set:
+            _dict['subscriptionId'] = None
+
         return _dict
 
     @classmethod
@@ -113,7 +125,9 @@ class PaymentLineItem(BaseModel):
             "unitAmountCents": obj.get("unitAmountCents"),
             "quantity": obj.get("quantity"),
             "taxCode": obj.get("taxCode"),
-            "taxAmountCents": obj.get("taxAmountCents")
+            "taxAmountCents": obj.get("taxAmountCents"),
+            "lineItemId": obj.get("lineItemId"),
+            "subscriptionId": obj.get("subscriptionId")
         })
         return _obj
 

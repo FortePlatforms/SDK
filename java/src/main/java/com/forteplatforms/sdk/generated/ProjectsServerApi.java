@@ -31,6 +31,10 @@ import com.forteplatforms.sdk.generated.model.ContentObject;
 import com.forteplatforms.sdk.generated.model.CreateActionRequest;
 import com.forteplatforms.sdk.generated.model.CreateBuildArtifactRequest;
 import com.forteplatforms.sdk.generated.model.CreateBuildArtifactResponse;
+import com.forteplatforms.sdk.generated.model.CreateCheckoutPreviewRequest;
+import com.forteplatforms.sdk.generated.model.CreateCheckoutPreviewResponse;
+import com.forteplatforms.sdk.generated.model.CreateCheckoutRequest;
+import com.forteplatforms.sdk.generated.model.CreateCheckoutResponse;
 import com.forteplatforms.sdk.generated.model.CreateCloneEnvironmentRequest;
 import com.forteplatforms.sdk.generated.model.CreateCloneEnvironmentResponse;
 import com.forteplatforms.sdk.generated.model.CreateContentUploadLinkRequest;
@@ -45,6 +49,7 @@ import com.forteplatforms.sdk.generated.model.CreateManagedDatabaseUserResponse;
 import com.forteplatforms.sdk.generated.model.CreatePaymentMethodResponse;
 import com.forteplatforms.sdk.generated.model.CreatePaymentPreviewRequest;
 import com.forteplatforms.sdk.generated.model.CreatePaymentPreviewResponse;
+import com.forteplatforms.sdk.generated.model.CreatePaymentRefundRequest;
 import com.forteplatforms.sdk.generated.model.CreatePaymentRequest;
 import com.forteplatforms.sdk.generated.model.CreatePaymentResponse;
 import com.forteplatforms.sdk.generated.model.CreatePaymentTriggerInvocationRequest;
@@ -17446,6 +17451,292 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param userId  (required)
+   * @param createCheckoutRequest  (required)
+   * @return CreateCheckoutResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutResponse projectsCreateCheckout(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest) throws ApiException {
+    return projectsCreateCheckout(projectId, userId, createCheckoutRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createCheckoutRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateCheckoutResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutResponse projectsCreateCheckout(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCheckoutResponse> localVarResponse = projectsCreateCheckoutWithHttpInfo(projectId, userId, createCheckoutRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createCheckoutRequest  (required)
+   * @return ApiResponse&lt;CreateCheckoutResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutResponse> projectsCreateCheckoutWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest) throws ApiException {
+    return projectsCreateCheckoutWithHttpInfo(projectId, userId, createCheckoutRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createCheckoutRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateCheckoutResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutResponse> projectsCreateCheckoutWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsCreateCheckoutRequestBuilder(projectId, userId, createCheckoutRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsCreateCheckout", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateCheckoutResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateCheckoutResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateCheckoutResponse>() {});
+        
+
+        return new ApiResponse<CreateCheckoutResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsCreateCheckoutRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutRequest createCheckoutRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsCreateCheckout");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsCreateCheckout");
+    }
+    // verify the required parameter 'createCheckoutRequest' is set
+    if (createCheckoutRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCheckoutRequest' when calling projectsCreateCheckout");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/checkouts"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCheckoutRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @return CreateCheckoutPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutPreviewResponse projectsCreateCheckoutPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest) throws ApiException {
+    return projectsCreateCheckoutPreview(projectId, userId, createCheckoutPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateCheckoutPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutPreviewResponse projectsCreateCheckoutPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCheckoutPreviewResponse> localVarResponse = projectsCreateCheckoutPreviewWithHttpInfo(projectId, userId, createCheckoutPreviewRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @return ApiResponse&lt;CreateCheckoutPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutPreviewResponse> projectsCreateCheckoutPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest) throws ApiException {
+    return projectsCreateCheckoutPreviewWithHttpInfo(projectId, userId, createCheckoutPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateCheckoutPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutPreviewResponse> projectsCreateCheckoutPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsCreateCheckoutPreviewRequestBuilder(projectId, userId, createCheckoutPreviewRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsCreateCheckoutPreview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateCheckoutPreviewResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateCheckoutPreviewResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateCheckoutPreviewResponse>() {});
+        
+
+        return new ApiResponse<CreateCheckoutPreviewResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsCreateCheckoutPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsCreateCheckoutPreview");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsCreateCheckoutPreview");
+    }
+    // verify the required parameter 'createCheckoutPreviewRequest' is set
+    if (createCheckoutPreviewRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCheckoutPreviewRequest' when calling projectsCreateCheckoutPreview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/checkouts/preview"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCheckoutPreviewRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
    * @param createContentUploadLinkRequest  (required)
    * @return CreateContentUploadLinkResponse
    * @throws ApiException if fails to make API call
@@ -20101,11 +20392,12 @@ public class ProjectsServerApi {
    * @param paymentId  (required)
    * @param keepSubscriptionActive  (optional, default to false)
    * @param refundAmountCents  (optional)
+   * @param createPaymentRefundRequest  (optional)
    * @return PaymentObject
    * @throws ApiException if fails to make API call
    */
-  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents) throws ApiException {
-    return refundPayment(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, null);
+  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, @javax.annotation.Nullable CreatePaymentRefundRequest createPaymentRefundRequest) throws ApiException {
+    return refundPayment(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, createPaymentRefundRequest, null);
   }
 
   /**
@@ -20116,12 +20408,13 @@ public class ProjectsServerApi {
    * @param paymentId  (required)
    * @param keepSubscriptionActive  (optional, default to false)
    * @param refundAmountCents  (optional)
+   * @param createPaymentRefundRequest  (optional)
    * @param headers Optional headers to include in the request
    * @return PaymentObject
    * @throws ApiException if fails to make API call
    */
-  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaymentObject> localVarResponse = refundPaymentWithHttpInfo(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, headers);
+  public PaymentObject refundPayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, @javax.annotation.Nullable CreatePaymentRefundRequest createPaymentRefundRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentObject> localVarResponse = refundPaymentWithHttpInfo(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, createPaymentRefundRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -20133,11 +20426,12 @@ public class ProjectsServerApi {
    * @param paymentId  (required)
    * @param keepSubscriptionActive  (optional, default to false)
    * @param refundAmountCents  (optional)
+   * @param createPaymentRefundRequest  (optional)
    * @return ApiResponse&lt;PaymentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents) throws ApiException {
-    return refundPaymentWithHttpInfo(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, null);
+  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, @javax.annotation.Nullable CreatePaymentRefundRequest createPaymentRefundRequest) throws ApiException {
+    return refundPaymentWithHttpInfo(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, createPaymentRefundRequest, null);
   }
 
   /**
@@ -20148,12 +20442,13 @@ public class ProjectsServerApi {
    * @param paymentId  (required)
    * @param keepSubscriptionActive  (optional, default to false)
    * @param refundAmountCents  (optional)
+   * @param createPaymentRefundRequest  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PaymentObject&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = refundPaymentRequestBuilder(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, headers);
+  public ApiResponse<PaymentObject> refundPaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, @javax.annotation.Nullable CreatePaymentRefundRequest createPaymentRefundRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = refundPaymentRequestBuilder(projectId, userId, paymentId, keepSubscriptionActive, refundAmountCents, createPaymentRefundRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -20200,7 +20495,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder refundPaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder refundPaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable Boolean keepSubscriptionActive, @javax.annotation.Nullable Long refundAmountCents, @javax.annotation.Nullable CreatePaymentRefundRequest createPaymentRefundRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling refundPayment");
@@ -20240,9 +20535,15 @@ public class ProjectsServerApi {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
+    localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "*/*");
 
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPaymentRefundRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -41,7 +41,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentLineItem.JSON_PROPERTY_UNIT_AMOUNT_CENTS,
   PaymentLineItem.JSON_PROPERTY_QUANTITY,
   PaymentLineItem.JSON_PROPERTY_TAX_CODE,
-  PaymentLineItem.JSON_PROPERTY_TAX_AMOUNT_CENTS
+  PaymentLineItem.JSON_PROPERTY_TAX_AMOUNT_CENTS,
+  PaymentLineItem.JSON_PROPERTY_LINE_ITEM_ID,
+  PaymentLineItem.JSON_PROPERTY_SUBSCRIPTION_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class PaymentLineItem {
@@ -62,6 +64,12 @@ public class PaymentLineItem {
 
   public static final String JSON_PROPERTY_TAX_AMOUNT_CENTS = "taxAmountCents";
   private JsonNullable<Long> taxAmountCents = JsonNullable.<Long>undefined();
+
+  public static final String JSON_PROPERTY_LINE_ITEM_ID = "lineItemId";
+  private JsonNullable<String> lineItemId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
+  private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
 
   public PaymentLineItem() { 
   }
@@ -204,6 +212,70 @@ public class PaymentLineItem {
   }
 
 
+  public PaymentLineItem lineItemId(@javax.annotation.Nullable String lineItemId) {
+    this.lineItemId = JsonNullable.<String>of(lineItemId);
+    return this;
+  }
+
+  /**
+   * Get lineItemId
+   * @return lineItemId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getLineItemId() {
+        return lineItemId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LINE_ITEM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getLineItemId_JsonNullable() {
+    return lineItemId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LINE_ITEM_ID)
+  public void setLineItemId_JsonNullable(JsonNullable<String> lineItemId) {
+    this.lineItemId = lineItemId;
+  }
+
+  public void setLineItemId(@javax.annotation.Nullable String lineItemId) {
+    this.lineItemId = JsonNullable.<String>of(lineItemId);
+  }
+
+
+  public PaymentLineItem subscriptionId(@javax.annotation.Nullable String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+    return this;
+  }
+
+  /**
+   * Get subscriptionId
+   * @return subscriptionId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getSubscriptionId() {
+        return subscriptionId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSubscriptionId_JsonNullable() {
+    return subscriptionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_ID)
+  public void setSubscriptionId_JsonNullable(JsonNullable<String> subscriptionId) {
+    this.subscriptionId = subscriptionId;
+  }
+
+  public void setSubscriptionId(@javax.annotation.Nullable String subscriptionId) {
+    this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+  }
+
+
   /**
    * Return true if this PaymentLineItem object is equal to o.
    */
@@ -220,7 +292,9 @@ public class PaymentLineItem {
         Objects.equals(this.unitAmountCents, paymentLineItem.unitAmountCents) &&
         Objects.equals(this.quantity, paymentLineItem.quantity) &&
         equalsNullable(this.taxCode, paymentLineItem.taxCode) &&
-        equalsNullable(this.taxAmountCents, paymentLineItem.taxAmountCents);
+        equalsNullable(this.taxAmountCents, paymentLineItem.taxAmountCents) &&
+        equalsNullable(this.lineItemId, paymentLineItem.lineItemId) &&
+        equalsNullable(this.subscriptionId, paymentLineItem.subscriptionId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -229,7 +303,7 @@ public class PaymentLineItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, unitAmountCents, quantity, hashCodeNullable(taxCode), hashCodeNullable(taxAmountCents));
+    return Objects.hash(description, unitAmountCents, quantity, hashCodeNullable(taxCode), hashCodeNullable(taxAmountCents), hashCodeNullable(lineItemId), hashCodeNullable(subscriptionId));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -248,6 +322,8 @@ public class PaymentLineItem {
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    taxCode: ").append(toIndentedString(taxCode)).append("\n");
     sb.append("    taxAmountCents: ").append(toIndentedString(taxAmountCents)).append("\n");
+    sb.append("    lineItemId: ").append(toIndentedString(lineItemId)).append("\n");
+    sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -315,6 +391,16 @@ public class PaymentLineItem {
     // add `taxAmountCents` to the URL query string
     if (getTaxAmountCents() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%staxAmountCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxAmountCents()))));
+    }
+
+    // add `lineItemId` to the URL query string
+    if (getLineItemId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slineItemId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLineItemId()))));
+    }
+
+    // add `subscriptionId` to the URL query string
+    if (getSubscriptionId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionId()))));
     }
 
     return joiner.toString();

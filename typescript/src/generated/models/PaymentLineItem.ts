@@ -49,6 +49,18 @@ export interface PaymentLineItem {
      * @memberof PaymentLineItem
      */
     taxAmountCents?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentLineItem
+     */
+    lineItemId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentLineItem
+     */
+    subscriptionId?: string | null;
 }
 
 /**
@@ -76,6 +88,8 @@ export function PaymentLineItemFromJSONTyped(json: any, ignoreDiscriminator: boo
         'quantity': json['quantity'],
         'taxCode': json['taxCode'] == null ? undefined : json['taxCode'],
         'taxAmountCents': json['taxAmountCents'] == null ? undefined : json['taxAmountCents'],
+        'lineItemId': json['lineItemId'] == null ? undefined : json['lineItemId'],
+        'subscriptionId': json['subscriptionId'] == null ? undefined : json['subscriptionId'],
     };
 }
 
@@ -95,6 +109,8 @@ export function PaymentLineItemToJSONTyped(value?: PaymentLineItem | null, ignor
         'quantity': value['quantity'],
         'taxCode': value['taxCode'],
         'taxAmountCents': value['taxAmountCents'],
+        'lineItemId': value['lineItemId'],
+        'subscriptionId': value['subscriptionId'],
     };
 }
 

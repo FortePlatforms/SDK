@@ -180,7 +180,25 @@ export interface PaymentObject {
      * @type {string}
      * @memberof PaymentObject
      */
+    subscriptionStripeTaxCalculationId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentObject
+     */
+    subscriptionStripeTaxTransactionId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentObject
+     */
     subscriptionId?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PaymentObject
+     */
+    subscriptionIds: Array<string>;
     /**
      * 
      * @type {Date}
@@ -249,6 +267,7 @@ export function instanceOfPaymentObject(value: object): value is PaymentObject {
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('supportedPaymentMethods' in value) || value['supportedPaymentMethods'] === undefined) return false;
     if (!('stripePaymentIntentId' in value) || value['stripePaymentIntentId'] === undefined) return false;
+    if (!('subscriptionIds' in value) || value['subscriptionIds'] === undefined) return false;
     if (!('stateHistory' in value) || value['stateHistory'] === undefined) return false;
     if (!('refundHistory' in value) || value['refundHistory'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
@@ -285,7 +304,10 @@ export function PaymentObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'lastPaymentErrorCode': json['lastPaymentErrorCode'] == null ? undefined : json['lastPaymentErrorCode'],
         'stripeTaxCalculationId': json['stripeTaxCalculationId'] == null ? undefined : json['stripeTaxCalculationId'],
         'stripeTaxTransactionId': json['stripeTaxTransactionId'] == null ? undefined : json['stripeTaxTransactionId'],
+        'subscriptionStripeTaxCalculationId': json['subscriptionStripeTaxCalculationId'] == null ? undefined : json['subscriptionStripeTaxCalculationId'],
+        'subscriptionStripeTaxTransactionId': json['subscriptionStripeTaxTransactionId'] == null ? undefined : json['subscriptionStripeTaxTransactionId'],
         'subscriptionId': json['subscriptionId'] == null ? undefined : json['subscriptionId'],
+        'subscriptionIds': json['subscriptionIds'],
         'subscriptionRenewalTime': json['subscriptionRenewalTime'] == null ? undefined : (new Date(json['subscriptionRenewalTime'])),
         'stateHistory': ((json['stateHistory'] as Array<any>).map(StateHistoryFromJSON)),
         'refundHistory': ((json['refundHistory'] as Array<any>).map(RefundRecordFromJSON)),
@@ -326,7 +348,10 @@ export function PaymentObjectToJSONTyped(value?: PaymentObject | null, ignoreDis
         'lastPaymentErrorCode': value['lastPaymentErrorCode'],
         'stripeTaxCalculationId': value['stripeTaxCalculationId'],
         'stripeTaxTransactionId': value['stripeTaxTransactionId'],
+        'subscriptionStripeTaxCalculationId': value['subscriptionStripeTaxCalculationId'],
+        'subscriptionStripeTaxTransactionId': value['subscriptionStripeTaxTransactionId'],
         'subscriptionId': value['subscriptionId'],
+        'subscriptionIds': value['subscriptionIds'],
         'subscriptionRenewalTime': value['subscriptionRenewalTime'] == null ? value['subscriptionRenewalTime'] : value['subscriptionRenewalTime'].toISOString(),
         'stateHistory': ((value['stateHistory'] as Array<any>).map(StateHistoryToJSON)),
         'refundHistory': ((value['refundHistory'] as Array<any>).map(RefundRecordToJSON)),

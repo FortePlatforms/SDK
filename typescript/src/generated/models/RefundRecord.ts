@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { RefundLineItem } from './RefundLineItem';
+import {
+    RefundLineItemFromJSON,
+    RefundLineItemFromJSONTyped,
+    RefundLineItemToJSON,
+    RefundLineItemToJSONTyped,
+} from './RefundLineItem';
+
 /**
  * 
  * @export
@@ -37,6 +45,18 @@ export interface RefundRecord {
      * @memberof RefundRecord
      */
     stripeRefundId?: string | null;
+    /**
+     * 
+     * @type {Array<RefundLineItem>}
+     * @memberof RefundRecord
+     */
+    lineItems?: Array<RefundLineItem> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RefundRecord
+     */
+    stripeTaxReversalIds?: Array<string> | null;
 }
 
 /**
@@ -61,6 +81,8 @@ export function RefundRecordFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'amountCents': json['amountCents'],
         'timestamp': (new Date(json['timestamp'])),
         'stripeRefundId': json['stripeRefundId'] == null ? undefined : json['stripeRefundId'],
+        'lineItems': json['lineItems'] == null ? undefined : ((json['lineItems'] as Array<any>).map(RefundLineItemFromJSON)),
+        'stripeTaxReversalIds': json['stripeTaxReversalIds'] == null ? undefined : json['stripeTaxReversalIds'],
     };
 }
 
@@ -78,6 +100,8 @@ export function RefundRecordToJSONTyped(value?: RefundRecord | null, ignoreDiscr
         'amountCents': value['amountCents'],
         'timestamp': value['timestamp'].toISOString(),
         'stripeRefundId': value['stripeRefundId'],
+        'lineItems': value['lineItems'] == null ? undefined : ((value['lineItems'] as Array<any>).map(RefundLineItemToJSON)),
+        'stripeTaxReversalIds': value['stripeTaxReversalIds'],
     };
 }
 

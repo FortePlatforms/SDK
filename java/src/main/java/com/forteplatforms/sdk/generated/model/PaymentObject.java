@@ -67,7 +67,10 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentObject.JSON_PROPERTY_LAST_PAYMENT_ERROR_CODE,
   PaymentObject.JSON_PROPERTY_STRIPE_TAX_CALCULATION_ID,
   PaymentObject.JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID,
+  PaymentObject.JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_CALCULATION_ID,
+  PaymentObject.JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_TRANSACTION_ID,
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_ID,
+  PaymentObject.JSON_PROPERTY_SUBSCRIPTION_IDS,
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME,
   PaymentObject.JSON_PROPERTY_STATE_HISTORY,
   PaymentObject.JSON_PROPERTY_REFUND_HISTORY,
@@ -195,8 +198,18 @@ public class PaymentObject {
   public static final String JSON_PROPERTY_STRIPE_TAX_TRANSACTION_ID = "stripeTaxTransactionId";
   private JsonNullable<String> stripeTaxTransactionId = JsonNullable.<String>undefined();
 
+  public static final String JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_CALCULATION_ID = "subscriptionStripeTaxCalculationId";
+  private JsonNullable<String> subscriptionStripeTaxCalculationId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_TRANSACTION_ID = "subscriptionStripeTaxTransactionId";
+  private JsonNullable<String> subscriptionStripeTaxTransactionId = JsonNullable.<String>undefined();
+
   public static final String JSON_PROPERTY_SUBSCRIPTION_ID = "subscriptionId";
   private JsonNullable<String> subscriptionId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_SUBSCRIPTION_IDS = "subscriptionIds";
+  @javax.annotation.Nonnull
+  private List<String> subscriptionIds = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME = "subscriptionRenewalTime";
   private JsonNullable<OffsetDateTime> subscriptionRenewalTime = JsonNullable.<OffsetDateTime>undefined();
@@ -784,6 +797,70 @@ public class PaymentObject {
   }
 
 
+  public PaymentObject subscriptionStripeTaxCalculationId(@javax.annotation.Nullable String subscriptionStripeTaxCalculationId) {
+    this.subscriptionStripeTaxCalculationId = JsonNullable.<String>of(subscriptionStripeTaxCalculationId);
+    return this;
+  }
+
+  /**
+   * Get subscriptionStripeTaxCalculationId
+   * @return subscriptionStripeTaxCalculationId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getSubscriptionStripeTaxCalculationId() {
+        return subscriptionStripeTaxCalculationId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_CALCULATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSubscriptionStripeTaxCalculationId_JsonNullable() {
+    return subscriptionStripeTaxCalculationId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_CALCULATION_ID)
+  public void setSubscriptionStripeTaxCalculationId_JsonNullable(JsonNullable<String> subscriptionStripeTaxCalculationId) {
+    this.subscriptionStripeTaxCalculationId = subscriptionStripeTaxCalculationId;
+  }
+
+  public void setSubscriptionStripeTaxCalculationId(@javax.annotation.Nullable String subscriptionStripeTaxCalculationId) {
+    this.subscriptionStripeTaxCalculationId = JsonNullable.<String>of(subscriptionStripeTaxCalculationId);
+  }
+
+
+  public PaymentObject subscriptionStripeTaxTransactionId(@javax.annotation.Nullable String subscriptionStripeTaxTransactionId) {
+    this.subscriptionStripeTaxTransactionId = JsonNullable.<String>of(subscriptionStripeTaxTransactionId);
+    return this;
+  }
+
+  /**
+   * Get subscriptionStripeTaxTransactionId
+   * @return subscriptionStripeTaxTransactionId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getSubscriptionStripeTaxTransactionId() {
+        return subscriptionStripeTaxTransactionId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_TRANSACTION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSubscriptionStripeTaxTransactionId_JsonNullable() {
+    return subscriptionStripeTaxTransactionId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_TRANSACTION_ID)
+  public void setSubscriptionStripeTaxTransactionId_JsonNullable(JsonNullable<String> subscriptionStripeTaxTransactionId) {
+    this.subscriptionStripeTaxTransactionId = subscriptionStripeTaxTransactionId;
+  }
+
+  public void setSubscriptionStripeTaxTransactionId(@javax.annotation.Nullable String subscriptionStripeTaxTransactionId) {
+    this.subscriptionStripeTaxTransactionId = JsonNullable.<String>of(subscriptionStripeTaxTransactionId);
+  }
+
+
   public PaymentObject subscriptionId(@javax.annotation.Nullable String subscriptionId) {
     this.subscriptionId = JsonNullable.<String>of(subscriptionId);
     return this;
@@ -813,6 +890,38 @@ public class PaymentObject {
 
   public void setSubscriptionId(@javax.annotation.Nullable String subscriptionId) {
     this.subscriptionId = JsonNullable.<String>of(subscriptionId);
+  }
+
+
+  public PaymentObject subscriptionIds(@javax.annotation.Nonnull List<String> subscriptionIds) {
+    this.subscriptionIds = subscriptionIds;
+    return this;
+  }
+
+  public PaymentObject addSubscriptionIdsItem(String subscriptionIdsItem) {
+    if (this.subscriptionIds == null) {
+      this.subscriptionIds = new ArrayList<>();
+    }
+    this.subscriptionIds.add(subscriptionIdsItem);
+    return this;
+  }
+
+  /**
+   * Get subscriptionIds
+   * @return subscriptionIds
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_IDS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public List<String> getSubscriptionIds() {
+    return subscriptionIds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUBSCRIPTION_IDS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSubscriptionIds(@javax.annotation.Nonnull List<String> subscriptionIds) {
+    this.subscriptionIds = subscriptionIds;
   }
 
 
@@ -1016,7 +1125,10 @@ public class PaymentObject {
         equalsNullable(this.lastPaymentErrorCode, paymentObject.lastPaymentErrorCode) &&
         equalsNullable(this.stripeTaxCalculationId, paymentObject.stripeTaxCalculationId) &&
         equalsNullable(this.stripeTaxTransactionId, paymentObject.stripeTaxTransactionId) &&
+        equalsNullable(this.subscriptionStripeTaxCalculationId, paymentObject.subscriptionStripeTaxCalculationId) &&
+        equalsNullable(this.subscriptionStripeTaxTransactionId, paymentObject.subscriptionStripeTaxTransactionId) &&
         equalsNullable(this.subscriptionId, paymentObject.subscriptionId) &&
+        Objects.equals(this.subscriptionIds, paymentObject.subscriptionIds) &&
         equalsNullable(this.subscriptionRenewalTime, paymentObject.subscriptionRenewalTime) &&
         Objects.equals(this.stateHistory, paymentObject.stateHistory) &&
         Objects.equals(this.refundHistory, paymentObject.refundHistory) &&
@@ -1031,7 +1143,7 @@ public class PaymentObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(lastPaymentErrorMessage), hashCodeNullable(lastPaymentErrorCode), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionId), hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(lastPaymentErrorMessage), hashCodeNullable(lastPaymentErrorCode), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionStripeTaxCalculationId), hashCodeNullable(subscriptionStripeTaxTransactionId), hashCodeNullable(subscriptionId), subscriptionIds, hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1065,7 +1177,10 @@ public class PaymentObject {
     sb.append("    lastPaymentErrorCode: ").append(toIndentedString(lastPaymentErrorCode)).append("\n");
     sb.append("    stripeTaxCalculationId: ").append(toIndentedString(stripeTaxCalculationId)).append("\n");
     sb.append("    stripeTaxTransactionId: ").append(toIndentedString(stripeTaxTransactionId)).append("\n");
+    sb.append("    subscriptionStripeTaxCalculationId: ").append(toIndentedString(subscriptionStripeTaxCalculationId)).append("\n");
+    sb.append("    subscriptionStripeTaxTransactionId: ").append(toIndentedString(subscriptionStripeTaxTransactionId)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
+    sb.append("    subscriptionIds: ").append(toIndentedString(subscriptionIds)).append("\n");
     sb.append("    subscriptionRenewalTime: ").append(toIndentedString(subscriptionRenewalTime)).append("\n");
     sb.append("    stateHistory: ").append(toIndentedString(stateHistory)).append("\n");
     sb.append("    refundHistory: ").append(toIndentedString(refundHistory)).append("\n");
@@ -1231,9 +1346,28 @@ public class PaymentObject {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstripeTaxTransactionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStripeTaxTransactionId()))));
     }
 
+    // add `subscriptionStripeTaxCalculationId` to the URL query string
+    if (getSubscriptionStripeTaxCalculationId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionStripeTaxCalculationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionStripeTaxCalculationId()))));
+    }
+
+    // add `subscriptionStripeTaxTransactionId` to the URL query string
+    if (getSubscriptionStripeTaxTransactionId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionStripeTaxTransactionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionStripeTaxTransactionId()))));
+    }
+
     // add `subscriptionId` to the URL query string
     if (getSubscriptionId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionId()))));
+    }
+
+    // add `subscriptionIds` to the URL query string
+    if (getSubscriptionIds() != null) {
+      for (int i = 0; i < getSubscriptionIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionIds().get(i)))));
+      }
     }
 
     // add `subscriptionRenewalTime` to the URL query string

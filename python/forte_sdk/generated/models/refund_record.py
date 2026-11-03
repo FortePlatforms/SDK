@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.refund_line_item import RefundLineItem
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,7 +33,9 @@ class RefundRecord(BaseModel):
     amount_cents: Annotated[int, Field(strict=True, ge=1)] = Field(alias="amountCents")
     timestamp: datetime
     stripe_refund_id: Optional[StrictStr] = Field(default=None, alias="stripeRefundId")
-    __properties: ClassVar[List[str]] = ["amountCents", "timestamp", "stripeRefundId"]
+    line_items: Optional[List[RefundLineItem]] = Field(default=None, alias="lineItems")
+    stripe_tax_reversal_ids: Optional[List[StrictStr]] = Field(default=None, alias="stripeTaxReversalIds")
+    __properties: ClassVar[List[str]] = ["amountCents", "timestamp", "stripeRefundId", "lineItems", "stripeTaxReversalIds"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,10 +76,27 @@ class RefundRecord(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in line_items (list)
+        _items = []
+        if self.line_items:
+            for _item_line_items in self.line_items:
+                if _item_line_items:
+                    _items.append(_item_line_items.to_dict())
+            _dict['lineItems'] = _items
         # set to None if stripe_refund_id (nullable) is None
         # and model_fields_set contains the field
         if self.stripe_refund_id is None and "stripe_refund_id" in self.model_fields_set:
             _dict['stripeRefundId'] = None
+
+        # set to None if line_items (nullable) is None
+        # and model_fields_set contains the field
+        if self.line_items is None and "line_items" in self.model_fields_set:
+            _dict['lineItems'] = None
+
+        # set to None if stripe_tax_reversal_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_tax_reversal_ids is None and "stripe_tax_reversal_ids" in self.model_fields_set:
+            _dict['stripeTaxReversalIds'] = None
 
         return _dict
 
@@ -92,7 +112,9 @@ class RefundRecord(BaseModel):
         _obj = cls.model_validate({
             "amountCents": obj.get("amountCents"),
             "timestamp": obj.get("timestamp"),
-            "stripeRefundId": obj.get("stripeRefundId")
+            "stripeRefundId": obj.get("stripeRefundId"),
+            "lineItems": [RefundLineItem.from_dict(_item) for _item in obj["lineItems"]] if obj.get("lineItems") is not None else None,
+            "stripeTaxReversalIds": obj.get("stripeTaxReversalIds")
         })
         return _obj
 

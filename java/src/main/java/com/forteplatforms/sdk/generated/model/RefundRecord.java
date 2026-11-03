@@ -24,8 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.RefundLineItem;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -40,7 +43,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   RefundRecord.JSON_PROPERTY_AMOUNT_CENTS,
   RefundRecord.JSON_PROPERTY_TIMESTAMP,
-  RefundRecord.JSON_PROPERTY_STRIPE_REFUND_ID
+  RefundRecord.JSON_PROPERTY_STRIPE_REFUND_ID,
+  RefundRecord.JSON_PROPERTY_LINE_ITEMS,
+  RefundRecord.JSON_PROPERTY_STRIPE_TAX_REVERSAL_IDS
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class RefundRecord {
@@ -54,6 +59,12 @@ public class RefundRecord {
 
   public static final String JSON_PROPERTY_STRIPE_REFUND_ID = "stripeRefundId";
   private JsonNullable<String> stripeRefundId = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_LINE_ITEMS = "lineItems";
+  private JsonNullable<List<RefundLineItem>> lineItems = JsonNullable.<List<RefundLineItem>>undefined();
+
+  public static final String JSON_PROPERTY_STRIPE_TAX_REVERSAL_IDS = "stripeTaxReversalIds";
+  private JsonNullable<List<String>> stripeTaxReversalIds = JsonNullable.<List<String>>undefined();
 
   public RefundRecord() { 
   }
@@ -139,6 +150,94 @@ public class RefundRecord {
   }
 
 
+  public RefundRecord lineItems(@javax.annotation.Nullable List<RefundLineItem> lineItems) {
+    this.lineItems = JsonNullable.<List<RefundLineItem>>of(lineItems);
+    return this;
+  }
+
+  public RefundRecord addLineItemsItem(RefundLineItem lineItemsItem) {
+    if (this.lineItems == null || !this.lineItems.isPresent()) {
+      this.lineItems = JsonNullable.<List<RefundLineItem>>of(new ArrayList<>());
+    }
+    try {
+      this.lineItems.get().add(lineItemsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get lineItems
+   * @return lineItems
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<RefundLineItem> getLineItems() {
+        return lineItems.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LINE_ITEMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<RefundLineItem>> getLineItems_JsonNullable() {
+    return lineItems;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LINE_ITEMS)
+  public void setLineItems_JsonNullable(JsonNullable<List<RefundLineItem>> lineItems) {
+    this.lineItems = lineItems;
+  }
+
+  public void setLineItems(@javax.annotation.Nullable List<RefundLineItem> lineItems) {
+    this.lineItems = JsonNullable.<List<RefundLineItem>>of(lineItems);
+  }
+
+
+  public RefundRecord stripeTaxReversalIds(@javax.annotation.Nullable List<String> stripeTaxReversalIds) {
+    this.stripeTaxReversalIds = JsonNullable.<List<String>>of(stripeTaxReversalIds);
+    return this;
+  }
+
+  public RefundRecord addStripeTaxReversalIdsItem(String stripeTaxReversalIdsItem) {
+    if (this.stripeTaxReversalIds == null || !this.stripeTaxReversalIds.isPresent()) {
+      this.stripeTaxReversalIds = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.stripeTaxReversalIds.get().add(stripeTaxReversalIdsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get stripeTaxReversalIds
+   * @return stripeTaxReversalIds
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getStripeTaxReversalIds() {
+        return stripeTaxReversalIds.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_STRIPE_TAX_REVERSAL_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getStripeTaxReversalIds_JsonNullable() {
+    return stripeTaxReversalIds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_TAX_REVERSAL_IDS)
+  public void setStripeTaxReversalIds_JsonNullable(JsonNullable<List<String>> stripeTaxReversalIds) {
+    this.stripeTaxReversalIds = stripeTaxReversalIds;
+  }
+
+  public void setStripeTaxReversalIds(@javax.annotation.Nullable List<String> stripeTaxReversalIds) {
+    this.stripeTaxReversalIds = JsonNullable.<List<String>>of(stripeTaxReversalIds);
+  }
+
+
   /**
    * Return true if this RefundRecord object is equal to o.
    */
@@ -153,7 +252,9 @@ public class RefundRecord {
     RefundRecord refundRecord = (RefundRecord) o;
     return Objects.equals(this.amountCents, refundRecord.amountCents) &&
         Objects.equals(this.timestamp, refundRecord.timestamp) &&
-        equalsNullable(this.stripeRefundId, refundRecord.stripeRefundId);
+        equalsNullable(this.stripeRefundId, refundRecord.stripeRefundId) &&
+        equalsNullable(this.lineItems, refundRecord.lineItems) &&
+        equalsNullable(this.stripeTaxReversalIds, refundRecord.stripeTaxReversalIds);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -162,7 +263,7 @@ public class RefundRecord {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amountCents, timestamp, hashCodeNullable(stripeRefundId));
+    return Objects.hash(amountCents, timestamp, hashCodeNullable(stripeRefundId), hashCodeNullable(lineItems), hashCodeNullable(stripeTaxReversalIds));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -179,6 +280,8 @@ public class RefundRecord {
     sb.append("    amountCents: ").append(toIndentedString(amountCents)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    stripeRefundId: ").append(toIndentedString(stripeRefundId)).append("\n");
+    sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
+    sb.append("    stripeTaxReversalIds: ").append(toIndentedString(stripeTaxReversalIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -236,6 +339,25 @@ public class RefundRecord {
     // add `stripeRefundId` to the URL query string
     if (getStripeRefundId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstripeRefundId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStripeRefundId()))));
+    }
+
+    // add `lineItems` to the URL query string
+    if (getLineItems() != null) {
+      for (int i = 0; i < getLineItems().size(); i++) {
+        if (getLineItems().get(i) != null) {
+          joiner.add(getLineItems().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%slineItems%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `stripeTaxReversalIds` to the URL query string
+    if (getStripeTaxReversalIds() != null) {
+      for (int i = 0; i < getStripeTaxReversalIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sstripeTaxReversalIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getStripeTaxReversalIds().get(i)))));
+      }
     }
 
     return joiner.toString();
