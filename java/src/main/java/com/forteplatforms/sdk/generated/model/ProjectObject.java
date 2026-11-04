@@ -50,6 +50,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_PROJECT_ID,
   ProjectObject.JSON_PROPERTY_OWNER_ACCOUNT_ID,
   ProjectObject.JSON_PROPERTY_PROJECT_NAME,
+  ProjectObject.JSON_PROPERTY_SEEDED_DEFAULT_PROJECT,
   ProjectObject.JSON_PROPERTY_SERVICES,
   ProjectObject.JSON_PROPERTY_WEB_APPS,
   ProjectObject.JSON_PROPERTY_MANAGED_DATABASES,
@@ -90,6 +91,9 @@ public class ProjectObject {
   public static final String JSON_PROPERTY_PROJECT_NAME = "projectName";
   @javax.annotation.Nonnull
   private String projectName;
+
+  public static final String JSON_PROPERTY_SEEDED_DEFAULT_PROJECT = "seededDefaultProject";
+  private JsonNullable<Boolean> seededDefaultProject = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_SERVICES = "services";
   @javax.annotation.Nonnull
@@ -369,6 +373,38 @@ public class ProjectObject {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setProjectName(@javax.annotation.Nonnull String projectName) {
     this.projectName = projectName;
+  }
+
+
+  public ProjectObject seededDefaultProject(@javax.annotation.Nullable Boolean seededDefaultProject) {
+    this.seededDefaultProject = JsonNullable.<Boolean>of(seededDefaultProject);
+    return this;
+  }
+
+  /**
+   * Get seededDefaultProject
+   * @return seededDefaultProject
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Boolean getSeededDefaultProject() {
+        return seededDefaultProject.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SEEDED_DEFAULT_PROJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Boolean> getSeededDefaultProject_JsonNullable() {
+    return seededDefaultProject;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SEEDED_DEFAULT_PROJECT)
+  public void setSeededDefaultProject_JsonNullable(JsonNullable<Boolean> seededDefaultProject) {
+    this.seededDefaultProject = seededDefaultProject;
+  }
+
+  public void setSeededDefaultProject(@javax.annotation.Nullable Boolean seededDefaultProject) {
+    this.seededDefaultProject = JsonNullable.<Boolean>of(seededDefaultProject);
   }
 
 
@@ -1147,6 +1183,7 @@ public class ProjectObject {
     return Objects.equals(this.projectId, projectObject.projectId) &&
         Objects.equals(this.ownerAccountId, projectObject.ownerAccountId) &&
         Objects.equals(this.projectName, projectObject.projectName) &&
+        equalsNullable(this.seededDefaultProject, projectObject.seededDefaultProject) &&
         Objects.equals(this.services, projectObject.services) &&
         Objects.equals(this.webApps, projectObject.webApps) &&
         Objects.equals(this.managedDatabases, projectObject.managedDatabases) &&
@@ -1181,7 +1218,7 @@ public class ProjectObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, hashCodeNullable(cachedUserCount), googleOAuthClientId, hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(botProtectionMode), hashCodeNullable(sandboxMode), notificationTemplatesConfig, paymentTriggers, hashCodeNullable(emailSender), hashCodeNullable(parentProjectId), hashCodeNullable(clonedFromProjectId), hashCodeNullable(environmentName), hashCodeNullable(cloneStatus), hashCodeNullable(cloneFailureReason), hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, hashCodeNullable(seededDefaultProject), services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, hashCodeNullable(cachedUserCount), googleOAuthClientId, hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(botProtectionMode), hashCodeNullable(sandboxMode), notificationTemplatesConfig, paymentTriggers, hashCodeNullable(emailSender), hashCodeNullable(parentProjectId), hashCodeNullable(clonedFromProjectId), hashCodeNullable(environmentName), hashCodeNullable(cloneStatus), hashCodeNullable(cloneFailureReason), hasRecaptchaSecretKey);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1198,6 +1235,7 @@ public class ProjectObject {
     sb.append("    projectId: ").append(toIndentedString(projectId)).append("\n");
     sb.append("    ownerAccountId: ").append(toIndentedString(ownerAccountId)).append("\n");
     sb.append("    projectName: ").append(toIndentedString(projectName)).append("\n");
+    sb.append("    seededDefaultProject: ").append(toIndentedString(seededDefaultProject)).append("\n");
     sb.append("    services: ").append(toIndentedString(services)).append("\n");
     sb.append("    webApps: ").append(toIndentedString(webApps)).append("\n");
     sb.append("    managedDatabases: ").append(toIndentedString(managedDatabases)).append("\n");
@@ -1281,6 +1319,11 @@ public class ProjectObject {
     // add `projectName` to the URL query string
     if (getProjectName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sprojectName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProjectName()))));
+    }
+
+    // add `seededDefaultProject` to the URL query string
+    if (getSeededDefaultProject() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sseededDefaultProject%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSeededDefaultProject()))));
     }
 
     // add `services` to the URL query string

@@ -38,6 +38,7 @@ class ProjectObject(BaseModel):
     project_id: Optional[StrictStr] = Field(default=None, alias="projectId")
     owner_account_id: StrictStr = Field(alias="ownerAccountId")
     project_name: StrictStr = Field(alias="projectName")
+    seeded_default_project: Optional[StrictBool] = Field(default=None, alias="seededDefaultProject")
     services: List[ServiceObject]
     web_apps: List[WebAppObject] = Field(alias="webApps")
     managed_databases: List[ManagedDatabaseObject] = Field(alias="managedDatabases")
@@ -64,7 +65,7 @@ class ProjectObject(BaseModel):
     clone_status: Optional[StrictStr] = Field(default=None, alias="cloneStatus")
     clone_failure_reason: Optional[StrictStr] = Field(default=None, alias="cloneFailureReason")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "botProtectionMode", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "parentProjectId", "clonedFromProjectId", "environmentName", "cloneStatus", "cloneFailureReason", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "seededDefaultProject", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "botProtectionMode", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "parentProjectId", "clonedFromProjectId", "environmentName", "cloneStatus", "cloneFailureReason", "hasRecaptchaSecretKey"]
 
     @field_validator('bot_protection_mode')
     def bot_protection_mode_validate_enum(cls, value):
@@ -172,6 +173,11 @@ class ProjectObject(BaseModel):
                 if _item_payment_triggers:
                     _items.append(_item_payment_triggers.to_dict())
             _dict['paymentTriggers'] = _items
+        # set to None if seeded_default_project (nullable) is None
+        # and model_fields_set contains the field
+        if self.seeded_default_project is None and "seeded_default_project" in self.model_fields_set:
+            _dict['seededDefaultProject'] = None
+
         # set to None if cached_user_count (nullable) is None
         # and model_fields_set contains the field
         if self.cached_user_count is None and "cached_user_count" in self.model_fields_set:
@@ -252,6 +258,7 @@ class ProjectObject(BaseModel):
             "projectId": obj.get("projectId"),
             "ownerAccountId": obj.get("ownerAccountId"),
             "projectName": obj.get("projectName"),
+            "seededDefaultProject": obj.get("seededDefaultProject"),
             "services": [ServiceObject.from_dict(_item) for _item in obj["services"]] if obj.get("services") is not None else None,
             "webApps": [WebAppObject.from_dict(_item) for _item in obj["webApps"]] if obj.get("webApps") is not None else None,
             "managedDatabases": [ManagedDatabaseObject.from_dict(_item) for _item in obj["managedDatabases"]] if obj.get("managedDatabases") is not None else None,

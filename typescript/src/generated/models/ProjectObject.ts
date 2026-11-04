@@ -89,6 +89,12 @@ export interface ProjectObject {
     projectName: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof ProjectObject
+     */
+    seededDefaultProject?: boolean | null;
+    /**
+     * 
      * @type {Array<ServiceObject>}
      * @memberof ProjectObject
      */
@@ -306,6 +312,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'projectId': json['projectId'] == null ? undefined : json['projectId'],
         'ownerAccountId': json['ownerAccountId'],
         'projectName': json['projectName'],
+        'seededDefaultProject': json['seededDefaultProject'] == null ? undefined : json['seededDefaultProject'],
         'services': ((json['services'] as Array<any>).map(ServiceObjectFromJSON)),
         'webApps': ((json['webApps'] as Array<any>).map(WebAppObjectFromJSON)),
         'managedDatabases': ((json['managedDatabases'] as Array<any>).map(ManagedDatabaseObjectFromJSON)),
@@ -349,6 +356,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'projectId': value['projectId'],
         'ownerAccountId': value['ownerAccountId'],
         'projectName': value['projectName'],
+        'seededDefaultProject': value['seededDefaultProject'],
         'services': ((value['services'] as Array<any>).map(ServiceObjectToJSON)),
         'webApps': ((value['webApps'] as Array<any>).map(WebAppObjectToJSON)),
         'managedDatabases': ((value['managedDatabases'] as Array<any>).map(ManagedDatabaseObjectToJSON)),
