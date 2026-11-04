@@ -201,6 +201,12 @@ export interface PaymentObject {
     subscriptionIds: Array<string>;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof PaymentObject
+     */
+    scheduledSubscriptionIds?: Array<string> | null;
+    /**
+     * 
      * @type {Date}
      * @memberof PaymentObject
      */
@@ -308,6 +314,7 @@ export function PaymentObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'subscriptionStripeTaxTransactionId': json['subscriptionStripeTaxTransactionId'] == null ? undefined : json['subscriptionStripeTaxTransactionId'],
         'subscriptionId': json['subscriptionId'] == null ? undefined : json['subscriptionId'],
         'subscriptionIds': json['subscriptionIds'],
+        'scheduledSubscriptionIds': json['scheduledSubscriptionIds'] == null ? undefined : json['scheduledSubscriptionIds'],
         'subscriptionRenewalTime': json['subscriptionRenewalTime'] == null ? undefined : (new Date(json['subscriptionRenewalTime'])),
         'stateHistory': ((json['stateHistory'] as Array<any>).map(StateHistoryFromJSON)),
         'refundHistory': ((json['refundHistory'] as Array<any>).map(RefundRecordFromJSON)),
@@ -352,6 +359,7 @@ export function PaymentObjectToJSONTyped(value?: PaymentObject | null, ignoreDis
         'subscriptionStripeTaxTransactionId': value['subscriptionStripeTaxTransactionId'],
         'subscriptionId': value['subscriptionId'],
         'subscriptionIds': value['subscriptionIds'],
+        'scheduledSubscriptionIds': value['scheduledSubscriptionIds'],
         'subscriptionRenewalTime': value['subscriptionRenewalTime'] == null ? value['subscriptionRenewalTime'] : value['subscriptionRenewalTime'].toISOString(),
         'stateHistory': ((value['stateHistory'] as Array<any>).map(StateHistoryToJSON)),
         'refundHistory': ((value['refundHistory'] as Array<any>).map(RefundRecordToJSON)),

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.payment_object import PaymentObject
 from forte_sdk.generated.models.subscription_object import SubscriptionObject
 from typing import Optional, Set
@@ -29,9 +29,9 @@ class CreateCheckoutResponse(BaseModel):
     """
     CreateCheckoutResponse
     """ # noqa: E501
-    payment: PaymentObject
+    payment: Optional[PaymentObject] = None
     subscriptions: List[SubscriptionObject]
-    stripe_client_secret: StrictStr = Field(alias="stripeClientSecret")
+    stripe_client_secret: Optional[StrictStr] = Field(default=None, alias="stripeClientSecret")
     stripe_publishable_key: StrictStr = Field(alias="stripePublishableKey")
     stripe_connected_account_id: StrictStr = Field(alias="stripeConnectedAccountId")
     __properties: ClassVar[List[str]] = ["payment", "subscriptions", "stripeClientSecret", "stripePublishableKey", "stripeConnectedAccountId"]
@@ -85,6 +85,11 @@ class CreateCheckoutResponse(BaseModel):
                 if _item_subscriptions:
                     _items.append(_item_subscriptions.to_dict())
             _dict['subscriptions'] = _items
+        # set to None if stripe_client_secret (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_client_secret is None and "stripe_client_secret" in self.model_fields_set:
+            _dict['stripeClientSecret'] = None
+
         return _dict
 
     @classmethod

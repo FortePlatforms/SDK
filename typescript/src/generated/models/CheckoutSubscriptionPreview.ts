@@ -62,6 +62,12 @@ export interface CheckoutSubscriptionPreview {
      * @type {Date}
      * @memberof CheckoutSubscriptionPreview
      */
+    startTime?: Date | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CheckoutSubscriptionPreview
+     */
     nextRenewalAt: Date;
 }
 
@@ -103,6 +109,7 @@ export function CheckoutSubscriptionPreviewFromJSONTyped(json: any, ignoreDiscri
         'taxCents': json['taxCents'] == null ? undefined : json['taxCents'],
         'amountCents': json['amountCents'],
         'lineItems': ((json['lineItems'] as Array<any>).map(PaymentLineItemFromJSON)),
+        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
         'nextRenewalAt': (new Date(json['nextRenewalAt'])),
     };
 }
@@ -123,6 +130,7 @@ export function CheckoutSubscriptionPreviewToJSONTyped(value?: CheckoutSubscript
         'taxCents': value['taxCents'],
         'amountCents': value['amountCents'],
         'lineItems': ((value['lineItems'] as Array<any>).map(PaymentLineItemToJSON)),
+        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
         'nextRenewalAt': value['nextRenewalAt'].toISOString(),
     };
 }

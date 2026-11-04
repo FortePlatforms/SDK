@@ -34,8 +34,9 @@ class CheckoutSubscriptionPreview(BaseModel):
     tax_cents: Optional[StrictInt] = Field(default=None, alias="taxCents")
     amount_cents: StrictInt = Field(alias="amountCents")
     line_items: List[PaymentLineItem] = Field(alias="lineItems")
+    start_time: Optional[datetime] = Field(default=None, alias="startTime")
     next_renewal_at: datetime = Field(alias="nextRenewalAt")
-    __properties: ClassVar[List[str]] = ["interval", "subtotalCents", "taxCents", "amountCents", "lineItems", "nextRenewalAt"]
+    __properties: ClassVar[List[str]] = ["interval", "subtotalCents", "taxCents", "amountCents", "lineItems", "startTime", "nextRenewalAt"]
 
     @field_validator('interval')
     def interval_validate_enum(cls, value):
@@ -95,6 +96,11 @@ class CheckoutSubscriptionPreview(BaseModel):
         if self.tax_cents is None and "tax_cents" in self.model_fields_set:
             _dict['taxCents'] = None
 
+        # set to None if start_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_time is None and "start_time" in self.model_fields_set:
+            _dict['startTime'] = None
+
         return _dict
 
     @classmethod
@@ -112,6 +118,7 @@ class CheckoutSubscriptionPreview(BaseModel):
             "taxCents": obj.get("taxCents"),
             "amountCents": obj.get("amountCents"),
             "lineItems": [PaymentLineItem.from_dict(_item) for _item in obj["lineItems"]] if obj.get("lineItems") is not None else None,
+            "startTime": obj.get("startTime"),
             "nextRenewalAt": obj.get("nextRenewalAt")
         })
         return _obj

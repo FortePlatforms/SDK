@@ -29,6 +29,10 @@ import com.forteplatforms.sdk.generated.model.SubscriptionObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,7 +50,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateCheckoutResponse {
   public static final String JSON_PROPERTY_PAYMENT = "payment";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private PaymentObject payment;
 
   public static final String JSON_PROPERTY_SUBSCRIPTIONS = "subscriptions";
@@ -54,8 +58,7 @@ public class CreateCheckoutResponse {
   private List<SubscriptionObject> subscriptions = new ArrayList<>();
 
   public static final String JSON_PROPERTY_STRIPE_CLIENT_SECRET = "stripeClientSecret";
-  @javax.annotation.Nonnull
-  private String stripeClientSecret;
+  private JsonNullable<String> stripeClientSecret = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STRIPE_PUBLISHABLE_KEY = "stripePublishableKey";
   @javax.annotation.Nonnull
@@ -68,7 +71,7 @@ public class CreateCheckoutResponse {
   public CreateCheckoutResponse() { 
   }
 
-  public CreateCheckoutResponse payment(@javax.annotation.Nonnull PaymentObject payment) {
+  public CreateCheckoutResponse payment(@javax.annotation.Nullable PaymentObject payment) {
     this.payment = payment;
     return this;
   }
@@ -77,17 +80,17 @@ public class CreateCheckoutResponse {
    * Get payment
    * @return payment
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PAYMENT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PAYMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PaymentObject getPayment() {
     return payment;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PAYMENT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPayment(@javax.annotation.Nonnull PaymentObject payment) {
+  @JsonProperty(value = JSON_PROPERTY_PAYMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPayment(@javax.annotation.Nullable PaymentObject payment) {
     this.payment = payment;
   }
 
@@ -124,8 +127,8 @@ public class CreateCheckoutResponse {
   }
 
 
-  public CreateCheckoutResponse stripeClientSecret(@javax.annotation.Nonnull String stripeClientSecret) {
-    this.stripeClientSecret = stripeClientSecret;
+  public CreateCheckoutResponse stripeClientSecret(@javax.annotation.Nullable String stripeClientSecret) {
+    this.stripeClientSecret = JsonNullable.<String>of(stripeClientSecret);
     return this;
   }
 
@@ -133,18 +136,26 @@ public class CreateCheckoutResponse {
    * Get stripeClientSecret
    * @return stripeClientSecret
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_CLIENT_SECRET, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public String getStripeClientSecret() {
-    return stripeClientSecret;
+        return stripeClientSecret.orElse(null);
   }
 
+  @JsonProperty(value = JSON_PROPERTY_STRIPE_CLIENT_SECRET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  @JsonProperty(value = JSON_PROPERTY_STRIPE_CLIENT_SECRET, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStripeClientSecret(@javax.annotation.Nonnull String stripeClientSecret) {
+  public JsonNullable<String> getStripeClientSecret_JsonNullable() {
+    return stripeClientSecret;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_CLIENT_SECRET)
+  public void setStripeClientSecret_JsonNullable(JsonNullable<String> stripeClientSecret) {
     this.stripeClientSecret = stripeClientSecret;
+  }
+
+  public void setStripeClientSecret(@javax.annotation.Nullable String stripeClientSecret) {
+    this.stripeClientSecret = JsonNullable.<String>of(stripeClientSecret);
   }
 
 
@@ -210,14 +221,25 @@ public class CreateCheckoutResponse {
     CreateCheckoutResponse createCheckoutResponse = (CreateCheckoutResponse) o;
     return Objects.equals(this.payment, createCheckoutResponse.payment) &&
         Objects.equals(this.subscriptions, createCheckoutResponse.subscriptions) &&
-        Objects.equals(this.stripeClientSecret, createCheckoutResponse.stripeClientSecret) &&
+        equalsNullable(this.stripeClientSecret, createCheckoutResponse.stripeClientSecret) &&
         Objects.equals(this.stripePublishableKey, createCheckoutResponse.stripePublishableKey) &&
         Objects.equals(this.stripeConnectedAccountId, createCheckoutResponse.stripeConnectedAccountId);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(payment, subscriptions, stripeClientSecret, stripePublishableKey, stripeConnectedAccountId);
+    return Objects.hash(payment, subscriptions, hashCodeNullable(stripeClientSecret), stripePublishableKey, stripeConnectedAccountId);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

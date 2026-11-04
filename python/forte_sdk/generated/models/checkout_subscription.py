@@ -34,8 +34,9 @@ class CheckoutSubscription(BaseModel):
     line_items: Annotated[List[PaymentLineItem], Field(min_length=0, max_length=50)] = Field(alias="lineItems")
     description: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=500)]] = None
     metadata: Optional[Dict[str, StrictStr]] = None
+    start_time: Optional[datetime] = Field(default=None, alias="startTime")
     end_time: Optional[datetime] = Field(default=None, alias="endTime")
-    __properties: ClassVar[List[str]] = ["interval", "lineItems", "description", "metadata", "endTime"]
+    __properties: ClassVar[List[str]] = ["interval", "lineItems", "description", "metadata", "startTime", "endTime"]
 
     @field_validator('interval')
     def interval_validate_enum(cls, value):
@@ -95,6 +96,11 @@ class CheckoutSubscription(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
+        # set to None if start_time (nullable) is None
+        # and model_fields_set contains the field
+        if self.start_time is None and "start_time" in self.model_fields_set:
+            _dict['startTime'] = None
+
         # set to None if end_time (nullable) is None
         # and model_fields_set contains the field
         if self.end_time is None and "end_time" in self.model_fields_set:
@@ -116,6 +122,7 @@ class CheckoutSubscription(BaseModel):
             "lineItems": [PaymentLineItem.from_dict(_item) for _item in obj["lineItems"]] if obj.get("lineItems") is not None else None,
             "description": obj.get("description"),
             "metadata": obj.get("metadata"),
+            "startTime": obj.get("startTime"),
             "endTime": obj.get("endTime")
         })
         return _obj

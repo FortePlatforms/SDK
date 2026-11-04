@@ -71,6 +71,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_STRIPE_TAX_TRANSACTION_ID,
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_ID,
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_IDS,
+  PaymentObject.JSON_PROPERTY_SCHEDULED_SUBSCRIPTION_IDS,
   PaymentObject.JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME,
   PaymentObject.JSON_PROPERTY_STATE_HISTORY,
   PaymentObject.JSON_PROPERTY_REFUND_HISTORY,
@@ -210,6 +211,9 @@ public class PaymentObject {
   public static final String JSON_PROPERTY_SUBSCRIPTION_IDS = "subscriptionIds";
   @javax.annotation.Nonnull
   private List<String> subscriptionIds = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SCHEDULED_SUBSCRIPTION_IDS = "scheduledSubscriptionIds";
+  private JsonNullable<List<String>> scheduledSubscriptionIds = JsonNullable.<List<String>>undefined();
 
   public static final String JSON_PROPERTY_SUBSCRIPTION_RENEWAL_TIME = "subscriptionRenewalTime";
   private JsonNullable<OffsetDateTime> subscriptionRenewalTime = JsonNullable.<OffsetDateTime>undefined();
@@ -925,6 +929,50 @@ public class PaymentObject {
   }
 
 
+  public PaymentObject scheduledSubscriptionIds(@javax.annotation.Nullable List<String> scheduledSubscriptionIds) {
+    this.scheduledSubscriptionIds = JsonNullable.<List<String>>of(scheduledSubscriptionIds);
+    return this;
+  }
+
+  public PaymentObject addScheduledSubscriptionIdsItem(String scheduledSubscriptionIdsItem) {
+    if (this.scheduledSubscriptionIds == null || !this.scheduledSubscriptionIds.isPresent()) {
+      this.scheduledSubscriptionIds = JsonNullable.<List<String>>of(new ArrayList<>());
+    }
+    try {
+      this.scheduledSubscriptionIds.get().add(scheduledSubscriptionIdsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get scheduledSubscriptionIds
+   * @return scheduledSubscriptionIds
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<String> getScheduledSubscriptionIds() {
+        return scheduledSubscriptionIds.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SCHEDULED_SUBSCRIPTION_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<String>> getScheduledSubscriptionIds_JsonNullable() {
+    return scheduledSubscriptionIds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SCHEDULED_SUBSCRIPTION_IDS)
+  public void setScheduledSubscriptionIds_JsonNullable(JsonNullable<List<String>> scheduledSubscriptionIds) {
+    this.scheduledSubscriptionIds = scheduledSubscriptionIds;
+  }
+
+  public void setScheduledSubscriptionIds(@javax.annotation.Nullable List<String> scheduledSubscriptionIds) {
+    this.scheduledSubscriptionIds = JsonNullable.<List<String>>of(scheduledSubscriptionIds);
+  }
+
+
   public PaymentObject subscriptionRenewalTime(@javax.annotation.Nullable OffsetDateTime subscriptionRenewalTime) {
     this.subscriptionRenewalTime = JsonNullable.<OffsetDateTime>of(subscriptionRenewalTime);
     return this;
@@ -1129,6 +1177,7 @@ public class PaymentObject {
         equalsNullable(this.subscriptionStripeTaxTransactionId, paymentObject.subscriptionStripeTaxTransactionId) &&
         equalsNullable(this.subscriptionId, paymentObject.subscriptionId) &&
         Objects.equals(this.subscriptionIds, paymentObject.subscriptionIds) &&
+        equalsNullable(this.scheduledSubscriptionIds, paymentObject.scheduledSubscriptionIds) &&
         equalsNullable(this.subscriptionRenewalTime, paymentObject.subscriptionRenewalTime) &&
         Objects.equals(this.stateHistory, paymentObject.stateHistory) &&
         Objects.equals(this.refundHistory, paymentObject.refundHistory) &&
@@ -1143,7 +1192,7 @@ public class PaymentObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(lastPaymentErrorMessage), hashCodeNullable(lastPaymentErrorCode), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionStripeTaxCalculationId), hashCodeNullable(subscriptionStripeTaxTransactionId), hashCodeNullable(subscriptionId), subscriptionIds, hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(lastPaymentErrorMessage), hashCodeNullable(lastPaymentErrorCode), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionStripeTaxCalculationId), hashCodeNullable(subscriptionStripeTaxTransactionId), hashCodeNullable(subscriptionId), subscriptionIds, hashCodeNullable(scheduledSubscriptionIds), hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1181,6 +1230,7 @@ public class PaymentObject {
     sb.append("    subscriptionStripeTaxTransactionId: ").append(toIndentedString(subscriptionStripeTaxTransactionId)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    subscriptionIds: ").append(toIndentedString(subscriptionIds)).append("\n");
+    sb.append("    scheduledSubscriptionIds: ").append(toIndentedString(scheduledSubscriptionIds)).append("\n");
     sb.append("    subscriptionRenewalTime: ").append(toIndentedString(subscriptionRenewalTime)).append("\n");
     sb.append("    stateHistory: ").append(toIndentedString(stateHistory)).append("\n");
     sb.append("    refundHistory: ").append(toIndentedString(refundHistory)).append("\n");
@@ -1367,6 +1417,15 @@ public class PaymentObject {
         joiner.add(String.format(java.util.Locale.ROOT, "%ssubscriptionIds%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getSubscriptionIds().get(i)))));
+      }
+    }
+
+    // add `scheduledSubscriptionIds` to the URL query string
+    if (getScheduledSubscriptionIds() != null) {
+      for (int i = 0; i < getScheduledSubscriptionIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sscheduledSubscriptionIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getScheduledSubscriptionIds().get(i)))));
       }
     }
 

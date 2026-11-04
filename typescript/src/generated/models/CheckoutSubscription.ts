@@ -56,6 +56,12 @@ export interface CheckoutSubscription {
      * @type {Date}
      * @memberof CheckoutSubscription
      */
+    startTime?: Date | null;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CheckoutSubscription
+     */
     endTime?: Date | null;
 }
 
@@ -93,6 +99,7 @@ export function CheckoutSubscriptionFromJSONTyped(json: any, ignoreDiscriminator
         'lineItems': ((json['lineItems'] as Array<any>).map(PaymentLineItemFromJSON)),
         'description': json['description'] == null ? undefined : json['description'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'startTime': json['startTime'] == null ? undefined : (new Date(json['startTime'])),
         'endTime': json['endTime'] == null ? undefined : (new Date(json['endTime'])),
     };
 }
@@ -112,6 +119,7 @@ export function CheckoutSubscriptionToJSONTyped(value?: CheckoutSubscription | n
         'lineItems': ((value['lineItems'] as Array<any>).map(PaymentLineItemToJSON)),
         'description': value['description'],
         'metadata': value['metadata'],
+        'startTime': value['startTime'] == null ? value['startTime'] : value['startTime'].toISOString(),
         'endTime': value['endTime'] == null ? value['endTime'] : value['endTime'].toISOString(),
     };
 }

@@ -57,13 +57,14 @@ class PaymentObject(BaseModel):
     subscription_stripe_tax_transaction_id: Optional[StrictStr] = Field(default=None, alias="subscriptionStripeTaxTransactionId")
     subscription_id: Optional[StrictStr] = Field(default=None, alias="subscriptionId")
     subscription_ids: List[StrictStr] = Field(alias="subscriptionIds")
+    scheduled_subscription_ids: Optional[List[StrictStr]] = Field(default=None, alias="scheduledSubscriptionIds")
     subscription_renewal_time: Optional[datetime] = Field(default=None, alias="subscriptionRenewalTime")
     state_history: List[StateHistory] = Field(alias="stateHistory")
     refund_history: List[RefundRecord] = Field(alias="refundHistory")
     created_at: datetime = Field(alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
     refunded_amount_cents: Optional[StrictInt] = Field(default=None, alias="refundedAmountCents")
-    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "lastPaymentErrorMessage", "lastPaymentErrorCode", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionStripeTaxCalculationId", "subscriptionStripeTaxTransactionId", "subscriptionId", "subscriptionIds", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
+    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "lastPaymentErrorMessage", "lastPaymentErrorCode", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionStripeTaxCalculationId", "subscriptionStripeTaxTransactionId", "subscriptionId", "subscriptionIds", "scheduledSubscriptionIds", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -188,6 +189,11 @@ class PaymentObject(BaseModel):
         if self.subscription_id is None and "subscription_id" in self.model_fields_set:
             _dict['subscriptionId'] = None
 
+        # set to None if scheduled_subscription_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.scheduled_subscription_ids is None and "scheduled_subscription_ids" in self.model_fields_set:
+            _dict['scheduledSubscriptionIds'] = None
+
         # set to None if subscription_renewal_time (nullable) is None
         # and model_fields_set contains the field
         if self.subscription_renewal_time is None and "subscription_renewal_time" in self.model_fields_set:
@@ -229,6 +235,7 @@ class PaymentObject(BaseModel):
             "subscriptionStripeTaxTransactionId": obj.get("subscriptionStripeTaxTransactionId"),
             "subscriptionId": obj.get("subscriptionId"),
             "subscriptionIds": obj.get("subscriptionIds"),
+            "scheduledSubscriptionIds": obj.get("scheduledSubscriptionIds"),
             "subscriptionRenewalTime": obj.get("subscriptionRenewalTime"),
             "stateHistory": [StateHistory.from_dict(_item) for _item in obj["stateHistory"]] if obj.get("stateHistory") is not None else None,
             "refundHistory": [RefundRecord.from_dict(_item) for _item in obj["refundHistory"]] if obj.get("refundHistory") is not None else None,

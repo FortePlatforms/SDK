@@ -47,6 +47,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CheckoutSubscription.JSON_PROPERTY_LINE_ITEMS,
   CheckoutSubscription.JSON_PROPERTY_DESCRIPTION,
   CheckoutSubscription.JSON_PROPERTY_METADATA,
+  CheckoutSubscription.JSON_PROPERTY_START_TIME,
   CheckoutSubscription.JSON_PROPERTY_END_TIME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -100,6 +101,9 @@ public class CheckoutSubscription {
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
   private Map<String, String> metadata = new HashMap<>();
+
+  public static final String JSON_PROPERTY_START_TIME = "startTime";
+  private JsonNullable<OffsetDateTime> startTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_END_TIME = "endTime";
   private JsonNullable<OffsetDateTime> endTime = JsonNullable.<OffsetDateTime>undefined();
@@ -227,6 +231,38 @@ public class CheckoutSubscription {
   }
 
 
+  public CheckoutSubscription startTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
+    return this;
+  }
+
+  /**
+   * Get startTime
+   * @return startTime
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getStartTime() {
+        return startTime.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getStartTime_JsonNullable() {
+    return startTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_START_TIME)
+  public void setStartTime_JsonNullable(JsonNullable<OffsetDateTime> startTime) {
+    this.startTime = startTime;
+  }
+
+  public void setStartTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
+  }
+
+
   public CheckoutSubscription endTime(@javax.annotation.Nullable OffsetDateTime endTime) {
     this.endTime = JsonNullable.<OffsetDateTime>of(endTime);
     return this;
@@ -275,6 +311,7 @@ public class CheckoutSubscription {
         Objects.equals(this.lineItems, checkoutSubscription.lineItems) &&
         equalsNullable(this.description, checkoutSubscription.description) &&
         Objects.equals(this.metadata, checkoutSubscription.metadata) &&
+        equalsNullable(this.startTime, checkoutSubscription.startTime) &&
         equalsNullable(this.endTime, checkoutSubscription.endTime);
   }
 
@@ -284,7 +321,7 @@ public class CheckoutSubscription {
 
   @Override
   public int hashCode() {
-    return Objects.hash(interval, lineItems, hashCodeNullable(description), metadata, hashCodeNullable(endTime));
+    return Objects.hash(interval, lineItems, hashCodeNullable(description), metadata, hashCodeNullable(startTime), hashCodeNullable(endTime));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -302,6 +339,7 @@ public class CheckoutSubscription {
     sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
     sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -374,6 +412,11 @@ public class CheckoutSubscription {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
       }
+    }
+
+    // add `startTime` to the URL query string
+    if (getStartTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstartTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStartTime()))));
     }
 
     // add `endTime` to the URL query string

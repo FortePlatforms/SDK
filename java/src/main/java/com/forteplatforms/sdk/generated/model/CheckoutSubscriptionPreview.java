@@ -46,6 +46,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CheckoutSubscriptionPreview.JSON_PROPERTY_TAX_CENTS,
   CheckoutSubscriptionPreview.JSON_PROPERTY_AMOUNT_CENTS,
   CheckoutSubscriptionPreview.JSON_PROPERTY_LINE_ITEMS,
+  CheckoutSubscriptionPreview.JSON_PROPERTY_START_TIME,
   CheckoutSubscriptionPreview.JSON_PROPERTY_NEXT_RENEWAL_AT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
@@ -103,6 +104,9 @@ public class CheckoutSubscriptionPreview {
   public static final String JSON_PROPERTY_LINE_ITEMS = "lineItems";
   @javax.annotation.Nonnull
   private List<PaymentLineItem> lineItems = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_START_TIME = "startTime";
+  private JsonNullable<OffsetDateTime> startTime = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_NEXT_RENEWAL_AT = "nextRenewalAt";
   @javax.annotation.Nonnull
@@ -247,6 +251,38 @@ public class CheckoutSubscriptionPreview {
   }
 
 
+  public CheckoutSubscriptionPreview startTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
+    return this;
+  }
+
+  /**
+   * Get startTime
+   * @return startTime
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getStartTime() {
+        return startTime.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getStartTime_JsonNullable() {
+    return startTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_START_TIME)
+  public void setStartTime_JsonNullable(JsonNullable<OffsetDateTime> startTime) {
+    this.startTime = startTime;
+  }
+
+  public void setStartTime(@javax.annotation.Nullable OffsetDateTime startTime) {
+    this.startTime = JsonNullable.<OffsetDateTime>of(startTime);
+  }
+
+
   public CheckoutSubscriptionPreview nextRenewalAt(@javax.annotation.Nonnull OffsetDateTime nextRenewalAt) {
     this.nextRenewalAt = nextRenewalAt;
     return this;
@@ -288,6 +324,7 @@ public class CheckoutSubscriptionPreview {
         equalsNullable(this.taxCents, checkoutSubscriptionPreview.taxCents) &&
         Objects.equals(this.amountCents, checkoutSubscriptionPreview.amountCents) &&
         Objects.equals(this.lineItems, checkoutSubscriptionPreview.lineItems) &&
+        equalsNullable(this.startTime, checkoutSubscriptionPreview.startTime) &&
         Objects.equals(this.nextRenewalAt, checkoutSubscriptionPreview.nextRenewalAt);
   }
 
@@ -297,7 +334,7 @@ public class CheckoutSubscriptionPreview {
 
   @Override
   public int hashCode() {
-    return Objects.hash(interval, subtotalCents, hashCodeNullable(taxCents), amountCents, lineItems, nextRenewalAt);
+    return Objects.hash(interval, subtotalCents, hashCodeNullable(taxCents), amountCents, lineItems, hashCodeNullable(startTime), nextRenewalAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -316,6 +353,7 @@ public class CheckoutSubscriptionPreview {
     sb.append("    taxCents: ").append(toIndentedString(taxCents)).append("\n");
     sb.append("    amountCents: ").append(toIndentedString(amountCents)).append("\n");
     sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
+    sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
     sb.append("    nextRenewalAt: ").append(toIndentedString(nextRenewalAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -389,6 +427,11 @@ public class CheckoutSubscriptionPreview {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `startTime` to the URL query string
+    if (getStartTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstartTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStartTime()))));
     }
 
     // add `nextRenewalAt` to the URL query string

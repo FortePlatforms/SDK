@@ -39,7 +39,7 @@ export interface CreateCheckoutResponse {
      * @type {PaymentObject}
      * @memberof CreateCheckoutResponse
      */
-    payment: PaymentObject;
+    payment?: PaymentObject;
     /**
      * 
      * @type {Array<SubscriptionObject>}
@@ -51,7 +51,7 @@ export interface CreateCheckoutResponse {
      * @type {string}
      * @memberof CreateCheckoutResponse
      */
-    stripeClientSecret: string;
+    stripeClientSecret?: string | null;
     /**
      * 
      * @type {string}
@@ -70,9 +70,7 @@ export interface CreateCheckoutResponse {
  * Check if a given object implements the CreateCheckoutResponse interface.
  */
 export function instanceOfCreateCheckoutResponse(value: object): value is CreateCheckoutResponse {
-    if (!('payment' in value) || value['payment'] === undefined) return false;
     if (!('subscriptions' in value) || value['subscriptions'] === undefined) return false;
-    if (!('stripeClientSecret' in value) || value['stripeClientSecret'] === undefined) return false;
     if (!('stripePublishableKey' in value) || value['stripePublishableKey'] === undefined) return false;
     if (!('stripeConnectedAccountId' in value) || value['stripeConnectedAccountId'] === undefined) return false;
     return true;
@@ -88,9 +86,9 @@ export function CreateCheckoutResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'payment': PaymentObjectFromJSON(json['payment']),
+        'payment': json['payment'] == null ? undefined : PaymentObjectFromJSON(json['payment']),
         'subscriptions': ((json['subscriptions'] as Array<any>).map(SubscriptionObjectFromJSON)),
-        'stripeClientSecret': json['stripeClientSecret'],
+        'stripeClientSecret': json['stripeClientSecret'] == null ? undefined : json['stripeClientSecret'],
         'stripePublishableKey': json['stripePublishableKey'],
         'stripeConnectedAccountId': json['stripeConnectedAccountId'],
     };
