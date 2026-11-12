@@ -60,6 +60,7 @@ import com.forteplatforms.sdk.generated.model.PaginatedResponseLoginHistoryEntry
 import com.forteplatforms.sdk.generated.model.PaginatedResponsePaymentObject;
 import com.forteplatforms.sdk.generated.model.PasswordLoginRequest;
 import com.forteplatforms.sdk.generated.model.PaymentMethodObject;
+import com.forteplatforms.sdk.generated.model.PaymentObject;
 import com.forteplatforms.sdk.generated.model.PendingUserInviteObject;
 import com.forteplatforms.sdk.generated.model.ReauthenticationChallengeRequest;
 import com.forteplatforms.sdk.generated.model.ReauthenticationChallengeResponse;
@@ -6672,6 +6673,144 @@ public class UsersServerApi {
     }
     // Add custom headers if provided
     localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentId  (required)
+   * @param authorization  (optional)
+   * @return PaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentObject usersDeletePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersDeletePayment(projectId, paymentId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentObject usersDeletePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentObject> localVarResponse = usersDeletePaymentWithHttpInfo(projectId, paymentId, authorization, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentId  (required)
+   * @param authorization  (optional)
+   * @return ApiResponse&lt;PaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentObject> usersDeletePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable String authorization) throws ApiException {
+    return usersDeletePaymentWithHttpInfo(projectId, paymentId, authorization, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param paymentId  (required)
+   * @param authorization  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentObject> usersDeletePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = usersDeletePaymentRequestBuilder(projectId, paymentId, authorization, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("usersDeletePayment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaymentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaymentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaymentObject>() {});
+        
+
+        return new ApiResponse<PaymentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder usersDeletePaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String paymentId, @javax.annotation.Nullable String authorization, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling usersDeletePayment");
+    }
+    // verify the required parameter 'paymentId' is set
+    if (paymentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'paymentId' when calling usersDeletePayment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/{projectId}/users/me/payments/{paymentId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{paymentId}", ApiClient.urlEncode(paymentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    if (authorization != null) {
+      localVarRequestBuilder.header("Authorization", authorization.toString());
+    }
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

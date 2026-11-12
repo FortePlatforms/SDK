@@ -18703,6 +18703,146 @@ public class ProjectsServerApi {
    * 
    * @param projectId  (required)
    * @param userId  (required)
+   * @param paymentId  (required)
+   * @return PaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentObject projectsDeletePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId) throws ApiException {
+    return projectsDeletePayment(projectId, userId, paymentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param paymentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return PaymentObject
+   * @throws ApiException if fails to make API call
+   */
+  public PaymentObject projectsDeletePayment(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaymentObject> localVarResponse = projectsDeletePaymentWithHttpInfo(projectId, userId, paymentId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param paymentId  (required)
+   * @return ApiResponse&lt;PaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentObject> projectsDeletePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId) throws ApiException {
+    return projectsDeletePaymentWithHttpInfo(projectId, userId, paymentId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
+   * @param paymentId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PaymentObject&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PaymentObject> projectsDeletePaymentWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = projectsDeletePaymentRequestBuilder(projectId, userId, paymentId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("projectsDeletePayment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PaymentObject>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PaymentObject responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PaymentObject>() {});
+        
+
+        return new ApiResponse<PaymentObject>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder projectsDeletePaymentRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String userId, @javax.annotation.Nonnull String paymentId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling projectsDeletePayment");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling projectsDeletePayment");
+    }
+    // verify the required parameter 'paymentId' is set
+    if (paymentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'paymentId' when calling projectsDeletePayment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/{userId}/payments/{paymentId}"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()))
+        .replace("{paymentId}", ApiClient.urlEncode(paymentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    // Forte: idempotent operation - attach a stable Idempotency-Key so the request can be safely retried.
+    if (headers == null || !headers.containsKey("Idempotency-Key")) {
+      localVarRequestBuilder.header("Idempotency-Key", java.util.UUID.randomUUID().toString());
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param userId  (required)
    * @param paymentMethodId  (required)
    * @throws ApiException if fails to make API call
    */

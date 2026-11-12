@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.528"
+__version__ = "1.0.535"
 
 # Define package exports
 __all__ = [
@@ -254,6 +254,7 @@ __all__ = [
     "SubscriptionObject",
     "SuggestDatabaseEnvVarsResponse",
     "SyncCustomDomainResponse",
+    "TaxCalculationStatus",
     "TestInvocationRequest",
     "TestInvocationResponse",
     "TimeSeriesDataPoint",
@@ -537,6 +538,7 @@ from forte_sdk.generated.models.status_range import StatusRange as StatusRange
 from forte_sdk.generated.models.subscription_object import SubscriptionObject as SubscriptionObject
 from forte_sdk.generated.models.suggest_database_env_vars_response import SuggestDatabaseEnvVarsResponse as SuggestDatabaseEnvVarsResponse
 from forte_sdk.generated.models.sync_custom_domain_response import SyncCustomDomainResponse as SyncCustomDomainResponse
+from forte_sdk.generated.models.tax_calculation_status import TaxCalculationStatus as TaxCalculationStatus
 from forte_sdk.generated.models.test_invocation_request import TestInvocationRequest as TestInvocationRequest
 from forte_sdk.generated.models.test_invocation_response import TestInvocationResponse as TestInvocationResponse
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint as TimeSeriesDataPoint

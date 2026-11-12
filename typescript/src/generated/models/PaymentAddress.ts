@@ -24,7 +24,7 @@ export interface PaymentAddress {
      * @type {string}
      * @memberof PaymentAddress
      */
-    line1: string;
+    line1?: string | null;
     /**
      * 
      * @type {string}
@@ -36,7 +36,7 @@ export interface PaymentAddress {
      * @type {string}
      * @memberof PaymentAddress
      */
-    city: string;
+    city?: string | null;
     /**
      * 
      * @type {string}
@@ -48,7 +48,7 @@ export interface PaymentAddress {
      * @type {string}
      * @memberof PaymentAddress
      */
-    postalCode: string;
+    postalCode?: string | null;
     /**
      * 
      * @type {string}
@@ -61,9 +61,6 @@ export interface PaymentAddress {
  * Check if a given object implements the PaymentAddress interface.
  */
 export function instanceOfPaymentAddress(value: object): value is PaymentAddress {
-    if (!('line1' in value) || value['line1'] === undefined) return false;
-    if (!('city' in value) || value['city'] === undefined) return false;
-    if (!('postalCode' in value) || value['postalCode'] === undefined) return false;
     if (!('country' in value) || value['country'] === undefined) return false;
     return true;
 }
@@ -78,11 +75,11 @@ export function PaymentAddressFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'line1': json['line1'],
+        'line1': json['line1'] == null ? undefined : json['line1'],
         'line2': json['line2'] == null ? undefined : json['line2'],
-        'city': json['city'],
+        'city': json['city'] == null ? undefined : json['city'],
         'state': json['state'] == null ? undefined : json['state'],
-        'postalCode': json['postalCode'],
+        'postalCode': json['postalCode'] == null ? undefined : json['postalCode'],
         'country': json['country'],
     };
 }

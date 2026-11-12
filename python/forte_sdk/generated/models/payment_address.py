@@ -27,11 +27,11 @@ class PaymentAddress(BaseModel):
     """
     PaymentAddress
     """ # noqa: E501
-    line1: StrictStr
+    line1: Optional[StrictStr] = None
     line2: Optional[StrictStr] = None
-    city: StrictStr
+    city: Optional[StrictStr] = None
     state: Optional[StrictStr] = None
-    postal_code: StrictStr = Field(alias="postalCode")
+    postal_code: Optional[StrictStr] = Field(default=None, alias="postalCode")
     country: StrictStr
     __properties: ClassVar[List[str]] = ["line1", "line2", "city", "state", "postalCode", "country"]
 
@@ -74,15 +74,30 @@ class PaymentAddress(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if line1 (nullable) is None
+        # and model_fields_set contains the field
+        if self.line1 is None and "line1" in self.model_fields_set:
+            _dict['line1'] = None
+
         # set to None if line2 (nullable) is None
         # and model_fields_set contains the field
         if self.line2 is None and "line2" in self.model_fields_set:
             _dict['line2'] = None
 
+        # set to None if city (nullable) is None
+        # and model_fields_set contains the field
+        if self.city is None and "city" in self.model_fields_set:
+            _dict['city'] = None
+
         # set to None if state (nullable) is None
         # and model_fields_set contains the field
         if self.state is None and "state" in self.model_fields_set:
             _dict['state'] = None
+
+        # set to None if postal_code (nullable) is None
+        # and model_fields_set contains the field
+        if self.postal_code is None and "postal_code" in self.model_fields_set:
+            _dict['postalCode'] = None
 
         return _dict
 

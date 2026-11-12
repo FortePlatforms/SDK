@@ -219,6 +219,11 @@ import {
     PaymentMethodObjectToJSON,
 } from '../models/PaymentMethodObject';
 import {
+    type PaymentObject,
+    PaymentObjectFromJSON,
+    PaymentObjectToJSON,
+} from '../models/PaymentObject';
+import {
     type PendingUserInviteObject,
     PendingUserInviteObjectFromJSON,
     PendingUserInviteObjectToJSON,
@@ -608,6 +613,12 @@ export interface UsersCreateSubscriptionPreviewRequest {
 export interface UsersDeleteContentRequest {
     projectId: string;
     contentId: string;
+    authorization?: string;
+}
+
+export interface UsersDeletePaymentRequest {
+    projectId: string;
+    paymentId: string;
     authorization?: string;
 }
 
@@ -3372,6 +3383,65 @@ export class UsersServerApi extends runtime.BaseAPI {
      */
     async usersDeleteContent(requestParameters: UsersDeleteContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.usersDeleteContentRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for usersDeletePayment without sending the request
+     */
+    async usersDeletePaymentRequestOpts(requestParameters: UsersDeletePaymentRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling usersDeletePayment().'
+            );
+        }
+
+        if (requestParameters['paymentId'] == null) {
+            throw new runtime.RequiredError(
+                'paymentId',
+                'Required parameter "paymentId" was null or undefined when calling usersDeletePayment().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['authorization'] != null) {
+            headerParameters['Authorization'] = String(requestParameters['authorization']);
+        }
+
+        if (headerParameters['Idempotency-Key'] == null) {
+            headerParameters['Idempotency-Key'] = forteIdempotencyKey();
+        }
+
+
+        let urlPath = `/api/v1/{projectId}/users/me/payments/{paymentId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{paymentId}', encodeURIComponent(String(requestParameters['paymentId'])));
+
+        return {
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async usersDeletePaymentRaw(requestParameters: UsersDeletePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentObject>> {
+        const requestOptions = await this.usersDeletePaymentRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaymentObjectFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async usersDeletePayment(requestParameters: UsersDeletePaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentObject> {
+        const response = await this.usersDeletePaymentRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

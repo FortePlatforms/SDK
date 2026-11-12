@@ -349,6 +349,8 @@ public class AccountActionLogObject {
     
     OAUTH_GRANT_CREATED(String.valueOf("OAUTH_GRANT_CREATED")),
     
+    OAUTH_GRANT_UPDATED(String.valueOf("OAUTH_GRANT_UPDATED")),
+    
     OAUTH_GRANT_DELETED(String.valueOf("OAUTH_GRANT_DELETED")),
     
     SUSPICIOUS_USER_ACTIVITY_DETECTED(String.valueOf("SUSPICIOUS_USER_ACTIVITY_DETECTED"));

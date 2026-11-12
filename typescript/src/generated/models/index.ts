@@ -225,6 +225,7 @@ export * from './StatusRange';
 export * from './SubscriptionObject';
 export * from './SuggestDatabaseEnvVarsResponse';
 export * from './SyncCustomDomainResponse';
+export * from './TaxCalculationStatus';
 export * from './TestInvocationRequest';
 export * from './TestInvocationResponse';
 export * from './TimeSeriesDataPoint';

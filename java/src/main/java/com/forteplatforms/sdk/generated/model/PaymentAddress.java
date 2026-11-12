@@ -47,22 +47,19 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class PaymentAddress {
   public static final String JSON_PROPERTY_LINE1 = "line1";
-  @javax.annotation.Nonnull
-  private String line1;
+  private JsonNullable<String> line1 = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LINE2 = "line2";
   private JsonNullable<String> line2 = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CITY = "city";
-  @javax.annotation.Nonnull
-  private String city;
+  private JsonNullable<String> city = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STATE = "state";
   private JsonNullable<String> state = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_POSTAL_CODE = "postalCode";
-  @javax.annotation.Nonnull
-  private String postalCode;
+  private JsonNullable<String> postalCode = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
@@ -71,8 +68,8 @@ public class PaymentAddress {
   public PaymentAddress() { 
   }
 
-  public PaymentAddress line1(@javax.annotation.Nonnull String line1) {
-    this.line1 = line1;
+  public PaymentAddress line1(@javax.annotation.Nullable String line1) {
+    this.line1 = JsonNullable.<String>of(line1);
     return this;
   }
 
@@ -80,18 +77,26 @@ public class PaymentAddress {
    * Get line1
    * @return line1
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_LINE1, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public String getLine1() {
-    return line1;
+        return line1.orElse(null);
   }
 
+  @JsonProperty(value = JSON_PROPERTY_LINE1, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  @JsonProperty(value = JSON_PROPERTY_LINE1, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLine1(@javax.annotation.Nonnull String line1) {
+  public JsonNullable<String> getLine1_JsonNullable() {
+    return line1;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LINE1)
+  public void setLine1_JsonNullable(JsonNullable<String> line1) {
     this.line1 = line1;
+  }
+
+  public void setLine1(@javax.annotation.Nullable String line1) {
+    this.line1 = JsonNullable.<String>of(line1);
   }
 
 
@@ -127,8 +132,8 @@ public class PaymentAddress {
   }
 
 
-  public PaymentAddress city(@javax.annotation.Nonnull String city) {
-    this.city = city;
+  public PaymentAddress city(@javax.annotation.Nullable String city) {
+    this.city = JsonNullable.<String>of(city);
     return this;
   }
 
@@ -136,18 +141,26 @@ public class PaymentAddress {
    * Get city
    * @return city
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CITY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public String getCity() {
-    return city;
+        return city.orElse(null);
   }
 
+  @JsonProperty(value = JSON_PROPERTY_CITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  @JsonProperty(value = JSON_PROPERTY_CITY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCity(@javax.annotation.Nonnull String city) {
+  public JsonNullable<String> getCity_JsonNullable() {
+    return city;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CITY)
+  public void setCity_JsonNullable(JsonNullable<String> city) {
     this.city = city;
+  }
+
+  public void setCity(@javax.annotation.Nullable String city) {
+    this.city = JsonNullable.<String>of(city);
   }
 
 
@@ -183,8 +196,8 @@ public class PaymentAddress {
   }
 
 
-  public PaymentAddress postalCode(@javax.annotation.Nonnull String postalCode) {
-    this.postalCode = postalCode;
+  public PaymentAddress postalCode(@javax.annotation.Nullable String postalCode) {
+    this.postalCode = JsonNullable.<String>of(postalCode);
     return this;
   }
 
@@ -192,18 +205,26 @@ public class PaymentAddress {
    * Get postalCode
    * @return postalCode
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_POSTAL_CODE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonIgnore
   public String getPostalCode() {
-    return postalCode;
+        return postalCode.orElse(null);
   }
 
+  @JsonProperty(value = JSON_PROPERTY_POSTAL_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  @JsonProperty(value = JSON_PROPERTY_POSTAL_CODE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPostalCode(@javax.annotation.Nonnull String postalCode) {
+  public JsonNullable<String> getPostalCode_JsonNullable() {
+    return postalCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_POSTAL_CODE)
+  public void setPostalCode_JsonNullable(JsonNullable<String> postalCode) {
     this.postalCode = postalCode;
+  }
+
+  public void setPostalCode(@javax.annotation.Nullable String postalCode) {
+    this.postalCode = JsonNullable.<String>of(postalCode);
   }
 
 
@@ -243,11 +264,11 @@ public class PaymentAddress {
       return false;
     }
     PaymentAddress paymentAddress = (PaymentAddress) o;
-    return Objects.equals(this.line1, paymentAddress.line1) &&
+    return equalsNullable(this.line1, paymentAddress.line1) &&
         equalsNullable(this.line2, paymentAddress.line2) &&
-        Objects.equals(this.city, paymentAddress.city) &&
+        equalsNullable(this.city, paymentAddress.city) &&
         equalsNullable(this.state, paymentAddress.state) &&
-        Objects.equals(this.postalCode, paymentAddress.postalCode) &&
+        equalsNullable(this.postalCode, paymentAddress.postalCode) &&
         Objects.equals(this.country, paymentAddress.country);
   }
 
@@ -257,7 +278,7 @@ public class PaymentAddress {
 
   @Override
   public int hashCode() {
-    return Objects.hash(line1, hashCodeNullable(line2), city, hashCodeNullable(state), postalCode, country);
+    return Objects.hash(hashCodeNullable(line1), hashCodeNullable(line2), hashCodeNullable(city), hashCodeNullable(state), hashCodeNullable(postalCode), country);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {

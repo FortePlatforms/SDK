@@ -25,6 +25,7 @@ from forte_sdk.generated.models.payment_line_item import PaymentLineItem
 from forte_sdk.generated.models.payment_method_type import PaymentMethodType
 from forte_sdk.generated.models.refund_record import RefundRecord
 from forte_sdk.generated.models.state_history import StateHistory
+from forte_sdk.generated.models.tax_calculation_status import TaxCalculationStatus
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -39,6 +40,7 @@ class PaymentObject(BaseModel):
     state: StrictStr
     subtotal_cents: StrictInt = Field(alias="subtotalCents")
     tax_cents: Optional[StrictInt] = Field(default=None, alias="taxCents")
+    tax_calculation_status: Optional[TaxCalculationStatus] = Field(default=None, alias="taxCalculationStatus")
     amount_cents: StrictInt = Field(alias="amountCents")
     currency: StrictStr
     description: Optional[StrictStr] = None
@@ -64,7 +66,7 @@ class PaymentObject(BaseModel):
     created_at: datetime = Field(alias="createdAt")
     updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
     refunded_amount_cents: Optional[StrictInt] = Field(default=None, alias="refundedAmountCents")
-    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "lastPaymentErrorMessage", "lastPaymentErrorCode", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionStripeTaxCalculationId", "subscriptionStripeTaxTransactionId", "subscriptionId", "subscriptionIds", "scheduledSubscriptionIds", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
+    __properties: ClassVar[List[str]] = ["id", "projectId", "userId", "state", "subtotalCents", "taxCents", "taxCalculationStatus", "amountCents", "currency", "description", "lineItems", "metadata", "customerAddress", "shippingAddress", "supportedPaymentMethods", "stripePaymentIntentId", "stripeStatus", "lastPaymentErrorMessage", "lastPaymentErrorCode", "stripeTaxCalculationId", "stripeTaxTransactionId", "subscriptionStripeTaxCalculationId", "subscriptionStripeTaxTransactionId", "subscriptionId", "subscriptionIds", "scheduledSubscriptionIds", "subscriptionRenewalTime", "stateHistory", "refundHistory", "createdAt", "updatedAt", "refundedAmountCents"]
 
     @field_validator('state')
     def state_validate_enum(cls, value):
@@ -144,6 +146,11 @@ class PaymentObject(BaseModel):
         if self.tax_cents is None and "tax_cents" in self.model_fields_set:
             _dict['taxCents'] = None
 
+        # set to None if tax_calculation_status (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_calculation_status is None and "tax_calculation_status" in self.model_fields_set:
+            _dict['taxCalculationStatus'] = None
+
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -217,6 +224,7 @@ class PaymentObject(BaseModel):
             "state": obj.get("state"),
             "subtotalCents": obj.get("subtotalCents"),
             "taxCents": obj.get("taxCents"),
+            "taxCalculationStatus": obj.get("taxCalculationStatus"),
             "amountCents": obj.get("amountCents"),
             "currency": obj.get("currency"),
             "description": obj.get("description"),
