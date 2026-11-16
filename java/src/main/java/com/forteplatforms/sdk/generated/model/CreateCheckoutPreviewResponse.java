@@ -48,7 +48,9 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   CreateCheckoutPreviewResponse.JSON_PROPERTY_AMOUNT_CENTS,
   CreateCheckoutPreviewResponse.JSON_PROPERTY_LINE_ITEMS,
   CreateCheckoutPreviewResponse.JSON_PROPERTY_CUSTOMER_ADDRESS,
-  CreateCheckoutPreviewResponse.JSON_PROPERTY_SUBSCRIPTIONS
+  CreateCheckoutPreviewResponse.JSON_PROPERTY_SUBSCRIPTIONS,
+  CreateCheckoutPreviewResponse.JSON_PROPERTY_STRIPE_PUBLISHABLE_KEY,
+  CreateCheckoutPreviewResponse.JSON_PROPERTY_STRIPE_CONNECTED_ACCOUNT_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateCheckoutPreviewResponse {
@@ -78,6 +80,12 @@ public class CreateCheckoutPreviewResponse {
   public static final String JSON_PROPERTY_SUBSCRIPTIONS = "subscriptions";
   @javax.annotation.Nonnull
   private List<CheckoutSubscriptionPreview> subscriptions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_STRIPE_PUBLISHABLE_KEY = "stripePublishableKey";
+  private JsonNullable<String> stripePublishableKey = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_STRIPE_CONNECTED_ACCOUNT_ID = "stripeConnectedAccountId";
+  private JsonNullable<String> stripeConnectedAccountId = JsonNullable.<String>undefined();
 
   public CreateCheckoutPreviewResponse() { 
   }
@@ -274,6 +282,70 @@ public class CreateCheckoutPreviewResponse {
   }
 
 
+  public CreateCheckoutPreviewResponse stripePublishableKey(@javax.annotation.Nullable String stripePublishableKey) {
+    this.stripePublishableKey = JsonNullable.<String>of(stripePublishableKey);
+    return this;
+  }
+
+  /**
+   * Get stripePublishableKey
+   * @return stripePublishableKey
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getStripePublishableKey() {
+        return stripePublishableKey.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_STRIPE_PUBLISHABLE_KEY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getStripePublishableKey_JsonNullable() {
+    return stripePublishableKey;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_PUBLISHABLE_KEY)
+  public void setStripePublishableKey_JsonNullable(JsonNullable<String> stripePublishableKey) {
+    this.stripePublishableKey = stripePublishableKey;
+  }
+
+  public void setStripePublishableKey(@javax.annotation.Nullable String stripePublishableKey) {
+    this.stripePublishableKey = JsonNullable.<String>of(stripePublishableKey);
+  }
+
+
+  public CreateCheckoutPreviewResponse stripeConnectedAccountId(@javax.annotation.Nullable String stripeConnectedAccountId) {
+    this.stripeConnectedAccountId = JsonNullable.<String>of(stripeConnectedAccountId);
+    return this;
+  }
+
+  /**
+   * Get stripeConnectedAccountId
+   * @return stripeConnectedAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getStripeConnectedAccountId() {
+        return stripeConnectedAccountId.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_STRIPE_CONNECTED_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getStripeConnectedAccountId_JsonNullable() {
+    return stripeConnectedAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STRIPE_CONNECTED_ACCOUNT_ID)
+  public void setStripeConnectedAccountId_JsonNullable(JsonNullable<String> stripeConnectedAccountId) {
+    this.stripeConnectedAccountId = stripeConnectedAccountId;
+  }
+
+  public void setStripeConnectedAccountId(@javax.annotation.Nullable String stripeConnectedAccountId) {
+    this.stripeConnectedAccountId = JsonNullable.<String>of(stripeConnectedAccountId);
+  }
+
+
   /**
    * Return true if this CreateCheckoutPreviewResponse object is equal to o.
    */
@@ -292,7 +364,9 @@ public class CreateCheckoutPreviewResponse {
         Objects.equals(this.amountCents, createCheckoutPreviewResponse.amountCents) &&
         Objects.equals(this.lineItems, createCheckoutPreviewResponse.lineItems) &&
         Objects.equals(this.customerAddress, createCheckoutPreviewResponse.customerAddress) &&
-        Objects.equals(this.subscriptions, createCheckoutPreviewResponse.subscriptions);
+        Objects.equals(this.subscriptions, createCheckoutPreviewResponse.subscriptions) &&
+        equalsNullable(this.stripePublishableKey, createCheckoutPreviewResponse.stripePublishableKey) &&
+        equalsNullable(this.stripeConnectedAccountId, createCheckoutPreviewResponse.stripeConnectedAccountId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -301,7 +375,7 @@ public class CreateCheckoutPreviewResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, subtotalCents, hashCodeNullable(taxCents), amountCents, lineItems, customerAddress, subscriptions);
+    return Objects.hash(currency, subtotalCents, hashCodeNullable(taxCents), amountCents, lineItems, customerAddress, subscriptions, hashCodeNullable(stripePublishableKey), hashCodeNullable(stripeConnectedAccountId));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -322,6 +396,8 @@ public class CreateCheckoutPreviewResponse {
     sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
     sb.append("    customerAddress: ").append(toIndentedString(customerAddress)).append("\n");
     sb.append("    subscriptions: ").append(toIndentedString(subscriptions)).append("\n");
+    sb.append("    stripePublishableKey: ").append(toIndentedString(stripePublishableKey)).append("\n");
+    sb.append("    stripeConnectedAccountId: ").append(toIndentedString(stripeConnectedAccountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -409,6 +485,16 @@ public class CreateCheckoutPreviewResponse {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `stripePublishableKey` to the URL query string
+    if (getStripePublishableKey() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstripePublishableKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStripePublishableKey()))));
+    }
+
+    // add `stripeConnectedAccountId` to the URL query string
+    if (getStripeConnectedAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstripeConnectedAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStripeConnectedAccountId()))));
     }
 
     return joiner.toString();

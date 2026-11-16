@@ -37,7 +37,9 @@ class CreateCheckoutPreviewResponse(BaseModel):
     line_items: List[PaymentLineItem] = Field(alias="lineItems")
     customer_address: Optional[PaymentAddress] = Field(default=None, alias="customerAddress")
     subscriptions: List[CheckoutSubscriptionPreview]
-    __properties: ClassVar[List[str]] = ["currency", "subtotalCents", "taxCents", "amountCents", "lineItems", "customerAddress", "subscriptions"]
+    stripe_publishable_key: Optional[StrictStr] = Field(default=None, alias="stripePublishableKey")
+    stripe_connected_account_id: Optional[StrictStr] = Field(default=None, alias="stripeConnectedAccountId")
+    __properties: ClassVar[List[str]] = ["currency", "subtotalCents", "taxCents", "amountCents", "lineItems", "customerAddress", "subscriptions", "stripePublishableKey", "stripeConnectedAccountId"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -100,6 +102,16 @@ class CreateCheckoutPreviewResponse(BaseModel):
         if self.tax_cents is None and "tax_cents" in self.model_fields_set:
             _dict['taxCents'] = None
 
+        # set to None if stripe_publishable_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_publishable_key is None and "stripe_publishable_key" in self.model_fields_set:
+            _dict['stripePublishableKey'] = None
+
+        # set to None if stripe_connected_account_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.stripe_connected_account_id is None and "stripe_connected_account_id" in self.model_fields_set:
+            _dict['stripeConnectedAccountId'] = None
+
         return _dict
 
     @classmethod
@@ -118,7 +130,9 @@ class CreateCheckoutPreviewResponse(BaseModel):
             "amountCents": obj.get("amountCents"),
             "lineItems": [PaymentLineItem.from_dict(_item) for _item in obj["lineItems"]] if obj.get("lineItems") is not None else None,
             "customerAddress": PaymentAddress.from_dict(obj["customerAddress"]) if obj.get("customerAddress") is not None else None,
-            "subscriptions": [CheckoutSubscriptionPreview.from_dict(_item) for _item in obj["subscriptions"]] if obj.get("subscriptions") is not None else None
+            "subscriptions": [CheckoutSubscriptionPreview.from_dict(_item) for _item in obj["subscriptions"]] if obj.get("subscriptions") is not None else None,
+            "stripePublishableKey": obj.get("stripePublishableKey"),
+            "stripeConnectedAccountId": obj.get("stripeConnectedAccountId")
         })
         return _obj
 

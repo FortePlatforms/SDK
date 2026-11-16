@@ -869,6 +869,11 @@ export interface CreateCustomEmailTemplateOperationRequest {
     createCustomEmailTemplateRequest: CreateCustomEmailTemplateRequest;
 }
 
+export interface CreateGuestCheckoutPreviewRequest {
+    projectId: string;
+    createCheckoutPreviewRequest: CreateCheckoutPreviewRequest;
+}
+
 export interface CreateManagedDatabaseOperationRequest {
     projectId: string;
     createManagedDatabaseRequest: CreateManagedDatabaseRequest;
@@ -3017,6 +3022,59 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async createCustomEmailTemplate(requestParameters: CreateCustomEmailTemplateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomEmailTemplateObject> {
         const response = await this.createCustomEmailTemplateRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for createGuestCheckoutPreview without sending the request
+     */
+    async createGuestCheckoutPreviewRequestOpts(requestParameters: CreateGuestCheckoutPreviewRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling createGuestCheckoutPreview().'
+            );
+        }
+
+        if (requestParameters['createCheckoutPreviewRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCheckoutPreviewRequest',
+                'Required parameter "createCheckoutPreviewRequest" was null or undefined when calling createGuestCheckoutPreview().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+
+        let urlPath = `/api/v1/projects/{projectId}/users/guest/checkouts/preview`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCheckoutPreviewRequestToJSON(requestParameters['createCheckoutPreviewRequest']),
+        };
+    }
+
+    /**
+     */
+    async createGuestCheckoutPreviewRaw(requestParameters: CreateGuestCheckoutPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCheckoutPreviewResponse>> {
+        const requestOptions = await this.createGuestCheckoutPreviewRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCheckoutPreviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async createGuestCheckoutPreview(requestParameters: CreateGuestCheckoutPreviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCheckoutPreviewResponse> {
+        const response = await this.createGuestCheckoutPreviewRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

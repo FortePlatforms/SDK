@@ -83,6 +83,18 @@ export interface CreateCheckoutPreviewResponse {
      * @memberof CreateCheckoutPreviewResponse
      */
     subscriptions: Array<CheckoutSubscriptionPreview>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCheckoutPreviewResponse
+     */
+    stripePublishableKey?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCheckoutPreviewResponse
+     */
+    stripeConnectedAccountId?: string | null;
 }
 
 /**
@@ -114,6 +126,8 @@ export function CreateCheckoutPreviewResponseFromJSONTyped(json: any, ignoreDisc
         'lineItems': ((json['lineItems'] as Array<any>).map(PaymentLineItemFromJSON)),
         'customerAddress': json['customerAddress'] == null ? undefined : PaymentAddressFromJSON(json['customerAddress']),
         'subscriptions': ((json['subscriptions'] as Array<any>).map(CheckoutSubscriptionPreviewFromJSON)),
+        'stripePublishableKey': json['stripePublishableKey'] == null ? undefined : json['stripePublishableKey'],
+        'stripeConnectedAccountId': json['stripeConnectedAccountId'] == null ? undefined : json['stripeConnectedAccountId'],
     };
 }
 
@@ -135,6 +149,8 @@ export function CreateCheckoutPreviewResponseToJSONTyped(value?: CreateCheckoutP
         'lineItems': ((value['lineItems'] as Array<any>).map(PaymentLineItemToJSON)),
         'customerAddress': PaymentAddressToJSON(value['customerAddress']),
         'subscriptions': ((value['subscriptions'] as Array<any>).map(CheckoutSubscriptionPreviewToJSON)),
+        'stripePublishableKey': value['stripePublishableKey'],
+        'stripeConnectedAccountId': value['stripeConnectedAccountId'],
     };
 }
 

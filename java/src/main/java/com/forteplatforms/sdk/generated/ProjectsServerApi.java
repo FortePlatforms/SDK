@@ -2911,6 +2911,138 @@ public class ProjectsServerApi {
    * 
    * 
    * @param projectId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @return CreateCheckoutPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutPreviewResponse createGuestCheckoutPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest) throws ApiException {
+    return createGuestCheckoutPreview(projectId, createCheckoutPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateCheckoutPreviewResponse
+   * @throws ApiException if fails to make API call
+   */
+  public CreateCheckoutPreviewResponse createGuestCheckoutPreview(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCheckoutPreviewResponse> localVarResponse = createGuestCheckoutPreviewWithHttpInfo(projectId, createCheckoutPreviewRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @return ApiResponse&lt;CreateCheckoutPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutPreviewResponse> createGuestCheckoutPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest) throws ApiException {
+    return createGuestCheckoutPreviewWithHttpInfo(projectId, createCheckoutPreviewRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param createCheckoutPreviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateCheckoutPreviewResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateCheckoutPreviewResponse> createGuestCheckoutPreviewWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createGuestCheckoutPreviewRequestBuilder(projectId, createCheckoutPreviewRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createGuestCheckoutPreview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateCheckoutPreviewResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateCheckoutPreviewResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateCheckoutPreviewResponse>() {});
+        
+
+        return new ApiResponse<CreateCheckoutPreviewResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createGuestCheckoutPreviewRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull CreateCheckoutPreviewRequest createCheckoutPreviewRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling createGuestCheckoutPreview");
+    }
+    // verify the required parameter 'createCheckoutPreviewRequest' is set
+    if (createCheckoutPreviewRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCheckoutPreviewRequest' when calling createGuestCheckoutPreview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/users/guest/checkouts/preview"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCheckoutPreviewRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
    * @param createManagedDatabaseRequest  (required)
    * @return ManagedDatabaseObject
    * @throws ApiException if fails to make API call
