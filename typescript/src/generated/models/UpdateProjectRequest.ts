@@ -94,6 +94,12 @@ export interface UpdateProjectRequest {
      * @memberof UpdateProjectRequest
      */
     emailSender?: UpdateProjectRequestEmailSenderType | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateProjectRequest
+     */
+    emailSenderName?: string | null;
 }
 
 
@@ -144,6 +150,7 @@ export function UpdateProjectRequestFromJSONTyped(json: any, ignoreDiscriminator
         'mfaConfig': json['mfaConfig'] == null ? undefined : MfaConfigFromJSON(json['mfaConfig']),
         'botProtectionMode': json['botProtectionMode'] == null ? undefined : json['botProtectionMode'],
         'emailSender': json['emailSender'] == null ? undefined : json['emailSender'],
+        'emailSenderName': json['emailSenderName'] == null ? undefined : json['emailSenderName'],
     };
 }
 
@@ -168,6 +175,7 @@ export function UpdateProjectRequestToJSONTyped(value?: UpdateProjectRequest | n
         'mfaConfig': MfaConfigToJSON(value['mfaConfig']),
         'botProtectionMode': value['botProtectionMode'],
         'emailSender': value['emailSender'],
+        'emailSenderName': value['emailSenderName'],
     };
 }
 

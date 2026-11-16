@@ -48,7 +48,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UpdateProjectRequest.JSON_PROPERTY_PASSWORD_CONFIG,
   UpdateProjectRequest.JSON_PROPERTY_MFA_CONFIG,
   UpdateProjectRequest.JSON_PROPERTY_BOT_PROTECTION_MODE,
-  UpdateProjectRequest.JSON_PROPERTY_EMAIL_SENDER
+  UpdateProjectRequest.JSON_PROPERTY_EMAIL_SENDER,
+  UpdateProjectRequest.JSON_PROPERTY_EMAIL_SENDER_NAME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UpdateProjectRequest {
@@ -155,6 +156,9 @@ public class UpdateProjectRequest {
 
   public static final String JSON_PROPERTY_EMAIL_SENDER = "emailSender";
   private JsonNullable<EmailSenderEnum> emailSender = JsonNullable.<EmailSenderEnum>undefined();
+
+  public static final String JSON_PROPERTY_EMAIL_SENDER_NAME = "emailSenderName";
+  private JsonNullable<String> emailSenderName = JsonNullable.<String>undefined();
 
   public UpdateProjectRequest() { 
   }
@@ -463,6 +467,38 @@ public class UpdateProjectRequest {
   }
 
 
+  public UpdateProjectRequest emailSenderName(@javax.annotation.Nullable String emailSenderName) {
+    this.emailSenderName = JsonNullable.<String>of(emailSenderName);
+    return this;
+  }
+
+  /**
+   * Get emailSenderName
+   * @return emailSenderName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getEmailSenderName() {
+        return emailSenderName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_SENDER_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getEmailSenderName_JsonNullable() {
+    return emailSenderName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL_SENDER_NAME)
+  public void setEmailSenderName_JsonNullable(JsonNullable<String> emailSenderName) {
+    this.emailSenderName = emailSenderName;
+  }
+
+  public void setEmailSenderName(@javax.annotation.Nullable String emailSenderName) {
+    this.emailSenderName = JsonNullable.<String>of(emailSenderName);
+  }
+
+
   /**
    * Return true if this UpdateProjectRequest object is equal to o.
    */
@@ -484,7 +520,8 @@ public class UpdateProjectRequest {
         Objects.equals(this.passwordConfig, updateProjectRequest.passwordConfig) &&
         Objects.equals(this.mfaConfig, updateProjectRequest.mfaConfig) &&
         equalsNullable(this.botProtectionMode, updateProjectRequest.botProtectionMode) &&
-        equalsNullable(this.emailSender, updateProjectRequest.emailSender);
+        equalsNullable(this.emailSender, updateProjectRequest.emailSender) &&
+        equalsNullable(this.emailSenderName, updateProjectRequest.emailSenderName);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -493,7 +530,7 @@ public class UpdateProjectRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(googleOAuthClientId), hashCodeNullable(recaptchaSecretKey), hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(botProtectionMode), hashCodeNullable(emailSender));
+    return Objects.hash(hashCodeNullable(googleOAuthClientId), hashCodeNullable(recaptchaSecretKey), hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(botProtectionMode), hashCodeNullable(emailSender), hashCodeNullable(emailSenderName));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -517,6 +554,7 @@ public class UpdateProjectRequest {
     sb.append("    mfaConfig: ").append(toIndentedString(mfaConfig)).append("\n");
     sb.append("    botProtectionMode: ").append(toIndentedString(botProtectionMode)).append("\n");
     sb.append("    emailSender: ").append(toIndentedString(emailSender)).append("\n");
+    sb.append("    emailSenderName: ").append(toIndentedString(emailSenderName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -609,6 +647,11 @@ public class UpdateProjectRequest {
     // add `emailSender` to the URL query string
     if (getEmailSender() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%semailSender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailSender()))));
+    }
+
+    // add `emailSenderName` to the URL query string
+    if (getEmailSenderName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%semailSenderName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailSenderName()))));
     }
 
     return joiner.toString();

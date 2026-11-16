@@ -39,7 +39,8 @@ class UpdateProjectRequest(BaseModel):
     mfa_config: Optional[MfaConfig] = Field(default=None, alias="mfaConfig")
     bot_protection_mode: Optional[StrictStr] = Field(default=None, alias="botProtectionMode")
     email_sender: Optional[StrictStr] = Field(default=None, alias="emailSender")
-    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "botProtectionMode", "emailSender"]
+    email_sender_name: Optional[StrictStr] = Field(default=None, alias="emailSenderName")
+    __properties: ClassVar[List[str]] = ["googleOAuthClientId", "recaptchaSecretKey", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "botProtectionMode", "emailSender", "emailSenderName"]
 
     @field_validator('bot_protection_mode')
     def bot_protection_mode_validate_enum(cls, value):
@@ -146,6 +147,11 @@ class UpdateProjectRequest(BaseModel):
         if self.email_sender is None and "email_sender" in self.model_fields_set:
             _dict['emailSender'] = None
 
+        # set to None if email_sender_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_sender_name is None and "email_sender_name" in self.model_fields_set:
+            _dict['emailSenderName'] = None
+
         return _dict
 
     @classmethod
@@ -167,7 +173,8 @@ class UpdateProjectRequest(BaseModel):
             "passwordConfig": PasswordConfig.from_dict(obj["passwordConfig"]) if obj.get("passwordConfig") is not None else None,
             "mfaConfig": MfaConfig.from_dict(obj["mfaConfig"]) if obj.get("mfaConfig") is not None else None,
             "botProtectionMode": obj.get("botProtectionMode"),
-            "emailSender": obj.get("emailSender")
+            "emailSender": obj.get("emailSender"),
+            "emailSenderName": obj.get("emailSenderName")
         })
         return _obj
 

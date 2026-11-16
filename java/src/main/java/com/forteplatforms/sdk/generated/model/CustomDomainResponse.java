@@ -34,13 +34,18 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * CustomDomainResponse
  */
 @JsonPropertyOrder({
-  CustomDomainResponse.JSON_PROPERTY_CUSTOM_DOMAIN
+  CustomDomainResponse.JSON_PROPERTY_CUSTOM_DOMAIN,
+  CustomDomainResponse.JSON_PROPERTY_WWW_CUSTOM_DOMAIN
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CustomDomainResponse {
   public static final String JSON_PROPERTY_CUSTOM_DOMAIN = "customDomain";
   @javax.annotation.Nullable
   private CustomDomain customDomain;
+
+  public static final String JSON_PROPERTY_WWW_CUSTOM_DOMAIN = "wwwCustomDomain";
+  @javax.annotation.Nullable
+  private CustomDomain wwwCustomDomain;
 
   public CustomDomainResponse() { 
   }
@@ -69,6 +74,30 @@ public class CustomDomainResponse {
   }
 
 
+  public CustomDomainResponse wwwCustomDomain(@javax.annotation.Nullable CustomDomain wwwCustomDomain) {
+    this.wwwCustomDomain = wwwCustomDomain;
+    return this;
+  }
+
+  /**
+   * Get wwwCustomDomain
+   * @return wwwCustomDomain
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WWW_CUSTOM_DOMAIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CustomDomain getWwwCustomDomain() {
+    return wwwCustomDomain;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WWW_CUSTOM_DOMAIN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWwwCustomDomain(@javax.annotation.Nullable CustomDomain wwwCustomDomain) {
+    this.wwwCustomDomain = wwwCustomDomain;
+  }
+
+
   /**
    * Return true if this CustomDomainResponse object is equal to o.
    */
@@ -81,12 +110,13 @@ public class CustomDomainResponse {
       return false;
     }
     CustomDomainResponse customDomainResponse = (CustomDomainResponse) o;
-    return Objects.equals(this.customDomain, customDomainResponse.customDomain);
+    return Objects.equals(this.customDomain, customDomainResponse.customDomain) &&
+        Objects.equals(this.wwwCustomDomain, customDomainResponse.wwwCustomDomain);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customDomain);
+    return Objects.hash(customDomain, wwwCustomDomain);
   }
 
   @Override
@@ -94,6 +124,7 @@ public class CustomDomainResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomDomainResponse {\n");
     sb.append("    customDomain: ").append(toIndentedString(customDomain)).append("\n");
+    sb.append("    wwwCustomDomain: ").append(toIndentedString(wwwCustomDomain)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -141,6 +172,11 @@ public class CustomDomainResponse {
     // add `customDomain` to the URL query string
     if (getCustomDomain() != null) {
       joiner.add(getCustomDomain().toUrlQueryString(prefix + "customDomain" + suffix));
+    }
+
+    // add `wwwCustomDomain` to the URL query string
+    if (getWwwCustomDomain() != null) {
+      joiner.add(getWwwCustomDomain().toUrlQueryString(prefix + "wwwCustomDomain" + suffix));
     }
 
     return joiner.toString();

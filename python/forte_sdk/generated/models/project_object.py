@@ -59,13 +59,14 @@ class ProjectObject(BaseModel):
     notification_templates_config: Optional[NotificationTemplatesConfig] = Field(default=None, alias="notificationTemplatesConfig")
     payment_triggers: Optional[List[PaymentTriggerConfig]] = Field(default=None, alias="paymentTriggers")
     email_sender: Optional[StrictStr] = Field(default=None, alias="emailSender")
+    email_sender_name: Optional[StrictStr] = Field(default=None, alias="emailSenderName")
     parent_project_id: Optional[StrictStr] = Field(default=None, alias="parentProjectId")
     cloned_from_project_id: Optional[StrictStr] = Field(default=None, alias="clonedFromProjectId")
     environment_name: Optional[StrictStr] = Field(default=None, alias="environmentName")
     clone_status: Optional[StrictStr] = Field(default=None, alias="cloneStatus")
     clone_failure_reason: Optional[StrictStr] = Field(default=None, alias="cloneFailureReason")
     has_recaptcha_secret_key: Optional[StrictBool] = Field(default=None, alias="hasRecaptchaSecretKey")
-    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "seededDefaultProject", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "botProtectionMode", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "parentProjectId", "clonedFromProjectId", "environmentName", "cloneStatus", "cloneFailureReason", "hasRecaptchaSecretKey"]
+    __properties: ClassVar[List[str]] = ["projectId", "ownerAccountId", "projectName", "seededDefaultProject", "services", "webApps", "managedDatabases", "createdTimestamp", "lastModifiedTimestamp", "roleArn", "ecrRepositoryUri", "cachedUserCount", "googleOAuthClientId", "phoneLoginEnabled", "emailLoginEnabled", "googleLoginEnabled", "passwordLoginEnabled", "passwordConfig", "mfaConfig", "botProtectionMode", "sandboxMode", "notificationTemplatesConfig", "paymentTriggers", "emailSender", "emailSenderName", "parentProjectId", "clonedFromProjectId", "environmentName", "cloneStatus", "cloneFailureReason", "hasRecaptchaSecretKey"]
 
     @field_validator('bot_protection_mode')
     def bot_protection_mode_validate_enum(cls, value):
@@ -218,6 +219,11 @@ class ProjectObject(BaseModel):
         if self.email_sender is None and "email_sender" in self.model_fields_set:
             _dict['emailSender'] = None
 
+        # set to None if email_sender_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.email_sender_name is None and "email_sender_name" in self.model_fields_set:
+            _dict['emailSenderName'] = None
+
         # set to None if parent_project_id (nullable) is None
         # and model_fields_set contains the field
         if self.parent_project_id is None and "parent_project_id" in self.model_fields_set:
@@ -279,6 +285,7 @@ class ProjectObject(BaseModel):
             "notificationTemplatesConfig": NotificationTemplatesConfig.from_dict(obj["notificationTemplatesConfig"]) if obj.get("notificationTemplatesConfig") is not None else None,
             "paymentTriggers": [PaymentTriggerConfig.from_dict(_item) for _item in obj["paymentTriggers"]] if obj.get("paymentTriggers") is not None else None,
             "emailSender": obj.get("emailSender"),
+            "emailSenderName": obj.get("emailSenderName"),
             "parentProjectId": obj.get("parentProjectId"),
             "clonedFromProjectId": obj.get("clonedFromProjectId"),
             "environmentName": obj.get("environmentName"),

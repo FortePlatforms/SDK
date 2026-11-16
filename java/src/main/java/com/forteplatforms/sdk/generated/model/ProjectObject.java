@@ -71,6 +71,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   ProjectObject.JSON_PROPERTY_NOTIFICATION_TEMPLATES_CONFIG,
   ProjectObject.JSON_PROPERTY_PAYMENT_TRIGGERS,
   ProjectObject.JSON_PROPERTY_EMAIL_SENDER,
+  ProjectObject.JSON_PROPERTY_EMAIL_SENDER_NAME,
   ProjectObject.JSON_PROPERTY_PARENT_PROJECT_ID,
   ProjectObject.JSON_PROPERTY_CLONED_FROM_PROJECT_ID,
   ProjectObject.JSON_PROPERTY_ENVIRONMENT_NAME,
@@ -238,6 +239,9 @@ public class ProjectObject {
 
   public static final String JSON_PROPERTY_EMAIL_SENDER = "emailSender";
   private JsonNullable<EmailSenderEnum> emailSender = JsonNullable.<EmailSenderEnum>undefined();
+
+  public static final String JSON_PROPERTY_EMAIL_SENDER_NAME = "emailSenderName";
+  private JsonNullable<String> emailSenderName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PARENT_PROJECT_ID = "parentProjectId";
   private JsonNullable<String> parentProjectId = JsonNullable.<String>undefined();
@@ -984,6 +988,38 @@ public class ProjectObject {
   }
 
 
+  public ProjectObject emailSenderName(@javax.annotation.Nullable String emailSenderName) {
+    this.emailSenderName = JsonNullable.<String>of(emailSenderName);
+    return this;
+  }
+
+  /**
+   * Get emailSenderName
+   * @return emailSenderName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getEmailSenderName() {
+        return emailSenderName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_EMAIL_SENDER_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getEmailSenderName_JsonNullable() {
+    return emailSenderName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EMAIL_SENDER_NAME)
+  public void setEmailSenderName_JsonNullable(JsonNullable<String> emailSenderName) {
+    this.emailSenderName = emailSenderName;
+  }
+
+  public void setEmailSenderName(@javax.annotation.Nullable String emailSenderName) {
+    this.emailSenderName = JsonNullable.<String>of(emailSenderName);
+  }
+
+
   public ProjectObject parentProjectId(@javax.annotation.Nullable String parentProjectId) {
     this.parentProjectId = JsonNullable.<String>of(parentProjectId);
     return this;
@@ -1204,6 +1240,7 @@ public class ProjectObject {
         Objects.equals(this.notificationTemplatesConfig, projectObject.notificationTemplatesConfig) &&
         Objects.equals(this.paymentTriggers, projectObject.paymentTriggers) &&
         equalsNullable(this.emailSender, projectObject.emailSender) &&
+        equalsNullable(this.emailSenderName, projectObject.emailSenderName) &&
         equalsNullable(this.parentProjectId, projectObject.parentProjectId) &&
         equalsNullable(this.clonedFromProjectId, projectObject.clonedFromProjectId) &&
         equalsNullable(this.environmentName, projectObject.environmentName) &&
@@ -1218,7 +1255,7 @@ public class ProjectObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(projectId, ownerAccountId, projectName, hashCodeNullable(seededDefaultProject), services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, hashCodeNullable(cachedUserCount), googleOAuthClientId, hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(botProtectionMode), hashCodeNullable(sandboxMode), notificationTemplatesConfig, paymentTriggers, hashCodeNullable(emailSender), hashCodeNullable(parentProjectId), hashCodeNullable(clonedFromProjectId), hashCodeNullable(environmentName), hashCodeNullable(cloneStatus), hashCodeNullable(cloneFailureReason), hasRecaptchaSecretKey);
+    return Objects.hash(projectId, ownerAccountId, projectName, hashCodeNullable(seededDefaultProject), services, webApps, managedDatabases, createdTimestamp, lastModifiedTimestamp, roleArn, ecrRepositoryUri, hashCodeNullable(cachedUserCount), googleOAuthClientId, hashCodeNullable(phoneLoginEnabled), hashCodeNullable(emailLoginEnabled), hashCodeNullable(googleLoginEnabled), hashCodeNullable(passwordLoginEnabled), passwordConfig, mfaConfig, hashCodeNullable(botProtectionMode), hashCodeNullable(sandboxMode), notificationTemplatesConfig, paymentTriggers, hashCodeNullable(emailSender), hashCodeNullable(emailSenderName), hashCodeNullable(parentProjectId), hashCodeNullable(clonedFromProjectId), hashCodeNullable(environmentName), hashCodeNullable(cloneStatus), hashCodeNullable(cloneFailureReason), hasRecaptchaSecretKey);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1256,6 +1293,7 @@ public class ProjectObject {
     sb.append("    notificationTemplatesConfig: ").append(toIndentedString(notificationTemplatesConfig)).append("\n");
     sb.append("    paymentTriggers: ").append(toIndentedString(paymentTriggers)).append("\n");
     sb.append("    emailSender: ").append(toIndentedString(emailSender)).append("\n");
+    sb.append("    emailSenderName: ").append(toIndentedString(emailSenderName)).append("\n");
     sb.append("    parentProjectId: ").append(toIndentedString(parentProjectId)).append("\n");
     sb.append("    clonedFromProjectId: ").append(toIndentedString(clonedFromProjectId)).append("\n");
     sb.append("    environmentName: ").append(toIndentedString(environmentName)).append("\n");
@@ -1444,6 +1482,11 @@ public class ProjectObject {
     // add `emailSender` to the URL query string
     if (getEmailSender() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%semailSender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailSender()))));
+    }
+
+    // add `emailSenderName` to the URL query string
+    if (getEmailSenderName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%semailSenderName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmailSenderName()))));
     }
 
     // add `parentProjectId` to the URL query string

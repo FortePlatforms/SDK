@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,8 @@ class CreateCustomDomainRequest(BaseModel):
     CreateCustomDomainRequest
     """ # noqa: E501
     domain: Annotated[str, Field(min_length=0, strict=True, max_length=253)]
-    __properties: ClassVar[List[str]] = ["domain"]
+    connect_www: Optional[StrictBool] = Field(default=None, description="Only for a root domain such as example.com: also connect www.example.com. Defaults to true; set false only if the user doesn't want www.", alias="connectWww")
+    __properties: ClassVar[List[str]] = ["domain", "connectWww"]
 
     @field_validator('domain')
     def domain_validate_regular_expression(cls, value):
@@ -80,6 +81,11 @@ class CreateCustomDomainRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if connect_www (nullable) is None
+        # and model_fields_set contains the field
+        if self.connect_www is None and "connect_www" in self.model_fields_set:
+            _dict['connectWww'] = None
+
         return _dict
 
     @classmethod
@@ -92,7 +98,8 @@ class CreateCustomDomainRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "domain": obj.get("domain")
+            "domain": obj.get("domain"),
+            "connectWww": obj.get("connectWww")
         })
         return _obj
 

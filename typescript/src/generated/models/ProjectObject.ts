@@ -218,6 +218,12 @@ export interface ProjectObject {
      * @type {string}
      * @memberof ProjectObject
      */
+    emailSenderName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProjectObject
+     */
     parentProjectId?: string | null;
     /**
      * 
@@ -333,6 +339,7 @@ export function ProjectObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'notificationTemplatesConfig': json['notificationTemplatesConfig'] == null ? undefined : NotificationTemplatesConfigFromJSON(json['notificationTemplatesConfig']),
         'paymentTriggers': json['paymentTriggers'] == null ? undefined : ((json['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigFromJSON)),
         'emailSender': json['emailSender'] == null ? undefined : json['emailSender'],
+        'emailSenderName': json['emailSenderName'] == null ? undefined : json['emailSenderName'],
         'parentProjectId': json['parentProjectId'] == null ? undefined : json['parentProjectId'],
         'clonedFromProjectId': json['clonedFromProjectId'] == null ? undefined : json['clonedFromProjectId'],
         'environmentName': json['environmentName'] == null ? undefined : json['environmentName'],
@@ -377,6 +384,7 @@ export function ProjectObjectToJSONTyped(value?: ProjectObject | null, ignoreDis
         'notificationTemplatesConfig': NotificationTemplatesConfigToJSON(value['notificationTemplatesConfig']),
         'paymentTriggers': value['paymentTriggers'] == null ? undefined : ((value['paymentTriggers'] as Array<any>).map(PaymentTriggerConfigToJSON)),
         'emailSender': value['emailSender'],
+        'emailSenderName': value['emailSenderName'],
         'parentProjectId': value['parentProjectId'],
         'clonedFromProjectId': value['clonedFromProjectId'],
         'environmentName': value['environmentName'],

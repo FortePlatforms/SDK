@@ -29,7 +29,8 @@ class CustomDomainResponse(BaseModel):
     CustomDomainResponse
     """ # noqa: E501
     custom_domain: Optional[CustomDomain] = Field(default=None, alias="customDomain")
-    __properties: ClassVar[List[str]] = ["customDomain"]
+    www_custom_domain: Optional[CustomDomain] = Field(default=None, alias="wwwCustomDomain")
+    __properties: ClassVar[List[str]] = ["customDomain", "wwwCustomDomain"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -73,6 +74,9 @@ class CustomDomainResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of custom_domain
         if self.custom_domain:
             _dict['customDomain'] = self.custom_domain.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of www_custom_domain
+        if self.www_custom_domain:
+            _dict['wwwCustomDomain'] = self.www_custom_domain.to_dict()
         return _dict
 
     @classmethod
@@ -85,7 +89,8 @@ class CustomDomainResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "customDomain": CustomDomain.from_dict(obj["customDomain"]) if obj.get("customDomain") is not None else None
+            "customDomain": CustomDomain.from_dict(obj["customDomain"]) if obj.get("customDomain") is not None else None,
+            "wwwCustomDomain": CustomDomain.from_dict(obj["wwwCustomDomain"]) if obj.get("wwwCustomDomain") is not None else None
         })
         return _obj
 

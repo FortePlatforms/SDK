@@ -33,6 +33,12 @@ export interface CustomDomainResponse {
      * @memberof CustomDomainResponse
      */
     customDomain?: CustomDomain;
+    /**
+     * 
+     * @type {CustomDomain}
+     * @memberof CustomDomainResponse
+     */
+    wwwCustomDomain?: CustomDomain;
 }
 
 /**
@@ -53,6 +59,7 @@ export function CustomDomainResponseFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'customDomain': json['customDomain'] == null ? undefined : CustomDomainFromJSON(json['customDomain']),
+        'wwwCustomDomain': json['wwwCustomDomain'] == null ? undefined : CustomDomainFromJSON(json['wwwCustomDomain']),
     };
 }
 
@@ -68,6 +75,7 @@ export function CustomDomainResponseToJSONTyped(value?: CustomDomainResponse | n
     return {
         
         'customDomain': CustomDomainToJSON(value['customDomain']),
+        'wwwCustomDomain': CustomDomainToJSON(value['wwwCustomDomain']),
     };
 }
 

@@ -25,6 +25,12 @@ export interface CreateCustomDomainRequest {
      * @memberof CreateCustomDomainRequest
      */
     domain: string;
+    /**
+     * Only for a root domain such as example.com: also connect www.example.com. Defaults to true; set false only if the user doesn't want www.
+     * @type {boolean}
+     * @memberof CreateCustomDomainRequest
+     */
+    connectWww?: boolean | null;
 }
 
 /**
@@ -46,6 +52,7 @@ export function CreateCustomDomainRequestFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'domain': json['domain'],
+        'connectWww': json['connectWww'] == null ? undefined : json['connectWww'],
     };
 }
 
@@ -61,6 +68,7 @@ export function CreateCustomDomainRequestToJSONTyped(value?: CreateCustomDomainR
     return {
         
         'domain': value['domain'],
+        'connectWww': value['connectWww'],
     };
 }
 

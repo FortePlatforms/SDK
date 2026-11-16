@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -33,13 +37,17 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  * CreateCustomDomainRequest
  */
 @JsonPropertyOrder({
-  CreateCustomDomainRequest.JSON_PROPERTY_DOMAIN
+  CreateCustomDomainRequest.JSON_PROPERTY_DOMAIN,
+  CreateCustomDomainRequest.JSON_PROPERTY_CONNECT_WWW
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class CreateCustomDomainRequest {
   public static final String JSON_PROPERTY_DOMAIN = "domain";
   @javax.annotation.Nonnull
   private String domain;
+
+  public static final String JSON_PROPERTY_CONNECT_WWW = "connectWww";
+  private JsonNullable<Boolean> connectWww = JsonNullable.<Boolean>undefined();
 
   public CreateCustomDomainRequest() { 
   }
@@ -68,6 +76,38 @@ public class CreateCustomDomainRequest {
   }
 
 
+  public CreateCustomDomainRequest connectWww(@javax.annotation.Nullable Boolean connectWww) {
+    this.connectWww = JsonNullable.<Boolean>of(connectWww);
+    return this;
+  }
+
+  /**
+   * Only for a root domain such as example.com: also connect www.example.com. Defaults to true; set false only if the user doesn&#39;t want www.
+   * @return connectWww
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Boolean getConnectWww() {
+        return connectWww.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CONNECT_WWW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Boolean> getConnectWww_JsonNullable() {
+    return connectWww;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONNECT_WWW)
+  public void setConnectWww_JsonNullable(JsonNullable<Boolean> connectWww) {
+    this.connectWww = connectWww;
+  }
+
+  public void setConnectWww(@javax.annotation.Nullable Boolean connectWww) {
+    this.connectWww = JsonNullable.<Boolean>of(connectWww);
+  }
+
+
   /**
    * Return true if this CreateCustomDomainRequest object is equal to o.
    */
@@ -80,12 +120,24 @@ public class CreateCustomDomainRequest {
       return false;
     }
     CreateCustomDomainRequest createCustomDomainRequest = (CreateCustomDomainRequest) o;
-    return Objects.equals(this.domain, createCustomDomainRequest.domain);
+    return Objects.equals(this.domain, createCustomDomainRequest.domain) &&
+        equalsNullable(this.connectWww, createCustomDomainRequest.connectWww);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(domain);
+    return Objects.hash(domain, hashCodeNullable(connectWww));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -93,6 +145,7 @@ public class CreateCustomDomainRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCustomDomainRequest {\n");
     sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
+    sb.append("    connectWww: ").append(toIndentedString(connectWww)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -140,6 +193,11 @@ public class CreateCustomDomainRequest {
     // add `domain` to the URL query string
     if (getDomain() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdomain%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDomain()))));
+    }
+
+    // add `connectWww` to the URL query string
+    if (getConnectWww() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconnectWww%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectWww()))));
     }
 
     return joiner.toString();
