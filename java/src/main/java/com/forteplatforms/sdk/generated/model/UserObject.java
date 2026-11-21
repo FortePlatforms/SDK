@@ -64,8 +64,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   UserObject.JSON_PROPERTY_PASSWORD_RESET_LAST_REQUESTED_AT,
   UserObject.JSON_PROPERTY_MFA_METHODS,
   UserObject.JSON_PROPERTY_BACKUP_CODES_GENERATED_AT,
-  UserObject.JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT,
-  UserObject.JSON_PROPERTY_HAS_PASSWORD
+  UserObject.JSON_PROPERTY_HAS_PASSWORD,
+  UserObject.JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class UserObject {
@@ -166,13 +166,13 @@ public class UserObject {
   public static final String JSON_PROPERTY_BACKUP_CODES_GENERATED_AT = "backupCodesGeneratedAt";
   private JsonNullable<OffsetDateTime> backupCodesGeneratedAt = JsonNullable.<OffsetDateTime>undefined();
 
-  public static final String JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT = "remainingBackupCodeCount";
-  @javax.annotation.Nullable
-  private Integer remainingBackupCodeCount;
-
   public static final String JSON_PROPERTY_HAS_PASSWORD = "hasPassword";
   @javax.annotation.Nullable
   private Boolean hasPassword;
+
+  public static final String JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT = "remainingBackupCodeCount";
+  @javax.annotation.Nullable
+  private Integer remainingBackupCodeCount;
 
   public UserObject() { 
   }
@@ -686,30 +686,6 @@ public class UserObject {
   }
 
 
-  public UserObject remainingBackupCodeCount(@javax.annotation.Nullable Integer remainingBackupCodeCount) {
-    this.remainingBackupCodeCount = remainingBackupCodeCount;
-    return this;
-  }
-
-  /**
-   * Get remainingBackupCodeCount
-   * @return remainingBackupCodeCount
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getRemainingBackupCodeCount() {
-    return remainingBackupCodeCount;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemainingBackupCodeCount(@javax.annotation.Nullable Integer remainingBackupCodeCount) {
-    this.remainingBackupCodeCount = remainingBackupCodeCount;
-  }
-
-
   public UserObject hasPassword(@javax.annotation.Nullable Boolean hasPassword) {
     this.hasPassword = hasPassword;
     return this;
@@ -731,6 +707,30 @@ public class UserObject {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHasPassword(@javax.annotation.Nullable Boolean hasPassword) {
     this.hasPassword = hasPassword;
+  }
+
+
+  public UserObject remainingBackupCodeCount(@javax.annotation.Nullable Integer remainingBackupCodeCount) {
+    this.remainingBackupCodeCount = remainingBackupCodeCount;
+    return this;
+  }
+
+  /**
+   * Get remainingBackupCodeCount
+   * @return remainingBackupCodeCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getRemainingBackupCodeCount() {
+    return remainingBackupCodeCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REMAINING_BACKUP_CODE_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRemainingBackupCodeCount(@javax.annotation.Nullable Integer remainingBackupCodeCount) {
+    this.remainingBackupCodeCount = remainingBackupCodeCount;
   }
 
 
@@ -763,8 +763,8 @@ public class UserObject {
         equalsNullable(this.passwordResetLastRequestedAt, userObject.passwordResetLastRequestedAt) &&
         equalsNullable(this.mfaMethods, userObject.mfaMethods) &&
         equalsNullable(this.backupCodesGeneratedAt, userObject.backupCodesGeneratedAt) &&
-        Objects.equals(this.remainingBackupCodeCount, userObject.remainingBackupCodeCount) &&
-        Objects.equals(this.hasPassword, userObject.hasPassword);
+        Objects.equals(this.hasPassword, userObject.hasPassword) &&
+        Objects.equals(this.remainingBackupCodeCount, userObject.remainingBackupCodeCount);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -773,7 +773,7 @@ public class UserObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, hashCodeNullable(fullName), projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, hashCodeNullable(stripeCustomerId), contactMethods, hashCodeNullable(welcomeMessageSent), hashCodeNullable(invitedByUserId), state, hashCodeNullable(passwordSetAt), hashCodeNullable(passwordResetLastRequestedAt), hashCodeNullable(mfaMethods), hashCodeNullable(backupCodesGeneratedAt), remainingBackupCodeCount, hasPassword);
+    return Objects.hash(userId, hashCodeNullable(fullName), projectId, roles, createdAt, updatedAt, lastActivityAt, customMetadataAttributes, hashCodeNullable(stripeCustomerId), contactMethods, hashCodeNullable(welcomeMessageSent), hashCodeNullable(invitedByUserId), state, hashCodeNullable(passwordSetAt), hashCodeNullable(passwordResetLastRequestedAt), hashCodeNullable(mfaMethods), hashCodeNullable(backupCodesGeneratedAt), hasPassword, remainingBackupCodeCount);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -804,8 +804,8 @@ public class UserObject {
     sb.append("    passwordResetLastRequestedAt: ").append(toIndentedString(passwordResetLastRequestedAt)).append("\n");
     sb.append("    mfaMethods: ").append(toIndentedString(mfaMethods)).append("\n");
     sb.append("    backupCodesGeneratedAt: ").append(toIndentedString(backupCodesGeneratedAt)).append("\n");
-    sb.append("    remainingBackupCodeCount: ").append(toIndentedString(remainingBackupCodeCount)).append("\n");
     sb.append("    hasPassword: ").append(toIndentedString(hasPassword)).append("\n");
+    sb.append("    remainingBackupCodeCount: ").append(toIndentedString(remainingBackupCodeCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -955,14 +955,14 @@ public class UserObject {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbackupCodesGeneratedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupCodesGeneratedAt()))));
     }
 
-    // add `remainingBackupCodeCount` to the URL query string
-    if (getRemainingBackupCodeCount() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sremainingBackupCodeCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemainingBackupCodeCount()))));
-    }
-
     // add `hasPassword` to the URL query string
     if (getHasPassword() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shasPassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPassword()))));
+    }
+
+    // add `remainingBackupCodeCount` to the URL query string
+    if (getRemainingBackupCodeCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sremainingBackupCodeCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemainingBackupCodeCount()))));
     }
 
     return joiner.toString();

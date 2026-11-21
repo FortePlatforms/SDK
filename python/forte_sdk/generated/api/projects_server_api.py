@@ -85,6 +85,7 @@ from forte_sdk.generated.models.get_service_blocked_request_metrics_response imp
 from forte_sdk.generated.models.get_service_code_source_status_response import GetServiceCodeSourceStatusResponse
 from forte_sdk.generated.models.get_service_route_time_metrics_response import GetServiceRouteTimeMetricsResponse
 from forte_sdk.generated.models.get_web_app_blocked_request_metrics_response import GetWebAppBlockedRequestMetricsResponse
+from forte_sdk.generated.models.get_web_app_invocation_response import GetWebAppInvocationResponse
 from forte_sdk.generated.models.impersonation_token_response import ImpersonationTokenResponse
 from forte_sdk.generated.models.list_content_response import ListContentResponse
 from forte_sdk.generated.models.list_custom_domains_response import ListCustomDomainsResponse
@@ -103,6 +104,7 @@ from forte_sdk.generated.models.paginated_response_account_action_log_object imp
 from forte_sdk.generated.models.paginated_response_action_invocation_object import PaginatedResponseActionInvocationObject
 from forte_sdk.generated.models.paginated_response_blocked_request_group import PaginatedResponseBlockedRequestGroup
 from forte_sdk.generated.models.paginated_response_blocked_request_sample import PaginatedResponseBlockedRequestSample
+from forte_sdk.generated.models.paginated_response_get_web_app_invocation_response import PaginatedResponseGetWebAppInvocationResponse
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject
 from forte_sdk.generated.models.paginated_response_payment_object import PaginatedResponsePaymentObject
 from forte_sdk.generated.models.paginated_response_payment_trigger_invocation import PaginatedResponsePaymentTriggerInvocation
@@ -25108,12 +25110,300 @@ class ProjectsServerApi:
 
 
     @validate_call
+    def get_web_app_invocation(
+        self,
+        project_id: StrictStr,
+        web_app_id: StrictStr,
+        request_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetWebAppInvocationResponse:
+        """get_web_app_invocation
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param web_app_id: (required)
+        :type web_app_id: str
+        :param request_id: (required)
+        :type request_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_web_app_invocation_serialize(
+            project_id=project_id,
+            web_app_id=web_app_id,
+            request_id=request_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetWebAppInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_web_app_invocation_with_http_info(
+        self,
+        project_id: StrictStr,
+        web_app_id: StrictStr,
+        request_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetWebAppInvocationResponse]:
+        """get_web_app_invocation
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param web_app_id: (required)
+        :type web_app_id: str
+        :param request_id: (required)
+        :type request_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_web_app_invocation_serialize(
+            project_id=project_id,
+            web_app_id=web_app_id,
+            request_id=request_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetWebAppInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_web_app_invocation_without_preload_content(
+        self,
+        project_id: StrictStr,
+        web_app_id: StrictStr,
+        request_id: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_web_app_invocation
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param web_app_id: (required)
+        :type web_app_id: str
+        :param request_id: (required)
+        :type request_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_web_app_invocation_serialize(
+            project_id=project_id,
+            web_app_id=web_app_id,
+            request_id=request_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetWebAppInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_web_app_invocation_serialize(
+        self,
+        project_id,
+        web_app_id,
+        request_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if web_app_id is not None:
+            _path_params['webAppId'] = web_app_id
+        if request_id is not None:
+            _path_params['requestId'] = request_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/v1/projects/{projectId}/web-apps/{webAppId}/invocations/{requestId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_web_app_runtime_metrics(
         self,
         project_id: StrictStr,
         web_app_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25138,6 +25428,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25165,6 +25457,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             min_time=min_time,
             max_time=max_time,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -25192,6 +25485,7 @@ class ProjectsServerApi:
         web_app_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25216,6 +25510,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25243,6 +25539,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             min_time=min_time,
             max_time=max_time,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -25270,6 +25567,7 @@ class ProjectsServerApi:
         web_app_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        granularity: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -25294,6 +25592,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param granularity:
+        :type granularity: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -25321,6 +25621,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             min_time=min_time,
             max_time=max_time,
+            granularity=granularity,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -25343,6 +25644,7 @@ class ProjectsServerApi:
         web_app_id,
         min_time,
         max_time,
+        granularity,
         _request_auth,
         _content_type,
         _headers,
@@ -25394,6 +25696,10 @@ class ProjectsServerApi:
                 )
             else:
                 _query_params.append(('maxTime', max_time))
+            
+        if granularity is not None:
+            
+            _query_params.append(('granularity', granularity))
             
         # process the header parameters
         # process the form parameters
@@ -36176,12 +36482,371 @@ class ProjectsServerApi:
 
 
     @validate_call
+    def list_web_app_invocations(
+        self,
+        project_id: StrictStr,
+        web_app_id: StrictStr,
+        min_time: Optional[datetime] = None,
+        max_time: Optional[datetime] = None,
+        failed_only: Annotated[Optional[StrictBool], Field(description="Only invocations that timed out or crashed.")] = None,
+        next_token: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PaginatedResponseGetWebAppInvocationResponse:
+        """list_web_app_invocations
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param web_app_id: (required)
+        :type web_app_id: str
+        :param min_time:
+        :type min_time: datetime
+        :param max_time:
+        :type max_time: datetime
+        :param failed_only: Only invocations that timed out or crashed.
+        :type failed_only: bool
+        :param next_token:
+        :type next_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_web_app_invocations_serialize(
+            project_id=project_id,
+            web_app_id=web_app_id,
+            min_time=min_time,
+            max_time=max_time,
+            failed_only=failed_only,
+            next_token=next_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedResponseGetWebAppInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def list_web_app_invocations_with_http_info(
+        self,
+        project_id: StrictStr,
+        web_app_id: StrictStr,
+        min_time: Optional[datetime] = None,
+        max_time: Optional[datetime] = None,
+        failed_only: Annotated[Optional[StrictBool], Field(description="Only invocations that timed out or crashed.")] = None,
+        next_token: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PaginatedResponseGetWebAppInvocationResponse]:
+        """list_web_app_invocations
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param web_app_id: (required)
+        :type web_app_id: str
+        :param min_time:
+        :type min_time: datetime
+        :param max_time:
+        :type max_time: datetime
+        :param failed_only: Only invocations that timed out or crashed.
+        :type failed_only: bool
+        :param next_token:
+        :type next_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_web_app_invocations_serialize(
+            project_id=project_id,
+            web_app_id=web_app_id,
+            min_time=min_time,
+            max_time=max_time,
+            failed_only=failed_only,
+            next_token=next_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedResponseGetWebAppInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def list_web_app_invocations_without_preload_content(
+        self,
+        project_id: StrictStr,
+        web_app_id: StrictStr,
+        min_time: Optional[datetime] = None,
+        max_time: Optional[datetime] = None,
+        failed_only: Annotated[Optional[StrictBool], Field(description="Only invocations that timed out or crashed.")] = None,
+        next_token: Optional[StrictStr] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """list_web_app_invocations
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param web_app_id: (required)
+        :type web_app_id: str
+        :param min_time:
+        :type min_time: datetime
+        :param max_time:
+        :type max_time: datetime
+        :param failed_only: Only invocations that timed out or crashed.
+        :type failed_only: bool
+        :param next_token:
+        :type next_token: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._list_web_app_invocations_serialize(
+            project_id=project_id,
+            web_app_id=web_app_id,
+            min_time=min_time,
+            max_time=max_time,
+            failed_only=failed_only,
+            next_token=next_token,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedResponseGetWebAppInvocationResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _list_web_app_invocations_serialize(
+        self,
+        project_id,
+        web_app_id,
+        min_time,
+        max_time,
+        failed_only,
+        next_token,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if web_app_id is not None:
+            _path_params['webAppId'] = web_app_id
+        # process the query parameters
+        if min_time is not None:
+            if isinstance(min_time, datetime):
+                _query_params.append(
+                    (
+                        'minTime',
+                        min_time.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('minTime', min_time))
+            
+        if max_time is not None:
+            if isinstance(max_time, datetime):
+                _query_params.append(
+                    (
+                        'maxTime',
+                        max_time.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('maxTime', max_time))
+            
+        if failed_only is not None:
+            
+            _query_params.append(('failedOnly', failed_only))
+            
+        if next_token is not None:
+            
+            _query_params.append(('nextToken', next_token))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    '*/*'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/v1/projects/{projectId}/web-apps/{webAppId}/invocations',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def list_web_app_log_lines(
         self,
         project_id: StrictStr,
         web_app_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        request_id: Annotated[Optional[List[StrictStr]], Field(description="Invocation IDs, from list_web_app_invocations, matching any.")] = None,
         level: Optional[StrictStr] = None,
         levels: Optional[List[StrictStr]] = None,
         next_token: Optional[StrictStr] = None,
@@ -36209,6 +36874,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param request_id: Invocation IDs, from list_web_app_invocations, matching any.
+        :type request_id: List[str]
         :param level:
         :type level: str
         :param levels:
@@ -36242,6 +36909,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             min_time=min_time,
             max_time=max_time,
+            request_id=request_id,
             level=level,
             levels=levels,
             next_token=next_token,
@@ -36272,6 +36940,7 @@ class ProjectsServerApi:
         web_app_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        request_id: Annotated[Optional[List[StrictStr]], Field(description="Invocation IDs, from list_web_app_invocations, matching any.")] = None,
         level: Optional[StrictStr] = None,
         levels: Optional[List[StrictStr]] = None,
         next_token: Optional[StrictStr] = None,
@@ -36299,6 +36968,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param request_id: Invocation IDs, from list_web_app_invocations, matching any.
+        :type request_id: List[str]
         :param level:
         :type level: str
         :param levels:
@@ -36332,6 +37003,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             min_time=min_time,
             max_time=max_time,
+            request_id=request_id,
             level=level,
             levels=levels,
             next_token=next_token,
@@ -36362,6 +37034,7 @@ class ProjectsServerApi:
         web_app_id: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        request_id: Annotated[Optional[List[StrictStr]], Field(description="Invocation IDs, from list_web_app_invocations, matching any.")] = None,
         level: Optional[StrictStr] = None,
         levels: Optional[List[StrictStr]] = None,
         next_token: Optional[StrictStr] = None,
@@ -36389,6 +37062,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param request_id: Invocation IDs, from list_web_app_invocations, matching any.
+        :type request_id: List[str]
         :param level:
         :type level: str
         :param levels:
@@ -36422,6 +37097,7 @@ class ProjectsServerApi:
             web_app_id=web_app_id,
             min_time=min_time,
             max_time=max_time,
+            request_id=request_id,
             level=level,
             levels=levels,
             next_token=next_token,
@@ -36447,6 +37123,7 @@ class ProjectsServerApi:
         web_app_id,
         min_time,
         max_time,
+        request_id,
         level,
         levels,
         next_token,
@@ -36459,6 +37136,7 @@ class ProjectsServerApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'requestId': 'multi',
             'levels': 'multi',
         }
 
@@ -36502,6 +37180,10 @@ class ProjectsServerApi:
                 )
             else:
                 _query_params.append(('maxTime', max_time))
+            
+        if request_id is not None:
+            
+            _query_params.append(('requestId', request_id))
             
         if level is not None:
             
@@ -47563,6 +48245,7 @@ class ProjectsServerApi:
         query: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        request_id: Annotated[Optional[List[StrictStr]], Field(description="Invocation IDs, from list_web_app_invocations, matching any.")] = None,
         level: Optional[StrictStr] = None,
         levels: Optional[List[StrictStr]] = None,
         next_token: Optional[StrictStr] = None,
@@ -47592,6 +48275,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param request_id: Invocation IDs, from list_web_app_invocations, matching any.
+        :type request_id: List[str]
         :param level:
         :type level: str
         :param levels:
@@ -47626,6 +48311,7 @@ class ProjectsServerApi:
             query=query,
             min_time=min_time,
             max_time=max_time,
+            request_id=request_id,
             level=level,
             levels=levels,
             next_token=next_token,
@@ -47657,6 +48343,7 @@ class ProjectsServerApi:
         query: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        request_id: Annotated[Optional[List[StrictStr]], Field(description="Invocation IDs, from list_web_app_invocations, matching any.")] = None,
         level: Optional[StrictStr] = None,
         levels: Optional[List[StrictStr]] = None,
         next_token: Optional[StrictStr] = None,
@@ -47686,6 +48373,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param request_id: Invocation IDs, from list_web_app_invocations, matching any.
+        :type request_id: List[str]
         :param level:
         :type level: str
         :param levels:
@@ -47720,6 +48409,7 @@ class ProjectsServerApi:
             query=query,
             min_time=min_time,
             max_time=max_time,
+            request_id=request_id,
             level=level,
             levels=levels,
             next_token=next_token,
@@ -47751,6 +48441,7 @@ class ProjectsServerApi:
         query: StrictStr,
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
+        request_id: Annotated[Optional[List[StrictStr]], Field(description="Invocation IDs, from list_web_app_invocations, matching any.")] = None,
         level: Optional[StrictStr] = None,
         levels: Optional[List[StrictStr]] = None,
         next_token: Optional[StrictStr] = None,
@@ -47780,6 +48471,8 @@ class ProjectsServerApi:
         :type min_time: datetime
         :param max_time:
         :type max_time: datetime
+        :param request_id: Invocation IDs, from list_web_app_invocations, matching any.
+        :type request_id: List[str]
         :param level:
         :type level: str
         :param levels:
@@ -47814,6 +48507,7 @@ class ProjectsServerApi:
             query=query,
             min_time=min_time,
             max_time=max_time,
+            request_id=request_id,
             level=level,
             levels=levels,
             next_token=next_token,
@@ -47840,6 +48534,7 @@ class ProjectsServerApi:
         query,
         min_time,
         max_time,
+        request_id,
         level,
         levels,
         next_token,
@@ -47852,6 +48547,7 @@ class ProjectsServerApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'requestId': 'multi',
             'levels': 'multi',
         }
 
@@ -47899,6 +48595,10 @@ class ProjectsServerApi:
                 )
             else:
                 _query_params.append(('maxTime', max_time))
+            
+        if request_id is not None:
+            
+            _query_params.append(('requestId', request_id))
             
         if level is not None:
             

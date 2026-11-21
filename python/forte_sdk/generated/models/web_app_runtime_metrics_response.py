@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from forte_sdk.generated.models.time_series_data_point import TimeSeriesDataPoint
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,7 +32,15 @@ class WebAppRuntimeMetricsResponse(BaseModel):
     p50_duration_millis: StrictInt = Field(alias="p50DurationMillis")
     p99_duration_millis: StrictInt = Field(alias="p99DurationMillis")
     invocations: List[TimeSeriesDataPoint]
-    __properties: ClassVar[List[str]] = ["invocationCount", "p50DurationMillis", "p99DurationMillis", "invocations"]
+    client_errors: Optional[List[TimeSeriesDataPoint]] = Field(default=None, alias="clientErrors")
+    server_errors: Optional[List[TimeSeriesDataPoint]] = Field(default=None, alias="serverErrors")
+    client_error_count: Optional[StrictInt] = Field(default=None, alias="clientErrorCount")
+    server_error_count: Optional[StrictInt] = Field(default=None, alias="serverErrorCount")
+    throttled_count: Optional[StrictInt] = Field(default=None, alias="throttledCount")
+    p50_first_byte_millis: Optional[StrictInt] = Field(default=None, alias="p50FirstByteMillis")
+    p99_first_byte_millis: Optional[StrictInt] = Field(default=None, alias="p99FirstByteMillis")
+    peak_memory_utilization_percent: Optional[StrictInt] = Field(default=None, alias="peakMemoryUtilizationPercent")
+    __properties: ClassVar[List[str]] = ["invocationCount", "p50DurationMillis", "p99DurationMillis", "invocations", "clientErrors", "serverErrors", "clientErrorCount", "serverErrorCount", "throttledCount", "p50FirstByteMillis", "p99FirstByteMillis", "peakMemoryUtilizationPercent"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,6 +88,60 @@ class WebAppRuntimeMetricsResponse(BaseModel):
                 if _item_invocations:
                     _items.append(_item_invocations.to_dict())
             _dict['invocations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in client_errors (list)
+        _items = []
+        if self.client_errors:
+            for _item_client_errors in self.client_errors:
+                if _item_client_errors:
+                    _items.append(_item_client_errors.to_dict())
+            _dict['clientErrors'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in server_errors (list)
+        _items = []
+        if self.server_errors:
+            for _item_server_errors in self.server_errors:
+                if _item_server_errors:
+                    _items.append(_item_server_errors.to_dict())
+            _dict['serverErrors'] = _items
+        # set to None if client_errors (nullable) is None
+        # and model_fields_set contains the field
+        if self.client_errors is None and "client_errors" in self.model_fields_set:
+            _dict['clientErrors'] = None
+
+        # set to None if server_errors (nullable) is None
+        # and model_fields_set contains the field
+        if self.server_errors is None and "server_errors" in self.model_fields_set:
+            _dict['serverErrors'] = None
+
+        # set to None if client_error_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.client_error_count is None and "client_error_count" in self.model_fields_set:
+            _dict['clientErrorCount'] = None
+
+        # set to None if server_error_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.server_error_count is None and "server_error_count" in self.model_fields_set:
+            _dict['serverErrorCount'] = None
+
+        # set to None if throttled_count (nullable) is None
+        # and model_fields_set contains the field
+        if self.throttled_count is None and "throttled_count" in self.model_fields_set:
+            _dict['throttledCount'] = None
+
+        # set to None if p50_first_byte_millis (nullable) is None
+        # and model_fields_set contains the field
+        if self.p50_first_byte_millis is None and "p50_first_byte_millis" in self.model_fields_set:
+            _dict['p50FirstByteMillis'] = None
+
+        # set to None if p99_first_byte_millis (nullable) is None
+        # and model_fields_set contains the field
+        if self.p99_first_byte_millis is None and "p99_first_byte_millis" in self.model_fields_set:
+            _dict['p99FirstByteMillis'] = None
+
+        # set to None if peak_memory_utilization_percent (nullable) is None
+        # and model_fields_set contains the field
+        if self.peak_memory_utilization_percent is None and "peak_memory_utilization_percent" in self.model_fields_set:
+            _dict['peakMemoryUtilizationPercent'] = None
+
         return _dict
 
     @classmethod
@@ -95,7 +157,15 @@ class WebAppRuntimeMetricsResponse(BaseModel):
             "invocationCount": obj.get("invocationCount"),
             "p50DurationMillis": obj.get("p50DurationMillis"),
             "p99DurationMillis": obj.get("p99DurationMillis"),
-            "invocations": [TimeSeriesDataPoint.from_dict(_item) for _item in obj["invocations"]] if obj.get("invocations") is not None else None
+            "invocations": [TimeSeriesDataPoint.from_dict(_item) for _item in obj["invocations"]] if obj.get("invocations") is not None else None,
+            "clientErrors": [TimeSeriesDataPoint.from_dict(_item) for _item in obj["clientErrors"]] if obj.get("clientErrors") is not None else None,
+            "serverErrors": [TimeSeriesDataPoint.from_dict(_item) for _item in obj["serverErrors"]] if obj.get("serverErrors") is not None else None,
+            "clientErrorCount": obj.get("clientErrorCount"),
+            "serverErrorCount": obj.get("serverErrorCount"),
+            "throttledCount": obj.get("throttledCount"),
+            "p50FirstByteMillis": obj.get("p50FirstByteMillis"),
+            "p99FirstByteMillis": obj.get("p99FirstByteMillis"),
+            "peakMemoryUtilizationPercent": obj.get("peakMemoryUtilizationPercent")
         })
         return _obj
 

@@ -51,6 +51,54 @@ export interface WebAppRuntimeMetricsResponse {
      * @memberof WebAppRuntimeMetricsResponse
      */
     invocations: Array<TimeSeriesDataPoint>;
+    /**
+     * 
+     * @type {Array<TimeSeriesDataPoint>}
+     * @memberof WebAppRuntimeMetricsResponse
+     */
+    clientErrors?: Array<TimeSeriesDataPoint> | null;
+    /**
+     * 
+     * @type {Array<TimeSeriesDataPoint>}
+     * @memberof WebAppRuntimeMetricsResponse
+     */
+    serverErrors?: Array<TimeSeriesDataPoint> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebAppRuntimeMetricsResponse
+     */
+    clientErrorCount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebAppRuntimeMetricsResponse
+     */
+    serverErrorCount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebAppRuntimeMetricsResponse
+     */
+    throttledCount?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebAppRuntimeMetricsResponse
+     */
+    p50FirstByteMillis?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebAppRuntimeMetricsResponse
+     */
+    p99FirstByteMillis?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebAppRuntimeMetricsResponse
+     */
+    peakMemoryUtilizationPercent?: number | null;
 }
 
 /**
@@ -78,6 +126,14 @@ export function WebAppRuntimeMetricsResponseFromJSONTyped(json: any, ignoreDiscr
         'p50DurationMillis': json['p50DurationMillis'],
         'p99DurationMillis': json['p99DurationMillis'],
         'invocations': ((json['invocations'] as Array<any>).map(TimeSeriesDataPointFromJSON)),
+        'clientErrors': json['clientErrors'] == null ? undefined : ((json['clientErrors'] as Array<any>).map(TimeSeriesDataPointFromJSON)),
+        'serverErrors': json['serverErrors'] == null ? undefined : ((json['serverErrors'] as Array<any>).map(TimeSeriesDataPointFromJSON)),
+        'clientErrorCount': json['clientErrorCount'] == null ? undefined : json['clientErrorCount'],
+        'serverErrorCount': json['serverErrorCount'] == null ? undefined : json['serverErrorCount'],
+        'throttledCount': json['throttledCount'] == null ? undefined : json['throttledCount'],
+        'p50FirstByteMillis': json['p50FirstByteMillis'] == null ? undefined : json['p50FirstByteMillis'],
+        'p99FirstByteMillis': json['p99FirstByteMillis'] == null ? undefined : json['p99FirstByteMillis'],
+        'peakMemoryUtilizationPercent': json['peakMemoryUtilizationPercent'] == null ? undefined : json['peakMemoryUtilizationPercent'],
     };
 }
 
@@ -96,6 +152,14 @@ export function WebAppRuntimeMetricsResponseToJSONTyped(value?: WebAppRuntimeMet
         'p50DurationMillis': value['p50DurationMillis'],
         'p99DurationMillis': value['p99DurationMillis'],
         'invocations': ((value['invocations'] as Array<any>).map(TimeSeriesDataPointToJSON)),
+        'clientErrors': value['clientErrors'] == null ? undefined : ((value['clientErrors'] as Array<any>).map(TimeSeriesDataPointToJSON)),
+        'serverErrors': value['serverErrors'] == null ? undefined : ((value['serverErrors'] as Array<any>).map(TimeSeriesDataPointToJSON)),
+        'clientErrorCount': value['clientErrorCount'],
+        'serverErrorCount': value['serverErrorCount'],
+        'throttledCount': value['throttledCount'],
+        'p50FirstByteMillis': value['p50FirstByteMillis'],
+        'p99FirstByteMillis': value['p99FirstByteMillis'],
+        'peakMemoryUtilizationPercent': value['peakMemoryUtilizationPercent'],
     };
 }
 

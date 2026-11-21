@@ -339,6 +339,11 @@ import {
     GetWebAppBlockedRequestMetricsResponseToJSON,
 } from '../models/GetWebAppBlockedRequestMetricsResponse';
 import {
+    type GetWebAppInvocationResponse,
+    GetWebAppInvocationResponseFromJSON,
+    GetWebAppInvocationResponseToJSON,
+} from '../models/GetWebAppInvocationResponse';
+import {
     type ImpersonationTokenResponse,
     ImpersonationTokenResponseFromJSON,
     ImpersonationTokenResponseToJSON,
@@ -428,6 +433,11 @@ import {
     PaginatedResponseBlockedRequestSampleFromJSON,
     PaginatedResponseBlockedRequestSampleToJSON,
 } from '../models/PaginatedResponseBlockedRequestSample';
+import {
+    type PaginatedResponseGetWebAppInvocationResponse,
+    PaginatedResponseGetWebAppInvocationResponseFromJSON,
+    PaginatedResponseGetWebAppInvocationResponseToJSON,
+} from '../models/PaginatedResponseGetWebAppInvocationResponse';
 import {
     type PaginatedResponseLogLineObject,
     PaginatedResponseLogLineObjectFromJSON,
@@ -1259,11 +1269,18 @@ export interface GetWebAppDeploymentRequest {
     buildId: string;
 }
 
+export interface GetWebAppInvocationRequest {
+    projectId: string;
+    webAppId: string;
+    requestId: string;
+}
+
 export interface GetWebAppRuntimeMetricsRequest {
     projectId: string;
     webAppId: string;
     minTime?: Date;
     maxTime?: Date;
+    granularity?: GetWebAppRuntimeMetricsGranularityType;
 }
 
 export interface IssueImpersonationTokenRequest {
@@ -1513,11 +1530,21 @@ export interface ListWebAppHistoryRequest {
     nextToken?: string;
 }
 
+export interface ListWebAppInvocationsRequest {
+    projectId: string;
+    webAppId: string;
+    minTime?: Date;
+    maxTime?: Date;
+    failedOnly?: boolean;
+    nextToken?: string;
+}
+
 export interface ListWebAppLogLinesRequest {
     projectId: string;
     webAppId: string;
     minTime?: Date;
     maxTime?: Date;
+    requestId?: Array<string>;
     level?: string;
     levels?: Array<string>;
     nextToken?: string;
@@ -1759,6 +1786,7 @@ export interface SearchWebAppLogLinesRequest {
     query: string;
     minTime?: Date;
     maxTime?: Date;
+    requestId?: Array<string>;
     level?: string;
     levels?: Array<string>;
     nextToken?: string;
@@ -6827,6 +6855,65 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for getWebAppInvocation without sending the request
+     */
+    async getWebAppInvocationRequestOpts(requestParameters: GetWebAppInvocationRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getWebAppInvocation().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling getWebAppInvocation().'
+            );
+        }
+
+        if (requestParameters['requestId'] == null) {
+            throw new runtime.RequiredError(
+                'requestId',
+                'Required parameter "requestId" was null or undefined when calling getWebAppInvocation().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/invocations/{requestId}`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+        urlPath = urlPath.replace('{requestId}', encodeURIComponent(String(requestParameters['requestId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getWebAppInvocationRaw(requestParameters: GetWebAppInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWebAppInvocationResponse>> {
+        const requestOptions = await this.getWebAppInvocationRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetWebAppInvocationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getWebAppInvocation(requestParameters: GetWebAppInvocationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWebAppInvocationResponse> {
+        const response = await this.getWebAppInvocationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for getWebAppRuntimeMetrics without sending the request
      */
     async getWebAppRuntimeMetricsRequestOpts(requestParameters: GetWebAppRuntimeMetricsRequest): Promise<runtime.RequestOpts> {
@@ -6852,6 +6939,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['maxTime'] != null) {
             queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['granularity'] != null) {
+            queryParameters['granularity'] = requestParameters['granularity'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -8869,6 +8960,73 @@ export class ProjectsServerApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for listWebAppInvocations without sending the request
+     */
+    async listWebAppInvocationsRequestOpts(requestParameters: ListWebAppInvocationsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling listWebAppInvocations().'
+            );
+        }
+
+        if (requestParameters['webAppId'] == null) {
+            throw new runtime.RequiredError(
+                'webAppId',
+                'Required parameter "webAppId" was null or undefined when calling listWebAppInvocations().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['minTime'] != null) {
+            queryParameters['minTime'] = (requestParameters['minTime'] as any).toISOString();
+        }
+
+        if (requestParameters['maxTime'] != null) {
+            queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['failedOnly'] != null) {
+            queryParameters['failedOnly'] = requestParameters['failedOnly'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/web-apps/{webAppId}/invocations`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+        urlPath = urlPath.replace('{webAppId}', encodeURIComponent(String(requestParameters['webAppId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async listWebAppInvocationsRaw(requestParameters: ListWebAppInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseGetWebAppInvocationResponse>> {
+        const requestOptions = await this.listWebAppInvocationsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseGetWebAppInvocationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async listWebAppInvocations(requestParameters: ListWebAppInvocationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseGetWebAppInvocationResponse> {
+        const response = await this.listWebAppInvocationsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for listWebAppLogLines without sending the request
      */
     async listWebAppLogLinesRequestOpts(requestParameters: ListWebAppLogLinesRequest): Promise<runtime.RequestOpts> {
@@ -8894,6 +9052,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
 
         if (requestParameters['maxTime'] != null) {
             queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
+        }
+
+        if (requestParameters['requestId'] != null) {
+            queryParameters['requestId'] = requestParameters['requestId'];
         }
 
         if (requestParameters['level'] != null) {
@@ -11227,6 +11389,10 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['maxTime'] = (requestParameters['maxTime'] as any).toISOString();
         }
 
+        if (requestParameters['requestId'] != null) {
+            queryParameters['requestId'] = requestParameters['requestId'];
+        }
+
         if (requestParameters['level'] != null) {
             queryParameters['level'] = requestParameters['level'];
         }
@@ -12657,6 +12823,16 @@ export const GetUserMetricsGranularityType = {
     ONE_HOUR: 'ONE_HOUR'
 } as const;
 export type GetUserMetricsGranularityType = typeof GetUserMetricsGranularityType[keyof typeof GetUserMetricsGranularityType];
+/**
+ * @export
+ */
+export const GetWebAppRuntimeMetricsGranularityType = {
+    ONE_MINUTE: 'ONE_MINUTE',
+    FIVE_MINUTES: 'FIVE_MINUTES',
+    FIFTEEN_MINUTES: 'FIFTEEN_MINUTES',
+    ONE_HOUR: 'ONE_HOUR'
+} as const;
+export type GetWebAppRuntimeMetricsGranularityType = typeof GetWebAppRuntimeMetricsGranularityType[keyof typeof GetWebAppRuntimeMetricsGranularityType];
 /**
  * @export
  */

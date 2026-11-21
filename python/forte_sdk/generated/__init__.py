@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.541"
+__version__ = "1.0.542"
 
 # Define package exports
 __all__ = [
@@ -132,6 +132,7 @@ __all__ = [
     "GetServiceCodeSourceStatusResponse",
     "GetServiceRouteTimeMetricsResponse",
     "GetWebAppBlockedRequestMetricsResponse",
+    "GetWebAppInvocationResponse",
     "HealthCheckConfig",
     "HealthCheckDetectionError",
     "HealthCheckDetectionOutput",
@@ -181,6 +182,7 @@ __all__ = [
     "PaginatedResponseActionInvocationObject",
     "PaginatedResponseBlockedRequestGroup",
     "PaginatedResponseBlockedRequestSample",
+    "PaginatedResponseGetWebAppInvocationResponse",
     "PaginatedResponseLogLineObject",
     "PaginatedResponseLoginHistoryEntry",
     "PaginatedResponsePaymentObject",
@@ -416,6 +418,7 @@ from forte_sdk.generated.models.get_service_blocked_request_metrics_response imp
 from forte_sdk.generated.models.get_service_code_source_status_response import GetServiceCodeSourceStatusResponse as GetServiceCodeSourceStatusResponse
 from forte_sdk.generated.models.get_service_route_time_metrics_response import GetServiceRouteTimeMetricsResponse as GetServiceRouteTimeMetricsResponse
 from forte_sdk.generated.models.get_web_app_blocked_request_metrics_response import GetWebAppBlockedRequestMetricsResponse as GetWebAppBlockedRequestMetricsResponse
+from forte_sdk.generated.models.get_web_app_invocation_response import GetWebAppInvocationResponse as GetWebAppInvocationResponse
 from forte_sdk.generated.models.health_check_config import HealthCheckConfig as HealthCheckConfig
 from forte_sdk.generated.models.health_check_detection_error import HealthCheckDetectionError as HealthCheckDetectionError
 from forte_sdk.generated.models.health_check_detection_output import HealthCheckDetectionOutput as HealthCheckDetectionOutput
@@ -465,6 +468,7 @@ from forte_sdk.generated.models.paginated_response_account_action_log_object imp
 from forte_sdk.generated.models.paginated_response_action_invocation_object import PaginatedResponseActionInvocationObject as PaginatedResponseActionInvocationObject
 from forte_sdk.generated.models.paginated_response_blocked_request_group import PaginatedResponseBlockedRequestGroup as PaginatedResponseBlockedRequestGroup
 from forte_sdk.generated.models.paginated_response_blocked_request_sample import PaginatedResponseBlockedRequestSample as PaginatedResponseBlockedRequestSample
+from forte_sdk.generated.models.paginated_response_get_web_app_invocation_response import PaginatedResponseGetWebAppInvocationResponse as PaginatedResponseGetWebAppInvocationResponse
 from forte_sdk.generated.models.paginated_response_log_line_object import PaginatedResponseLogLineObject as PaginatedResponseLogLineObject
 from forte_sdk.generated.models.paginated_response_login_history_entry import PaginatedResponseLoginHistoryEntry as PaginatedResponseLoginHistoryEntry
 from forte_sdk.generated.models.paginated_response_payment_object import PaginatedResponsePaymentObject as PaginatedResponsePaymentObject

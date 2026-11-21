@@ -28,6 +28,10 @@ import com.forteplatforms.sdk.generated.model.TimeSeriesDataPoint;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,7 +43,15 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   WebAppRuntimeMetricsResponse.JSON_PROPERTY_INVOCATION_COUNT,
   WebAppRuntimeMetricsResponse.JSON_PROPERTY_P50_DURATION_MILLIS,
   WebAppRuntimeMetricsResponse.JSON_PROPERTY_P99_DURATION_MILLIS,
-  WebAppRuntimeMetricsResponse.JSON_PROPERTY_INVOCATIONS
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_INVOCATIONS,
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_CLIENT_ERRORS,
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_SERVER_ERRORS,
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_CLIENT_ERROR_COUNT,
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_SERVER_ERROR_COUNT,
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_THROTTLED_COUNT,
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_P50_FIRST_BYTE_MILLIS,
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_P99_FIRST_BYTE_MILLIS,
+  WebAppRuntimeMetricsResponse.JSON_PROPERTY_PEAK_MEMORY_UTILIZATION_PERCENT
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class WebAppRuntimeMetricsResponse {
@@ -58,6 +70,30 @@ public class WebAppRuntimeMetricsResponse {
   public static final String JSON_PROPERTY_INVOCATIONS = "invocations";
   @javax.annotation.Nonnull
   private List<TimeSeriesDataPoint> invocations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CLIENT_ERRORS = "clientErrors";
+  private JsonNullable<List<TimeSeriesDataPoint>> clientErrors = JsonNullable.<List<TimeSeriesDataPoint>>undefined();
+
+  public static final String JSON_PROPERTY_SERVER_ERRORS = "serverErrors";
+  private JsonNullable<List<TimeSeriesDataPoint>> serverErrors = JsonNullable.<List<TimeSeriesDataPoint>>undefined();
+
+  public static final String JSON_PROPERTY_CLIENT_ERROR_COUNT = "clientErrorCount";
+  private JsonNullable<Long> clientErrorCount = JsonNullable.<Long>undefined();
+
+  public static final String JSON_PROPERTY_SERVER_ERROR_COUNT = "serverErrorCount";
+  private JsonNullable<Long> serverErrorCount = JsonNullable.<Long>undefined();
+
+  public static final String JSON_PROPERTY_THROTTLED_COUNT = "throttledCount";
+  private JsonNullable<Long> throttledCount = JsonNullable.<Long>undefined();
+
+  public static final String JSON_PROPERTY_P50_FIRST_BYTE_MILLIS = "p50FirstByteMillis";
+  private JsonNullable<Long> p50FirstByteMillis = JsonNullable.<Long>undefined();
+
+  public static final String JSON_PROPERTY_P99_FIRST_BYTE_MILLIS = "p99FirstByteMillis";
+  private JsonNullable<Long> p99FirstByteMillis = JsonNullable.<Long>undefined();
+
+  public static final String JSON_PROPERTY_PEAK_MEMORY_UTILIZATION_PERCENT = "peakMemoryUtilizationPercent";
+  private JsonNullable<Integer> peakMemoryUtilizationPercent = JsonNullable.<Integer>undefined();
 
   public WebAppRuntimeMetricsResponse() { 
   }
@@ -166,6 +202,286 @@ public class WebAppRuntimeMetricsResponse {
   }
 
 
+  public WebAppRuntimeMetricsResponse clientErrors(@javax.annotation.Nullable List<TimeSeriesDataPoint> clientErrors) {
+    this.clientErrors = JsonNullable.<List<TimeSeriesDataPoint>>of(clientErrors);
+    return this;
+  }
+
+  public WebAppRuntimeMetricsResponse addClientErrorsItem(TimeSeriesDataPoint clientErrorsItem) {
+    if (this.clientErrors == null || !this.clientErrors.isPresent()) {
+      this.clientErrors = JsonNullable.<List<TimeSeriesDataPoint>>of(new ArrayList<>());
+    }
+    try {
+      this.clientErrors.get().add(clientErrorsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get clientErrors
+   * @return clientErrors
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<TimeSeriesDataPoint> getClientErrors() {
+        return clientErrors.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CLIENT_ERRORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<TimeSeriesDataPoint>> getClientErrors_JsonNullable() {
+    return clientErrors;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLIENT_ERRORS)
+  public void setClientErrors_JsonNullable(JsonNullable<List<TimeSeriesDataPoint>> clientErrors) {
+    this.clientErrors = clientErrors;
+  }
+
+  public void setClientErrors(@javax.annotation.Nullable List<TimeSeriesDataPoint> clientErrors) {
+    this.clientErrors = JsonNullable.<List<TimeSeriesDataPoint>>of(clientErrors);
+  }
+
+
+  public WebAppRuntimeMetricsResponse serverErrors(@javax.annotation.Nullable List<TimeSeriesDataPoint> serverErrors) {
+    this.serverErrors = JsonNullable.<List<TimeSeriesDataPoint>>of(serverErrors);
+    return this;
+  }
+
+  public WebAppRuntimeMetricsResponse addServerErrorsItem(TimeSeriesDataPoint serverErrorsItem) {
+    if (this.serverErrors == null || !this.serverErrors.isPresent()) {
+      this.serverErrors = JsonNullable.<List<TimeSeriesDataPoint>>of(new ArrayList<>());
+    }
+    try {
+      this.serverErrors.get().add(serverErrorsItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get serverErrors
+   * @return serverErrors
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<TimeSeriesDataPoint> getServerErrors() {
+        return serverErrors.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SERVER_ERRORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<TimeSeriesDataPoint>> getServerErrors_JsonNullable() {
+    return serverErrors;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SERVER_ERRORS)
+  public void setServerErrors_JsonNullable(JsonNullable<List<TimeSeriesDataPoint>> serverErrors) {
+    this.serverErrors = serverErrors;
+  }
+
+  public void setServerErrors(@javax.annotation.Nullable List<TimeSeriesDataPoint> serverErrors) {
+    this.serverErrors = JsonNullable.<List<TimeSeriesDataPoint>>of(serverErrors);
+  }
+
+
+  public WebAppRuntimeMetricsResponse clientErrorCount(@javax.annotation.Nullable Long clientErrorCount) {
+    this.clientErrorCount = JsonNullable.<Long>of(clientErrorCount);
+    return this;
+  }
+
+  /**
+   * Get clientErrorCount
+   * @return clientErrorCount
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Long getClientErrorCount() {
+        return clientErrorCount.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CLIENT_ERROR_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Long> getClientErrorCount_JsonNullable() {
+    return clientErrorCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLIENT_ERROR_COUNT)
+  public void setClientErrorCount_JsonNullable(JsonNullable<Long> clientErrorCount) {
+    this.clientErrorCount = clientErrorCount;
+  }
+
+  public void setClientErrorCount(@javax.annotation.Nullable Long clientErrorCount) {
+    this.clientErrorCount = JsonNullable.<Long>of(clientErrorCount);
+  }
+
+
+  public WebAppRuntimeMetricsResponse serverErrorCount(@javax.annotation.Nullable Long serverErrorCount) {
+    this.serverErrorCount = JsonNullable.<Long>of(serverErrorCount);
+    return this;
+  }
+
+  /**
+   * Get serverErrorCount
+   * @return serverErrorCount
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Long getServerErrorCount() {
+        return serverErrorCount.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SERVER_ERROR_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Long> getServerErrorCount_JsonNullable() {
+    return serverErrorCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SERVER_ERROR_COUNT)
+  public void setServerErrorCount_JsonNullable(JsonNullable<Long> serverErrorCount) {
+    this.serverErrorCount = serverErrorCount;
+  }
+
+  public void setServerErrorCount(@javax.annotation.Nullable Long serverErrorCount) {
+    this.serverErrorCount = JsonNullable.<Long>of(serverErrorCount);
+  }
+
+
+  public WebAppRuntimeMetricsResponse throttledCount(@javax.annotation.Nullable Long throttledCount) {
+    this.throttledCount = JsonNullable.<Long>of(throttledCount);
+    return this;
+  }
+
+  /**
+   * Get throttledCount
+   * @return throttledCount
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Long getThrottledCount() {
+        return throttledCount.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_THROTTLED_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Long> getThrottledCount_JsonNullable() {
+    return throttledCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_THROTTLED_COUNT)
+  public void setThrottledCount_JsonNullable(JsonNullable<Long> throttledCount) {
+    this.throttledCount = throttledCount;
+  }
+
+  public void setThrottledCount(@javax.annotation.Nullable Long throttledCount) {
+    this.throttledCount = JsonNullable.<Long>of(throttledCount);
+  }
+
+
+  public WebAppRuntimeMetricsResponse p50FirstByteMillis(@javax.annotation.Nullable Long p50FirstByteMillis) {
+    this.p50FirstByteMillis = JsonNullable.<Long>of(p50FirstByteMillis);
+    return this;
+  }
+
+  /**
+   * Get p50FirstByteMillis
+   * @return p50FirstByteMillis
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Long getP50FirstByteMillis() {
+        return p50FirstByteMillis.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_P50_FIRST_BYTE_MILLIS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Long> getP50FirstByteMillis_JsonNullable() {
+    return p50FirstByteMillis;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_P50_FIRST_BYTE_MILLIS)
+  public void setP50FirstByteMillis_JsonNullable(JsonNullable<Long> p50FirstByteMillis) {
+    this.p50FirstByteMillis = p50FirstByteMillis;
+  }
+
+  public void setP50FirstByteMillis(@javax.annotation.Nullable Long p50FirstByteMillis) {
+    this.p50FirstByteMillis = JsonNullable.<Long>of(p50FirstByteMillis);
+  }
+
+
+  public WebAppRuntimeMetricsResponse p99FirstByteMillis(@javax.annotation.Nullable Long p99FirstByteMillis) {
+    this.p99FirstByteMillis = JsonNullable.<Long>of(p99FirstByteMillis);
+    return this;
+  }
+
+  /**
+   * Get p99FirstByteMillis
+   * @return p99FirstByteMillis
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Long getP99FirstByteMillis() {
+        return p99FirstByteMillis.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_P99_FIRST_BYTE_MILLIS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Long> getP99FirstByteMillis_JsonNullable() {
+    return p99FirstByteMillis;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_P99_FIRST_BYTE_MILLIS)
+  public void setP99FirstByteMillis_JsonNullable(JsonNullable<Long> p99FirstByteMillis) {
+    this.p99FirstByteMillis = p99FirstByteMillis;
+  }
+
+  public void setP99FirstByteMillis(@javax.annotation.Nullable Long p99FirstByteMillis) {
+    this.p99FirstByteMillis = JsonNullable.<Long>of(p99FirstByteMillis);
+  }
+
+
+  public WebAppRuntimeMetricsResponse peakMemoryUtilizationPercent(@javax.annotation.Nullable Integer peakMemoryUtilizationPercent) {
+    this.peakMemoryUtilizationPercent = JsonNullable.<Integer>of(peakMemoryUtilizationPercent);
+    return this;
+  }
+
+  /**
+   * Get peakMemoryUtilizationPercent
+   * @return peakMemoryUtilizationPercent
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Integer getPeakMemoryUtilizationPercent() {
+        return peakMemoryUtilizationPercent.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_PEAK_MEMORY_UTILIZATION_PERCENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Integer> getPeakMemoryUtilizationPercent_JsonNullable() {
+    return peakMemoryUtilizationPercent;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PEAK_MEMORY_UTILIZATION_PERCENT)
+  public void setPeakMemoryUtilizationPercent_JsonNullable(JsonNullable<Integer> peakMemoryUtilizationPercent) {
+    this.peakMemoryUtilizationPercent = peakMemoryUtilizationPercent;
+  }
+
+  public void setPeakMemoryUtilizationPercent(@javax.annotation.Nullable Integer peakMemoryUtilizationPercent) {
+    this.peakMemoryUtilizationPercent = JsonNullable.<Integer>of(peakMemoryUtilizationPercent);
+  }
+
+
   /**
    * Return true if this WebAppRuntimeMetricsResponse object is equal to o.
    */
@@ -181,12 +497,31 @@ public class WebAppRuntimeMetricsResponse {
     return Objects.equals(this.invocationCount, webAppRuntimeMetricsResponse.invocationCount) &&
         Objects.equals(this.p50DurationMillis, webAppRuntimeMetricsResponse.p50DurationMillis) &&
         Objects.equals(this.p99DurationMillis, webAppRuntimeMetricsResponse.p99DurationMillis) &&
-        Objects.equals(this.invocations, webAppRuntimeMetricsResponse.invocations);
+        Objects.equals(this.invocations, webAppRuntimeMetricsResponse.invocations) &&
+        equalsNullable(this.clientErrors, webAppRuntimeMetricsResponse.clientErrors) &&
+        equalsNullable(this.serverErrors, webAppRuntimeMetricsResponse.serverErrors) &&
+        equalsNullable(this.clientErrorCount, webAppRuntimeMetricsResponse.clientErrorCount) &&
+        equalsNullable(this.serverErrorCount, webAppRuntimeMetricsResponse.serverErrorCount) &&
+        equalsNullable(this.throttledCount, webAppRuntimeMetricsResponse.throttledCount) &&
+        equalsNullable(this.p50FirstByteMillis, webAppRuntimeMetricsResponse.p50FirstByteMillis) &&
+        equalsNullable(this.p99FirstByteMillis, webAppRuntimeMetricsResponse.p99FirstByteMillis) &&
+        equalsNullable(this.peakMemoryUtilizationPercent, webAppRuntimeMetricsResponse.peakMemoryUtilizationPercent);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invocationCount, p50DurationMillis, p99DurationMillis, invocations);
+    return Objects.hash(invocationCount, p50DurationMillis, p99DurationMillis, invocations, hashCodeNullable(clientErrors), hashCodeNullable(serverErrors), hashCodeNullable(clientErrorCount), hashCodeNullable(serverErrorCount), hashCodeNullable(throttledCount), hashCodeNullable(p50FirstByteMillis), hashCodeNullable(p99FirstByteMillis), hashCodeNullable(peakMemoryUtilizationPercent));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -197,6 +532,14 @@ public class WebAppRuntimeMetricsResponse {
     sb.append("    p50DurationMillis: ").append(toIndentedString(p50DurationMillis)).append("\n");
     sb.append("    p99DurationMillis: ").append(toIndentedString(p99DurationMillis)).append("\n");
     sb.append("    invocations: ").append(toIndentedString(invocations)).append("\n");
+    sb.append("    clientErrors: ").append(toIndentedString(clientErrors)).append("\n");
+    sb.append("    serverErrors: ").append(toIndentedString(serverErrors)).append("\n");
+    sb.append("    clientErrorCount: ").append(toIndentedString(clientErrorCount)).append("\n");
+    sb.append("    serverErrorCount: ").append(toIndentedString(serverErrorCount)).append("\n");
+    sb.append("    throttledCount: ").append(toIndentedString(throttledCount)).append("\n");
+    sb.append("    p50FirstByteMillis: ").append(toIndentedString(p50FirstByteMillis)).append("\n");
+    sb.append("    p99FirstByteMillis: ").append(toIndentedString(p99FirstByteMillis)).append("\n");
+    sb.append("    peakMemoryUtilizationPercent: ").append(toIndentedString(peakMemoryUtilizationPercent)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -264,6 +607,56 @@ public class WebAppRuntimeMetricsResponse {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `clientErrors` to the URL query string
+    if (getClientErrors() != null) {
+      for (int i = 0; i < getClientErrors().size(); i++) {
+        if (getClientErrors().get(i) != null) {
+          joiner.add(getClientErrors().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sclientErrors%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `serverErrors` to the URL query string
+    if (getServerErrors() != null) {
+      for (int i = 0; i < getServerErrors().size(); i++) {
+        if (getServerErrors().get(i) != null) {
+          joiner.add(getServerErrors().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sserverErrors%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `clientErrorCount` to the URL query string
+    if (getClientErrorCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclientErrorCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClientErrorCount()))));
+    }
+
+    // add `serverErrorCount` to the URL query string
+    if (getServerErrorCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sserverErrorCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServerErrorCount()))));
+    }
+
+    // add `throttledCount` to the URL query string
+    if (getThrottledCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sthrottledCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThrottledCount()))));
+    }
+
+    // add `p50FirstByteMillis` to the URL query string
+    if (getP50FirstByteMillis() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sp50FirstByteMillis%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getP50FirstByteMillis()))));
+    }
+
+    // add `p99FirstByteMillis` to the URL query string
+    if (getP99FirstByteMillis() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sp99FirstByteMillis%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getP99FirstByteMillis()))));
+    }
+
+    // add `peakMemoryUtilizationPercent` to the URL query string
+    if (getPeakMemoryUtilizationPercent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%speakMemoryUtilizationPercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPeakMemoryUtilizationPercent()))));
     }
 
     return joiner.toString();
