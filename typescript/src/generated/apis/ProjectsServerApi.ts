@@ -314,6 +314,11 @@ import {
     GetManagedDatabaseBackupSourceResponseToJSON,
 } from '../models/GetManagedDatabaseBackupSourceResponse';
 import {
+    type GetPaymentSalesTaxStatusResponse,
+    GetPaymentSalesTaxStatusResponseFromJSON,
+    GetPaymentSalesTaxStatusResponseToJSON,
+} from '../models/GetPaymentSalesTaxStatusResponse';
+import {
     type GetRequestBodyDownloadLinkResponse,
     GetRequestBodyDownloadLinkResponseFromJSON,
     GetRequestBodyDownloadLinkResponseToJSON,
@@ -1155,6 +1160,10 @@ export interface GetPaymentAnalyticsRequest {
     metadataKey?: string;
     topN?: number;
     granularity?: GetPaymentAnalyticsGranularityType;
+}
+
+export interface GetPaymentSalesTaxStatusRequest {
+    projectId: string;
 }
 
 export interface GetPaymentTriggerInvocationRequest {
@@ -5821,6 +5830,49 @@ export class ProjectsServerApi extends runtime.BaseAPI {
      */
     async getPaymentAnalytics(requestParameters: GetPaymentAnalyticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentAnalyticsResponse> {
         const response = await this.getPaymentAnalyticsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for getPaymentSalesTaxStatus without sending the request
+     */
+    async getPaymentSalesTaxStatusRequestOpts(requestParameters: GetPaymentSalesTaxStatusRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['projectId'] == null) {
+            throw new runtime.RequiredError(
+                'projectId',
+                'Required parameter "projectId" was null or undefined when calling getPaymentSalesTaxStatus().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/api/v1/projects/{projectId}/payments/sales-tax-status`;
+        urlPath = urlPath.replace('{projectId}', encodeURIComponent(String(requestParameters['projectId'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     */
+    async getPaymentSalesTaxStatusRaw(requestParameters: GetPaymentSalesTaxStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPaymentSalesTaxStatusResponse>> {
+        const requestOptions = await this.getPaymentSalesTaxStatusRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPaymentSalesTaxStatusResponseFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async getPaymentSalesTaxStatus(requestParameters: GetPaymentSalesTaxStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPaymentSalesTaxStatusResponse> {
+        const response = await this.getPaymentSalesTaxStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

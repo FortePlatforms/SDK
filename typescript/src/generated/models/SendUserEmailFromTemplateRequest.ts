@@ -31,6 +31,12 @@ export interface SendUserEmailFromTemplateRequest {
      * @memberof SendUserEmailFromTemplateRequest
      */
     templateParams?: { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof SendUserEmailFromTemplateRequest
+     */
+    senderName?: string | null;
 }
 
 /**
@@ -53,6 +59,7 @@ export function SendUserEmailFromTemplateRequestFromJSONTyped(json: any, ignoreD
         
         'templateName': json['templateName'],
         'templateParams': json['templateParams'] == null ? undefined : json['templateParams'],
+        'senderName': json['senderName'] == null ? undefined : json['senderName'],
     };
 }
 
@@ -69,6 +76,7 @@ export function SendUserEmailFromTemplateRequestToJSONTyped(value?: SendUserEmai
         
         'templateName': value['templateName'],
         'templateParams': value['templateParams'],
+        'senderName': value['senderName'],
     };
 }
 

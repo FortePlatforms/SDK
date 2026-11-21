@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.542"
+__version__ = "1.0.547"
 
 # Define package exports
 __all__ = [
@@ -127,6 +127,7 @@ __all__ = [
     "GetContentDownloadLinkResponse",
     "GetManagedDatabaseBackupResponse",
     "GetManagedDatabaseBackupSourceResponse",
+    "GetPaymentSalesTaxStatusResponse",
     "GetRequestBodyDownloadLinkResponse",
     "GetServiceBlockedRequestMetricsResponse",
     "GetServiceCodeSourceStatusResponse",
@@ -413,6 +414,7 @@ from forte_sdk.generated.models.get_build_artifact_response import GetBuildArtif
 from forte_sdk.generated.models.get_content_download_link_response import GetContentDownloadLinkResponse as GetContentDownloadLinkResponse
 from forte_sdk.generated.models.get_managed_database_backup_response import GetManagedDatabaseBackupResponse as GetManagedDatabaseBackupResponse
 from forte_sdk.generated.models.get_managed_database_backup_source_response import GetManagedDatabaseBackupSourceResponse as GetManagedDatabaseBackupSourceResponse
+from forte_sdk.generated.models.get_payment_sales_tax_status_response import GetPaymentSalesTaxStatusResponse as GetPaymentSalesTaxStatusResponse
 from forte_sdk.generated.models.get_request_body_download_link_response import GetRequestBodyDownloadLinkResponse as GetRequestBodyDownloadLinkResponse
 from forte_sdk.generated.models.get_service_blocked_request_metrics_response import GetServiceBlockedRequestMetricsResponse as GetServiceBlockedRequestMetricsResponse
 from forte_sdk.generated.models.get_service_code_source_status_response import GetServiceCodeSourceStatusResponse as GetServiceCodeSourceStatusResponse

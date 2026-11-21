@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,7 +39,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
 @JsonPropertyOrder({
   SendUserEmailRequest.JSON_PROPERTY_SUBJECT,
   SendUserEmailRequest.JSON_PROPERTY_BODY,
-  SendUserEmailRequest.JSON_PROPERTY_HTML_BODY
+  SendUserEmailRequest.JSON_PROPERTY_HTML_BODY,
+  SendUserEmailRequest.JSON_PROPERTY_SENDER_NAME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class SendUserEmailRequest {
@@ -50,6 +55,9 @@ public class SendUserEmailRequest {
   public static final String JSON_PROPERTY_HTML_BODY = "htmlBody";
   @javax.annotation.Nullable
   private String htmlBody;
+
+  public static final String JSON_PROPERTY_SENDER_NAME = "senderName";
+  private JsonNullable<String> senderName = JsonNullable.<String>undefined();
 
   public SendUserEmailRequest() { 
   }
@@ -126,6 +134,38 @@ public class SendUserEmailRequest {
   }
 
 
+  public SendUserEmailRequest senderName(@javax.annotation.Nullable String senderName) {
+    this.senderName = JsonNullable.<String>of(senderName);
+    return this;
+  }
+
+  /**
+   * Get senderName
+   * @return senderName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getSenderName() {
+        return senderName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SENDER_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSenderName_JsonNullable() {
+    return senderName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENDER_NAME)
+  public void setSenderName_JsonNullable(JsonNullable<String> senderName) {
+    this.senderName = senderName;
+  }
+
+  public void setSenderName(@javax.annotation.Nullable String senderName) {
+    this.senderName = JsonNullable.<String>of(senderName);
+  }
+
+
   /**
    * Return true if this SendUserEmailRequest object is equal to o.
    */
@@ -140,12 +180,24 @@ public class SendUserEmailRequest {
     SendUserEmailRequest sendUserEmailRequest = (SendUserEmailRequest) o;
     return Objects.equals(this.subject, sendUserEmailRequest.subject) &&
         Objects.equals(this.body, sendUserEmailRequest.body) &&
-        Objects.equals(this.htmlBody, sendUserEmailRequest.htmlBody);
+        Objects.equals(this.htmlBody, sendUserEmailRequest.htmlBody) &&
+        equalsNullable(this.senderName, sendUserEmailRequest.senderName);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subject, body, htmlBody);
+    return Objects.hash(subject, body, htmlBody, hashCodeNullable(senderName));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -155,6 +207,7 @@ public class SendUserEmailRequest {
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    htmlBody: ").append(toIndentedString(htmlBody)).append("\n");
+    sb.append("    senderName: ").append(toIndentedString(senderName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,6 +265,11 @@ public class SendUserEmailRequest {
     // add `htmlBody` to the URL query string
     if (getHtmlBody() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shtmlBody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHtmlBody()))));
+    }
+
+    // add `senderName` to the URL query string
+    if (getSenderName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssenderName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSenderName()))));
     }
 
     return joiner.toString();

@@ -106,6 +106,18 @@ export interface PaymentObject {
     taxCalculationStatus?: TaxCalculationStatus | null;
     /**
      * 
+     * @type {string}
+     * @memberof PaymentObject
+     */
+    taxCountry?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentObject
+     */
+    taxState?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof PaymentObject
      */
@@ -310,6 +322,8 @@ export function PaymentObjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'subtotalCents': json['subtotalCents'],
         'taxCents': json['taxCents'] == null ? undefined : json['taxCents'],
         'taxCalculationStatus': json['taxCalculationStatus'] == null ? undefined : TaxCalculationStatusFromJSON(json['taxCalculationStatus']),
+        'taxCountry': json['taxCountry'] == null ? undefined : json['taxCountry'],
+        'taxState': json['taxState'] == null ? undefined : json['taxState'],
         'amountCents': json['amountCents'],
         'currency': json['currency'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -356,6 +370,8 @@ export function PaymentObjectToJSONTyped(value?: PaymentObject | null, ignoreDis
         'subtotalCents': value['subtotalCents'],
         'taxCents': value['taxCents'],
         'taxCalculationStatus': TaxCalculationStatusToJSON(value['taxCalculationStatus']),
+        'taxCountry': value['taxCountry'],
+        'taxState': value['taxState'],
         'amountCents': value['amountCents'],
         'currency': value['currency'],
         'description': value['description'],

@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TaxCalculationStatus } from './TaxCalculationStatus';
+import {
+    TaxCalculationStatusFromJSON,
+    TaxCalculationStatusFromJSONTyped,
+    TaxCalculationStatusToJSON,
+    TaxCalculationStatusToJSONTyped,
+} from './TaxCalculationStatus';
+
 /**
  * 
  * @export
@@ -79,6 +87,12 @@ export interface PaymentFilter {
      * @memberof PaymentFilter
      */
     subscription?: boolean | null;
+    /**
+     * 
+     * @type {Array<TaxCalculationStatus>}
+     * @memberof PaymentFilter
+     */
+    taxCalculationStatuses?: Array<TaxCalculationStatus> | null;
     /**
      * 
      * @type {string}
@@ -184,6 +198,7 @@ export function PaymentFilterFromJSONTyped(json: any, ignoreDiscriminator: boole
         'ids': json['ids'] == null ? undefined : json['ids'],
         'notIds': json['notIds'] == null ? undefined : json['notIds'],
         'subscription': json['subscription'] == null ? undefined : json['subscription'],
+        'taxCalculationStatuses': json['taxCalculationStatuses'] == null ? undefined : ((json['taxCalculationStatuses'] as Array<any>).map(TaxCalculationStatusFromJSON)),
         'lineItemDescription': json['lineItemDescription'] == null ? undefined : json['lineItemDescription'],
         'lineItemDescriptions': json['lineItemDescriptions'] == null ? undefined : json['lineItemDescriptions'],
         'notLineItemDescriptions': json['notLineItemDescriptions'] == null ? undefined : json['notLineItemDescriptions'],
@@ -214,6 +229,7 @@ export function PaymentFilterToJSONTyped(value?: PaymentFilter | null, ignoreDis
         'ids': value['ids'],
         'notIds': value['notIds'],
         'subscription': value['subscription'],
+        'taxCalculationStatuses': value['taxCalculationStatuses'] == null ? undefined : ((value['taxCalculationStatuses'] as Array<any>).map(TaxCalculationStatusToJSON)),
         'lineItemDescription': value['lineItemDescription'],
         'lineItemDescriptions': value['lineItemDescriptions'],
         'notLineItemDescriptions': value['notLineItemDescriptions'],

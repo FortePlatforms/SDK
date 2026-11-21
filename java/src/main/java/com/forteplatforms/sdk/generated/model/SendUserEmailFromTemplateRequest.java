@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,7 +40,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   SendUserEmailFromTemplateRequest.JSON_PROPERTY_TEMPLATE_NAME,
-  SendUserEmailFromTemplateRequest.JSON_PROPERTY_TEMPLATE_PARAMS
+  SendUserEmailFromTemplateRequest.JSON_PROPERTY_TEMPLATE_PARAMS,
+  SendUserEmailFromTemplateRequest.JSON_PROPERTY_SENDER_NAME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class SendUserEmailFromTemplateRequest {
@@ -47,6 +52,9 @@ public class SendUserEmailFromTemplateRequest {
   public static final String JSON_PROPERTY_TEMPLATE_PARAMS = "templateParams";
   @javax.annotation.Nullable
   private Map<String, Object> templateParams = new HashMap<>();
+
+  public static final String JSON_PROPERTY_SENDER_NAME = "senderName";
+  private JsonNullable<String> senderName = JsonNullable.<String>undefined();
 
   public SendUserEmailFromTemplateRequest() { 
   }
@@ -107,6 +115,38 @@ public class SendUserEmailFromTemplateRequest {
   }
 
 
+  public SendUserEmailFromTemplateRequest senderName(@javax.annotation.Nullable String senderName) {
+    this.senderName = JsonNullable.<String>of(senderName);
+    return this;
+  }
+
+  /**
+   * Get senderName
+   * @return senderName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getSenderName() {
+        return senderName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SENDER_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getSenderName_JsonNullable() {
+    return senderName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENDER_NAME)
+  public void setSenderName_JsonNullable(JsonNullable<String> senderName) {
+    this.senderName = senderName;
+  }
+
+  public void setSenderName(@javax.annotation.Nullable String senderName) {
+    this.senderName = JsonNullable.<String>of(senderName);
+  }
+
+
   /**
    * Return true if this SendUserEmailFromTemplateRequest object is equal to o.
    */
@@ -120,12 +160,24 @@ public class SendUserEmailFromTemplateRequest {
     }
     SendUserEmailFromTemplateRequest sendUserEmailFromTemplateRequest = (SendUserEmailFromTemplateRequest) o;
     return Objects.equals(this.templateName, sendUserEmailFromTemplateRequest.templateName) &&
-        Objects.equals(this.templateParams, sendUserEmailFromTemplateRequest.templateParams);
+        Objects.equals(this.templateParams, sendUserEmailFromTemplateRequest.templateParams) &&
+        equalsNullable(this.senderName, sendUserEmailFromTemplateRequest.senderName);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateName, templateParams);
+    return Objects.hash(templateName, templateParams, hashCodeNullable(senderName));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -134,6 +186,7 @@ public class SendUserEmailFromTemplateRequest {
     sb.append("class SendUserEmailFromTemplateRequest {\n");
     sb.append("    templateName: ").append(toIndentedString(templateName)).append("\n");
     sb.append("    templateParams: ").append(toIndentedString(templateParams)).append("\n");
+    sb.append("    senderName: ").append(toIndentedString(senderName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -190,6 +243,11 @@ public class SendUserEmailFromTemplateRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getTemplateParams().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getTemplateParams().get(_key)))));
       }
+    }
+
+    // add `senderName` to the URL query string
+    if (getSenderName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssenderName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSenderName()))));
     }
 
     return joiner.toString();

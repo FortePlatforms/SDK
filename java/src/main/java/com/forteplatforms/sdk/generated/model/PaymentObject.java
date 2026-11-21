@@ -55,6 +55,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentObject.JSON_PROPERTY_SUBTOTAL_CENTS,
   PaymentObject.JSON_PROPERTY_TAX_CENTS,
   PaymentObject.JSON_PROPERTY_TAX_CALCULATION_STATUS,
+  PaymentObject.JSON_PROPERTY_TAX_COUNTRY,
+  PaymentObject.JSON_PROPERTY_TAX_STATE,
   PaymentObject.JSON_PROPERTY_AMOUNT_CENTS,
   PaymentObject.JSON_PROPERTY_CURRENCY,
   PaymentObject.JSON_PROPERTY_DESCRIPTION,
@@ -153,6 +155,12 @@ public class PaymentObject {
 
   public static final String JSON_PROPERTY_TAX_CALCULATION_STATUS = "taxCalculationStatus";
   private JsonNullable<TaxCalculationStatus> taxCalculationStatus = JsonNullable.<TaxCalculationStatus>undefined();
+
+  public static final String JSON_PROPERTY_TAX_COUNTRY = "taxCountry";
+  private JsonNullable<String> taxCountry = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_TAX_STATE = "taxState";
+  private JsonNullable<String> taxState = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_AMOUNT_CENTS = "amountCents";
   @javax.annotation.Nonnull
@@ -427,6 +435,70 @@ public class PaymentObject {
 
   public void setTaxCalculationStatus(@javax.annotation.Nullable TaxCalculationStatus taxCalculationStatus) {
     this.taxCalculationStatus = JsonNullable.<TaxCalculationStatus>of(taxCalculationStatus);
+  }
+
+
+  public PaymentObject taxCountry(@javax.annotation.Nullable String taxCountry) {
+    this.taxCountry = JsonNullable.<String>of(taxCountry);
+    return this;
+  }
+
+  /**
+   * Get taxCountry
+   * @return taxCountry
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getTaxCountry() {
+        return taxCountry.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_COUNTRY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getTaxCountry_JsonNullable() {
+    return taxCountry;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_COUNTRY)
+  public void setTaxCountry_JsonNullable(JsonNullable<String> taxCountry) {
+    this.taxCountry = taxCountry;
+  }
+
+  public void setTaxCountry(@javax.annotation.Nullable String taxCountry) {
+    this.taxCountry = JsonNullable.<String>of(taxCountry);
+  }
+
+
+  public PaymentObject taxState(@javax.annotation.Nullable String taxState) {
+    this.taxState = JsonNullable.<String>of(taxState);
+    return this;
+  }
+
+  /**
+   * Get taxState
+   * @return taxState
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getTaxState() {
+        return taxState.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_STATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getTaxState_JsonNullable() {
+    return taxState;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_STATE)
+  public void setTaxState_JsonNullable(JsonNullable<String> taxState) {
+    this.taxState = taxState;
+  }
+
+  public void setTaxState(@javax.annotation.Nullable String taxState) {
+    this.taxState = JsonNullable.<String>of(taxState);
   }
 
 
@@ -1197,6 +1269,8 @@ public class PaymentObject {
         Objects.equals(this.subtotalCents, paymentObject.subtotalCents) &&
         equalsNullable(this.taxCents, paymentObject.taxCents) &&
         equalsNullable(this.taxCalculationStatus, paymentObject.taxCalculationStatus) &&
+        equalsNullable(this.taxCountry, paymentObject.taxCountry) &&
+        equalsNullable(this.taxState, paymentObject.taxState) &&
         Objects.equals(this.amountCents, paymentObject.amountCents) &&
         Objects.equals(this.currency, paymentObject.currency) &&
         equalsNullable(this.description, paymentObject.description) &&
@@ -1230,7 +1304,7 @@ public class PaymentObject {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), hashCodeNullable(taxCalculationStatus), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(lastPaymentErrorMessage), hashCodeNullable(lastPaymentErrorCode), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionStripeTaxCalculationId), hashCodeNullable(subscriptionStripeTaxTransactionId), hashCodeNullable(subscriptionId), subscriptionIds, hashCodeNullable(scheduledSubscriptionIds), hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
+    return Objects.hash(id, projectId, userId, state, subtotalCents, hashCodeNullable(taxCents), hashCodeNullable(taxCalculationStatus), hashCodeNullable(taxCountry), hashCodeNullable(taxState), amountCents, currency, hashCodeNullable(description), lineItems, metadata, customerAddress, shippingAddress, supportedPaymentMethods, stripePaymentIntentId, hashCodeNullable(stripeStatus), hashCodeNullable(lastPaymentErrorMessage), hashCodeNullable(lastPaymentErrorCode), hashCodeNullable(stripeTaxCalculationId), hashCodeNullable(stripeTaxTransactionId), hashCodeNullable(subscriptionStripeTaxCalculationId), hashCodeNullable(subscriptionStripeTaxTransactionId), hashCodeNullable(subscriptionId), subscriptionIds, hashCodeNullable(scheduledSubscriptionIds), hashCodeNullable(subscriptionRenewalTime), stateHistory, refundHistory, createdAt, updatedAt, refundedAmountCents);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1251,6 +1325,8 @@ public class PaymentObject {
     sb.append("    subtotalCents: ").append(toIndentedString(subtotalCents)).append("\n");
     sb.append("    taxCents: ").append(toIndentedString(taxCents)).append("\n");
     sb.append("    taxCalculationStatus: ").append(toIndentedString(taxCalculationStatus)).append("\n");
+    sb.append("    taxCountry: ").append(toIndentedString(taxCountry)).append("\n");
+    sb.append("    taxState: ").append(toIndentedString(taxState)).append("\n");
     sb.append("    amountCents: ").append(toIndentedString(amountCents)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -1353,6 +1429,16 @@ public class PaymentObject {
     // add `taxCalculationStatus` to the URL query string
     if (getTaxCalculationStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%staxCalculationStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxCalculationStatus()))));
+    }
+
+    // add `taxCountry` to the URL query string
+    if (getTaxCountry() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%staxCountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxCountry()))));
+    }
+
+    // add `taxState` to the URL query string
+    if (getTaxState() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%staxState%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxState()))));
     }
 
     // add `amountCents` to the URL query string

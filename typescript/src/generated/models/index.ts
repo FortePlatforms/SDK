@@ -98,6 +98,7 @@ export * from './GetBuildArtifactResponse';
 export * from './GetContentDownloadLinkResponse';
 export * from './GetManagedDatabaseBackupResponse';
 export * from './GetManagedDatabaseBackupSourceResponse';
+export * from './GetPaymentSalesTaxStatusResponse';
 export * from './GetRequestBodyDownloadLinkResponse';
 export * from './GetServiceBlockedRequestMetricsResponse';
 export * from './GetServiceCodeSourceStatusResponse';

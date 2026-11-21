@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.forteplatforms.sdk.generated.model.TaxCalculationStatus;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +51,7 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
   PaymentFilter.JSON_PROPERTY_IDS,
   PaymentFilter.JSON_PROPERTY_NOT_IDS,
   PaymentFilter.JSON_PROPERTY_SUBSCRIPTION,
+  PaymentFilter.JSON_PROPERTY_TAX_CALCULATION_STATUSES,
   PaymentFilter.JSON_PROPERTY_LINE_ITEM_DESCRIPTION,
   PaymentFilter.JSON_PROPERTY_LINE_ITEM_DESCRIPTIONS,
   PaymentFilter.JSON_PROPERTY_NOT_LINE_ITEM_DESCRIPTIONS,
@@ -178,6 +180,9 @@ public class PaymentFilter {
 
   public static final String JSON_PROPERTY_SUBSCRIPTION = "subscription";
   private JsonNullable<Boolean> subscription = JsonNullable.<Boolean>undefined();
+
+  public static final String JSON_PROPERTY_TAX_CALCULATION_STATUSES = "taxCalculationStatuses";
+  private JsonNullable<List<TaxCalculationStatus>> taxCalculationStatuses = JsonNullable.<List<TaxCalculationStatus>>undefined();
 
   public static final String JSON_PROPERTY_LINE_ITEM_DESCRIPTION = "lineItemDescription";
   private JsonNullable<String> lineItemDescription = JsonNullable.<String>undefined();
@@ -629,6 +634,50 @@ public class PaymentFilter {
   }
 
 
+  public PaymentFilter taxCalculationStatuses(@javax.annotation.Nullable List<TaxCalculationStatus> taxCalculationStatuses) {
+    this.taxCalculationStatuses = JsonNullable.<List<TaxCalculationStatus>>of(taxCalculationStatuses);
+    return this;
+  }
+
+  public PaymentFilter addTaxCalculationStatusesItem(TaxCalculationStatus taxCalculationStatusesItem) {
+    if (this.taxCalculationStatuses == null || !this.taxCalculationStatuses.isPresent()) {
+      this.taxCalculationStatuses = JsonNullable.<List<TaxCalculationStatus>>of(new ArrayList<>());
+    }
+    try {
+      this.taxCalculationStatuses.get().add(taxCalculationStatusesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
+    return this;
+  }
+
+  /**
+   * Get taxCalculationStatuses
+   * @return taxCalculationStatuses
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public List<TaxCalculationStatus> getTaxCalculationStatuses() {
+        return taxCalculationStatuses.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_CALCULATION_STATUSES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<List<TaxCalculationStatus>> getTaxCalculationStatuses_JsonNullable() {
+    return taxCalculationStatuses;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TAX_CALCULATION_STATUSES)
+  public void setTaxCalculationStatuses_JsonNullable(JsonNullable<List<TaxCalculationStatus>> taxCalculationStatuses) {
+    this.taxCalculationStatuses = taxCalculationStatuses;
+  }
+
+  public void setTaxCalculationStatuses(@javax.annotation.Nullable List<TaxCalculationStatus> taxCalculationStatuses) {
+    this.taxCalculationStatuses = JsonNullable.<List<TaxCalculationStatus>>of(taxCalculationStatuses);
+  }
+
+
   public PaymentFilter lineItemDescription(@javax.annotation.Nullable String lineItemDescription) {
     this.lineItemDescription = JsonNullable.<String>of(lineItemDescription);
     return this;
@@ -867,6 +916,7 @@ public class PaymentFilter {
         equalsNullable(this.ids, paymentFilter.ids) &&
         equalsNullable(this.notIds, paymentFilter.notIds) &&
         equalsNullable(this.subscription, paymentFilter.subscription) &&
+        equalsNullable(this.taxCalculationStatuses, paymentFilter.taxCalculationStatuses) &&
         equalsNullable(this.lineItemDescription, paymentFilter.lineItemDescription) &&
         equalsNullable(this.lineItemDescriptions, paymentFilter.lineItemDescriptions) &&
         equalsNullable(this.notLineItemDescriptions, paymentFilter.notLineItemDescriptions) &&
@@ -881,7 +931,7 @@ public class PaymentFilter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(minTime), hashCodeNullable(maxTime), hashCodeNullable(states), hashCodeNullable(notStates), hashCodeNullable(userId), hashCodeNullable(userIds), hashCodeNullable(notUserIds), hashCodeNullable(ids), hashCodeNullable(notIds), hashCodeNullable(subscription), hashCodeNullable(lineItemDescription), hashCodeNullable(lineItemDescriptions), hashCodeNullable(notLineItemDescriptions), hashCodeNullable(productGroupBy), hashCodeNullable(productKey), hashCodeNullable(productMetadataKey));
+    return Objects.hash(hashCodeNullable(minTime), hashCodeNullable(maxTime), hashCodeNullable(states), hashCodeNullable(notStates), hashCodeNullable(userId), hashCodeNullable(userIds), hashCodeNullable(notUserIds), hashCodeNullable(ids), hashCodeNullable(notIds), hashCodeNullable(subscription), hashCodeNullable(taxCalculationStatuses), hashCodeNullable(lineItemDescription), hashCodeNullable(lineItemDescriptions), hashCodeNullable(notLineItemDescriptions), hashCodeNullable(productGroupBy), hashCodeNullable(productKey), hashCodeNullable(productMetadataKey));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -905,6 +955,7 @@ public class PaymentFilter {
     sb.append("    ids: ").append(toIndentedString(ids)).append("\n");
     sb.append("    notIds: ").append(toIndentedString(notIds)).append("\n");
     sb.append("    subscription: ").append(toIndentedString(subscription)).append("\n");
+    sb.append("    taxCalculationStatuses: ").append(toIndentedString(taxCalculationStatuses)).append("\n");
     sb.append("    lineItemDescription: ").append(toIndentedString(lineItemDescription)).append("\n");
     sb.append("    lineItemDescriptions: ").append(toIndentedString(lineItemDescriptions)).append("\n");
     sb.append("    notLineItemDescriptions: ").append(toIndentedString(notLineItemDescriptions)).append("\n");
@@ -1027,6 +1078,17 @@ public class PaymentFilter {
     // add `subscription` to the URL query string
     if (getSubscription() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssubscription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubscription()))));
+    }
+
+    // add `taxCalculationStatuses` to the URL query string
+    if (getTaxCalculationStatuses() != null) {
+      for (int i = 0; i < getTaxCalculationStatuses().size(); i++) {
+        if (getTaxCalculationStatuses().get(i) != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%staxCalculationStatuses%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(getTaxCalculationStatuses().get(i)))));
+        }
+      }
     }
 
     // add `lineItemDescription` to the URL query string

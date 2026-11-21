@@ -31,7 +31,8 @@ class SendUserEmailRequest(BaseModel):
     subject: Annotated[str, Field(min_length=1, strict=True)]
     body: Optional[StrictStr] = None
     html_body: Optional[StrictStr] = Field(default=None, alias="htmlBody")
-    __properties: ClassVar[List[str]] = ["subject", "body", "htmlBody"]
+    sender_name: Optional[StrictStr] = Field(default=None, alias="senderName")
+    __properties: ClassVar[List[str]] = ["subject", "body", "htmlBody", "senderName"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -72,6 +73,11 @@ class SendUserEmailRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sender_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.sender_name is None and "sender_name" in self.model_fields_set:
+            _dict['senderName'] = None
+
         return _dict
 
     @classmethod
@@ -86,7 +92,8 @@ class SendUserEmailRequest(BaseModel):
         _obj = cls.model_validate({
             "subject": obj.get("subject"),
             "body": obj.get("body"),
-            "htmlBody": obj.get("htmlBody")
+            "htmlBody": obj.get("htmlBody"),
+            "senderName": obj.get("senderName")
         })
         return _obj
 

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -30,7 +30,8 @@ class SendUserEmailFromTemplateRequest(BaseModel):
     """ # noqa: E501
     template_name: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="templateName")
     template_params: Optional[Dict[str, Any]] = Field(default=None, alias="templateParams")
-    __properties: ClassVar[List[str]] = ["templateName", "templateParams"]
+    sender_name: Optional[StrictStr] = Field(default=None, alias="senderName")
+    __properties: ClassVar[List[str]] = ["templateName", "templateParams", "senderName"]
 
     @field_validator('template_name')
     def template_name_validate_regular_expression(cls, value):
@@ -81,6 +82,11 @@ class SendUserEmailFromTemplateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if sender_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.sender_name is None and "sender_name" in self.model_fields_set:
+            _dict['senderName'] = None
+
         return _dict
 
     @classmethod
@@ -94,7 +100,8 @@ class SendUserEmailFromTemplateRequest(BaseModel):
 
         _obj = cls.model_validate({
             "templateName": obj.get("templateName"),
-            "templateParams": obj.get("templateParams")
+            "templateParams": obj.get("templateParams"),
+            "senderName": obj.get("senderName")
         })
         return _obj
 

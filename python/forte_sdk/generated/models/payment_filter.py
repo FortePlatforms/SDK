@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from forte_sdk.generated.models.tax_calculation_status import TaxCalculationStatus
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -39,13 +40,14 @@ class PaymentFilter(BaseModel):
     ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = None
     not_ids: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=128)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="notIds")
     subscription: Optional[StrictBool] = None
+    tax_calculation_statuses: Optional[Annotated[List[Optional[TaxCalculationStatus]], Field(min_length=0, max_length=2)]] = Field(default=None, alias="taxCalculationStatuses")
     line_item_description: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=512)]] = Field(default=None, alias="lineItemDescription")
     line_item_descriptions: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=512)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="lineItemDescriptions")
     not_line_item_descriptions: Optional[Annotated[List[Annotated[str, Field(min_length=0, strict=True, max_length=512)]], Field(min_length=0, max_length=100)]] = Field(default=None, alias="notLineItemDescriptions")
     product_group_by: Optional[StrictStr] = Field(default=None, alias="productGroupBy")
     product_key: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=512)]] = Field(default=None, alias="productKey")
     product_metadata_key: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=256)]] = Field(default=None, alias="productMetadataKey")
-    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "states", "notStates", "userId", "userIds", "notUserIds", "ids", "notIds", "subscription", "lineItemDescription", "lineItemDescriptions", "notLineItemDescriptions", "productGroupBy", "productKey", "productMetadataKey"]
+    __properties: ClassVar[List[str]] = ["minTime", "maxTime", "states", "notStates", "userId", "userIds", "notUserIds", "ids", "notIds", "subscription", "taxCalculationStatuses", "lineItemDescription", "lineItemDescriptions", "notLineItemDescriptions", "productGroupBy", "productKey", "productMetadataKey"]
 
     @field_validator('states')
     def states_validate_enum(cls, value):
@@ -168,6 +170,11 @@ class PaymentFilter(BaseModel):
         if self.subscription is None and "subscription" in self.model_fields_set:
             _dict['subscription'] = None
 
+        # set to None if tax_calculation_statuses (nullable) is None
+        # and model_fields_set contains the field
+        if self.tax_calculation_statuses is None and "tax_calculation_statuses" in self.model_fields_set:
+            _dict['taxCalculationStatuses'] = None
+
         # set to None if line_item_description (nullable) is None
         # and model_fields_set contains the field
         if self.line_item_description is None and "line_item_description" in self.model_fields_set:
@@ -220,6 +227,7 @@ class PaymentFilter(BaseModel):
             "ids": obj.get("ids"),
             "notIds": obj.get("notIds"),
             "subscription": obj.get("subscription"),
+            "taxCalculationStatuses": obj.get("taxCalculationStatuses"),
             "lineItemDescription": obj.get("lineItemDescription"),
             "lineItemDescriptions": obj.get("lineItemDescriptions"),
             "notLineItemDescriptions": obj.get("notLineItemDescriptions"),

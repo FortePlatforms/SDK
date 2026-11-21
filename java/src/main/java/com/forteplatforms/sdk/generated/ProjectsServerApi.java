@@ -78,6 +78,7 @@ import com.forteplatforms.sdk.generated.model.GetBuildArtifactResponse;
 import com.forteplatforms.sdk.generated.model.GetContentDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.GetManagedDatabaseBackupResponse;
 import com.forteplatforms.sdk.generated.model.GetManagedDatabaseBackupSourceResponse;
+import com.forteplatforms.sdk.generated.model.GetPaymentSalesTaxStatusResponse;
 import com.forteplatforms.sdk.generated.model.GetRequestBodyDownloadLinkResponse;
 import com.forteplatforms.sdk.generated.model.GetServiceBlockedRequestMetricsResponse;
 import com.forteplatforms.sdk.generated.model.GetServiceCodeSourceStatusResponse;
@@ -9364,6 +9365,124 @@ public class ProjectsServerApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "*/*");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return GetPaymentSalesTaxStatusResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetPaymentSalesTaxStatusResponse getPaymentSalesTaxStatus(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return getPaymentSalesTaxStatus(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetPaymentSalesTaxStatusResponse
+   * @throws ApiException if fails to make API call
+   */
+  public GetPaymentSalesTaxStatusResponse getPaymentSalesTaxStatus(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetPaymentSalesTaxStatusResponse> localVarResponse = getPaymentSalesTaxStatusWithHttpInfo(projectId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @return ApiResponse&lt;GetPaymentSalesTaxStatusResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPaymentSalesTaxStatusResponse> getPaymentSalesTaxStatusWithHttpInfo(@javax.annotation.Nonnull String projectId) throws ApiException {
+    return getPaymentSalesTaxStatusWithHttpInfo(projectId, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param projectId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetPaymentSalesTaxStatusResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPaymentSalesTaxStatusResponse> getPaymentSalesTaxStatusWithHttpInfo(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPaymentSalesTaxStatusRequestBuilder(projectId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getPaymentSalesTaxStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetPaymentSalesTaxStatusResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetPaymentSalesTaxStatusResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetPaymentSalesTaxStatusResponse>() {});
+        
+
+        return new ApiResponse<GetPaymentSalesTaxStatusResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getPaymentSalesTaxStatusRequestBuilder(@javax.annotation.Nonnull String projectId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'projectId' is set
+    if (projectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'projectId' when calling getPaymentSalesTaxStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/api/v1/projects/{projectId}/payments/sales-tax-status"
+        .replace("{projectId}", ApiClient.urlEncode(projectId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "*/*");
 
