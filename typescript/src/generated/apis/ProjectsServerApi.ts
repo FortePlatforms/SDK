@@ -1545,6 +1545,12 @@ export interface ListWebAppInvocationsRequest {
     minTime?: Date;
     maxTime?: Date;
     failedOnly?: boolean;
+    minDurationMillis?: number;
+    maxDurationMillis?: number;
+    requestId?: string;
+    failureType?: ListWebAppInvocationsFailureTypeType;
+    sortBy?: ListWebAppInvocationsSortByType;
+    sortDirection?: ListWebAppInvocationsSortDirectionType;
     nextToken?: string;
 }
 
@@ -9043,6 +9049,30 @@ export class ProjectsServerApi extends runtime.BaseAPI {
             queryParameters['failedOnly'] = requestParameters['failedOnly'];
         }
 
+        if (requestParameters['minDurationMillis'] != null) {
+            queryParameters['minDurationMillis'] = requestParameters['minDurationMillis'];
+        }
+
+        if (requestParameters['maxDurationMillis'] != null) {
+            queryParameters['maxDurationMillis'] = requestParameters['maxDurationMillis'];
+        }
+
+        if (requestParameters['requestId'] != null) {
+            queryParameters['requestId'] = requestParameters['requestId'];
+        }
+
+        if (requestParameters['failureType'] != null) {
+            queryParameters['failureType'] = requestParameters['failureType'];
+        }
+
+        if (requestParameters['sortBy'] != null) {
+            queryParameters['sortBy'] = requestParameters['sortBy'];
+        }
+
+        if (requestParameters['sortDirection'] != null) {
+            queryParameters['sortDirection'] = requestParameters['sortDirection'];
+        }
+
         if (requestParameters['nextToken'] != null) {
             queryParameters['nextToken'] = requestParameters['nextToken'];
         }
@@ -13055,6 +13085,30 @@ export const ListWebAppBlockedRequestGroupsCategoryType = {
     RATE_LIMITED: 'RATE_LIMITED'
 } as const;
 export type ListWebAppBlockedRequestGroupsCategoryType = typeof ListWebAppBlockedRequestGroupsCategoryType[keyof typeof ListWebAppBlockedRequestGroupsCategoryType];
+/**
+ * @export
+ */
+export const ListWebAppInvocationsFailureTypeType = {
+    TIMEOUT: 'TIMEOUT',
+    CRASH: 'CRASH'
+} as const;
+export type ListWebAppInvocationsFailureTypeType = typeof ListWebAppInvocationsFailureTypeType[keyof typeof ListWebAppInvocationsFailureTypeType];
+/**
+ * @export
+ */
+export const ListWebAppInvocationsSortByType = {
+    TIMESTAMP: 'TIMESTAMP',
+    DURATION: 'DURATION'
+} as const;
+export type ListWebAppInvocationsSortByType = typeof ListWebAppInvocationsSortByType[keyof typeof ListWebAppInvocationsSortByType];
+/**
+ * @export
+ */
+export const ListWebAppInvocationsSortDirectionType = {
+    ASC: 'ASC',
+    DESC: 'DESC'
+} as const;
+export type ListWebAppInvocationsSortDirectionType = typeof ListWebAppInvocationsSortDirectionType[keyof typeof ListWebAppInvocationsSortDirectionType];
 /**
  * @export
  */

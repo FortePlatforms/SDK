@@ -30,13 +30,13 @@ export interface ForteApiException {
      * @type {string}
      * @memberof ForteApiException
      */
-    message?: string;
+    forteExceptionType?: string;
     /**
      * 
      * @type {string}
      * @memberof ForteApiException
      */
-    forteExceptionType?: string;
+    message?: string;
 }
 
 
@@ -144,6 +144,7 @@ export const ForteApiExceptionErrorCodeType = {
     NO_SERVICE_FOR_DOMAIN: 'NO_SERVICE_FOR_DOMAIN',
     INVALID_PAGINATION_TIME_PARAMS: 'INVALID_PAGINATION_TIME_PARAMS',
     INVALID_PAGINATION_TOKEN: 'INVALID_PAGINATION_TOKEN',
+    INVALID_INVOCATION_DURATION_RANGE: 'INVALID_INVOCATION_DURATION_RANGE',
     INVALID_GITHUB_INSTALLATION_STATE_TOKEN: 'INVALID_GITHUB_INSTALLATION_STATE_TOKEN',
     GITHUB_AUTH_STATE_INVALID: 'GITHUB_AUTH_STATE_INVALID',
     GITHUB_CODE_EXCHANGE_FAILED: 'GITHUB_CODE_EXCHANGE_FAILED',
@@ -473,8 +474,8 @@ export function ForteApiExceptionFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'errorCode': json['errorCode'] == null ? undefined : json['errorCode'],
-        'message': json['message'] == null ? undefined : json['message'],
         'forteExceptionType': json['forteExceptionType'] == null ? undefined : json['forteExceptionType'],
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 
@@ -490,8 +491,8 @@ export function ForteApiExceptionToJSONTyped(value?: ForteApiException | null, i
     return {
         
         'errorCode': value['errorCode'],
-        'message': value['message'],
         'forteExceptionType': value['forteExceptionType'],
+        'message': value['message'],
     };
 }
 

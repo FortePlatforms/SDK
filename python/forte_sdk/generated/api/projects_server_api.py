@@ -36747,6 +36747,12 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         failed_only: Annotated[Optional[StrictBool], Field(description="Only invocations that timed out or crashed.")] = None,
+        min_duration_millis: Annotated[Optional[StrictInt], Field(description="Minimum rounded duration in milliseconds, inclusive.")] = None,
+        max_duration_millis: Annotated[Optional[StrictInt], Field(description="Maximum rounded duration in milliseconds, inclusive.")] = None,
+        request_id: Annotated[Optional[StrictStr], Field(description="Exact invocation ID.")] = None,
+        failure_type: Annotated[Optional[StrictStr], Field(description="Only invocations with this recorded runtime failure type.")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sort by invocation end time or duration. Defaults to TIMESTAMP.")] = None,
+        sort_direction: Annotated[Optional[StrictStr], Field(description="Sort direction. Defaults to DESC.")] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -36774,6 +36780,18 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param failed_only: Only invocations that timed out or crashed.
         :type failed_only: bool
+        :param min_duration_millis: Minimum rounded duration in milliseconds, inclusive.
+        :type min_duration_millis: int
+        :param max_duration_millis: Maximum rounded duration in milliseconds, inclusive.
+        :type max_duration_millis: int
+        :param request_id: Exact invocation ID.
+        :type request_id: str
+        :param failure_type: Only invocations with this recorded runtime failure type.
+        :type failure_type: str
+        :param sort_by: Sort by invocation end time or duration. Defaults to TIMESTAMP.
+        :type sort_by: str
+        :param sort_direction: Sort direction. Defaults to DESC.
+        :type sort_direction: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -36804,6 +36822,12 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             failed_only=failed_only,
+            min_duration_millis=min_duration_millis,
+            max_duration_millis=max_duration_millis,
+            request_id=request_id,
+            failure_type=failure_type,
+            sort_by=sort_by,
+            sort_direction=sort_direction,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -36833,6 +36857,12 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         failed_only: Annotated[Optional[StrictBool], Field(description="Only invocations that timed out or crashed.")] = None,
+        min_duration_millis: Annotated[Optional[StrictInt], Field(description="Minimum rounded duration in milliseconds, inclusive.")] = None,
+        max_duration_millis: Annotated[Optional[StrictInt], Field(description="Maximum rounded duration in milliseconds, inclusive.")] = None,
+        request_id: Annotated[Optional[StrictStr], Field(description="Exact invocation ID.")] = None,
+        failure_type: Annotated[Optional[StrictStr], Field(description="Only invocations with this recorded runtime failure type.")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sort by invocation end time or duration. Defaults to TIMESTAMP.")] = None,
+        sort_direction: Annotated[Optional[StrictStr], Field(description="Sort direction. Defaults to DESC.")] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -36860,6 +36890,18 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param failed_only: Only invocations that timed out or crashed.
         :type failed_only: bool
+        :param min_duration_millis: Minimum rounded duration in milliseconds, inclusive.
+        :type min_duration_millis: int
+        :param max_duration_millis: Maximum rounded duration in milliseconds, inclusive.
+        :type max_duration_millis: int
+        :param request_id: Exact invocation ID.
+        :type request_id: str
+        :param failure_type: Only invocations with this recorded runtime failure type.
+        :type failure_type: str
+        :param sort_by: Sort by invocation end time or duration. Defaults to TIMESTAMP.
+        :type sort_by: str
+        :param sort_direction: Sort direction. Defaults to DESC.
+        :type sort_direction: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -36890,6 +36932,12 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             failed_only=failed_only,
+            min_duration_millis=min_duration_millis,
+            max_duration_millis=max_duration_millis,
+            request_id=request_id,
+            failure_type=failure_type,
+            sort_by=sort_by,
+            sort_direction=sort_direction,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -36919,6 +36967,12 @@ class ProjectsServerApi:
         min_time: Optional[datetime] = None,
         max_time: Optional[datetime] = None,
         failed_only: Annotated[Optional[StrictBool], Field(description="Only invocations that timed out or crashed.")] = None,
+        min_duration_millis: Annotated[Optional[StrictInt], Field(description="Minimum rounded duration in milliseconds, inclusive.")] = None,
+        max_duration_millis: Annotated[Optional[StrictInt], Field(description="Maximum rounded duration in milliseconds, inclusive.")] = None,
+        request_id: Annotated[Optional[StrictStr], Field(description="Exact invocation ID.")] = None,
+        failure_type: Annotated[Optional[StrictStr], Field(description="Only invocations with this recorded runtime failure type.")] = None,
+        sort_by: Annotated[Optional[StrictStr], Field(description="Sort by invocation end time or duration. Defaults to TIMESTAMP.")] = None,
+        sort_direction: Annotated[Optional[StrictStr], Field(description="Sort direction. Defaults to DESC.")] = None,
         next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -36946,6 +37000,18 @@ class ProjectsServerApi:
         :type max_time: datetime
         :param failed_only: Only invocations that timed out or crashed.
         :type failed_only: bool
+        :param min_duration_millis: Minimum rounded duration in milliseconds, inclusive.
+        :type min_duration_millis: int
+        :param max_duration_millis: Maximum rounded duration in milliseconds, inclusive.
+        :type max_duration_millis: int
+        :param request_id: Exact invocation ID.
+        :type request_id: str
+        :param failure_type: Only invocations with this recorded runtime failure type.
+        :type failure_type: str
+        :param sort_by: Sort by invocation end time or duration. Defaults to TIMESTAMP.
+        :type sort_by: str
+        :param sort_direction: Sort direction. Defaults to DESC.
+        :type sort_direction: str
         :param next_token:
         :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
@@ -36976,6 +37042,12 @@ class ProjectsServerApi:
             min_time=min_time,
             max_time=max_time,
             failed_only=failed_only,
+            min_duration_millis=min_duration_millis,
+            max_duration_millis=max_duration_millis,
+            request_id=request_id,
+            failure_type=failure_type,
+            sort_by=sort_by,
+            sort_direction=sort_direction,
             next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -37000,6 +37072,12 @@ class ProjectsServerApi:
         min_time,
         max_time,
         failed_only,
+        min_duration_millis,
+        max_duration_millis,
+        request_id,
+        failure_type,
+        sort_by,
+        sort_direction,
         next_token,
         _request_auth,
         _content_type,
@@ -37056,6 +37134,30 @@ class ProjectsServerApi:
         if failed_only is not None:
             
             _query_params.append(('failedOnly', failed_only))
+            
+        if min_duration_millis is not None:
+            
+            _query_params.append(('minDurationMillis', min_duration_millis))
+            
+        if max_duration_millis is not None:
+            
+            _query_params.append(('maxDurationMillis', max_duration_millis))
+            
+        if request_id is not None:
+            
+            _query_params.append(('requestId', request_id))
+            
+        if failure_type is not None:
+            
+            _query_params.append(('failureType', failure_type))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if sort_direction is not None:
+            
+            _query_params.append(('sortDirection', sort_direction))
             
         if next_token is not None:
             

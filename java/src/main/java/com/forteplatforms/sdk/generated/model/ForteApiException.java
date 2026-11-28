@@ -38,8 +38,8 @@ import com.forteplatforms.sdk.generated.invoker.ApiClient;
  */
 @JsonPropertyOrder({
   ForteApiException.JSON_PROPERTY_ERROR_CODE,
-  ForteApiException.JSON_PROPERTY_MESSAGE,
-  ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE
+  ForteApiException.JSON_PROPERTY_FORTE_EXCEPTION_TYPE,
+  ForteApiException.JSON_PROPERTY_MESSAGE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.22.0")
 public class ForteApiException {
@@ -246,6 +246,8 @@ public class ForteApiException {
     INVALID_PAGINATION_TIME_PARAMS(String.valueOf("INVALID_PAGINATION_TIME_PARAMS")),
     
     INVALID_PAGINATION_TOKEN(String.valueOf("INVALID_PAGINATION_TOKEN")),
+    
+    INVALID_INVOCATION_DURATION_RANGE(String.valueOf("INVALID_INVOCATION_DURATION_RANGE")),
     
     INVALID_GITHUB_INSTALLATION_STATE_TOKEN(String.valueOf("INVALID_GITHUB_INSTALLATION_STATE_TOKEN")),
     
@@ -891,13 +893,13 @@ public class ForteApiException {
   public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
   private JsonNullable<ErrorCodeEnum> errorCode = JsonNullable.<ErrorCodeEnum>undefined();
 
-  public static final String JSON_PROPERTY_MESSAGE = "message";
-  @javax.annotation.Nullable
-  private String message;
-
   public static final String JSON_PROPERTY_FORTE_EXCEPTION_TYPE = "forteExceptionType";
   @javax.annotation.Nullable
   private String forteExceptionType;
+
+  public static final String JSON_PROPERTY_MESSAGE = "message";
+  @javax.annotation.Nullable
+  private String message;
 
   public ForteApiException() { 
   }
@@ -934,30 +936,6 @@ public class ForteApiException {
   }
 
 
-  public ForteApiException message(@javax.annotation.Nullable String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * Get message
-   * @return message
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMessage() {
-    return message;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
-  }
-
-
   public ForteApiException forteExceptionType(@javax.annotation.Nullable String forteExceptionType) {
     this.forteExceptionType = forteExceptionType;
     return this;
@@ -982,6 +960,30 @@ public class ForteApiException {
   }
 
 
+  public ForteApiException message(@javax.annotation.Nullable String message) {
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Get message
+   * @return message
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMessage() {
+    return message;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessage(@javax.annotation.Nullable String message) {
+    this.message = message;
+  }
+
+
   /**
    * Return true if this ForteApiException object is equal to o.
    */
@@ -995,8 +997,8 @@ public class ForteApiException {
     }
     ForteApiException forteApiException = (ForteApiException) o;
     return equalsNullable(this.errorCode, forteApiException.errorCode) &&
-        Objects.equals(this.message, forteApiException.message) &&
-        Objects.equals(this.forteExceptionType, forteApiException.forteExceptionType);
+        Objects.equals(this.forteExceptionType, forteApiException.forteExceptionType) &&
+        Objects.equals(this.message, forteApiException.message);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -1005,7 +1007,7 @@ public class ForteApiException {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(errorCode), message, forteExceptionType);
+    return Objects.hash(hashCodeNullable(errorCode), forteExceptionType, message);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1020,8 +1022,8 @@ public class ForteApiException {
     StringBuilder sb = new StringBuilder();
     sb.append("class ForteApiException {\n");
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    forteExceptionType: ").append(toIndentedString(forteExceptionType)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1071,14 +1073,14 @@ public class ForteApiException {
       joiner.add(String.format(java.util.Locale.ROOT, "%serrorCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getErrorCode()))));
     }
 
-    // add `message` to the URL query string
-    if (getMessage() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
-    }
-
     // add `forteExceptionType` to the URL query string
     if (getForteExceptionType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sforteExceptionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForteExceptionType()))));
+    }
+
+    // add `message` to the URL query string
+    if (getMessage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
     }
 
     return joiner.toString();

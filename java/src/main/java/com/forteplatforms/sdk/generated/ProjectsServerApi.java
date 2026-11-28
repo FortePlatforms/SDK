@@ -17284,12 +17284,18 @@ public class ProjectsServerApi {
    * @param minTime  (optional)
    * @param maxTime  (optional)
    * @param failedOnly Only invocations that timed out or crashed. (optional, default to false)
+   * @param minDurationMillis Minimum rounded duration in milliseconds, inclusive. (optional)
+   * @param maxDurationMillis Maximum rounded duration in milliseconds, inclusive. (optional)
+   * @param requestId Exact invocation ID. (optional)
+   * @param failureType Only invocations with this recorded runtime failure type. (optional)
+   * @param sortBy Sort by invocation end time or duration. Defaults to TIMESTAMP. (optional)
+   * @param sortDirection Sort direction. Defaults to DESC. (optional)
    * @param nextToken  (optional)
    * @return PaginatedResponseGetWebAppInvocationResponse
    * @throws ApiException if fails to make API call
    */
-  public PaginatedResponseGetWebAppInvocationResponse listWebAppInvocations(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable String nextToken) throws ApiException {
-    return listWebAppInvocations(projectId, webAppId, minTime, maxTime, failedOnly, nextToken, null);
+  public PaginatedResponseGetWebAppInvocationResponse listWebAppInvocations(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable Long minDurationMillis, @javax.annotation.Nullable Long maxDurationMillis, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable String failureType, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String sortDirection, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listWebAppInvocations(projectId, webAppId, minTime, maxTime, failedOnly, minDurationMillis, maxDurationMillis, requestId, failureType, sortBy, sortDirection, nextToken, null);
   }
 
   /**
@@ -17300,13 +17306,19 @@ public class ProjectsServerApi {
    * @param minTime  (optional)
    * @param maxTime  (optional)
    * @param failedOnly Only invocations that timed out or crashed. (optional, default to false)
+   * @param minDurationMillis Minimum rounded duration in milliseconds, inclusive. (optional)
+   * @param maxDurationMillis Maximum rounded duration in milliseconds, inclusive. (optional)
+   * @param requestId Exact invocation ID. (optional)
+   * @param failureType Only invocations with this recorded runtime failure type. (optional)
+   * @param sortBy Sort by invocation end time or duration. Defaults to TIMESTAMP. (optional)
+   * @param sortDirection Sort direction. Defaults to DESC. (optional)
    * @param nextToken  (optional)
    * @param headers Optional headers to include in the request
    * @return PaginatedResponseGetWebAppInvocationResponse
    * @throws ApiException if fails to make API call
    */
-  public PaginatedResponseGetWebAppInvocationResponse listWebAppInvocations(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<PaginatedResponseGetWebAppInvocationResponse> localVarResponse = listWebAppInvocationsWithHttpInfo(projectId, webAppId, minTime, maxTime, failedOnly, nextToken, headers);
+  public PaginatedResponseGetWebAppInvocationResponse listWebAppInvocations(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable Long minDurationMillis, @javax.annotation.Nullable Long maxDurationMillis, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable String failureType, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String sortDirection, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<PaginatedResponseGetWebAppInvocationResponse> localVarResponse = listWebAppInvocationsWithHttpInfo(projectId, webAppId, minTime, maxTime, failedOnly, minDurationMillis, maxDurationMillis, requestId, failureType, sortBy, sortDirection, nextToken, headers);
     return localVarResponse.getData();
   }
 
@@ -17318,12 +17330,18 @@ public class ProjectsServerApi {
    * @param minTime  (optional)
    * @param maxTime  (optional)
    * @param failedOnly Only invocations that timed out or crashed. (optional, default to false)
+   * @param minDurationMillis Minimum rounded duration in milliseconds, inclusive. (optional)
+   * @param maxDurationMillis Maximum rounded duration in milliseconds, inclusive. (optional)
+   * @param requestId Exact invocation ID. (optional)
+   * @param failureType Only invocations with this recorded runtime failure type. (optional)
+   * @param sortBy Sort by invocation end time or duration. Defaults to TIMESTAMP. (optional)
+   * @param sortDirection Sort direction. Defaults to DESC. (optional)
    * @param nextToken  (optional)
    * @return ApiResponse&lt;PaginatedResponseGetWebAppInvocationResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaginatedResponseGetWebAppInvocationResponse> listWebAppInvocationsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable String nextToken) throws ApiException {
-    return listWebAppInvocationsWithHttpInfo(projectId, webAppId, minTime, maxTime, failedOnly, nextToken, null);
+  public ApiResponse<PaginatedResponseGetWebAppInvocationResponse> listWebAppInvocationsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable Long minDurationMillis, @javax.annotation.Nullable Long maxDurationMillis, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable String failureType, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String sortDirection, @javax.annotation.Nullable String nextToken) throws ApiException {
+    return listWebAppInvocationsWithHttpInfo(projectId, webAppId, minTime, maxTime, failedOnly, minDurationMillis, maxDurationMillis, requestId, failureType, sortBy, sortDirection, nextToken, null);
   }
 
   /**
@@ -17334,13 +17352,19 @@ public class ProjectsServerApi {
    * @param minTime  (optional)
    * @param maxTime  (optional)
    * @param failedOnly Only invocations that timed out or crashed. (optional, default to false)
+   * @param minDurationMillis Minimum rounded duration in milliseconds, inclusive. (optional)
+   * @param maxDurationMillis Maximum rounded duration in milliseconds, inclusive. (optional)
+   * @param requestId Exact invocation ID. (optional)
+   * @param failureType Only invocations with this recorded runtime failure type. (optional)
+   * @param sortBy Sort by invocation end time or duration. Defaults to TIMESTAMP. (optional)
+   * @param sortDirection Sort direction. Defaults to DESC. (optional)
    * @param nextToken  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PaginatedResponseGetWebAppInvocationResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PaginatedResponseGetWebAppInvocationResponse> listWebAppInvocationsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listWebAppInvocationsRequestBuilder(projectId, webAppId, minTime, maxTime, failedOnly, nextToken, headers);
+  public ApiResponse<PaginatedResponseGetWebAppInvocationResponse> listWebAppInvocationsWithHttpInfo(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable Long minDurationMillis, @javax.annotation.Nullable Long maxDurationMillis, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable String failureType, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String sortDirection, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWebAppInvocationsRequestBuilder(projectId, webAppId, minTime, maxTime, failedOnly, minDurationMillis, maxDurationMillis, requestId, failureType, sortBy, sortDirection, nextToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -17387,7 +17411,7 @@ public class ProjectsServerApi {
     }
   }
 
-  private HttpRequest.Builder listWebAppInvocationsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listWebAppInvocationsRequestBuilder(@javax.annotation.Nonnull String projectId, @javax.annotation.Nonnull String webAppId, @javax.annotation.Nullable OffsetDateTime minTime, @javax.annotation.Nullable OffsetDateTime maxTime, @javax.annotation.Nullable Boolean failedOnly, @javax.annotation.Nullable Long minDurationMillis, @javax.annotation.Nullable Long maxDurationMillis, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable String failureType, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String sortDirection, @javax.annotation.Nullable String nextToken, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'projectId' is set
     if (projectId == null) {
       throw new ApiException(400, "Missing the required parameter 'projectId' when calling listWebAppInvocations");
@@ -17412,6 +17436,18 @@ public class ProjectsServerApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("maxTime", maxTime));
     localVarQueryParameterBaseName = "failedOnly";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("failedOnly", failedOnly));
+    localVarQueryParameterBaseName = "minDurationMillis";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("minDurationMillis", minDurationMillis));
+    localVarQueryParameterBaseName = "maxDurationMillis";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("maxDurationMillis", maxDurationMillis));
+    localVarQueryParameterBaseName = "requestId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("requestId", requestId));
+    localVarQueryParameterBaseName = "failureType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("failureType", failureType));
+    localVarQueryParameterBaseName = "sortBy";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("sortBy", sortBy));
+    localVarQueryParameterBaseName = "sortDirection";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("sortDirection", sortDirection));
     localVarQueryParameterBaseName = "nextToken";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("nextToken", nextToken));
 
